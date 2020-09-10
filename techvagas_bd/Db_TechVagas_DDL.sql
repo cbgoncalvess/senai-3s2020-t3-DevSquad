@@ -110,3 +110,4 @@ CREATE TABLE VagaTecnologia (
 	 IdVaga		  INT FOREIGN KEY REFERENCES Vaga (IdVaga),
 	 CONSTRAINT IdVagaTecnologia PRIMARY KEY (IdTecnologia, IdVaga)
 );
+GO
