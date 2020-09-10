@@ -1,6 +1,8 @@
 CREATE DATABASE Db_TechVagas;
+GO
 
 USE Db_TechVagas;
+GO
 
 --DDL
 
@@ -111,3 +113,6 @@ CREATE TABLE VagaTecnologia (
 	 CONSTRAINT IdVagaTecnologia PRIMARY KEY (IdTecnologia, IdVaga)
 );
 GO
+
+USE MASTER
+DROP DATABASE Db_TechVagas
