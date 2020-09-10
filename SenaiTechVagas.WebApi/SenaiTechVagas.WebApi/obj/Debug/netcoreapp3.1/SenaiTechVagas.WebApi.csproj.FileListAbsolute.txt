@@ -54,3 +54,14 @@ C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debu
 C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.deps.json
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.runtimeconfig.json
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.runtimeconfig.dev.json
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.dll
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.pdb
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\obj\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.csproj.CoreCompileInputs.cache
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\obj\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\obj\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.dll
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\obj\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.pdb
+C:\Users\senai\source\repos\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\obj\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.genruntimeconfig.cache
