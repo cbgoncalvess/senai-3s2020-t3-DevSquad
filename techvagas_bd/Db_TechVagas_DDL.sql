@@ -104,3 +104,9 @@ CREATE TABLE Inscricao (
 	IdStatusInscricao INT FOREIGN KEY REFERENCES StatusInscricao (IdStatusInscricao)
 );
 GO
+
+CREATE TABLE VagaTecnologia (
+	 IdTecnologia INT FOREIGN KEY REFERENCES Tecnologia (IdTecnologia),
+	 IdVaga		  INT FOREIGN KEY REFERENCES Vaga (IdVaga),
+	 CONSTRAINT IdVagaTecnologia PRIMARY KEY (IdTecnologia, IdVaga)
+);
