@@ -3,3 +3,28 @@ CREATE DATABASE Db_TechVagas;
 USE Db_TechVagas;
 
 --DDL
+
+CREATE TABLE TipoUsuario (
+	IdTipoUsuario   INT PRIMARY KEY IDENTITY,
+	NomeTipoUsuario VARCHAR (35) NOT NULL UNIQUE
+);
+GO
+
+CREATE TABLE Curso (
+	IdCurso	  INT PRIMARY KEY IDENTITY,
+	NomeCurso VARCHAR (100) NOT NULL UNIQUE,
+	TipoCurso VARCHAR (20) NOT NULL
+);
+GO
+
+CREATE TABLE StatusInscricao (
+	IdStatusInscricao   INT PRIMARY KEY IDENTITY,
+	NomeStatusInscricao VARCHAR (30) NOT NULL UNIQUE
+);
+GO
+
+CREATE TABLE Tecnologia (
+	IdTecnologia   INT PRIMARY KEY IDENTITY,
+	NomeTecnologia VARCHAR (35) 
+);
+GO
