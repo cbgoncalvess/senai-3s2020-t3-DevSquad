@@ -28,3 +28,43 @@ CREATE TABLE Tecnologia (
 	NomeTecnologia VARCHAR (35) 
 );
 GO
+
+CREATE TABLE Usuario (
+	IdUsuario	  INT PRIMARY KEY IDENTITY,
+	Email		  VARCHAR (254) NOT NULL UNIQUE,
+	Senha		  VARCHAR (20) NOT NULL,
+	IdTipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario (IdTipoUsuario)
+); 
+GO
+
+CREATE TABLE Empresa (
+	IdEmpresa	   INT PRIMARY KEY IDENTITY,
+	NomeReponsavel VARCHAR (100) NOT NULL,
+	CNPJ		   CHAR (11) NOT NULL UNIQUE,
+	EmailContato   VARCHAR (254) NOT NULL,
+	NomeFantasia   VARCHAR (50) NOT NULL UNIQUE,
+	RazaoSocial    VARCHAR (50) NOT NULL UNIQUE,
+	Telefone	   CHAR (14) NOT NULL,
+	NumFuncionario INT NOT NULL,
+	NumCNAE		   CHAR (7),
+	CEP			   CHAR (8) NOT NULL,
+	Logradouro	   VARCHAR (50) NOT NULL,
+	Complemento	   VARCHAR (30) NOT NULL,
+	Localidade	   VARCHAR (30) NOT NULL,
+	UF			   VARCHAR (50) NOT NULL,
+	IdUsuario	   INT FOREIGN KEY REFERENCES Usuario (IdUsuario)
+);
+GO
+
+CREATE TABLE Candidato (
+	IdCandidato			  INT PRIMARY KEY IDENTITY,
+	NomeCompleto		  VARCHAR (35) NOT NULL UNIQUE,
+	RG					  CHAR (9) NOT NULL UNIQUE,
+	CPF					  CHAR (14) NOT NULL UNIQUE,
+	Telefone			  CHAR (14) NOT NULL UNIQUE,
+	LinkLinkedinCandidato VARCHAR (150) NOT NULL UNIQUE,
+	Area				  VARCHAR (40) NOT NULL UNIQUE,
+	IdCurso				  INT FOREIGN KEY REFERENCES Curso (IdCurso),
+	IdUsuario			  INT FOREIGN KEY REFERENCES Usuario (IdUsuario)
+);
+GO
