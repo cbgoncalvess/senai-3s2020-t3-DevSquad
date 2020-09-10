@@ -68,3 +68,22 @@ CREATE TABLE Candidato (
 	IdUsuario			  INT FOREIGN KEY REFERENCES Usuario (IdUsuario)
 );
 GO
+
+CREATE TABLE Vaga (
+	IdVaga			   INT PRIMARY KEY IDENTITY,
+	DescricaoVaga	   VARCHAR (700) NOT NULL,
+	DescricaoEmpresa   VARCHAR (255) NOT NULL,
+	DescricaoBeneficio VARCHAR (255) NOT NULL,
+	DataPublicacao	   DATETIME NOT NULL,
+	DataExpiracao	   DATETIME NOT NULL,
+	Experiencia		   VARCHAR (50) NOT NULL,
+	TipoContrato	   VARCHAR (50) NOT NULL,
+	Salario			   DECIMAL NOT NULL,
+	Localidade		   VARCHAR (255) NOT NULL,
+	Estado			   VARCHAR (50) NOT NULL,
+	CEP				   CHAR (8) NOT NULL,
+	Logradouro		   VARCHAR (255) NOT NULL,
+	Complemento		   VARCHAR (255) NOT NULL,
+	IdEmpresa		   INT FOREIGN KEY REFERENCES Empresa (IdEmpresa)
+);
+GO
