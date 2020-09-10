@@ -95,3 +95,12 @@ CREATE TABLE Estagio (
 	IdEmpresa	 INT FOREIGN KEY REFERENCES Empresa (IdEmpresa)
 );
 GO
+
+CREATE TABLE Inscricao (
+	IdInscricao		  INT PRIMARY KEY IDENTITY,
+	DataInscricao	  DATETIME NOT NULL,
+	IdCandidato		  INT FOREIGN KEY REFERENCES Candidato (IdCandidato),
+	IdVaga			  INT FOREIGN KEY REFERENCES Vaga (IdVaga),
+	IdStatusInscricao INT FOREIGN KEY REFERENCES StatusInscricao (IdStatusInscricao)
+);
+GO
