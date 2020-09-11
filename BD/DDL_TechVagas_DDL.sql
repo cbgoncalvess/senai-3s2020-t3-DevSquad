@@ -27,7 +27,7 @@ GO
 
 CREATE TABLE Tecnologia (
 	IdTecnologia   INT PRIMARY KEY IDENTITY,
-	NomeTecnologia VARCHAR (35) 
+	NomeTecnologia VARCHAR (35) UNIQUE
 );
 GO
 
@@ -93,6 +93,7 @@ GO
 CREATE TABLE Estagio (
 	IdEstagio	 INT PRIMARY KEY IDENTITY,
 	DataCadastro DATETIME NOT NULL,
+	PeriodoEstagio INT NOT NULL,
 	IdCandidato  INT FOREIGN KEY REFERENCES Candidato (IdCandidato),
 	IdEmpresa	 INT FOREIGN KEY REFERENCES Empresa (IdEmpresa)
 );
