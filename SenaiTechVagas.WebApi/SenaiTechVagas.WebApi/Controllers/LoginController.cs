@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SenaiTechVagas.WebApi.Interfaces;
 
 namespace SenaiTechVagas.WebApi.Controllers
 {
@@ -11,5 +12,6 @@ namespace SenaiTechVagas.WebApi.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Rtmy+EkQUeebEhxyYo+Vde6FTN+vP6D7EoUpE45hZgp3hNLLBQ9tRslaWRdTM2zT1/jG19Vx7glfLcbxntOHnA==",
+  "dgSpecHash": "+AAmJ1Jamn9QgUkv6PBuNHBes5t79iWsi+GQNwlc9eVsAdEtRFDKjzIGlSseUExJod6PZDII9KVJLyb7TgT14g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\senai\\source\\repos\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
+  "projectFilePath": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\senai\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.8\\microsoft.aspnetcore.authentication.jwtbearer.3.1.8.nupkg.sha512",
     "C:\\Users\\senai\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.8\\microsoft.aspnetcore.jsonpatch.3.1.8.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\senai\\source\\repos\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {}
+    "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\senai\\source\\repos\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {
+    "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\senai\\source\\repos\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
         "projectName": "SenaiTechVagas.WebApi",
-        "projectPath": "C:\\Users\\senai\\source\\repos\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
+        "projectPath": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
         "packagesPath": "C:\\Users\\senai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\senai\\source\\repos\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\obj\\",
+        "outputPath": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
