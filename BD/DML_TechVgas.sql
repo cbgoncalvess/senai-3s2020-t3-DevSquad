@@ -113,4 +113,4 @@ VALUES		(2, 5),
 			(9, 5);
 GO
 
-select *from Empresa;
+select *from Candidato;
