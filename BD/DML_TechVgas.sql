@@ -112,3 +112,5 @@ VALUES		(2, 5),
 			(7, 7),
 			(9, 5);
 GO
+
+select *from Empresa;

@@ -1,1 +1,1 @@
-Scaffold-DbContext "Data Source=DESKTOP-0VF65US\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Domains -ContextDir Contexts -Context DbSenaiContext 
+Scaffold-DbContext "Data Source=DESKTOP-0VF65US\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Domains -ContextDir Contexts -Context DbSenaiContext -force

@@ -65,7 +65,7 @@ CREATE TABLE Candidato (
 	CPF					  CHAR (14) NOT NULL UNIQUE,
 	Telefone			  CHAR (14) NOT NULL UNIQUE,
 	LinkLinkedinCandidato VARCHAR (150) NOT NULL UNIQUE,
-	Area				  VARCHAR (40) NOT NULL UNIQUE,
+	Area				  VARCHAR (40) NOT NULL ,
 	IdCurso				  INT FOREIGN KEY REFERENCES Curso (IdCurso),
 	IdUsuario			  INT FOREIGN KEY REFERENCES Usuario (IdUsuario)
 );
