@@ -47,11 +47,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (_Inscricao.RevogarInscricao(id))
                 {
-                    return Ok("Inscricao deletado com sucesso");
+                    return Ok("Inscricao deletada com sucesso");
                 }
                 else
                 {
-                    return BadRequest("Não foi possivel cadastrar o Inscricao");
+                    return BadRequest("Não foi possivel deletar o Inscricao");
                 }
             }
             catch (Exception e)

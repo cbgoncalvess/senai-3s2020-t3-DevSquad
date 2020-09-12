@@ -72,5 +72,24 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPut("{id}")]
+        public IActionResult AtualizarPorIdCorpo(int id, Vaga Vaga)
+        {
+            try
+            {
+                if (_Vaga.AtualizarVaga(id, Vaga))
+                {
+                    return Ok("Vaga atualizado");
+                }
+
+                return BadRequest("Não foi possivel atualizar");
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

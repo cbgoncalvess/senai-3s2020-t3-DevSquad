@@ -14,10 +14,10 @@ namespace SenaiTechVagas.WebApi.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class EstagioController : ControllerBase
+    public class EstagiosController : ControllerBase
     {
         IEstagioRepository _Estagio { get; set; }
-        public EstagioController()
+        public EstagiosController()
         {
             _Estagio = new EstagioRepository();
         }

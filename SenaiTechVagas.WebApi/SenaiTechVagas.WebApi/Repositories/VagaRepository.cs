@@ -17,10 +17,12 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                        ctx.Add(vaga);
-                        ctx.SaveChanges();
-                        return true;
-                }catch(Exception e)
+                    vaga.DataPublicacao = DateTime.Now;
+                    ctx.Add(vaga);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch(Exception e)
                 {
                     return false;
                 }
