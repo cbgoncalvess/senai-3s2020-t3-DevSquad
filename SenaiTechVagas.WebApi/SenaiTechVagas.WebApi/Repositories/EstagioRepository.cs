@@ -51,12 +51,17 @@ namespace SenaiTechVagas.WebApi.Repositories
                         return false;
                     }
 
-                    else if (estagioAtualizado.IdEmpresa != null)
+                    if (estagioAtualizado.IdEmpresa != null)
                     {
                         estagioBuscado.IdEmpresa = estagioAtualizado.IdEmpresa;
                     }
 
-                    else if (estagioAtualizado.PeriodoEstagio != null)
+                    if (estagioAtualizado.IdCandidato != null)
+                    {
+                        estagioBuscado.IdCandidato = estagioAtualizado.IdCandidato;
+                    }
+
+                    if(estagioAtualizado.PeriodoEstagio <36)
                     {
                         estagioBuscado.PeriodoEstagio = estagioAtualizado.PeriodoEstagio;
                     }
