@@ -12,23 +12,17 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class EstagioRepository : IEstagioRepository
     {
-        public bool CadastrarEstagio(int idCandidato, int idEmpresa, int PeriodoEstagio)
+        public bool CadastrarEstagio(Estagio Estagio)
         {
             using (DbSenaiContext ctx=new DbSenaiContext())
             {
                 try
                 {
-                    if (PeriodoEstagio > 36)
+                    if (Estagio.PeriodoEstagio > 36)
                         return false;
 
-                    Estagio estagio = new Estagio()
-                    {
-                        DataCadastro = DateTime.Now,
-                        IdCandidato=idCandidato,
-                        IdEmpresa=idEmpresa,
-                        PeriodoEstagio=PeriodoEstagio
-                    };
-                    ctx.Add(estagio);
+                    Estagio.DataCadastro = DateTime.Now;
+                    ctx.Add(Estagio);
                     ctx.SaveChanges();
                     return true;
                 }
@@ -51,15 +45,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         return false;
                     }
 
-                    if (estagioAtualizado.IdEmpresa != null)
-                    {
-                        estagioBuscado.IdEmpresa = estagioAtualizado.IdEmpresa;
-                    }
-
-                    if (estagioAtualizado.IdCandidato != null)
-                    {
-                        estagioBuscado.IdCandidato = estagioAtualizado.IdCandidato;
-                    }
+                    //Implementar a condiçao que permita que o admin substitua a empresa e candidato
 
                     if(estagioAtualizado.PeriodoEstagio <36)
                     {
@@ -126,6 +112,25 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception e)
                 {
                     return null;
+                }
+            }
+        }
+
+        public bool VerificarSeExiste(int id)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == id);
+                    if (estagioBuscado != null)
+                        return true;
+
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
                 }
             }
         }

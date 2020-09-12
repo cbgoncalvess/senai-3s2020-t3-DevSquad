@@ -1,6 +1,8 @@
-﻿using SenaiTechVagas.WebApi.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using SenaiTechVagas.WebApi.Contexts;
 using SenaiTechVagas.WebApi.Domains;
 using SenaiTechVagas.WebApi.Interfaces;
+using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +13,34 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class VagaRepository : IVagaRepository
     {
+        public bool AdicionarTecnologia(VagaTecnologia vagaTecnologia)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    if (vagaTecnologia.IdVaga != 0 && vagaTecnologia.IdVaga != 0)
+                    {
+                        ctx.Add(vagaTecnologia);
+                        ctx.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
         public bool AdicionarVaga(Vaga vaga)
         {
             using(DbSenaiContext ctx=new DbSenaiContext())
             {
                 try
                 {
+                    vaga.DataExpiracao = DateTime.Now.AddDays(30);
                     vaga.DataPublicacao = DateTime.Now;
                     ctx.Add(vaga);
                     ctx.SaveChanges();
@@ -29,17 +53,18 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool AtualizarVaga(int idVaga,Vaga vaga)
+        public bool AtualizarVaga(int idVaga,AtualizarVagaViewModel vaga)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
+                    //Adicionar o metodo que pega o ID da Empresa logada
                     Vaga vagaBuscada = BuscarPorid(idVaga);
                     if (vagaBuscada == null)
                         return false;
 
-                    else if(vaga.Cep != null)
+                    if(vaga.Cep != null)
                     {
                         vagaBuscada.Cep = vaga.Cep;
                     }
@@ -49,7 +74,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         vagaBuscada.Complemento = vaga.Complemento;
                     }
 
-                    else if(vaga.DescricaoBeneficio != null)
+                    if(vaga.DescricaoBeneficio != null)
                     {
                         vagaBuscada.DescricaoBeneficio = vaga.DescricaoBeneficio;
                     }
@@ -59,7 +84,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         vagaBuscada.DescricaoEmpresa = vaga.DescricaoEmpresa;
                     }
 
-                    else if(vaga.DescricaoVaga != null)
+                    if(vaga.DescricaoVaga != null)
                     {
                         vagaBuscada.DescricaoVaga = vaga.DescricaoVaga;
                     }
@@ -69,29 +94,39 @@ namespace SenaiTechVagas.WebApi.Repositories
                         vagaBuscada.Estado = vaga.Estado;
                     }
 
-                    else if (vaga.Experiencia != null)
+                    if (vaga.Experiencia != null)
                     {
                         vagaBuscada.Experiencia = vaga.Experiencia;
                     }
 
-                    else if(vaga.Localidade != null)
+                    if(vaga.Localidade != null)
                     {
                         vagaBuscada.Localidade = vaga.Localidade;
                     }
 
-                    else if(vaga.Logradouro != null)
+                    if(vaga.Logradouro != null)
                     {
                         vagaBuscada.Logradouro = vaga.Logradouro;
                     }
 
-                    else if(vaga.Salario != 0)
+                    if(vaga.Salario != 0)
                     {
                         vagaBuscada.Salario = vaga.Salario;
                     }
 
-                    else if (vaga.TipoContrato != null)
+                    if (vaga.TipoContrato != null)
                     {
                         vagaBuscada.TipoContrato = vaga.TipoContrato;
+                    }
+
+                    if (vaga.TipoContrato != null)
+                    {
+                        vagaBuscada.TipoContrato = vaga.TipoContrato;
+                    }
+
+                    if (vaga.DataExpiracao<40)
+                    {
+                        vagaBuscada.DataExpiracao.AddDays(vaga.DataExpiracao);
                     }
 
                     ctx.Update(vagaBuscada);
@@ -157,13 +192,37 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public List<Vaga> ListarVagas()
+        public void ExpirarVaga(Vaga vaga)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    return ctx.Vaga.ToList();
+                    Vaga vagaBuscada = ctx.Vaga.FirstOrDefault(v=>v.DataExpiracao>=DateTime.Now);
+                    if (vagaBuscada != null)
+                    {
+                        DeletarVaga(vagaBuscada.IdVaga);
+
+                        ctx.Remove(vagaBuscada);
+
+                        ctx.SaveChanges();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
+
+        public List<VagaTecnologia> ListarFiltroNivelExperiencia(string NivelExperiencia)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.VagaTecnologia.Include(V => V.IdTecnologiaNavigation).Include(V => V.IdVagaNavigation)
+                        .Where(v => v.IdVagaNavigation.Experiencia==NivelExperiencia).ToList();
                 }
                 catch (Exception e)
                 {
@@ -172,18 +231,88 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        bool TemAlgumaPropriedadeComValor(object Vaga)
+        public List<VagaTecnologia> ListarFiltroTipoContrato(string TipoContrato)
         {
-            foreach (PropertyInfo pi in Vaga.GetType().GetProperties())
+            using (DbSenaiContext ctx = new DbSenaiContext())
             {
-                if (pi.PropertyType == typeof(string))
+                try
                 {
-                    string value = (string)pi.GetValue(Vaga);
-                    if (!string.IsNullOrEmpty(value))
-                        return true;
+                    return ctx.VagaTecnologia.Include(V => V.IdTecnologiaNavigation).Include(V => V.IdVagaNavigation)
+                        .Where(v => v.IdVagaNavigation.TipoContrato == TipoContrato).ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
                 }
             }
-            return false;
+        }
+
+        public List<VagaTecnologia> ListarPesquisaTecnologia(string NomeTecnologia)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.VagaTecnologia.Include(V => V.IdTecnologiaNavigation).Include(V => V.IdVagaNavigation).Where(v=>v.IdTecnologiaNavigation.NomeTecnologia==NomeTecnologia).ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<Vaga> ListarVagas()
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                  return ctx.Vaga.Include(v=>v.VagaTecnologia).ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public bool VerificarSeExiste(int id)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Tecnologia tecnologiaBuscada = ctx.Tecnologia.Find(id);
+                    if (tecnologiaBuscada == null)
+                        return true;
+
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool VerificarSeTecnologiaFoiAdicionada(int idTecnologia,int idVaga)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    VagaTecnologia vaga = ctx.VagaTecnologia.FirstOrDefault(v=>v.IdTecnologia==idTecnologia&&v.IdVaga==idVaga);
+                    if (vaga != null)
+                        return true;
+
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

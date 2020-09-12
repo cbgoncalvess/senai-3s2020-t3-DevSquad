@@ -10,6 +10,7 @@ using SenaiTechVagas.WebApi.Repositories;
 
 namespace SenaiTechVagas.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class InscricoesController : ControllerBase
@@ -25,6 +26,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
+                if (_Inscricao.VerificarSeInscricaoExiste(InscricaoNovo.IdVaga, InscricaoNovo.IdCandidato))
+                    return BadRequest("Inscricao ja existe");
+
                 if (_Inscricao.SeInscrever(InscricaoNovo))
                 {
                     return Ok("Inscricao cadastrado com sucesso");

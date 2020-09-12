@@ -23,11 +23,14 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionarEstagio(EstagioViewModel estagioNovo)
+        public IActionResult AdicionarEstagio(Estagio estagioNovo)
         {
             try
             {
-                if (_Estagio.CadastrarEstagio(estagioNovo.IdCandidato,estagioNovo.IdEmpresa,estagioNovo.PeriodoEstagio))
+                if (_Estagio.VerificarSeExiste(estagioNovo.IdCandidato))
+                    return BadRequest("Estagio ja existe");
+
+                if (_Estagio.CadastrarEstagio(estagioNovo))
                 {
                     return Ok("Estagio cadastrado com sucesso");
                 }
@@ -73,12 +76,15 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-       public IActionResult AtualizarPorIdCorpo(int id,Estagio estagio)
+        [HttpPut("{idEstagio}")]
+       public IActionResult AtualizarPorIdCorpo(int idEstagio,Estagio estagio)
         {
             try
             {
-                if (_Estagio.AtualizarPorIdCorpo(id, estagio))
+                if (_Estagio.VerificarSeExiste(estagio.IdCandidato))
+                    return BadRequest("Estagio ja existe");
+
+                if (_Estagio.AtualizarPorIdCorpo(idEstagio, estagio))
                 {
                     return Ok("Estagio atualizado");
                 }
