@@ -18,9 +18,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    if (Estagio.PeriodoEstagio > 36)
-                        return false;
-
                     Estagio.DataCadastro = DateTime.Now;
                     ctx.Add(Estagio);
                     ctx.SaveChanges();
@@ -33,7 +30,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool AtualizarPorIdCorpo(int idEstagio, Estagio estagioAtualizado)
+        public bool AtualizarPorIdCorpo(int idEstagio, AtualizarEstagioViewModel estagioAtualizado)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -41,16 +38,17 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     Estagio estagioBuscado = BuscarPorId(idEstagio);
                     if (estagioBuscado == null)
-                    {
                         return false;
-                    }
 
-                    //Implementar a condiçao que permita que o admin substitua a empresa e candidato
+                    Empresa empresaBuscada = ctx.Empresa.Find(estagioAtualizado.IdEmpresa);
+                    if (empresaBuscada == null)
+                        return false;
+
+                    if (estagioAtualizado.IdEmpresa != estagioBuscado.IdEmpresa)
+                        estagioBuscado.IdEmpresa = estagioAtualizado.IdEmpresa;
 
                     if(estagioAtualizado.PeriodoEstagio <36)
-                    {
                         estagioBuscado.PeriodoEstagio = estagioAtualizado.PeriodoEstagio;
-                    }
 
                     ctx.Update(estagioBuscado);
                     ctx.SaveChanges();
@@ -69,8 +67,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    Estagio EstagioBuscado = ctx.Estagio.Find(idEstagio);
-                        return EstagioBuscado;
+                    return ctx.Estagio.Find(idEstagio);
                 }
                 catch (Exception e)
                 {
@@ -87,9 +84,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     Estagio estagioBuscado =BuscarPorId(idEstagio);
                     if (estagioBuscado == null)
-                    {
                         return false;
-                    }
+
                     ctx.Remove(estagioBuscado);
                     ctx.SaveChanges();
                     return true;

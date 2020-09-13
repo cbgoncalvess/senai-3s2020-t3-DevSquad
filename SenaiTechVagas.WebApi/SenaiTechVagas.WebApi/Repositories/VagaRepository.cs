@@ -65,69 +65,43 @@ namespace SenaiTechVagas.WebApi.Repositories
                         return false;
 
                     if(vaga.Cep != null)
-                    {
                         vagaBuscada.Cep = vaga.Cep;
-                    }
 
                     if (vaga.Complemento != null)
-                    {
                         vagaBuscada.Complemento = vaga.Complemento;
-                    }
 
                     if(vaga.DescricaoBeneficio != null)
-                    {
                         vagaBuscada.DescricaoBeneficio = vaga.DescricaoBeneficio;
-                    }
 
                     if (vaga.DescricaoEmpresa != null)
-                    {
                         vagaBuscada.DescricaoEmpresa = vaga.DescricaoEmpresa;
-                    }
 
                     if(vaga.DescricaoVaga != null)
-                    {
                         vagaBuscada.DescricaoVaga = vaga.DescricaoVaga;
-                    }
 
                     if (vaga.Estado != null)
-                    {
                         vagaBuscada.Estado = vaga.Estado;
-                    }
 
                     if (vaga.Experiencia != null)
-                    {
                         vagaBuscada.Experiencia = vaga.Experiencia;
-                    }
 
                     if(vaga.Localidade != null)
-                    {
                         vagaBuscada.Localidade = vaga.Localidade;
-                    }
 
                     if(vaga.Logradouro != null)
-                    {
                         vagaBuscada.Logradouro = vaga.Logradouro;
-                    }
 
                     if(vaga.Salario != 0)
-                    {
                         vagaBuscada.Salario = vaga.Salario;
-                    }
 
                     if (vaga.TipoContrato != null)
-                    {
                         vagaBuscada.TipoContrato = vaga.TipoContrato;
-                    }
 
                     if (vaga.TipoContrato != null)
-                    {
                         vagaBuscada.TipoContrato = vaga.TipoContrato;
-                    }
 
                     if (vaga.DataExpiracao<40)
-                    {
                         vagaBuscada.DataExpiracao.AddDays(vaga.DataExpiracao);
-                    }
 
                     ctx.Update(vagaBuscada);
                     ctx.SaveChanges();
@@ -164,9 +138,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     //Falta adicionar a empresa a que é publicadora da vaga
                     Vaga vagaBuscada = BuscarPorid(idVaga);
                     if (vagaBuscada == null)
-                    {
                         return false;
-                    }
 
                     List<Inscricao> BuscarInscricoes = ctx.Inscricao.Where(u=>u.IdVaga==vagaBuscada.IdVaga).ToList();
                     for (int i = 0; i < BuscarInscricoes.Count; i++)

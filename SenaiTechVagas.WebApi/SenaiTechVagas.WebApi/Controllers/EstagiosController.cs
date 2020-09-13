@@ -27,17 +27,18 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
+                if (estagioNovo.PeriodoEstagio > 36)
+                    return BadRequest("O periodo nao pode ser maior que 36 meses");
+
                 if (_Estagio.VerificarSeExiste(estagioNovo.IdCandidato))
                     return BadRequest("Estagio ja existe");
 
                 if (_Estagio.CadastrarEstagio(estagioNovo))
-                {
                     return Ok("Estagio cadastrado com sucesso");
-                }
+
                 else
-                {
                     return BadRequest("Não foi possivel cadastrar o estagio");
-                }
+
             } catch (Exception e)
             {
                 return BadRequest();
@@ -50,13 +51,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Estagio.DeletarPorId(id))
-                {
                     return Ok("Estagio deletado com sucesso");
-                }
+
                 else
-                {
-                    return BadRequest("Não foi possivel cadastrar o estagio");
-                }
+                    return BadRequest("Não foi possivel deletar este estagio");
             }
             catch (Exception e)
             {
@@ -77,7 +75,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         [HttpPut("{idEstagio}")]
-       public IActionResult AtualizarPorIdCorpo(int idEstagio,Estagio estagio)
+       public IActionResult AtualizarPorIdCorpo(int idEstagio,AtualizarEstagioViewModel estagio)
         {
             try
             {
@@ -85,11 +83,10 @@ namespace SenaiTechVagas.WebApi.Controllers
                     return BadRequest("Estagio ja existe");
 
                 if (_Estagio.AtualizarPorIdCorpo(idEstagio, estagio))
-                {
                     return Ok("Estagio atualizado");
-                }
 
-                return BadRequest("Não foi possivel atualizar");
+                else
+                return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes sao validas");
 
             }catch(Exception e)
             {

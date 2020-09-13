@@ -67,12 +67,11 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    
-                        NovaInscricao.DataInscricao = DateTime.Now;
-                        NovaInscricao.IdStatusInscricao = 1;
-                        ctx.Add(NovaInscricao);
-                        ctx.SaveChanges();
-                        return true;
+                    NovaInscricao.DataInscricao = DateTime.Now;
+                    NovaInscricao.IdStatusInscricao = 1;
+                    ctx.Add(NovaInscricao);
+                    ctx.SaveChanges();
+                    return true;
                 }
                 catch (Exception e)
                 {

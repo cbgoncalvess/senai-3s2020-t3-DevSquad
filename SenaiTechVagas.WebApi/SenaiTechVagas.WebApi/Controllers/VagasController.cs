@@ -28,13 +28,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Vaga.AdicionarVaga(VagaNovo))
-                {
                     return Ok("Vaga cadastrado com sucesso");
-                }
+
                 else
-                {
-                    return BadRequest("Não foi possivel cadastrar o Vaga");
-                }
+                    return BadRequest("Não foi possivel cadastrar a vaga,verifique se as informaçoes foram preenchidas corretamente");
             }
             catch (Exception e)
             {
@@ -58,13 +55,10 @@ namespace SenaiTechVagas.WebApi.Controllers
                     return BadRequest("Essa tecnologia ja foi adicionada");
 
                 if (_Vaga.AdicionarTecnologia(vagaTecnologia))
-                {
                     return Ok("Tecnologia adicionada com sucesso");
-                }
+
                 else
-                {
                     return BadRequest("Não foi possivel cadastrar a tecnologia");
-                }
             }
             catch (Exception e)
             {
@@ -78,13 +72,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Vaga.DeletarVaga(id))
-                {
-                    return Ok("Vaga deletado com sucesso");
-                }
+                    return Ok("Vaga deletada com sucesso");
+
                 else
-                {
                     return BadRequest("Não foi possivel cadastrar a Vaga");
-                }
             }
             catch (Exception e)
             {
@@ -111,12 +102,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Vaga.AtualizarVaga(id, Vaga))
-                {
-                    return Ok("Vaga atualizado");
-                }
+                    return Ok("Vaga atualizada com sucesso");
 
+                else
                 return BadRequest("Não foi possivel atualizar");
-
             }
             catch (Exception e)
             {

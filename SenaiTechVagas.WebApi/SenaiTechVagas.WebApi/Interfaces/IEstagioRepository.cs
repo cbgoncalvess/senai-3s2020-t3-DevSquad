@@ -13,6 +13,6 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool CadastrarEstagio(Estagio estagio);
         bool DeletarPorId(int idEstagio);
         Estagio BuscarPorId(int idEstagio);
-        bool AtualizarPorIdCorpo(int idEstagio, Estagio estagioAtualizado);
+        bool AtualizarPorIdCorpo(int idEstagio, AtualizarEstagioViewModel estagioAtualizado);
     }
 }

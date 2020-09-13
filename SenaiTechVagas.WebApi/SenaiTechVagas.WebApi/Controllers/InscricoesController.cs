@@ -30,13 +30,10 @@ namespace SenaiTechVagas.WebApi.Controllers
                     return BadRequest("Inscricao ja existe");
 
                 if (_Inscricao.SeInscrever(InscricaoNovo))
-                {
-                    return Ok("Inscricao cadastrado com sucesso");
-                }
+                    return Ok("Inscricao cadastrada com sucesso");
+
                 else
-                {
-                    return BadRequest("Não foi possivel cadastrar o Inscricao");
-                }
+                    return BadRequest("Não foi possivel cadastrar a inscricao");
             }
             catch (Exception e)
             {
@@ -50,13 +47,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Inscricao.RevogarInscricao(id))
-                {
                     return Ok("Inscricao deletada com sucesso");
-                }
+
                 else
-                {
                     return BadRequest("Não foi possivel deletar o Inscricao");
-                }
             }
             catch (Exception e)
             {
