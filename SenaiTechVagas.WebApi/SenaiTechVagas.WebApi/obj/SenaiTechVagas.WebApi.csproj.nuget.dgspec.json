@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {}
+    "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {
+    "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
         "projectName": "SenaiTechVagas.WebApi",
-        "projectPath": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
-        "packagesPath": "C:\\Users\\senai\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\obj\\",
+        "projectPath": "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
+        "packagesPath": "C:\\Users\\vinic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\senai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\vinic\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -84,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
