@@ -67,15 +67,29 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    //Ajeitar as validaçoes
-                    if (NovaInscricao.IdVaga!=null&&NovaInscricao.IdCandidato!=null)
-                    {
-                        NovaInscricao.DataInscricao = DateTime.Now;
-                        NovaInscricao.IdStatusInscricao = 1;
-                        ctx.Add(NovaInscricao);
-                        ctx.SaveChanges();
+                    NovaInscricao.DataInscricao = DateTime.Now;
+                    NovaInscricao.IdStatusInscricao = 1;
+                    ctx.Add(NovaInscricao);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool VerificarSeInscricaoExiste(int idVaga,int idCandidato)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Inscricao InscricaoBuscada = ctx.Inscricao.FirstOrDefault(e => e.IdCandidato == idCandidato&& e.IdVaga==idVaga);
+                    if (InscricaoBuscada != null)
                         return true;
-                    }
+
                     return false;
                 }
                 catch (Exception e)

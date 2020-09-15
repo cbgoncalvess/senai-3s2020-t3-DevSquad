@@ -12,5 +12,6 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool SeInscrever(Inscricao NovaInscricao);
         bool RevogarInscricao(int idInscricao);
         Inscricao BuscarPorId(int idInscricao);
+        bool VerificarSeInscricaoExiste(int idVaga,int idCandidato);
     }
 }

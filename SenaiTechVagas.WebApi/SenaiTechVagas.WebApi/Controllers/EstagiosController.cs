@@ -23,18 +23,22 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdicionarEstagio(EstagioViewModel estagioNovo)
+        public IActionResult AdicionarEstagio(Estagio estagioNovo)
         {
             try
             {
-                if (_Estagio.CadastrarEstagio(estagioNovo.IdCandidato,estagioNovo.IdEmpresa,estagioNovo.PeriodoEstagio))
-                {
+                if (estagioNovo.PeriodoEstagio > 36)
+                    return BadRequest("O periodo nao pode ser maior que 36 meses");
+
+                if (_Estagio.VerificarSeExiste(estagioNovo.IdCandidato))
+                    return BadRequest("Estagio ja existe");
+
+                if (_Estagio.CadastrarEstagio(estagioNovo))
                     return Ok("Estagio cadastrado com sucesso");
-                }
+
                 else
-                {
                     return BadRequest("Não foi possivel cadastrar o estagio");
-                }
+
             } catch (Exception e)
             {
                 return BadRequest();
@@ -47,13 +51,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Estagio.DeletarPorId(id))
-                {
                     return Ok("Estagio deletado com sucesso");
-                }
+
                 else
-                {
-                    return BadRequest("Não foi possivel cadastrar o estagio");
-                }
+                    return BadRequest("Não foi possivel deletar este estagio");
             }
             catch (Exception e)
             {
@@ -73,17 +74,32 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-       public IActionResult AtualizarPorIdCorpo(int id,Estagio estagio)
+        [HttpGet("{NumeroDeMeses}")]
+        public IActionResult ListarFiltroPeriodo(int NumeroDeMeses)
         {
             try
             {
-                if (_Estagio.AtualizarPorIdCorpo(id, estagio))
-                {
-                    return Ok("Estagio atualizado");
-                }
+                return Ok(_Estagio.ListarPorperiodo(NumeroDeMeses));
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
 
-                return BadRequest("Não foi possivel atualizar");
+        [HttpPut("{idEstagio}")]
+       public IActionResult AtualizarPorIdCorpo(int idEstagio,AtualizarEstagioViewModel estagio)
+        {
+            try
+            {
+                if (_Estagio.VerificarSeExiste(estagio.IdCandidato))
+                    return BadRequest("Estagio ja existe");
+
+                if (_Estagio.AtualizarPorIdCorpo(idEstagio, estagio))
+                    return Ok("Estagio atualizado");
+
+                else
+                return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes sao validas");
 
             }catch(Exception e)
             {

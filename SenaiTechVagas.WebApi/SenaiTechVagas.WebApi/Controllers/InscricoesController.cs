@@ -10,6 +10,7 @@ using SenaiTechVagas.WebApi.Repositories;
 
 namespace SenaiTechVagas.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class InscricoesController : ControllerBase
@@ -25,14 +26,14 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
+                if (_Inscricao.VerificarSeInscricaoExiste(InscricaoNovo.IdVaga, InscricaoNovo.IdCandidato))
+                    return BadRequest("Inscricao ja existe");
+
                 if (_Inscricao.SeInscrever(InscricaoNovo))
-                {
-                    return Ok("Inscricao cadastrado com sucesso");
-                }
+                    return Ok("Inscricao cadastrada com sucesso");
+
                 else
-                {
-                    return BadRequest("Não foi possivel cadastrar o Inscricao");
-                }
+                    return BadRequest("Não foi possivel cadastrar a inscricao");
             }
             catch (Exception e)
             {
@@ -46,13 +47,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Inscricao.RevogarInscricao(id))
-                {
                     return Ok("Inscricao deletada com sucesso");
-                }
+
                 else
-                {
                     return BadRequest("Não foi possivel deletar o Inscricao");
-                }
             }
             catch (Exception e)
             {
