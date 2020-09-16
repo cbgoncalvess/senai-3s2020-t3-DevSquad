@@ -2,35 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SenaiTechVagas.WebApi.Domains;
 using SenaiTechVagas.WebApi.Interfaces;
 using SenaiTechVagas.WebApi.Repositories;
-using SenaiTechVagas.WebApi.ViewModels;
 
 namespace SenaiTechVagas.WebApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class CandidatoController : ControllerBase
+    public class EmpresaController : ControllerBase
     {
-        // Este controlador está na sequência CRUD -  Criar, Ler, Atualizar e Deletar
+        private IEmpresaRepository _empresaIRepository { get; set; }
 
-        private ICandidatoRepository _candidatoRepository { get; set; }
-
-        public CandidatoController()
+        public EmpresaController()
         {
-            _candidatoRepository = new CandidatoRepository();
+            _empresaIRepository = new EmpresaRepository();
         }
 
         [HttpPost]
-        public IActionResult CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato)
+        public IActionResult CadastrarEmpresa(Empresa empresa)
         {
             try
             {
-                if (_candidatoRepository.CadastrarCandidato(NovoCandidato))
+                if (_empresaIRepository.CadastrarEmpresa(empresa))
                 {
                     return Ok("Novo candidato inserido com sucesso!");
                 }
@@ -47,13 +43,13 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListarCandidatos()
+        public IActionResult ListarEmpresa()
         {
             try
             {
-                return Ok(_candidatoRepository.ListarCandidatos());
+                return Ok(_empresaIRepository.ListarEmpresa());
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
@@ -64,20 +60,20 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                return Ok(_candidatoRepository.BuscarPorId(id));
+                return Ok(_empresaIRepository.BuscarPorId(id));
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizarCandidato(int id, Candidato candidato)
+        public IActionResult AtualizarEmpresa(int id, Empresa empresa)
         {
             try
             {
-                return Ok(_candidatoRepository.AtualizarCandidato(id, candidato));
+                return Ok(_empresaIRepository.AtualizarPorIdCorpo(id, empresa));
             }
             catch
             {
@@ -86,11 +82,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeltarCandidato(int id)
+        public IActionResult DeletarEmpresa(int id)
         {
             try
             {
-                return Ok(_candidatoRepository.DeletarCandidato(id));
+                return Ok(_empresaIRepository.DeletarPorId(id));
             }
             catch
             {
