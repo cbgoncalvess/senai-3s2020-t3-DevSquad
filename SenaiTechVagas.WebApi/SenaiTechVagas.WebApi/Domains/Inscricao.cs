@@ -10,7 +10,7 @@ namespace SenaiTechVagas.WebApi.Domains
         public DateTime DataInscricao { get; set; }
         public int IdCandidato { get; set; }
         public int IdVaga { get; set; }
-        public int? IdStatusInscricao { get; set; }
+        public int IdStatusInscricao { get; set; }
 
         public virtual Candidato IdCandidatoNavigation { get; set; }
         public virtual StatusInscricao IdStatusInscricaoNavigation { get; set; }
