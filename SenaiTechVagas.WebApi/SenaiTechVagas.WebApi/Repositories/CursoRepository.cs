@@ -10,80 +10,95 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class CursoRepository : ICursoRepository
     {
-        DbSenaiContext ctx = new DbSenaiContext();
         public bool AtualizarCurso(int id, Curso curso)
         {
-            try
+            using(DbSenaiContext ctx=new DbSenaiContext())
             {
-                Curso cursoBuscado = ctx.Curso.Find(id);
-                cursoBuscado.NomeCurso = curso.NomeCurso;
-                cursoBuscado.TipoCurso = curso.TipoCurso;
-                ctx.Curso.Update(cursoBuscado);
-                ctx.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
+                try
+                {
+                    Curso cursoBuscado = ctx.Curso.Find(id);
+                    cursoBuscado.NomeCurso = curso.NomeCurso;
+                    cursoBuscado.TipoCurso = curso.TipoCurso;
+                    ctx.Curso.Update(cursoBuscado);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
 
-                throw;
+                    return false;
+                }
             }
         }
 
         public Curso BuscarPorId(int id)
         {
-            try
+            using (DbSenaiContext ctx = new DbSenaiContext())
             {
-                Curso cursoBuscado = ctx.Curso.Find(id);
-                return cursoBuscado;
-            }
-            catch (Exception e)
-            {
+                try
+                {
+                 return ctx.Curso.Find(id);  
+                }
+                catch (Exception e)
+                {
 
-                return null;
+                    return null;
+                }
             }
         }
 
         public bool CadastrarCurso(Curso curso)
         {
-            try
+            using (DbSenaiContext ctx = new DbSenaiContext())
             {
-                ctx.Add(curso);
-                ctx.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-
-                return false;
-            }
-        }
-
-        public bool DeletarCurso(int id)
-        {
-            try
-            {
-                Curso cursoBuscado = ctx.Curso.Find(id);
-                ctx.Curso.Remove(cursoBuscado);
-                ctx.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-
-                return false;
+                try
+                {
+                    ctx.Add(curso);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
             }
         }
+
+        /// <summary>
+        /// Este deletar pode acabar prejudicando o sistema por enqt ele fica comentado
+        /// </summary>
+        /// <returns></returns>
+
+        //public bool DeletarCurso(int id)
+        //{
+        //    try
+        //    {
+        //        using (DbSenaiContext ctx = new DbSenaiContext())
+        //        {
+        //            Curso cursoBuscado = ctx.Curso.Find(id);
+        //            ctx.Curso.Remove(cursoBuscado);
+        //            ctx.SaveChanges();
+        //            return true;
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public List<Curso> ListarCurso()
         {
-            try
+            using (DbSenaiContext ctx = new DbSenaiContext())
             {
-                return ctx.Curso.ToList(); 
-            }
-            catch (Exception e)
-            {
-
-                return null;
+                try
+                {
+                    return ctx.Curso.ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
             }
         }
     }

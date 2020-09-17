@@ -10,6 +10,7 @@ using SenaiTechVagas.WebApi.Repositories;
 
 namespace SenaiTechVagas.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class TipoUsuarioController : ControllerBase
@@ -64,26 +65,32 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeletarTipoUsuario(int id)
-        {
-            try
-            {
-                TipoUsuario tipoUsuarioBuscado = _tipoUsuarioRepository.BuscarPorId(id);
+        /// <summary>
+        /// Justificativa no repository
+        /// </summary>
+        /// <param name="tipoUsuario"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        //[HttpDelete("{id}")]
+        //public IActionResult DeletarTipoUsuario(int id)
+        //{
+        //    try
+        //    {
+        //        TipoUsuario tipoUsuarioBuscado = _tipoUsuarioRepository.BuscarPorId(id);
 
-                if (tipoUsuarioBuscado != null)
-                {
-                    _tipoUsuarioRepository.DeletarTipoUsuario(id);  
-                }
-                return Ok();
+        //        if (tipoUsuarioBuscado != null)
+        //        {
+        //            _tipoUsuarioRepository.DeletarTipoUsuario(id);  
+        //        }
+        //        return Ok();
 
-            }
-            catch (Exception e)
-            {
+        //    }
+        //    catch (Exception e)
+        //    {
 
-                return BadRequest();
-            }
-        }
+        //        return BadRequest();
+        //    }
+        //}
 
         [HttpPut("{id}")]
         public IActionResult AtualizarTipoUsuario(TipoUsuario tipoUsuario, int id)

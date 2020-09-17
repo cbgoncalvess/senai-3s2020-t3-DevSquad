@@ -151,7 +151,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="TipoContrato"></param>
         /// <returns></returns>
-        [Authorize(Roles = "idCandidato")]
+        //[Authorize(Roles = "idCandidato")]
         [HttpGet("TipoContrato/{TipoContrato}")]
         public IActionResult ListarVagasFiltroTipoContarto(string TipoContrato)
         {

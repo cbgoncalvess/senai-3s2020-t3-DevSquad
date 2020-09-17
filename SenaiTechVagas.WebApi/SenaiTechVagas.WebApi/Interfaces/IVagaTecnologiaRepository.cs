@@ -11,6 +11,6 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<VagaTecnologia> ListarVagaTecnologia();
         bool CadastrarVagaTecnologia(VagaTecnologia vagaTecnologia);
         bool AtualizarVagaTecnologia(int id, VagaTecnologia vagatec);
-        bool DeletarVagaTecnologia(int id);
+        bool DeletarVagaTecnologia(int idTecnologia,int idVaga);
     }
 }

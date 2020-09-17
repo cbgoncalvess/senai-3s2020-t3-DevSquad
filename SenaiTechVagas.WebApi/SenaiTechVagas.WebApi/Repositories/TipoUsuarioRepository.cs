@@ -44,22 +44,24 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool DeletarTipoUsuario(int id)
-        {
-            try
-            {
-                TipoUsuario tipoUsuarioBuscado = ctx.TipoUsuario.Find(id);
-                ctx.TipoUsuario.Remove(tipoUsuarioBuscado);
-                ctx.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-
-                return false;
-            }
-            
-        }
+        /// <summary>
+        /// Pode prejudicar o andamento do sistema por ser um delete em cadeia
+        /// </summary>
+        /// <returns></returns>
+        //public bool DeletarTipoUsuario(int id)
+        //{
+        //    try
+        //    {
+        //        TipoUsuario tipoUsuarioBuscado = ctx.TipoUsuario.Find(id);
+        //        ctx.TipoUsuario.Remove(tipoUsuarioBuscado);
+        //        ctx.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public List<TipoUsuario> ListarTipoUsuario()
         {

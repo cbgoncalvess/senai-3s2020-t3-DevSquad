@@ -407,3 +407,10 @@ C:\Users\fic\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVag
 C:\Users\fic\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\obj\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\fic\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.xml
 C:\Users\fic\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\obj\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.xml
+C:\Users\senai\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.xml
+C:\Users\senai\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\senai\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\senai\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\senai\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\senai\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\obj\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\senai\Desktop\senai-3s2020-t3-DevSquad\SenaiTechVagas.WebApi\SenaiTechVagas.WebApi\obj\Debug\netcoreapp3.1\SenaiTechVagas.WebApi.xml

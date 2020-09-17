@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SenaiTechVagas.WebApi.Domains;
@@ -21,6 +22,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             _cursoRepository = new CursoRepository();
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult ListarCurso()
         {
@@ -35,6 +37,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -49,6 +52,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult CadastrarCurso(Curso novoCurso)
         {
@@ -63,28 +67,34 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
-
-
-        [HttpDelete("{id}")]
-        public IActionResult DeletarCurso(int id)
-        {
-            try
-            {
-                Curso cursoBuscado = _cursoRepository.BuscarPorId(id);
-                if (cursoBuscado != null)
-                {
-                    _cursoRepository.DeletarCurso(id);
-                }
-                return Ok();
+        /// <summary>
+        /// Este metodo esta fora por enquanto ,justificativa no repositorio
+        /// </summary>
+        /// <param name="curso"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        //[Authorize]
+        //[HttpDelete("{id}")]
+        //public IActionResult DeletarCurso(int id)
+        //{
+        //    try
+        //    {
+        //        Curso cursoBuscado = _cursoRepository.BuscarPorId(id);
+        //        if (cursoBuscado != null)
+        //        {
+        //            _cursoRepository.DeletarCurso(id);
+        //        }
+        //        return Ok();
                
-            }
-            catch (Exception e)
-            {
+        //    }
+        //    catch (Exception e)
+        //    {
 
-                return BadRequest();
-            }
-        }
+        //        return BadRequest();
+        //    }
+        //}
 
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult AtualizarCurso(Curso curso, int id)
         {
@@ -95,7 +105,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
             catch (Exception e)
             {
-
                 return BadRequest();
             }
         }

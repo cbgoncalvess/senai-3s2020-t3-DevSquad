@@ -25,6 +25,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         [HttpPost]
         public IActionResult LoginUsuario(LoginViewModel login)
         {
+           
             Usuario usuarioLogar = usuarioRepository.Logar(login.Email, login.Senha);
 
             var claims = new[]

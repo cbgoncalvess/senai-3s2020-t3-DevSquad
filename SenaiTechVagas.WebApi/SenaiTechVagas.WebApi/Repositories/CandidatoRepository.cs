@@ -55,7 +55,14 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
-                return ctx.Candidato.ToList();
+                try
+                {
+                    return ctx.Candidato.ToList();
+                }
+                catch(Exception e)
+                {
+                    return null;
+                }                
             }
         }
 
@@ -135,20 +142,22 @@ namespace SenaiTechVagas.WebApi.Repositories
                 try
                 {
                     Candidato CandidatoBuscado = ctx.Candidato.Find(IdCandidato);
-
                     if (CandidatoBuscado == null)
                         return false;
 
                     List<Inscricao> listaDeInscricao = ctx.Inscricao.
                         Where(l => l.IdCandidato == IdCandidato).ToList();
-                    
                     for (int i = 0; i < listaDeInscricao.Count; i++)
                     {
                         InscricaoRepository inscricaoRepository = new InscricaoRepository();
-
                         inscricaoRepository.RevogarInscricao(listaDeInscricao[i].IdInscricao);
                     }
-
+                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e=>e.IdCandidato==CandidatoBuscado.IdCandidato);
+                    if (estagioBuscado != null)
+                    {
+                        ctx.Remove(estagioBuscado);
+                        ctx.SaveChanges();
+                    }
                     ctx.Remove(CandidatoBuscado);
                     ctx.SaveChanges();
                     return true;
