@@ -32,8 +32,7 @@ namespace SenaiTechVagas.WebApi.Contexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=LAPTOP-H6D1FPPQ\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True");
             }
         }
 
@@ -42,26 +41,26 @@ namespace SenaiTechVagas.WebApi.Contexts
             modelBuilder.Entity<Candidato>(entity =>
             {
                 entity.HasKey(e => e.IdCandidato)
-                    .HasName("PK__Candidat__D559890503E1DF4C");
+                    .HasName("PK__Candidat__D5598905F7BD0557");
 
                 entity.HasIndex(e => e.Cpf)
-                    .HasName("UQ__Candidat__C1F89731E0396BAC")
+                    .HasName("UQ__Candidat__C1F89731F81DB90A")
                     .IsUnique();
 
                 entity.HasIndex(e => e.LinkLinkedinCandidato)
-                    .HasName("UQ__Candidat__79BE91BD53640410")
+                    .HasName("UQ__Candidat__79BE91BD861F9307")
                     .IsUnique();
 
                 entity.HasIndex(e => e.NomeCompleto)
-                    .HasName("UQ__Candidat__7D5FBFE3732C379A")
+                    .HasName("UQ__Candidat__7D5FBFE352393556")
                     .IsUnique();
 
                 entity.HasIndex(e => e.Rg)
-                    .HasName("UQ__Candidat__321537C8B769423A")
+                    .HasName("UQ__Candidat__321537C89BCB622A")
                     .IsUnique();
 
                 entity.HasIndex(e => e.Telefone)
-                    .HasName("UQ__Candidat__4EC504B625B49878")
+                    .HasName("UQ__Candidat__4EC504B69F1D72C0")
                     .IsUnique();
 
                 entity.Property(e => e.Area)
@@ -102,21 +101,21 @@ namespace SenaiTechVagas.WebApi.Contexts
                 entity.HasOne(d => d.IdCursoNavigation)
                     .WithMany(p => p.Candidato)
                     .HasForeignKey(d => d.IdCurso)
-                    .HasConstraintName("FK__Candidato__IdCur__5070F446");
+                    .HasConstraintName("FK__Candidato__IdCur__3E52440B");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Candidato)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__Candidato__IdUsu__5165187F");
+                    .HasConstraintName("FK__Candidato__IdUsu__3F466844");
             });
 
             modelBuilder.Entity<Curso>(entity =>
             {
                 entity.HasKey(e => e.IdCurso)
-                    .HasName("PK__Curso__085F27D648CFBD65");
+                    .HasName("PK__Curso__085F27D624C82A9F");
 
                 entity.HasIndex(e => e.NomeCurso)
-                    .HasName("UQ__Curso__E7E2B052A6B204BF")
+                    .HasName("UQ__Curso__E7E2B052082832AA")
                     .IsUnique();
 
                 entity.Property(e => e.NomeCurso)
@@ -133,18 +132,18 @@ namespace SenaiTechVagas.WebApi.Contexts
             modelBuilder.Entity<Empresa>(entity =>
             {
                 entity.HasKey(e => e.IdEmpresa)
-                    .HasName("PK__Empresa__5EF4033E12FEE23C");
+                    .HasName("PK__Empresa__5EF4033EB7201EDF");
 
                 entity.HasIndex(e => e.Cnpj)
-                    .HasName("UQ__Empresa__AA57D6B418D50BFC")
+                    .HasName("UQ__Empresa__AA57D6B429AE6183")
                     .IsUnique();
 
                 entity.HasIndex(e => e.NomeFantasia)
-                    .HasName("UQ__Empresa__F5389F3189D997BE")
+                    .HasName("UQ__Empresa__F5389F3137EAEC3C")
                     .IsUnique();
 
                 entity.HasIndex(e => e.RazaoSocial)
-                    .HasName("UQ__Empresa__448779F0DD91D6D4")
+                    .HasName("UQ__Empresa__448779F07D9E0A32")
                     .IsUnique();
 
                 entity.Property(e => e.Cep)
@@ -217,57 +216,57 @@ namespace SenaiTechVagas.WebApi.Contexts
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Empresa)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__Empresa__IdUsuar__48CFD27E");
+                    .HasConstraintName("FK__Empresa__IdUsuar__36B12243");
             });
 
             modelBuilder.Entity<Estagio>(entity =>
             {
                 entity.HasKey(e => e.IdEstagio)
-                    .HasName("PK__Estagio__C70AD76C1CC72F15");
+                    .HasName("PK__Estagio__C70AD76CC8E71A2C");
 
                 entity.Property(e => e.DataCadastro).HasColumnType("datetime");
 
                 entity.HasOne(d => d.IdCandidatoNavigation)
                     .WithMany(p => p.Estagio)
                     .HasForeignKey(d => d.IdCandidato)
-                    .HasConstraintName("FK__Estagio__IdCandi__571DF1D5");
+                    .HasConstraintName("FK__Estagio__IdCandi__44FF419A");
 
                 entity.HasOne(d => d.IdEmpresaNavigation)
                     .WithMany(p => p.Estagio)
                     .HasForeignKey(d => d.IdEmpresa)
-                    .HasConstraintName("FK__Estagio__IdEmpre__5812160E");
+                    .HasConstraintName("FK__Estagio__IdEmpre__45F365D3");
             });
 
             modelBuilder.Entity<Inscricao>(entity =>
             {
                 entity.HasKey(e => e.IdInscricao)
-                    .HasName("PK__Inscrica__6209444B7B3A225F");
+                    .HasName("PK__Inscrica__6209444B7D5AF5B8");
 
                 entity.Property(e => e.DataInscricao).HasColumnType("datetime");
 
                 entity.HasOne(d => d.IdCandidatoNavigation)
                     .WithMany(p => p.Inscricao)
                     .HasForeignKey(d => d.IdCandidato)
-                    .HasConstraintName("FK__Inscricao__IdCan__5AEE82B9");
+                    .HasConstraintName("FK__Inscricao__IdCan__48CFD27E");
 
                 entity.HasOne(d => d.IdStatusInscricaoNavigation)
                     .WithMany(p => p.Inscricao)
                     .HasForeignKey(d => d.IdStatusInscricao)
-                    .HasConstraintName("FK__Inscricao__IdSta__5CD6CB2B");
+                    .HasConstraintName("FK__Inscricao__IdSta__4AB81AF0");
 
                 entity.HasOne(d => d.IdVagaNavigation)
                     .WithMany(p => p.Inscricao)
                     .HasForeignKey(d => d.IdVaga)
-                    .HasConstraintName("FK__Inscricao__IdVag__5BE2A6F2");
+                    .HasConstraintName("FK__Inscricao__IdVag__49C3F6B7");
             });
 
             modelBuilder.Entity<StatusInscricao>(entity =>
             {
                 entity.HasKey(e => e.IdStatusInscricao)
-                    .HasName("PK__StatusIn__4F419FD74E206D72");
+                    .HasName("PK__StatusIn__4F419FD7846F997D");
 
                 entity.HasIndex(e => e.NomeStatusInscricao)
-                    .HasName("UQ__StatusIn__3F94F1ABB3DCCD41")
+                    .HasName("UQ__StatusIn__3F94F1AB4A5AEAC2")
                     .IsUnique();
 
                 entity.Property(e => e.NomeStatusInscricao)
@@ -279,10 +278,10 @@ namespace SenaiTechVagas.WebApi.Contexts
             modelBuilder.Entity<Tecnologia>(entity =>
             {
                 entity.HasKey(e => e.IdTecnologia)
-                    .HasName("PK__Tecnolog__5ECD2D11B6E6E212");
+                    .HasName("PK__Tecnolog__5ECD2D1150A7202C");
 
                 entity.HasIndex(e => e.NomeTecnologia)
-                    .HasName("UQ__Tecnolog__3210D7ECFCC8830A")
+                    .HasName("UQ__Tecnolog__3210D7EC2CC2992C")
                     .IsUnique();
 
                 entity.Property(e => e.NomeTecnologia)
@@ -293,10 +292,10 @@ namespace SenaiTechVagas.WebApi.Contexts
             modelBuilder.Entity<TipoUsuario>(entity =>
             {
                 entity.HasKey(e => e.IdTipoUsuario)
-                    .HasName("PK__TipoUsua__CA04062BA7952845");
+                    .HasName("PK__TipoUsua__CA04062B6F74B0CA");
 
                 entity.HasIndex(e => e.NomeTipoUsuario)
-                    .HasName("UQ__TipoUsua__C6FB90A824DD576F")
+                    .HasName("UQ__TipoUsua__C6FB90A80B8DA950")
                     .IsUnique();
 
                 entity.Property(e => e.NomeTipoUsuario)
@@ -308,10 +307,10 @@ namespace SenaiTechVagas.WebApi.Contexts
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__Usuario__5B65BF971DC987CC");
+                    .HasName("PK__Usuario__5B65BF9727CDD956");
 
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__Usuario__A9D1053486846F14")
+                    .HasName("UQ__Usuario__A9D10534863F8468")
                     .IsUnique();
 
                 entity.Property(e => e.Email)
@@ -327,13 +326,13 @@ namespace SenaiTechVagas.WebApi.Contexts
                 entity.HasOne(d => d.IdTipoUsuarioNavigation)
                     .WithMany(p => p.Usuario)
                     .HasForeignKey(d => d.IdTipoUsuario)
-                    .HasConstraintName("FK__Usuario__IdTipoU__4316F928");
+                    .HasConstraintName("FK__Usuario__IdTipoU__30F848ED");
             });
 
             modelBuilder.Entity<Vaga>(entity =>
             {
                 entity.HasKey(e => e.IdVaga)
-                    .HasName("PK__Vaga__A848DC3EAF67BDF1");
+                    .HasName("PK__Vaga__A848DC3EF0E4936E");
 
                 entity.Property(e => e.Cep)
                     .IsRequired()
@@ -396,7 +395,7 @@ namespace SenaiTechVagas.WebApi.Contexts
                 entity.HasOne(d => d.IdEmpresaNavigation)
                     .WithMany(p => p.Vaga)
                     .HasForeignKey(d => d.IdEmpresa)
-                    .HasConstraintName("FK__Vaga__IdEmpresa__5441852A");
+                    .HasConstraintName("FK__Vaga__IdEmpresa__4222D4EF");
             });
 
             modelBuilder.Entity<VagaTecnologia>(entity =>
@@ -408,13 +407,13 @@ namespace SenaiTechVagas.WebApi.Contexts
                     .WithMany(p => p.VagaTecnologia)
                     .HasForeignKey(d => d.IdTecnologia)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__VagaTecno__IdTec__5FB337D6");
+                    .HasConstraintName("FK__VagaTecno__IdTec__4D94879B");
 
                 entity.HasOne(d => d.IdVagaNavigation)
                     .WithMany(p => p.VagaTecnologia)
                     .HasForeignKey(d => d.IdVaga)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__VagaTecno__IdVag__60A75C0F");
+                    .HasConstraintName("FK__VagaTecno__IdVag__4E88ABD4");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -12,23 +12,14 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class EstagioRepository : IEstagioRepository
     {
-        public bool CadastrarEstagio(int idCandidato, int idEmpresa, int PeriodoEstagio)
+        public bool CadastrarEstagio(Estagio Estagio)
         {
             using (DbSenaiContext ctx=new DbSenaiContext())
             {
                 try
                 {
-                    if (PeriodoEstagio > 36)
-                        return false;
-
-                    Estagio estagio = new Estagio()
-                    {
-                        DataCadastro = DateTime.Now,
-                        IdCandidato=idCandidato,
-                        IdEmpresa=idEmpresa,
-                        PeriodoEstagio=PeriodoEstagio
-                    };
-                    ctx.Add(estagio);
+                    Estagio.DataCadastro = DateTime.Now;
+                    ctx.Add(Estagio);
                     ctx.SaveChanges();
                     return true;
                 }
@@ -39,7 +30,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool AtualizarPorIdCorpo(int idEstagio, Estagio estagioAtualizado)
+        public bool AtualizarPorIdCorpo(int idEstagio, AtualizarEstagioViewModel estagioAtualizado)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -47,19 +38,16 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     Estagio estagioBuscado = BuscarPorId(idEstagio);
                     if (estagioBuscado == null)
-                    {
                         return false;
-                    }
 
-                    else if (estagioAtualizado.IdEmpresa != null)
-                    {
+                    if (estagioAtualizado.IdEmpresa >=1)
                         estagioBuscado.IdEmpresa = estagioAtualizado.IdEmpresa;
-                    }
 
-                    else if (estagioAtualizado.PeriodoEstagio != null)
-                    {
+                    if(estagioAtualizado.PeriodoEstagio <36)
                         estagioBuscado.PeriodoEstagio = estagioAtualizado.PeriodoEstagio;
-                    }
+
+                    if (estagioAtualizado.IdCandidato>=1)
+                        estagioBuscado.IdCandidato = estagioAtualizado.IdCandidato;
 
                     ctx.Update(estagioBuscado);
                     ctx.SaveChanges();
@@ -78,8 +66,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    Estagio EstagioBuscado = ctx.Estagio.Find(idEstagio);
-                        return EstagioBuscado;
+                    return ctx.Estagio.Find(idEstagio);
                 }
                 catch (Exception e)
                 {
@@ -96,9 +83,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     Estagio estagioBuscado =BuscarPorId(idEstagio);
                     if (estagioBuscado == null)
-                    {
                         return false;
-                    }
+
                     ctx.Remove(estagioBuscado);
                     ctx.SaveChanges();
                     return true;
@@ -121,6 +107,85 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception e)
                 {
                     return null;
+                }
+            }
+        }
+
+        public bool VerificarSeExiste(int id)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == id);
+                    if (estagioBuscado != null)
+                        return true;
+
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public List<Estagio> ListarPorperiodo(int Periodo)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Estagio.Where(v=>v.PeriodoEstagio==Periodo).ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public int ContadorEmpresasCadastradas()
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Empresa.ToList().Count;
+                }
+                catch (Exception e)
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public int ContadorCandidatoCadastrados()
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Candidato.ToList().Count;
+                }
+                catch (Exception e)
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public int ContadorCandidatoContratados()
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Estagio.ToList().Count;
+                }
+                catch (Exception e)
+                {
+                    return 0;
                 }
             }
         }

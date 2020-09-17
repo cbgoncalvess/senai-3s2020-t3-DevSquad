@@ -4,6 +4,7 @@ using SenaiTechVagas.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace SenaiTechVagas.WebApi.Repositories
@@ -25,13 +26,13 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public List<Inscricao> ListarInscricoes()
+        public List<Inscricao> ListarInscricoes(int idUsuario)
         {
             using(DbSenaiContext ctx=new DbSenaiContext())
             {
                 try
                 {
-                    return ctx.Inscricao.ToList();
+                    return ctx.Inscricao.Where(v=>v.IdCandidatoNavigation.IdUsuario==idUsuario).ToList();
                 }catch(Exception e)
                 {
                     return null;
@@ -67,15 +68,29 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    //Ajeitar as validaçoes
-                    if (NovaInscricao.IdVaga!=null&&NovaInscricao.IdCandidato!=null)
-                    {
-                        NovaInscricao.DataInscricao = DateTime.Now;
-                        NovaInscricao.IdStatusInscricao = 1;
-                        ctx.Add(NovaInscricao);
-                        ctx.SaveChanges();
+                    NovaInscricao.DataInscricao = DateTime.Now;
+                    NovaInscricao.IdStatusInscricao = 1;
+                    ctx.Add(NovaInscricao);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool VerificarSeInscricaoExiste(int idVaga,int idCandidato)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Inscricao InscricaoBuscada = ctx.Inscricao.FirstOrDefault(e => e.IdCandidato == idCandidato&& e.IdVaga==idVaga);
+                    if (InscricaoBuscada != null)
                         return true;
-                    }
+
                     return false;
                 }
                 catch (Exception e)

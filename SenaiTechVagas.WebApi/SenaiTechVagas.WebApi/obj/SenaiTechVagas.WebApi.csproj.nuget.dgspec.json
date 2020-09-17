@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {}
+    "C:\\Users\\fic\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {
+    "C:\\Users\\fic\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\fic\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
         "projectName": "SenaiTechVagas.WebApi",
-        "projectPath": "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
-        "packagesPath": "C:\\Users\\vinic\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vinic\\Desktop\\Repositories\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\obj\\",
+        "projectPath": "C:\\Users\\fic\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
+        "packagesPath": "C:\\Users\\fic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fic\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\vinic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\fic\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -63,6 +63,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.8, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.1, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[5.6.1, )"
             }
           },
           "imports": [

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SenaiTechVagas.WebApi.Domains
 {
@@ -7,9 +8,11 @@ namespace SenaiTechVagas.WebApi.Domains
     {
         public int IdEstagio { get; set; }
         public DateTime DataCadastro { get; set; }
+
+        [Required(ErrorMessage = "O campo periodo de estagio é obrigatorio")]
         public int PeriodoEstagio { get; set; }
-        public int? IdCandidato { get; set; }
-        public int? IdEmpresa { get; set; }
+        public int IdCandidato { get; set; }
+        public int IdEmpresa { get; set; }
 
         public virtual Candidato IdCandidatoNavigation { get; set; }
         public virtual Empresa IdEmpresaNavigation { get; set; }
