@@ -1,4 +1,4 @@
-![TechVagas](https://media.discordapp.net/attachments/744972164683530392/744998382946353252/Logo_TecVagas_Cinza_claro.png?width=1080&height=261 "DevSquad | TechVagas")
+![TechVagas](https://cdn.discordapp.com/attachments/744972164683530392/756149088046809098/Screenshot_2020-09-17_Apresentacao_do_PowerPoint_-_Apresentacao_API_BD_pdf.png "DevSquad | TechVagas")
 
 <h1 align="center">
 DevSquad | TechVagas
