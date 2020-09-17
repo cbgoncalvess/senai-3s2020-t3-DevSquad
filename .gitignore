@@ -1,15 +1,9 @@
 #.gitignore
 
-#Ignorando arquivos cache
-*.cache
+# Ignorando a pasta obj e todas as subpastas
+obj/
 
-#Ignorando binários
-*.dll
-
-##Ignorando a pasta obj em qualque área do repositório
-**/obj/
-
-##Ignorando a pasta obj em qualque área do repositório
-**/bin/
+# Ignorando a pasta obj e todas as subpastas
+bin/
 
 #DevSquad
