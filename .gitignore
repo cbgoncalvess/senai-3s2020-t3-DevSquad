@@ -1,9 +1,9 @@
 #.gitignore
 
 # Ignorando a pasta obj e todas as subpastas
-obj/
+SenaiTechVagas.WebApi/SenaiTechVagas.WebApi/bin/
 
 # Ignorando a pasta obj e todas as subpastas
-bin/
+SenaiTechVagas.WebApi/SenaiTechVagas.WebApi/obj/
 
 #DevSquad
