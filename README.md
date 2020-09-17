@@ -1,11 +1,11 @@
 ![TechVagas](https://media.discordapp.net/attachments/744972164683530392/744998382946353252/Logo_TecVagas_Cinza_claro.png?width=1080&height=261 "DevSquad | TechVagas")
 
 <h1 align="center">
-DevSquad | TechVgas
+DevSquad | TechVagas
 </h1>
 
 
-**TechVagas é uma aplicação que conecta empresas parceiras do Senai São Paulo com seus alunos e ex-alunos**, Possuindo um sistema de administração central. Por hora, a aplicação será utilizada apenas na Escola Senai de Informática (1.32).
+**TechVagas é uma aplicação que conecta empresas parceiras do Senai São Paulo com seus alunos e ex-alunos**, possuindo um sistema de administração central. Por hora, a aplicação será utilizada apenas na Escola Senai de Informática (1.32).
 
 # Branches 
 

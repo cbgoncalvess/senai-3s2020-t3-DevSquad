@@ -1,9 +1,21 @@
 #.gitignore
 
-# Ignorando a pasta obj e todas as subpastas
-SenaiTechVagas.WebApi/SenaiTechVagas.WebApi/bin/
+# Ignora todos os diretórios de nome obj
+**/bin
 
-# Ignorando a pasta obj e todas as subpastas
-SenaiTechVagas.WebApi/SenaiTechVagas.WebApi/obj/
+# Ignora o diretório bin e seus arquivos
+bin/
+
+# Ignora todos os diretórios de nome obj
+**/obj
+
+# Ignora o diretório obj e seus arquivos
+obj/
+
+# Ignora todos os arquivos e diretórios com o nome bin
+bin
+
+# Ignora todos os arquivos e diretórios com o nome obj
+obj
 
 #DevSquad
