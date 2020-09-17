@@ -8,7 +8,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
 {
     interface IInscricaoRepository
     {
-        List<Inscricao> ListarInscricoes();
+        List<Inscricao> ListarInscricoes(int id);
         bool SeInscrever(Inscricao NovaInscricao);
         bool RevogarInscricao(int idInscricao);
         Inscricao BuscarPorId(int idInscricao);

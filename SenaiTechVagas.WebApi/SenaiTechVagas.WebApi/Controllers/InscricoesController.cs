@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SenaiTechVagas.WebApi.Domains;
@@ -21,6 +22,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             _Inscricao = new InscricaoRepository();
         }
 
+        /// <summary>
+        /// O candidato podera se inscrever
+        /// </summary>
+        /// <param name="InscricaoNovo"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idCandidato")]
         [HttpPost]
         public IActionResult AdicionarInscricao(Inscricao InscricaoNovo)
         {
@@ -41,7 +48,13 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        /// <summary>
+        /// O  candidato podera remover a inscricao
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idCandidato")]
+        [HttpDelete("{id}")]        
         public IActionResult DeletarInscricao(int id)
         {
             try
@@ -58,12 +71,19 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult ListarInscricaos()
+        /// <summary>
+        /// Lista todas as inscricoes do candidato
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idCandidato")]
+        [HttpGet("{idUsuario}")]
+        
+        public IActionResult ListarInscricaos(int idUsuario)
         {
             try
             {
-                return Ok(_Inscricao.ListarInscricoes());
+                return Ok(_Inscricao.ListarInscricoes(idUsuario));
             }
             catch (Exception e)
             {

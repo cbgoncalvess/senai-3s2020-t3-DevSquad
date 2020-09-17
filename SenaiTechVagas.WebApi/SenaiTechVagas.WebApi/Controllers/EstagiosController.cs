@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SenaiTechVagas.WebApi.Domains;
@@ -22,7 +23,13 @@ namespace SenaiTechVagas.WebApi.Controllers
             _Estagio = new EstagioRepository();
         }
 
+        /// <summary>
+        /// O admininistrador podera cadastrar um novo estagio
+        /// </summary>
+        /// <param name="estagioNovo"></param>
+        /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles ="idAdminnistrador")]
         public IActionResult AdicionarEstagio(Estagio estagioNovo)
         {
             try
@@ -45,6 +52,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// O administrador podera eletar os estagios
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idAdminnistrador")]
         [HttpDelete("{id}")]
         public IActionResult DeletarEstagio(int id)
         {
@@ -62,6 +75,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// O administrador podera listar os estagios
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "idAdminnistrador")]
         [HttpGet]
         public IActionResult ListarEstagios()
         {
@@ -74,6 +92,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// O administrador podera listar os estagios por filtro meses
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "idAdminnistrador")]
         [HttpGet("{NumeroDeMeses}")]
         public IActionResult ListarFiltroPeriodo(int NumeroDeMeses)
         {
@@ -87,8 +110,15 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// O adminstrador podera atualizar o estagio
+        /// </summary>
+        /// <param name="idEstagio"></param>
+        /// <param name="estagio"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idAdminnistrador")]
         [HttpPut("{idEstagio}")]
-       public IActionResult AtualizarPorIdCorpo(int idEstagio,AtualizarEstagioViewModel estagio)
+        public IActionResult AtualizarEstagio(int idEstagio,AtualizarEstagioViewModel estagio)
         {
             try
             {

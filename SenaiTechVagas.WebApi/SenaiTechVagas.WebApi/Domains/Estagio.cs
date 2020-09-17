@@ -9,7 +9,7 @@ namespace SenaiTechVagas.WebApi.Domains
         public int IdEstagio { get; set; }
         public DateTime DataCadastro { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "O campo periodo de estagio é obrigatorio")]
         public int PeriodoEstagio { get; set; }
 
         [Required]

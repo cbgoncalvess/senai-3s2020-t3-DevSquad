@@ -4,6 +4,7 @@ using SenaiTechVagas.WebApi.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace SenaiTechVagas.WebApi.Repositories
@@ -25,13 +26,13 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public List<Inscricao> ListarInscricoes()
+        public List<Inscricao> ListarInscricoes(int idUsuario)
         {
             using(DbSenaiContext ctx=new DbSenaiContext())
             {
                 try
                 {
-                    return ctx.Inscricao.ToList();
+                    return ctx.Inscricao.Where(v=>v.IdCandidatoNavigation.IdUsuario==idUsuario).ToList();
                 }catch(Exception e)
                 {
                     return null;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SenaiTechVagas.WebApi.Domains;
@@ -22,6 +23,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             _Vaga = new VagaRepository();
         }
 
+        /// <summary>
+        /// Adiciona uma nova vaga
+        /// </summary>
+        /// <param name="VagaNovo"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idEmpresa")]
         [HttpPost]
         public IActionResult AdicionarVaga(Vaga VagaNovo)
         {
@@ -39,6 +46,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Adiciona uma tecnologia a vaga
+        /// </summary>
+        /// <param name="vagaTecnologia"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idEmpresa")]
         [HttpPost("AdicionarTecnologia")]
         public IActionResult AdicionarTecnologia(VagaTecnologia vagaTecnologia)
         {
@@ -66,6 +79,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta a vaga por id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idEmpresa")]
         [HttpDelete("{id}")]
         public IActionResult DeletarVaga(int id)
         {
@@ -83,11 +102,18 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Lista todas as vagas que vc publicou
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "idEmpresa")]
         [HttpGet]
         public IActionResult ListarVagas()
         {
             try
             {
+                //colocar algo aqui
                 return Ok(_Vaga.ListarVagas());
             }
             catch (Exception e)
@@ -96,8 +122,15 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        ///Atualiza a vaga
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="Vaga"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idEmpresa")]
         [HttpPut("{id}")]
-        public IActionResult AtualizarPorIdCorpo(int id, AtualizarVagaViewModel Vaga)
+        public IActionResult AtualizarVaga(int id, AtualizarVagaViewModel Vaga)
         {
             try
             {
@@ -113,6 +146,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Lista vagas pelo filtro tipo de contrato
+        /// </summary>
+        /// <param name="TipoContrato"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idCandidato")]
         [HttpGet("TipoContrato/{TipoContrato}")]
         public IActionResult ListarVagasFiltroTipoContarto(string TipoContrato)
         {
@@ -126,6 +165,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Lista vagas pelo filtro por nivel de experiencia
+        /// </summary>
+        /// <param name="NivelExperiencia"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idCandidato")]
         [HttpGet("NivelExperiencia/{NivelExperiencia}")]
         public IActionResult ListarVagas(string NivelExperiencia)
         {
@@ -139,6 +184,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Lista vagas pela barra de pesquisa nome da tecnologia
+        /// </summary>
+        /// <param name="NomeTecnologia"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "idCandidato")]
         [HttpGet("Tecnologia/{NomeTecnologia}")]
         public IActionResult ListarVagasPelaTecnologia(string NomeTecnologia)
         {
