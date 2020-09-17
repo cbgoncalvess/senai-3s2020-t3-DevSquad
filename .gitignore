@@ -7,9 +7,9 @@
 *.dll
 
 ##Ignorando a pasta obj em qualque área do repositório
-**/obj
+**/obj/
 
 ##Ignorando a pasta obj em qualque área do repositório
-**/bin
+**/bin/
 
 #DevSquad
