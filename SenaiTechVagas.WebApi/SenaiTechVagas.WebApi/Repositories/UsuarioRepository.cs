@@ -24,7 +24,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             Usuario usuarioBuscado = ctx.Usuario.Find(id);
 
             if (usuarioBuscado != null)
-            {               
+            {
                 usuarioBuscado.Senha = usuarioAtualizado.Senha;
                 ctx.Update(usuarioBuscado);
                 ctx.SaveChanges();
@@ -49,48 +49,45 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 Usuario usuarioBuscado = ctx.Usuario.Find(id);
 
-               
-                    usuarioBuscado.IdTipoUsuario = 4;
 
-                    ctx.Update(usuarioBuscado);
-                    ctx.SaveChanges();
-                    return true;
-              
+                usuarioBuscado.IdTipoUsuario = 4;
+
+                ctx.Update(usuarioBuscado);
+                ctx.SaveChanges();
+                return true;
+
             }
             catch (Exception error)
             {
 
                 return false;
             }
-           
+
         }
 
         public bool DesbanirUsuario(int id)
         {
-            Usuario usuarioBuscado = ctx.Usuario.Find(id);
 
-            Candidato candidatoBuscado = ctx.Candidato.Include(c => c.IdUsuarioNavigation).FirstOrDefault(c => c.IdUsuarioNavigation.IdTipoUsuario == usuarioBuscado.IdUsuario);
-            Empresa empresaBuscado = ctx.Empresa.Include(e => e.IdUsuarioNavigation).FirstOrDefault(e => e.IdUsuarioNavigation.IdTipoUsuario == usuarioBuscado.IdUsuario);
+            Usuario candidatoBuscado = ctx.Usuario.Include(u => u.Candidato).FirstOrDefault(u => u.IdUsuario == id);
+            Usuario empresaBuscada = ctx.Usuario.Include(u => u.Empresa).FirstOrDefault(u => u.IdUsuario == id);
 
-            if (candidatoBuscado == null && empresaBuscado == null)
+            if (candidatoBuscado.IdTipoUsuario == 4)
             {
-                return false;
-            }
-            else if (candidatoBuscado != null && candidatoBuscado.IdUsuarioNavigation.IdTipoUsuario != 4)
-            {
-                candidatoBuscado.IdUsuarioNavigation.IdTipoUsuario = 2;
+                candidatoBuscado.IdTipoUsuario = 2;
                 ctx.Update(candidatoBuscado);
                 ctx.SaveChanges();
+                return true;
             }
-           else if (empresaBuscado != null && empresaBuscado.IdUsuarioNavigation.IdTipoUsuario != 4)
+            if (empresaBuscada.IdTipoUsuario == 4)
             {
-                empresaBuscado.IdUsuarioNavigation.IdTipoUsuario = 3;
-                ctx.Update(empresaBuscado);
+                empresaBuscada.IdTipoUsuario = 3;
+                ctx.Update(empresaBuscada);
                 ctx.SaveChanges();
+                return true;
             }
 
-            return true;           
-
+            return false;
+        
         }
 
         public List<Usuario> banidos()

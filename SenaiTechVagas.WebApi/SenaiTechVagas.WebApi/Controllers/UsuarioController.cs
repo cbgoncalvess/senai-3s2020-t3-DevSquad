@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SenaiTechVagas.WebApi.Domains;
@@ -28,6 +29,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que lista os usuários cadastrados 
         /// </summary>
         /// <returns>Retorna lista de usuários cadastrados</returns>
+        [Authorize(Roles = "1")]
         [HttpGet]
         public IActionResult ListaUsuario()
         {
@@ -38,6 +40,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que lista os usuários banidos
         /// </summary>
         /// <returns>Retorna lista de usuários banidos</returns>
+        [Authorize(Roles = "1")]
         [HttpGet("Banidos")]
         public IActionResult ListaBanidos()
         {
@@ -49,6 +52,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="id">Identificador do usuário</param>
         /// <returns>Retorna usuário pelo seu Id</returns>
+        [Authorize(Roles = "1")]
         [HttpGet("{id}")]
         public IActionResult BuscarUsuarioPorId(int id)
         {
@@ -61,6 +65,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <param name="id">Identificador do usuário</param>
         /// <param name="usuarioAtualizado">Objeto do usuário</param>
         /// <returns>Retorna um usuário atualizado pelo id e o objeto</returns>
+        [Authorize(Roles = "1,2,3")]
         [HttpPut("{id}")]
         public IActionResult AtualizaDadosUsuario(int id, Usuario usuarioAtualizado)
         {
@@ -80,14 +85,13 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que bani usuário pelo seu identificador 
         /// </summary>
         /// <param name="id">Identificador do usuário</param>
+        [Authorize(Roles = "1")]
         [HttpPut("Banir/{id}")]
         public IActionResult BanirUsuario(int id)
         {
-            Usuario usuarioBuscado = usuarioRepository.BuscarPorId(id);
-
-            if (usuarioBuscado != null)
+            if (usuarioRepository.BanirUsuario(id))
             {
-                usuarioRepository.BanirUsuario(id);
+                return Ok("Usuário banido");
             }
             return NotFound("Usuário não encontrado para ser Banido");
         }
@@ -97,14 +101,14 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="id">Identificador do usuário</param>
         /// <returns>retorna um usuário no estado normal de seu tipo usuário</returns>
+        [Authorize(Roles = "1")]
         [HttpPut("Desbanir/{id}")]
         public IActionResult DesbanirUsuario(int id)
         {
-            Usuario usuarioBuscado = usuarioRepository.BuscarPorId(id);
 
-            if (usuarioBuscado != null)
+            if (usuarioRepository.DesbanirUsuario(id))
             {
-                usuarioRepository.DesbanirUsuario(id);
+                return Ok("Usuário desbanido");
             }
             return NotFound("Usuário não encontrado para ser Desbanido");
         }

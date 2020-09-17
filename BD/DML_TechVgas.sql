@@ -18,7 +18,7 @@ USE Db_TechVagas
 GO
 
 INSERT INTO TipoUsuario (NomeTipoUsuario)
-VALUES		('Administrador'), ('Candidato'), ('Empresa');
+VALUES	('Administrador'), ('Candidato'), ('Empresa'),('Banido');
 GO
 
 INSERT INTO Curso (NomeCurso, TipoCurso)
