@@ -14,7 +14,7 @@ namespace SenaiTechVagas.WebApi.Repositories
     {
         public bool CadastrarEstagio(int idCandidato, int idEmpresa, int PeriodoEstagio)
         {
-            using (DbSenaiContext ctx=new DbSenaiContext())
+            using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
@@ -24,15 +24,15 @@ namespace SenaiTechVagas.WebApi.Repositories
                     Estagio estagio = new Estagio()
                     {
                         DataCadastro = DateTime.Now,
-                        IdCandidato=idCandidato,
-                        IdEmpresa=idEmpresa,
-                        PeriodoEstagio=PeriodoEstagio
+                        IdCandidato = idCandidato,
+                        IdEmpresa = idEmpresa,
+                        PeriodoEstagio = PeriodoEstagio
                     };
                     ctx.Add(estagio);
                     ctx.SaveChanges();
                     return true;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     return false;
                 }
@@ -79,7 +79,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 try
                 {
                     Estagio EstagioBuscado = ctx.Estagio.Find(idEstagio);
-                        return EstagioBuscado;
+                    return EstagioBuscado;
                 }
                 catch (Exception e)
                 {
@@ -94,7 +94,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    Estagio estagioBuscado =BuscarPorId(idEstagio);
+                    Estagio estagioBuscado = BuscarPorId(idEstagio);
                     if (estagioBuscado == null)
                     {
                         return false;
