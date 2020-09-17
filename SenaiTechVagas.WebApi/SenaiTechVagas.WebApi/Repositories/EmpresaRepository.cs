@@ -134,7 +134,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-
         public bool DeletarPorId(int idEmpresa)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())

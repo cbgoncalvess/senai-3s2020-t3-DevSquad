@@ -78,7 +78,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Busca um objeto na tabela Empresa, recebendo o identificador único do objeto.
         /// </summary>
-        /// <param name="id">Identificador único de cada objeto da tabela Emmpresa, do tipo inteiro.</param>
+        /// <parameter name="id">Identificador único de cada objeto da tabela Emmpresa, do tipo inteiro.</parameter>
         /// <returns>>Retorna um HTTP Code (201) e o objeto da tabela Candidato que bata com o
         /// identificador passado, caso contrário, retorna um HTTP Code (400) e a mensagem: 
         /// "Uma exceção ocorreu. Tente novamente."</returns>
