@@ -46,7 +46,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    // Candidato candidato = ctx.Find();//Buscar o id do candidato
                     Inscricao inscricaoBuscada = BuscarPorId(idInscricao);
                     if (inscricaoBuscada == null)
                     return false;

@@ -67,7 +67,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// caso contrário, retorna um HTTP Code (400) e a mensagem: Uma exceção 
         /// ocorreu. Tente novamente.
         /// </returns>
-        [Authorize(Roles="3")]
+        [Authorize(Roles="1")]
         [HttpGet]
         public IActionResult ListarCandidatos()
         {
@@ -132,7 +132,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// do tipo inteiro.</param>
         /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso contrário, retorna 
         /// um HTTP Code (400) e a mensagem: Uma exceção ocorreu. Tente novamente.</returns>
-        [Authorize(Roles="1,3")]
+        [Authorize(Roles="1,2")]
         [HttpDelete("{id}")]
         public IActionResult DeltarCandidato(int id)
         {

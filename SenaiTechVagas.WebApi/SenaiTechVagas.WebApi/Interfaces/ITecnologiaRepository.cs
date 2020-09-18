@@ -13,9 +13,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool CadastrarTecnologia(Tecnologia tecnologia);
 
         bool AtualizarTecnologia(int id, Tecnologia tecnologia);
-
-        bool DeletarTecnologia(int id);
-
+        //bool DeletarTecnologia(int id);
         Tecnologia BuscarPorId(int id);
     }
 }

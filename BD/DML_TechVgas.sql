@@ -49,7 +49,7 @@ VALUES		('Aprovado'),
 GO
 
 INSERT INTO Tecnologia (NomeTecnologia)
-VALUES		('C#'),
+VALUES		('CSharp'),
 			('C++'),
 			('Flutter'),
 			('React'),
@@ -69,11 +69,10 @@ GO
 
 INSERT INTO Empresa (NomeReponsavel, CNPJ, EmailContato, NomeFantasia, RazaoSocial, Telefone, 
 						NumFuncionario,NumCNAE, CEP, Logradouro, Complemento, Localidade, UF, IdUsuario)
-
 VALUES		('Marcos', '3242432433', 'Marcos@gmail.com', 'TechVagas', 'TechVagas', '40028922', 
 					150, '2323234', '01001000', 'Praça da Sé, 345', 'Dentro da Catedral','São Paulo', 'SP', 4);
 GO
-/* CONSERTAR CANDIDATO */
+
 INSERT INTO Candidato (NomeCompleto, RG, CPF, Telefone, LinkLinkedinCandidato, Area, IdCurso, IdUsuario)
 VALUES		('Douglas Mantovani', '311233752', '73829940076', '1198529874', 'https://www.linkedin.com/feed/', 'Developer', 2, 3),
 			('Aléxia Vitória', '214002391', '97616998038', '1195246587', 'https://www.linkedin.com/feed/teste', 'Desenvolvedor', 3 , 4);
@@ -81,7 +80,6 @@ GO
 
 INSERT INTO Vaga (DescricaoVaga, DescricaoEmpresa, DescricaoBeneficio, DataPublicacao, DataExpiracao,
 					Experiencia, TipoContrato, Salario, Localidade, Estado, CEP, Logradouro, Complemento, IdEmpresa)
-
 VALUES		('Vaga de Front-end', 'Muito Maneira', 'Tenha a honra de trabalhar conosco', '27-11-2020', '27-01-2021', 
 				'Júnior', 'CLT', 3000.00, 'São Paulo', 'SP', '08295005','Avenida Miguel Ignácio Curi, 100', 'Ao lado de sua casa!', 1),
 			
@@ -92,27 +90,23 @@ VALUES		('Vaga de Front-end', 'Muito Maneira', 'Tenha a honra de trabalhar conos
 				'Estagiário', 'Estágio', 4000.00, 'Salvador', 'BA', '41500660','Av. Aliomar Baleeiro, 43', 'Perto do Aeroporto', 1);
 GO
 
-INSERT INTO Estagio (DataCadastro, IdCandidato, IdEmpresa)
-VALUES		('29-05-2020', 3, 1),
-			('16-01-2020', 4, 1);
+INSERT INTO Estagio (DataCadastro, PeriodoEstagio, IdCandidato, IdEmpresa)
+VALUES		('29-05-2020', 26, 1, 1),
+			('16-01-2020', 12, 2, 1);
 GO
 
 INSERT INTO Inscricao (DataInscricao, IdCandidato, IdVaga, IdStatusInscricao)
-VALUES		('08-08-2020', 3, 5, 1),
-			('15-04-2019', 4, 6, 2),
-			('16-04-2019', 3, 7, 3);
+VALUES		('08-08-2020', 1, 1, 1),
+			('15-04-2019', 2, 2, 2),
+			('16-04-2019', 1, 3, 3);
 GO
 
 INSERT INTO VagaTecnologia (IdTecnologia, IdVaga)
-VALUES		(2, 5),
-			(1, 6),
-			(4, 7),
-			(5, 5),
-			(6, 6),
-			(7, 7),
-			(9, 5);
+VALUES		(2, 1),
+			(1, 2),
+			(4, 3),
+			(5, 1),
+			(6, 2),
+			(7, 3),
+			(9, 1);
 GO
-
-select *from Candidato;
-
-drop table 

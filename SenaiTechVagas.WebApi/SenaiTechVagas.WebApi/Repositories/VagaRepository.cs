@@ -102,7 +102,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                         vagaBuscada.DataExpiracao = vaga.DataExpiracao;
                     }
                        
-
                     ctx.Update(vagaBuscada);
                     ctx.SaveChanges();
                     return true;

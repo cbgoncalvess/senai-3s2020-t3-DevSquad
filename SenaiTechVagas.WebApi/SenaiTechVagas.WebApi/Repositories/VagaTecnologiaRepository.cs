@@ -56,17 +56,16 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool DeletarVagaTecnologia(int id)
+        public bool DeletarVagaTecnologia(int idTecnologia,int idVaga)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    var BuscandoVagaTecnologia = ctx.VagaTecnologia.Find(id);
-                    if(BuscandoVagaTecnologia == null)
-                    {
+                    var BuscandoVagaTecnologia = ctx.VagaTecnologia.FirstOrDefault(u=>u.IdVaga==idVaga&&u.IdTecnologia==idTecnologia);
+                    if(BuscandoVagaTecnologia == null)              
                         return false;
-                    }
+
                     ctx.Remove(BuscandoVagaTecnologia);
                     ctx.SaveChanges();
 

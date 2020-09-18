@@ -23,20 +23,35 @@ namespace SenaiTechVagas.WebApi.Controllers
         [HttpGet]
         public IActionResult ListarVagaTecnologia()
         {
-            return Ok(ChamandoVagaTecnologia.ListarVagaTecnologia());
+            try
+            {
+                return Ok(ChamandoVagaTecnologia.ListarVagaTecnologia());
+            }
+            catch (Exception)
+            {
+                return BadRequest("Erro no sistema");
+            }        
         }
 
         [HttpPost]
         public IActionResult AdicionarVagaTecnologia(VagaTecnologia vagatec)
         {
-            if (ChamandoVagaTecnologia.CadastrarVagaTecnologia(vagatec))
+            try
             {
-                return StatusCode(201);
+                if (ChamandoVagaTecnologia.CadastrarVagaTecnologia(vagatec))
+                {
+                    return StatusCode(201);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-            else
+            catch (Exception)
             {
-                return BadRequest();
+                return BadRequest("Erro no sistema");
             }
+            
         }
 
         [HttpPut("{id}")]
@@ -53,16 +68,24 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletarVagaTecnologia(int id)
+        public IActionResult DeletarVagaTecnologia(int idTecnologia,int idVaga)
         {
-            if (ChamandoVagaTecnologia.DeletarVagaTecnologia(id))
+            try
             {
-                return StatusCode(201);
+                if (ChamandoVagaTecnologia.DeletarVagaTecnologia(idTecnologia, idVaga))
+                {
+                    return StatusCode(201);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-            else
+            catch (Exception)
             {
                 return BadRequest();
             }
+           
         }
     }
 }

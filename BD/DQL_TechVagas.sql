@@ -13,7 +13,6 @@ GO
 SELECT * FROM Estagio
 GO
 
-
 SELECT * FROM Inscricao
 GO
 
@@ -34,5 +33,3 @@ GO
 
 SELECT * FROM VagaTecnologia
 GO
-
-Update Tecnologia Set NomeTecnologia='CSharp' where IdTecnologia=1

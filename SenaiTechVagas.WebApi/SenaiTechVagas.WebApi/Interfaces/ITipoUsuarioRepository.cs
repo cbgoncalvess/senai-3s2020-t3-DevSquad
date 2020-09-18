@@ -15,7 +15,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
 
         bool AtualizarTipoUsuario(int id, TipoUsuario tipoUsuario);
 
-        bool DeletarTipoUsuario(int id);
+        //bool DeletarTipoUsuario(int id);
 
         TipoUsuario BuscarPorId(int id);
     }

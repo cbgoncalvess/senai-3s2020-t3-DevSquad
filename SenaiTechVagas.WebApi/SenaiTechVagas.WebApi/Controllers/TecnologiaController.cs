@@ -64,24 +64,30 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeletarTecnologia(int id)
-        {
-            try
-            {
-                Tecnologia tecnologiaBuscada = _tecnologiaRepository.BuscarPorId(id);
-                if (tecnologiaBuscada != null)
-                {
-                    _tecnologiaRepository.DeletarTecnologia(id);
-                }
-                return Ok();
-            }
-            catch (Exception e)
-            {
+        /// <summary>
+        /// Justificativa no repository
+        /// </summary>
+        /// <param name="tecnologia"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        //[HttpDelete("{id}")]
+        //public IActionResult DeletarTecnologia(int id)
+        //{
+        //    try
+        //    {
+        //        Tecnologia tecnologiaBuscada = _tecnologiaRepository.BuscarPorId(id);
+        //        if (tecnologiaBuscada != null)
+        //        {
+        //            _tecnologiaRepository.DeletarTecnologia(id);
+        //        }
+        //        return Ok();
+        //    }
+        //    catch (Exception e)
+        //    {
 
-                return BadRequest();
-            }      
-        }
+        //        return BadRequest();
+        //    }      
+        //}
 
         [HttpPut("{id}")]
         public IActionResult AtualizarTecnologia(Tecnologia tecnologia, int id)

@@ -14,7 +14,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
 
         bool AtualizarCurso(int id, Curso curso);
 
-        bool DeletarCurso(int id);
+        //bool DeletarCurso(int id);
 
         Curso BuscarPorId(int id);
 

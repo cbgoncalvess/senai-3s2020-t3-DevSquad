@@ -92,8 +92,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    Empresa empresaBuscada = ctx.Empresa.Find(idEmpresa);
-                    return empresaBuscada;
+                    return ctx.Empresa.Find(idEmpresa);
                 }
                 catch (Exception e)
                 {
@@ -135,7 +134,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        //TODO: Falta Terminar
         public bool DeletarPorId(int idEmpresa)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -144,9 +142,37 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     Empresa empresaBuscado = BuscarPorId(idEmpresa);
                     if (empresaBuscado == null)
-                    {
                         return false;
+
+                    List<Estagio> ListaDeEstagios = ctx.Estagio.Where(i=>i.IdEmpresa==empresaBuscado.IdEmpresa).ToList();
+                    for(int i = 0; i < ListaDeEstagios.Count; i++)
+                    {
+                        EstagioRepository estagio = new EstagioRepository();
+                        if (estagio.DeletarPorId(ListaDeEstagios[i].IdEmpresa))
+                            continue;
+
+                                break;
                     }
+                    List<VagaTecnologia> ListaDeVagaTecnologia = ctx.VagaTecnologia.Where(i => i.IdVagaNavigation.IdEmpresa == empresaBuscado.IdEmpresa).ToList();
+                    for (int i = 0; i < ListaDeVagaTecnologia.Count; i++)
+                    {
+                        VagaTecnologiaRepository vagatec = new VagaTecnologiaRepository();
+                        if (vagatec.DeletarVagaTecnologia(ListaDeVagaTecnologia[i].IdTecnologia,ListaDeVagaTecnologia[i].IdVaga))
+                            continue;
+
+                        break;
+                    }
+
+                    List<Vaga> ListaDeVaga = ctx.Vaga.Where(i => i.IdEmpresa == empresaBuscado.IdEmpresa).ToList();
+                    for (int i = 0; i < ListaDeVaga.Count; i++)
+                    {
+                        VagaRepository vaga = new VagaRepository();
+                        if (vaga.DeletarVaga(ListaDeVaga[i].IdVaga))
+                            continue;
+
+                        break;
+                    }
+
                     ctx.Remove(empresaBuscado);
                     ctx.SaveChanges();
                     return true;

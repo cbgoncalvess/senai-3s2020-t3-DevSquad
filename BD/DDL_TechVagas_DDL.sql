@@ -117,5 +117,3 @@ GO
 
 USE MASTER
 DROP DATABASE Db_TechVagas
-
-SELECT * FROM TipoUsuario
