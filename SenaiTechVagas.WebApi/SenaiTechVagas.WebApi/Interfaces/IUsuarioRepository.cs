@@ -1,4 +1,5 @@
 ﻿using SenaiTechVagas.WebApi.Domains;
+using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +10,12 @@ namespace SenaiTechVagas.WebApi.Interfaces
      interface IUsuarioRepository
     {
         Usuario Logar(string email, string senha);
-
-        List<Usuario> ListarUsuario();
-
-        Usuario BuscarPorId(int id);
-
-        void AtualizarUsuario(int id, Usuario usuarioAtualizado);
-
-        bool BanirUsuario(int id);
-
-        bool DesbanirUsuario(int id);
-
-        List<Usuario> banidos();
-
-
+        bool AtualizarUsuario(int id, Usuario usuarioAtualizado);
+        bool CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato);
+        bool CadastrarEmpresa(Empresa empresa);
+        List<VagaTecnologia> ListarVagasEmGeral();
+        List<VagaTecnologia> ListarFiltroTipoContrato(string TipoContrato);
+        List<VagaTecnologia> ListarFiltroNivelExperiencia(string NivelExperiencia);
+        List<VagaTecnologia> ListarPesquisaTecnologia(string NomeTecnologia);
     }
 }

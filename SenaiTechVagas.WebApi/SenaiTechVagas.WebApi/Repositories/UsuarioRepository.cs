@@ -2,6 +2,7 @@
 using SenaiTechVagas.WebApi.Contexts;
 using SenaiTechVagas.WebApi.Domains;
 using SenaiTechVagas.WebApi.Interfaces;
+using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             return ctx.Usuario.FirstOrDefault(u => u.Email == email && u.Senha == senha);
         }
 
-        public void AtualizarUsuario(int id, Usuario usuarioAtualizado)
+        public bool AtualizarUsuario(int id, Usuario usuarioAtualizado)
         {
             Usuario usuarioBuscado = ctx.Usuario.Find(id);
 
@@ -28,71 +29,137 @@ namespace SenaiTechVagas.WebApi.Repositories
                 usuarioBuscado.Senha = usuarioAtualizado.Senha;
                 ctx.Update(usuarioBuscado);
                 ctx.SaveChanges();
-            }
-        }
-
-        public Usuario BuscarPorId(int id)
-        {
-            return ctx.Usuario.FirstOrDefault(u => u.IdUsuario == id);
-        }
-
-
-        public List<Usuario> ListarUsuario()
-        {
-            return ctx.Usuario.Include(u => u.IdTipoUsuarioNavigation).ToList();
-        }
-
-
-        public bool BanirUsuario(int id)
-        {
-            try
-            {
-                Usuario usuarioBuscado = ctx.Usuario.Find(id);
-
-
-                usuarioBuscado.IdTipoUsuario = 4;
-
-                ctx.Update(usuarioBuscado);
-                ctx.SaveChanges();
-                return true;
-
-            }
-            catch (Exception error)
-            {
-
-                return false;
-            }
-
-        }
-
-        public bool DesbanirUsuario(int id)
-        {
-
-            Usuario candidatoBuscado = ctx.Usuario.Include(u => u.Candidato).FirstOrDefault(u => u.IdUsuario == id);
-            Usuario empresaBuscada = ctx.Usuario.Include(u => u.Empresa).FirstOrDefault(u => u.IdUsuario == id);
-
-            if (candidatoBuscado.IdTipoUsuario == 4)
-            {
-                candidatoBuscado.IdTipoUsuario = 2;
-                ctx.Update(candidatoBuscado);
-                ctx.SaveChanges();
                 return true;
             }
-            if (empresaBuscada.IdTipoUsuario == 4)
-            {
-                empresaBuscada.IdTipoUsuario = 3;
-                ctx.Update(empresaBuscada);
-                ctx.SaveChanges();
-                return true;
-            }
-
             return false;
-        
+        }
+        public bool CadastrarEmpresa(Empresa empresa)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Empresa NovaEmpresa = new Empresa()
+                    {
+                        NomeReponsavel = empresa.NomeReponsavel,
+                        Cnpj = empresa.Cnpj,
+                        EmailContato = empresa.EmailContato,
+                        NomeFantasia = empresa.NomeFantasia,
+                        RazaoSocial = empresa.RazaoSocial,
+                        Telefone = empresa.Telefone,
+                        NumFuncionario = empresa.NumFuncionario,
+                        NumCnae = empresa.NumCnae,
+                        Cep = empresa.Cep,
+                        Logradouro = empresa.Logradouro,
+                        Complemento = empresa.Complemento,
+                        Localidade = empresa.Localidade,
+                        Uf = empresa.Uf,
+                    };
+                    ctx.Add(NovaEmpresa);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }       
+        }
+        public bool CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Usuario user = new Usuario()
+                    {
+                        Email = NovoCandidato.Email,
+                        Senha = NovoCandidato.Senha,
+                        IdTipoUsuario = 2
+                    };
+                    Candidato applicant = new Candidato()
+                    {
+                        IdUsuarioNavigation = user,
+                        NomeCompleto = NovoCandidato.NomeCompleto,
+                        Rg = NovoCandidato.Rg,
+                        Cpf = NovoCandidato.Cpf,
+                        Telefone = NovoCandidato.Telefone,
+                        LinkLinkedinCandidato = NovoCandidato.LinkLinkedinCandidato,
+                        Area = NovoCandidato.Area,
+                        IdCurso = NovoCandidato.IdCurso
+                    };
+
+                    ctx.Add(applicant);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
         }
 
-        public List<Usuario> banidos()
+
+        public List<VagaTecnologia> ListarVagasEmGeral()
         {
-            return ctx.Usuario.Where(u => u.IdTipoUsuario == 4).ToList();
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.VagaTecnologia.Include(u => u.IdVagaNavigation).Include(u => u.IdTecnologiaNavigation).ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }
+        public List<VagaTecnologia> ListarFiltroNivelExperiencia(string NivelExperiencia)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.VagaTecnologia.Include(V => V.IdTecnologiaNavigation).Include(V => V.IdVagaNavigation)
+                        .Where(v => v.IdVagaNavigation.Experiencia == NivelExperiencia).ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<VagaTecnologia> ListarFiltroTipoContrato(string TipoContrato)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.VagaTecnologia.Include(V => V.IdTecnologiaNavigation).Include(V => V.IdVagaNavigation)
+                        .Where(v => v.IdVagaNavigation.TipoContrato == TipoContrato).ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<VagaTecnologia> ListarPesquisaTecnologia(string NomeTecnologia)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.VagaTecnologia.Include(V => V.IdTecnologiaNavigation).Include(V => V.IdVagaNavigation).Where(v => v.IdTecnologiaNavigation.NomeTecnologia == NomeTecnologia).ToList();
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
         }
     }
 }

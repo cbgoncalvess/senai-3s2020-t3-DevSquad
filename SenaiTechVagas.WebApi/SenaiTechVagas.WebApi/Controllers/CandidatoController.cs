@@ -28,82 +28,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Recebe um tipo cadastrar 'CandidatoCandidatoViewModel' preenchendo os dados 
-        /// necessários para que, então, seja adicionado um novo objeto no banco de dados.
-        /// </summary>
-        /// <param name="NovoCandidato">Do tipo 'CadastrarCandidatoViewModel', que se refere
-        /// ao dados inseridos pelo usuário na requisição
-        /// </param>
-        /// <returns>Retorna um HTTP Code (201) e a menssagem: Novo candidato inserido com
-        /// sucesso, caso contrário, retorna um HTTP Code (400) e a mensagem: Um erro 
-        /// ocorreu ao receber a sua requisição.
-        /// </returns>
-        [Authorize(Roles="2")]
-        [HttpPost]
-        public IActionResult CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato)
-        {
-            try
-            {
-                if (_candidatoRepository.CadastrarCandidato(NovoCandidato))
-                {
-                    return Ok("Novo candidato inserido com sucesso!");
-                }
-                else
-                {
-                    return BadRequest("Um erro ocorreu ao receber a sua requisição.");
-                }
-
-            }
-            catch (Exception)
-            {
-                return BadRequest("Uma exceção ocorreu. Tente novamente.");
-            }
-        }
-
-        /// <summary>
-        /// Lista todos os objetos da tabela candidato.
-        /// </summary>
-        /// <returns>Retorna um HTTP Code (201) e os objetos da tabela Candidato, 
-        /// caso contrário, retorna um HTTP Code (400) e a mensagem: Uma exceção 
-        /// ocorreu. Tente novamente.
-        /// </returns>
-        [Authorize(Roles="1")]
-        [HttpGet]
-        public IActionResult ListarCandidatos()
-        {
-            try
-            {
-                return Ok(_candidatoRepository.ListarCandidatos());
-            }
-            catch(Exception)
-            {
-                return BadRequest("Uma exceção ocorreu. Tente novamente.");
-            }
-        }
-
-        /// <summary>
-        /// Busca um objeto na tabela Candidato, recebendo o identificador único do objeto.
-        /// </summary>
-        /// <param name="id">Identificador único de cada objeto da tabela Candidato, do tipo inteiro.</param>
-        /// <returns>Retorna um HTTP Code (201) e o objeto da tabela Candidato que bata com o
-        /// identificador passado, caso contrário, retorna um HTTP Code (400) e a mensagem: 
-        /// Uma exceção ocorreu. Tente novamente.
-        /// </returns>
-        [Authorize(Roles="1")]
-        [HttpGet("{id}")]
-        public IActionResult BuscarPorId(int id)
-        {
-            try
-            {
-                return Ok(_candidatoRepository.BuscarPorId(id));
-            }
-            catch(Exception)
-            {
-                return BadRequest("Uma exceção ocorreu. Tente novamente.");
-            }
-        }
-
-        /// <summary>
         /// Atualiza todas as informações de um objeto da tabela Candidato.
         /// </summary>
         /// <param name="id">Identificador único de um objeto da tabela Candidato</param>
@@ -112,12 +36,16 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso contrário, retorna 
         /// um HTTP Code (400) e a mensagem: Uma exceção ocorreu. Tente novamente.</returns>
         [Authorize(Roles="2")]
-        [HttpPut("{id}")]
+        [HttpPut("AtualizarCandidato/{id}")]
         public IActionResult AtualizarCandidato(int id, Candidato candidato)
         {
             try
             {
-                return Ok(_candidatoRepository.AtualizarCandidato(id, candidato));
+                if (_candidatoRepository.AtualizarCandidato(id, candidato))
+                    return Ok();
+
+                else
+                    return BadRequest();
             }
             catch
             {
@@ -126,19 +54,61 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Apaga as informações de um objeto único da tabela candidato.
+        /// O candidato podera se inscrever
         /// </summary>
-        /// <param name="id">Identificador único de cada objeto da tabela candidato, 
-        /// do tipo inteiro.</param>
-        /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso contrário, retorna 
-        /// um HTTP Code (400) e a mensagem: Uma exceção ocorreu. Tente novamente.</returns>
-        [Authorize(Roles="1,2")]
-        [HttpDelete("{id}")]
-        public IActionResult DeltarCandidato(int id)
+        /// <param name="InscricaoNovo"></param>
+        /// <returns></returns>
+        //[Authorize(Roles = "2")]
+        [HttpPost("AdicionarInscricao")]
+        public IActionResult AdicionarInscricao(Inscricao InscricaoNovo)
         {
             try
             {
-                return Ok(_candidatoRepository.DeletarCandidato(id));
+                if (_candidatoRepository.VerificarSeInscricaoExiste(InscricaoNovo.IdVaga, InscricaoNovo.IdCandidato))
+                    return BadRequest("Inscricao ja existe");
+
+                if (_candidatoRepository.SeInscrever(InscricaoNovo))
+                    return Ok("Inscricao cadastrada com sucesso");
+
+                else
+                    return BadRequest("Não foi possivel cadastrar a inscricao");
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// O  candidato podera remover a inscricao
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "2")]
+        [HttpDelete("RevogarInscricao/{id}")]
+        public IActionResult DeletarInscricao(int id)
+        {
+            try
+            {
+                if (_candidatoRepository.RevogarInscricao(id))
+                    return Ok("Inscricao deletada com sucesso");
+
+                else
+                    return BadRequest("Não foi possivel deletar o Inscricao");
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
+
+        //[Authorize(Roles ="2")]
+        [HttpGet("ListarVagasInscritas/{idUsuario}")]
+        public IActionResult ListarVagasInscritas(int idUsuario)
+        {
+            try
+            {
+                return Ok(_candidatoRepository.ListarInscricoes(idUsuario));
             }
             catch
             {

@@ -14,6 +14,7 @@ using SenaiTechVagas.WebApi.ViewModels;
 
 namespace SenaiTechVagas.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
@@ -53,7 +54,5 @@ namespace SenaiTechVagas.WebApi.Controllers
                 token = new JwtSecurityTokenHandler().WriteToken(token)
             });
         }
-
     }
-
 }
