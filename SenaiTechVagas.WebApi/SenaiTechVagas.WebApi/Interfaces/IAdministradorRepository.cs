@@ -37,7 +37,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool DeletarVaga(int idVaga);
         bool BanirUsuario(int id);
         bool DesbanirUsuario(int id);
-        List<Usuario> ListaDebanidos();
+        List<Usuario>ListaDebanidos();
         bool CadastrarAdministardor(Usuario usuario);
         bool DeletarVagaTecnologia(int idTecnologia, int idVaga);
         bool DeletarAdministrador(int id);

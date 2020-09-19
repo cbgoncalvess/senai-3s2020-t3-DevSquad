@@ -33,12 +33,19 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
             return false;
         }
-        public bool CadastrarEmpresa(Empresa empresa)
+        public bool CadastrarEmpresa(CadastrarEmpresaViewModel empresa)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
+                    Usuario usuario = new Usuario()
+                    {
+                        IdTipoUsuario=3,
+                        Email=empresa.Email,
+                        Senha=empresa.Senha
+                    };
+
                     Empresa NovaEmpresa = new Empresa()
                     {
                         NomeReponsavel = empresa.NomeReponsavel,
@@ -54,6 +61,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         Complemento = empresa.Complemento,
                         Localidade = empresa.Localidade,
                         Uf = empresa.Uf,
+                        IdUsuarioNavigation=usuario
                     };
                     ctx.Add(NovaEmpresa);
                     ctx.SaveChanges();

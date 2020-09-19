@@ -12,17 +12,15 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class EmpresaRepository : IEmpresaRepository
     {
-        public bool AtualizarEmpresaPorIdCorpo(int idEmpresa, Empresa EmpresaAtualizada)
+        public bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Empresa empresaBuscada = ctx.Empresa.Find(idEmpresa);
+                    Empresa empresaBuscada = ctx.Empresa.FirstOrDefault(e=>e.IdUsuario==idUsuario);
                     if (empresaBuscada == null)
-                    {
                         return false;
-                    }
 
                     if (empresaBuscada.NomeReponsavel != null)
                     {
@@ -82,27 +80,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                     return true;
                 }
                 catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
-
-        public bool AdicionarTecnologia(VagaTecnologia vagaTecnologia)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    if (vagaTecnologia.IdVaga != 0 && vagaTecnologia.IdVaga != 0)
-                    {
-                        ctx.Add(vagaTecnologia);
-                        ctx.SaveChanges();
-                        return true;
-                    }
-                    return false;
-                }
-                catch (Exception e)
                 {
                     return false;
                 }
@@ -176,12 +153,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     {
                         vagaBuscada.DataExpiracao = vaga.DataExpiracao;
                     }
-
                     ctx.Update(vagaBuscada);
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     return false;
                 }
@@ -260,53 +236,24 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
-        public bool AtualizarVagaTecnologia(int id, VagaTecnologia vagatec)
+        public bool AdicionarTecnologiaNaVaga(VagaTecnologia vagaTecnologia)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    var vagatecBuscado = ctx.VagaTecnologia.Find(id);
-                    if (vagatecBuscado == null)
-                        return false;
-
-                    if (vagatecBuscado.IdTecnologia >= 1)
-                        vagatecBuscado.IdTecnologia = vagatec.IdTecnologia;
-
-                    if (vagatecBuscado.IdVaga >= 1)
-                        vagatecBuscado.IdVaga = vagatec.IdVaga;
-
-                    ctx.Update(vagatecBuscado);
+                    ctx.Add(vagaTecnologia);
                     ctx.SaveChanges();
-
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return false;
                 }
             }
         }
 
-        public bool CadastrarVagaTecnologia(VagaTecnologia VagaTecnologia)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    ctx.Add(VagaTecnologia);
-                    ctx.SaveChanges();
-
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
-
-        public bool DeletarVagaTecnologia(VagaTecnologia vaga)
+        public bool RemoverTecnologiaDaVaga(VagaTecnologia vaga)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -318,7 +265,6 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     ctx.Remove(BuscandoVagaTecnologia);
                     ctx.SaveChanges();
-
                     return true;
                 }
                 catch (Exception)
@@ -328,24 +274,16 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public List<VagaTecnologia> ListarVagaTecnologia()
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                return ctx.VagaTecnologia.ToList();
-            }
-        }
-
-        public bool VerificarSeExiste(int id)
+        public bool VerificarSeTecnologiaExiste(int idTecnologia)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == id);
-                    if (estagioBuscado != null)
+                    Tecnologia tce = ctx.Tecnologia.FirstOrDefault(e => e.IdTecnologia== idTecnologia);
+                    if (tce == null)
                         return true;
-
+                    else
                     return false;
                 }
                 catch (Exception)
@@ -364,11 +302,14 @@ namespace SenaiTechVagas.WebApi.Repositories
                     Inscricao inscricaoBuscada = ctx.Inscricao.Find(idInscricao);
                     if (inscricaoBuscada == null)
                         return false;
-
-                    inscricaoBuscada.IdStatusInscricao = 1;
-                    ctx.Update(inscricaoBuscada);
-                    ctx.SaveChanges();
-                    return true;
+                    if (inscricaoBuscada.IdStatusInscricao == 1)
+                    {
+                        inscricaoBuscada.IdStatusInscricao = 1;
+                        ctx.Update(inscricaoBuscada);
+                        ctx.SaveChanges();
+                        return true;
+                    }
+                    return false;
                 }
                 catch (Exception)
                 {
@@ -387,9 +328,13 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (inscricaoBuscada == null)
                         return false;
 
-                    inscricaoBuscada.IdStatusInscricao = 3;
-                    ctx.Update(inscricaoBuscada);
-                    ctx.SaveChanges();
+                    if (inscricaoBuscada.IdStatusInscricao == 1)
+                    {
+                        inscricaoBuscada.IdStatusInscricao = 3;
+                        ctx.Update(inscricaoBuscada);
+                        ctx.SaveChanges();
+                        return true;
+                    }
                     return true;
                 }
                 catch (Exception)
@@ -413,15 +358,11 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    Empresa EmpresaBuscada = ctx.Empresa.Find(idEmpresa);
-                    if (EmpresaBuscada == null)
-                        return false;
-
-                    Vaga vagaBuscada = ctx.Vaga.FirstOrDefault(a => a.IdEmpresa == EmpresaBuscada.IdEmpresa);
+                    Vaga vagaBuscada = ctx.Vaga.FirstOrDefault(a => a.IdEmpresa == idEmpresa&&a.IdVaga==idVaga);
                     if (vagaBuscada == null)
-                        return false;
+                        return true;
 
-                    return true;
+                    return false;
                 }
                 catch (Exception e)
                 {
@@ -442,7 +383,21 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     return ctx.Inscricao.Include(x => x.IdCandidatoNavigation).Where(x => x.IdVaga == idVaga).ToList();
                 }
-                catch (Exception e)
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+        public Empresa BuscarEmpresaPorIdUsuario(int idUsuario)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Empresa.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                }
+                catch (Exception)
                 {
                     return null;
                 }

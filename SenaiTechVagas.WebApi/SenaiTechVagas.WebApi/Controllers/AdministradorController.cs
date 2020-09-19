@@ -50,7 +50,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <returns>Retorna lista de usuários banidos</returns>
         [Authorize(Roles = "1")]
-        [HttpGet("Banidos")]
+        [HttpGet("ListarBanidos")]
         public IActionResult ListaBanidos()
         {
             try
@@ -93,7 +93,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 return Ok(_Admin.ListarCurso());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -111,7 +111,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 return Ok(_Admin.ListarEstagios());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -129,7 +129,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 return Ok(_Admin.ListarPorperiodo(NumeroDeMeses));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -165,7 +165,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 return Ok(_Admin.ListarTecnologia());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -183,7 +183,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 return Ok(_Admin.ListarTipoUsuario());
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -216,13 +216,16 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// do tipo inteiro.</param>
         /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso contrário, retorna 
         /// um HTTP Code (400) e a mensagem: Uma exceção ocorreu. Tente novamente.</returns>
-        [Authorize(Roles = "1,2")]
+        [Authorize(Roles = "1")]
         [HttpDelete("DeletarCandidato/{id}")]
         public IActionResult DeletarCandidato(int id)
         {
             try
             {
-                return Ok(_Admin.DeletarCandidato(id));
+                if (_Admin.DeletarCandidato(id))
+                    return Ok("Candidato deletado com sucesso");
+                else
+                    return BadRequest("Não foi possivel deletar o usuario");
             }
             catch
             {
@@ -245,9 +248,12 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                return Ok(_Admin.DeletarEmpresaPorId(idEmpresa));
+                if (_Admin.DeletarEmpresaPorId(idEmpresa))
+                    return Ok("Empresa deletada com sucesso");
+                else
+                    return BadRequest("Não foi possivel deletar a empresa");
             }
-            catch
+            catch(Exception)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
@@ -256,21 +262,20 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// O administrador podera eletar os estagios
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="idEstagio"></param>
         /// <returns></returns>
         [Authorize(Roles = "1")]
-        [HttpDelete("DeletarEstagio/{id}")]
-        public IActionResult DeletarEstagio(int id)
+        [HttpDelete("DeletarEstagio/{idEstagio}")]
+        public IActionResult DeletarEstagio(int idEstagio)
         {
             try
             {
-                if (_Admin.DeletarEstagioPorId(id))
+                if (_Admin.DeletarEstagioPorId(idEstagio))
                     return Ok("Estagio deletado com sucesso");
-
                 else
                     return BadRequest("Não foi possivel deletar este estagio");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -278,39 +283,37 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// O  candidato podera remover a inscricao
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="idInscricao"></param>
         /// <returns></returns>
         [Authorize(Roles = "1")]
-        [HttpDelete("DeletarInscricao/{id}")]
-        public IActionResult DeletarInscricao(int id)
+        [HttpDelete("DeletarInscricao/{idInscricao}")]
+        public IActionResult DeletarInscricao(int idInscricao)
         {
             try
             {
-                if (_Admin.DeletarInscricao(id))
+                if (_Admin.DeletarInscricao(idInscricao))
                     return Ok("Inscricao deletada com sucesso");
-
                 else
                     return BadRequest("Não foi possivel deletar a Inscricao");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
         }
 
         [Authorize(Roles = "1")]
-        [HttpDelete("DeletarAdminstrador/{id}")]
-        public IActionResult DeletarAdministrador(int id)
+        [HttpDelete("DeletarAdminstrador/{idUsuario}")]
+        public IActionResult DeletarAdministrador(int idUsuario)
         {
             try
             {
-                if (_Admin.DeletarInscricao(id))
+                if (_Admin.DeletarInscricao(idUsuario))
                     return Ok("Administrador deletado com sucesso");
-
                 else
                     return BadRequest("Não foi possivel deletar o adminstrador");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -319,21 +322,20 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Deleta a vaga por id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="idVaga"></param>
         /// <returns></returns>
         [Authorize(Roles = "1")]
-        [HttpDelete("DeletarVaga/{id}")]
-        public IActionResult DeletarVaga(int id)
+        [HttpDelete("DeletarVaga/{idVaga}")]
+        public IActionResult DeletarVaga(int idVaga)
         {
             try
             {
-                if (_Admin.DeletarVaga(id))
+                if (_Admin.DeletarVaga(idVaga))
                     return Ok("Vaga deletada com sucesso");
-
                 else
                     return BadRequest("Não foi possivel deletar a Vaga");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -350,11 +352,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (_Admin.CadastrarCurso(novoCurso))
                     return Ok("Curso cadastrado com sucesso");
-
                 else
                     return BadRequest();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -383,7 +384,7 @@ namespace SenaiTechVagas.WebApi.Controllers
                 else
                     return BadRequest("Não foi possivel cadastrar o estagio");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -397,7 +398,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (_Admin.CadastrarStatusInscricao(status))
                     return StatusCode(201);
-
                 else
                     return BadRequest();
             }
@@ -419,7 +419,7 @@ namespace SenaiTechVagas.WebApi.Controllers
                 else
                     return BadRequest("Não foi possivel adicionar essa tecnologia");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -433,11 +433,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (_Admin.CadastrarTipoUsuario(novoTipoUsuario))
                     return Ok("Tipo de usuario adicionado");
-
                 else
                     return BadRequest("Não foi possivel adicionar um novo tipo de usuario");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -454,11 +453,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (_Admin.AtualizarCurso(idCurso, curso))
                     return Ok("Curso atualizado com sucesso");
-
                 else
                     return BadRequest("Não foi possivel atualizar o curso");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -470,7 +468,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <param name="idEstagio"></param>
         /// <param name="estagio"></param>
         /// <returns></returns>
-        [Authorize(Roles = "idAdminnistrador")]
+        [Authorize(Roles = "1")]
         [HttpPut("AtualizarEstagio/{idEstagio}")]
         public IActionResult AtualizarEstagio(int idEstagio, AtualizarEstagioViewModel estagio)
         {
@@ -481,11 +479,10 @@ namespace SenaiTechVagas.WebApi.Controllers
 
                 if (_Admin.AtualizarEstagio(idEstagio, estagio))
                     return Ok("Estagio atualizado");
-
                 else
                     return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes sao validas");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -516,11 +513,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (_Admin.AtualizarTecnologia(id, tecnologia))
                     return Ok("Tecnologia atualizada com sucesso");
-
                 else
                     return BadRequest("Não foi possivel atualizar essa tecnologia");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -534,11 +530,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (_Admin.AtualizarTipoUsuario(id, tipoUsuario))
                     return Ok("Tipo usuario atualizado com sucesso");
-
                 else
                     return BadRequest("Não foi possivel atualizar o tipo de usuario");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -552,11 +547,17 @@ namespace SenaiTechVagas.WebApi.Controllers
         [HttpPut("Banir/{id}")]
         public IActionResult BanirUsuario(int id)
         {
-            if (_Admin.BanirUsuario(id))
-                return Ok("Usuário banido");
-
-            else
-            return NotFound("Usuário não encontrado para ser Banido");
+            try
+            {
+                if (_Admin.BanirUsuario(id))
+                    return Ok("Usuário banido");
+                else
+                    return NotFound("Erro ao banir esse usuário ");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
         /// <summary>
@@ -568,12 +569,17 @@ namespace SenaiTechVagas.WebApi.Controllers
         [HttpPut("Desbanir/{id}")]
         public IActionResult DesbanirUsuario(int id)
         {
-            if (_Admin.DesbanirUsuario(id))
-                return Ok("Usuário desbanido");
-
-            else
-            return NotFound("Usuário não encontrado para ser Desbanido");
+            try
+            {
+                if (_Admin.DesbanirUsuario(id))
+                    return Ok("Usuário desbanido");
+                else
+                    return NotFound("Erro ao banir esse usuário ");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
-        /*----------------------------------------PUT END---------------------------------*/
-    }
+    }/*----------------------------------------PUT END------------------------------------*/
 }

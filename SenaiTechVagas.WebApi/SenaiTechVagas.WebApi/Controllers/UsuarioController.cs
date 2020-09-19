@@ -44,7 +44,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (usuarioRepository.CadastrarCandidato(NovoCandidato))
                     return Ok("Novo candidato inserido com sucesso!");
-
                 else
                     return BadRequest("Um erro ocorreu ao receber a sua requisição.");
             }
@@ -53,7 +52,6 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
         }
-
 
         /// <summary>
         /// Insere um novo objeto empresa na tabela Empresa com as informações 
@@ -67,33 +65,29 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// caso ocorra uma exceção, ou "Um erro ocorreu ao receber a sua 
         /// requisição.", caso algum erro tenha acontecido ao executar o método
         /// implementado em ../Repositories/EmpresaRepository.cs.</returns>
-        [HttpPost]
-        public IActionResult CadastrarEmpresa(Empresa empresa)
+        [HttpPost("CadastrarEmpresa")]
+        public IActionResult CadastrarEmpresa(CadastrarEmpresaViewModel empresa)
         {
             try
             {
                 if (usuarioRepository.CadastrarEmpresa(empresa))
-                {
-                    return Ok("Novo candidato inserido com sucesso!");
-                }
+                    return Ok("Nova empresa cadastrada com sucesso!");
                 else
-                {
-                    return BadRequest("Um erro ocorreu ao receber a sua requisição.");
-                }
-
+                    return BadRequest("Um erro ocorreu e nao foi possivel efetuar o cadastro.");
             }
             catch (Exception)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
         }
+
         /// <summary>
         /// Método que atualiza a senha do usuário pelo identificador e o objeto.
         /// </summary>
         /// <param name="id">Identificador do usuário</param>
         /// <param name="usuarioAtualizado">Objeto do usuário</param>
         /// <returns>Retorna um usuário atualizado pelo id e o objeto</returns>
-        [Authorize(Roles = "1,2,3")]
+        [Authorize(Roles = "1")]
         [HttpPut("AtualizarUsuario/{id}")]
         public IActionResult AtualizaDadosUsuario(int id, Usuario usuarioAtualizado)
         {
@@ -101,9 +95,22 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (usuarioRepository.AtualizarUsuario(id, usuarioAtualizado))
                     return Ok(usuarioAtualizado);
-
                 else
                     return BadRequest("Não foi possivel atualizar os dados do usuario veja se preencheu corretamente");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize]
+        [HttpGet("ListarTodasAsVagas")]
+        public IActionResult ListarVagasEmGeral()
+        {
+            try
+            {
+                return Ok(usuarioRepository.ListarVagasEmGeral());
             }
             catch (Exception)
             {
@@ -124,7 +131,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 return Ok(usuarioRepository.ListarFiltroTipoContrato(TipoContrato));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -143,7 +150,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 return Ok(usuarioRepository.ListarFiltroNivelExperiencia(NivelExperiencia));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -162,7 +169,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 return Ok(usuarioRepository.ListarPesquisaTecnologia(NomeTecnologia));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }

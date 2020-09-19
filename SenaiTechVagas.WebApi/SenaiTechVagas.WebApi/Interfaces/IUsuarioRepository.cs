@@ -12,7 +12,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         Usuario Logar(string email, string senha);
         bool AtualizarUsuario(int id, Usuario usuarioAtualizado);
         bool CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato);
-        bool CadastrarEmpresa(Empresa empresa);
+        bool CadastrarEmpresa(CadastrarEmpresaViewModel empresa);
         List<VagaTecnologia> ListarVagasEmGeral();
         List<VagaTecnologia> ListarFiltroTipoContrato(string TipoContrato);
         List<VagaTecnologia> ListarFiltroNivelExperiencia(string NivelExperiencia);

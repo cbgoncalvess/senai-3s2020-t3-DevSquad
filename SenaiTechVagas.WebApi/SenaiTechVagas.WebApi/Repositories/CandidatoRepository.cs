@@ -15,13 +15,13 @@ namespace SenaiTechVagas.WebApi.Repositories
     public class CandidatoRepository : ICandidatoRepository
     {
         //Em ordem CRUD - Criar, Ler, Atualizar, Deletar
-        public bool AtualizarCandidato(int IdCandidato, Candidato CandidatoAtualizado)
+        public bool AtualizarCandidato(int idUsuario,AtualizarCandidatoViewModel CandidatoAtualizado)
         {
             using(DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Candidato CandidatoBuscado = ctx.Candidato.Find(IdCandidato);
+                    Candidato CandidatoBuscado = ctx.Candidato.FirstOrDefault(c=>c.IdUsuario==idUsuario);
 
                     if(CandidatoBuscado == null)
                     {
@@ -52,7 +52,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     {
                         CandidatoBuscado.Area = CandidatoAtualizado.Area;
                     }
-                    if (CandidatoAtualizado.IdCurso != null)
+                    if (CandidatoAtualizado.IdCurso >=1)
                     {
                         CandidatoBuscado.IdCurso = CandidatoAtualizado.IdCurso;
                     }
@@ -74,11 +74,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    Usuario usuario = ctx.Usuario.Find(idUsuario);
-                    if (usuario == null)
-                        return null;
-
-                    Candidato candidato = ctx.Candidato.FirstOrDefault(c => c.IdUsuario == usuario.IdUsuario);
+                    Candidato candidato = ctx.Candidato.FirstOrDefault(c => c.IdUsuario == idUsuario);
                     if (candidato == null)
                         return null;
 
@@ -89,7 +85,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     List<VagaTecnologia> ListaParaArmazenar = new List<VagaTecnologia>();
                     for(int i = 0; i < ListaDeInscricoes.Count; i++)
                     {
-                        VagaTecnologia vagabuscada = ctx.VagaTecnologia.Include(x=>x.IdTecnologiaNavigation).Include(v=>v.IdVagaNavigation).FirstOrDefault(x => x.IdVaga == ListaDeInscricoes[i].IdVaga);
+                        VagaTecnologia vagabuscada = ctx.VagaTecnologia.Include(v => v.IdVagaNavigation).Include(x=>x.IdTecnologiaNavigation).FirstOrDefault(x => x.IdVaga == ListaDeInscricoes[i].IdVaga);
                         ListaParaArmazenar.Add(vagabuscada);
                     }
                     return ListaParaArmazenar;
@@ -101,13 +97,13 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool RevogarInscricao(int idInscricao)
+        public bool RevogarInscricao(int idInscricao,int idCandidato)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Inscricao inscricaoBuscada =ctx.Inscricao.Find(idInscricao);
+                    Inscricao inscricaoBuscada =ctx.Inscricao.FirstOrDefault(i=>i.IdInscricao==idInscricao&&i.IdCandidato==idCandidato);
                     if (inscricaoBuscada == null)
                         return false;
 
@@ -140,7 +136,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
-
         
         public bool VerificarSeInscricaoExiste(int idVaga, int idCandidato)
         {
@@ -157,6 +152,20 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception e)
                 {
                     return false;
+                }
+            }
+        }
+        public Candidato BuscarCandidatoPorIdUsuario(int idUsuario)
+        {
+            using(DbSenaiContext ctx=new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Candidato.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                }
+                catch (Exception)
+                {
+                    return null;
                 }
             }
         }

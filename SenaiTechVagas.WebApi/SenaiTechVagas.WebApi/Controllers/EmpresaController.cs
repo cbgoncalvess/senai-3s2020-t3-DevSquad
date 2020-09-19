@@ -35,12 +35,13 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// informação passada, retorna-se, então, false, caso haja uma exceção, retorna-se,
         /// então, um HTTP Code (400) e a mensagem: "Uma exceção ocorreu. Tente novamente."</returns>
         [Authorize(Roles="3")]
-        [HttpPut("AtualizarEmpresa/{id}")]
-        public IActionResult AtualizarEmpresa(int id, Empresa empresa)
+        [HttpPut("AtualizarEmpresa")]
+        public IActionResult AtualizarEmpresa( AtualizarEmpresaViewModel empresa)
         {
             try
             {
-                return Ok(_empresaIRepository.AtualizarEmpresaPorIdCorpo(id, empresa));
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                return Ok(_empresaIRepository.AtualizarEmpresaPorIdCorpo(idUsuario, empresa));
             }
             catch(Exception)
             {
@@ -49,18 +50,23 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         [Authorize(Roles = "3")]
-        [HttpPost("AdVaga")]
+        [HttpPost("AdicionarVaga")]
         public IActionResult AdicionarVaga(Vaga VagaNovo)
         {
             try
             {
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                if (empresa == null)
+                    return BadRequest();
+                
+                VagaNovo.IdEmpresa = empresa.IdEmpresa;
                 if (_empresaIRepository.AdicionarVaga(VagaNovo))
                     return Ok("Vaga cadastrado com sucesso");
-
                 else
                     return BadRequest("Não foi possivel cadastrar a vaga,verifique se as informaçoes foram preenchidas corretamente");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -72,20 +78,19 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <param name="vagaTecnologia"></param>
         /// <returns></returns>
         [Authorize(Roles = "3")]
-        [HttpPost("AdicionarTecnologia")]
+        [HttpPost("AdicionarTecnologiaNaVAaga")]
         public IActionResult AdicionarTecnologia(VagaTecnologia vagaTecnologia)
         {
             try
             {
-                if (_empresaIRepository.VerificarSeExiste(vagaTecnologia.IdTecnologia))
+                if (_empresaIRepository.VerificarSeTecnologiaExiste(vagaTecnologia.IdTecnologia))
                     return BadRequest("Tecnologia indisponivel ou não existe");
 
                 if (_empresaIRepository.VerificarSeTecnologiaFoiAdicionada(vagaTecnologia.IdTecnologia, vagaTecnologia.IdVaga))
                     return BadRequest("Essa tecnologia ja foi adicionada");
 
-                if (_empresaIRepository.AdicionarTecnologia(vagaTecnologia))
+                if (_empresaIRepository.AdicionarTecnologiaNaVaga(vagaTecnologia))
                     return Ok("Tecnologia adicionada com sucesso");
-
                 else
                     return BadRequest("Não foi possivel cadastrar a tecnologia");
             }
@@ -95,21 +100,29 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        /// <summary>
-        /// Deleta a vaga por id
-        /// </summary>
-        /// <param name="idVaga"></param>
-        /// <returns></returns>
-        [Authorize(Roles = "3")]
-        [HttpDelete("{idVaga}")]
+            /// <summary>
+            /// Deleta a vaga por id
+            /// </summary>
+            /// <param name="idVaga"></param>
+            /// <returns></returns>
+            [Authorize(Roles = "3")]
+        [HttpDelete("DeletarVagaEmpresa/{idVaga}")]
         public IActionResult DeletarVaga(int idVaga)
         {
             try
             {
-                    if (_empresaIRepository.DeletarVaga(idVaga))
-                        return Ok("Vaga deletada com sucesso");
-                    else
-                        return BadRequest("Não foi possivel cadastrar a Vaga");
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                if (empresa == null)
+                    return BadRequest();
+
+                if (_empresaIRepository.VerificarSeaVagaPertenceaEmpresa(empresa.IdEmpresa, idVaga))
+                    return BadRequest("Essa vaga não pertece a sua empresa");
+
+                if (_empresaIRepository.DeletarVaga(idVaga))
+                    return Ok("Vaga deletada com sucesso");
+                else
+                    return BadRequest("Não foi possivel cadastrar a Vaga");
             }
             catch (Exception)
             {
@@ -125,7 +138,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (_empresaIRepository.AprovarCandidato(idInscricao))
                     return Ok("Candidato aprovado");
-
                 else
                     return BadRequest("Erro ao aprovar esse candidato");
             }
@@ -143,7 +155,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 if (_empresaIRepository.ReprovarCandidato(idInscricao))
                     return Ok("Candidato reprovado");
-
                 else
                     return BadRequest("Erro ao reprovar esse candidato");
             }
@@ -158,14 +169,19 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [Authorize(Roles = "3")]
-        [HttpGet("ListarVagas/{idEmpresa}")]
-        public IActionResult ListarVagas(int idEmpresa)
+        [HttpGet("ListarVagasPublicadas")]
+        public IActionResult ListarVagas()
         {
             try
             {
-                return Ok(_empresaIRepository.ListarVagasDaEmpresa(idEmpresa));
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                if (empresa == null)
+                    return BadRequest();
+
+                return Ok(_empresaIRepository.ListarVagasDaEmpresa(empresa.IdEmpresa));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -176,9 +192,17 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                if (empresa == null)
+                    return BadRequest();
+
+                if (_empresaIRepository.VerificarSeaVagaPertenceaEmpresa(empresa.IdEmpresa, idVaga))
+                    return BadRequest("Essa vaga não pertece a sua empresa");
+
                 return Ok(_empresaIRepository.ListarVagasDaEmpresa(idVaga));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -187,18 +211,25 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         ///Atualiza a vaga que a empresa publicou
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="idVaga"></param>
         /// <param name="Vaga"></param>
         /// <returns></returns>
         [Authorize(Roles = "3")]
-        [HttpPut("AtualizarVagaEmpresa/{id}")]
-        public IActionResult AtualizarVaga(int id, AtualizarVagaViewModel Vaga)
+        [HttpPut("AtualizarVagaEmpresa/{idVaga}")]
+        public IActionResult AtualizarVaga(int idVaga,AtualizarVagaViewModel Vaga)
         {
             try
             {
-                if (_empresaIRepository.AtualizarVaga(id, Vaga))
-                    return Ok("Vaga atualizada com sucesso");
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                if (empresa == null)
+                    return BadRequest();
 
+                if (_empresaIRepository.VerificarSeaVagaPertenceaEmpresa(empresa.IdEmpresa, idVaga))
+                    return BadRequest("Essa vaga não pertece a sua empresa");
+
+                if (_empresaIRepository.AtualizarVaga(idVaga, Vaga))
+                    return Ok("Vaga atualizada com sucesso");
                 else
                     return BadRequest("Não foi possivel atualizar");
             }
@@ -209,32 +240,13 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         [Authorize(Roles = "3")]
-        [HttpPost("CadastrarTecnologiaEmpresa")]
-        public IActionResult AdicionarVagaTecnologia(VagaTecnologia vagatec)
-        {
-            try
-            {
-                if (_empresaIRepository.CadastrarVagaTecnologia(vagatec))
-                    return StatusCode(201);
-
-                else
-                    return BadRequest();
-            }
-            catch (Exception)
-            {
-                return BadRequest("Erro no sistema");
-            }
-        }
-
-        [Authorize(Roles = "3")]
-        [HttpDelete("DeletarVagaTecnologiaEmpresa/{id}")]
+        [HttpDelete("DeletarTecnologiaDaVaga")]
         public IActionResult DeletarVagaTecnologia(VagaTecnologia vaga)
         {
             try
             {
-                if (_empresaIRepository.DeletarVagaTecnologia(vaga))
+                if (_empresaIRepository.RemoverTecnologiaDaVaga(vaga))
                     return StatusCode(201);
-
                 else
                     return BadRequest();
             }

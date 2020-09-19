@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -31,19 +32,20 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Atualiza todas as informações de um objeto da tabela Candidato.
         /// </summary>
         /// <param name="id">Identificador único de um objeto da tabela Candidato</param>
-        /// <param name="candidato">Informações do objeto, passado na requisição, da tabela 
         /// Candidato, recebidas e que passarão a vigorar</param>
         /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso contrário, retorna 
         /// um HTTP Code (400) e a mensagem: Uma exceção ocorreu. Tente novamente.</returns>
         [Authorize(Roles="2")]
-        [HttpPut("AtualizarCandidato/{id}")]
-        public IActionResult AtualizarCandidato(int id, Candidato candidato)
+        [HttpPut("AtualizarCandidato")]
+        public IActionResult AtualizarCandidato(AtualizarCandidatoViewModel candidato)
         {
             try
             {
-                if (_candidatoRepository.AtualizarCandidato(id, candidato))
-                    return Ok();
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                
 
+                if (_candidatoRepository.AtualizarCandidato(idUsuario, candidato))
+                    return Ok();
                 else
                     return BadRequest();
             }
@@ -64,16 +66,21 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (_candidatoRepository.VerificarSeInscricaoExiste(InscricaoNovo.IdVaga, InscricaoNovo.IdCandidato))
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                if (candidatoBuscado == null)
+                    return BadRequest();
+
+                if (_candidatoRepository.VerificarSeInscricaoExiste(InscricaoNovo.IdVaga, candidatoBuscado.IdCandidato))
                     return BadRequest("Inscricao ja existe");
 
+                InscricaoNovo.IdCandidato = candidatoBuscado.IdCandidato;
                 if (_candidatoRepository.SeInscrever(InscricaoNovo))
                     return Ok("Inscricao cadastrada com sucesso");
-
                 else
                     return BadRequest("Não foi possivel cadastrar a inscricao");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
@@ -82,35 +89,44 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// O  candidato podera remover a inscricao
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="idInscricao"></param>
         /// <returns></returns>
         [Authorize(Roles = "2")]
-        [HttpDelete("RevogarInscricao/{id}")]
-        public IActionResult DeletarInscricao(int id)
+        [HttpDelete("RevogarInscricao/{idInscricao}")]
+        public IActionResult DeletarInscricao(int idInscricao)
         {
             try
             {
-                if (_candidatoRepository.RevogarInscricao(id))
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                if (candidatoBuscado == null)
+                    return BadRequest();
+/////MEXER AKI !!!!!!!!!!!!!!!!!!!
+                if (_candidatoRepository.RevogarInscricao(idInscricao,candidatoBuscado.IdCandidato))
                     return Ok("Inscricao deletada com sucesso");
-
                 else
                     return BadRequest("Não foi possivel deletar o Inscricao");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest();
             }
         }
 
-        //[Authorize(Roles ="2")]
-        [HttpGet("ListarVagasInscritas/{idUsuario}")]
-        public IActionResult ListarVagasInscritas(int idUsuario)
+        /// <summary>
+        /// Lista todas as vagas em que o candidato se inscreveu
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles ="2")]
+        [HttpGet("ListarVagasInscritas")]
+        public IActionResult ListarVagasInscritas()
         {
             try
             {
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
                 return Ok(_candidatoRepository.ListarInscricoes(idUsuario));
             }
-            catch
+            catch(Exception)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }

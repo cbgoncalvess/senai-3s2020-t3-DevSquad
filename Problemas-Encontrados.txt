@@ -1,0 +1,2 @@
+-Deletar Empresa nao esta funcionando
+-Deletar Candiato nao esta funcionando
