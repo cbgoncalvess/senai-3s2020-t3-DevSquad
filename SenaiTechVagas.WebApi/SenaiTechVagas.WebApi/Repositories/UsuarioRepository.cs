@@ -12,26 +12,41 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-
-        DbSenaiContext ctx = new DbSenaiContext();
-
         public Usuario Logar(string email, string senha)
         {
-            return ctx.Usuario.FirstOrDefault(u => u.Email == email && u.Senha == senha);
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Usuario.FirstOrDefault(u => u.Email == email && u.Senha == senha);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
         }
 
-        public bool AtualizarUsuario(int id, Usuario usuarioAtualizado)
+        public bool AtualizarUsuario(int idUsuario, AtualizarUsuarioViewModel usuario)
         {
-            Usuario usuarioBuscado = ctx.Usuario.Find(id);
-
-            if (usuarioBuscado != null)
+            using (DbSenaiContext ctx = new DbSenaiContext())
             {
-                usuarioBuscado.Senha = usuarioAtualizado.Senha;
-                ctx.Update(usuarioBuscado);
-                ctx.SaveChanges();
-                return true;
+                try
+                {
+                    Usuario usuarioBuscado = ctx.Usuario.Find(idUsuario);
+
+                    if (usuario.Email != null)
+                        usuarioBuscado.Email = usuario.Email;
+
+                    if (usuario.Senha != null)
+                        usuarioBuscado.Senha = usuario.Senha;
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            return false;
         }
         public bool CadastrarEmpresa(CadastrarEmpresaViewModel empresa)
         {
@@ -41,9 +56,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     Usuario usuario = new Usuario()
                     {
-                        IdTipoUsuario=3,
-                        Email=empresa.Email,
-                        Senha=empresa.Senha
+                        IdTipoUsuario = 3,
+                        Email = empresa.Email,
+                        Senha = empresa.Senha
                     };
 
                     Empresa NovaEmpresa = new Empresa()
@@ -60,8 +75,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                         Logradouro = empresa.Logradouro,
                         Complemento = empresa.Complemento,
                         Localidade = empresa.Localidade,
-                        Uf = empresa.Uf,
-                        IdUsuarioNavigation=usuario
+                        Uf = empresa.Estado,
+                        IdUsuarioNavigation = usuario
                     };
                     ctx.Add(NovaEmpresa);
                     ctx.SaveChanges();
@@ -71,7 +86,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return false;
                 }
-            }       
+            }
         }
         public bool CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato)
         {
@@ -166,6 +181,62 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception e)
                 {
                     return null;
+                }
+            }
+        }
+
+        public bool VerificarSeEmailJaFoiCadastrado(string email)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Usuario usuarioBuscado = ctx.Usuario.First(x => x.Email == email);
+                    if (usuarioBuscado != null)
+                        return true;
+
+                    return false;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+        public bool VerificarSeCandidatoJaFoiCadastrado(string credencial)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Candidato candidatoBuscado = ctx.Candidato.FirstOrDefault(x => x.Cpf == credencial);
+                    if(candidatoBuscado!=null)
+                        return true;
+
+                    return false;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool VerificarSeEmpresaJaFoiCadastrada(string credencial)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                   Empresa empresaBuscada = ctx.Empresa.FirstOrDefault(x => x.Cnpj == credencial);
+                    if (empresaBuscada != null)
+                        return true;
+
+                    return false;
+                }
+                catch (Exception)
+                {
+                    return false;
                 }
             }
         }

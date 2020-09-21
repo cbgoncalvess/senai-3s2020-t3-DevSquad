@@ -61,7 +61,7 @@ VALUES		('CSharp'),
 GO
 
 INSERT INTO Usuario (Email, Senha, IdTipoUsuario)
-VALUES		('possarle@email.com', 'possarle1243', 1),
+VALUES		('possarle@gmail.com', '123123', 1),
 			('douglas@email.com', 'douglas1243', 2),
 			('alexia@email.com', 'alexia1243', 2),
 			('marcos@email.com', 'marcos1243', 3);

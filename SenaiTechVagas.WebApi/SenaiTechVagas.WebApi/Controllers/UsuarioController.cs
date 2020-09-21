@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -42,6 +43,12 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
+                if (usuarioRepository.VerificarSeEmailJaFoiCadastrado(NovoCandidato.Email))
+                    return BadRequest("Esse email ja foi cadastrado em nosso sistema");
+
+                if (usuarioRepository.VerificarSeCandidatoJaFoiCadastrado(NovoCandidato.Cpf))
+                    return BadRequest("Esse cpf ja foi cadastrado em nosso sistema");
+
                 if (usuarioRepository.CadastrarCandidato(NovoCandidato))
                     return Ok("Novo candidato inserido com sucesso!");
                 else
@@ -70,6 +77,12 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
+                if (usuarioRepository.VerificarSeEmailJaFoiCadastrado(empresa.Email))
+                    return BadRequest("Esse email ja foi cadastrado em nosso sistema");
+
+                if (usuarioRepository.VerificarSeEmpresaJaFoiCadastrada(empresa.Cnpj))
+                    return BadRequest("Esse cnpj ja foi cadastrado em nosso sistema");
+
                 if (usuarioRepository.CadastrarEmpresa(empresa))
                     return Ok("Nova empresa cadastrada com sucesso!");
                 else
@@ -84,17 +97,18 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Método que atualiza a senha do usuário pelo identificador e o objeto.
         /// </summary>
-        /// <param name="id">Identificador do usuário</param>
         /// <param name="usuarioAtualizado">Objeto do usuário</param>
         /// <returns>Retorna um usuário atualizado pelo id e o objeto</returns>
         [Authorize(Roles = "1")]
-        [HttpPut("AtualizarUsuario/{id}")]
-        public IActionResult AtualizaDadosUsuario(int id, Usuario usuarioAtualizado)
+        [HttpPut("AtualizarUsuario")]
+        public IActionResult AtualizaDadosUsuario(AtualizarUsuarioViewModel usuarioAtualizado)
         {
             try
             {
-                if (usuarioRepository.AtualizarUsuario(id, usuarioAtualizado))
-                    return Ok(usuarioAtualizado);
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+
+                if (usuarioRepository.AtualizarUsuario(idUsuario, usuarioAtualizado))
+                    return Ok("Usuario atuakizado com sucesso");
                 else
                     return BadRequest("Não foi possivel atualizar os dados do usuario veja se preencheu corretamente");
             }
@@ -104,6 +118,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Lista todas as vagas publicadas
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet("ListarTodasAsVagas")]
         public IActionResult ListarVagasEmGeral()

@@ -410,10 +410,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         ctx.Remove(estagioBuscado);
                         ctx.SaveChanges();
                     }
-                    ctx.Remove(CandidatoBuscado);
-                    ctx.SaveChanges();
-                    Usuario usuario = ctx.Usuario.Find(CandidatoBuscado.IdUsuario);
-                    ctx.Remove(usuario);
+                    DeletarUsuarioEmpresaCandidato(CandidatoBuscado.IdUsuario);
                     ctx.SaveChanges();    
                     return true;
                 }
@@ -473,16 +470,11 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     List<Vaga> ListaDeVaga = ctx.Vaga.Where(i => i.IdEmpresa == empresaBuscado.IdEmpresa).ToList();
                     for (int i = 0; i < ListaDeVaga.Count; i++)
-                    {                       
+                    {
                         if (DeletarVaga(ListaDeVaga[i].IdVaga))
                             continue;
-
-                        break;
                     }
-                    ctx.Remove(empresaBuscado);
-                    ctx.SaveChanges();
-                    Usuario usuario = ctx.Usuario.Find(empresaBuscado.IdUsuario);
-                    ctx.Remove(usuario);
+                    DeletarUsuarioEmpresaCandidato(empresaBuscado.IdUsuario);
                     ctx.SaveChanges();
                     return true;
                 }
@@ -493,6 +485,45 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
+
+
+        /// <summary>
+        /// Foi necessario criar esse metodo para poder deletar empresa/Candidato e usuario,no mesmo metodo estava dando erro
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
+        public bool DeletarUsuarioEmpresaCandidato(int idUsuario)
+        {
+            using(DbSenaiContext ctx=new DbSenaiContext())
+            {
+                try
+                {
+                    Usuario usuarioBuscado = ctx.Usuario.Find(idUsuario);
+                    Empresa empresaBuscada = ctx.Empresa.FirstOrDefault(e => e.IdUsuario == idUsuario);
+                    if (empresaBuscada != null)
+                    {
+                        ctx.Remove(empresaBuscada);
+                        ctx.Remove(usuarioBuscado);
+                        ctx.SaveChanges();
+                        return true;
+                    }
+
+                    Candidato candidatoBuscado = ctx.Candidato.FirstOrDefault(e => e.IdUsuario == idUsuario);
+                    if (candidatoBuscado!=null)
+                    {
+                        ctx.Remove(candidatoBuscado);
+                        ctx.Remove(usuarioBuscado);
+                        ctx.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch(Exception e)
+                {
+                    return false;
+                }
+            }
+        }
         public List<Empresa> ListarEmpresa()
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -522,14 +553,14 @@ namespace SenaiTechVagas.WebApi.Repositories
                     for (int i = 0; i < BuscarInscricoes.Count; i++)
                     {
                         ctx.Remove(BuscarInscricoes[i]);
-                        ctx.SaveChanges();
                     }
                     List<VagaTecnologia> VagaTecnologia = ctx.VagaTecnologia.Where(v => v.IdVaga == vagaBuscada.IdVaga).ToList();
                     for (int i = 0; i < VagaTecnologia.Count; i++)
                     {
                         ctx.Remove(VagaTecnologia[i]);
-                        ctx.SaveChanges();
                     }
+                    Empresa empresaBuscada = ctx.Empresa.Find(vagaBuscada.IdEmpresa);
+                    ctx.Update(empresaBuscada);
                     ctx.Remove(vagaBuscada);
                     ctx.SaveChanges();
                     return true;
@@ -554,31 +585,38 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
-        public bool DesbanirUsuario(int id)
+        public bool DesbanirUsuario(int idUsuario)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Usuario candidatoBuscado = ctx.Usuario.Include(u => u.Candidato).FirstOrDefault(u => u.IdUsuario == id);
-                    Usuario empresaBuscada = ctx.Usuario.Include(u => u.Empresa).FirstOrDefault(u => u.IdUsuario == id);
-                    if (empresaBuscada == null && candidatoBuscado == null)
+                    Usuario usuarioBuscado = ctx.Usuario.Find(idUsuario);
+                    Empresa empresaBuscada = ctx.Empresa.FirstOrDefault(e => e.IdUsuario == idUsuario);
+                    if (empresaBuscada != null)
+                    {
+                        if (empresaBuscada.IdUsuarioNavigation.IdTipoUsuario != 3)
+                        {
+                            empresaBuscada.IdUsuarioNavigation.IdTipoUsuario = 3;
+                            ctx.Update(empresaBuscada);
+                            ctx.SaveChanges();
+                            return true;
+                        }
                         return false;
-
-                    if (candidatoBuscado.Candidato.Count == 1 && candidatoBuscado.IdTipoUsuario == 4)
-                    {
-                        candidatoBuscado.IdTipoUsuario = 2;
-                        ctx.Update(candidatoBuscado);
-                        ctx.SaveChanges();
-                        return true;
                     }
-                    if (empresaBuscada.Empresa.Count == 1 && empresaBuscada.IdTipoUsuario == 4)
+                    Candidato candidatoBuscado = ctx.Candidato.FirstOrDefault(e => e.IdUsuario == idUsuario);
+                    if (candidatoBuscado!=null)
                     {
-                        empresaBuscada.IdTipoUsuario = 3;
-                        ctx.Update(empresaBuscada);
-                        ctx.SaveChanges();
-                        return true;
+                        if (candidatoBuscado.IdUsuarioNavigation.IdTipoUsuario!=2 )
+                        {
+                            candidatoBuscado.IdUsuarioNavigation.IdTipoUsuario = 2;
+                            ctx.Update(candidatoBuscado);
+                            ctx.SaveChanges();
+                            return true;
+                        }
                     }
+                    
+                    
                     return false;
                 }
                 catch (Exception e)
@@ -598,7 +636,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (usuarioBuscadoCandidato == null && usuarioBuscadoEmpresa == null)
                         return false;
 
-                    if (usuarioBuscadoCandidato.Candidato.Count == 1 && usuarioBuscadoCandidato.IdTipoUsuario != 4)
+                    if (usuarioBuscadoCandidato.IdTipoUsuario != 4&&usuarioBuscadoCandidato!=null)
                     {
                         Candidato candidato = ctx.Candidato.Include(u => u.Inscricao).FirstOrDefault(u => u.IdUsuarioNavigation.IdUsuario == usuarioBuscadoCandidato.IdUsuario);
                         for(int i = 0; i < candidato.Inscricao.Count; i++)
@@ -613,7 +651,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         ctx.SaveChanges();
                         return true;
                     }
-                    else if (usuarioBuscadoEmpresa.Empresa.Count == 1 && usuarioBuscadoEmpresa.IdTipoUsuario != 4)
+                    else if (usuarioBuscadoEmpresa.IdTipoUsuario != 4&&usuarioBuscadoEmpresa!=null)
                     {
                         Empresa empresaBuscada = ctx.Empresa.Include(u => u.Vaga).FirstOrDefault(u => u.IdUsuarioNavigation.IdUsuario == usuarioBuscadoEmpresa.IdUsuario);
                         for (int i = 0; i < empresaBuscada.Vaga.Count; i++)

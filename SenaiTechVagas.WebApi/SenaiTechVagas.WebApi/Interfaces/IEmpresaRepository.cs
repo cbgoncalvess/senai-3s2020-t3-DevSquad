@@ -21,8 +21,8 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool ReprovarCandidato(int idInscricao);
         List<VagaTecnologia> ListarVagasDaEmpresa(int idEmpresa);
         List<Inscricao> ListarCandidatosInscritos(int idVaga);
+        List<Inscricao> ListarCandidatosAprovados(int idVaga);
         Empresa BuscarEmpresaPorIdUsuario(int idUsuario);
-
         /*------------VERIFICAÇÕES INICIO-------------*/
         bool VerificarSeaVagaPertenceaEmpresa(int idEmpresa, int idVaga);
         bool VerificarSeTecnologiaFoiAdicionada(int idTecnologia, int idVaga);

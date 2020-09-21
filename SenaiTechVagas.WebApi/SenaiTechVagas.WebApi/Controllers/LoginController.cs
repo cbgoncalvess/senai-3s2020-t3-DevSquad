@@ -23,12 +23,20 @@ namespace SenaiTechVagas.WebApi.Controllers
 
         public LoginController() { usuarioRepository = new UsuarioRepository(); }
 
+        /// <summary>
+        /// O usuario passa um email e senha e recebe um token de volta e é considerado logado pelo sistema
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult LoginUsuario(LoginViewModel login)
         {           
             Usuario usuarioLogar = usuarioRepository.Logar(login.Email, login.Senha);
             if (usuarioLogar == null)
                 return BadRequest("Suas credenciais não são validas");
+
+            if (usuarioLogar.IdTipoUsuario == 4)
+                return BadRequest("Voce foi banido por tempo indeterminado,em caso de engano entre em contato com o senai");
 
             var claims = new[]
               {

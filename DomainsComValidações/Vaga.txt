@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,7 +13,6 @@ namespace SenaiTechVagas.WebApi.Domains
         }
 
         public int IdVaga { get; set; }
-
         [Required(ErrorMessage = "O campo descricao da vaga é obrigatorio")]
         [StringLength(700, MinimumLength = 5, ErrorMessage = "A descricao da vaga deve ter entre 5 e 700 caracteres")]
         public string DescricaoVaga { get; set; }

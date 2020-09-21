@@ -33,4 +33,3 @@ GO
 SELECT * FROM VagaTecnologia
 GO
 
-

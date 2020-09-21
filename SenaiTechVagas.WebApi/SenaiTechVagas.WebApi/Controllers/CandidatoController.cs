@@ -28,13 +28,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             _candidatoRepository = new CandidatoRepository();
         }
 
-        /// <summary>
-        /// Atualiza todas as informações de um objeto da tabela Candidato.
-        /// </summary>
-        /// <param name="id">Identificador único de um objeto da tabela Candidato</param>
-        /// Candidato, recebidas e que passarão a vigorar</param>
-        /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso contrário, retorna 
-        /// um HTTP Code (400) e a mensagem: Uma exceção ocorreu. Tente novamente.</returns>
+       /// <summary>
+       /// Atualiza informações do candidato
+       /// </summary>
+       /// <param name="candidato"></param>
+       /// <returns></returns>
         [Authorize(Roles="2")]
         [HttpPut("AtualizarCandidato")]
         public IActionResult AtualizarCandidato(AtualizarCandidatoViewModel candidato)
@@ -42,7 +40,9 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                
+                Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                if (candidatoBuscado == null)
+                    return BadRequest();
 
                 if (_candidatoRepository.AtualizarCandidato(idUsuario, candidato))
                     return Ok();
@@ -60,7 +60,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="InscricaoNovo"></param>
         /// <returns></returns>
-        //[Authorize(Roles = "2")]
+        [Authorize(Roles = "2")]
         [HttpPost("AdicionarInscricao")]
         public IActionResult AdicionarInscricao(Inscricao InscricaoNovo)
         {
@@ -101,7 +101,7 @@ namespace SenaiTechVagas.WebApi.Controllers
                 Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
                 if (candidatoBuscado == null)
                     return BadRequest();
-/////MEXER AKI !!!!!!!!!!!!!!!!!!!
+
                 if (_candidatoRepository.RevogarInscricao(idInscricao,candidatoBuscado.IdCandidato))
                     return Ok("Inscricao deletada com sucesso");
                 else

@@ -302,6 +302,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta um usuario do tipo administrador passando o id de usuario dele,o idUsuario 1 não pode ser deletado
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpDelete("DeletarAdminstrador/{idUsuario}")]
         public IActionResult DeletarAdministrador(int idUsuario)
@@ -344,6 +349,11 @@ namespace SenaiTechVagas.WebApi.Controllers
 
 
         /*----------------------------------------POST START---------------------------------*/
+        /// <summary>
+        /// Adciona um curso novo
+        /// </summary>
+        /// <param name="novoCurso"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarCurso")]
         public IActionResult CadastrarCurso(Curso novoCurso)
@@ -390,6 +400,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        ///Adiciona um novo tipo de status de inscricao
+        /// </summary>
+        /// <param name="status"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarStatusInscricao")]
         public IActionResult AdicionarStatusInscricao(StatusInscricao status)
@@ -407,6 +422,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Adicona uma nova tecnologia 
+        /// </summary>
+        /// <param name="novaTecnologia"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarTecnologia")]
         public IActionResult CadastrarTecnologia(Tecnologia novaTecnologia)
@@ -424,7 +444,11 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
-
+        /// <summary>
+        /// Adiciona um novo tipo de usuario
+        /// </summary>
+        /// <param name="novoTipoUsuario"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarTipoUsuario")]
         public IActionResult CadastrarTipoUsuario(TipoUsuario novoTipoUsuario)
@@ -445,6 +469,12 @@ namespace SenaiTechVagas.WebApi.Controllers
 
 
         /*----------------------------------------PUT START---------------------------------*/
+        /// <summary>
+        /// Atualiza o nome de um curso na tabela cursos passando o id
+        /// </summary>
+        /// <param name="idCurso"></param>
+        /// <param name="curso"></param>
+        /// <returns></returns>
         [Authorize(Roles ="1")]
         [HttpPut("AtualizarCurso/{id}")]
         public IActionResult AtualizarCurso(int idCurso,Curso curso) 
@@ -488,6 +518,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza o nome de um status da inscricao
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPut("AtualizarStatusInscricao/{id}")]
         public IActionResult AtualizarStatusInscricao(int id, StatusInscricao status)
@@ -504,7 +540,12 @@ namespace SenaiTechVagas.WebApi.Controllers
                return BadRequest();
             }
         }
-
+        /// <summary>
+        /// A  atualiza o nome de uma tecnologia
+        /// </summary>
+        /// <param name="tecnologia"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPut("AtualizarTecnologia/{id}")]
         public IActionResult AtualizarTecnologia(Tecnologia tecnologia, int id)
@@ -521,7 +562,12 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
-
+        /// <summary>
+        ///Atualiza o nome de um tipo de usuario
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="tipoUsuario"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPut("AtualizarTipoUsuario/{id}")]
         public IActionResult AtualizarTipoUsuario(int id, TipoUsuario tipoUsuario)

@@ -70,9 +70,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                     {
                         empresaBuscada.Localidade = EmpresaAtualizada.Localidade;
                     }
-                    if (EmpresaAtualizada.Uf != null)
+                    if (EmpresaAtualizada.Estado != null)
                     {
-                        empresaBuscada.Uf = EmpresaAtualizada.Uf;
+                        empresaBuscada.Uf = EmpresaAtualizada.Estado;
                     }
 
                     ctx.Update(empresaBuscada);
@@ -111,7 +111,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    //Adicionar o metodo que pega o ID da Empresa logada
                     Vaga vagaBuscada = ctx.Vaga.Find(idVaga);
                     if (vagaBuscada == null)
                         return false;
@@ -149,10 +148,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (vaga.TipoContrato != null)
                         vagaBuscada.TipoContrato = vaga.TipoContrato;
 
-                    if (vaga.DataExpiracao > vagaBuscada.DataExpiracao)
-                    {
+                    if (vaga.DataExpiracao>vagaBuscada.DataExpiracao&&vaga.DataExpiracao.Month>vagaBuscada.DataExpiracao.Month)
                         vagaBuscada.DataExpiracao = vaga.DataExpiracao;
-                    }
                     ctx.Update(vagaBuscada);
                     ctx.SaveChanges();
                     return true;
@@ -169,7 +166,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    //Falta adicionar a empresa a que é publicadora da vaga
                     Vaga vagaBuscada = ctx.Vaga.Find(idVaga);
                     if (vagaBuscada == null)
                         return false;
@@ -396,6 +392,21 @@ namespace SenaiTechVagas.WebApi.Repositories
                 try
                 {
                     return ctx.Empresa.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<Inscricao> ListarCandidatosAprovados(int idVaga)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Inscricao.Include(x => x.IdCandidatoNavigation).Where(x => x.IdStatusInscricao == 1).ToList(); 
                 }
                 catch (Exception)
                 {

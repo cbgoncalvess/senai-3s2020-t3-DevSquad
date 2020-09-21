@@ -111,7 +111,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }

@@ -1,20 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace SenaiTechVagas.WebApi.Domains
-{
-    public partial class Candidato
-    {
-        public Candidato()
-        {
-            Estagio = new HashSet<Estagio>();
-            Inscricao = new HashSet<Inscricao>();
-        }
-
-        public int IdCandidato { get; set; }
-
-        [Required(ErrorMessage = "O campo nome completo é obrigatorio")]
+       [Required(ErrorMessage = "O campo nome completo é obrigatorio")]
         [StringLength(35, MinimumLength = 9, ErrorMessage = "O nome deve ter entre 5 e 35 caracteres")]
         public string NomeCompleto { get; set; }
 
@@ -33,13 +17,3 @@ namespace SenaiTechVagas.WebApi.Domains
         [Required(ErrorMessage = "O campo link do linkedin é obrigatorio")]
         [StringLength(150, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 5 e 150 caracteres")]
         public string LinkLinkedinCandidato { get; set; }
-        public string Area { get; set; }
-        public int IdCurso { get; set; }
-        public int IdUsuario { get; set; }
-
-        public virtual Curso IdCursoNavigation { get; set; }
-        public virtual Usuario IdUsuarioNavigation { get; set; }
-        public virtual ICollection<Estagio> Estagio { get; set; }
-        public virtual ICollection<Inscricao> Inscricao { get; set; }
-    }
-}

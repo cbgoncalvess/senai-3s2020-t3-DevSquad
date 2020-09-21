@@ -28,7 +28,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Atualiza todas as informações de um objeto da tabela Empresa.
         /// </summary>
-        /// <param name="id">Identificador único de um objeto da tabela Empresa</param>
         /// <param name="empresa">Informações do objeto, passado na requisição, da tabela 
         /// Empresa, recebidas e que passarão a vigorar</param>
         /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso ocorra um erro na 
@@ -48,7 +47,11 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
         }
-
+        /// <summary>
+        /// Cadastra uma nova vaga
+        /// </summary>
+        /// <param name="VagaNovo"></param>
+        /// <returns></returns>
         [Authorize(Roles = "3")]
         [HttpPost("AdicionarVaga")]
         public IActionResult AdicionarVaga(Vaga VagaNovo)
@@ -99,13 +102,12 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest(e);
             }
         }
-
-            /// <summary>
-            /// Deleta a vaga por id
-            /// </summary>
-            /// <param name="idVaga"></param>
-            /// <returns></returns>
-            [Authorize(Roles = "3")]
+        /// <summary>
+        /// Deleta a vaga por id
+        /// </summary>
+        /// <param name="idVaga"></param>
+        /// <returns></returns>    
+        [Authorize(Roles = "3")]
         [HttpDelete("DeletarVagaEmpresa/{idVaga}")]
         public IActionResult DeletarVaga(int idVaga)
         {
@@ -129,7 +131,11 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
-
+        /// <summary>
+        /// Aprova um candidato na vaga da empresa
+        /// </summary>
+        /// <param name="idInscricao"></param>
+        /// <returns></returns>
         [Authorize(Roles = "3")]
         [HttpPut("Aprovar/{idInscricao}")]
         public IActionResult AprovarCandidato(int idInscricao)
@@ -146,13 +152,23 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
-
+        /// <summary>
+        /// Reprova um candidato que se inscrevu na sua vaga
+        /// </summary>
+        /// <param name="idInscricao"></param>
+        /// <returns></returns>
         [Authorize(Roles = "3")]
         [HttpPut("Reprovar/{idInscricao}")]
         public IActionResult ReprovarCandidato(int idInscricao)
         {
             try
             {
+                //Verificacao se a inscricao pertence a empresa
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                if (empresa == null)
+                    return BadRequest();
+
                 if (_empresaIRepository.ReprovarCandidato(idInscricao))
                     return Ok("Candidato reprovado");
                 else
@@ -163,7 +179,6 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
-
         /// <summary>
         /// Lista todas as vagas que a empresa publicou
         /// </summary>
@@ -186,7 +201,11 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
-
+        /// <summary>
+        /// Lista todos os candidatos naquela vaga em especifico
+        /// </summary>
+        /// <param name="idVaga"></param>
+        /// <returns></returns>
         [HttpGet("ListarCandidatosInscritos/{idVaga}")]
         public IActionResult ListarCandidatosInscritos(int idVaga)
         {
@@ -207,7 +226,6 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
-
         /// <summary>
         ///Atualiza a vaga que a empresa publicou
         /// </summary>
@@ -238,17 +256,54 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
+        /// <summary>
+        /// Lista todos os candidatos aprovados na vaga
+        /// </summary>
+        /// <param name="idVaga"></param>
+        /// <returns></returns>
+        [HttpGet("ListarCandidatosAprovados{idVaga}")]
+        public IActionResult ListarCandidatoAprovados(int idVaga)
+        {
+            try
+            {
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                if (empresa == null)
+                    return BadRequest();
 
+                if (_empresaIRepository.VerificarSeaVagaPertenceaEmpresa(empresa.IdEmpresa,idVaga))
+                    return BadRequest("Essa vaga não pertece a sua empresa");
+
+                return Ok(_empresaIRepository.ListarCandidatosAprovados(idVaga));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+        /// <summary>
+        /// Deleta um tecnologia adicionada na vaga
+        /// </summary>
+        /// <param name="vaga"></param>
+        /// <returns></returns>
         [Authorize(Roles = "3")]
         [HttpDelete("DeletarTecnologiaDaVaga")]
         public IActionResult DeletarVagaTecnologia(VagaTecnologia vaga)
         {
             try
             {
-                if (_empresaIRepository.RemoverTecnologiaDaVaga(vaga))
-                    return StatusCode(201);
-                else
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                if (empresa == null)
                     return BadRequest();
+
+                if (_empresaIRepository.VerificarSeaVagaPertenceaEmpresa(empresa.IdEmpresa,vaga.IdVaga))
+                    return BadRequest("Essa vaga não pertece a sua empresa");
+
+                if (_empresaIRepository.RemoverTecnologiaDaVaga(vaga))
+                    return Ok("Tecnologia removida da vaga com sucesso");
+                else
+                    return BadRequest("Não foi possivel remover a tecnologia");
             }
             catch (Exception)
             {
