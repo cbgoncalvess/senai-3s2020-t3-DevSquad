@@ -210,21 +210,18 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
-        public void ExpirarVaga(Vaga vaga)
+        public void ExpirarVaga()
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Vaga vagaBuscada = ctx.Vaga.FirstOrDefault(v => v.DataExpiracao >= DateTime.Now);
-                    if (vagaBuscada != null)
+                    List<Vaga> VagasExpiradas = ctx.Vaga.Where(v => v.DataExpiracao >= DateTime.Now).ToList();
+                    for(int i = 0; i < VagasExpiradas.Count; i++)
                     {
-                        DeletarVaga(vagaBuscada.IdVaga);
-
-                        ctx.Remove(vagaBuscada);
-
-                        ctx.SaveChanges();
+                        DeletarVaga(VagasExpiradas[i].IdVaga);
                     }
+                    ctx.SaveChanges();
                 }
                 catch (Exception e)
                 {
@@ -407,6 +404,28 @@ namespace SenaiTechVagas.WebApi.Repositories
                 try
                 {
                     return ctx.Inscricao.Include(x => x.IdCandidatoNavigation).Where(x => x.IdStatusInscricao == 1).ToList(); 
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<Candidato> ListarCandidatosEstagiandoNaEmpresa(int idEmpresa)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    List<Estagio> ListaEstagios = ctx.Estagio.Where(e => e.IdEmpresa == idEmpresa).ToList();
+                    List<Candidato> candidatos = new List<Candidato>();
+                    for(int i = 0; i < ListaEstagios.Count; i++)
+                    {
+                        Candidato candidatoBuscado = ctx.Candidato.Find(ListaEstagios[i].IdCandidato);
+                        candidatos.Add(candidatoBuscado);
+                    }
+                    return candidatos;
                 }
                 catch (Exception)
                 {

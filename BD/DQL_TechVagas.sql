@@ -17,7 +17,7 @@ GO
 
 SELECT * FROM Vaga
 GO
-
+update Vaga set DataExpiracao ='22/10/2020' where DescricaoVaga='Desenvolvimento'
 SELECT * FROM Estagio
 GO
 

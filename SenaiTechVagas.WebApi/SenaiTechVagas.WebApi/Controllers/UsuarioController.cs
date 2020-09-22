@@ -26,7 +26,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             usuarioRepository = new UsuarioRepository();
         }
-
         /// <summary>
         /// Recebe um tipo cadastrar 'CandidatoCandidatoViewModel' preenchendo os dados 
         /// necessários para que, então, seja adicionado um novo objeto no banco de dados.

@@ -14,7 +14,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool AdicionarVaga(Vaga vaga);
         bool AdicionarTecnologiaNaVaga(VagaTecnologia vagaTecnologia);
         bool DeletarVaga(int idVaga);
-        void ExpirarVaga(Vaga vaga);
+        void ExpirarVaga();
         bool RemoverTecnologiaDaVaga(VagaTecnologia vaga);
         bool VerificarSeTecnologiaExiste(int idTecnologia);
         bool AprovarCandidato(int idInscricao);
@@ -23,6 +23,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<Inscricao> ListarCandidatosInscritos(int idVaga);
         List<Inscricao> ListarCandidatosAprovados(int idVaga);
         Empresa BuscarEmpresaPorIdUsuario(int idUsuario);
+        List<Candidato> ListarCandidatosEstagiandoNaEmpresa(int idEmpresa);
         /*------------VERIFICAÇÕES INICIO-------------*/
         bool VerificarSeaVagaPertenceaEmpresa(int idEmpresa, int idVaga);
         bool VerificarSeTecnologiaFoiAdicionada(int idTecnologia, int idVaga);

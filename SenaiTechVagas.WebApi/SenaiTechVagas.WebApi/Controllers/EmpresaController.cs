@@ -24,7 +24,18 @@ namespace SenaiTechVagas.WebApi.Controllers
             _empresaIRepository = new EmpresaRepository();
         }
 
-
+        [HttpGet("ExpirarVagas")]
+        public void ExpirarVaga()
+        {
+            try
+            {
+                _empresaIRepository.ExpirarVaga();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
         /// <summary>
         /// Atualiza todas as informações de um objeto da tabela Empresa.
         /// </summary>
@@ -75,6 +86,22 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        public IActionResult ListarCandidatosEstagiando()
+        {
+            try
+            {
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                if (empresa == null)
+                    return BadRequest();
+
+                    return Ok(_empresaIRepository.ListarCandidatosEstagiandoNaEmpresa(idUsuario));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
         /// <summary>
         /// Adiciona uma tecnologia a vaga
         /// </summary>

@@ -453,7 +453,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     List<Estagio> ListaDeEstagios = ctx.Estagio.Where(i => i.IdEmpresa == empresaBuscado.IdEmpresa).ToList();
                     for (int i = 0; i < ListaDeEstagios.Count; i++)
                     {
-                        
+
                         if (DeletarEstagioPorId(ListaDeEstagios[i].IdEmpresa))
                             continue;
 
