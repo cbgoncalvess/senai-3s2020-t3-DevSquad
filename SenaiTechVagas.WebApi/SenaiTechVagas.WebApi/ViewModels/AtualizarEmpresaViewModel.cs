@@ -11,7 +11,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(50, MinimumLength = 5, ErrorMessage = "A nome do responsavel deve ter entre 5 e 50 caracteres")]
         public string NomeReponsavel { get; set; }
 
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "A cnpj deve ter entre 5 e 35 caracteres")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "A cnpj deve ter entre 11 caracteres")]
         public string Cnpj { get; set; }
 
         [StringLength(254, MinimumLength = 5, ErrorMessage = "O Email deve ter entre 5 e 254 caracteres")]
@@ -38,7 +38,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(50, MinimumLength = 5, ErrorMessage = "O estado deve ter entre 5 e 50 caracteres")]
         public string Estado { get; set; }
 
-        [StringLength(8, MinimumLength = 5, ErrorMessage = "O cep deve ter 8 caracteres")]
+        [StringLength(8,ErrorMessage = "O cep deve ter 8 caracteres")]
         public string Cep { get; set; }
 
         [StringLength(255, MinimumLength = 5, ErrorMessage = "O logradouro deve ter entre 5 e 255 caracteres")]

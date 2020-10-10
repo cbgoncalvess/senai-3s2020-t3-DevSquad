@@ -135,18 +135,32 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        /// <summary>
-        /// Lista vagas pelo filtro tipo de contrato
-        /// </summary>
-        /// <param name="TipoContrato"></param>
-        /// <returns></returns>
         [Authorize]
-        [HttpGet("TipoContrato/{TipoContrato}")]
-        public IActionResult ListarVagasFiltroTipoContarto(string TipoContrato)
+        [HttpGet("BuscarPorId/{idVaga}")]
+        public IActionResult BuscarVagaPeloId(int idVaga)
         {
             try
             {
-                return Ok(usuarioRepository.ListarFiltroTipoContrato(TipoContrato));
+                return Ok(usuarioRepository.BuscarVagaPeloId(idVaga));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Lista vagas pelo filtro tipo de contrato
+        /// </summary>
+        /// <param name="NomeTipoContrato"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("TipoContrato/{NomeTipoContrato}")]
+        public IActionResult ListarVagasFiltroTipoContarto(string NomeTipoContrato)
+        {
+            try
+            {
+                return Ok(usuarioRepository.ListarFiltroTipoContrato(NomeTipoContrato));
             }
             catch (Exception)
             {

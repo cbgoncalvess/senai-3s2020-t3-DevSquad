@@ -15,6 +15,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool AdicionarTecnologiaNaVaga(VagaTecnologia vagaTecnologia);
         bool DeletarVaga(int idVaga);
         void ExpirarVaga();
+        void AdicionarTecnologiaPadrao(int idVaga);
         bool RemoverTecnologiaDaVaga(VagaTecnologia vaga);
         bool VerificarSeTecnologiaExiste(int idTecnologia);
         bool AprovarCandidato(int idInscricao);

@@ -86,6 +86,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        [HttpGet("ListarCandidatosEstagiando")]
         public IActionResult ListarCandidatosEstagiando()
         {
             try
@@ -246,7 +247,7 @@ namespace SenaiTechVagas.WebApi.Controllers
                 if (_empresaIRepository.VerificarSeaVagaPertenceaEmpresa(empresa.IdEmpresa, idVaga))
                     return BadRequest("Essa vaga não pertece a sua empresa");
 
-                return Ok(_empresaIRepository.ListarVagasDaEmpresa(idVaga));
+                return Ok(_empresaIRepository.ListarCandidatosInscritos(idVaga));
             }
             catch (Exception)
             {

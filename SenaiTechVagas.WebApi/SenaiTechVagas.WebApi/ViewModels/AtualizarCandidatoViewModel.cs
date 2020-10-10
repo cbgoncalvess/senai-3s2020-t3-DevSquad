@@ -14,14 +14,14 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(9, MinimumLength = 8, ErrorMessage = "O rg deve ter entre 8 e 9 caracteres")]
         public string Rg { get; set; }
 
-        [StringLength(14, MinimumLength = 9, ErrorMessage = "O cpf deve ter entre 5 e 14 caracteres")]
+        [StringLength(14, MinimumLength = 9, ErrorMessage = "O cpf deve ter entre 9 e 14 caracteres")]
         public string Cpf { get; set; }
 
-        [StringLength(14, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 5 e 14 caracteres")]
+        [StringLength(14, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 9 e 14 caracteres")]
         [DataType(DataType.PhoneNumber)]
         public string Telefone { get; set; }
 
-        [StringLength(150, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 5 e 150 caracteres")]
+        [StringLength(150, MinimumLength = 9, ErrorMessage = "O likindin deve ter entre 5 e 150 caracteres")]
         [DataType(DataType.Url)]
         public string LinkLinkedinCandidato { get; set; }
         public string Area { get; set; }

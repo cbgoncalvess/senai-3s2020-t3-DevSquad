@@ -46,7 +46,7 @@ namespace SenaiTechVagas.WebApi.Domains
         public string Estado { get; set; }
 
         [Required(ErrorMessage = "O campo cep é obrigatorio")]
-        [StringLength(8, MinimumLength = 5, ErrorMessage = "O cep deve ter 8 caracteres")]
+        [StringLength(8, ErrorMessage = "O cep deve ter 8 caracteres")]
         public string Cep { get; set; }
 
         [Required(ErrorMessage = "O campo logradouro é obrigatorio")]

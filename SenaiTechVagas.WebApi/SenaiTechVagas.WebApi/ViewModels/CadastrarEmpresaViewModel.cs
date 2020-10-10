@@ -13,7 +13,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string NomeReponsavel { get; set; }
 
         [Required(ErrorMessage = "O campo Cnpj é obrigatorio")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "A cnpj deve ter entre 5 e 35 caracteres")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "A cnpj deve ter 11 caracteres")]
         public string Cnpj { get; set; }
 
         [Required(ErrorMessage = "O campo email pra contato obrigatorio")]
@@ -29,7 +29,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string RazaoSocial { get; set; }
 
         [Required(ErrorMessage = "O campo telefone é obrigatorio")]
-        [StringLength(14, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 5 e 14 caracteres")]
+        [StringLength(14, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 9 e 14 caracteres")]
         public string Telefone { get; set; }
         public int NumFuncionario { get; set; }
 
@@ -54,7 +54,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string Logradouro { get; set; }
 
         [Required(ErrorMessage = "O complemento é obrigatorio")]
-        [StringLength(255, MinimumLength = 5, ErrorMessage = "O complento deve ter entre 5 e 500 caracteres")]
+        [StringLength(255, MinimumLength = 5, ErrorMessage = "O complento deve ter entre 5 e 255 caracteres")]
         public string Complemento { get; set; }
 
         [Required(ErrorMessage = "O email é obrigatorio")]

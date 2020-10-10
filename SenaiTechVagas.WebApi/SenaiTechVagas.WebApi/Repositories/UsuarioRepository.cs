@@ -1,4 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SenaiTechVagas.WebApi.Contexts;
 using SenaiTechVagas.WebApi.Domains;
 using SenaiTechVagas.WebApi.Interfaces;
@@ -6,6 +12,9 @@ using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net.Sockets;
+using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 
 namespace SenaiTechVagas.WebApi.Repositories
@@ -123,65 +132,322 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-
-        public List<VagaTecnologia> ListarVagasEmGeral()
+        public List<ListarVagasViewModel> ListarVagasEmGeral()
         {
-            using (DbSenaiContext ctx = new DbSenaiContext())
+            try
             {
-                try
+                string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS;Initial Catalog=Db_TechVagas;integrated Security=True";
+                List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
+
+                // Declara a SqlConnection passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
                 {
-                    return ctx.VagaTecnologia.Include(u => u.IdVagaNavigation).Include(u => u.IdTecnologiaNavigation).ToList();
+                    // Declara a instrução a ser executada
+                    string querySelectAll =
+                    "SELECT e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                    " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
+                    " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia"+
+                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa";
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                    {
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
+                        while (rdr.Read())
+                        {
+                            bool teveAcao = false;
+                          
+                            // Instancia um objeto jogo 
+                            ListarVagasViewModel vm = new ListarVagasViewModel
+                            {
+                                // Atribui às propriedades os valores das colunas da tabela do banco
+                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                                Experiencia = rdr["Experiencia"].ToString(),
+                                TipoContrato = rdr["TipoContrato"].ToString(),
+                                Localidade = rdr["Localidade"].ToString(),
+                                Salario = Convert.ToDecimal(rdr["Salario"]),
+                                Empresa = new Empresa
+                                {
+                                    RazaoSocial = rdr["RazaoSocial"].ToString()
+                                }
+                            };
+                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
+                            vm.Tecnologias=new List<string>();
+
+                            for (int i = 0; i<listvagas.Count; i++)
+                            {
+                                if (vm.IdVaga == listvagas[i].IdVaga)
+                                {
+                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
+                                    teveAcao = true;
+                                }
+                            }
+                            if (teveAcao == true)
+                                continue;
+                            else vm.Tecnologias.Add(NomeTecnologia);
+                            // Adiciona a vaga criada à lista de vagas
+                            listvagas.Add(vm);
+                        }
+                    }
                 }
-                catch (Exception e)
+
+                // Retorna a lista de vagas
+                return listvagas;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            } 
+        }
+        public List<ListarVagasViewModel> ListarFiltroNivelExperiencia(string NivelExperiencia)
+        {
+            try
+            {
+                string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS;Initial Catalog=Db_TechVagas;integrated Security=True";
+                List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
+
+                // Declara a SqlConnection passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
                 {
-                    return null;
+                    // Declara a instrução a ser executada
+                    string querySelectAll =
+                    "SELECT e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                    " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
+                    " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
+                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
+                    " WHERE v.Experiencia=@Experiencia";
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                    {
+
+                        cmd.Parameters.AddWithValue("@Experiencia", NivelExperiencia);
+
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
+                        while (rdr.Read())
+                        {
+                            bool teveAcao = false;
+
+                            // Instancia um objeto jogo 
+                            ListarVagasViewModel vm = new ListarVagasViewModel
+                            {
+                                // Atribui às propriedades os valores das colunas da tabela do banco
+                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                                Experiencia = rdr["Experiencia"].ToString(),
+                                TipoContrato = rdr["TipoContrato"].ToString(),
+                                Localidade = rdr["Localidade"].ToString(),
+                                Salario = Convert.ToDecimal(rdr["Salario"]),
+                                Empresa = new Empresa
+                                {
+                                    RazaoSocial = rdr["RazaoSocial"].ToString()
+                                }
+                            };
+                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
+                            vm.Tecnologias = new List<string>();
+
+                            for (int i = 0; i < listvagas.Count; i++)
+                            {
+                                if (vm.IdVaga == listvagas[i].IdVaga)
+                                {
+                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
+                                    teveAcao = true;
+                                }
+                            }
+                            if (teveAcao == true)
+                                continue;
+                            else vm.Tecnologias.Add(NomeTecnologia);
+                            // Adiciona a vaga criada à lista de vagas
+                            listvagas.Add(vm);
+                        }
+                    }
                 }
+
+                // Retorna a lista de vagas
+                return listvagas;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
             }
         }
-        public List<VagaTecnologia> ListarFiltroNivelExperiencia(string NivelExperiencia)
+
+        public List<ListarVagasViewModel> ListarFiltroTipoContrato(string TipoContrato)
         {
-            using (DbSenaiContext ctx = new DbSenaiContext())
+            try
             {
-                try
+                string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS;Initial Catalog=Db_TechVagas;integrated Security=True";
+                List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
+
+                // Declara a SqlConnection passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
                 {
-                    return ctx.VagaTecnologia.Include(V => V.IdTecnologiaNavigation).Include(V => V.IdVagaNavigation)
-                        .Where(v => v.IdVagaNavigation.Experiencia == NivelExperiencia).ToList();
+                    // Declara a instrução a ser executada
+                    string querySelectAll =
+                   "SELECT e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                   " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
+                   " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
+                   " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
+                   " WHERE v.TipoContrato=@TipoContrato";
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                    {
+
+                        cmd.Parameters.AddWithValue("@TipoContrato", TipoContrato);
+
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
+                        while (rdr.Read())
+                        {
+                            bool teveAcao = false;
+
+                            // Instancia um objeto jogo 
+                            ListarVagasViewModel vm = new ListarVagasViewModel
+                            {
+                                // Atribui às propriedades os valores das colunas da tabela do banco
+                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                                Experiencia = rdr["Experiencia"].ToString(),
+                                TipoContrato = rdr["TipoContrato"].ToString(),
+                                Localidade = rdr["Localidade"].ToString(),
+                                Salario = Convert.ToDecimal(rdr["Salario"]),
+                                Empresa = new Empresa
+                                {
+                                    RazaoSocial = rdr["RazaoSocial"].ToString()
+                                }
+                            };
+                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
+                            vm.Tecnologias = new List<string>();
+
+                            for (int i = 0; i < listvagas.Count; i++)
+                            {
+                                if (vm.IdVaga == listvagas[i].IdVaga)
+                                {
+                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
+                                    teveAcao = true;
+                                }
+                            }
+                            if (teveAcao == true)
+                                continue;
+                            else vm.Tecnologias.Add(NomeTecnologia);
+                            // Adiciona a vaga criada à lista de vagas
+                            listvagas.Add(vm);
+                        }
+                    }
                 }
-                catch (Exception e)
-                {
-                    return null;
-                }
+
+                // Retorna a lista de vagas
+                return listvagas;
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
 
-        public List<VagaTecnologia> ListarFiltroTipoContrato(string TipoContrato)
+        public List<ListarVagasViewModel> ListarPesquisaTecnologia(string NomeTec)
         {
-            using (DbSenaiContext ctx = new DbSenaiContext())
+            try
             {
-                try
-                {
-                    return ctx.VagaTecnologia.Include(V => V.IdTecnologiaNavigation).Include(V => V.IdVagaNavigation)
-                        .Where(v => v.IdVagaNavigation.TipoContrato == TipoContrato).ToList();
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }
-            }
-        }
+                string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS;Initial Catalog=Db_TechVagas;integrated Security=True";
+                List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
+                List<ListarVagasViewModel> listvagasBuscadas = new List<ListarVagasViewModel>();
 
-        public List<VagaTecnologia> ListarPesquisaTecnologia(string NomeTecnologia)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
+                // Declara a SqlConnection passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
+                {
+                    // Declara a instrução a ser executada
+                    string querySelectAll =
+                   "SELECT e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                   " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
+                   " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
+                   " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
+                   " WHERE t.NomeTecnologia=@NomeTecnologia";
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                    {
+                        cmd.Parameters.AddWithValue("@NomeTecnologia", NomeTec);
+
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
+                        while (rdr.Read())
+                        {
+                            bool teveAcao = false;
+
+                            // Instancia um objeto jogo 
+                            ListarVagasViewModel vm = new ListarVagasViewModel
+                            {
+                                // Atribui às propriedades os valores das colunas da tabela do banco
+                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                                Experiencia = rdr["Experiencia"].ToString(),
+                                TipoContrato = rdr["TipoContrato"].ToString(),
+                                Localidade = rdr["Localidade"].ToString(),
+                                Salario = Convert.ToDecimal(rdr["Salario"]),
+                                Empresa = new Empresa
+                                {
+                                    RazaoSocial = rdr["RazaoSocial"].ToString()
+                                }
+                            };
+                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
+                            vm.Tecnologias = new List<string>();
+
+                            for (int i = 0; i < listvagas.Count; i++)
+                            {
+                                if (vm.IdVaga == listvagas[i].IdVaga)
+                                {
+                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
+                                    teveAcao = true;
+                                }
+                            }
+                            if (teveAcao == true)
+                                continue;
+                            else vm.Tecnologias.Add(NomeTecnologia);
+                            // Adiciona a vaga criada à lista de vagas
+                            listvagas.Add(vm);
+                        }                        
+                    }
+                }
+                var listall = ListarVagasEmGeral();
+                for (int i=0;i<listall.Count;i++)
+                {
+                    if (listall[i].Tecnologias.Contains(NomeTec))
+                        listvagasBuscadas.Add(listall[i]);
+
+                }
+                // Retorna a lista de vagas
+                return listvagasBuscadas;
+            }
+            catch (Exception)
             {
-                try
-                {
-                    return ctx.VagaTecnologia.Include(V => V.IdTecnologiaNavigation).Include(V => V.IdVagaNavigation).Where(v => v.IdTecnologiaNavigation.NomeTecnologia == NomeTecnologia).ToList();
-                }
-                catch (Exception e)
-                {
-                    return null;
-                }
+                return null;
             }
         }
 
@@ -240,5 +506,49 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
+
+        public VagaTecnologia BuscarVagaPeloId(int idVaga)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.VagaTecnologia.Include(u => u.IdTecnologiaNavigation).Include(U => U.IdVagaNavigation).FirstOrDefault(u=>u.IdVaga==idVaga);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+        //List<VagaTecnologia> VagasRecomendadasDesenvolvimento(int idCurso)
+        //{
+        //    using(DbSenaiContext ctx=new DbSenaiContext())
+        //    {
+        //        try
+        //        {
+        //            if(idCurso==2|| idCurso == 1 || idCurso == 4 || idCurso == 5)
+        //            {
+        //                return ctx.VagaTecnologia.Include(u => u.IdTecnologiaNavigation)
+        //                .Include(u => u.IdVagaNavigation)
+        //                .Where(u => u.IdVagaNavigation.TipoContrato == "Estagio" || u.IdVagaNavigation.Experiencia == "Estagiario")
+        //                .ToList();
+        //            }
+
+        //            if(idCurso == 3 || idCurso == 6)
+        //            {
+        //                return ctx.VagaTecnologia.Include(u => u.IdTecnologiaNavigation)
+        //                .Include(u => u.IdVagaNavigation)
+        //                .Where(u => u.IdVagaNavigation.TipoContrato == "CLT" || u.IdVagaNavigation.Experiencia == "Júnior")
+        //                .ToList();
+        //            }
+        //            return null;
+        //        }
+        //        catch (Exception)
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //}
     }
 }

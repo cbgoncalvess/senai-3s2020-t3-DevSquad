@@ -96,6 +96,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                     vaga.DataPublicacao = DateTime.Now;
                     ctx.Add(vaga);
                     ctx.SaveChanges();
+                    var VagaNova=ctx.Vaga.FirstOrDefault(v=>v==vaga);
+                    AdicionarTecnologiaPadrao(VagaNova.IdVaga);
                     return true;
                 }
                 catch (Exception )
@@ -295,7 +297,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     Inscricao inscricaoBuscada = ctx.Inscricao.Find(idInscricao);
                     if (inscricaoBuscada == null)
                         return false;
-                    if (inscricaoBuscada.IdStatusInscricao == 1)
+                    if (inscricaoBuscada.IdStatusInscricao == 2 && inscricaoBuscada.IdStatusInscricao != 3)
                     {
                         inscricaoBuscada.IdStatusInscricao = 1;
                         ctx.Update(inscricaoBuscada);
@@ -321,14 +323,14 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (inscricaoBuscada == null)
                         return false;
 
-                    if (inscricaoBuscada.IdStatusInscricao == 1)
+                    if (inscricaoBuscada.IdStatusInscricao == 2 && inscricaoBuscada.IdStatusInscricao != 1)
                     {
                         inscricaoBuscada.IdStatusInscricao = 3;
                         ctx.Update(inscricaoBuscada);
                         ctx.SaveChanges();
                         return true;
                     }
-                    return true;
+                    return false;
                 }
                 catch (Exception)
                 {
@@ -341,7 +343,7 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
-                return ctx.VagaTecnologia.Include(u=>u.IdTecnologiaNavigation).Include(u=>u.IdVagaNavigation).Where(u=>u.IdVagaNavigation.IdEmpresa==idEmpresa).ToList();
+                return ctx.VagaTecnologia.Include(u => u.IdTecnologiaNavigation).Include(u=>u.IdVagaNavigation).Where(u=>u.IdVagaNavigation.IdEmpresa==idEmpresa).ToList();
             }
         }
 
@@ -430,6 +432,23 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception)
                 {
                     return null;
+                }
+            }
+        }
+
+        public void AdicionarTecnologiaPadrao(int idVaga)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    var Vaga = ctx.Vaga.Find(idVaga);
+                    int idTecnologia = 10;
+                    AdicionarTecnologiaNaVaga(new VagaTecnologia { IdVaga=Vaga.IdVaga,IdTecnologia=idTecnologia});
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
                 }
             }
         }

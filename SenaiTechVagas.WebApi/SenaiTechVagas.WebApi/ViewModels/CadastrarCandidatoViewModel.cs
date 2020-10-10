@@ -10,7 +10,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
     public class CadastrarCandidatoViewModel
     {
         [Required(ErrorMessage = "O campo nome completo é obrigatorio")]
-        [StringLength(35, MinimumLength = 9, ErrorMessage = "O nome deve ter entre 5 e 35 caracteres")]
+        [StringLength(35, MinimumLength = 9, ErrorMessage = "O nome deve ter entre 9 e 35 caracteres")]
         public string NomeCompleto { get; set; }
 
         [Required(ErrorMessage = "O campo rg é obrigatorio")]
@@ -18,14 +18,14 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string Rg { get; set; }
 
         [Required(ErrorMessage = "O campo cpf é obrigatorio")]
-        [StringLength(14, MinimumLength = 9, ErrorMessage = "O cpf deve ter entre 5 e 14 caracteres")]
+        [StringLength(14, MinimumLength = 9, ErrorMessage = "O cpf deve ter entre 9 e 14 caracteres")]
         public string Cpf { get; set; }
 
         [Required(ErrorMessage = "O campo telefone é obrigatorio")]
-        [StringLength(14, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 5 e 14 caracteres")]
+        [StringLength(14, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 9 e 14 caracteres")]
         public string Telefone { get; set; }
 
-        [StringLength(150, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 5 e 150 caracteres")]
+        [StringLength(150, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 9 e 150 caracteres")]
         public string LinkLinkedinCandidato { get; set; }
         public string Area { get; set; }
         public int IdCurso { get; set; }

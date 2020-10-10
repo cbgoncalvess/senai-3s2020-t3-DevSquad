@@ -19,7 +19,7 @@ namespace SenaiTechVagas.WebApi.Domains
         public string NomeReponsavel { get; set; }
 
         [Required(ErrorMessage = "O campo Cnpj é obrigatorio")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "A cnpj deve ter entre 5 e 35 caracteres")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "A cnpj deve ter 11 caracteres")]
         public string Cnpj { get; set; }
 
         [Required(ErrorMessage = "O campo email pra contato obrigatorio")]
@@ -35,7 +35,7 @@ namespace SenaiTechVagas.WebApi.Domains
         public string RazaoSocial { get; set; }
 
         [Required(ErrorMessage = "O campo telefone é obrigatorio")]
-        [StringLength(14, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 5 e 14 caracteres")]
+        [StringLength(14, MinimumLength = 9, ErrorMessage = "O telefone deve ter entre 9 e 14 caracteres")]
         public string Telefone { get; set; }
         public int NumFuncionario { get; set; }
 
@@ -44,7 +44,7 @@ namespace SenaiTechVagas.WebApi.Domains
         public string NumCnae { get; set; }
 
         [Required(ErrorMessage = "O campo CEP é obrigatorio")]
-        [StringLength(8, MinimumLength = 5, ErrorMessage = "O cep deve ter 8 caracteres")]
+        [StringLength(8, ErrorMessage = "O cep deve ter 8 caracteres")]
         public string Cep { get; set; }
 
         [Required(ErrorMessage = "O campo logradouro é obrigatorio")]
