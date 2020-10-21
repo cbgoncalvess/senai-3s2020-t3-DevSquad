@@ -1,21 +1,12 @@
-#.gitignore
-
-# Ignora todos os arquivos com extensão .dll, independentemente do nome do arquivo 
-*.dll
-
-# Ignora todos os arquivos com extensão .exe, independentemente do nome do arquivo
-*.exe
-
-# Ignora todos os arquivos com extensão .pdb, independentemente do nome do arquivo
-*.pdb
-
 # Ignora todos os arquivos e diretórios dentro da pasta com o nome bin
 bin/
 
 # Ignora todos os arquivos e diretórios dentro da pasta com o nome obj
 obj/
 
-# Ignora todos os arquivos e diretórios dentro da pasta com o nome .vs
-.vs/
+# Ignora todos os arquivos e diretórios escondidos, exceto o arquivo .gitignore
+.*
+
+!/.gitignore
 
 #DevSquad
