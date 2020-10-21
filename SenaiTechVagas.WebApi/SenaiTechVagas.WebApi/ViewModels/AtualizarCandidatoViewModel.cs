@@ -24,7 +24,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(150, MinimumLength = 9, ErrorMessage = "O likindin deve ter entre 5 e 150 caracteres")]
         [DataType(DataType.Url)]
         public string LinkLinkedinCandidato { get; set; }
-        public string Area { get; set; }
+        public int IdArea { get; set; }
         public int IdCurso { get; set; }
     }
 }

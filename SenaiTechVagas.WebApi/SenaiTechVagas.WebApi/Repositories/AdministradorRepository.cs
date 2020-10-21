@@ -25,9 +25,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-
                     return false;
                 }
             }
@@ -43,7 +42,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -57,7 +56,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.Curso.ToList();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -74,7 +73,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -104,7 +103,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -124,7 +123,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -139,7 +138,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.Estagio.ToList();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -158,7 +157,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -173,7 +172,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.Estagio.Where(v => v.PeriodoEstagio == Periodo).ToList();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -188,7 +187,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.Empresa.ToList().Count;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return 0;
                 }
@@ -203,7 +202,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.Candidato.ToList().Count;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return 0;
                 }
@@ -218,7 +217,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.Estagio.ToList().Count;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return 0;
                 }
@@ -236,7 +235,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -254,7 +253,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     return true;
 
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -269,7 +268,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.TipoUsuario.ToList();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -311,7 +310,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -336,7 +335,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -351,7 +350,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.Tecnologia.ToList();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -368,7 +367,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -382,7 +381,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.Candidato.ToList();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -414,7 +413,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();    
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -434,7 +433,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -478,7 +477,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -518,7 +517,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     return false;
                 }
-                catch(Exception e)
+                catch(Exception)
                 {
                     return false;
                 }
@@ -532,7 +531,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return ctx.Empresa.ToList();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -565,7 +564,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -619,7 +618,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     
                     return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -752,6 +751,44 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception)
                 {
                     return null;
+                }
+            }
+        }
+
+        public bool CadastrarArea(Area area)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    ctx.Add(area);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool AtualizarArea(int idArea, Area area)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Area areaBuscada = ctx.Area.Find(idArea);
+                    if (area.NomeArea != null)
+                        areaBuscada.NomeArea = area.NomeArea;
+
+                    ctx.Update(areaBuscada);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
                 }
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using SenaiTechVagas.WebApi.Domains;
 using SenaiTechVagas.WebApi.Interfaces;
 using SenaiTechVagas.WebApi.Repositories;
+using SenaiTechVagas.WebApi.Utils;
 using SenaiTechVagas.WebApi.ViewModels;
 
 namespace SenaiTechVagas.WebApi.Controllers
@@ -361,7 +363,52 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Admin.CadastrarCurso(novoCurso))
-                    return Ok("Curso cadastrado com sucesso");
+                    return StatusCode(201);
+                else
+                    return BadRequest();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Cadastra uma nova area
+        /// </summary>
+        /// <param name="NovaArea"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "1")]
+        [HttpPost("AdicionarArea")]
+        public IActionResult CadastrarArea(Area NovaArea)
+        {
+            try
+            {
+                if (_Admin.CadastrarArea(NovaArea))
+                    return StatusCode(201);
+                else
+                    return BadRequest();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Cadastra um adminsitrador
+        /// </summary>
+        /// <param name="usuarioAdmin"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "1")]
+        [HttpPost("AdicionarAdministrador")]
+        public IActionResult CadastrarAdministrador(Usuario usuarioAdmin)
+        {
+            try
+            {
+                usuarioAdmin.Senha = Crypter.Criptografador(usuarioAdmin.Senha);
+                if (_Admin.CadastrarAdministardor(usuarioAdmin))
+                    return StatusCode(201);
                 else
                     return BadRequest();
             }
@@ -389,7 +436,7 @@ namespace SenaiTechVagas.WebApi.Controllers
                     return BadRequest("Estagio ja existe");
 
                 if (_Admin.CadastrarEstagio(estagioNovo))
-                    return Ok("Estagio cadastrado com sucesso");
+                    return StatusCode(201);
 
                 else
                     return BadRequest("Não foi possivel cadastrar o estagio");
@@ -434,7 +481,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Admin.CadastrarTecnologia(novaTecnologia))
-                    return Ok("Tecnologia adicionada com sucesso");
+                    return StatusCode(201);
 
                 else
                     return BadRequest("Não foi possivel adicionar essa tecnologia");
@@ -456,7 +503,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 if (_Admin.CadastrarTipoUsuario(novoTipoUsuario))
-                    return Ok("Tipo de usuario adicionado");
+                    return StatusCode(201);
                 else
                     return BadRequest("Não foi possivel adicionar um novo tipo de usuario");
             }
@@ -485,6 +532,29 @@ namespace SenaiTechVagas.WebApi.Controllers
                     return Ok("Curso atualizado com sucesso");
                 else
                     return BadRequest("Não foi possivel atualizar o curso");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Atualiza a area
+        /// </summary>
+        /// <param name="idArea"></param>
+        /// <param name="area"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "1")]
+        [HttpPut("AtualizarArea/{id}")]
+        public IActionResult AtualizarArea(int idArea,Area area)
+        {
+            try
+            {
+                if (_Admin.AtualizarArea(idArea, area))
+                    return Ok("Area atualizado com sucesso");
+                else
+                    return BadRequest("Não foi possivel atualizar a area");
             }
             catch (Exception)
             {

@@ -10,6 +10,8 @@ namespace SenaiTechVagas.WebApi.Interfaces
     interface IAdministradorRepository
     {
         List<Curso> ListarCurso();
+        bool CadastrarArea(Area area);
+        bool AtualizarArea(int idArea, Area area);
         bool CadastrarCurso(Curso curso);
         bool AtualizarCurso(int id, Curso curso);
         List<Estagio> ListarEstagios();

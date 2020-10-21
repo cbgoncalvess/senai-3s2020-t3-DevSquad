@@ -9,10 +9,14 @@ namespace SenaiTechVagas.WebApi.Interfaces
 {
     interface ICandidatoRepository
     {
-        List<Candidato> ListarCandidatos();
-        bool AtualizarCandidato(int IdCandidato, Candidato CandidatoAtualizado);
-        bool DeletarCandidato(int IdCandidato);
-        bool CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato);
-        Candidato BuscarPorId(int IdCandidato);
+        bool AtualizarCandidato(int IdCandidato, AtualizarCandidatoViewModel CandidatoAtualizado);             
+        List<ListarVagasViewModel> ListarInscricoes(int idUsuario);
+        bool SeInscrever(Inscricao NovaInscricao);
+        bool RevogarInscricao(int idInscricao,int idCandidato);
+        /*------------VERIFICAÇÕES INICIO-------------*/
+        Candidato BuscarCandidatoPorIdUsuario(int idUsuario);
+        bool VerificarSeInscricaoExiste(int idVaga, int idCandidato);
+        /*------------VERIFICAÇÕES FIM------------------*/
+
     }
 }
