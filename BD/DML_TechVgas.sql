@@ -61,7 +61,7 @@ VALUES		('CSharp'),
 GO
 
 INSERT INTO Usuario (Email, Senha, IdTipoUsuario)
-VALUES		('possarle@gmail.com', '123123', 1),
+VALUES		('possarle@email.com', 'possarle1243', 1),
 			('douglas@email.com', 'douglas1243', 2),
 			('alexia@email.com', 'alexia1243', 2),
 			('marcos@email.com', 'marcos1243', 3);
@@ -81,7 +81,7 @@ GO
 INSERT INTO Vaga (DescricaoVaga, DescricaoEmpresa, DescricaoBeneficio, DataPublicacao, DataExpiracao,
 					Experiencia, TipoContrato, Salario, Localidade, Estado, CEP, Logradouro, Complemento, IdEmpresa)
 VALUES		('Vaga de Front-end', 'Muito Maneira', 'Tenha a honra de trabalhar conosco', '27-11-2020', '27-01-2021', 
-				'Senior', 'Estagio', 3000.00, 'São Paulo', 'SP', '08295005','Avenida Miguel Ignácio Curi, 100', 'Ao lado de sua casa!', 3)
+				'Júnior', 'CLT', 3000.00, 'São Paulo', 'SP', '08295005','Avenida Miguel Ignácio Curi, 100', 'Ao lado de sua casa!', 1),
 			
 			('Banco de Talentos', 'Temos Puffs', 'Tenha a honra de trabalhar conosco', '15-10-2020', '15-11-2021', 
 				'Gênios', 'PJ', 1000.00, 'Rio de Janeiro', 'RJ', '22640085','Av. Pref. Dulcídio Cardoso, 800', 'Na casa de vossa excelência!', 1),
