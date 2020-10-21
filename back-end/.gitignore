@@ -10,9 +10,12 @@
 *.pdb
 
 # Ignora todos os arquivos e diretórios dentro da pasta com o nome bin
-Bin/
+bin/
 
 # Ignora todos os arquivos e diretórios dentro da pasta com o nome obj
-Obj/
+obj/
+
+# Ignora todos os arquivos e diretórios dentro da pasta com o nome .vs
+.vs/
 
 #DevSquad
