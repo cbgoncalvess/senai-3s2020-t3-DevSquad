@@ -1,0 +1,8 @@
+.bodyPart{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+    text-align: center;
+    padding: 300px;
+}
