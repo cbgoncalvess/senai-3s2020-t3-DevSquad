@@ -18,9 +18,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<ListarVagasViewModel> ListarFiltroTipoContrato(string TipoContrato);
         List<ListarVagasViewModel> ListarFiltroNivelExperiencia(string NivelExperiencia);
         List<ListarVagasViewModel> ListarPesquisaTecnologia(string NomeTecnologia);
-        bool VerificarSeEmailJaFoiCadastrado(string Credencial);
-        bool VerificarSeCandidatoJaFoiCadastrado(string credencial);
-        bool VerificarSeEmpresaJaFoiCadastrada(string credencial);
+        string VerificarSeCredencialJaFoiCadastrada(VerificacaoViewModel vm);
         VagaCompletaViewModel BuscarVagaPeloId(int id);
     }
 }

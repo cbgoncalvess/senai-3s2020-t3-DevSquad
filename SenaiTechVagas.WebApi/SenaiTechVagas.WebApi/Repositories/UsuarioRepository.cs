@@ -450,62 +450,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool VerificarSeEmailJaFoiCadastrado(string email)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    Usuario usuarioBuscado = ctx.Usuario.First(x => x.Email == email);
-                    if (usuarioBuscado != null)
-                        return true;
-
-                    return false;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
-        public bool VerificarSeCandidatoJaFoiCadastrado(string credencial)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    Candidato candidatoBuscado = ctx.Candidato.FirstOrDefault(x => x.Cpf == credencial);
-                    if(candidatoBuscado!=null)
-                        return true;
-
-                    return false;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
-
-        public bool VerificarSeEmpresaJaFoiCadastrada(string credencial)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                   Empresa empresaBuscada = ctx.Empresa.FirstOrDefault(x => x.Cnpj == credencial);
-                    if (empresaBuscada != null)
-                        return true;
-
-                    return false;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
-
         public VagaCompletaViewModel BuscarVagaPeloId(int idVaga)
         {
             try
@@ -660,6 +604,52 @@ namespace SenaiTechVagas.WebApi.Repositories
             catch (Exception e)
             {
                 return null;
+            }
+        }
+
+        public string VerificarSeCredencialJaFoiCadastrada(VerificacaoViewModel vm)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    var usuarioBuscado = ctx.Usuario.FirstOrDefault(x => x.Email == vm.Email);
+                    if (usuarioBuscado != null)
+                        return "O email ja foi cadastrado";
+
+                    if (vm.Rg !=null || vm.Cpf!=null)
+                    {
+                        var candidatoBuscado = ctx.Candidato.FirstOrDefault(x => x.Cpf == vm.Cpf);
+                        if (candidatoBuscado != null)
+                            return "O cpf ja foi cadastrado";
+                        var candidatoBuscadoLink = ctx.Candidato.FirstOrDefault(x => x.LinkLinkedinCandidato == vm.LinkLinkedinCandidato);
+                        if (candidatoBuscadoLink != null)
+                            return "O linkedin ja foi cadastrado";
+                        var candidatoBuscadoTelefone = ctx.Candidato.FirstOrDefault(x => x.Telefone == vm.Telefone);
+                        if (candidatoBuscadoTelefone!=null)
+                            return "O telefone ja foi cadastrado";
+                        var candidatoBuscadoRg = ctx.Candidato.FirstOrDefault(x => x.Rg == vm.Rg);
+                        if (candidatoBuscado != null || candidatoBuscadoRg != null)
+                            return "O rg ja foi cadastrado";
+                        else
+                            return null;
+                    }                    
+                    var empresaBuscada = ctx.Empresa.FirstOrDefault(x => x.Cnpj == vm.Cnpj);
+                    if (empresaBuscada != null)
+                        return "O cnpj ja foi cadastrado";
+                    var empresaBuscadaRazao = ctx.Empresa.FirstOrDefault(x => x.RazaoSocial == vm.RazaoSocial);
+                    if (empresaBuscadaRazao != null)
+                        return "A razao social ja foi cadastrada";
+                    var empresaBuscadaNomeFantasia = ctx.Empresa.FirstOrDefault(x => x.NomeFantasia == vm.NomeFantasia);
+                    if (empresaBuscadaNomeFantasia != null)
+                        return "O nome fantasia ja foi cadastrado";
+                    else
+                        return null;
+                }
+                catch (Exception)
+                {
+                    return "Erro no sistema";
+                }
             }
         }
     }

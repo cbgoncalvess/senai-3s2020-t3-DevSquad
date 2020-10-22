@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SenaiTechVagas.WebApi.Domains;
 using SenaiTechVagas.WebApi.Interfaces;
 using SenaiTechVagas.WebApi.Repositories;
@@ -43,19 +45,28 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (usuarioRepository.VerificarSeEmailJaFoiCadastrado(NovoCandidato.Email))
-                    return BadRequest("Esse email ja foi cadastrado em nosso sistema");
+                VerificacaoViewModel vm = new VerificacaoViewModel()
+                {
+                    Email = NovoCandidato.Email,
+                    Rg = NovoCandidato.Email,
+                    Cpf = NovoCandidato.Cpf,
+                    Telefone = NovoCandidato.Telefone,
+                    LinkLinkedinCandidato= NovoCandidato.LinkLinkedinCandidato
+                };
 
-                if (usuarioRepository.VerificarSeCandidatoJaFoiCadastrado(NovoCandidato.Cpf))
-                    return BadRequest("Esse cpf ja foi cadastrado em nosso sistema");
-
-                NovoCandidato.Senha = Crypter.Criptografador(NovoCandidato.Senha);
-                if(usuarioRepository.CadastrarCandidato(NovoCandidato))
-                    return Ok("Novo candidato inserido com sucesso!");
+                var Response = usuarioRepository.VerificarSeCredencialJaFoiCadastrada(vm);
+                if (Response == null)
+                {
+                    NovoCandidato.Senha = Crypter.Criptografador(NovoCandidato.Senha);
+                    if(usuarioRepository.CadastrarCandidato(NovoCandidato))
+                        return Ok("Novo candidato inserido com sucesso!");
+                    else
+                        return BadRequest("Um erro ocorreu ao receber a sua requisição.");
+                }
                 else
-                    return BadRequest("Um erro ocorreu ao receber a sua requisição.");
+                    return BadRequest(Response);
             }
-            catch (Exception)
+            catch (Exception )
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
@@ -78,16 +89,24 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (usuarioRepository.VerificarSeEmailJaFoiCadastrado(empresa.Email))
-                    return BadRequest("Esse email ja foi cadastrado em nosso sistema");
-
-                if (usuarioRepository.VerificarSeEmpresaJaFoiCadastrada(empresa.Cnpj))
-                    return BadRequest("Esse cnpj ja foi cadastrado em nosso sistema");
-                empresa.Senha = Crypter.Criptografador(empresa.Senha);
-                if (usuarioRepository.CadastrarEmpresa(empresa))
-                    return Ok("Nova empresa cadastrada com sucesso!");
+                VerificacaoViewModel vm = new VerificacaoViewModel()
+                {
+                    Email = empresa.Email,
+                    RazaoSocial = empresa.RazaoSocial,
+                    NomeFantasia=empresa.NomeFantasia,
+                    Cnpj=empresa.Cnpj
+                };
+                var Response = usuarioRepository.VerificarSeCredencialJaFoiCadastrada(vm);
+                if (Response == null)
+                {
+                    empresa.Senha = Crypter.Criptografador(empresa.Senha);
+                    if (usuarioRepository.CadastrarEmpresa(empresa))
+                        return Ok("Nova empresa cadastrada com sucesso!");
+                    else
+                        return BadRequest("Um erro ocorreu e nao foi possivel efetuar o cadastro.");
+                }
                 else
-                    return BadRequest("Um erro ocorreu e nao foi possivel efetuar o cadastro.");
+                    return BadRequest(Response);
             }
             catch (Exception)
             {
@@ -123,7 +142,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todas as vagas publicadas
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        
         [HttpGet("ListarTodasAsVagas")]
         public IActionResult ListarVagasEmGeral()
         {
