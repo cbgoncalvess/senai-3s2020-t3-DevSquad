@@ -78,21 +78,19 @@ export default function Header() {
             modalPrincipal.classList.remove("none");
             menuhidden.classList.remove("none");
             menumobile.classList.add("none");
+            
             return false
         }
     }
 
     const FecharMenu = () => {
-        let menumobile:any = document.getElementById("burguer");
         let modalPrincipal:any = document.getElementById("modalPrincipal");
         let menuhidden:any = document.getElementById("menu-hide");
-        let menuprincipal:any = document.getElementById("menuprincipal");
         
         if(modalPrincipal.classList == "modalPrincipal")
         {
             modalPrincipal.classList.add("none");
             menuhidden.classList.add("none");
-            menumobile.classList.remove("none");
             return false;
         }
     }
