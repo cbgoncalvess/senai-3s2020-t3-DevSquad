@@ -93,7 +93,7 @@ export default function Header() {
             modalPrincipal.classList.add("none");
             menuhidden.classList.add("none");
             menumobile.classList.remove("none");
-            menuprincipal.classList.remove("none");
+            return false;
         }
     }
 
