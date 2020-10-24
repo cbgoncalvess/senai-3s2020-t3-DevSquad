@@ -1,0 +1,168 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.ColumnImages>img{
+width: 100px;
+height: 100px;
+}
+
+.ColumnImages{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.Imagens{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 5vh;
+}
+
+.Space>img{
+    width: 30px;
+    height: 30px;
+}
+
+.Vaga{
+    display: flex;
+    flex-direction: column;
+    background-color: #FAFAFA;
+    width: 280px;
+    padding: 1vw;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+
+.Tecnologias{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.BoxDeVagas{
+    display: flex;
+    justify-content: space-around;
+}
+
+.QuadroDeVagas{
+display: flex;
+text-align: center;
+flex-direction: column;
+padding: 3vh;
+}
+
+.TesteDePersonalidade{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2vw;
+}
+
+.imgTeste>img{
+    width: 250px;
+    height: 250px;
+}
+
+.BoxDepoimentos{
+    display: flex;
+    justify-content: space-around;
+}
+
+.Depoimentos{
+    text-align: center;
+    padding: 3vw;
+}
+
+.QuadroDeVagas{
+    background-color: #E5E5E5;
+}
+
+.Depoimentos{
+    background-color: #E5E5E5;
+    
+}
+
+.BoxTexto{
+    background-color: #4B4B4B;
+    width: 350px;
+    height:350px;
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    text-align: initial;
+}
+
+hr{
+    background-color: black;
+    width: 100%;
+}
+
+.bt{
+width: 148px;
+height: 37px;
+left: 503px;
+top: 1787px;
+background: #353535;
+border-radius: 4px;
+color: white;
+}
+
+.Link{
+    font-size: 10px;
+    text-decoration: revert;
+}
+
+.LinkVaga{
+    font-size: 10px;
+    padding: 1vh 0;
+}
+
+.EmpresaCandidato{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 40px;
+}
+
+.Empresa,.Candidato{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.StartImage{
+text-align: center;
+background-image: url("../../assets/esperoquesejaessetamanho.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 5vh;
+}
+
+.BtnStartCandidato{
+    width: 152px;
+    height: 50px;
+    background: linear-gradient(262.72deg, #FF000F 7.13%, #873040 93.87%);
+    border: 3px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius:30px;
+    color: white;
+}
+
+.BtnStartEmpresa{
+    color: white;
+    width: 152px;
+    height: 50px;
+    background: linear-gradient(81.72deg, #005767 11.84%, #665F68 89.73%);
+    border: 3px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius:30px;
+}
+
