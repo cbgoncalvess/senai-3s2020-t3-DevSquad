@@ -13,65 +13,11 @@ const meuEstilo = {
 
 export default function Header() {
 
-    /* 
-        CÓDIGO ANTIGO
-    
-        const menumobile = document.getElementById("burguer");
-        const menumodal = document.getElementById("menumodal");
-        const modalPrincipal = document.getElementById("modalPrincipal");
-        const menuhidden = document.getElementById("menu-hide");
-
-        menumobile.onclick = function () { 
-            if(modalPrincipal.classList == "modalPrincipal none"){
-                modalPrincipal.classList.remove("none");
-                menuhidden.classList.remove("none");
-                menumobile.classList.add("none");
-            }
-        }
-
-        menumodal.onclick = function () {
-            if(modalPrincipal.classList == "modalPrincipal") {  
-                modalPrincipal.classList.add("none");
-            }
-        }
-    */
-
-    // const btnMobile:HTMLHeadingElement = document.getElementById("burguer");
-
-    // event.target.classList.add('class3'); // To ADD
-    // event.target.classList.remove('class1'); // To Remove
-
-
-    // menumobile.onclick = function () { 
-            // if(modalPrincipal?.classList == "modalPrincipal none"){
-            //     modalPrincipal?.classList.remove("none");
-            //     menuhidden?.classList.remove("none");
-            //     menumobile?.classList.add("none");
-            // }
-        // }
-
-    // menumobile?.classList.add("none");
-    // menumodal?.classList.remove("none");
-
-    
-
-
-
-    // let modalPrincipal:any = document.getElementById("modalPrincipal");
-    // let menuhidden:any = document.getElementById("menu-hide");
-    // const menumodal = document.getElementById("menumodal");
-
-    // if(modalPrincipal.classList == "modalPrincipal none"){
-            //     modalPrincipal.classList.remove("none");
-            //     menuhidden.classList.remove("none");
-            //     menumobile.classList.add("none");
-            // }
-
     
     const BurguerMenu = () => {
-        let menumobile:any = document.getElementById("burguer");
-        let modalPrincipal:any = document.getElementById("modalPrincipal");
-        let menuhidden:any = document.getElementById("menu-hide");
+        let menumobile = document.getElementById("burguer");
+        let modalPrincipal = document.getElementById("modalPrincipal");
+        let menuhidden = document.getElementById("menu-hide");
 
         if(modalPrincipal.classList == "modalPrincipal none")
         {
@@ -84,8 +30,8 @@ export default function Header() {
     }
 
     const FecharMenu = () => {
-        let modalPrincipal:any = document.getElementById("modalPrincipal");
-        let menuhidden:any = document.getElementById("menu-hide");
+        let modalPrincipal = document.getElementById("modalPrincipal");
+        let menuhidden = document.getElementById("menu-hide");
         
         if(modalPrincipal.classList == "modalPrincipal")
         {
@@ -98,7 +44,7 @@ export default function Header() {
     return (
         <header>
             <div className="header">
-                <Link to="/home" title="Logomarca da empresa TechVagas. Home SENAI TechVagas">
+                <Link to="/" title="Logomarca da empresa TechVagas. Home SENAI TechVagas">
                     <img src={logops} className="logo" alt=""/>
                 </Link>
                 <nav className="navbar">

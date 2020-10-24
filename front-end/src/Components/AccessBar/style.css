@@ -21,8 +21,9 @@ p {
 }
 
 .fa {
-    font-size: 2vw !important;
+    font-size: 1.5vw !important;
 }
+
 
 .between {
     display: flex;
