@@ -21,9 +21,8 @@ p {
 }
 
 .fa {
-    font-size: 1.5vw !important;
+    font-size: 1.5vw;
 }
-
 
 .between {
     display: flex;
@@ -37,12 +36,16 @@ p {
 
 .topbar {
     color: white;
-    font-size: .8vw;
+    font-size: .8vw !important;
 }
 
 .topbar:hover {
     transition: .3s;
     color: #2A2E32;
+}
+
+.topicon{
+    font-size: 1.5vw !important;
 }
 
 a {

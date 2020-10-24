@@ -10,6 +10,10 @@
     justify-content: space-evenly;
     align-items: center;
   }
+
+  #bar > div{
+    height: inherit;
+  }
   
   .block{
     border: unset;
@@ -64,7 +68,7 @@
   .botaoflutuante{
       position: fixed;
       width: 6.5vw;
-      height: 6.5vh;
+      height: 6.5vw;
       float: left;
       left: 1.2vw;
       bottom: 1.2vw;
@@ -87,7 +91,7 @@
   .botaoflutuante1{
       position: fixed;
       width: 6.5vw;
-      max-width: 56.5vh;
+      max-width: 56.5vw;
       height: 6.5vw;
       float: left;
       left: 1.2vw;
@@ -242,7 +246,7 @@
   
   .fa{
     line-height: unset !important;
-    font-size: 2.5vw !important;
+    font-size: 2vw !important;
   }
   
   .font1{
@@ -276,7 +280,7 @@
   .botaoflutuante1{
       position: fixed;
       width: 65vw;
-      max-width: 56.5vh;
+      max-width: 56.5vw;
       height: 6.5vw;
       float: left;
       left: 1.2vw;
@@ -317,8 +321,6 @@
       display: grid;
       animation: saindo 1s;
   }
-  
-  
   
           .preto h1,
           .preto h2,
@@ -410,6 +412,9 @@
     .none1{
       left: 4.5vw;
     }
+    #btnbar > div{
+      font-size: 11vw !important;
+    }
   }
   
     @media (max-width: 479px){
@@ -434,5 +439,63 @@
     }
     #botao{
       margin-left: 10vw;
+    }
+    #btnbar > div{
+      font-size: 16vw !important;
+    }
+  }
+
+  @keyframes aumentando{
+    0%{
+      width: 0;
+    }
+    100%{
+      width: 65vw;
+      max-width: 300px;
+    }
+  }
+  
+  @keyframes saindo{
+    0%{
+      width: 65vw;
+      max-width: 300px;
+    }
+    100%{
+      width: 0;
+    }
+  }
+  
+  @keyframes aumentando1{
+    0%{
+      color: transparent;
+    }
+    30%{
+      color: transparent;
+    }
+    100%{
+      color: white;
+    }
+  }
+  
+  @keyframes saindo1{
+    0%{
+      display: flex;
+      color: white;
+      visibility: initial;
+    }
+    30%{
+      color: transparent;
+    }
+    100%{
+      visibility: hidden;
+    }
+  }
+  
+  @keyframes pintando{
+    0%{
+      background-image: linear-gradient(305deg, #005767, red);
+    }
+    100%{
+      background: red;
     }
   }
