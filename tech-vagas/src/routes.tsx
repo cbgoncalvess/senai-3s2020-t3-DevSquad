@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Estagio from './Pages/Estagio/Index';
-
+import Estagio from './Pages/VagasPublicadas/Index';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 
@@ -10,7 +9,7 @@ function Routes(){
         <BrowserRouter>
             <Route path="/" exact component={Home} />
             <Route path="/login" component={Login} />
-            <Route path="/Estagio" component={Estagio} />
+            <Route path="/VagasPublicadas" component={Estagio} />
         </BrowserRouter>
     );
 }

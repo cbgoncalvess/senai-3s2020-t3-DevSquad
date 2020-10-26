@@ -16,7 +16,7 @@ import imgFuncao from '../../assets/rocket-launch.png';
 import IconEmpresa from '../../assets/building.png';
 
 
-export default function Estagio() {
+export default function VagasPublicadas() {
     return (
         <body>
             <AccessBar />

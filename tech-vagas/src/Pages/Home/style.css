@@ -19,6 +19,7 @@ align-items: center;
     flex-direction: row;
     justify-content: space-around;
     padding: 5vh;
+    flex-wrap: wrap;
 }
 
 .Space>img{
@@ -48,6 +49,7 @@ align-items: center;
 .BoxDeVagas{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .QuadroDeVagas{
@@ -61,6 +63,7 @@ padding: 3vh;
     display: flex;
     justify-content: space-evenly;
     padding: 2vw;
+    flex-wrap: wrap;
 }
 
 .imgTeste>img{
@@ -71,20 +74,17 @@ padding: 3vh;
 .BoxDepoimentos{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .Depoimentos{
     text-align: center;
     padding: 3vw;
+    background-color: #E5E5E5;
 }
 
 .QuadroDeVagas{
     background-color: #E5E5E5;
-}
-
-.Depoimentos{
-    background-color: #E5E5E5;
-    
 }
 
 .BoxTexto{
