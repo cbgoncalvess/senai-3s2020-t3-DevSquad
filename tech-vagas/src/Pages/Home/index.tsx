@@ -7,10 +7,12 @@ import imgConfianca from '../../assets/confidence.png';
 import imgSurpise from '../../assets/2110293.png';
 import imgPadrao from '../../assets/android-character-symbol.png';
 import imgPerfil from '../../assets/perfil-comportamental-online.png';
+        
 import './style.css';
 import Tag from '../../Components/Tag/Index';
 
 export default function Home() {
+
     return (
         <body>
             <AccessBar />

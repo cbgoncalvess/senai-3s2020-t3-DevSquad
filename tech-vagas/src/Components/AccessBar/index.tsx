@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import './style.css';
 
-
 export default function AccessBar() {
     return(
         <section className="barra">
@@ -15,12 +14,12 @@ export default function AccessBar() {
                 </div>
 
                 <div className="flex">
-                    <p className="links"><Link to="https://www.facebook.com/senaiinformatica" aria-label="Facebook do SENAI Informática" className="topbar fa fa-facebook-f" target="_black"></Link></p>
-                    <p className="links"><Link to="https://twitter.com/senaiinfo" aria-label="Twitter do SENAI Informática" className="topbar fa fa-twitter" target="_black"></Link></p>
-                    <p className="links"><Link to="https://www.instagram.com/senai_info/" aria-label="Instagram do SENAI Informática" className="topbar fa fa-instagram" target="_black"></Link></p>
-                    <p className="links"><Link to="https://www.youtube.com/channel/UCIrKFzk1K-eOQ70NOsm587A" aria-label="Facebook do SENAI Informática" className="topbar fa fa-youtube" target="_black"></Link></p>
-                    <p className="links"><Link to="https://twitter.com/senaiinfo" aria-label="Linkedin do SENAI Informática" className="topbar fa fa-linkedin" target="_black"></Link></p>
-                    <p className="links"><Link to="https://github.com/senai-desenvolvimento" aria-label="Guitihub do SENAI Informática Desenvolvimento" className="topbar fa fa-github" target="_black"></Link></p>
+                    <p className="links"><a href="https://www.facebook.com/senaiinformatica" aria-label="Facebook do SENAI Informática" className="topbar fa fa-facebook-f" target="_black"></a></p>
+                    <p className="links"><a href="https://twitter.com/senaiinfo" aria-label="Twitter do SENAI Informática" className="topbar fa fa-twitter" target="_black"></a></p>
+                    <p className="links"><a href="https://www.instagram.com/senai_info/" aria-label="Instagram do SENAI Informática" className="topbar fa fa-instagram" target="_black"></a></p>
+                    <p className="links"><a href="https://www.youtube.com/channel/UCIrKFzk1K-eOQ70NOsm587A" aria-label="Facebook do SENAI Informática" className="topbar fa fa-youtube" target="_black"></a></p>
+                    <p className="links"><a href="https://twitter.com/senaiinfo" aria-label="Linkedin do SENAI Informática" className="topbar fa fa-linkedin" target="_black"></a></p>
+                    <p className="links"><a href="https://github.com/senai-desenvolvimento" aria-label="Guitihub do SENAI Informática Desenvolvimento" className="topbar fa fa-github" target="_black"></a></p>
                 </div>
             </div>
         </section>
