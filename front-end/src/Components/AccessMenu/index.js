@@ -39,7 +39,7 @@ export default function AccessMenu() {
     }
 
     var btnbody = document.getElementsByTagName("body");
-    
+
     // Ao clicar do botão, ele pega o Id do body e parte para a condição. SE o body tiver a class "preto", ele remove, SE não tiver a class "preto" ele adiciona. Pego tudo o que é body.
 
     function Contraste() {
@@ -62,69 +62,171 @@ export default function AccessMenu() {
         }
     }
 
-    function Libras () {
+    function Libras() {
         let botao3 = document.getElementById("botaolibras");
+        let vlibras = document.getElementById("vlibras");
 
-        if (botao3.classList == "active"){
+        if (botao3.classList == "active") {
             botao3.classList.remove("active");
         }
-        else{
+        else {
             botao3.classList.add("active");
         }
     }
 
+    function Voz() {
+        let textarea = document.getElementById("textarea");
+
+        var btn_gravacao = document.querySelector('#btn-gravar-audio');
+
+        var transcricao_audio = '';
+        var esta_gravando = false;
+
+        var dicionario = {
+            "@": /\barroba\b/gi,
+            // ";": /\bponto e v[íi]rgula\b/gi,
+            // ",": /\bv[íi]rgula\b/gi,
+            // "!": /\bexclamação\b/gi,
+            // "?": /\binterrogação\b/gi,
+            // "github": /\bgit hub\b/gi,
+        };
+
+        if (window.SpeechRecognition || window.webkitSpeechRecognition) {
+
+            var speech_api = window.SpeechRecognition || window.webkitSpeechRecognition;
+            var receber_audio = new speech_api();
+
+            receber_audio.continuous = true;
+            receber_audio.interimResults = true;
+            receber_audio.lang = "pt-BR";
+
+            receber_audio.onstart = function () {
+                esta_gravando = true;
+                // btn_gravacao.innerHTML = 'Gravando! Para onde deseja ir?';
+            };
+
+            receber_audio.onend = function () {
+                esta_gravando = false;
+                // btn_gravacao.innerHTML = 'Iniciar Gravação';
+            };
+
+            receber_audio.onresult = function (event) {
+                var interim_transcript = '';
+
+
+                if (textarea.value == "Home" || textarea.value == "home") {
+                    window.location.href = "/home";
+                }
+                if (textarea.value == "Sobre" || textarea.value == "sobre") {
+                    window.location.href = "/sobre";
+                }
+                if (textarea.value == "Login" || textarea.value == "login" || textarea.value == "Loguin" || textarea.value == "loguin" || textarea.value == "entrar" || textarea.value == "Entrar" || textarea.value == "candidato") {
+                    window.location.href = "/login";
+                }
+                if (textarea.value == "Empresa" || textarea.value == "empresa") {
+                    window.location.href = "/empresa";
+                }
+                if (textarea.value == "Cadastro" || textarea.value == "cadastro") {
+                    window.location.href = "/cadastro";
+                }
+                if (textarea.value == "Conteúdo" || textarea.value == "conteúdo") {
+                    window.location.href = "/#conteudo";
+                }
+                if (textarea.value == "fazer o teste" || textarea.value == "fazer teste" || textarea.value == "fazer teste personalidade" || textarea.value == "teste de personalidade") {
+                    window.location.href = "/teste-personalidade";
+                }
+
+                for (var i = event.resultIndex; i < event.results.length; i++) {
+                    if (event.results[i].isFinal) {
+                        transcricao_audio += event.results[i][0].transcript;
+                        // transcricao_audio += event.results[i][0].transcript;
+                    } else {
+                        interim_transcript += event.results[i][0].transcript;
+                        // interim_transcript += event.results[i][0].transcript;
+                    }
+
+                    var resultado = transcricao_audio || interim_transcript;
+                }
+
+                for (var substituto in dicionario) {
+                    resultado = resultado.replace(dicionario[substituto], substituto);
+                }
+                document.getElementById("textarea").innerHTML = resultado;
+            };
+
+            btn_gravacao.addEventListener('click', function (e) {
+                if (esta_gravando) {
+                    receber_audio.stop();
+                    document.location.reload(true);
+                    return;
+                }
+
+                receber_audio.start();
+
+            }, false);
+
+        } else {
+            console.log("Navegador não apresenta suporte a web speech api");
+        }
+
+    }
+
     return (<div>
-        
+
         <textarea id="textarea" class="none" />
         <div vw class="enabled">
-            <div vw-plugin-wrapper>
+            <div vw-plugin-wrapper id="vlibras">
                 <div class="vw-plugin-top-wrapper"></div>
             </div>
         </div>
         <button id="btnbar" class="block" accesskey="a" onClick={event => {
-                        event.preventDefault();
-                        AbrirMenu();
-                        }}>
+            event.preventDefault();
+            AbrirMenu();
+        }}>
             <div class="botaoflutuante fa fa-universal-access font1" title="Menu acessibilidade">
             </div>
         </button>
         <div id="bar" class="none">
             <div class="flex">
-                <div id="botao" class="access-icons kit" accesskey="z" title="Alto contraste" onClick={event => {
-                        event.preventDefault();
-                        Contraste();
-                        }}>
+
+                <div id="botao" class="access-icons kit" onClick={event => {
+                    event.preventDefault();
+                    Contraste();
+                }} accesskey="z" title="Alto contraste Alt + z">
                     <div class="fa fa-adjust">
                     </div>
                 </div>
 
-
-                <div id="botaomaior" class="access-icons kit" accesskey="x" title="Aumentar fonte" onClick={event => {
-                        event.preventDefault();
-                        FonteMaior();
-                        }}>
+                <div id="botaomaior" class="access-icons kit" onClick={event => {
+                    event.preventDefault();
+                    FonteMaior();
+                }} accesskey="x" title="Aumentar fonte Alt + x" >
                     <div class="fa fa-font">
                     </div>
                 </div>
 
-
-                <div id="botaolibras" class="access-icons kit">
-                    <div vw-access-button class="fa fa-american-sign-language-interpreting active" accesskey="c" title="Linguagem de libras Alt + l"onClick={event => {
-                        event.preventDefault();
-                        Libras();
-                        }}>
+                <div id="botaolibras" class="access-icons kit" onClick={event => {
+                    event.preventDefault();
+                    Libras();
+                    console.log("chegou");
+                }} accesskey="c" title="Linguagem de libras Alt + l">
+                    <div vw-access-button class="fa fa-american-sign-language-interpreting active">
                     </div>
                 </div>
 
-                <div id="btn-gravar-audio" class="access-icons kit" accesskey="v" title="Comando de voz">
+                <div id="btn-gravar-audio" class="access-icons kit" accesskey="v" title="Comando de voz Alt + v" onClick={event => {
+                    event.preventDefault();
+                    Voz();
+                }}>
                     <div class="fa fa-microphone">
                     </div>
                 </div>
+
             </div>
         </div>
         <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
+        <script>
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
     </div>
     );
