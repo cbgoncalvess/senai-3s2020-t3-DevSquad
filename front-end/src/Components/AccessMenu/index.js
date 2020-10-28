@@ -63,15 +63,22 @@ export default function AccessMenu() {
     }
 
     function Libras() {
-        let botao3 = document.getElementById("botaolibras");
-        let vlibras = document.getElementById("vlibras");
+        let bloco = document.querySelector("#vlibras");
+        let bloco2 = document.querySelector("body > div.enabled > div:nth-child(2)");
 
-        if (botao3.classList == "active") {
-            botao3.classList.remove("active");
+        if (bloco.classList == "active") {
+            bloco.classList.remove('active');
+            bloco2.classList.add('active');
+        }
+
+        else if (bloco.classList == "active") {
+            bloco2.classList.remove('active');
+            bloco.classList.add('active');
         }
         else {
-            botao3.classList.add("active");
+            document.querySelector("body > div.enabled > div.active > img.access-button").click();
         }
+
     }
 
     function Voz() {
@@ -208,9 +215,8 @@ export default function AccessMenu() {
                 <div id="botaolibras" class="access-icons kit" onClick={event => {
                     event.preventDefault();
                     Libras();
-                    console.log("chegou");
                 }} accesskey="c" title="Linguagem de libras Alt + l">
-                    <div vw-access-button class="fa fa-american-sign-language-interpreting active">
+                    <div class="fa fa-american-sign-language-interpreting">
                     </div>
                 </div>
 
@@ -223,11 +229,11 @@ export default function AccessMenu() {
                 </div>
 
             </div>
-        </div>
-        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-        <script>
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
+            <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+            <script>
+                new window.VLibras.Widget("https://vlibras.gov.br/app");
   </script>
+        </div>
     </div>
     );
 }
