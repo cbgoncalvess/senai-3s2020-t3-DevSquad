@@ -7,6 +7,7 @@ import Home from './Pages/Home';
 import VagasPublicadas from './Pages/ListarVagasPublicadas/Index';
 import Login from './Pages/Login';
 import TesteDePesonalidade from './Pages/TesteDePersonalidade/Index';
+import VizualizarVagaEmpresa from './Pages/VizualizarVagaEmpresa';
 
 function Routes() {
     return (
@@ -17,6 +18,7 @@ function Routes() {
             <Route path="/CadastrarVaga" component={CadastarVaga} />
             <Route path="/Estagio" component={Estagio} />
             <Route path="/TesteDePersonalidade" component={TesteDePesonalidade} />
+            <Route path="/VagaEmpresa" component={VizualizarVagaEmpresa}/>
         </BrowserRouter>
     );
 }

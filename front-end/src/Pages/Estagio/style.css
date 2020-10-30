@@ -103,10 +103,11 @@
     background-color: #DFDFDF;
 }
 
-select{
+.selectEstagio{
     background: rgba(0, 0, 0, 0.61);
     border-radius: 4px;
     color: white;
+    margin-left: 5%;
 }
 
 

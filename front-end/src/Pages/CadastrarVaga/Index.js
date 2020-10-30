@@ -29,14 +29,14 @@ export default function CadastarVaga() {
                                 <Input name="Logradouro" label="Logradouro" />
                                 <Input name="Complemento" label="Complemento" />
                                 <div className="text-area">
-                                <label>Descrição da vaga</label>
-                                <textarea  name="DescricaoVaga"></textarea>
-<br/>
-                                <label>Descrição da empresa</label>
-                                <textarea  name="DescricaoEmpresa"></textarea>
-<br/>
-                                <label>Descrição dos benefícios</label>
-                                <textarea  name="DescricaoBeneficio"></textarea>
+                                    <label>Descrição da vaga</label>
+                                    <textarea name="DescricaoVaga"></textarea>
+                                    <br />
+                                    <label>Descrição da empresa</label>
+                                    <textarea name="DescricaoEmpresa"></textarea>
+                                    <br />
+                                    <label>Descrição dos benefícios</label>
+                                    <textarea name="DescricaoBeneficio"></textarea>
                                 </div>
                             </form>
                         </div>

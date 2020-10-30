@@ -13,7 +13,6 @@ import imgPerfil from '../../assets/perfil-comportamental-online.png';
 
 import './style.css';
 
-
 export default function Home() {
     return (
         <body>

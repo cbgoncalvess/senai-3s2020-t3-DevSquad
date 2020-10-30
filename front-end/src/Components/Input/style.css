@@ -2,10 +2,10 @@
     padding: 1vw;
 }
 
-input{
-   height: 36px;
-   width: 100%;
-   background-color: #E0E0E0;
-   border: none;
-   border-radius: 6px;
+.InputCadastro{
+    height: 36px;
+    width: 100%;
+    background-color: #E0E0E0;
+    border: none;
+    border-radius: 6px;
 }

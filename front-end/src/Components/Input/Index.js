@@ -5,7 +5,7 @@ function Input(props){
     return(
         <div className="Input">
            <label htmlFor={props.name}>{props.label}</label><br></br>
-           <input  type='text' id={props.name}/>
+           <input className="InputCadastro" type='text' id={props.name}/>
         </div>
     );
 }

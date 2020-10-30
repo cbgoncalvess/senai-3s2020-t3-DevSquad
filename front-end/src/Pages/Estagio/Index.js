@@ -49,7 +49,7 @@ export default function Estagio() {
                     </div>
                 </div>
 <br/>
-                <select className="div-select">
+                <select className="selectEstagio">
                 <option>Filtre sua busca por meses</option>
                 <option>3Meses</option>
                 <option>6Meses</option>
