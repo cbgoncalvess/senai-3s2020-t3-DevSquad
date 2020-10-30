@@ -1,0 +1,11 @@
+.InfoVaga>img{
+    width: 28px;
+    height: 20px;
+}
+
+.InfoVaga{
+    display: flex;
+    margin: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

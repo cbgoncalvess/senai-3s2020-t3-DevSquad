@@ -1,0 +1,113 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.CabecaEstagio>img{
+    width: 30px;
+    height: 30px;
+}
+
+.Estagio{
+    width: 275px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.CabecaEstagio{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.CorpoEstagio{
+    text-align: center;
+    padding: 2vh;
+}
+
+.CabecaEstagio>.Ferramentas{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Ferramentas{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.ListaEstagios{
+    padding: 5vh;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.Estatisticas{
+    display: flex;
+    justify-content: space-around;
+    padding: 1vw;
+    background-color: white;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.EstatiscasColumn{
+    display: flex;
+    flex-direction: column;    
+}
+
+.Empresascadastradas{
+    display: flex;
+    justify-content: space-around;
+    background-color: #005767;
+}
+
+.Candidatoscontratados{
+    display: flex;
+    justify-content: space-around;
+    background-color: #4D4E47;
+}
+
+.Candidatoscadastrados{
+    display: flex;
+    justify-content: space-between;
+    background-color: #FF000F;
+}
+
+.Empresascadastradas,.Candidatoscadastrados,.Candidatoscontratados{
+    height: 72px;
+    width: 194px;
+    color: white;
+    text-align: end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    padding: 1vh;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.Empresascadastradas>img,.Candidatoscadastrados>img,.Candidatoscontratados>img{
+    height: 52px;
+    width: 52px;
+}
+
+.bodyPartEstagio{
+    background-color: #DFDFDF;
+}
+
+.selectEstagio{
+    background: rgba(0, 0, 0, 0.61);
+    border-radius: 4px;
+    color: white;
+    margin-left: 5%;
+}
+
+

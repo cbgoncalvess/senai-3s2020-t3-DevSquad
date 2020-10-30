@@ -1,0 +1,96 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.ImagemHeader{
+ background-image: url("../../assets/1500-0-.jpg");
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;
+ color: white;
+ padding: 5vh;
+ height: 300px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.Edit{
+    background-color: #C4C4C4;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.Delete{
+background-color: red;
+width: 20px;
+height: 20px;
+padding: 2px;
+border-radius: 4px;
+}
+
+.Edit-Delete{
+    display: flex;
+    justify-content:flex-end;
+}
+
+.MainVaga{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 90%;
+
+}
+.ImagemEmpresa{
+    height: 100px;
+    width: 100px;
+}
+
+body > div > div.ListaDeVagas > div > div.Edit-Delete > a{
+font-size: 12px;
+}
+
+.InfoVagas{
+display: flex;
+justify-content: space-around;
+flex-direction: row;
+flex-wrap: wrap;
+}
+
+.VagaCompleta{
+    display: flex;
+    border-radius: 4px;
+    padding: 3vh;
+}
+
+.vaga{
+    background-color: #FAFAFA;
+    margin-bottom: 20px;
+}
+
+.TecnologiasVaga{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.ListaDeVagas{
+    background-color: #E5E5E5;
+    padding: 3vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+}
+
+
+@media(max-width:767px){
+    .VagaCompleta{
+        display: block;
+    }
+}
