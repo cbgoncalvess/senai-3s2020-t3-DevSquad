@@ -4,8 +4,8 @@ import './style.css'
 function Input(props){
     return(
         <div className="Input">
-           <label htmlFor={props.name}>{props.label}</label><br></br>
-           <input className="InputCadastro" type='text' id={props.name}/>
+           <label htmlFor={props.name}>{props.label}</label><br />
+           <input className="InputCadastro" type={props.text} id={props.name}/>
         </div>
     );
 }
