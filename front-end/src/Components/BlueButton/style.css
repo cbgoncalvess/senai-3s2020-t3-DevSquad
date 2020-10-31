@@ -1,0 +1,9 @@
+.blue-button{
+    background-color: #005767;
+    color: #FFF;
+    font-weight: bold;
+    width: 13vw;
+    height: 7vh;
+    border-radius: 5px;
+    border: none;
+}
