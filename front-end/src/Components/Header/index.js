@@ -65,7 +65,7 @@ export default function Header() {
 
             <div id="modalPrincipal" className="modalPrincipal none">
                 <nav className="menumodal">
-                    <img src={xBurguer} className="navmobile burguer dex" id="menumodal" alt="" onClick={event => {
+                    <img src={xBurguer} className="navmobile burguer dex" id="menumodal" alt="Menu mobile" onClick={event => {
                         event.preventDefault();
                         FecharMenu();
                         }}
