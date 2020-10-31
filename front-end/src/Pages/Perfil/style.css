@@ -1,0 +1,97 @@
+.meioPerfil{
+    display: flex;
+    height: 100%;
+}
+
+.Delete{
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border-radius: 4px;
+    }
+
+.EsquerdoPerfil{
+    width: 35%;
+    background-color: #E1E1E1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10vh;
+}
+
+.BoxPerfil{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    padding: 1vh;
+}
+
+.flexBoxPerfil{
+    display: flex;
+    justify-content: center;
+}
+
+.DireitoPerfil{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.ColumnNomeEmail,.ColumnPerfilBanir{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.imgperfil{
+width: 140px;
+height: 100px;
+padding-bottom: 2vh;
+}
+
+.imgUsuario{
+width: 70px;
+height: 100%;
+}
+
+.ColumnNomeEmail{
+    margin-top: 20px;
+}
+
+.ColumnNomeEmail>h2{
+padding: 1vh;
+}
+
+.ColumnPerfilBanir{
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-end;
+}
+
+.btVerPerfil{
+    width: 100px;
+    height: 30px;
+    background-color: #FF000F;
+    border: none;
+    color: white;
+    border-radius: 4px;
+}
+
+.BotoesPerfil{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btPerfil{
+    width: 130px;
+    height: 40px;
+    background-color: #FF000F;
+    border: none;
+    color: white;
+    border-radius: 4px;
+}
