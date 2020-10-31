@@ -2,7 +2,7 @@ import React from 'react';
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
-import Input from '../../Components/Input/Index';
+import Input from '../../Components/Input';
 import Select from '../../Components/Select/Index';
 import './style.css';
 
