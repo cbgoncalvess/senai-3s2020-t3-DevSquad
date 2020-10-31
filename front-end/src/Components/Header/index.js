@@ -51,6 +51,7 @@ export default function Header() {
                     <ul id="menu">
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/sobre">Sobre</Link></li>
+                        <li><Link to="/colaboradores">Colaboradores</Link></li>
                         <li><Link className="botao" to="/login">Login</Link></li>
                         <li><Link className="botao1" to="/cadastro">Cadastro</Link></li>
                     </ul>
@@ -72,6 +73,7 @@ export default function Header() {
                     <ul id="menu-hide" className="none">
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/sobre">Sobre</Link></li>
+                        <li><Link to="/colaboradores">Colaboradores</Link></li>
                         <li><Link className="botao" to="/login">Login</Link></li>
                         <li><Link className="botao1" to="/cadastro">Cadastro</Link></li>
                     </ul>
@@ -84,6 +86,7 @@ export default function Header() {
                     <ul id="menu-hide" className="none">
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/sobre">Sobre</Link></li>
+                        <li><Link to="/colaboradores">Colaboradores</Link></li>
                         <li><Link className="botao" to="/login">Login</Link></li>
                         <li><Link className="botao1" to="/cadastro">Cadastro</Link></li>
                     </ul>
