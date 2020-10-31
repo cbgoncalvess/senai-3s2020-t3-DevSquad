@@ -89,7 +89,7 @@ padding: 3vh;
 
 .BoxTexto{
     background-color: #4B4B4B;
-    width: 350px;
+    min-width: 300px;
     height: auto;
     padding: 2vw;
     display: flex;
@@ -191,7 +191,6 @@ background-image: url("../../assets/esperoquesejaessetamanho.png");
     }
     .BoxTexto{
         margin-bottom: 50px;
-        width: 85vw;
         padding: 6vw;
     }
 

@@ -452,7 +452,9 @@
 .preto #navegacao > div > div > ul > a,
 .preto #nav > li:nth-child(n) > a,
 .preto #MainContent_Carrossel_rptDescricao_lnk_3 > div > *,
-.preto #MainContent_DestaquesHome_rptDescricao_lnk_0 > div > *{
+.preto #MainContent_DestaquesHome_rptDescricao_lnk_0 > div > *,
+.preto .BtnStartEmpresa,
+.preto .BtnStartCandidato{
     color: yellow !important;
     text-decoration-line: underline !important;
     transition: all .3s ease 0s;
@@ -503,6 +505,10 @@ body > div.bodyPart > div.Depoimentos{
   border-bottom: white 1px solid;
 }
 
+.preto #surface1 > path{
+  fill: #ffffff;
+}
+
 
 /* UNSET ACCESS - DESATIVANDO */
 
@@ -518,7 +524,9 @@ body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > di
 .preto h3,
 .preto h4,
 .preto h5,
-.preto p
+.preto p,
+.preto .BtnStartEmpresa,
+.preto .BtnStartCandidato
 {
   background: transparent !important;
 }

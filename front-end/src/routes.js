@@ -3,20 +3,13 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Login from './Pages/Login';
-<<<<<<< HEAD
-=======
 import VagasPublicadas from './Pages/ListarVagasPublicadas/Index';
 import CadastarVaga from './Pages/CadastrarVaga/Index';
 import Estagio from './Pages/Estagio/Index';
->>>>>>> 74ef12fff6d423119b929b78e122e825b5aecd9a
 import TesteDePesonalidade from './Pages/TesteDePersonalidade/Index';
 import VizualizarVagaEmpresa from './Pages/VizualizarVagaEmpresa';
 import CadastroCandidato from './Pages/CadastroCandidato';
 import CadastroEmpresa from './Pages/CadastroEmpresa';
-<<<<<<< HEAD
-import perfil from './Pages/Perfil';
-=======
->>>>>>> 74ef12fff6d423119b929b78e122e825b5aecd9a
 
 function Routes() {
     return (
@@ -29,7 +22,7 @@ function Routes() {
             <Route path="/TesteDePersonalidade" component={TesteDePesonalidade} />
             <Route path="/VagaEmpresa" component={VizualizarVagaEmpresa}/>
             <Route path="/cadastro" component={CadastroCandidato} />
-            <Route path="/perfil" component={perfil} />
+            {/* <Route path="/perfil" component={perfil} /> */}
             <Route path="/cadastroempresa" component={CadastroEmpresa} />
         </BrowserRouter>
     );

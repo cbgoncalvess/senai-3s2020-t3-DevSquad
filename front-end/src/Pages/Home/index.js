@@ -4,13 +4,15 @@ import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
 import Tag from '../../Components/Tag/Index';
 import AccessMenu from '../../Components/AccessMenu';
+import Svg from '../../Components/imgsvg/Index';
+import Confidence from '../../Components/imgsvg/confidence';
+import Surprise from '../../Components/imgsvg/surprise';
 
 
-import imgPasta from '../../assets/pasta.svg';
-import imgConfianca from '../../assets/confidence.png';
-import imgSurpise from '../../assets/2110293.png';
+// import imgConfianca from '../../assets/confidence.png';
+// import imgSurpise from '../../assets/2110293.png';
+// import imgProfissionalismo from '../../assets/coordinator.png';
 import imgPadrao from '../../assets/android-character-symbol.png';
-import imgProfissionalismo from '../../assets/coordinator.png';
 import imgPerfil from '../../assets/perfil-comportamental-online.png';
 
 import './style.css';
@@ -53,21 +55,24 @@ export default function Home() {
                 </div>
                 <div className="Imagens">
                     <div className="ColumnImages">
-                        <img src={imgProfissionalismo}></img>
+                        {/* <img src={imgProfissionalismo}></img> */}
+                        <Svg />
                         <h2>Profissionalismo</h2>
                         <p>Um dos principais pilares da nossa</p>
                         <p>aplicação para demosntrar nosso</p>
                         <p>compromisso o aluno e a empresa</p>
                     </div>
                     <div className="ColumnImages">
-                        <img src={imgPasta}></img>
+                        {/* <img src={imgConfianca}></img> */}
+                        <Confidence />
                         <h2>Confiança</h2>
                         <p>Taxa de empregabilidade supera 80% entre</p>
                         <p>profissionais que concluíram cursos em </p>
                         <p>áreas de tecnologia da informaçãos</p>
                     </div>
                     <div className="ColumnImages">
-                        <img src={imgSurpise}></img>
+                        {/* <img src={imgSurpise}></img> */}
+                        <Surprise />
                         <h2>Surpresa</h2>
                         <p>Quando você menos espera... VOCÊ </p>
                         <p>FOI ACEITO! A plataforma faz com </p>
