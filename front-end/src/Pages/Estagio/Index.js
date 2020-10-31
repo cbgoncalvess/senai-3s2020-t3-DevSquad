@@ -6,10 +6,10 @@ import imgEdit from '../../assets/black-ink-pen.png'
 import imgEnterprise from '../../assets/enterprise.png'
 import imgCertificate from '../../assets/certificate.png';
 import imgWorker from '../../assets/worker.png'
+import imgPadrao from '../../assets/android-character-symbol.png';
 
 import './style.css'
 
-import imgPadrao from '../../assets/android-character-symbol.png';
 import Tag from '../../Components/Tag/Index';
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';

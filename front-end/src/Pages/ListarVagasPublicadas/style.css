@@ -70,6 +70,14 @@ flex-wrap: wrap;
 .vaga{
     background-color: #FAFAFA;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.AdicionarRemoverTecnologia{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
 }
 
 .TecnologiasVaga{
@@ -86,6 +94,10 @@ flex-wrap: wrap;
     flex-direction: column;
     text-align: center;
     justify-content: space-around;
+}
+
+.modalVagasPublicadas{
+    display: none;
 }
 
 

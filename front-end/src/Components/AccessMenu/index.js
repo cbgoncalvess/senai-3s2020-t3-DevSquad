@@ -62,23 +62,19 @@ export default function AccessMenu() {
         }
     }
 
+    var validate = 0;
     function Libras() {
-        let bloco = document.querySelector("#vlibras");
-        let bloco2 = document.querySelector("body > div.enabled > div:nth-child(2)");
 
-        if (bloco.classList == "active") {
-            bloco.classList.remove('active');
-            bloco2.classList.add('active');
-        }
-
-        else if (bloco.classList == "active") {
-            bloco2.classList.remove('active');
-            bloco.classList.add('active');
+        if (validate === 0) {
+            document.querySelector("body > div.enabled > div.active > img.access-button").click();
+            validate = 1;
         }
         else {
-            document.querySelector("body > div.enabled > div.active > img.access-button").click();
-        }
 
+            document.querySelector("body > div.enabled > div.active > div > div.vpw-box > div.vpw-settings-btn > img.vpw-settings-btn-close").click();
+            validate = 0;
+        }
+        return validate;
     }
 
     function Voz() {
@@ -178,61 +174,62 @@ export default function AccessMenu() {
 
     }
 
-    return (<div>
-
-        <textarea id="textarea" class="none" />
-        <div vw class="enabled">
-            <div vw-plugin-wrapper id="vlibras">
-                <div class="vw-plugin-top-wrapper"></div>
+    return (<div class="heightomg">
+        <div>
+            <textarea id="textarea" class="none" />
+            <div vw class="enabled">
+                <div vw-plugin-wrapper id="vlibras">
+                    <div class="vw-plugin-top-wrapper"></div>
+                </div>
             </div>
-        </div>
-        <button id="btnbar" class="block" accesskey="a" onClick={event => {
-            event.preventDefault();
-            AbrirMenu();
-        }}>
-            <div class="botaoflutuante fa fa-universal-access font1" title="Menu acessibilidade">
-            </div>
-        </button>
-        <div id="bar" class="none">
-            <div class="flex">
-
-                <div id="botao" class="access-icons kit" onClick={event => {
-                    event.preventDefault();
-                    Contraste();
-                }} accesskey="z" title="Alto contraste Alt + z">
-                    <div class="fa fa-adjust">
-                    </div>
+            <button id="btnbar" class="block" accesskey="a" onClick={event => {
+                event.preventDefault();
+                AbrirMenu();
+            }}>
+                <div class="botaoflutuante fa fa-universal-access font1" title="Menu acessibilidade">
                 </div>
+            </button>
+            <div id="bar" class="none">
+                <div class="flex">
 
-                <div id="botaomaior" class="access-icons kit" onClick={event => {
-                    event.preventDefault();
-                    FonteMaior();
-                }} accesskey="x" title="Aumentar fonte Alt + x" >
-                    <div class="fa fa-font">
+                    <div id="botao" class="access-icons kit" onClick={event => {
+                        event.preventDefault();
+                        Contraste();
+                    }} accesskey="z" title="Alto contraste Alt + z">
+                        <div class="fa fa-adjust">
+                        </div>
                     </div>
-                </div>
 
-                <div id="botaolibras" class="access-icons kit" onClick={event => {
-                    event.preventDefault();
-                    Libras();
-                }} accesskey="c" title="Linguagem de libras Alt + l">
-                    <div class="fa fa-american-sign-language-interpreting">
+                    <div id="botaomaior" class="access-icons kit" onClick={event => {
+                        event.preventDefault();
+                        FonteMaior();
+                    }} accesskey="x" title="Aumentar fonte Alt + x" >
+                        <div class="fa fa-font">
+                        </div>
                     </div>
-                </div>
 
-                <div id="btn-gravar-audio" class="access-icons kit" accesskey="v" title="Comando de voz Alt + v" onClick={event => {
-                    event.preventDefault();
-                    Voz();
-                }}>
-                    <div class="fa fa-microphone">
+                    <div id="botaolibras" class="access-icons kit" onClick={event => {
+                        event.preventDefault();
+                        Libras();
+                    }} accesskey="c" title="Linguagem de libras Alt + l">
+                        <div class="fa fa-american-sign-language-interpreting">
+                        </div>
                     </div>
-                </div>
 
-            </div>
-            <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-            <script>
-                new window.VLibras.Widget("https://vlibras.gov.br/app");
+                    <div id="btn-gravar-audio" class="access-icons kit" accesskey="v" title="Comando de voz Alt + v" onClick={event => {
+                        event.preventDefault();
+                        Voz();
+                    }}>
+                        <div class="fa fa-microphone">
+                        </div>
+                    </div>
+
+                </div>
+                <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+                <script>
+                    new window.VLibras.Widget("https://vlibras.gov.br/app");
   </script>
+            </div>
         </div>
     </div>
     );

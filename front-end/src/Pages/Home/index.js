@@ -3,7 +3,10 @@ import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
 import Tag from '../../Components/Tag/Index';
+import AccessMenu from '../../Components/AccessMenu';
 
+
+import imgPasta from '../../assets/pasta.svg';
 import imgConfianca from '../../assets/confidence.png';
 import imgSurpise from '../../assets/2110293.png';
 import imgPadrao from '../../assets/android-character-symbol.png';
@@ -17,6 +20,7 @@ export default function Home() {
         <body>
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="bodyPart">
                 <div className="StartImage">
                     <div className="StartText">
@@ -56,7 +60,7 @@ export default function Home() {
                         <p>compromisso o aluno e a empresa</p>
                     </div>
                     <div className="ColumnImages">
-                        <img src={imgConfianca}></img>
+                        <img src={imgPasta}></img>
                         <h2>Confiança</h2>
                         <p>Taxa de empregabilidade supera 80% entre</p>
                         <p>profissionais que concluíram cursos em </p>
