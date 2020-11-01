@@ -81,8 +81,9 @@
 }
 
 .Empresascadastradas,.Candidatoscadastrados,.Candidatoscontratados{
-    height: 72px;
-    width: 194px;
+    /* height: 72px; */
+    height: auto;
+    min-width: 194px;
     color: white;
     text-align: end;
     display: flex;
@@ -111,3 +112,20 @@
 }
 
 
+/* ADAPTANDO MENU DE ACESSIBILIDADE */
+
+.preto .Estagio,
+.preto body > div.bodyPartEstagio > div.Estatisticas > div.Candidatoscadastrados,
+.preto body > div.bodyPartEstagio > div.Estatisticas > div.Candidatoscontratados,
+.preto body > div.bodyPartEstagio > div.Estatisticas > div.Empresascadastradas{
+    background: #373737 !important;
+}
+
+.preto .bodyPartEstagio,
+.preto body > div.bodyPartEstagio > div.Estatisticas{
+    background: black !important;
+}
+
+.preto footer{
+    border-top: solid white 1px;
+}

@@ -106,3 +106,18 @@ flex-wrap: wrap;
         display: block;
     }
 }
+
+/* ADAPTANDO MENU DE ACESSIBILIDADE */
+
+.preto body > div.bodyPart > div.ImagemHeader{
+    background-image: unset;
+    border-bottom: white solid 1px;
+}
+
+.preto .ListaDeVagas, .preto body > div.bodyPart > div.ImagemHeader{
+    background: black !important;
+}
+
+.preto body > div.bodyPart > div.ImagemHeader > h1{
+    background: transparent !important;
+}

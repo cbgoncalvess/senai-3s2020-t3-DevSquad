@@ -13,6 +13,7 @@ export default function CadastarVaga() {
         <body>
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="bodyPartCadastrarVaga">
                 <div className="meio">
                     <div className="Esquerdo">

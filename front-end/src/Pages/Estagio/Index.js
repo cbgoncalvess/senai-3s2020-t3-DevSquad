@@ -10,6 +10,7 @@ import imgPadrao from '../../assets/android-character-symbol.png';
 
 import './style.css'
 
+import AccessMenu from '../../Components/AccessMenu';
 import Tag from '../../Components/Tag/Index';
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
@@ -20,6 +21,7 @@ export default function Estagio() {
         <body>
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="bodyPartEstagio">
                 <br/>
                 <div className="Estatisticas">

@@ -75,3 +75,9 @@ body > div > div > div.Esquerdo > div > form{
         width: 100%;
     }
 }
+
+/* ADAPTANDO MENU DE ACESSIBILIDADE */
+
+.preto .Esquerdo{
+    background: black !important;
+}

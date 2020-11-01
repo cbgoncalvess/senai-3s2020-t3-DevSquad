@@ -17,6 +17,7 @@ import imgSalario from '../../assets/money (1).png';
 import imgTipoContrato from '../../assets/gears.png';
 import imgFuncao from '../../assets/rocket-launch.png';
 import IconEmpresa from '../../assets/building.png';
+import AccessMenu from '../../Components/AccessMenu';
 
 import './style.css';
 
@@ -25,6 +26,7 @@ export default function VagasPublicadas() {
         <body>
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="bodyPart">
                 <div className="ImagemHeader">
                     <h1>Bem vindo Empresa</h1>

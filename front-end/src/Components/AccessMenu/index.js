@@ -118,7 +118,7 @@ export default function AccessMenu() {
 
 
                 if (textarea.value == "Home" || textarea.value == "home") {
-                    window.location.href = "/home";
+                    window.location.href = "/";
                 }
                 if (textarea.value == "Sobre" || textarea.value == "sobre") {
                     window.location.href = "/sobre";
