@@ -598,7 +598,7 @@ function Enviar() {
             </div>
             <button onClick={Enviar}>Enviar</button>
 
-            <div id="modal" class="none">
+            <div id="modal" className="none">
                 <div class="pelicula" id="pelicula" onClick={btn_fechar}></div>
                 <div class="janela">
                     <p onClick={btn_fechar} id="fechar">X</p>

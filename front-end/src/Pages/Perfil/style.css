@@ -24,8 +24,8 @@
 .BoxPerfil{
     display: flex;
     justify-content: space-between;
-    height: 100%;
     padding: 1vh;
+    border-bottom: 1px solid grey;
 }
 
 .flexBoxPerfil{
@@ -94,4 +94,39 @@ align-items: flex-end;
     border: none;
     color: white;
     border-radius: 4px;
+}
+
+.selectPerfil{
+    background: rgba(0, 0, 0, 0.61);
+    border-radius: 4px;
+    color: white;
+    margin-left: 5%;
+    width: 18%;
+}
+
+@media(max-width:700px){
+    .EsquerdoPerfil{
+        display: none;
+    }
+
+    .DireitoPerfil{
+        width: 100%;
+    }
+
+    .selectPerfil{
+        width: 40%;
+    }
+
+    .ColumnNomeEmail>h2{
+    font-size: 16px;
+    }
+
+    .ColumnNomeEmail>p{
+        font-size: 10px;
+    }
+
+    .btVerPerfil{
+        width: 75px;
+        height: 25px;
+    }    
 }

@@ -10,10 +10,7 @@ import TesteDePesonalidade from './Pages/TesteDePersonalidade/Index';
 import VizualizarVagaEmpresa from './Pages/VizualizarVagaEmpresa';
 import CadastroCandidato from './Pages/CadastroCandidato';
 import CadastroEmpresa from './Pages/CadastroEmpresa';
-<<<<<<< HEAD
-=======
 import Perfil from './Pages/Perfil';
->>>>>>> b76388c02de80a111ba0b5570ae47304c17bc318
 
 function Routes() {
     return (
@@ -26,10 +23,6 @@ function Routes() {
             <Route path="/TesteDePersonalidade" component={TesteDePesonalidade} />
             <Route path="/VagaEmpresa" component={VizualizarVagaEmpresa}/>
             <Route path="/cadastro" component={CadastroCandidato} />
-<<<<<<< HEAD
-            {/* <Route path="/perfil" component={perfil} /> */}
-=======
->>>>>>> b76388c02de80a111ba0b5570ae47304c17bc318
             <Route path="/cadastroempresa" component={CadastroEmpresa} />
             <Route path="/perfil" component={Perfil} />
         </BrowserRouter>

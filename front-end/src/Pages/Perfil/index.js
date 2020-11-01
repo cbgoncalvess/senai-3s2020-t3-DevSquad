@@ -20,17 +20,23 @@ export default function perfil() {
                     <h3>Robertinho monstrão</h3>
                     <p>administrador</p>
                     <div className="BotoesPerfil">
-                    <button className="btPerfil"><h3>Alterar dados</h3></button>
-                    <button className="btPerfil"><h3>Alterar senha</h3></button>
+                        <button className="btPerfil"><h3>Alterar dados</h3></button>
+                        <button className="btPerfil"><h3>Alterar senha</h3></button>
                     </div>
                 </div>
                 <div className="DireitoPerfil">
+                    <br/>
+                <select className="selectPerfil">
+                <option>Filtre sua busca por...</option>
+                <option>Candidatos</option>
+                <option>Empresa</option>
+                 </select>
                     <div className="BoxPerfil">
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -43,8 +49,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -57,8 +63,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -71,8 +77,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -85,8 +91,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -99,8 +105,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -113,8 +119,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -127,8 +133,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -141,8 +147,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -155,8 +161,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -169,8 +175,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -183,8 +189,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -197,8 +203,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -211,8 +217,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -225,50 +231,8 @@ export default function perfil() {
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
                             <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
-                            </div>
-                        </div>
-                        <div className="ColumnPerfilBanir">
-                            <img className="Delete" src={imgDelete} alt="Delete" />
-                            <button className="btVerPerfil"><h4>Ver perfil</h4></button>
-                        </div>
-                    </div>
-
-                    <div className="BoxPerfil">
-                        <div className="flexBoxPerfil">
-                            <img className="imgUsuario" src={imgPadrao} alt="usuario" />
-                            <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
-                            </div>
-                        </div>
-                        <div className="ColumnPerfilBanir">
-                            <img className="Delete" src={imgDelete} alt="Delete" />
-                            <button className="btVerPerfil"><h4>Ver perfil</h4></button>
-                        </div>
-                    </div>
-
-                    <div className="BoxPerfil">
-                        <div className="flexBoxPerfil">
-                            <img className="imgUsuario" src={imgPadrao} alt="usuario" />
-                            <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
-                            </div>
-                        </div>
-                        <div className="ColumnPerfilBanir">
-                            <img className="Delete" src={imgDelete} alt="Delete" />
-                            <button className="btVerPerfil"><h4>Ver perfil</h4></button>
-                        </div>
-                    </div>
-
-                    <div className="BoxPerfil">
-                        <div className="flexBoxPerfil">
-                            <img className="imgUsuario" src={imgPadrao} alt="usuario" />
-                            <div className="ColumnNomeEmail">
-                                <h2>Teokomo Nakama</h2>
-                                <p>Teokomo_otodia@gmail.com</p>
+                                <h2>Teokashi sakama</h2>
+                                <p>Teokashi_otodia@gmail.com</p>
                             </div>
                         </div>
                         <div className="ColumnPerfilBanir">
@@ -277,7 +241,6 @@ export default function perfil() {
                         </div>
                     </div>
                 </div>
-                
             </div>
             <Footer />
         </div>
