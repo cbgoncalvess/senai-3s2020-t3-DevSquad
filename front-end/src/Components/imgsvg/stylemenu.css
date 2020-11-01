@@ -10,8 +10,11 @@
 }
 
 @media (max-width: 498px){
+    .header{
+        padding: 6vw !important;
+    }
     #Capa_1{
         width: 9vw !important;
-        margin: 1.5vw 3vw 2vw 0;
+        margin: 5.5vw 6vw 2vw 0;    
     }
 }

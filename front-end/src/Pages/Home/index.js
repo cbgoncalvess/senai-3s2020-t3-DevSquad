@@ -9,9 +9,6 @@ import Confidence from '../../Components/imgsvg/confidence';
 import Surprise from '../../Components/imgsvg/surprise';
 
 
-// import imgConfianca from '../../assets/confidence.png';
-// import imgSurpise from '../../assets/2110293.png';
-// import imgProfissionalismo from '../../assets/coordinator.png';
 import imgPadrao from '../../assets/android-character-symbol.png';
 import imgPerfil from '../../assets/perfil-comportamental-online.png';
 
@@ -55,7 +52,6 @@ export default function Home() {
                 </div>
                 <div className="Imagens">
                     <div className="ColumnImages">
-                        {/* <img src={imgProfissionalismo}></img> */}
                         <Svg />
                         <h2>Profissionalismo</h2>
                         <p>Um dos principais pilares da nossa</p>
@@ -63,7 +59,6 @@ export default function Home() {
                         <p>compromisso o aluno e a empresa</p>
                     </div>
                     <div className="ColumnImages">
-                        {/* <img src={imgConfianca}></img> */}
                         <Confidence />
                         <h2>Confiança</h2>
                         <p>Taxa de empregabilidade supera 80% entre</p>
@@ -71,11 +66,10 @@ export default function Home() {
                         <p>áreas de tecnologia da informaçãos</p>
                     </div>
                     <div className="ColumnImages">
-                        {/* <img src={imgSurpise}></img> */}
                         <Surprise />
                         <h2>Surpresa</h2>
-                        <p>Quando você menos espera... VOCÊ </p>
-                        <p>FOI ACEITO! A plataforma faz com </p>
+                        <p>Quando você menos espera...</p>
+                        <p>VOCÊ FOI ACEITO! A plataforma faz com </p>
                         <p>que você tratalhe seus potenciais</p>
                     </div>
                 </div>
@@ -156,7 +150,6 @@ export default function Home() {
                 </div>
 
                 <div className="TesteDePersonalidade">
-                    <br />
                     <div className="imgTeste">
                         <img src={imgPerfil} alt="" />
                     </div>

@@ -90,6 +90,7 @@ padding: 3vh;
 .BoxTexto{
     background-color: #4B4B4B;
     min-width: 300px;
+    max-width: 400px;
     height: auto;
     padding: 2vw;
     display: flex;
@@ -97,6 +98,7 @@ padding: 3vh;
     justify-content: space-between;
     color: white;
     text-align: initial;
+    margin: 10px 0;
 }
 
 hr{
@@ -202,6 +204,16 @@ background-image: url("../../assets/esperoquesejaessetamanho.png");
 
     .Vaga{
         margin-bottom: 50px;
+    }
+    .TesteDePersonalidade{
+        text-align:center;
+    }
+    body > div.bodyPart > div.TesteDePersonalidade > div.TextoTeste{
+        padding: 5vw;
+    }
+    .maior body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > button > h2,
+    .maior body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > button > h2{
+        font-size: 20px;
     }
 }
 

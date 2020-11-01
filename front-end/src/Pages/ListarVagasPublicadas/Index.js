@@ -17,6 +17,7 @@ import imgSalario from '../../assets/money (1).png';
 import imgTipoContrato from '../../assets/gears.png';
 import imgFuncao from '../../assets/rocket-launch.png';
 import IconEmpresa from '../../assets/building.png';
+import AccessMenu from '../../Components/AccessMenu';
 
 import './style.css';
 

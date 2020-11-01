@@ -5,6 +5,7 @@ import Footer from '../../Components/Footer';
 import Input from '../../Components/Input';
 import Select from '../../Components/Select/Index';
 import './style.css';
+import AccessMenu from '../../Components/AccessMenu';
 
 
 export default function CadastarVaga() {
@@ -12,6 +13,7 @@ export default function CadastarVaga() {
         <body>
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="bodyPartCadastrarVaga">
                 <div className="meio">
                     <div className="Esquerdo">
