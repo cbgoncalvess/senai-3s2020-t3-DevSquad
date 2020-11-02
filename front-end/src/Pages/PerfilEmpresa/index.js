@@ -3,7 +3,6 @@ import React from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
-import Select from '../../Components/Select/Index';
 import Input from '../../Components/Input/index';
 
 import imgPadrao from '../../assets/android-character-symbol.png';
