@@ -599,85 +599,85 @@ function Enviar() {
             <button onClick={Enviar}>Enviar</button>
 
             <div id="modal" className="none">
-                <div class="pelicula" id="pelicula" onClick={btn_fechar}></div>
-                <div class="janela">
+                <div className="pelicula" id="pelicula" onClick={btn_fechar}></div>
+                <div className="janela">
                     <p onClick={btn_fechar} id="fechar">X</p>
-                    <div class="headModal">
+                    <div className="headModal">
                         <p>Resultado</p>
                         <img src="" alt="" class="logoTipo" />
                     </div>
-                    <div class="conteudoModal">
-                        <div class="animais">
-                            <div class="animal">
-                                <div class="alinhar">
-                                    <img src={imgAguia} alt="Aguia" class="aguia" id="imgAguia" onClick={ConteudoAguia}/>
+                    <div className="conteudoModal">
+                        <div className="animais">
+                            <div className="animal">
+                                <div className="alinhar">
+                                    <img src={imgAguia} alt="Aguia" className="aguia" id="imgAguia" onClick={ConteudoAguia}/>
 
-                                    <div class="nomePorcentagem">
+                                    <div className="nomePorcentagem">
                                         <p>ÁGUIA</p>
                                         <p id="I">%</p>
                                     </div>
                                 </div>
                                
-                                <p class="palavraChave">A CRIATIVA</p>
+                                <p className="palavraChave">A CRIATIVA</p>
                             </div>
-                            <div class="animal">
-                                <div class="alinhar">
-                                    <img src={imgLobo} alt="Lobo" class="aguia" id="imgLobo" onClick={ConteudoLobo} />
-                                    <div class="nomePorcentagem">
+                            <div className="animal">
+                                <div className="alinhar">
+                                    <img src={imgLobo} alt="Lobo"className="aguia" id="imgLobo" onClick={ConteudoLobo} />
+                                    <div className="nomePorcentagem">
                                         <p id="imgLobo">LOBO</p>
                                         <p id="O">%</p>
                                     </div>
                                 </div>
                                 
-                                <p class="palavraChave">O ORGANIZADOR</p>
+                                <p className="palavraChave">O ORGANIZADOR</p>
                             </div>
-                            <div class="animal">
-                                <div class="alinhar">
-                                    <img src={imgTubarao} alt="tubarao" class="aguia" id="imgTubarao" onClick={ConteudoTubarao} />
-                                    <div class="nomePorcentagem">
+                            <div className="animal">
+                                <div className="alinhar">
+                                    <img src={imgTubarao} alt="tubarao" className="aguia" id="imgTubarao" onClick={ConteudoTubarao} />
+                                    <div className="nomePorcentagem">
                                         <p id="imgTubarao">TUBARÃO</p>
                                         <p id="A">%</p>
                                     </div>
                                 </div>
                                
-                                <p class="palavraChave">O ATACADO</p>
+                                <p className="palavraChave">O ATACADO</p>
                             </div>
-                            <div class="animal">
-                                <div class="alinhar">
-                                    <img src={imgGato} alt="gato" class="aguia" id="imgGato" onClick={ConteudoGato}/>
-                                    <div class="nomePorcentagem">
+                            <div className="animal">
+                                <div className="alinhar">
+                                    <img src={imgGato} alt="gato" className="aguia" id="imgGato" onClick={ConteudoGato}/>
+                                    <div className="nomePorcentagem">
                                         <p id="imgGato">GATO</p>
                                         <p id="C">%</p>
                                     </div>
                                 </div>
                       
-                                <p class="palavraChave">O EXTROVERTIDO</p>
+                                <p className="palavraChave">O EXTROVERTIDO</p>
                             </div>
                         </div>
-                        <div class="conteudo">
+                        <div className="conteudo">
                             <h5 id="vceh">VOCÊ É:</h5>
-                            <div id="conteudoModalG" class="none">
+                            <div id="conteudoModalG" className="none">
                                 <h2 id="nomeAnimal">Gato</h2>
 
                                 <p>
                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
                     </p>
                             </div>
-                            <div id="conteudoModalT" class="none">
+                            <div id="conteudoModalT" className="none">
                                 <h2 id="nomeAnimal">Tubarão</h2>
 
                                 <p>
                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
                     </p>
                             </div>
-                            <div id="conteudoModalA" class="none">
+                            <div id="conteudoModalA" className="none">
                                 <h2 id="nomeAnimal">Águia</h2>
 
                                 <p>
                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
                     </p>
                             </div>
-                            <div id="conteudoModalL" class="none">
+                            <div id="conteudoModalL" className="none">
                                 <h2 id="nomeAnimal">Lobo</h2>
 
                                 <p>

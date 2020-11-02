@@ -3,6 +3,8 @@ import React from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
+import Select from '../../Components/Select/Index';
+import Input from '../../Components/Input/index';
 
 import imgDelete from '../../assets/delete.png'
 import imgPadrao from '../../assets/android-character-symbol.png';
@@ -12,6 +14,7 @@ import './style.css';
 export default function perfil() {
     return (
         <div className="bodyPartVizualizarPerfil">
+           
             <AccessBar />
             <Header />
             <div className="meioPerfil">
@@ -25,12 +28,12 @@ export default function perfil() {
                     </div>
                 </div>
                 <div className="DireitoPerfil">
-                    <br/>
-                <select className="selectPerfil">
-                <option>Filtre sua busca por...</option>
-                <option>Candidatos</option>
-                <option>Empresa</option>
-                 </select>
+                    <br />
+                    <select className="selectPerfil">
+                        <option>Filtre sua busca por...</option>
+                        <option>Candidatos</option>
+                        <option>Empresa</option>
+                    </select>
                     <div className="BoxPerfil">
                         <div className="flexBoxPerfil">
                             <img className="imgUsuario" src={imgPadrao} alt="usuario" />
@@ -241,6 +244,16 @@ export default function perfil() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="peliculaPerfilAdm"></div>
+            <div className="modalPerfilAdm">
+                <h2>Editar seus dados pessoais</h2>
+                <form>
+                    <Input className="InputCadastro" name="email" label="Email" />
+                    <div className="btEditarEstagioDiv">
+                        <button className="btVaga"><h3>Editar</h3></button>
+                    </div>
+                </form>
             </div>
             <Footer />
         </div>
