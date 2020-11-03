@@ -136,7 +136,7 @@ export default function AccessMenu() {
                     window.location.href = "/#conteudo";
                 }
                 if (textarea.value == "fazer o teste" || textarea.value == "fazer teste" || textarea.value == "fazer teste personalidade" || textarea.value == "teste de personalidade") {
-                    window.location.href = "/teste-personalidade";
+                    window.location.href = "/TesteDePersonalidade";
                 }
 
                 for (var i = event.resultIndex; i < event.results.length; i++) {

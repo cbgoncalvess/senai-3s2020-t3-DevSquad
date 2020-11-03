@@ -3,8 +3,10 @@ import React from 'react';
 import './style.css';
 
 import InputRadius from '../../Components/InputRadius';
-import Header from '../../Components/Header'
+import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import AccessBar from '../../Components/AccessBar';
+import AccessMenu from '../../Components/AccessMenu';
 
 import imgLobo from '../../../src/assets/lobo.png'
 import imgTubarao from '../../../src/assets/tubarao.png'
@@ -203,33 +205,33 @@ export default function TesteDePesonalidade() {
     }
 
     function AbrirModal() {
-        const modal = document.getElementById('modal');
+        const modal = document.getElementById('modalTeste');
         if (modal.classList == "none") {
             modal.classList.remove("none");
         }
     }
 
     function btn_fechar() {
-    const vceh = document.getElementById("vceh");
-    const conteudoModalT = document.getElementById("conteudoModalT");
-    const conteudoModalL = document.getElementById("conteudoModalL");
-    const conteudoModalA= document.getElementById("conteudoModalA");
-    const conteudoModalG = document.getElementById("conteudoModalG");
-    const modal = document.getElementById('modal');
+        const vceh = document.getElementById("vceh");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        const modal = document.getElementById('modalTeste');
         if (modal.classList != "none") {
-        modal.classList.add("none");
-        vceh.classList.add("none");
-        conteudoModalL.classList.add("none");
-        conteudoModalT.classList.add("none");   
-        conteudoModalA.classList.add("none"); 
-        conteudoModalG.classList.add("none");
+            modal.classList.add("none");
+            vceh.classList.add("none");
+            conteudoModalL.classList.add("none");
+            conteudoModalT.classList.add("none");
+            conteudoModalA.classList.add("none");
+            conteudoModalG.classList.add("none");
         }
     }
 
-let Lobo;
-let Tubarao;
-let Aguia;
-let Gato;
+    let Lobo;
+    let Tubarao;
+    let Aguia;
+    let Gato;
     function PerfilPorcentagem(listResposta) {
         var I = 0; var A = 0; var O = 0; var C = 0;
         for (var i = 0; i < listResposta.length; i++) {
@@ -237,30 +239,30 @@ let Gato;
                 I++;
                 continue;
             }
-    
+
             if (listResposta[i] == "A") {
                 A++;
                 continue;
             }
-    
+
             if (listResposta[i] == "C") {
                 C++;
                 continue;
             }
-    
+
             if (listResposta[i] == "O")
                 O++;
         }
-    
+
         A = A * 4;
         O = O * 4;
         I = I * 4;
-        C = C * 4;  
-        Tubarao=A;
-        Lobo=O;
-        Aguia=I;
-        Gato=C;  
-        
+        C = C * 4;
+        Tubarao = A;
+        Lobo = O;
+        Aguia = I;
+        Gato = C;
+
         const conteudoModalG = document.getElementById("conteudoModalG");
         const conteudoModalT = document.getElementById("conteudoModalT");
         const conteudoModalL = document.getElementById("conteudoModalL");
@@ -279,124 +281,127 @@ let Gato;
         }
     };
 
-function ConteudoAguia() {
-const vceh = document.getElementById("vceh");
-const conteudoModalG = document.getElementById("conteudoModalG");
-const conteudoModalT = document.getElementById("conteudoModalT");
-const conteudoModalL = document.getElementById("conteudoModalL");
-const conteudoModalA = document.getElementById("conteudoModalA");
-    if (conteudoModalA.classList == "none") {    
-        vceh.classList.add("none");
-        conteudoModalG.classList.add("none");
-        conteudoModalL.classList.add("none");
-        conteudoModalT.classList.add("none");    
-        conteudoModalA.classList.remove("none");
+    function ConteudoAguia() {
+        const vceh = document.getElementById("vceh");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        if (conteudoModalA.classList == "none") {
+            vceh.classList.add("none");
+            conteudoModalG.classList.add("none");
+            conteudoModalL.classList.add("none");
+            conteudoModalT.classList.add("none");
+            conteudoModalA.classList.remove("none");
+        }
     }
-}
 
-function ConteudoGato () {
-    const vceh = document.getElementById("vceh");
-    const conteudoModalT = document.getElementById("conteudoModalT");
-    const conteudoModalL = document.getElementById("conteudoModalL");
-    const conteudoModalA= document.getElementById("conteudoModalA");
-    const conteudoModalG = document.getElementById("conteudoModalG");
-    if (conteudoModalG.classList == "none") {
-        vceh.classList.add("none");
-        conteudoModalL.classList.add("none");
-        conteudoModalT.classList.add("none");   
-        conteudoModalA.classList.add("none"); 
-        conteudoModalG.classList.remove("none");
+    function ConteudoGato() {
+        const vceh = document.getElementById("vceh");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        if (conteudoModalG.classList == "none") {
+            vceh.classList.add("none");
+            conteudoModalL.classList.add("none");
+            conteudoModalT.classList.add("none");
+            conteudoModalA.classList.add("none");
+            conteudoModalG.classList.remove("none");
+        }
     }
-}
 
-function ConteudoTubarao () {
-    const vceh = document.getElementById("vceh");
-    const conteudoModalG = document.getElementById("conteudoModalG");
-    const conteudoModalL = document.getElementById("conteudoModalL");
-    const conteudoModalA= document.getElementById("conteudoModalA");
-    const conteudoModalT = document.getElementById("conteudoModalT");
-    if (conteudoModalT.classList == "none") {
-        vceh.classList.add("none");
-        conteudoModalG.classList.add("none");
-        conteudoModalL.classList.add("none"); 
-        conteudoModalA.classList.add("none");
-        conteudoModalT.classList.remove("none");
+    function ConteudoTubarao() {
+        const vceh = document.getElementById("vceh");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        if (conteudoModalT.classList == "none") {
+            vceh.classList.add("none");
+            conteudoModalG.classList.add("none");
+            conteudoModalL.classList.add("none");
+            conteudoModalA.classList.add("none");
+            conteudoModalT.classList.remove("none");
+        }
     }
-}
 
-function ConteudoLobo() {
-    const vceh = document.getElementById("vceh");
-    const conteudoModalG = document.getElementById("conteudoModalG");
-    const conteudoModalL = document.getElementById("conteudoModalL");
-    const conteudoModalA= document.getElementById("conteudoModalA");
-    const conteudoModalT = document.getElementById("conteudoModalT");
-    if (conteudoModalL.classList == "none") {
-        vceh.classList.add("none");
-        conteudoModalG.classList.add("none");
-        conteudoModalT.classList.add("none"); 
-        conteudoModalA.classList.add("none");
-        conteudoModalL.classList.remove("none");
+    function ConteudoLobo() {
+        const vceh = document.getElementById("vceh");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        if (conteudoModalL.classList == "none") {
+            vceh.classList.add("none");
+            conteudoModalG.classList.add("none");
+            conteudoModalT.classList.add("none");
+            conteudoModalA.classList.add("none");
+            conteudoModalL.classList.remove("none");
+        }
     }
-}
 
-let cont=0;
-function ExibirAguia(){
-    if(cont<Aguia){
-        cont++;
-        document.getElementById('I').innerHTML = cont + '%';
-    }else{
-        clearInterval(IntervalAguia);
+    let cont = 0;
+    function ExibirAguia() {
+        if (cont < Aguia) {
+            cont++;
+            document.getElementById('I').innerHTML = cont + '%';
+        } else {
+            clearInterval(IntervalAguia);
+        }
     }
-}
-function ExibirGato(){
-    if(cont<Gato){
-        cont++;
-        document.getElementById('C').innerHTML = cont + '%';
-    }else{
-        clearInterval(IntervalGato);
+    function ExibirGato() {
+        if (cont < Gato) {
+            cont++;
+            document.getElementById('C').innerHTML = cont + '%';
+        } else {
+            clearInterval(IntervalGato);
+        }
     }
-}
-function ExibirLobo(){
-    if(cont<Lobo){
-        cont++;
-        document.getElementById('O').innerHTML = cont + '%'; 
-    }else{
-        clearInterval(IntervalLobo);
+    function ExibirLobo() {
+        if (cont < Lobo) {
+            cont++;
+            document.getElementById('O').innerHTML = cont + '%';
+        } else {
+            clearInterval(IntervalLobo);
+        }
     }
-}
-function ExibirTubarao(){
-    if(cont<Tubarao){
-        cont++;
-        document.getElementById('A').innerHTML = cont + '%'; 
-    }else{
-        clearInterval(IntervalTubarao);
+    function ExibirTubarao() {
+        if (cont < Tubarao) {
+            cont++;
+            document.getElementById('A').innerHTML = cont + '%';
+        } else {
+            clearInterval(IntervalTubarao);
+        }
     }
-}
 
-let IntervalTubarao;
-let IntervalLobo;
-let IntervalAguia;    
-let IntervalGato;
+    let IntervalTubarao;
+    let IntervalLobo;
+    let IntervalAguia;
+    let IntervalGato;
 
-function Enviar() {
-    if (CadastrarReposta()) {
-        const modal = document.getElementById('modal');
-        if (modal.classList == "none")
-            modal.classList.remove("none")
-            IntervalAguia=setInterval(ExibirAguia,"0300")
-            cont =0;
-            IntervalGato=setInterval(ExibirGato,"0300")
-            cont =0;
-            IntervalLobo=setInterval(ExibirLobo,"0300")
-            cont =0;
-            IntervalTubarao=setInterval(ExibirTubarao,"0300")    
+    function Enviar() {
+        if (CadastrarReposta()) {
+            const modal = document.getElementById('modalTeste');
+            if (modal.classList == "none")
+                modal.classList.remove("none")
+            IntervalAguia = setInterval(ExibirAguia, "0300")
+            cont = 0;
+            IntervalGato = setInterval(ExibirGato, "0300")
+            cont = 0;
+            IntervalLobo = setInterval(ExibirLobo, "0300")
+            cont = 0;
+            IntervalTubarao = setInterval(ExibirTubarao, "0300")
+        }
     }
-}
 
     return (
         <div className="bodyPartTestePersonalidade">
+            <AccessBar />
             <Header />
+            <AccessMenu />
             <h1>Teste de personalidade</h1>
+            <p className="Questionario">Para não tendenciar o resultado, escolha as resposta mais adequadas a você como indivíduo.</p>
             <div id="q1" className="Questionario">
                 <h3>Eu sou...</h3>
                 <InputRadius label="Idealista,criativo e visionário" name="q1" value="I" />
@@ -596,9 +601,11 @@ function Enviar() {
                 <InputRadius label="Duas cabeças pensam melhor que do que uma" name="q25" value="C" />
                 <InputRadius label="Se você não tem condições de competir, não compita" name="q25" value="A" />
             </div>
-            <button onClick={Enviar}>Enviar</button>
+            <div className="aligncenter">
+                <button onClick={Enviar}>ENVIAR</button>
+            </div>
 
-            <div id="modal" className="none">
+            <div id="modalTeste" className="none">
                 <div class="pelicula" id="pelicula" onClick={btn_fechar}></div>
                 <div class="janela">
                     <p onClick={btn_fechar} id="fechar">X</p>
@@ -610,14 +617,14 @@ function Enviar() {
                         <div class="animais">
                             <div class="animal">
                                 <div class="alinhar">
-                                    <img src={imgAguia} alt="Aguia" class="aguia" id="imgAguia" onClick={ConteudoAguia}/>
+                                    <img src={imgAguia} alt="Aguia" class="aguia" id="imgAguia" onClick={ConteudoAguia} />
 
                                     <div class="nomePorcentagem">
                                         <p>ÁGUIA</p>
                                         <p id="I">%</p>
                                     </div>
                                 </div>
-                               
+
                                 <p class="palavraChave">A CRIATIVA</p>
                             </div>
                             <div class="animal">
@@ -628,7 +635,7 @@ function Enviar() {
                                         <p id="O">%</p>
                                     </div>
                                 </div>
-                                
+
                                 <p class="palavraChave">O ORGANIZADOR</p>
                             </div>
                             <div class="animal">
@@ -639,18 +646,18 @@ function Enviar() {
                                         <p id="A">%</p>
                                     </div>
                                 </div>
-                               
+
                                 <p class="palavraChave">O ATACADO</p>
                             </div>
                             <div class="animal">
                                 <div class="alinhar">
-                                    <img src={imgGato} alt="gato" class="aguia" id="imgGato" onClick={ConteudoGato}/>
+                                    <img src={imgGato} alt="gato" class="aguia" id="imgGato" onClick={ConteudoGato} />
                                     <div class="nomePorcentagem">
                                         <p id="imgGato">GATO</p>
                                         <p id="C">%</p>
                                     </div>
                                 </div>
-                      
+
                                 <p class="palavraChave">O EXTROVERTIDO</p>
                             </div>
                         </div>

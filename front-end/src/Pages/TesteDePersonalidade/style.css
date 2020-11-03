@@ -1,8 +1,37 @@
 .Questionario{
-padding: 2vh;
+padding: 2vh 10vw;
 }
 
+.aligncenter{
+    text-align: center;
+    padding: 2vw;
+}
 
+.aligncenter > button{
+    width: auto;
+    height: auto;
+    padding: 12px 25px;
+    background: #353535;
+    border-radius: 4px;
+    color: white;
+    border: #353535 solid 1px !important;
+    transition: .5s;
+}
+
+.aligncenter > button:hover{
+    padding: 12px 25px;
+    background: white;
+    border-radius: 4px;
+    color: #353535;
+    border: white solid 1px;
+    transition: .5s;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+#root > div > h1{
+    margin: 2vw 0vw 0vw 10vw;
+}
 .none {
     display: none;
     }
@@ -116,4 +145,10 @@ padding: 2vh;
     .conteudo h2 {
         padding-top: 15px;
         padding-bottom: 15px;
+    }
+
+    @media (max-width: 1000px){
+        #modalTeste > div.janela > div.conteudoModal{
+            /* display: unset; */
+        }
     }
