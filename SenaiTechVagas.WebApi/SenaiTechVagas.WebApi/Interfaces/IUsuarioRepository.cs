@@ -10,7 +10,6 @@ namespace SenaiTechVagas.WebApi.Interfaces
      interface IUsuarioRepository
     {
         Usuario Logar(string email, string senha);
-        bool AtualizarUsuario(int idUsuario,AtualizarUsuarioViewModel usuario);
         bool CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato);
         bool CadastrarEmpresa(CadastrarEmpresaViewModel empresa);
         List<ListarVagasViewModel> ListarVagasArea(int idArea);
@@ -20,5 +19,6 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<ListarVagasViewModel> ListarPesquisaTecnologia(string NomeTecnologia);
         string VerificarSeCredencialJaFoiCadastrada(VerificacaoViewModel vm);
         VagaCompletaViewModel BuscarVagaPeloId(int id);
+        bool AlterarSenha(string email,string Pergunta,string Resposta, string NovaSenha);
     }
 }

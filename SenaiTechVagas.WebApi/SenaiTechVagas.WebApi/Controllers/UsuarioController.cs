@@ -114,23 +114,21 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        /// <summary>
-        /// Método que atualiza a senha do usuário pelo identificador e o objeto.
-        /// </summary>
-        /// <param name="usuarioAtualizado">Objeto do usuário</param>
-        /// <returns>Retorna um usuário atualizado pelo id e o objeto</returns>
-        [Authorize(Roles = "1")]
-        [HttpPut("AtualizarUsuario")]
-        public IActionResult AtualizaDadosUsuario(AtualizarUsuarioViewModel usuarioAtualizado)
+ 
+
+        [HttpPut("AlterarSenha")]
+        public IActionResult AlterarSenha(string email, string Pergunta, string Resposta, string NovaSenha)
         {
             try
-            {
-                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-
-                if (usuarioRepository.AtualizarUsuario(idUsuario, usuarioAtualizado))
-                    return Ok("Usuario atuakizado com sucesso");
+            { 
+                if (usuarioRepository.AlterarSenha(email, Pergunta, Resposta, NovaSenha))
+                {
+                    return Ok("Senha alterada");
+                }
                 else
-                    return BadRequest("Não foi possivel atualizar os dados do usuario veja se preencheu corretamente");
+                {
+                    return BadRequest("Não foi possivel alterar a senha");
+                }
             }
             catch (Exception)
             {
@@ -142,7 +140,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todas as vagas publicadas
         /// </summary>
         /// <returns></returns>
-        
+
         [HttpGet("ListarTodasAsVagas")]
         public IActionResult ListarVagasEmGeral()
         {

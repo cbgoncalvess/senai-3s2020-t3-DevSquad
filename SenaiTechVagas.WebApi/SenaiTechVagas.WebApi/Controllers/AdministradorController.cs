@@ -539,6 +539,23 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        
+        [HttpPut("AlterarSenhaDoUsuario")]
+        public IActionResult AterarSenha(string email,string NovaSenha)
+        {
+            try
+            {
+                if (_Admin.AlterarSenhaDoUsuario(email, NovaSenha))
+                    return Ok("Senha alterada com sucesso");
+                else
+                    return BadRequest("Não foi possivel alterar a senha para o email informado");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         /// <summary>
         /// Atualiza a area
         /// </summary>

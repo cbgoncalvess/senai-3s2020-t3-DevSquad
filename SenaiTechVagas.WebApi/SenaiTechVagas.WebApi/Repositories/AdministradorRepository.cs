@@ -2,6 +2,7 @@
 using SenaiTechVagas.WebApi.Contexts;
 using SenaiTechVagas.WebApi.Domains;
 using SenaiTechVagas.WebApi.Interfaces;
+using SenaiTechVagas.WebApi.Utils;
 using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -379,7 +380,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    return ctx.Candidato.ToList();
+                    return ctx.Candidato.Select(u=>new Candidato { NomeCompleto=u.NomeCompleto,Telefone=u.Telefone}).ToList();
                 }
                 catch (Exception)
                 {
@@ -529,7 +530,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    return ctx.Empresa.ToList();
+                    return ctx.Empresa.Select(u => new Empresa { RazaoSocial = u.RazaoSocial,NomeReponsavel=u.NomeReponsavel }).ToList();
                 }
                 catch (Exception)
                 {
@@ -785,6 +786,30 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.Update(areaBuscada);
                     ctx.SaveChanges();
                     return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool AlterarSenhaDoUsuario(string email, string NovaSenha)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    var usuario = ctx.Usuario.FirstOrDefault(u => u.Email == email);
+                    if (usuario == null)
+                        return false;
+                    else
+                    {
+                        usuario.Senha = Crypter.Criptografador(NovaSenha);
+                        ctx.Update(usuario);
+                        ctx.SaveChanges();
+                        return true;
+                    }
                 }
                 catch (Exception)
                 {

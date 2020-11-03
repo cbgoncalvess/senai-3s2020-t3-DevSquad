@@ -7453,27 +7453,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\senai\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\49446034876\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\49446034876\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
       "projectName": "SenaiTechVagas.WebApi",
-      "projectPath": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
-      "packagesPath": "C:\\Users\\senai\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\senai\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\obj\\",
+      "projectPath": "C:\\Users\\49446034876\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi.csproj",
+      "packagesPath": "C:\\Users\\49446034876\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\49446034876\\Desktop\\senai-3s2020-t3-DevSquad\\SenaiTechVagas.WebApi\\SenaiTechVagas.WebApi\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\senai\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\49446034876\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -7549,7 +7542,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

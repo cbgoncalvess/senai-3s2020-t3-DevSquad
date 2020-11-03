@@ -39,28 +39,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
-
-        public bool AtualizarUsuario(int idUsuario, AtualizarUsuarioViewModel usuario)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    Usuario usuarioBuscado = ctx.Usuario.Find(idUsuario);
-
-                    if (usuario.Email != null)
-                        usuarioBuscado.Email = usuario.Email;
-
-                    if (usuario.Senha != null)
-                        usuarioBuscado.Senha = usuario.Senha;
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
         public bool CadastrarEmpresa(CadastrarEmpresaViewModel empresa)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -71,7 +49,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                     {
                         IdTipoUsuario = 3,
                         Email = empresa.Email,
-                        Senha = empresa.Senha
+                        Senha = empresa.Senha,
+                        RespostaSeguranca=empresa.RespostaSeguranca,
+                        PerguntaSeguranca=empresa.PerguntaSeguranca
                     };
 
                     Empresa NovaEmpresa = new Empresa()
@@ -111,7 +91,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                     {
                         Email = NovoCandidato.Email,
                         Senha = NovoCandidato.Senha,
-                        IdTipoUsuario = 2
+                        IdTipoUsuario = 2,
+                        RespostaSeguranca = NovoCandidato.RespostaSeguranca,
+                        PerguntaSeguranca = NovoCandidato.PerguntaSeguranca
                     };
                     Candidato applicant = new Candidato()
                     {
@@ -129,7 +111,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return false;
                 }
@@ -649,6 +631,28 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception)
                 {
                     return "Erro no sistema";
+                }
+            }
+        }
+
+        public bool AlterarSenha(string email,string pergunta,string resposta,string NovaSenha)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    var usuario = ctx.Usuario.FirstOrDefault(u=>u.Email==email&&u.PerguntaSeguranca==pergunta&&u.RespostaSeguranca==resposta);
+                    if (usuario == null)
+                        return false;
+
+                    usuario.Senha = Crypter.Criptografador(NovaSenha);
+                    ctx.Update(usuario);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
                 }
             }
         }

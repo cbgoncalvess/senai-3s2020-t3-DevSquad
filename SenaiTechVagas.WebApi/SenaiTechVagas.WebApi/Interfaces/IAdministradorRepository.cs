@@ -45,5 +45,6 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool DeletarAdministrador(int id);
         List<Usuario> ListarAdministradores();
         bool VerificarSeExiste(int idEstagio);
+        bool AlterarSenhaDoUsuario(string email, string NovaSenha);
     }
 }

@@ -66,5 +66,11 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [DataType(DataType.Password)]
         [StringLength(20, MinimumLength = 10, ErrorMessage = "A senha deve ter entre 10 e 20 caracteres")]
         public string Senha { get; set; }
+
+        [Required]
+        public string RespostaSeguranca { get; set; }
+
+        [Required]
+        public string PerguntaSeguranca { get; set; }
     }
 }

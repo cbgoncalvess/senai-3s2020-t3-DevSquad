@@ -111,4 +111,7 @@ VALUES		(2, 1),
 			(9, 1);
 GO
 
+Insert into Area(NomeArea)VALUES
+('Dev'),('Redes'),('Multimidia')
+
 use master

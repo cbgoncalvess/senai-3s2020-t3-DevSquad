@@ -41,6 +41,8 @@ CREATE TABLE Usuario (
 	IdUsuario	  INT PRIMARY KEY IDENTITY,
 	Email		  VARCHAR (254) NOT NULL UNIQUE,
 	Senha		  VARCHAR (100) NOT NULL,
+	PerguntaSeguranca VARCHAR(130) NOT NULL,
+	RespostaSeguranca VARCHAR (30) NOT NULL,
 	IdTipoUsuario INT FOREIGN KEY REFERENCES TipoUsuario (IdTipoUsuario) NOT NULL
 ); 
 GO
@@ -73,7 +75,7 @@ CREATE TABLE Candidato (
 	LinkLinkedinCandidato VARCHAR (150) NOT NULL UNIQUE,
 	IdCurso				  INT FOREIGN KEY REFERENCES Curso (IdCurso),
 	IdArea		       INT FOREIGN KEY REFERENCES Area (IdArea)NOT NULL,
-	IdUsuario			  INT FOREIGN KEY REFERENCES Usuario (IdUsuario) NOT NULL UNIQUE
+	IdUsuario			  INT FOREIGN KEY REFERENCES Usuario (IdUsuario) NOT NULL UNIQUE,
 );
 GO
 
