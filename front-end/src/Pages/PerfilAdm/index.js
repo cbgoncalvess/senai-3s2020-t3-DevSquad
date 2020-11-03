@@ -3,7 +3,6 @@ import React from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
-import Select from '../../Components/Select/Index';
 import Input from '../../Components/Input/index';
 
 import imgDelete from '../../assets/delete.png'
@@ -14,14 +13,16 @@ import './style.css';
 export default function perfil() {
     return (
         <div className="bodyPartVizualizarPerfil">
-           
+
             <AccessBar />
             <Header />
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
-                    <img className="imgperfil" src={imgPadrao} alt="perfil" />
-                    <h3>Robertinho monstrão</h3>
-                    <p>administrador</p>
+                    <div className="imagem">
+                        <img className="imgperfil" src={imgPadrao} alt="perfil" />
+                        <h3>Robertinho monstrão</h3>
+                        <p>administrador</p>
+                    </div>
                     <div className="BotoesPerfil">
                         <button className="btPerfil"><h3>Alterar dados</h3></button>
                         <button className="btPerfil"><h3>Alterar senha</h3></button>

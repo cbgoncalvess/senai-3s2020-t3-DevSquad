@@ -225,11 +225,6 @@ export default function TesteDePesonalidade() {
         conteudoModalG.classList.add("none");
         }
     }
-
-let Lobo;
-let Tubarao;
-let Aguia;
-let Gato;
     function PerfilPorcentagem(listResposta) {
         var I = 0; var A = 0; var O = 0; var C = 0;
         for (var i = 0; i < listResposta.length; i++) {
@@ -255,16 +250,22 @@ let Gato;
         A = A * 4;
         O = O * 4;
         I = I * 4;
-        C = C * 4;  
-        Tubarao=A;
-        Lobo=O;
-        Aguia=I;
-        Gato=C;  
-        
+        C = C * 4; 
+
+        document.getElementById('I').innerHTML = I + '%';
+        document.getElementById('A').innerHTML = A + '%';
+        document.getElementById('O').innerHTML = O + '%';
+        document.getElementById('C').innerHTML = C + '%';
+
         const conteudoModalG = document.getElementById("conteudoModalG");
         const conteudoModalT = document.getElementById("conteudoModalT");
         const conteudoModalL = document.getElementById("conteudoModalL");
         const conteudoModalA = document.getElementById("conteudoModalA");
+
+        const modal = document.getElementById('modal');
+        if (modal.classList == "none")
+        modal.classList.remove("none")
+
         if (A > O && A >= I && A > C) {
             conteudoModalT.classList.remove("none");
         }
@@ -339,59 +340,6 @@ function ConteudoLobo() {
     }
 }
 
-let cont=0;
-function ExibirAguia(){
-    if(cont<Aguia){
-        cont++;
-        document.getElementById('I').innerHTML = cont + '%';
-    }else{
-        clearInterval(IntervalAguia);
-    }
-}
-function ExibirGato(){
-    if(cont<Gato){
-        cont++;
-        document.getElementById('C').innerHTML = cont + '%';
-    }else{
-        clearInterval(IntervalGato);
-    }
-}
-function ExibirLobo(){
-    if(cont<Lobo){
-        cont++;
-        document.getElementById('O').innerHTML = cont + '%'; 
-    }else{
-        clearInterval(IntervalLobo);
-    }
-}
-function ExibirTubarao(){
-    if(cont<Tubarao){
-        cont++;
-        document.getElementById('A').innerHTML = cont + '%'; 
-    }else{
-        clearInterval(IntervalTubarao);
-    }
-}
-
-let IntervalTubarao;
-let IntervalLobo;
-let IntervalAguia;    
-let IntervalGato;
-
-function Enviar() {
-    if (CadastrarReposta()) {
-        const modal = document.getElementById('modal');
-        if (modal.classList == "none")
-            modal.classList.remove("none")
-            IntervalAguia=setInterval(ExibirAguia,"0300")
-            cont =0;
-            IntervalGato=setInterval(ExibirGato,"0300")
-            cont =0;
-            IntervalLobo=setInterval(ExibirLobo,"0300")
-            cont =0;
-            IntervalTubarao=setInterval(ExibirTubarao,"0300")    
-    }
-}
 
     return (
         <div className="bodyPartTestePersonalidade">
@@ -596,7 +544,7 @@ function Enviar() {
                 <InputRadius label="Duas cabeças pensam melhor que do que uma" name="q25" value="C" />
                 <InputRadius label="Se você não tem condições de competir, não compita" name="q25" value="A" />
             </div>
-            <button onClick={Enviar}>Enviar</button>
+            <button onClick={CadastrarReposta}>Enviar</button>
 
             <div id="modal" className="none">
                 <div className="pelicula" id="pelicula" onClick={btn_fechar}></div>
@@ -660,28 +608,28 @@ function Enviar() {
                                 <h2 id="nomeAnimal">Gato</h2>
 
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
+                                    Gato, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
                     </p>
                             </div>
                             <div id="conteudoModalT" className="none">
                                 <h2 id="nomeAnimal">Tubarão</h2>
 
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
+                                    Tubarao, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
                     </p>
                             </div>
                             <div id="conteudoModalA" className="none">
                                 <h2 id="nomeAnimal">Águia</h2>
 
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
+                                    Aguia, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
                     </p>
                             </div>
                             <div id="conteudoModalL" className="none">
                                 <h2 id="nomeAnimal">Lobo</h2>
 
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
+                                    Lobo, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
                     </p>
                             </div>
                         </div>
