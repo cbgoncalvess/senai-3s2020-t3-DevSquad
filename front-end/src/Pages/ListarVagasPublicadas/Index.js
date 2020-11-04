@@ -43,7 +43,7 @@ export default function VagasPublicadas() {
                 <h2>Vagas que você publicou nos últimos dias</h2>
                 <br/>
                 <div className="vaga">
-                    <div className="Edit-Delete">
+                <div className="Edit-Delete">
                         <a>Publicou a vaga em 10/02/2020</a>
                         <img className="Edit" src={imgEdit} onClick={AbrirModal} />
                         <img className="Delete" src={imgDelete} />
