@@ -166,7 +166,7 @@ export default function Home() {
                         <br />
                         <br />
                         <div className="btnTeste">
-                            <button className="bt"><h4>FAZER O TESTE</h4></button>
+                            <a href="/TesteDePersonalidade"><button className="bt"><h4>FAZER O TESTE</h4></button></a>
                         </div>
                         <br />
                     </div>

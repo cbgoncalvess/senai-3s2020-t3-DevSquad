@@ -11,6 +11,9 @@ import imgTubarao from '../../../src/assets/tubarao.png'
 import imgAguia from '../../../src/assets/aguia.png'
 import imgGato from '../../../src/assets/gato.png'
 
+import bgTeste from '../../assets/bg-teste.png';
+
+
 
 export default function TesteDePesonalidade() {
     let listResposta = [];
@@ -203,26 +206,26 @@ export default function TesteDePesonalidade() {
     }
 
     function AbrirModal() {
-        const modal = document.getElementById('modal');
+        const modal = document.getElementById('modalTeste');
         if (modal.classList == "none") {
             modal.classList.remove("none");
         }
     }
 
     function btn_fechar() {
-    const vceh = document.getElementById("vceh");
-    const conteudoModalT = document.getElementById("conteudoModalT");
-    const conteudoModalL = document.getElementById("conteudoModalL");
-    const conteudoModalA= document.getElementById("conteudoModalA");
-    const conteudoModalG = document.getElementById("conteudoModalG");
-    const modal = document.getElementById('modal');
+        const vceh = document.getElementById("vceh");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        const modal = document.getElementById('modalTeste');
         if (modal.classList != "none") {
-        modal.classList.add("none");
-        vceh.classList.add("none");
-        conteudoModalL.classList.add("none");
-        conteudoModalT.classList.add("none");   
-        conteudoModalA.classList.add("none"); 
-        conteudoModalG.classList.add("none");
+            modal.classList.add("none");
+            vceh.classList.add("none");
+            conteudoModalL.classList.add("none");
+            conteudoModalT.classList.add("none");
+            conteudoModalA.classList.add("none");
+            conteudoModalG.classList.add("none");
         }
     }
     function PerfilPorcentagem(listResposta) {
@@ -232,25 +235,25 @@ export default function TesteDePesonalidade() {
                 I++;
                 continue;
             }
-    
+
             if (listResposta[i] == "A") {
                 A++;
                 continue;
             }
-    
+
             if (listResposta[i] == "C") {
                 C++;
                 continue;
             }
-    
+
             if (listResposta[i] == "O")
                 O++;
         }
-    
+
         A = A * 4;
         O = O * 4;
         I = I * 4;
-        C = C * 4; 
+        C = C * 4;
 
         document.getElementById('I').innerHTML = I + '%';
         document.getElementById('A').innerHTML = A + '%';
@@ -262,9 +265,9 @@ export default function TesteDePesonalidade() {
         const conteudoModalL = document.getElementById("conteudoModalL");
         const conteudoModalA = document.getElementById("conteudoModalA");
 
-        const modal = document.getElementById('modal');
+        const modal = document.getElementById('modalTeste');
         if (modal.classList == "none")
-        modal.classList.remove("none")
+            modal.classList.remove("none")
 
         if (A > O && A >= I && A > C) {
             conteudoModalT.classList.remove("none");
@@ -280,71 +283,72 @@ export default function TesteDePesonalidade() {
         }
     };
 
-function ConteudoAguia() {
-const vceh = document.getElementById("vceh");
-const conteudoModalG = document.getElementById("conteudoModalG");
-const conteudoModalT = document.getElementById("conteudoModalT");
-const conteudoModalL = document.getElementById("conteudoModalL");
-const conteudoModalA = document.getElementById("conteudoModalA");
-    if (conteudoModalA.classList == "none") {    
-        vceh.classList.add("none");
-        conteudoModalG.classList.add("none");
-        conteudoModalL.classList.add("none");
-        conteudoModalT.classList.add("none");    
-        conteudoModalA.classList.remove("none");
+    function ConteudoAguia() {
+        const vceh = document.getElementById("vceh");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        if (conteudoModalA.classList == "none") {
+            vceh.classList.add("none");
+            conteudoModalG.classList.add("none");
+            conteudoModalL.classList.add("none");
+            conteudoModalT.classList.add("none");
+            conteudoModalA.classList.remove("none");
+        }
     }
-}
 
-function ConteudoGato () {
-    const vceh = document.getElementById("vceh");
-    const conteudoModalT = document.getElementById("conteudoModalT");
-    const conteudoModalL = document.getElementById("conteudoModalL");
-    const conteudoModalA= document.getElementById("conteudoModalA");
-    const conteudoModalG = document.getElementById("conteudoModalG");
-    if (conteudoModalG.classList == "none") {
-        vceh.classList.add("none");
-        conteudoModalL.classList.add("none");
-        conteudoModalT.classList.add("none");   
-        conteudoModalA.classList.add("none"); 
-        conteudoModalG.classList.remove("none");
+    function ConteudoGato() {
+        const vceh = document.getElementById("vceh");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        if (conteudoModalG.classList == "none") {
+            vceh.classList.add("none");
+            conteudoModalL.classList.add("none");
+            conteudoModalT.classList.add("none");
+            conteudoModalA.classList.add("none");
+            conteudoModalG.classList.remove("none");
+        }
     }
-}
 
-function ConteudoTubarao () {
-    const vceh = document.getElementById("vceh");
-    const conteudoModalG = document.getElementById("conteudoModalG");
-    const conteudoModalL = document.getElementById("conteudoModalL");
-    const conteudoModalA= document.getElementById("conteudoModalA");
-    const conteudoModalT = document.getElementById("conteudoModalT");
-    if (conteudoModalT.classList == "none") {
-        vceh.classList.add("none");
-        conteudoModalG.classList.add("none");
-        conteudoModalL.classList.add("none"); 
-        conteudoModalA.classList.add("none");
-        conteudoModalT.classList.remove("none");
+    function ConteudoTubarao() {
+        const vceh = document.getElementById("vceh");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        if (conteudoModalT.classList == "none") {
+            vceh.classList.add("none");
+            conteudoModalG.classList.add("none");
+            conteudoModalL.classList.add("none");
+            conteudoModalA.classList.add("none");
+            conteudoModalT.classList.remove("none");
+        }
     }
-}
 
-function ConteudoLobo() {
-    const vceh = document.getElementById("vceh");
-    const conteudoModalG = document.getElementById("conteudoModalG");
-    const conteudoModalL = document.getElementById("conteudoModalL");
-    const conteudoModalA= document.getElementById("conteudoModalA");
-    const conteudoModalT = document.getElementById("conteudoModalT");
-    if (conteudoModalL.classList == "none") {
-        vceh.classList.add("none");
-        conteudoModalG.classList.add("none");
-        conteudoModalT.classList.add("none"); 
-        conteudoModalA.classList.add("none");
-        conteudoModalL.classList.remove("none");
+    function ConteudoLobo() {
+        const vceh = document.getElementById("vceh");
+        const conteudoModalG = document.getElementById("conteudoModalG");
+        const conteudoModalL = document.getElementById("conteudoModalL");
+        const conteudoModalA = document.getElementById("conteudoModalA");
+        const conteudoModalT = document.getElementById("conteudoModalT");
+        if (conteudoModalL.classList == "none") {
+            vceh.classList.add("none");
+            conteudoModalG.classList.add("none");
+            conteudoModalT.classList.add("none");
+            conteudoModalA.classList.add("none");
+            conteudoModalL.classList.remove("none");
+        }
     }
-}
 
 
     return (
         <div className="bodyPartTestePersonalidade">
             <Header />
             <h1>Teste de personalidade</h1>
+            <p className="Questionario">Para não distorcer o resultado, procure ser bem verdadeiro e escolher a resposta mais adequada "para você”!</p>
             <div id="q1" className="Questionario">
                 <h3>Eu sou...</h3>
                 <InputRadius label="Idealista,criativo e visionário" name="q1" value="I" />
@@ -544,9 +548,11 @@ function ConteudoLobo() {
                 <InputRadius label="Duas cabeças pensam melhor que do que uma" name="q25" value="C" />
                 <InputRadius label="Se você não tem condições de competir, não compita" name="q25" value="A" />
             </div>
-            <button onClick={CadastrarReposta}>Enviar</button>
+            <div class="centro">
+                <button onClick={CadastrarReposta}>Enviar</button>
+            </div>
 
-            <div id="modal" className="none">
+            <div id="modalTeste" className="none">
                 <div className="pelicula" id="pelicula" onClick={btn_fechar}></div>
                 <div className="janela">
                     <p onClick={btn_fechar} id="fechar">X</p>
@@ -558,25 +564,25 @@ function ConteudoLobo() {
                         <div className="animais">
                             <div className="animal">
                                 <div className="alinhar">
-                                    <img src={imgAguia} alt="Aguia" className="aguia" id="imgAguia" onClick={ConteudoAguia}/>
+                                    <img src={imgAguia} alt="Aguia" className="aguia" id="imgAguia" onClick={ConteudoAguia} />
 
                                     <div className="nomePorcentagem">
                                         <p>ÁGUIA</p>
                                         <p id="I">%</p>
                                     </div>
                                 </div>
-                               
+
                                 <p className="palavraChave">A CRIATIVA</p>
                             </div>
                             <div className="animal">
                                 <div className="alinhar">
-                                    <img src={imgLobo} alt="Lobo"className="aguia" id="imgLobo" onClick={ConteudoLobo} />
+                                    <img src={imgLobo} alt="Lobo" className="aguia" id="imgLobo" onClick={ConteudoLobo} />
                                     <div className="nomePorcentagem">
                                         <p id="imgLobo">LOBO</p>
                                         <p id="O">%</p>
                                     </div>
                                 </div>
-                                
+
                                 <p className="palavraChave">O ORGANIZADOR</p>
                             </div>
                             <div className="animal">
@@ -587,18 +593,18 @@ function ConteudoLobo() {
                                         <p id="A">%</p>
                                     </div>
                                 </div>
-                               
+
                                 <p className="palavraChave">O ATACADO</p>
                             </div>
                             <div className="animal">
                                 <div className="alinhar">
-                                    <img src={imgGato} alt="gato" className="aguia" id="imgGato" onClick={ConteudoGato}/>
+                                    <img src={imgGato} alt="gato" className="aguia" id="imgGato" onClick={ConteudoGato} />
                                     <div className="nomePorcentagem">
                                         <p id="imgGato">GATO</p>
                                         <p id="C">%</p>
                                     </div>
                                 </div>
-                      
+
                                 <p className="palavraChave">O EXTROVERTIDO</p>
                             </div>
                         </div>
@@ -608,29 +614,38 @@ function ConteudoLobo() {
                                 <h2 id="nomeAnimal">Gato</h2>
 
                                 <p>
-                                    Gato, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
+                                    Seu lema é: 'Fazer Junto'. É sensível, gosta de relacionamentos, de times, é tradicionalista, busca harmonia e delega autoridade.
+                                    Pontos Fortes: Comunicação, manter a harmonia, desenvolver e manter a cultura empresarial e comunicação aberta.
+                                    Pontos de melhoria: esconder conflitos, felicidade acima dos resultados, manipulação através dos sentimentos.
+                                    Motivações: Segurança, aceitação social, construir o consenso, reconhecimento da equipe, supervisão compreensiva, ambiente harmonico e trabalho em grupo.
                     </p>
                             </div>
                             <div id="conteudoModalT" className="none">
                                 <h2 id="nomeAnimal">Tubarão</h2>
 
                                 <p>
-                                    Tubarao, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
-                    </p>
+                                    Seu lema é: 'Fazer rápido'. Tem senso de urgência, ação, iniciativa, é impulsivo, prático, gosta de vencer desafios, focado no aqui e agora. É auto-suficiente e não gosta de delegar poder.
+                                    Pontos Fortes: Fazer acontecer, parar com a burocracia e a motivação.
+                                    Pontos de melhoria: socialmente um desastre, faz do modo mais fácil e relacionamento complicado.
+Motivações: Liberdade para agir individualmente, controle das próprias atividades, resolver os problemas do seu jeito, competição individual, variedade de atividades e não ter que repetir tarefas.                    </p>
                             </div>
                             <div id="conteudoModalA" className="none">
                                 <h2 id="nomeAnimal">Águia</h2>
 
                                 <p>
-                                    Aguia, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
-                    </p>
+                                    Seu lema é: 'Fazer Diferente'. É criativo. intuitivo. tem foco no futuro, distraído, curioso, informal, casual e flexível
+                                    Pontos fortes: Provoca mudanças radicais, antecipa o futuro e a criatividade.
+                                    Pontos de melhoria: Falta de atenção no aqui e agora, impaciência, rebeldia e defender o novo pelo novo.
+Motivações: Liberdade de expressão, ausência de controles rígidos, ambiente de trabalho descontraído, liberdade para fazer exceções e oportunidades para delegar tarefas e detalhes.                    </p>
                             </div>
                             <div id="conteudoModalL" className="none">
                                 <h2 id="nomeAnimal">Lobo</h2>
 
                                 <p>
-                                    Lobo, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
-                    </p>
+                                    Seu lema é: 'Fazer Certo'. É detalhista, organizado, estrategista, busca conhecimento, pontual, conservador e previsível.
+                                    Pontos Fortes: Organização. Consciência, conformidade e qualidade. Lealdade e segurança. Regras e responsabilidades.
+                                    Pontos de melhoria: dificuldades de se adaptar as mudanças. Pode impedir o progresso. Detalhista, estruturado e demasiadamente sistematizado.
+Motivações: Compreensão exata de quais são as regras. Conhecimento específico do trabalho. Ausência de riscos e erros. Ver o produto acabado: começo, meio e fim.                    </p>
                             </div>
                         </div>
                     </div>
