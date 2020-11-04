@@ -3,15 +3,16 @@ import React from 'react';
 import './style.css';
 
 import InputRadius from '../../Components/InputRadius';
-import Header from '../../Components/Header';
+import Header from '../../Components/Header'
 import Footer from '../../Components/Footer';
-import AccessBar from '../../Components/AccessBar';
-import AccessMenu from '../../Components/AccessMenu';
 
 import imgLobo from '../../../src/assets/lobo.png'
 import imgTubarao from '../../../src/assets/tubarao.png'
 import imgAguia from '../../../src/assets/aguia.png'
 import imgGato from '../../../src/assets/gato.png'
+
+import bgTeste from '../../assets/bg-teste.png';
+
 
 
 export default function TesteDePesonalidade() {
@@ -227,11 +228,6 @@ export default function TesteDePesonalidade() {
             conteudoModalG.classList.add("none");
         }
     }
-
-    let Lobo;
-    let Tubarao;
-    let Aguia;
-    let Gato;
     function PerfilPorcentagem(listResposta) {
         var I = 0; var A = 0; var O = 0; var C = 0;
         for (var i = 0; i < listResposta.length; i++) {
@@ -258,15 +254,21 @@ export default function TesteDePesonalidade() {
         O = O * 4;
         I = I * 4;
         C = C * 4;
-        Tubarao = A;
-        Lobo = O;
-        Aguia = I;
-        Gato = C;
+
+        document.getElementById('I').innerHTML = I + '%';
+        document.getElementById('A').innerHTML = A + '%';
+        document.getElementById('O').innerHTML = O + '%';
+        document.getElementById('C').innerHTML = C + '%';
 
         const conteudoModalG = document.getElementById("conteudoModalG");
         const conteudoModalT = document.getElementById("conteudoModalT");
         const conteudoModalL = document.getElementById("conteudoModalL");
         const conteudoModalA = document.getElementById("conteudoModalA");
+
+        const modal = document.getElementById('modalTeste');
+        if (modal.classList == "none")
+            modal.classList.remove("none")
+
         if (A > O && A >= I && A > C) {
             conteudoModalT.classList.remove("none");
         }
@@ -341,67 +343,12 @@ export default function TesteDePesonalidade() {
         }
     }
 
-    let cont = 0;
-    function ExibirAguia() {
-        if (cont < Aguia) {
-            cont++;
-            document.getElementById('I').innerHTML = cont + '%';
-        } else {
-            clearInterval(IntervalAguia);
-        }
-    }
-    function ExibirGato() {
-        if (cont < Gato) {
-            cont++;
-            document.getElementById('C').innerHTML = cont + '%';
-        } else {
-            clearInterval(IntervalGato);
-        }
-    }
-    function ExibirLobo() {
-        if (cont < Lobo) {
-            cont++;
-            document.getElementById('O').innerHTML = cont + '%';
-        } else {
-            clearInterval(IntervalLobo);
-        }
-    }
-    function ExibirTubarao() {
-        if (cont < Tubarao) {
-            cont++;
-            document.getElementById('A').innerHTML = cont + '%';
-        } else {
-            clearInterval(IntervalTubarao);
-        }
-    }
-
-    let IntervalTubarao;
-    let IntervalLobo;
-    let IntervalAguia;
-    let IntervalGato;
-
-    function Enviar() {
-        if (CadastrarReposta()) {
-            const modal = document.getElementById('modalTeste');
-            if (modal.classList == "none")
-                modal.classList.remove("none")
-            IntervalAguia = setInterval(ExibirAguia, "0300")
-            cont = 0;
-            IntervalGato = setInterval(ExibirGato, "0300")
-            cont = 0;
-            IntervalLobo = setInterval(ExibirLobo, "0300")
-            cont = 0;
-            IntervalTubarao = setInterval(ExibirTubarao, "0300")
-        }
-    }
 
     return (
         <div className="bodyPartTestePersonalidade">
-            <AccessBar />
             <Header />
-            <AccessMenu />
             <h1>Teste de personalidade</h1>
-            <p className="Questionario">Para não tendenciar o resultado, escolha as resposta mais adequadas a você como indivíduo.</p>
+            <p className="Questionario">Para não distorcer o resultado, procure ser bem verdadeiro e escolher a resposta mais adequada "para você”!</p>
             <div id="q1" className="Questionario">
                 <h3>Eu sou...</h3>
                 <InputRadius label="Idealista,criativo e visionário" name="q1" value="I" />
@@ -601,95 +548,104 @@ export default function TesteDePesonalidade() {
                 <InputRadius label="Duas cabeças pensam melhor que do que uma" name="q25" value="C" />
                 <InputRadius label="Se você não tem condições de competir, não compita" name="q25" value="A" />
             </div>
-            <div className="aligncenter">
-                <button onClick={Enviar}>ENVIAR</button>
+            <div class="centro">
+                <button onClick={CadastrarReposta}>Enviar</button>
             </div>
 
             <div id="modalTeste" className="none">
-                <div class="pelicula" id="pelicula" onClick={btn_fechar}></div>
-                <div class="janela">
+                <div className="pelicula" id="pelicula" onClick={btn_fechar}></div>
+                <div className="janela">
                     <p onClick={btn_fechar} id="fechar">X</p>
-                    <div class="headModal">
+                    <div className="headModal">
                         <p>Resultado</p>
                         <img src="" alt="" class="logoTipo" />
                     </div>
-                    <div class="conteudoModal">
-                        <div class="animais">
-                            <div class="animal">
-                                <div class="alinhar">
-                                    <img src={imgAguia} alt="Aguia" class="aguia" id="imgAguia" onClick={ConteudoAguia} />
+                    <div className="conteudoModal">
+                        <div className="animais">
+                            <div className="animal">
+                                <div className="alinhar">
+                                    <img src={imgAguia} alt="Aguia" className="aguia" id="imgAguia" onClick={ConteudoAguia} />
 
-                                    <div class="nomePorcentagem">
+                                    <div className="nomePorcentagem">
                                         <p>ÁGUIA</p>
                                         <p id="I">%</p>
                                     </div>
                                 </div>
 
-                                <p class="palavraChave">A CRIATIVA</p>
+                                <p className="palavraChave">A CRIATIVA</p>
                             </div>
-                            <div class="animal">
-                                <div class="alinhar">
-                                    <img src={imgLobo} alt="Lobo" class="aguia" id="imgLobo" onClick={ConteudoLobo} />
-                                    <div class="nomePorcentagem">
+                            <div className="animal">
+                                <div className="alinhar">
+                                    <img src={imgLobo} alt="Lobo" className="aguia" id="imgLobo" onClick={ConteudoLobo} />
+                                    <div className="nomePorcentagem">
                                         <p id="imgLobo">LOBO</p>
                                         <p id="O">%</p>
                                     </div>
                                 </div>
 
-                                <p class="palavraChave">O ORGANIZADOR</p>
+                                <p className="palavraChave">O ORGANIZADOR</p>
                             </div>
-                            <div class="animal">
-                                <div class="alinhar">
-                                    <img src={imgTubarao} alt="tubarao" class="aguia" id="imgTubarao" onClick={ConteudoTubarao} />
-                                    <div class="nomePorcentagem">
+                            <div className="animal">
+                                <div className="alinhar">
+                                    <img src={imgTubarao} alt="tubarao" className="aguia" id="imgTubarao" onClick={ConteudoTubarao} />
+                                    <div className="nomePorcentagem">
                                         <p id="imgTubarao">TUBARÃO</p>
                                         <p id="A">%</p>
                                     </div>
                                 </div>
 
-                                <p class="palavraChave">O ATACADO</p>
+                                <p className="palavraChave">O ATACADO</p>
                             </div>
-                            <div class="animal">
-                                <div class="alinhar">
-                                    <img src={imgGato} alt="gato" class="aguia" id="imgGato" onClick={ConteudoGato} />
-                                    <div class="nomePorcentagem">
+                            <div className="animal">
+                                <div className="alinhar">
+                                    <img src={imgGato} alt="gato" className="aguia" id="imgGato" onClick={ConteudoGato} />
+                                    <div className="nomePorcentagem">
                                         <p id="imgGato">GATO</p>
                                         <p id="C">%</p>
                                     </div>
                                 </div>
 
-                                <p class="palavraChave">O EXTROVERTIDO</p>
+                                <p className="palavraChave">O EXTROVERTIDO</p>
                             </div>
                         </div>
-                        <div class="conteudo">
+                        <div className="conteudo">
                             <h5 id="vceh">VOCÊ É:</h5>
-                            <div id="conteudoModalG" class="none">
+                            <div id="conteudoModalG" className="none">
                                 <h2 id="nomeAnimal">Gato</h2>
 
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
+                                    Seu lema é: 'Fazer Junto'. É sensível, gosta de relacionamentos, de times, é tradicionalista, busca harmonia e delega autoridade.
+                                    Pontos Fortes: Comunicação, manter a harmonia, desenvolver e manter a cultura empresarial e comunicação aberta.
+                                    Pontos de melhoria: esconder conflitos, felicidade acima dos resultados, manipulação através dos sentimentos.
+                                    Motivações: Segurança, aceitação social, construir o consenso, reconhecimento da equipe, supervisão compreensiva, ambiente harmonico e trabalho em grupo.
                     </p>
                             </div>
-                            <div id="conteudoModalT" class="none">
+                            <div id="conteudoModalT" className="none">
                                 <h2 id="nomeAnimal">Tubarão</h2>
 
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
-                    </p>
+                                    Seu lema é: 'Fazer rápido'. Tem senso de urgência, ação, iniciativa, é impulsivo, prático, gosta de vencer desafios, focado no aqui e agora. É auto-suficiente e não gosta de delegar poder.
+                                    Pontos Fortes: Fazer acontecer, parar com a burocracia e a motivação.
+                                    Pontos de melhoria: socialmente um desastre, faz do modo mais fácil e relacionamento complicado.
+Motivações: Liberdade para agir individualmente, controle das próprias atividades, resolver os problemas do seu jeito, competição individual, variedade de atividades e não ter que repetir tarefas.                    </p>
                             </div>
-                            <div id="conteudoModalA" class="none">
+                            <div id="conteudoModalA" className="none">
                                 <h2 id="nomeAnimal">Águia</h2>
 
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
-                    </p>
+                                    Seu lema é: 'Fazer Diferente'. É criativo. intuitivo. tem foco no futuro, distraído, curioso, informal, casual e flexível
+                                    Pontos fortes: Provoca mudanças radicais, antecipa o futuro e a criatividade.
+                                    Pontos de melhoria: Falta de atenção no aqui e agora, impaciência, rebeldia e defender o novo pelo novo.
+Motivações: Liberdade de expressão, ausência de controles rígidos, ambiente de trabalho descontraído, liberdade para fazer exceções e oportunidades para delegar tarefas e detalhes.                    </p>
                             </div>
-                            <div id="conteudoModalL" class="none">
+                            <div id="conteudoModalL" className="none">
                                 <h2 id="nomeAnimal">Lobo</h2>
 
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi iure magnam eum sequi placeat, dignissimos odit, rerum accusamus cumque aliquam cum excepturi atque ad minima quaerat dolorum sint veritatis adipisci.
-                    </p>
+                                    Seu lema é: 'Fazer Certo'. É detalhista, organizado, estrategista, busca conhecimento, pontual, conservador e previsível.
+                                    Pontos Fortes: Organização. Consciência, conformidade e qualidade. Lealdade e segurança. Regras e responsabilidades.
+                                    Pontos de melhoria: dificuldades de se adaptar as mudanças. Pode impedir o progresso. Detalhista, estruturado e demasiadamente sistematizado.
+Motivações: Compreensão exata de quais são as regras. Conhecimento específico do trabalho. Ausência de riscos e erros. Ver o produto acabado: começo, meio e fim.                    </p>
                             </div>
                         </div>
                     </div>

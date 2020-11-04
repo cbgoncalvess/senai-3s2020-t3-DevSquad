@@ -1,3 +1,7 @@
+*{
+    font-family: 'Ubuntu', sans-serif;
+}
+
 .Questionario{
 padding: 2vh 10vw;
 }
@@ -7,7 +11,7 @@ padding: 2vh 10vw;
     padding: 2vw;
 }
 
-.aligncenter > button{
+#root > div > div.centro > button{
     width: auto;
     height: auto;
     padding: 12px 25px;
@@ -16,9 +20,16 @@ padding: 2vh 10vw;
     color: white;
     border: #353535 solid 1px !important;
     transition: .5s;
+    font-weight: 700;
+
 }
 
-.aligncenter > button:hover{
+.centro {
+    text-align: center;
+    padding: 30px 0;
+}
+
+#root > div > div.centro > button:hover{
     padding: 12px 25px;
     background: white;
     border-radius: 4px;
@@ -147,8 +158,50 @@ padding: 2vh 10vw;
         padding-bottom: 15px;
     }
 
+    #root > div{
+        background-image: url("../../assets/bg-teste.png");
+        background-size: 10vw;
+        background-repeat: repeat-y;
+        background-position: right 0px top 100px;    
+    }
+
     @media (max-width: 1000px){
         #modalTeste > div.janela > div.conteudoModal{
-            /* display: unset; */
+            display: unset;
+        }
+        .alinhar, .animal{
+            display: unset;
+        }
+
+        .animais{
+            justify-content: space-between;
+            flex-direction: row;
+            width: -webkit-fill-available;
+        }
+        #modalTeste > div.janela > div.conteudoModal > div.conteudo{
+            width: -webkit-fill-available;
+        }
+    }
+
+    @media (min-width: 701px){
+        .animais{
+            display: flex;
+        }
+    }
+
+    @media (max-width: 700px){
+        #modalTeste > div.janela{
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .animais{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .conteudo{
+            width: -webkit-fill-available;
+        }
+        .palavraChave{
+            font-size: 16px;
         }
     }

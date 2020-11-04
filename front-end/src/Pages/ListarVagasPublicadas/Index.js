@@ -35,6 +35,7 @@ export default function VagasPublicadas() {
         <div className="bodyPartVagasPublicadas">
             <AccessBar />
             <Header />
+            <AccessMenu/>
             <div className="ImagemHeader">
                 <h1>Bem vindo Empresa</h1>
             </div>
@@ -73,8 +74,8 @@ export default function VagasPublicadas() {
                     </div>
                 </div>
             </div>
-            <div id="peliculaEditarVaga" className="peliculaEditarVaga"></div>
-            <div id="ModalEditarVaga" className="ModalEditarVaga">
+            <div id="peliculaEditarVaga" className="ModalPeliculaNone"></div>
+            <div id="ModalEditarVaga" className="ModalEditarNone" >
                 <h2>Editar sua Vaga</h2>
                 <form>
                     <Input className="InputCadastro" name="TituloVaga" label="Titulo da Vaga" />
