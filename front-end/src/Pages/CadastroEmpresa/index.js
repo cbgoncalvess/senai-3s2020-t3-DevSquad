@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState}from 'react';
 
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
@@ -12,6 +12,19 @@ import imagemCadastroEmpresa from '../../assets/imgCadastroEmpresa.png';
 import './style.css';
 
 export default function CadastroEmpresa() {
+    const [NomeResponsavel, SetNomeCompleto] = useState('');
+    const [RazaoSocial, SetRg] = useState('');
+    const [NomeFantasia, SetCPF] = useState('');
+    const [CNPJ, SetTelefone] = useState('');
+    const [EmailContato, SetLinkedin] = useState('');
+    const [Telefone, SetCurso] = useState('');
+    const [NumFuncionario, SetArea] = useState('');
+    const [NumCNAE, SetEmail] = useState('');
+    const [Senha, SetSenha] = useState('');
+    const [ConfirmarSenha, SetConfirmarSenha] = useState('');
+    const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
+    const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
+
     return(
         <body>
             <AccessBar />

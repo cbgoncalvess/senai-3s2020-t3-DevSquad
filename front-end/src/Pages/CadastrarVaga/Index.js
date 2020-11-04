@@ -26,24 +26,7 @@ export default function CadastarVaga() {
     useEffect(() => {
         listarAreas();
     }, []);
-
-    // getArea = () => {
-    //     api.get('Usuario/ListarAreas')
-    //     .then(response => {
-    //       if(response.status === 200){
-    //         this.setState({listaReceitas : response.data})
-    //       }
-    //     })
-    //   }
-    // const listArea = () => {
-    //     api.get('Usuario/ListarAreas')
-    //     .then(response => response.json())
-    //     .then(dados => {
-    //         SetListArea(dados);
-    //     })
-    //     .catch(err => console.error(err));
-    // }
-
+    
     const listarAreas = () => {
         fetch('http://localhost:5000/api/Usuario/ListarAreas', {
             method: 'GET',

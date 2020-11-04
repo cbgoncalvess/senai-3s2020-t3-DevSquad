@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
@@ -12,6 +12,21 @@ import imagemCadastroCandidato from '../../assets/imgCadastroCandidato.png';
 import './style.css';
 
 export default function CadastroEmpresa() {
+    const [NomeCompleto, SetNomeCompleto] = useState('');
+    const [Rg, SetRg] = useState('');
+    const [CPF, SetCPF] = useState('');
+    const [Telefone, SetTelefone] = useState('');
+    const [Linkedin, SetLinkedin] = useState('');
+    const [Curso, SetCurso] = useState('');
+    const [Area, SetArea] = useState('');
+    const [Email, SetEmail] = useState('');
+    const [Senha, SetSenha] = useState('');
+    const [ConfirmarSenha, SetConfirmarSenha] = useState('');
+    const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
+    const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
+
+    const [Cursos, SetCursos] = useState([]);
+    const [Areas, SetAreas] = useState([]);
 
     return(
         <body>
