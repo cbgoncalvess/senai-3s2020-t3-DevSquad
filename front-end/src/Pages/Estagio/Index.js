@@ -18,6 +18,7 @@ import Footer from '../../Components/Footer';
 import Select from '../../Components/Select/Index';
 
 export default function Estagio() {
+    // const [Estagios, SetEstagios] = useState([]);
     return (
         <div className="bodyPartEstagio">
             <AccessBar />

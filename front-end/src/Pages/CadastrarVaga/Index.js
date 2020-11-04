@@ -26,7 +26,7 @@ export default function CadastarVaga() {
     useEffect(() => {
         listarAreas();
     }, []);
-    
+
     const listarAreas = () => {
         fetch('http://localhost:5000/api/Usuario/ListarAreas', {
             method: 'GET',
@@ -82,7 +82,7 @@ export default function CadastarVaga() {
                                 event.preventDefault();
                             }}>
                                 <Input className="InputCadastro" name="TituloVaga" label="Titulo da Vaga" onChange={e => SetTituloVaga(e.target.value)} />
-                                <Input className="InputCadastro" name="Salario" label="Salario" onChange={e => SetSalario(e.target.value)}/>
+                                <Input className="InputCadastro" name="Salario" label="Salario" onChange={e => SetSalario(e.target.value)} />
                                 <div className="select">
                                     <label>Area</label>
                                     <select className="div-select" onChange={e => SetArea(e.target.value)} value={Area}>

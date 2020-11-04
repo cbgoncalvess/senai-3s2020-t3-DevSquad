@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect}from 'react';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -10,6 +10,23 @@ import imgPadrao from '../../assets/android-character-symbol.png';
 import './style.css';
 
 export default function perfilEmpresa() {
+    // const [NomeResponsavel, SetNomeCompleto] = useState('');
+    // const [RazaoSocial, SetRg] = useState('');
+    // const [NomeFantasia, SetCPF] = useState('');
+    // const [CNPJ, SetTelefone] = useState('');
+    // const [EmailContato, SetLinkedin] = useState('');
+    // const [Telefone, SetCurso] = useState('');
+    // const [NumFuncionario, SetArea] = useState('');
+    // const [NumCNAE, SetEmail] = useState('');
+    // const [Estado, SetEstado] = useState('');
+    // const [Cidade, SetCidade] = useState('');
+    // const [CEP, SetCEP] = useState('');
+    // const [Logradouro, SetLogradouro] = useState('');
+    // const [Complemento, SetComplemento] = useState('');
+    // const [ConfirmarSenha, SetConfirmarSenha] = useState('');
+    // const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
+    // const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
+    // const [VagasPublicadas,setVagas]=useState([]);
     return (
         <div className="bodyPartVizualizarPerfil">
 

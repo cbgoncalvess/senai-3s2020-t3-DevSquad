@@ -21,8 +21,8 @@ import './style.css';
 
 export default function BuscarVaga(){
     
-    const [ListVagas, SetListVagas] = useState([]);
-    const [SetListTecnologias, SetListTecnologias] = useState([]);
+    // const [ListVagas, SetListVagas] = useState([]);
+    // const [SetListTecnologias, SetListTecnologias] = useState([]);
 
     return(
         <body>
