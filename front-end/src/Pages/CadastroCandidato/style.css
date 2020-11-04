@@ -1,0 +1,83 @@
+.registerApplicant{
+    background-color: #E5E5E5;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%; 
+    grid-template-rows: 20% 20% 20% 20% 20% ;
+    box-sizing: content-box;
+}
+
+.box-form{
+    display: grid;
+    grid-area: 1 / 1 / 6 / 4;
+    box-sizing: content-box;
+}
+
+.form-content{
+    display: flex;
+    justify-content: center;
+    background-color: #FFF ;
+    border-radius: 5em;
+    box-sizing: content-box;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+}
+
+.form-content p {
+    height: unset;
+    margin-bottom: 10vh;
+}
+
+.form-content h1{
+    color: #005767;
+}
+
+.form-content p{
+    color: #707070 ;
+}
+
+.form-content label{
+    color: #9B9B9B ;
+}
+
+.Input{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+.Input label {
+    width: 80%;
+}
+
+.cadastre{
+    height: 40px;
+    width: 80%;
+    border-radius: 6px;
+    background-color: #EFEFEF;
+    border: none;
+    padding-left: 5px;
+}
+
+.form-button{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 3vw;
+}
+
+.img-cadastro-candidato{
+    max-width: 538px 
+}
+
+@media(max-width: 900px){
+    .box-img{
+        display: none;
+    }
+
+    .form-content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
