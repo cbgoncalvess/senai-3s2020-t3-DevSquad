@@ -33,15 +33,18 @@ export default function CadastroEmpresa() {
                             <Input name="password" className="cadastre" label="Digite sua senha:" type="password" placeholder="••••••••" required />
                             <Input name="password-confirm" className="cadastre" label="Confirme sua senha:" type="password" placeholder="••••••••" required />
                             <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>
-
-                            <BlueButton type="submit" name="Criar conta">Criar conta</BlueButton>
+                            
+                            <div className="form-button">
+                                <BlueButton type="submit" name="Criar conta">Criar conta</BlueButton>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="box-img">
-                    <img src={imagemCadastroCandidato} alt="Pessoa acessando sua conta"/>
+                    <img src={imagemCadastroCandidato} alt="Pessoa acessando sua conta" className="img-cadastro-candidato"/>
                 </div>
+
             </div>
             <Footer />
         </body>

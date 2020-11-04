@@ -13,6 +13,7 @@ import CadastroEmpresa from './Pages/CadastroEmpresa';
 import Perfil from './Pages/PerfilAdm';
 import perfilCandidato from './Pages/PerfilCandidato';
 import perfilEmpresa from './Pages/PerfilEmpresa';
+import BuscarVagas from './Pages/BuscarVaga';
 
 function Routes() {
     return (
@@ -29,6 +30,7 @@ function Routes() {
             <Route path="/perfil" component={Perfil} />
             <Route path="/perfilCandidato" component={perfilCandidato} />
             <Route path="/perfilEmpresa" component={perfilEmpresa} />
+            <Route path="/principal" component={BuscarVagas} />
         </BrowserRouter>
     );
 }
