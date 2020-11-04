@@ -1,5 +1,5 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 // components 
 import Footer from '../../Components/Footer';
@@ -9,9 +9,38 @@ import './style.css';
 
 // imagens
 import imglogin from '../../assets/ImagemimgLogin.png';
-import imguser from '../../assets/user 1.png';
 
 export default function Login() {
+
+    let history = useHistory();
+
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+
+    const login = () => {
+        const login = {
+            email: email,
+            senha: senha
+        }
+
+        fetch('http://localhost:5000/api/Conta/login', {
+
+            method: 'POST',
+            body: JSON.stringify(login),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+
+            .then(response => response.json())
+            .then(dados => {
+                localStorage.setItem("token", dados.token)
+                history.push("/")
+            })
+            .catch(err => console.error(err))
+
+    }
+
     return (
         <div className="Login">
             <main className="central-login">
@@ -27,29 +56,32 @@ export default function Login() {
                             </div>
 
                             <div>
-                                <form className="form-logar">
-                                    
+                                <form className="form-logar" onSubmit={event => {
+                                    event.preventDefault();
+                                    login();
+                                }}>
+
                                     <div className="divisionCampo">
                                         <label>Usuário ou E-mail:</label>
-                                        <input type="text" name="email" className="inputUser"/>
+                                        <input type="text" name="email" className="inputUser" placeholder="exemplo@exemplo.com / mariasantos" onChange={e => setEmail(e.target.value)} />
                                     </div>
 
                                     <div className="divisionCampo divisionPassword">
                                         <label>Senha:</label>
-                                        <input type="password" name="password" placeholder="******" className="inputPassword"/>
+                                        <input type="password" name="password" placeholder="******" className="inputPassword" onChange={e => setSenha(e.target.value)} />
                                         <Link className="recuperarPassword" to="/">Recuperar senha</Link>
                                     </div>
                                 </form>
                             </div>
 
                             <div className="divisionBtn">
-                                <button className="btnNew">criar conta</button>
-                                <button className="btnLogar">entrar</button>
+                                <button className="btnNew"><Link to="/cadastro">criar conta</Link></button>
+                                <button className="btnLogar" onClick={login}>entrar</button>
                             </div>
                         </div>
                     </div>
                 </section>
-                
+
                 <img src={imglogin} alt="Imagem de computadores" />
             </main>
         </div>
