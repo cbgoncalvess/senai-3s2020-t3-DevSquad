@@ -3,7 +3,9 @@ import React from 'react';
 import './style.css';
 
 import InputRadius from '../../Components/InputRadius';
-import Header from '../../Components/Header'
+import Header from '../../Components/Header';
+import AccessBar from '../../Components/AccessBar';
+import AccessMenu from '../../Components/AccessMenu';
 import Footer from '../../Components/Footer';
 
 import imgLobo from '../../../src/assets/lobo.png'
@@ -346,7 +348,9 @@ export default function TesteDePesonalidade() {
 
     return (
         <div className="bodyPartTestePersonalidade">
+            <AccessBar />
             <Header />
+            <AccessMenu />
             <h1>Teste de personalidade</h1>
             <p className="Questionario">Para não distorcer o resultado, procure ser bem verdadeiro e escolher a resposta mais adequada "para você”!</p>
             <div id="q1" className="Questionario">

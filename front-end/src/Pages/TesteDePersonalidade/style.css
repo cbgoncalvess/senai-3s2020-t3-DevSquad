@@ -6,6 +6,10 @@
 padding: 2vh 10vw;
 }
 
+#root > div > div.heightomg > div{
+    height: -webkit-fill-available;
+}
+
 .InputRadius{
     background: transparent !important;
 }
@@ -165,6 +169,14 @@ padding: 2vh 10vw;
         padding-bottom: 15px;
     }
 
+    .nomePorcentagem{
+        margin-top: 5px;
+    }
+
+    .animal{
+        margin-bottom: 5px;
+    }
+
     #root > div{
         background-image: url("../../assets/bg-teste.png");
         background-size: 10vw;
@@ -212,4 +224,23 @@ padding: 2vh 10vw;
         .palavraChave{
             font-size: 16px;
         }
+        #menu-hide > li > a{
+            font-size: 5vw;
+        }
+    }
+
+    .preto .InputRadius, .preto #root > div > h1, .preto #root > div{
+        background: transparent !important;
+    }
+
+    .maior #root > div > h1{
+        font-size: 37px;
+    }
+
+    .maior #root > div > div.centro > button{
+        font-size: 20px;
+    }
+
+    .preto #pelicula{
+        background: rgba(0, 0, 0, .5) !important;
     }
