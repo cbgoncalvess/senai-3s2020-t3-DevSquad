@@ -6,6 +6,10 @@
 padding: 2vh 10vw;
 }
 
+.InputRadius{
+    background: transparent !important;
+}
+
 .aligncenter{
     text-align: center;
     padding: 2vw;

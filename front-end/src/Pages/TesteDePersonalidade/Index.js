@@ -4,7 +4,7 @@ import './style.css';
 
 import InputRadius from '../../Components/InputRadius';
 import Header from '../../Components/Header'
-import Footer from '../../Components/Footer';
+import Footer from '../../Components/Footer';z
 
 import imgLobo from '../../../src/assets/lobo.png'
 import imgTubarao from '../../../src/assets/tubarao.png'
