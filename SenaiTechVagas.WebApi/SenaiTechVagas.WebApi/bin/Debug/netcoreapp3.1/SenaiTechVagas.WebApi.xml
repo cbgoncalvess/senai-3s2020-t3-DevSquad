@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SenaiTechVagas.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.CandidatoController.CadastrarCandidato(SenaiTechVagas.WebApi.ViewModels.CadastrarCandidatoViewModel)">
+            <summary>
+            Recebe um tipo cadastrar 'CandidatoCandidatoViewModel' preenchendo os dados 
+            necessários para que, então, seja adicionado um novo objeto no banco de dados.
+            </summary>
+            <param name="NovoCandidato">Do tipo 'CadastrarCandidatoViewModel', que se refere
+            ao dados inseridos pelo usuário na requisição
+            </param>
+            <returns>Retorna um HTTP Code (201) e a menssagem: Novo candidato inserido com
+            sucesso, caso contrário, retorna um HTTP Code (400) e a mensagem: Um erro 
+            ocorreu ao receber a sua requisição.
+            </returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.CandidatoController.ListarCandidatos">
+            <summary>
+            Lista todos os objetos da tabela candidato.
+            </summary>
+            <returns>Retorna um HTTP Code (201) e os objetos da tabela Candidato, 
+            caso contrário, retorna um HTTP Code (400) e a mensagem: Uma exceção 
+            ocorreu. Tente novamente.
+            </returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.CandidatoController.BuscarPorId(System.Int32)">
+            <summary>
+            Busca um objeto na tabela Candidato, recebendo o identificador único do objeto.
+            </summary>
+            <param name="id">Identificador único de cada objeto da tabela Candidato, do tipo inteiro.</param>
+            <returns>Retorna um HTTP Code (201) e o objeto da tabela Candidato que bata com o
+            identificador passado, caso contrário, retorna um HTTP Code (400) e a mensagem: 
+            Uma exceção ocorreu. Tente novamente.
+            </returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.CandidatoController.AtualizarCandidato(System.Int32,SenaiTechVagas.WebApi.Domains.Candidato)">
+            <summary>
+            Atualiza todas as informações de um objeto da tabela Candidato.
+            </summary>
+            <param name="id">Identificador único de um objeto da tabela Candidato</param>
+            <param name="candidato">Informações do objeto, passado na requisição, da tabela 
+            Candidato, recebidas e que passarão a vigorar</param>
+            <returns>Retorna um HTTP Code (201) e a mensagem: true, caso contrário, retorna 
+            um HTTP Code (400) e a mensagem: Uma exceção ocorreu. Tente novamente.</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.CandidatoController.DeltarCandidato(System.Int32)">
+            <summary>
+            Apaga as informações de um objeto único da tabela candidato.
+            </summary>
+            <param name="id">Identificador único de cada objeto da tabela candidato, 
+            do tipo inteiro.</param>
+            <returns>Retorna um HTTP Code (201) e a mensagem: true, caso contrário, retorna 
+            um HTTP Code (400) e a mensagem: Uma exceção ocorreu. Tente novamente.</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.CursoController.AtualizarCurso(SenaiTechVagas.WebApi.Domains.Curso,System.Int32)">
+            <summary>
+            Este metodo esta fora por enquanto ,justificativa no repositorio
+            </summary>
+            <param name="curso"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EmpresaController.CadastrarEmpresa(SenaiTechVagas.WebApi.Domains.Empresa)">
+            <summary>
+            Insere um novo objeto empresa na tabela Empresa com as informações 
+            passadas na requisição
+            </summary>
+            <param name="empresa">Dados de um objeto, do tipo empresa, que é 
+            passado na requisição.</param>
+            <returns>Retorna um HTTP Code (201) e a mensagem: Novo candidato 
+            inserido com sucesso!, caso contrário, retorna um HTTP Code (400)
+            e a mensagem,podendo ser "Uma exceção ocorreu. Tente novamente.", 
+            caso ocorra uma exceção, ou "Um erro ocorreu ao receber a sua 
+            requisição.", caso algum erro tenha acontecido ao executar o método
+            implementado em ../Repositories/EmpresaRepository.cs.</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EmpresaController.ListarEmpresa">
+            <summary>
+            Lista todos os objetos da tabela Empresa
+            </summary>
+            <returns>Retorna um HTTP Code (201) e a mensagem "true", caso contrário,
+            retorna um HTTP Code (400)e a mensagem "Uma exceção ocorreu. Tente novamente."
+            </returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EmpresaController.BuscarPorId(System.Int32)">
+            <summary>
+            Busca um objeto na tabela Empresa, recebendo o identificador único do objeto.
+            </summary>
+            <parameter name="id">Identificador único de cada objeto da tabela Emmpresa, do tipo inteiro.</parameter>
+            <returns>>Retorna um HTTP Code (201) e o objeto da tabela Candidato que bata com o
+            identificador passado, caso contrário, retorna um HTTP Code (400) e a mensagem: 
+            "Uma exceção ocorreu. Tente novamente."</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EmpresaController.AtualizarEmpresa(System.Int32,SenaiTechVagas.WebApi.Domains.Empresa)">
+            <summary>
+            Atualiza todas as informações de um objeto da tabela Empresa.
+            </summary>
+            <param name="id">Identificador único de um objeto da tabela Empresa</param>
+            <param name="empresa">Informações do objeto, passado na requisição, da tabela 
+            Empresa, recebidas e que passarão a vigorar</param>
+            <returns>Retorna um HTTP Code (201) e a mensagem: true, caso ocorra um erro na 
+            informação passada, retorna-se, então, false, caso haja uma exceção, retorna-se,
+            então, um HTTP Code (400) e a mensagem: "Uma exceção ocorreu. Tente novamente."</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EmpresaController.DeletarEmpresa(System.Int32)">
+            <summary>
+            Apagar um objeto da tabela Empresa em que seu identificador único corresponda 
+            a informação passada na requisição.
+            </summary>
+            <param name="id">Identificador único de cada objeto da tabela candidato, do 
+            tipo inteiro.</param>
+            <returns>Retorna um HTTP Code (201) e a mensagem: true, caso ocorra um erro na 
+            informação passada, retorna-se, então, false, caso haja uma exceção, retorna-se,
+            então, um HTTP Code (400) e a mensagem: "Uma exceção ocorreu. Tente novamente."</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EstagiosController.AdicionarEstagio(SenaiTechVagas.WebApi.Domains.Estagio)">
+            <summary>
+            O admininistrador podera cadastrar um novo estagio
+            </summary>
+            <param name="estagioNovo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EstagiosController.DeletarEstagio(System.Int32)">
+            <summary>
+            O administrador podera eletar os estagios
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EstagiosController.ListarEstagios">
+            <summary>
+            O administrador podera listar os estagios
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EstagiosController.ListarFiltroPeriodo(System.Int32)">
+            <summary>
+            O administrador podera listar os estagios por filtro meses
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.EstagiosController.AtualizarEstagio(System.Int32,SenaiTechVagas.WebApi.ViewModels.AtualizarEstagioViewModel)">
+            <summary>
+            O adminstrador podera atualizar o estagio
+            </summary>
+            <param name="idEstagio"></param>
+            <param name="estagio"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.InscricoesController.AdicionarInscricao(SenaiTechVagas.WebApi.Domains.Inscricao)">
+            <summary>
+            O candidato podera se inscrever
+            </summary>
+            <param name="InscricaoNovo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.InscricoesController.DeletarInscricao(System.Int32)">
+            <summary>
+            O  candidato podera remover a inscricao
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.InscricoesController.ListarInscricaos(System.Int32)">
+            <summary>
+            Lista todas as inscricoes do candidato
+            </summary>
+            <param name="idUsuario"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.TecnologiaController.AtualizarTecnologia(SenaiTechVagas.WebApi.Domains.Tecnologia,System.Int32)">
+            <summary>
+            Justificativa no repository
+            </summary>
+            <param name="tecnologia"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.TipoUsuarioController.AtualizarTipoUsuario(SenaiTechVagas.WebApi.Domains.TipoUsuario,System.Int32)">
+            <summary>
+            Justificativa no repository
+            </summary>
+            <param name="tipoUsuario"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.UsuarioController.ListaUsuario">
+            <summary>
+            Método que lista os usuários cadastrados 
+            </summary>
+            <returns>Retorna lista de usuários cadastrados</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.UsuarioController.ListaBanidos">
+            <summary>
+            Método que lista os usuários banidos
+            </summary>
+            <returns>Retorna lista de usuários banidos</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.UsuarioController.BuscarUsuarioPorId(System.Int32)">
+            <summary>
+            Método que busca usuário por seu identificador 
+            </summary>
+            <param name="id">Identificador do usuário</param>
+            <returns>Retorna usuário pelo seu Id</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.UsuarioController.AtualizaDadosUsuario(System.Int32,SenaiTechVagas.WebApi.Domains.Usuario)">
+            <summary>
+            Método que atualiza a senha do usuário pelo identificador e o objeto.
+            </summary>
+            <param name="id">Identificador do usuário</param>
+            <param name="usuarioAtualizado">Objeto do usuário</param>
+            <returns>Retorna um usuário atualizado pelo id e o objeto</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.UsuarioController.BanirUsuario(System.Int32)">
+            <summary>
+            Método que bani usuário pelo seu identificador 
+            </summary>
+            <param name="id">Identificador do usuário</param>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.UsuarioController.DesbanirUsuario(System.Int32)">
+            <summary>
+            Método que desbane usuário pelo seu identificador 
+            </summary>
+            <param name="id">Identificador do usuário</param>
+            <returns>retorna um usuário no estado normal de seu tipo usuário</returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.VagasController.AdicionarVaga(SenaiTechVagas.WebApi.Domains.Vaga)">
+            <summary>
+            Adiciona uma nova vaga
+            </summary>
+            <param name="VagaNovo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.VagasController.AdicionarTecnologia(SenaiTechVagas.WebApi.Domains.VagaTecnologia)">
+            <summary>
+            Adiciona uma tecnologia a vaga
+            </summary>
+            <param name="vagaTecnologia"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.VagasController.DeletarVaga(System.Int32)">
+            <summary>
+            Deleta a vaga por id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.VagasController.ListarVagas">
+            <summary>
+            Lista todas as vagas que vc publicou
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.VagasController.AtualizarVaga(System.Int32,SenaiTechVagas.WebApi.ViewModels.AtualizarVagaViewModel)">
+             <summary>
+            Atualiza a vaga
+             </summary>
+             <param name="id"></param>
+             <param name="Vaga"></param>
+             <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.VagasController.ListarVagasFiltroTipoContarto(System.String)">
+            <summary>
+            Lista vagas pelo filtro tipo de contrato
+            </summary>
+            <param name="TipoContrato"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.VagasController.ListarVagas(System.String)">
+            <summary>
+            Lista vagas pelo filtro por nivel de experiencia
+            </summary>
+            <param name="NivelExperiencia"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Controllers.VagasController.ListarVagasPelaTecnologia(System.String)">
+            <summary>
+            Lista vagas pela barra de pesquisa nome da tecnologia
+            </summary>
+            <param name="NomeTecnologia"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Repositories.CursoRepository.ListarCurso">
+            <summary>
+            Este deletar pode acabar prejudicando o sistema por enqt ele fica comentado
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Repositories.TecnologiaRepository.ListarTecnologia">
+            <summary>
+            Pode prejudicar o funcionamento do sistema
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SenaiTechVagas.WebApi.Repositories.TipoUsuarioRepository.ListarTipoUsuario">
+            <summary>
+            Pode prejudicar o andamento do sistema por ser um delete em cadeia
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

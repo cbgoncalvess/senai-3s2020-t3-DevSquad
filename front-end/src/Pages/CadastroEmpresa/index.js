@@ -83,14 +83,114 @@ export default function CadastroEmpresa() {
                         <h1>Cadastre-se como Empresa</h1>
                         <p>Bem-vindo ao cadastro de empresa. Ficamos felizes de tê-la na nossa plataforma</p>
                         <div className="form">
-                            <Input name="responsibleName" className="cadastre" label="Digite o nome do responsável:" type="text" placeholder="Barão de Mauá" required />
-                            <Input name="cnpj" className="cadastre" label="Digite seu CNPJ:" type="text" placeholder="00.000.000/0001-00" required />
-                            <Input name="email" className="cadastre" label="Digite seu e-mail:" type="text" placeholder="contato@company.com" required />
-                            <Input name="companyName" className="cadastre" label="Digite a razão social:" type="text" placeholder="São Paulo Railway Company" required />
-                            <Input name="companyMarket" className="cadastre" label="Digite o ramo da empresa:" type="text" placeholder="Transporte" required />
-                            <Input name="phoneNumber" className="cadastre" label="Digite o telefone para contato:" type="text" placeholder="(11) 91234-5678" required />
-                            <Input name="password" className="cadastre" label="Digite sua senha:" type="password" placeholder="••••••••" required />
-                            <Input name="password-confirm" className="cadastre" label="Confirme sua senha:" type="password" placeholder="••••••••" required />
+                            <Input
+                                name="responsibleName"
+                                className="cadastre"
+                                label="Digite o nome do responsável:"
+                                type="text"
+                                placeholder="Barão de Mauá"
+                                required
+                            />
+                            <Input
+                                name="cnpj"
+                                className="cadastre"
+                                label="Digite seu CNPJ:"
+                                type="text"
+                                placeholder="00.000.000/0001-00"
+                                required
+                            />
+
+                            <Input
+                                name="email"
+                                className="cadastre"
+                                label="Digite seu e-mail:"
+                                type="text"
+                                placeholder="contato@company.com"
+                                required
+                            />
+
+                            <Input
+                                name="companyFakeName"
+                                className="cadastre"
+                                label="Digite a nome Fantasia:"
+                                type="text"
+                                placeholder="CPTM"
+                                required
+                            />
+
+                            <Input
+                                name="companyName"
+                                className="cadastre"
+                                label="Digite a razão social:"
+                                type="text"
+                                placeholder="São Paulo Railway Company"
+                                required
+                            />
+                            <Input
+                                name="phoneNumber"
+                                className="cadastre"
+                                label="Digite o telefone para contato:"
+                                type="text"
+                                placeholder="(11) 91234-5678"
+                                required
+                            />
+                            
+                            <Input
+                                name="workersCompanyNumber"
+                                className="cadastre"
+                                label="Digite o número de funcionários:"
+                                type="number"
+                                required
+                            />
+                            
+                            <Input
+                                name="cnaeNumber"
+                                className="cadastre"
+                                label="Digite o número CNAE da empresa:"
+                                type="text"
+                                placeholder="00.00-0-0"
+                                required
+                            />
+
+                            <Input
+                                name="cepNumber"
+                                className="cadastre"
+                                label="Digite o CEP da empresa:"
+                                type="text"
+                                placeholder="00000-000"
+                                required
+                            />
+
+                            <Input
+                                name="address"
+                                className="cadastre"
+                                label="Digite o endereço da empresa:"
+                                type="text"
+                                required
+                            />
+
+                            <Input
+                                name="address2"
+                                className="cadastre"
+                                label="Digite o complemento do endereço:"
+                                type="text"
+                            />
+                            
+                            <Input
+                                name="password"
+                                className="cadastre"
+                                label="Digite sua senha:"
+                                type="password"
+                                required
+                            />
+                            
+                            <Input
+                                name="password-confirm"
+                                className="cadastre"
+                                label="Confirme sua senha:"
+                                type="password"
+                                required
+                            />
                             <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>
 
                             <div className="form-button">

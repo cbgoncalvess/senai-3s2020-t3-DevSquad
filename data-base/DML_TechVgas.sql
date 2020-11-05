@@ -80,33 +80,33 @@ GO
 
 INSERT INTO Vaga (DescricaoVaga, DescricaoEmpresa, DescricaoBeneficio, DataPublicacao, DataExpiracao,
 					Experiencia, TipoContrato, Salario, Localidade, Estado, CEP, Logradouro, Complemento, IdEmpresa)
-VALUES		('Vaga de Front-end', 'Muito Maneira', 'Tenha a honra de trabalhar conosco', '11-27-2020', '01-27-2021', 
+VALUES		('Vaga de Front-end', 'Muito Maneira', 'Tenha a honra de trabalhar conosco', '27-11-2020', '27-01-2021', 
 				'Júnior', 'CLT', 3000.00, 'São Paulo', 'SP', '08295005','Avenida Miguel Ignácio Curi, 100', 'Ao lado de sua casa!', 1),
 			
-			('Banco de Talentos', 'Temos Puffs', 'Tenha a honra de trabalhar conosco', '10-15-2020', '11-15-2020', 
+			('Banco de Talentos', 'Temos Puffs', 'Tenha a honra de trabalhar conosco', '15-10-2020', '15-11-2020', 
 				'Gênios', 'PJ', 1000.00, 'Rio de Janeiro', 'RJ', '22640085','Av. Pref. Dulcídio Cardoso, 800', 'Na casa de vossa excelência!', 1),
 			
-			('Vaga para Back-end', 'Somos os Melhores', 'Terá direito à metade de seu salário!', '05-30-2020', '06-30-2020', 
+			('Vaga para Back-end', 'Somos os Melhores', 'Terá direito à metade de seu salário!', '30-05-2020', '30-06-2020', 
 				'Estagiário', 'Estágio', 4000.00, 'Salvador', 'BA', '41500660','Av. Aliomar Baleeiro, 43', 'Perto do Aeroporto', 1);
 GO
 
 INSERT INTO Estagio (DataCadastro, PeriodoEstagio, IdCandidato, IdEmpresa)
-VALUES		('05-29-2020', 26, 1, 1),
-			('01-16-2020', 12, 2, 1);
+VALUES		('29-05-2020', 26, 1, 1),
+			('16-01-2020', 12, 2, 1);
 GO
 
 INSERT INTO Inscricao (DataInscricao, IdCandidato, IdVaga, IdStatusInscricao)
-VALUES		('08-08-2020', 1, 3, 1),
-			('04-15-2019', 2, 6, 2),
-			('04-16-2019', 1, 7, 3);
+VALUES		('08-08-2020', 1, 2, 1),
+			('15-04-2019', 2, 3, 2),
+			('16-04-2019', 1, 4, 3);
 GO
 
 INSERT INTO VagaTecnologia (IdTecnologia, IdVaga)
-VALUES		(2, 3),
-			(1, 6),
-			(4, 7),
-			(5, 8),
+VALUES		(2, 2),
+			(1, 3),
+			(4, 4),
+			(5, 2),
 			(6, 3),
-			(7, 6),
-			(9, 7);
+			(7, 4),
+			(9, 2);
 GO
