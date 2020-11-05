@@ -7,6 +7,9 @@
 
   #bar > div{
     height: inherit;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
   }
   
   .block{
@@ -261,7 +264,7 @@
   
   .botaoflutuante1{
       position: fixed;
-      width: 30vw;
+      width: 40vw;
       height: 6.5vw;
       float: left;
       left: 1.2vw;
@@ -310,13 +313,13 @@
                 width: 0;
               }
               100%{
-                width: 30vw;
+                width: 40vw;
               }
             }
             
             @keyframes saindo{
               0%{
-                width: 30vw;
+                width: 40vw;
               }
               100%{
                 width: 0;
