@@ -1,4 +1,5 @@
-﻿using SenaiTechVagas.WebApi.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using SenaiTechVagas.WebApi.Contexts;
 using SenaiTechVagas.WebApi.Domains;
 using SenaiTechVagas.WebApi.Interfaces;
 using SenaiTechVagas.WebApi.ViewModels;
@@ -102,7 +103,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    return ctx.Estagio.ToList();
+                    return ctx.Estagio.Include(u=>u.IdCandidatoNavigation).Include(u=>u.IdEmpresaNavigation).ToList();
                 }
                 catch (Exception e)
                 {

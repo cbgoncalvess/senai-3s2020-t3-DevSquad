@@ -22,7 +22,7 @@ export default function CadastroEmpresa() {
     const [Senha, SetSenha] = useState('');
     const [ConfirmarSenha, SetConfirmarSenha] = useState('');
     const [CPF, SetCPF] = useState('');
-    const [Telefone, SetTelefone] = useState('');
+    //const [Telefone, SetTelefone] = useState('');
     //const [Curso, SetCurso] = useState('');
     //const [Area, SetArea] = useState('');
     //const [Linkedin, SetLinkedin] = useState('');
@@ -38,13 +38,12 @@ export default function CadastroEmpresa() {
         e.preventDefault();
 
         const data = {
-            NomeCompleto,
-            Rg,
-            CPF,
-            Telefone,
-            Email,
-            Senha,
-            ConfirmarSenha,
+            NomeCompleto:NomeCompleto,
+            Rg:Rg,
+            CPF:CPF,
+            Email:Email,
+            Senha:Senha,
+            ConfirmarSenha:ConfirmarSenha,
         };
 
         api.post('/Candidato', data)

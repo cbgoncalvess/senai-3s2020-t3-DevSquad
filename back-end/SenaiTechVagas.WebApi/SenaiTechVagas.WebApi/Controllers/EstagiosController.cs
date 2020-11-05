@@ -29,7 +29,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <param name="estagioNovo"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Roles ="idAdminnistrador")]
         public IActionResult AdicionarEstagio(Estagio estagioNovo)
         {
             try
@@ -79,7 +78,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// O administrador podera listar os estagios
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles = "idAdminnistrador")]
         [HttpGet]
         public IActionResult ListarEstagios()
         {
