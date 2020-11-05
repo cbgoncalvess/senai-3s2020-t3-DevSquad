@@ -15,6 +15,7 @@ import IconEmpresa from '../../assets/building.png';
 import InfoVaga from '../../Components/InfoVaga/Index';
 
 export default function VizualizarVagaEmpresa() {
+    // const [Inscricoes,setInscricoes]=useState([]);
     return (
         <div className="bodyPartVizualizarVagaEmpresa">
         <AccessBar />

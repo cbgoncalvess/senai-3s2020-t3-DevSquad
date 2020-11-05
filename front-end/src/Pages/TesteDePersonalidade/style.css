@@ -148,7 +148,10 @@ padding: 2vh 10vw;
         font-weight: bolder;
         border: unset;
     }
-    
+
+
+   /* Parte q esta dando problema-------  */
+
     .conteudo {
         padding: 15px;
         width: 50%;
@@ -168,6 +171,7 @@ padding: 2vh 10vw;
         background-repeat: repeat-y;
         background-position: right 0px top 100px;    
     }
+    /* Parte q esta dando problema-------  */
 
     @media (max-width: 1000px){
         #modalTeste > div.janela > div.conteudoModal{

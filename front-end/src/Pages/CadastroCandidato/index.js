@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
@@ -12,6 +12,51 @@ import imagemCadastroCandidato from '../../assets/imgCadastroCandidato.png';
 import './style.css';
 
 export default function CadastroEmpresa() {
+    // const [NomeCompleto, SetNomeCompleto] = useState('');
+    // const [Rg, SetRg] = useState('');
+    // const [CPF, SetCPF] = useState('');
+    // const [Telefone, SetTelefone] = useState('');
+    // const [Linkedin, SetLinkedin] = useState('');
+    // const [Curso, SetCurso] = useState('');
+    // const [Area, SetArea] = useState('');
+    // const [Email, SetEmail] = useState('');
+    // const [Senha, SetSenha] = useState('');
+    // const [ConfirmarSenha, SetConfirmarSenha] = useState('');
+    // const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
+    // const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
+    // const [Cursos, SetCursos] = useState([]);
+    // const [Areas, SetAreas] = useState([]);
+
+    // const salvar = () => {
+    //         NomeCompleto,
+    //         Rg,
+    //         Cpf,
+    //         Linkedin,
+    //         Curso,
+    //         Area,
+    //         Telefone,
+    //         Email,
+    //         Senha,
+    //         ConfirmarSenha,
+    //         PerguntaSeguranca,
+    //         RespostaSeguranca
+    //     };
+    //     fetch('http://localhost:5000/api/Usuario/CadastrarCandidato', {
+    //         method: 'POST',
+    //         body: JSON.stringify(form),
+    //         headers: {
+    //             'content-type': 'application/json',
+    //         }
+    //     })
+    //         .then(response => {
+    //             if(response.status === 200){
+    //                   alert(response.mensage)
+    //             }else{
+    //                 alert('Não foi possivel,tente novamente')
+    //             }
+    //         })
+    //         .catch(err => console.error(err));
+    // }
 
     return(
         <body>
@@ -33,15 +78,18 @@ export default function CadastroEmpresa() {
                             <Input name="password" className="cadastre" label="Digite sua senha:" type="password" placeholder="••••••••" required />
                             <Input name="password-confirm" className="cadastre" label="Confirme sua senha:" type="password" placeholder="••••••••" required />
                             <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>
-
-                            <BlueButton type="submit" name="Criar conta">Criar conta</BlueButton>
+                            
+                            <div className="form-button">
+                                <BlueButton type="submit" name="Criar conta">Criar conta</BlueButton>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="box-img">
-                    <img src={imagemCadastroCandidato} alt="Pessoa acessando sua conta"/>
+                    <img src={imagemCadastroCandidato} alt="Pessoa acessando sua conta" className="img-cadastro-candidato"/>
                 </div>
+
             </div>
             <Footer />
         </body>

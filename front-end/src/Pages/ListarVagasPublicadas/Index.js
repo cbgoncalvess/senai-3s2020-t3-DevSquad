@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
@@ -22,58 +22,88 @@ import AccessMenu from '../../Components/AccessMenu';
 import './style.css';
 
 export default function VagasPublicadas() {
+    const [ListaDeVagas, SetListVagas] = useState([]);
+    const [Tecologias, SetTecnologia] = useState([]);
 
-    function AbrirModal() {
-        const teste2 = document.getElementById("peliculaEditarVaga");
-        const teste1 = document.getElementById("ModalEditarVaga");
-        if(teste1 == 'none') 
-        teste2.classList.remove('none');
-        teste1.classList.remove('none');
+    useEffect(() => {
+        listarVagas();
+    }, []);
+
+    const listarVagas = () => {
+        fetch('http://localhost:5000/api/Empresa/ListarVagasPublicadas', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                SetTecnologia(dados.tecnologias)
+                SetListVagas(dados);
+            })
+            .catch(err => console.error(err));
+    }
+
+    const listarTecnologias = () => {
+        fetch('http://localhost:5000/api/Empresa/ListarTecnologia', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                SetTecnologia(dados)
+            })
+            .catch(err => console.error(err));
     }
 
     return (
         <div className="bodyPartVagasPublicadas">
             <AccessBar />
             <Header />
-            <AccessMenu/>
+            <AccessMenu />
             <div className="ImagemHeader">
                 <h1>Bem vindo Empresa</h1>
             </div>
             <div className="ListaDeVagas">
                 <h2>Vagas que você publicou nos últimos dias</h2>
-                <br/>
-                <div className="vaga">
-                    <div className="Edit-Delete">
-                        <a>Publicou a vaga em 10/02/2020</a>
-                        <img className="Edit" src={imgEdit} onClick={AbrirModal} />
-                        <img className="Delete" src={imgDelete} />
-                    </div>
-                    <div className="VagaCompleta">
-                        <img src={imgEmpresa} className="ImagemEmpresa" ></img>
-                        <div className="MainVaga">
-                            <h3>Desenvolvedor back-end jr.</h3>
-                            <div className="InfoVagas">
-                                <InfoVaga NomeProp={"Microsoft corporation"} source={IconEmpresa}></InfoVaga>
-                                <InfoVaga NomeProp={"São paulo"} source={imgLocalizacao}></InfoVaga>
-                                <InfoVaga NomeProp={"Júnior"} source={imgFuncao}></InfoVaga>
-                                <InfoVaga NomeProp={"CLT"} source={imgTipoContrato}></InfoVaga>
-                                <InfoVaga NomeProp={"3.000"} source={imgSalario}></InfoVaga>
-                                <InfoVaga NomeProp={"Area de desenvolvimento"} source={imgDesenvolvimento}></InfoVaga>
+                <br />
+                {
+                    ListaDeVagas.map((item) => {
+                        return (
+                            <div key={item.idVaga} className="vaga">
+                                <div className="Edit-Delete">
+                                    <a>Publicou a vaga em 10/02/2020</a>
+                                    <img className="Edit" src={imgEdit} />
+                                    <img className="Delete" src={imgDelete} />
+                                </div>
+                                <div className="VagaCompleta">
+                                    <img src={imgEmpresa} className="ImagemEmpresa" ></img>
+                                    <div className="MainVaga">
+                                        <h3>{item.tituloVaga}.</h3>
+                                        <div className="InfoVagas">
+                                            <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
+                                            <InfoVaga NomeProp={item.localidade} source={imgLocalizacao} />
+                                            <InfoVaga NomeProp={item.experiencia} source={imgFuncao} />
+                                            <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato} />
+                                            <InfoVaga NomeProp={item.salario} source={imgSalario} />
+                                            <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento} />
+                                        </div>
+                                        <div className="TecnologiasVaga">
+                                            {item.tecnologias.map((tec) => {
+                                                return (
+                                                        <Tag key={tec}  NomeTag={tec}></Tag>
+                                                )
+                                            })
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="AdicionarRemoverTecnologia">
+                                    <a className="Link" href="teste">Adicionar tecnologia</a>
+                                    <a className="Link" href="teste">Remover tecnologia</a>
+                                </div>
                             </div>
-                            <div className="TecnologiasVaga">
-                                <Tag NomeTag={"Angular"}></Tag>
-                                <Tag NomeTag={"Angular"}></Tag>
-                                <Tag NomeTag={"Angular"}></Tag>
-                                <Tag NomeTag={"Angular"}></Tag>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="AdicionarRemoverTecnologia">
-                        <a className="Link" href="teste">Adicionar tecnologia</a>
-                        <a className="Link" href="teste">Remover tecnologia</a>
-                    </div>
-                </div>
+                        )
+                    })
+                }
             </div>
+
             <div id="peliculaEditarVaga" className="ModalPeliculaNone"></div>
             <div id="ModalEditarVaga" className="ModalEditarNone" >
                 <h2>Editar sua Vaga</h2>
