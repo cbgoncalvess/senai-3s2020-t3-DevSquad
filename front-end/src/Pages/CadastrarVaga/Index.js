@@ -81,12 +81,12 @@ export default function CadastarVaga() {
                             <form onSubmit={event => {
                                 event.preventDefault();
                             }}>
-                                <Input className="InputCadastro" name="TituloVaga" label="Titulo da Vaga" onChange={e => SetTituloVaga(e.target.value)} />
-                                <Input className="InputCadastro" name="Salario" label="Salario" onChange={e => SetSalario(e.target.value)} />
+                                <Input className="InputCadastro" name="TituloVaga" label="Título da Vaga" onChange={e => SetTituloVaga(e.target.value)} />
+                                <Input className="InputCadastro" name="Salario" label="Salário" onChange={e => SetSalario(e.target.value)} />
                                 <div className="select">
-                                    <label>Area</label>
+                                    <label>Área</label>
                                     <select className="div-select" onChange={e => SetArea(e.target.value)} value={Area}>
-                                        <option value="0">Selecione uma area de atuação</option>
+                                        <option value="0">Selecione uma área de atuação</option>
                                         {
                                             ListAreas.map((item) => {
                                                 return <option value={item.idArea}>{item.nomeArea}</option>
@@ -95,7 +95,7 @@ export default function CadastarVaga() {
                                     </select>
                                 </div>
                                 <div className="select">
-                                    <label>Experiencia</label>
+                                    <label>Experiência</label>
                                     <select className="div-select" onChange={e => SetExperiencia(e.target.value)} value={Experiencia}>
                                         <option value="0">Selecione um nivel de experiencia</option>
                                         <option value="CLT">CLT</option>

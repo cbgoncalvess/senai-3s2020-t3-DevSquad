@@ -16,6 +16,8 @@ namespace SenaiTechVagas.WebApi
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -101,6 +103,8 @@ namespace SenaiTechVagas.WebApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "SenaiTechVagas.WebApi");
                 c.RoutePrefix = string.Empty;
             });
+
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseEndpoints(endpoints =>
             {
