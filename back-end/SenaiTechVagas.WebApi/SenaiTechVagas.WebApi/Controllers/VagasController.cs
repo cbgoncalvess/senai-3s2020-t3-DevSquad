@@ -28,12 +28,13 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="VagaNovo"></param>
         /// <returns></returns>
-        [Authorize(Roles = "idEmpresa")]
-        [HttpPost]
+        //[Authorize(Roles = "idEmpresa")]
+        [HttpPost("adcVaga")]
         public IActionResult AdicionarVaga(Vaga VagaNovo)
         {
             try
             {
+                VagaNovo.IdEmpresa = 1;
                 if (_Vaga.AdicionarVaga(VagaNovo))
                     return Ok("Vaga cadastrado com sucesso");
 
@@ -42,7 +43,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest();
+                return BadRequest("nao foi cuzon");
             }
         }
 
@@ -107,7 +108,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todas as vagas que vc publicou
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles = "idEmpresa")]
         [HttpGet]
         public IActionResult ListarVagas()
         {

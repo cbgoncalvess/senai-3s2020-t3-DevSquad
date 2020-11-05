@@ -80,6 +80,7 @@ GO
 
 INSERT INTO Vaga (DescricaoVaga, DescricaoEmpresa, DescricaoBeneficio, DataPublicacao, DataExpiracao,
 					Experiencia, TipoContrato, Salario, Localidade, Estado, CEP, Logradouro, Complemento, IdEmpresa)
+<<<<<<< HEAD
 VALUES		('Vaga de Front-end', 'Muito Maneira', 'Tenha a honra de trabalhar conosco', '27-11-2020', '27-01-2021', 
 				'Júnior', 'CLT', 3000.00, 'São Paulo', 'SP', '08295005','Avenida Miguel Ignácio Curi, 100', 'Ao lado de sua casa!', 1),
 			
@@ -87,10 +88,20 @@ VALUES		('Vaga de Front-end', 'Muito Maneira', 'Tenha a honra de trabalhar conos
 				'Gênios', 'PJ', 1000.00, 'Rio de Janeiro', 'RJ', '22640085','Av. Pref. Dulcídio Cardoso, 800', 'Na casa de vossa excelência!', 1),
 			
 			('Vaga para Back-end', 'Somos os Melhores', 'Terá direito à metade de seu salário!', '30-05-2020', '30-06-2020', 
+=======
+VALUES		('Vaga de Front-end', 'Muito Maneira', 'Tenha a honra de trabalhar conosco', '1-3-2020', '01-1-2001', 
+				'Júnior', 'CLT', 3000.00, 'São Paulo', 'SP', '08295005','Avenida Miguel Ignácio Curi, 100', 'Ao lado de sua casa!', 1),
+			
+			('Banco de Talentos', 'Temos Puffs', 'Tenha a honra de trabalhar conosco', '1-1-2020', '1-1-2020', 
+				'Gênios', 'PJ', 1000.00, 'Rio de Janeiro', 'RJ', '22640085','Av. Pref. Dulcídio Cardoso, 800', 'Na casa de vossa excelência!', 1),
+			
+			('Vaga para Back-end', 'Somos os Melhores', 'Terá direito à metade de seu salário!', '05-1-2020', '06-1-2020', 
+>>>>>>> 352eebb0c6995f45b86d94de3bb5ba231ef4e8f8
 				'Estagiário', 'Estágio', 4000.00, 'Salvador', 'BA', '41500660','Av. Aliomar Baleeiro, 43', 'Perto do Aeroporto', 1);
 GO
 
 INSERT INTO Estagio (DataCadastro, PeriodoEstagio, IdCandidato, IdEmpresa)
+<<<<<<< HEAD
 VALUES		('29-05-2020', 26, 1, 1),
 			('16-01-2020', 12, 2, 1);
 GO
@@ -109,4 +120,24 @@ VALUES		(2, 2),
 			(6, 3),
 			(7, 4),
 			(9, 2);
+=======
+VALUES		('1-9-2020', 26, 1, 1),
+			('1-1-2020', 12, 2, 1);
+GO
+
+INSERT INTO Inscricao (DataInscricao, IdCandidato, IdVaga, IdStatusInscricao)
+VALUES		('8-8-2020', 1, 4, 1),
+			('4-8-2019', 2, 6, 2),
+			('4-8-2019', 1, 5, 3);
+GO
+
+INSERT INTO VagaTecnologia (IdTecnologia, IdVaga)
+VALUES		(2, 4),
+			(1, 4),
+			(4, 5),
+			(5, 5),
+			(6, 6),
+			(7, 6),
+			(9, 4);
+>>>>>>> 352eebb0c6995f45b86d94de3bb5ba231ef4e8f8
 GO

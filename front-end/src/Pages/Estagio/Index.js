@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import imgDelete from '../../assets/delete.png'
 import imgEdit from '../../assets/black-ink-pen.png'
@@ -18,7 +18,23 @@ import Footer from '../../Components/Footer';
 import Select from '../../Components/Select/Index';
 
 export default function Estagio() {
-    // const [Estagios, SetEstagios] = useState([]);
+    const [Estagios, SetEstagios] = useState([]);
+
+    useEffect(() => {
+        listarEstagios();
+    }, []);
+
+    const listarEstagios = () => {
+        fetch('http://localhost:5000/api/Estagios', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                SetEstagios(dados);
+            })
+            .catch(err => console.error(err));
+    }
+
     return (
         <div className="bodyPartEstagio">
             <AccessBar />
@@ -60,136 +76,33 @@ export default function Estagio() {
                 <option>12Meses</option>
             </select>
             <div className="ListaEstagios">
-                <div className="Estagio">
-                    <div className="Ferramentas">
-                        <img className="Edit" src={imgEdit} />
-                        <img className="Delete" src={imgDelete} />
-                    </div>
-                    <div className="CabecaEstagio">
-                        <img src={imgPadrao} alt="ImagemPerfil" />
-                        <h3>Usuario1</h3>
-                        <hr className="hr" />
-                        <h5> Cursando 2°termo de desenvolvimento</h5>
-                    </div>
-                    <div className="CorpoEstagio">
-                        <Tag NomeTag={"Email@exemplo.com"}></Tag>
-                        <Tag NomeTag={"Telefone"}></Tag>
-                        <Tag NomeTag={"Status:Desempregado"}></Tag>
-                        <Tag NomeTag={"Periodo de estagio:9meses"}></Tag>
-                        <Tag NomeTag={"Tempo de estagio:10meses"}></Tag>
-                        <Tag NomeTag={"Empresa contratante:Microsoft"}></Tag>
-                        <a className="Link" href="teste">Ver perfil</a>
-                    </div>
-                </div>
-
-                <div className="Estagio">
-                    <div className="Ferramentas">
-                        <img className="Edit" src={imgEdit} />
-                        <img className="Delete" src={imgDelete} />
-                    </div>
-                    <div className="CabecaEstagio">
-                        <img src={imgPadrao} alt="ImagemPerfil" />
-                        <h3>Usuario1</h3>
-                        <hr className="hr" />
-                        <h5> Cursando 2°termo de desenvolvimento</h5>
-                    </div>
-                    <div className="CorpoEstagio">
-                        <Tag NomeTag={"Email@exemplo.com"}></Tag>
-                        <Tag NomeTag={"Telefone"}></Tag>
-                        <Tag NomeTag={"Status:Desempregado"}></Tag>
-                        <Tag NomeTag={"Periodo de estagio:9meses"}></Tag>
-                        <Tag NomeTag={"Tempo de estagio:10meses"}></Tag>
-                        <Tag NomeTag={"Empresa contratante:Microsoft"}></Tag>
-                        <a className="Link" href="teste">Ver perfil</a>
-                    </div>
-                </div>
-
-                <div className="Estagio">
-                    <div className="Ferramentas">
-                        <img className="Edit" src={imgEdit} />
-                        <img className="Delete" src={imgDelete} />
-                    </div>
-                    <div className="CabecaEstagio">
-                        <img src={imgPadrao} alt="ImagemPerfil" />
-                        <h3>Usuario1</h3>
-                        <hr className="hr" />
-                        <h5> Cursando 2°termo de desenvolvimento</h5>
-                    </div>
-                    <div className="CorpoEstagio">
-                        <Tag NomeTag={"Email@exemplo.com"}></Tag>
-                        <Tag NomeTag={"Telefone"}></Tag>
-                        <Tag NomeTag={"Status:Desempregado"}></Tag>
-                        <Tag NomeTag={"Periodo de estagio:9meses"}></Tag>
-                        <Tag NomeTag={"Tempo de estagio:10meses"}></Tag>
-                        <Tag NomeTag={"Empresa contratante:Microsoft"}></Tag>
-                        <a className="Link" href="teste">Ver perfil</a>
-                    </div>
-                </div>
-                <div className="Estagio">
-                    <div className="Ferramentas">
-                        <img className="Edit" src={imgEdit} />
-                        <img className="Delete" src={imgDelete} />
-                    </div>
-                    <div className="CabecaEstagio">
-                        <img src={imgPadrao} alt="ImagemPerfil" />
-                        <h3>Usuario1</h3>
-                        <hr className="hr" />
-                        <h5> Cursando 2°termo de desenvolvimento</h5>
-                    </div>
-                    <div className="CorpoEstagio">
-                        <Tag NomeTag={"Email@exemplo.com"}></Tag>
-                        <Tag NomeTag={"Telefone"}></Tag>
-                        <Tag NomeTag={"Status:Desempregado"}></Tag>
-                        <Tag NomeTag={"Periodo de estagio:9meses"}></Tag>
-                        <Tag NomeTag={"Tempo de estagio:10meses"}></Tag>
-                        <Tag NomeTag={"Empresa contratante:Microsoft"}></Tag>
-                        <a className="Link" href="teste">Ver perfil</a>
-                    </div>
-                </div>
-
-                <div className="Estagio">
-                    <div className="Ferramentas">
-                        <img className="Edit" src={imgEdit} />
-                        <img className="Delete" src={imgDelete} />
-                    </div>
-                    <div className="CabecaEstagio">
-                        <img src={imgPadrao} alt="ImagemPerfil" />
-                        <h3>Usuario1</h3>
-                        <hr className="hr" />
-                        <h5> Cursando 2°termo de desenvolvimento</h5>
-                    </div>
-                    <div className="CorpoEstagio">
-                        <Tag NomeTag={"Email@exemplo.com"}></Tag>
-                        <Tag NomeTag={"Telefone"}></Tag>
-                        <Tag NomeTag={"Status:Desempregado"}></Tag>
-                        <Tag NomeTag={"Periodo de estagio:9meses"}></Tag>
-                        <Tag NomeTag={"Tempo de estagio:10meses"}></Tag>
-                        <Tag NomeTag={"Empresa contratante:Microsoft"}></Tag>
-                        <a className="Link" href="teste">Ver perfil</a>
-                    </div>
-                </div>
-
-                <div className="Estagio">
-                    <div className="Ferramentas">
-                        <img className="Edit" src={imgEdit} />
-                        <img className="Delete" src={imgDelete} />
-                    </div>
-                    <div className="CabecaEstagio">
-                        <img src={imgPadrao} alt="ImagemPerfil" />
-                        <h3>Usuario1</h3>
-                        <hr className="hr" />
-                        <h5> Cursando 2°termo de desenvolvimento</h5>
-                    </div>
-                    <div className="CorpoEstagio">
-                        <Tag NomeTag={"Email@exemplo.com"}></Tag>
-                        <Tag NomeTag={"Telefone"}></Tag>
-                        <Tag NomeTag={"Status:Desempregado"}></Tag>
-                        <Tag NomeTag={"Periodo de estagio:9meses"}></Tag>
-                        <Tag NomeTag={"Tempo de estagio:10meses"}></Tag>
-                        <Tag NomeTag={"Empresa contratante:Microsoft"}></Tag>
-                        <a className="Link" href="teste">Ver perfil</a>
-                    </div>
-                </div>
+                {
+                    Estagios.map((item) => {
+                        return (
+                            <div className="Estagio">
+                                <div className="Ferramentas">
+                                    <img className="Edit" src={imgEdit} />
+                                    <img className="Delete" src={imgDelete} />
+                                </div>
+                                <div className="CabecaEstagio">
+                                    <img src={imgPadrao} alt="ImagemPerfil" />
+                        <h3>{item.idCandidatoNavigation.nomeCompleto}</h3>
+                                    <hr className="hr" />
+                                    <h5> Cursando 2°termo de desenvolvimento</h5>
+                                </div>
+                                <div className="CorpoEstagio">
+                                    <Tag NomeTag={"Email@exemplo.com"}></Tag>
+                                    <Tag NomeTag={"Telefone"}></Tag>
+                                    <Tag NomeTag={"Status:Desempregado"}></Tag>
+                                    <Tag NomeTag={item.periodoEstagio}></Tag>
+                                    <Tag NomeTag={"Tempo de estagio:10meses"}></Tag>
+                                    <Tag NomeTag={"Empresa:"+item.idEmpresaNavigation.razaoSocial}></Tag>
+                                    <a className="Link" href="teste">Ver perfil</a>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
             </div>
             <div className="peliculaEstagio"></div>
             <div className="modalEstagio">
@@ -204,6 +117,6 @@ export default function Estagio() {
                 </form>
             </div>
             <Footer />
-        </div>
+        </div >
     );
 }

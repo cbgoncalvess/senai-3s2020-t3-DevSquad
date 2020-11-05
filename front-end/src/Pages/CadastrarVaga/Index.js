@@ -6,6 +6,9 @@ import Input from '../../Components/Input';
 import { useHistory } from 'react-router-dom';
 import './style.css';
 import AccessMenu from '../../Components/AccessMenu';
+
+import api from '../../services/api';
+
 export default function CadastarVaga() {
 
     const [TituloVaga, SetTituloVaga] = useState('');
@@ -54,18 +57,9 @@ export default function CadastarVaga() {
             descricaoEmpresa: DescricaoEmpresa,
             descricaoBeneficio: DescricaoBeneficio
         };
-
-        fetch('http://localhost:5000/api/Empresa/AdicionarVaga', {
-            method: 'POST',
-            body: JSON.stringify(form),
-            headers: {
-                'content-type': 'application/json',
-            }
-        })
-            .then(() => {
-                console.log('Voce é o cara');
-            })
-            .catch(err => console.error(err));
+        api.post('/Vagas/adcVaga', form)
+        .then(response => console.log(response))
+        .catch(err => console.log(err))
     }
 
     return (
