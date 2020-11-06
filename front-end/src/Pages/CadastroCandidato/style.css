@@ -66,6 +66,12 @@
     padding-right: 3vw;
 }
 
+.select label {
+    display: flex;
+    width: 80%;
+    margin-left: 5em;
+}
+
 .img-cadastro-candidato{
     max-width: 538px 
 }

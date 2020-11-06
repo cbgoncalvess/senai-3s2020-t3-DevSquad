@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect,useState}from 'react';
 
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
@@ -20,6 +20,10 @@ import banner from '../../assets/bannerBuscarVagas.png';
 import './style.css';
 
 export default function BuscarVaga(){
+    
+    // const [ListVagas, SetListVagas] = useState([]);
+    // const [SetListTecnologias, SetListTecnologias] = useState([]);
+
     return(
         <body>
             <AccessBar />
@@ -56,7 +60,6 @@ export default function BuscarVaga(){
                     </div>
                 </div>
             </div>
-
             <Footer />
         </body>
     );

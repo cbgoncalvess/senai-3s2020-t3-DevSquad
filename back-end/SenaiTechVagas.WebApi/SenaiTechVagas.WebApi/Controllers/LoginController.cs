@@ -28,6 +28,11 @@ namespace SenaiTechVagas.WebApi.Controllers
            
             Usuario usuarioLogar = usuarioRepository.Logar(login.Email, login.Senha);
 
+            if(usuarioLogar == null)
+            {
+                return BadRequest("Se fudeu mano");
+            }
+            
             var claims = new[]
               {
                 new Claim(JwtRegisteredClaimNames.Email, usuarioLogar.Email),

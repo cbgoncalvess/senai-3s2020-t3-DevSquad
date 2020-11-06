@@ -6,6 +6,14 @@
 padding: 2vh 10vw;
 }
 
+#root > div > div.heightomg > div{
+    height: -webkit-fill-available;
+}
+
+.InputRadius{
+    background: transparent !important;
+}
+
 .aligncenter{
     text-align: center;
     padding: 2vw;
@@ -144,8 +152,16 @@ padding: 2vh 10vw;
         font-weight: bolder;
         border: unset;
     }
+<<<<<<< HEAD
     
     /* .conteudo {
+=======
+
+
+   /* Parte q esta dando problema-------  */
+
+    .conteudo {
+>>>>>>> 1d36fecc42800e8de31efaba0b57fc5ffefaf878
         padding: 15px;
         width: 50%;
         display: flex;
@@ -158,12 +174,25 @@ padding: 2vh 10vw;
         padding-bottom: 15px;
     }
 
+    .nomePorcentagem{
+        margin-top: 5px;
+    }
+
+    .animal{
+        margin-bottom: 5px;
+    }
+
     #root > div{
         background-image: url("../../assets/bg-teste.png");
         background-size: 10vw;
         background-repeat: repeat-y;
         background-position: right 0px top 100px;    
+<<<<<<< HEAD
     } */
+=======
+    }
+    /* Parte q esta dando problema-------  */
+>>>>>>> 1d36fecc42800e8de31efaba0b57fc5ffefaf878
 
     @media (max-width: 1000px){
         #modalTeste > div.janela > div.conteudoModal{
@@ -204,4 +233,23 @@ padding: 2vh 10vw;
         .palavraChave{
             font-size: 16px;
         }
+        #menu-hide > li > a{
+            font-size: 5vw;
+        }
+    }
+
+    .preto .InputRadius, .preto #root > div > h1, .preto #root > div{
+        background: transparent !important;
+    }
+
+    .maior #root > div > h1{
+        font-size: 37px;
+    }
+
+    .maior #root > div > div.centro > button{
+        font-size: 20px;
+    }
+
+    .preto #pelicula{
+        background: rgba(0, 0, 0, .5) !important;
     }
