@@ -3,13 +3,28 @@ import React from 'react';
 // style 
 import './visualizarvaga.css';
 
+import imgteste from '../../assets/Teste.png';
+
 // components
 import Tag from '../../Components/Tag/Index';
 import InfoVaga from '../../Components/InfoVaga/Index';
+import Footer from '../../Components/Footer/index';
+import AccessBar from '../../Components/AccessBar';
+import Header from '../../Components/Header';
+
+// imagens
+import imgDesenvolvimento from '../../assets/web-programming.png';
+import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.png';
+import imgSalario from '../../assets/money (1).png';
+import imgTipoContrato from '../../assets/gears.png';
+import imgFuncao from '../../assets/rocket-launch.png';
+import IconEmpresa from '../../assets/building.png';
 
 export default function VisualizarVaga() {
     return (
         <div className="VisualizarVaga">
+            <AccessBar/>
+            <Header/>
             <main className="sessaoVisualizarVaga">
 
                 <section className="imgBannerDescriVaga">
@@ -28,13 +43,85 @@ export default function VisualizarVaga() {
                 </section>
 
                 <section className="infoVagaVisualizar">
-                    <div className="card-vaga-info">
-                    <InfoVaga />
+                    <div className="icard-division">
+                        <img src={imgteste} alt="Logo da empresa" />
+
+                        <div className="divisionTagsVagas">
+
+                            <div className="card-vaga-info">
+                                <InfoVaga NomeProp={"Teste"} source={IconEmpresa} />
+                                <InfoVaga NomeProp={"Teste"} source={imgLocalizacao} />
+                                <InfoVaga NomeProp={"Teste"} source={imgFuncao} />
+                            </div>
+
+                            <div className="card-vaga-info">
+                                <InfoVaga NomeProp={"Teste"} source={imgTipoContrato} />
+                                <InfoVaga NomeProp={"Teste"} source={imgSalario} />
+                                <InfoVaga NomeProp={"Teste"} source={imgDesenvolvimento} />
+                            </div>
+                        </div>
                     </div>
-                    
+                </section>
+
+
+                <section className="sessao-svempresa">
+
+                    <div className="descri-empresa">
+                        <h2>Descrição da empresa</h2>
+                        <p>Microsoft Corporation é uma empresa transnacional americana com sede em Redmond,
+                        Washington, que desenvolve, fabrica, licencia, apoia e vende softwares de computador,
+                        produtos eletrônicos, computadores e serviços pessoais</p>
+                    </div>
+
+                    <div className="descri-vaga">
+                        <h2>Requisitos da vaga</h2>
+                        <p>Requisitos Técnicos:
+                        *Conhecimento intermediário em Javascript e framework Angular.
+                        *Conhecimentos em ES6.
+                        *Experiência com desenvolvimento mobile com Ionic / Cordova.
+                        *Conhecimento em controle de versão Git.
+                        *Inglês técnico. (Leitura e escrita).
+                        *Bom entendimento sobre APIs RESTful.
+                        *Domínio em HTML5 & CSS3 (SASS).
+
+                        Requisitos Adicionais:
+                        *Conhecimento básico em PHP;
+                        *Experiência com Gulp;
+                        *Conhecimento em VueJS;
+                        *Participação ativa no GitHub.
+                        *+100pts no StackOverflow.
+                        *Gostar de rock n’ roll!</p>
+
+                    </div>
+
+                </section>
+
+                <section className="divisionBeneVaga">
+                    <div className="centerBene">
+                        <h2>O que oferecemos</h2>
+
+                        <div className="divisionPlan">
+                            <div>
+                                <p>
+                                -Plano Odontológico
+                                -Plano de Saúde
+                                -Vale Alimentação
+                                -Vale transporte
+                                -Vale refeição</p>
+                            </div>
+
+                            <div className="divisionPlan">
+                                <p>-Incentivo para palestrar e participar de eventos.
+                                   -Flexibilidade para trabalho remoto.</p>
+                            </div>
+
+                        </div>
+                    <button className="btnCandidatase" type="submit">Me Candidatar</button>
+                    </div>
                 </section>
 
             </main>
+            <Footer/>
         </div>
     )
 }
