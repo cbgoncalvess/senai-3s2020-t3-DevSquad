@@ -8,6 +8,7 @@ import Svg from '../../Components/imgsvg/Index';
 import Confidence from '../../Components/imgsvg/confidence';
 import Surprise from '../../Components/imgsvg/surprise';
 
+import { Link } from 'react-router-dom';
 
 import imgPadrao from '../../assets/android-character-symbol.png';
 import imgPerfil from '../../assets/perfil-comportamental-online.png';
@@ -36,7 +37,12 @@ export default function Home() {
                             <p>Empresas com interesse de divulgar </p>
                             <p>oportunidades</p>
                             <br />
+<<<<<<< HEAD
+                            <div>
+                                <Link to="/cadastroempresa"><button className="BtnStartEmpresa"><h2>EMPRESA</h2></button></Link>
+=======
                             <div><a href="/cadastroEmpresa"><button className="BtnStartEmpresa"><h2>EMPRESA</h2></button></a>
+>>>>>>> 8f3d49cb032971f61133d0331fa9ba5039621602
                             </div>
                         </div>
 
@@ -45,7 +51,11 @@ export default function Home() {
                             <p>no curso</p>
                             <br />
                             <div>
+<<<<<<< HEAD
+                                <Link to="/cadastro"><button className="BtnStartCandidato"><h2>CANDIDATO</h2></button></Link>
+=======
                                 <a href="/cadastro"><button className="BtnStartCandidato"><h2>CANDIDATO</h2></button></a>
+>>>>>>> 8f3d49cb032971f61133d0331fa9ba5039621602
                             </div>
                         </div>
                     </div>
