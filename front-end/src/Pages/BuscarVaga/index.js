@@ -4,6 +4,7 @@ import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import AccessMenu from '../../Components/AccessMenu';
 import Footer from '../../Components/Footer';
+import Input from '../../Components/Input';
 
 import imgEmpresa from '../../assets/Teste.png'
 import Tag from '../../Components/Tag/Index';
@@ -32,6 +33,8 @@ export default function BuscarVaga(){
 
             <div className="content-searchJobs">
                 <div>
+                    <Input label="Busque sua vaga aqui" type="text" placeholder="Ex.: Desenvolvedor" />
+                    <button class="fa fa-search btn-search"></button>
                     <img src={banner} alt="Pessoa utilizando um computador, que está em cima de uma mesa" className="imgBackground-searchJobs"/>
                 </div>
 

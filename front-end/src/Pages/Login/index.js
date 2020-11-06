@@ -26,7 +26,7 @@ export default function Login() {
             senha: senha
         }
 
-        fetch('http://localhost:5000/api/Conta/login', {
+        fetch('http://localhost:5000/api/login', {
 
             method: 'POST',
             body: JSON.stringify(login),

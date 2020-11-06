@@ -22,6 +22,8 @@ namespace SenaiTechVagas.WebApi.Interfaces
 
         List<Usuario> banidos();
 
+        List<Usuario> Colaboradores();
+
 
     }
 }
