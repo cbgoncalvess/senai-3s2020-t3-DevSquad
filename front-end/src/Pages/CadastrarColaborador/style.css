@@ -1,0 +1,128 @@
+body{
+    background: #F0F0F0;
+    
+}
+
+.margin {
+    margin: 5vw;
+    display: flex;
+}
+
+.perfis {
+    width: 100vh;
+}
+
+.colaboradores {
+    margin-bottom: 5vh;
+}
+
+.perfilBox {
+    background: #ffff;
+    padding: 3vh;
+    display: flex;
+    margin-bottom: 5vh;
+}
+
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil img {
+    width: 5vh;
+}
+
+.perfil h4 {
+    margin-top: 1vh;
+    font-size: 1.5vw;
+}
+
+.perfil p {
+    font-size: 1vw;
+}
+
+.user {
+    margin-bottom: 1vh;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 3vh;
+}
+
+.infos p {
+    height: 3vw;
+}
+
+.banir {
+    display: flex;
+    margin-left: 3vh;
+}
+
+.banir img {
+    margin-left: 1vh;
+    width: 1vw;
+    height: 1vw;
+}
+
+.barraVertical {
+    margin: 2vh 3vh 0vh 3vh;
+    width: 0vh;
+    height: 70vh;
+}
+
+.tituloCadastro {
+    text-align: center;
+    margin-bottom: 3vh;
+}
+
+.botaoCadastrar {
+    margin-left: 2vh;
+    margin-top: 5vh;
+}
+
+@media (max-width: 1100px) {
+    .colaboradores {
+        text-align: center;
+        font-size: 3vw;
+    }
+
+    .tituloCadastro h1 {
+        font-size: 3vw;
+    }
+}
+
+@media (max-width: 1000px) {
+    .margin {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cadastrarBox {
+        border-bottom: 0.1vh solid black;
+        margin-bottom: 5vh;
+    }
+
+    .barraVertical {
+        height: 0;
+    }
+
+    .botaoCadastrar {
+        margin-bottom: 5vh;
+    }
+}
+
+@media (max-width: 620px) {
+    .perfis {
+        width: 90vw;
+    }
+    
+    .perfilBox p {
+        font-size: 2.5vw;
+    }
+}

@@ -26,6 +26,11 @@ export default function CadastroEmpresa() {
     const [Email, SetEmail] = useState('');
     const [Senha, SetSenha] = useState('');
     const [ConfirmarSenha, SetConfirmarSenha] = useState('');
+<<<<<<< HEAD
+=======
+    //const [Telefone, SetTelefone] = useState('');
+    //const [Curso, SetCurso] = useState('');
+>>>>>>> f06b0d22fe3f6bdac53eed0ff2270f3729c0e382
     //const [Area, SetArea] = useState('');
     //const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
     //const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
@@ -47,6 +52,7 @@ export default function CadastroEmpresa() {
         e.preventDefault();
 
         const data = {
+<<<<<<< HEAD
             NomeCompleto: NomeCompleto,
             Rg: Rg,
             CPF: CPF,
@@ -54,6 +60,14 @@ export default function CadastroEmpresa() {
             Linkedin: Linkedin,
             Email: Email,
             Senha: Senha
+=======
+            NomeCompleto:NomeCompleto,
+            Rg:Rg,
+            CPF:CPF,
+            Email:Email,
+            Senha:Senha,
+            ConfirmarSenha:ConfirmarSenha,
+>>>>>>> f06b0d22fe3f6bdac53eed0ff2270f3729c0e382
         };
         console.log(emailRegex.test(Email));
 

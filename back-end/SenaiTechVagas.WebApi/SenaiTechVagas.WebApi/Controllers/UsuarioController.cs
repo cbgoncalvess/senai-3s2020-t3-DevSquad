@@ -40,11 +40,17 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que lista os usuários banidos
         /// </summary>
         /// <returns>Retorna lista de usuários banidos</returns>
-        [Authorize(Roles = "1")]
+        
         [HttpGet("Banidos")]
         public IActionResult ListaBanidos()
         {
             return Ok(usuarioRepository.banidos());
+        }
+
+        [HttpGet("Colaboradores")]
+        public IActionResult ListaColaboradores()
+        {
+            return Ok(usuarioRepository.Colaboradores());
         }
 
         /// <summary>

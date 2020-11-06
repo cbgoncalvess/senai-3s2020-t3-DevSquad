@@ -3,11 +3,13 @@ import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import Input from '../../Components/Input';
+import Select from '../../Components/Select/Index';
 import { useHistory } from 'react-router-dom';
 import './style.css';
 import AccessMenu from '../../Components/AccessMenu';
 
 import api from '../../services/api';
+
 
 export default function CadastarVaga() {
 
