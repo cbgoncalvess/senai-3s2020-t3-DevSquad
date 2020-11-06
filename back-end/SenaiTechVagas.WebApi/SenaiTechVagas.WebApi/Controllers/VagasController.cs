@@ -108,7 +108,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todas as vagas que vc publicou
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("ListarVaga")]
         public IActionResult ListarVagas()
         {
             try

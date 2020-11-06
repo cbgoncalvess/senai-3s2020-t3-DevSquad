@@ -30,7 +30,7 @@ export default function VagasPublicadas() {
     }, []);
 
     const listarVagas = () => {
-        fetch('http://localhost:5000/api/Empresa/ListarVagasPublicadas', {
+        fetch('http://localhost:5000/api/Vagas/ListarVaga', {
             method: 'GET',
         })
             .then(response => response.json())

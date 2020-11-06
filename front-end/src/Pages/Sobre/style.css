@@ -47,7 +47,7 @@
     color: #005767;
 }
 
-img {
+.imgSobre {
     width: 15vh;
 }
 
@@ -83,7 +83,7 @@ img {
         font-size: 3vh;
     }
 
-    img {
+    .imgSobre {
         width: 10vh;
     }
 

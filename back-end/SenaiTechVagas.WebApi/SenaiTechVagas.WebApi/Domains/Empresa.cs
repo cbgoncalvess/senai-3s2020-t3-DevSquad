@@ -25,7 +25,7 @@ namespace SenaiTechVagas.WebApi.Domains
         public string Complemento { get; set; }
         public string Localidade { get; set; }
         public string Uf { get; set; }
-        public int IdUsuario { get; set; }
+        public int? IdUsuario { get; set; }
 
         public virtual Usuario IdUsuarioNavigation { get; set; }
         public virtual ICollection<Estagio> Estagio { get; set; }

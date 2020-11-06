@@ -54,6 +54,7 @@ export default function CadastarVaga() {
             cidade: Cidade,
             cep: CEP,
             logradouro: Logradouro,
+            localidade:Estado,
             complemento: Complemento,
             descricaoVaga: DescricaoVaga,
             descricaoEmpresa: DescricaoEmpresa,
