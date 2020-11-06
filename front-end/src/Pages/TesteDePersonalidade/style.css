@@ -177,12 +177,12 @@ padding: 2vh 10vw;
         margin-bottom: 5px;
     }
 
-    #root > div{
+    /* #root > div{
         background-image: url("../../assets/bg-teste.png");
         background-size: 10vw;
         background-repeat: repeat-y;
         background-position: right 0px top 100px;    
-    }
+    } */
     /* Parte q esta dando problema-------  */
 
     @media (max-width: 1000px){

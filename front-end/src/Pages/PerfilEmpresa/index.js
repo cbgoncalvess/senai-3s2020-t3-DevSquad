@@ -1,4 +1,4 @@
-import React,{useState,useEffect}from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -9,27 +9,25 @@ import imgPadrao from '../../assets/android-character-symbol.png';
 
 import './style.css';
 
-export default function perfilEmpresa() {
-    // const [NomeResponsavel, SetNomeCompleto] = useState('');
-    // const [RazaoSocial, SetRg] = useState('');
-    // const [NomeFantasia, SetCPF] = useState('');
-    // const [CNPJ, SetTelefone] = useState('');
-    // const [EmailContato, SetLinkedin] = useState('');
-    // const [Telefone, SetCurso] = useState('');
-    // const [NumFuncionario, SetArea] = useState('');
-    // const [NumCNAE, SetEmail] = useState('');
-    // const [Estado, SetEstado] = useState('');
-    // const [Cidade, SetCidade] = useState('');
-    // const [CEP, SetCEP] = useState('');
-    // const [Logradouro, SetLogradouro] = useState('');
-    // const [Complemento, SetComplemento] = useState('');
-    // const [ConfirmarSenha, SetConfirmarSenha] = useState('');
-    // const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
-    // const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
-    // const [VagasPublicadas,setVagas]=useState([]);
+export default function PerfilEmpresa() {
+    const [Candidatos, SetCandidato] = useState([]);
+
+    useEffect(() => {
+        listarCandidatos();
+    }, []);
+
+    const listarCandidatos = () => {
+        fetch('http://localhost:5000/api/Administrador/ListarCandidatos', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                SetCandidato(dados);
+            })
+            .catch(err => console.error(err));
+    }
     return (
         <div className="bodyPartVizualizarPerfil">
-
             <AccessBar />
             <Header />
             <div className="meioPerfil">
@@ -43,14 +41,20 @@ export default function perfilEmpresa() {
                     </div>
                 </div>
                 <div className="DireitoPerfil">
-                    <div className="BoxPerfilCandidato">
-                        <div className="flexBoxPerfilCandidato">
-                            <img src={imgPadrao} />
-                            <h3>Stan Lee</h3>
-                        </div>
-                        <h3>Area de desenvolvimento</h3>
-                        <h3>Dev 2°Termo-Manhã</h3>
-                    </div>
+                    {
+                        Candidatos.map((item) => {
+                            return (
+                                <div className="BoxPerfilCandidato">
+                                    <div className="flexBoxPerfilCandidato">
+                                        <img src={imgPadrao} />
+                            <h3>{item.nomeCompleto}</h3>
+                                    </div>
+                            <h3>{item.telefone}</h3>
+                                    <h3>Dev 2°Termo-Manhã</h3>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
             <div className="peliculaPerfilEmpresa"></div>

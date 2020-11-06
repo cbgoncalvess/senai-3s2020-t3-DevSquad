@@ -10,11 +10,11 @@ import TesteDePesonalidade from './Pages/TesteDePersonalidade/Index';
 import VizualizarVagaEmpresa from './Pages/VizualizarVagaEmpresa';
 import CadastroCandidato from './Pages/CadastroCandidato';
 import CadastroEmpresa from './Pages/CadastroEmpresa';
-import Perfil from './Pages/PerfilAdm';
 import perfilCandidato from './Pages/PerfilCandidato';
 import perfilEmpresa from './Pages/PerfilEmpresa';
 import BuscarVagas from './Pages/BuscarVaga';
 import Teste from './Pages/Teste';
+import perfilAdm from './Pages/PerfilAdm/index';
 
 function Routes() {
     return (
@@ -28,7 +28,7 @@ function Routes() {
             <Route path="/VagaEmpresa" component={VizualizarVagaEmpresa}/>
             <Route path="/cadastro" component={CadastroCandidato} />
             <Route path="/cadastroempresa" component={CadastroEmpresa} />
-            <Route path="/perfil" component={Perfil} />
+            <Route path="/perfil" component={perfilAdm} />
             <Route path="/perfilCandidato" component={perfilCandidato} />
             <Route path="/perfilEmpresa" component={perfilEmpresa} />
             <Route path="/principal" component={BuscarVagas} />
