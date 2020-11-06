@@ -1,4 +1,4 @@
-import React,{useEffect,useState}from 'react';
+import React , { useEffect , useState } from 'react';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -10,7 +10,7 @@ import imgPadrao from '../../assets/android-character-symbol.png';
 
 import './style.css';
 
-export default function perfilCandidato() {
+export default function PerfilCandidato() {
     // const [NomeCompleto, SetNomeCompleto] = useState('');
     // const [Rg, SetRg] = useState('');
     // const [CPF, SetCPF] = useState('');
@@ -22,7 +22,7 @@ export default function perfilCandidato() {
     // const [ConfirmarSenha, SetConfirmarSenha] = useState('');
     // const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
     // const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
-    // const [Vagas,setVagasInscritas]=useState([]);
+    //   const [Vagas,setVagasInscritas]=useState([]);
     return (
         <div className="bodyPartVizualizarPerfil">
 

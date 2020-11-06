@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -10,13 +10,26 @@ import imgPadrao from '../../assets/android-character-symbol.png';
 
 import './style.css';
 
-export default function perfil() {
-    // const [Empresas, SetEmpresas]=useState([]);
-    // const[Candidatos,SetCandidatos]=useState([]);
+export default function PerfilAdm() {
 
+    const [Empresas, SetEmpresa] = useState([]);
+    useEffect(() => {
+        listarEmpresa();
+    }, []);
+
+    const listarEmpresa = () => {
+        fetch('http://localhost:5000/api/Administrador/ListarEmpresas', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                SetEmpresa(dados);
+            })
+            .catch(err => console.error(err));
+    }
+    
     return (
         <div className="bodyPartVizualizarPerfil">
-
             <AccessBar />
             <Header />
             <div className="meioPerfil">
@@ -38,33 +51,25 @@ export default function perfil() {
                         <option>Candidatos</option>
                         <option>Empresa</option>
                     </select>
-                    <div className="BoxPerfil">
-                        <div className="flexBoxPerfil">
-                            <img className="imgUsuario" src={imgPadrao} alt="usuario" />
-                            <div className="ColumnNomeEmail">
-                                <h2>Teokashi sakama</h2>
-                                <p>Teokashi_otodia@gmail.com</p>
-                            </div>
-                        </div>
-                        <div className="ColumnPerfilBanir">
-                            <img className="Delete" src={imgDelete} alt="Delete" />
-                            <button className="btVerPerfil"><h4>Ver perfil</h4></button>
-                        </div>
-                    </div>
-
-                    <div className="BoxPerfil">
-                        <div className="flexBoxPerfil">
-                            <img className="imgUsuario" src={imgPadrao} alt="usuario" />
-                            <div className="ColumnNomeEmail">
-                                <h2>Teokashi sakama</h2>
-                                <p>Teokashi_otodia@gmail.com</p>
-                            </div>
-                        </div>
-                        <div className="ColumnPerfilBanir">
-                            <img className="Delete" src={imgDelete} alt="Delete" />
-                            <button className="btVerPerfil"><h4>Ver perfil</h4></button>
-                        </div>
-                    </div>
+                    {
+                        Empresas.map((item) => {
+                            return (
+                                <div className="BoxPerfil">
+                                    <div className="flexBoxPerfil">
+                                        <img className="imgUsuario" src={imgPadrao} alt="usuario" />
+                                        <div className="ColumnNomeEmail">
+                                            <h2>{item.razaoSocial}</h2>
+                                            <p>{item.nomeReponsavel}</p>
+                                        </div>
+                                    </div>
+                                    <div className="ColumnPerfilBanir">
+                                        <img className="Delete" src={imgDelete} alt="Delete" />
+                                        <button className="btVerPerfil"><h4>Ver perfil</h4></button>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
             <div className="peliculaPerfilAdm"></div>

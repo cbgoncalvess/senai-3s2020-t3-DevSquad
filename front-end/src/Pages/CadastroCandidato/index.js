@@ -26,8 +26,28 @@ export default function CadastroEmpresa() {
     const [Email, SetEmail] = useState('');
     const [Senha, SetSenha] = useState('');
     const [ConfirmarSenha, SetConfirmarSenha] = useState('');
+<<<<<<< HEAD
     const [Area, SetArea] = useState('');
     //const [Areas, SetAreas] = useState([]);
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    const [Area, SetArea] = useState('');
+    //const [Areas, SetAreas] = useState([]);
+=======
+<<<<<<< HEAD
+=======
+    //const [Telefone, SetTelefone] = useState('');
+    //const [Curso, SetCurso] = useState('');
+>>>>>>> f06b0d22fe3f6bdac53eed0ff2270f3729c0e382
+>>>>>>> d75875f4606b4fcbfdcab05a99426af22c83ac23
+>>>>>>> 1ff94155811e23540b69588c33507eb45f76843a
+    //const [Area, SetArea] = useState('');
+>>>>>>> 8f3d49cb032971f61133d0331fa9ba5039621602
+>>>>>>> 922b7db9be4e61dfc4bf824f731240164b9eb6fc
     //const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
     //const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
     
@@ -57,6 +77,26 @@ export default function CadastroEmpresa() {
             Area: Area,
             Email: Email,
             Senha: Senha
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+            NomeCompleto:NomeCompleto,
+            Rg:Rg,
+            CPF:CPF,
+            Email:Email,
+            Senha:Senha,
+            ConfirmarSenha:ConfirmarSenha,
+>>>>>>> f06b0d22fe3f6bdac53eed0ff2270f3729c0e382
+>>>>>>> 8f3d49cb032971f61133d0331fa9ba5039621602
+>>>>>>> d75875f4606b4fcbfdcab05a99426af22c83ac23
+>>>>>>> 1ff94155811e23540b69588c33507eb45f76843a
+>>>>>>> 922b7db9be4e61dfc4bf824f731240164b9eb6fc
         };
 
         if (Senha !== ConfirmarSenha || Senha === '' || ConfirmarSenha === '') {
