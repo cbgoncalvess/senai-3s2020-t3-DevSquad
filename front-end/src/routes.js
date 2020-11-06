@@ -18,6 +18,7 @@ import perfilCandidato from './Pages/PerfilCandidato';
 import perfilEmpresa from './Pages/PerfilEmpresa';
 import BuscarVagas from './Pages/BuscarVaga';
 import VisualizarVagaCandidato from './Pages/VisualizarVagaCandidato';
+
 function Routes() {
     return (
         <BrowserRouter>
