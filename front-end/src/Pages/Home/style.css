@@ -185,6 +185,10 @@ background-image: url("../../assets/esperoquesejaessetamanho.png");
     border-radius:30px;
 }
 
+body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button{
+    cursor: pointer;
+}
+
 @media(max-width:888px){
     .BoxDepoimentos{
         display: flex;

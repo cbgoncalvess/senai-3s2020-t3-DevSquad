@@ -25,7 +25,7 @@ namespace SenaiTechVagas.WebApi.Domains
         public string Cep { get; set; }
         public string Logradouro { get; set; }
         public string Complemento { get; set; }
-        public int? IdEmpresa { get; set; }
+        public int IdEmpresa { get; set; }
 
         public virtual Empresa IdEmpresaNavigation { get; set; }
         public virtual ICollection<Inscricao> Inscricao { get; set; }

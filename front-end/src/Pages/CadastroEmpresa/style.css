@@ -67,6 +67,34 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 
+body > div.registerCompany > div.box-img > img{
+    width: 40vw;
+    height: 500%;
+    object-fit: cover;
+}
+
+body > div.registerCompany > div.box-form > div > div > div.form-button > button{
+    cursor: pointer;
+}
+
+#root{
+    overflow-x: hidden;
+}
+
+@media (max-width: 900px){
+    body > div.registerCompany > div.box-img > img{
+        display: none;
+    }
+    body > div.registerCompany > div.box-form{
+        width: 94vw !important;
+        justify-content: center;
+    }
+    body > div.registerCompany > div.box-form > div{
+        width: 80vw !important;
+        padding: 5vw;
+    }
+}
+
 /* 
 .box-img{
     width: 40%;
@@ -80,3 +108,14 @@ grid-template-rows: 25% 25% 25% 25%;
 grid-area: 2 / 2 / 4 / 4;
 
 */
+
+/* ACCESS MENU */
+
+.preto .box-form{
+    background: black !important;
+}
+
+.preto .form-content,
+.preto div.box-form > div > h1{
+    background: #373737 !important;
+}
