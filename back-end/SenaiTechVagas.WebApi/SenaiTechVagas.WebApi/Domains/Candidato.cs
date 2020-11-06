@@ -18,8 +18,8 @@ namespace SenaiTechVagas.WebApi.Domains
         public string Telefone { get; set; }
         public string LinkLinkedinCandidato { get; set; }
         public string Area { get; set; }
-        public int IdCurso { get; set; }
-        public int IdUsuario { get; set; }
+        public int? IdCurso { get; set; }
+        public int? IdUsuario { get; set; }
 
         public virtual Curso IdCursoNavigation { get; set; }
         public virtual Usuario IdUsuarioNavigation { get; set; }
