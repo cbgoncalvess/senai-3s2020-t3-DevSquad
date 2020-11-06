@@ -22,24 +22,19 @@ export default function CadastroEmpresa() {
     const [Linkedin, SetLinkedin] = useState('');
     const [Telefone, SetTelefone] = useState('');
     const [Cursos, SetCursos] = useState([]);
-    const [Curso, SetCurso] = useState('');
+    const [Curso, SetCurso] = useState(0);
     const [Email, SetEmail] = useState('');
     const [Senha, SetSenha] = useState('');
     const [ConfirmarSenha, SetConfirmarSenha] = useState('');
-<<<<<<< HEAD
-=======
-    const [CPF, SetCPF] = useState('');
-    //const [Telefone, SetTelefone] = useState('');
-    //const [Curso, SetCurso] = useState('');
->>>>>>> 352eebb0c6995f45b86d94de3bb5ba231ef4e8f8
-    //const [Area, SetArea] = useState('');
+    const [Area, SetArea] = useState('');
+    //const [Areas, SetAreas] = useState([]);
     //const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
     //const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
-    //const [Areas, SetAreas] = useState([]);
-
+    
     const history = useHistory();
-
-    const emailRegex = RegExp('/^\S+@\S+\.\S+$/');
+    
+    //const emailRegex = RegExp('/^\S+@\S+\.\S+$/');
+    //console.log(emailRegex.test(Email));
 
     useEffect(() => { 
         api.get('/Curso',)
@@ -53,32 +48,20 @@ export default function CadastroEmpresa() {
         e.preventDefault();
         
         const data = {
-<<<<<<< HEAD
             NomeCompleto: NomeCompleto,
             Rg: Rg,
             CPF: CPF,
             Telefone: Telefone,
-            Linkedin: Linkedin,
+            LinkLinkedinCandidato: Linkedin,
+            idCurso: Curso,
+            Area: Area,
             Email: Email,
             Senha: Senha
-=======
-            NomeCompleto:NomeCompleto,
-            Rg:Rg,
-            CPF:CPF,
-            Email:Email,
-            Senha:Senha,
-            ConfirmarSenha:ConfirmarSenha,
->>>>>>> 352eebb0c6995f45b86d94de3bb5ba231ef4e8f8
         };
-        console.log(emailRegex.test(Email));
 
         if(Senha !== ConfirmarSenha || Senha === '' || ConfirmarSenha === ''){
             alert('As senhas não coincidem, ou não foram preenchidas');
-        }
-        // if(emailRegex.test(Email)){
-        //     alert('Preencha um e-mail válido');
-        //}
-        else{
+        }else{
             api.post('/Candidato', data)
             .then(function (response) {
                 console.log(response);
@@ -86,24 +69,9 @@ export default function CadastroEmpresa() {
             .catch(function (error) {
                 console.log(error);
             });
+
+            history.push('/');
         }
-
-        /*
-
-            Não implementado por causa da api
-          <div className="select">
-              <label>Área</label>
-              <select className="div-select" onChange={e => SetArea(e.target.value)} value={Area}>
-                  <option value="0">Selecione uma área de atuação</option>
-                  {
-                      ListAreas.map((item) => {
-                          return <option value={item.idArea}>{item.nomeArea}</option>
-                      })
-                  }
-              </select>
-          </div>
-          
-        */
     }
 
     return (
@@ -122,7 +90,7 @@ export default function CadastroEmpresa() {
                             <Input 
                                 name="fullName"
                                 className="cadastre"
-                                label="Digite seu nome completo:"
+                                label="Nome completo:"
                                 type="text"
                                 placeholder="Maria dos Santos"
                                 required
@@ -133,7 +101,7 @@ export default function CadastroEmpresa() {
                             <Input 
                                 name="rg"
                                 className="cadastre"
-                                label="Digite seu RG:"
+                                label="RG:"
                                 type="text"
                                 placeholder="00.000.000-0"
                                 required 
@@ -143,7 +111,7 @@ export default function CadastroEmpresa() {
                             <Input 
                                 name="cpf"
                                 className="cadastre"
-                                label="Digite seu CPF:"
+                                label="CPF:"
                                 type="text"
                                 placeholder="000.000.000-00"
                                 required
@@ -153,7 +121,7 @@ export default function CadastroEmpresa() {
                             <Input
                                 name="telefone"
                                 className="cadastre"
-                                label="Digite seu Telefone:"
+                                label="Telefone:"
                                 type="text"
                                 placeholder="(11) 91234-5678"
                                 required
@@ -163,7 +131,7 @@ export default function CadastroEmpresa() {
                             <Input
                                 name="linkedin"
                                 className="cadastre"
-                                label="Digite seu LinkeIn:"
+                                label="LinkedIn:"
                                 type="text"
                                 placeholder="linkedin.com/in/maria-dos-santos"
                                 required
@@ -176,16 +144,33 @@ export default function CadastroEmpresa() {
                                     <option value="0">Selecione seu curso</option>
                                     {
                                         Cursos.map((item) => {
-                                            return <option value={item.idCurso}>{item.nomeCurso}</option>
+                                            console.log(item.idCurso, item.nomeCurso)
+                                            return (
+                                                <option value={item.idCurso}>{item.nomeCurso}</option>
+                                            );
                                         })
                                     }
+                                </select>
+                            </div>
+
+                            <div className="select">
+                                <label>Área</label>
+                                <select className="cadastre" onChange={e => SetArea(e.target.value)} value={Area}>
+                                    <option value="0">Selecione sua área</option>
+                                    <option value="front-end">Desenvolvedor Front-end</option>
+                                    <option value="back-end">Desenvolvedor Back-end</option>
+                                    <option value="jogos">Desenvolvedor de Jogos</option>
+                                    <option value="redes">Redes de Computadores</option>
+                                    <option value="ciencia-dados">Cientista de Dados</option>
+                                    <option value="ux-designer">UX Designer</option>
+                                    <option value="ui-designer">UI Designer</option>
                                 </select>
                             </div>
 
                             <Input
                                 name="email"
                                 className="cadastre"
-                                label="Digite seu e-mail:"
+                                label="E-mail:"
                                 type="text"
                                 placeholder="exemplo@exemplo.com"
                                 required
@@ -195,9 +180,9 @@ export default function CadastroEmpresa() {
                             <Input
                                 name="password"
                                 className="cadastre"
-                                label="Digite sua senha:"
+                                label="Senha:"
                                 type="password"
-                                placeholder="••••••••"
+                                placeholder="Digite sua senha"
                                 required
                                 onChange={e => SetSenha(e.target.value)}
                             />
@@ -205,9 +190,9 @@ export default function CadastroEmpresa() {
                             <Input
                                 name="password-confirm"
                                 className="cadastre"
-                                label="Confirme sua senha:"
+                                label="Senha:"
                                 type="password"
-                                placeholder="••••••••"
+                                placeholder="Confirme a senha"
                                 required
                                 onChange={e => SetConfirmarSenha(e.target.value)}
                             />
