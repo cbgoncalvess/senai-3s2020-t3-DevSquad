@@ -9,7 +9,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
 {
     interface IVagaRepository:InterfaceBase
     {
-        List<Vaga> ListarVagas();
+        List<ListarVagasViewModel> ListarVagas(int id);
         bool DeletarVaga(int idVaga);
         bool AtualizarVaga(int idVaga,AtualizarVagaViewModel vaga);
         bool AdicionarVaga(Vaga vaga);

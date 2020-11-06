@@ -30,7 +30,7 @@ export default function VagasPublicadas() {
     }, []);
 
     const listarVagas = () => {
-        fetch('http://localhost:5000/api/Vagas/ListarVaga', {
+        fetch('http://localhost:5000/api/Vagas/ListarVagasPublicadas', {
             method: 'GET',
         })
             .then(response => response.json())
@@ -75,7 +75,7 @@ export default function VagasPublicadas() {
                                 <div className="VagaCompleta">
                                     <img src={imgEmpresa} className="ImagemEmpresa" ></img>
                                     <div className="MainVaga">
-                                        <h3>{item.tituloVaga}.</h3>
+                                        <h3>Titulo da vaga</h3>
                                         <div className="InfoVagas">
                                             <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
                                             <InfoVaga NomeProp={item.localidade} source={imgLocalizacao} />
