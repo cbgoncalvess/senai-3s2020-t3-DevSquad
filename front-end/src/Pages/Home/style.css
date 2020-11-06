@@ -89,14 +89,16 @@ padding: 3vh;
 
 .BoxTexto{
     background-color: #4B4B4B;
-    width: 350px;
-    height:350px;
+    min-width: 300px;
+    max-width: 400px;
+    height: auto;
     padding: 2vw;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: white;
     text-align: initial;
+    margin: 10px 0;
 }
 
 hr{
@@ -105,14 +107,30 @@ hr{
 }
 
 .bt{
-width: 148px;
-height: 37px;
-left: 503px;
-top: 1787px;
+width: auto;
+height: auto;
+padding: 12px 25px;
 background: #353535;
 border-radius: 4px;
 color: white;
-border: none;
+border: #353535 solid 1px !important;
+transition: .5s;
+}
+
+.heightomg{
+    height: 0;
+}
+
+.bt:hover{
+    width: auto;
+    height: auto;
+    padding: 12px 25px;
+    background: white;
+    border-radius: 4px;
+    color: #353535;
+    border: white solid 1px;
+    transition: .5s;
+    cursor: pointer;
 }
 
 .Link{
@@ -175,7 +193,7 @@ background-image: url("../../assets/esperoquesejaessetamanho.png");
     }
     .BoxTexto{
         margin-bottom: 50px;
-        width: 100%;
+        padding: 6vw;
     }
 
     .BoxDeVagas{
@@ -187,4 +205,15 @@ background-image: url("../../assets/esperoquesejaessetamanho.png");
     .Vaga{
         margin-bottom: 50px;
     }
+    .TesteDePersonalidade{
+        text-align:center;
+    }
+    body > div.bodyPart > div.TesteDePersonalidade > div.TextoTeste{
+        padding: 5vw;
+    }
+    .maior body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > button > h2,
+    .maior body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > button > h2{
+        font-size: 20px;
+    }
 }
+

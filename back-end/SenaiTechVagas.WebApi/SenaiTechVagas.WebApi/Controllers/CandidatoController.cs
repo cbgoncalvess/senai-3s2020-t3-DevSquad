@@ -38,7 +38,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// sucesso, caso contrário, retorna um HTTP Code (400) e a mensagem: Um erro 
         /// ocorreu ao receber a sua requisição.
         /// </returns>
-        [Authorize(Roles="2")]
         [HttpPost]
         public IActionResult CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato)
         {

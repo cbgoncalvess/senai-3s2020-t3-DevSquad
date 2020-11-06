@@ -22,7 +22,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             _cursoRepository = new CursoRepository();
         }
 
-        [Authorize]
+
         [HttpGet]
         public IActionResult ListarCurso()
         {

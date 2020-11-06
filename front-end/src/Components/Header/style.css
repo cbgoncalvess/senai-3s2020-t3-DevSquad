@@ -1,10 +1,3 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
 .header {
     background: whitesmoke;
     display: flex;
@@ -29,15 +22,19 @@
       background: #00000fa1;
       width: 100%;
       height: 100%;
-      position: absolute;
+      position: fixed;
       top: 0;
+      right: 0;
+      animation: enter 1s;
+      animation-direction: alternate;
   }
-  
+
   .dex {
       position: absolute;
-      right: 1vw;
-      top: 2vw;
-      padding: 2vw;
+      right: 0vw;
+      top: -1vw;
+      padding: 3vw;
+      z-index: 111;
   }
   
   ul {
@@ -103,7 +100,7 @@
       position: absolute;
       right: 0;
       top: 0;
-      padding: 3vw 2.5vw 2.5vw 2.5vw;
+      padding: 2vw 3vw 0vw 2vw;
     }
     nav.navbar, .barra, .code1, .code2{
       display: none;
@@ -116,7 +113,7 @@
       top: 0;
       right: 0;
       width: 33%;
-      height: 260px;
+      height: 60vh;
       background: white;
       -webkit-background-size: 100% 3vw;
       -moz-background-size: 100% 3vw;
@@ -124,18 +121,19 @@
       background-size: 100% 3vw;      
       flex-direction: row-reverse;
       padding: 3vw;
+      animation: show 1s;
     }
     #menu-hide{
       flex-direction: column;
       position: relative;
-      top: 20%;
-      align-items: flex-end;
-      height: 200px;
+      top: 5%;
+      align-items: flex-start;
+      height: -webkit-fill-available;
       justify-content: space-evenly;
     }
     #menu-hide > li > a{
       color: #2A2E32;
-      font-size: 4vw;
+      font-size: 3vw;
       border-radius: .8vw;
     }
     .botao{
@@ -153,7 +151,7 @@
       margin: unset;
     }
     .botao, .botao1{
-      font-size: 5vw !important;
+      font-size: 3vw !important;
     }
     .rel{
       top: 0;
@@ -181,7 +179,6 @@
       left: -9px;
       top: 0;
     }
-  
       #menu-hide > li:nth-child(4) > a > div{
       font-size: 4vw !important;
       margin-right: 1vw;
@@ -191,3 +188,47 @@
     }
   }
   
+  @keyframes enter{
+    0%{
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+    }
+    100%{
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @keyframes show{
+    0%{
+      display: none;
+    }
+    100%{
+      display: block;
+    }
+  }
+
+  @keyframes exit{
+    0%{
+      z-index: 1111;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
+    100%{
+      width: 0;
+      height: 0;
+            z-index: 1111;
+      position: fixed;
+      top: 0;
+      right: 0;
+    }
+  }

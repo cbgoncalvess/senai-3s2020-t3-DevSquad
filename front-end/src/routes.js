@@ -13,6 +13,11 @@ import Colaboradores from './Pages/CadastrarColaborador';
 import CadastroCandidato from './Pages/CadastroCandidato';
 import CadastroEmpresa from './Pages/CadastroEmpresa';
 import Banidos from './Pages/ListaBanidos';
+import Perfil from './Pages/PerfilAdm';
+import perfilCandidato from './Pages/PerfilCandidato';
+import perfilEmpresa from './Pages/PerfilEmpresa';
+import BuscarVagas from './Pages/BuscarVaga';
+import Teste from './Pages/Teste';
 
 function Routes() {
     return (
@@ -29,6 +34,11 @@ function Routes() {
             <Route path="/cadastroempresa" component={CadastroEmpresa} />
             <Route path="/colaboradores" component={Colaboradores} />
             <Route path="/banidos" component={Banidos} />
+            <Route path="/perfil" component={Perfil} />
+            <Route path="/perfilCandidato" component={perfilCandidato} />
+            <Route path="/perfilEmpresa" component={perfilEmpresa} />
+            <Route path="/principal" component={BuscarVagas} />
+            <Route path="/teste" component={Teste} />
         </BrowserRouter>
     );
 }

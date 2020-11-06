@@ -71,6 +71,13 @@ CREATE TABLE Candidato (
 );
 GO
 
+CREATE TABLE Colaborador (
+	IdColaborador INT PRIMARY KEY IDENTITY,
+	NomeCompleto  VARCHAR (35) NOT NULL UNIQUE,
+	IdUsuario	  INT FOREIGN KEY REFERENCES Usuario (IdUsuario)
+);
+GO
+
 CREATE TABLE Vaga (
 	IdVaga			   INT PRIMARY KEY IDENTITY,
 	DescricaoVaga	   VARCHAR (700) NOT NULL,

@@ -81,8 +81,9 @@
 }
 
 .Empresascadastradas,.Candidatoscadastrados,.Candidatoscontratados{
-    height: 72px;
-    width: 194px;
+    /* height: 72px; */
+    height: auto;
+    min-width: 194px;
     color: white;
     text-align: end;
     display: flex;
@@ -110,4 +111,45 @@
     margin-left: 5%;
 }
 
+.modalEstagio{
+    width: 50%;
+    height: 45%;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 20px;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    display: none;
+}
 
+
+.peliculaEstagio{
+background-color: rgb(00, 00, 00,0.63);
+width: 100%;
+height: 100%;
+position: fixed;
+top: 0;
+justify-content: center;
+align-items: center;
+display: none;
+}
+
+/* ADAPTANDO MENU DE ACESSIBILIDADE */
+
+.preto .Estagio,
+.preto body > div.bodyPartEstagio > div.Estatisticas > div.Candidatoscadastrados,
+.preto body > div.bodyPartEstagio > div.Estatisticas > div.Candidatoscontratados,
+.preto body > div.bodyPartEstagio > div.Estatisticas > div.Empresascadastradas{
+    background: #373737 !important;
+}
+
+.preto .bodyPartEstagio,
+.preto body > div.bodyPartEstagio > div.Estatisticas{
+    background: black !important;
+}
+
+.preto footer{
+    border-top: solid white 1px;
+}

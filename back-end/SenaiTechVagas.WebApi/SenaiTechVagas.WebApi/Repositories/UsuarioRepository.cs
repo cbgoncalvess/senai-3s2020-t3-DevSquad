@@ -94,5 +94,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             return ctx.Usuario.Where(u => u.IdTipoUsuario == 4).ToList();
         }
+
+        public List<Usuario> Colaboradores()
+        {
+            return ctx.Usuario.Where(u => u.IdTipoUsuario == 1).ToList();
+        }
     }
 }
