@@ -14,7 +14,7 @@ import Perfil from './Pages/PerfilAdm';
 import perfilCandidato from './Pages/PerfilCandidato';
 import perfilEmpresa from './Pages/PerfilEmpresa';
 import BuscarVagas from './Pages/BuscarVaga';
-
+import VisualizarVagaCandidato from './Pages/VisualizarVagaCandidato';
 function Routes() {
     return (
         <BrowserRouter>
@@ -31,6 +31,7 @@ function Routes() {
             <Route path="/perfilCandidato" component={perfilCandidato} />
             <Route path="/perfilEmpresa" component={perfilEmpresa} />
             <Route path="/principal" component={BuscarVagas} />
+            <Route path="/VisualizarVagaCandidato" component={VisualizarVagaCandidato} />
         </BrowserRouter>
     );
 }
