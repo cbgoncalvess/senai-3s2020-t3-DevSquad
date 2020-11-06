@@ -145,7 +145,7 @@ padding: 2vh 10vw;
         border: unset;
     }
     
-    .conteudo {
+    /* .conteudo {
         padding: 15px;
         width: 50%;
         display: flex;
@@ -163,7 +163,7 @@ padding: 2vh 10vw;
         background-size: 10vw;
         background-repeat: repeat-y;
         background-position: right 0px top 100px;    
-    }
+    } */
 
     @media (max-width: 1000px){
         #modalTeste > div.janela > div.conteudoModal{
