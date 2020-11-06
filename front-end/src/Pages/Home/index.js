@@ -36,7 +36,7 @@ export default function Home() {
                             <p>Empresas com interesse de divulgar </p>
                             <p>oportunidades</p>
                             <br />
-                            <div><button className="BtnStartEmpresa"><h2>EMPRESA</h2></button>
+                            <div><a href="/cadastroEmpresa"><button className="BtnStartEmpresa"><h2>EMPRESA</h2></button></a>
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@ export default function Home() {
                             <p>no curso</p>
                             <br />
                             <div>
-                                <button className="BtnStartCandidato"><h2>CANDIDATO</h2></button>
+                                <a href="/cadastro"><button className="BtnStartCandidato"><h2>CANDIDATO</h2></button></a>
                             </div>
                         </div>
                     </div>

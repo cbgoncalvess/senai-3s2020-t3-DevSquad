@@ -81,7 +81,7 @@ export default function CadastroEmpresa() {
                 <div className="box-form">
                     <div className="form-content">
                         <h1>Cadastre-se como Empresa</h1>
-                        <p>Bem-vindo ao cadastro de empresa. Ficamos felizes de tê-la na nossa plataforma</p>
+                        <p>Bem-vindo ao cadastro de empresa. <br/>Ficamos felizes de tê-la na nossa plataforma</p>
                         <div className="form">
                             <Input
                                 name="responsibleName"

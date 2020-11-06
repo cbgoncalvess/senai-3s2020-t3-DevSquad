@@ -4,33 +4,38 @@
     grid-template-columns: 20% 20% 20% 20% 20%; 
     grid-template-rows: 20% 20% 20% 20% 20% ;
     box-sizing: content-box;
+    overflow-x: hidden;
 }
 
 .box-form{
     display: grid;
     grid-area: 1 / 1 / 6 / 4;
     box-sizing: content-box;
+    padding: 3vw;
 }
 
 .form-content{
+    padding: 2vw;
     display: flex;
     justify-content: center;
-    background-color: #FFF ;
-    border-radius: 5em;
+    background-color: #FFF ;    
+    border-radius: 20px !important;
     box-sizing: content-box;
-    width: 100%;
-    height: 100%;
+    width: 40vw !important;
+    height: -webkit-fill-available !important;
     flex-direction: column;
     text-align: center;
 }
 
 .form-content p {
     height: unset;
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
 }
 
 .form-content h1{
+    font-size: 24px;
     color: #005767;
+    padding: 1vw;
 }
 
 .form-content p{
@@ -73,7 +78,15 @@
 }
 
 .img-cadastro-candidato{
-    max-width: 538px 
+    max-width: 538px;
+    width: 40vw;
+    height: 500%;
+    min-height: auto;
+    object-fit: cover;
+}
+
+.blue-button{
+    margin: unset;
 }
 
 @media(max-width: 900px){
