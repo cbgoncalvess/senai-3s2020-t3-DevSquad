@@ -17,12 +17,7 @@ import Perfil from './Pages/PerfilAdm';
 import perfilCandidato from './Pages/PerfilCandidato';
 import perfilEmpresa from './Pages/PerfilEmpresa';
 import BuscarVagas from './Pages/BuscarVaga';
-<<<<<<< HEAD
 import VisualizarVagaCandidato from './Pages/VisualizarVagaCandidato';
-=======
-import Teste from './Pages/Teste';
-
->>>>>>> 1d36fecc42800e8de31efaba0b57fc5ffefaf878
 function Routes() {
     return (
         <BrowserRouter>
@@ -42,11 +37,7 @@ function Routes() {
             <Route path="/perfilCandidato" component={perfilCandidato} />
             <Route path="/perfilEmpresa" component={perfilEmpresa} />
             <Route path="/principal" component={BuscarVagas} />
-<<<<<<< HEAD
             <Route path="/VisualizarVagaCandidato" component={VisualizarVagaCandidato} />
-=======
-            <Route path="/teste" component={Teste} />
->>>>>>> 1d36fecc42800e8de31efaba0b57fc5ffefaf878
         </BrowserRouter>
     );
 }

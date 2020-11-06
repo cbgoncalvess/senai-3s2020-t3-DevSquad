@@ -1,8 +1,3 @@
-*{
-    margin: 0px;
-    padding: 0px;
-}
-
 .ColumnImages>img{
 width: 100px;
 height: 100px;
@@ -185,8 +180,14 @@ background-image: url("../../assets/esperoquesejaessetamanho.png");
     border-radius:30px;
 }
 
-body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button{
+body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button,
+body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button{
     cursor: pointer;
+}
+
+.preto body > div.bodyPart > div.TesteDePersonalidade,
+.preto body > div.bodyPart > div.Imagens{
+    background: black;
 }
 
 @media(max-width:888px){

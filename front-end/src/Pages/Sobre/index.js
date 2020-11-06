@@ -2,6 +2,8 @@ import React from 'react';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import AccessBar from '../../Components/AccessBar';
+import AccessMenu from '../../Components/AccessMenu';
 
 import LogoSenai from '../../assets/images/logo_senai.png';
 import LogoTime from '../../assets/images/logo_devsquad.png';
@@ -13,13 +15,14 @@ import Douglas from '../../assets/images/linkedin_douglas.png';
 import Marcos from '../../assets/images/linkedin_marcos.png';
 
 import './style.css';
-import AccessBar from '../../Components/AccessBar';
+// import AccessBar from '../../Components/AccessBar';
 
 export default function Sobre() {
     return(
         <body>
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="sobrePage">
                 <div className="sobreBox">
                     <h1 className="sobre">Sobre</h1>

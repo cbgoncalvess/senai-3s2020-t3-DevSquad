@@ -1,6 +1,6 @@
-body{
+/* body{
     background: #F0F0F0;
-}
+} */
 
 .sobrePage {
     padding: 20vh 50vh;
@@ -49,6 +49,15 @@ body{
 
 img {
     width: 15vh;
+}
+
+.preto body > div.sobrePage{
+    background: black;
+}
+
+.preto body > div.sobrePage > div,
+.preto body > div.sobrePage > div > h1{
+    background: #373737 !important;
 }
 
 @media (max-width: 1210px) {
