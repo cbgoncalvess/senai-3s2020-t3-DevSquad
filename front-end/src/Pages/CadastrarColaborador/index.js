@@ -9,6 +9,7 @@ import Delete from '../../assets/images/cancel.png';
 import Input from '../../Components/Input';
 import AccessBar from '../../Components/AccessBar';
 import BlackButton from '../../Components/BlackButton';
+import AccessMenu from '../../Components/AccessMenu';
 
 
 export default function CadastrarColaborador() {
@@ -17,6 +18,7 @@ export default function CadastrarColaborador() {
         <body>
             <AccessBar />
             <Header />
+            <AccessMenu />
                 <div className="margin">
                     <div className="perfis">
                         <h1 className="colaboradores">Colaboradores:</h1>

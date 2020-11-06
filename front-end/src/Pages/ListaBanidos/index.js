@@ -9,6 +9,7 @@ import './style.css';
 import User from '../../assets/images/user.png';
 import Delete from '../../assets/images/cancel.png';
 import Refresh from '../../assets/images/refresh.png';
+import AccessMenu from '../../Components/AccessMenu';
 
 export default function ListaBanidos () {
     const [banidos, setBanidos] = useState([]);
@@ -43,6 +44,7 @@ export default function ListaBanidos () {
         <body>
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="marginBanidos">
                 <h1 className="tituloBanidos">Lista de Banidos</h1>
 

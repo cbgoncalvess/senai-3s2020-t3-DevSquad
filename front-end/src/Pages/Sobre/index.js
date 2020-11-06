@@ -14,12 +14,14 @@ import Marcos from '../../assets/images/linkedin_marcos.png';
 
 import './style.css';
 import AccessBar from '../../Components/AccessBar';
+import AccessMenu from '../../Components/AccessMenu';
 
 export default function Sobre() {
     return(
         <body>
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="sobrePage">
                 <div className="sobreBox">
                     <h1 className="sobre">Sobre</h1>
