@@ -8,6 +8,7 @@ namespace SenaiTechVagas.WebApi.Domains
         public Usuario()
         {
             Candidato = new HashSet<Candidato>();
+            Colaborador = new HashSet<Colaborador>();
             Empresa = new HashSet<Empresa>();
         }
 
@@ -18,6 +19,7 @@ namespace SenaiTechVagas.WebApi.Domains
 
         public virtual TipoUsuario IdTipoUsuarioNavigation { get; set; }
         public virtual ICollection<Candidato> Candidato { get; set; }
+        public virtual ICollection<Colaborador> Colaborador { get; set; }
         public virtual ICollection<Empresa> Empresa { get; set; }
     }
 }

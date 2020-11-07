@@ -31,8 +31,8 @@ export default function CadastroEmpresa() {
     const [Senha, SetSenha] = useState('');
     const [ConfirmarSenha, SetConfirmarSenha] = useState('');
     //const [Cidade, SetCidade] = useState('');
-    // const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
-    // const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
+    //const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
+    //const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
 
     const history = useHistory();
 
@@ -53,6 +53,7 @@ export default function CadastroEmpresa() {
             Logradouro: Logradouro,
             Complemento: Complemento,
             Uf: Estado,
+            Localidade:Estado,
             Senha: Senha
         };
 
@@ -67,8 +68,8 @@ export default function CadastroEmpresa() {
             .catch(function (error) {
                 console.log(error);
             });
-
-            //history.push('/');
+            alert("cadastro efetuado com sucesso")
+            history.push('/');
         }
     }
 

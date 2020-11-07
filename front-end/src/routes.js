@@ -12,12 +12,19 @@ import VizualizarVagaEmpresa from './Pages/VizualizarVagaEmpresa';
 import Colaboradores from './Pages/CadastrarColaborador';
 import CadastroCandidato from './Pages/CadastroCandidato';
 import CadastroEmpresa from './Pages/CadastroEmpresa';
+<<<<<<< HEAD
 import perfilCandidato from './Pages/PerfilCandidato';
 import perfilEmpresa from './Pages/PerfilEmpresa';
 import BuscarVagas from './Pages/BuscarVaga';
+=======
+>>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
 import Banidos from './Pages/ListaBanidos';
 import Perfil from './Pages/PerfilAdm';
 import VisualizarVagaCandidato from './Pages/VisualizarVagaCandidato';
+<<<<<<< HEAD
+=======
+import PerfilAdm from './Pages/PerfilAdm';
+>>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
 
 function Routes() {
     return (
@@ -34,7 +41,11 @@ function Routes() {
             <Route path="/cadastroempresa" component={CadastroEmpresa} />
             <Route path="/colaboradores" component={Colaboradores} />
             <Route path="/banidos" component={Banidos} />
+<<<<<<< HEAD
             <Route path="/perfil" component={Perfil} />
+=======
+            <Route path="/perfil" component={PerfilAdm} />
+>>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
             <Route path="/perfilCandidato" component={perfilCandidato} />
             <Route path="/perfilEmpresa" component={perfilEmpresa} />
             <Route path="/principal" component={BuscarVagas} />
