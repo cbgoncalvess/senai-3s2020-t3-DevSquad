@@ -7,6 +7,7 @@ import AccessMenu from '../../Components/AccessMenu';
 import Svg from '../../Components/imgsvg/Index';
 import Confidence from '../../Components/imgsvg/confidence';
 import Surprise from '../../Components/imgsvg/surprise';
+// import ModalGeneric from '../../Components/ModalGeneric/Index';
 
 import { Link } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ export default function Home() {
             <AccessBar />
             <Header />
             <AccessMenu />
+            {/* <ModalGeneric titleModal="Edição de vagas" btnName="Editar"/> */}
             <div className="bodyPart">
                 <div className="StartImage">
                     <div className="StartText">
