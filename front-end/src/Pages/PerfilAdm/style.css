@@ -3,6 +3,21 @@
     height: 100%;
 }
 
+.RowPerfilAdm{
+    display: flex;
+    justify-content: space-between;
+    padding: 6vh;
+    flex-wrap: wrap;
+}
+
+.RowPerfilAdm>h3{
+    text-decoration: underline;
+}
+
+#root > div > div.meioPerfil > div.DireitoPerfil > div > h3:nth-child(n)> a{
+    font-size: unset;
+}
+
 .Delete{
     background-color: red;
     width: 20px;
@@ -23,14 +38,6 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-}
-
-.imagem{
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-bottom: 140%;
 }
 
 .BoxPerfil{
@@ -93,8 +100,6 @@ align-items: flex-end;
     border-radius: 4px;
 }
 
-
-
 .btPerfil{
     width: 130px;
     height: 40px;
@@ -102,14 +107,15 @@ align-items: flex-end;
     border: none;
     color: white;
     border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 .selectPerfil{
     background: rgba(0, 0, 0, 0.61);
     border-radius: 4px;
     color: white;
-    margin-left: 5%;
-    width: 18%;
+    width: 173px;
+    margin-bottom: 5vw;
 }
 
 .peliculaPerfilAdm{
@@ -150,10 +156,6 @@ display: none;
 
     .DireitoPerfil{
         width: 100%;
-    }
-
-    .selectPerfil{
-        width: 40%;
     }
 
     .ColumnNomeEmail>h2{

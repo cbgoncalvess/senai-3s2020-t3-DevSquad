@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link} from 'react-router-dom'
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -11,7 +12,6 @@ import imgPadrao from '../../assets/android-character-symbol.png';
 import './style.css';
 
 export default function PerfilAdm() {
-
     const [Empresas, SetEmpresa] = useState([]);
     useEffect(() => {
         listarEmpresa();
@@ -27,14 +27,14 @@ export default function PerfilAdm() {
             })
             .catch(err => console.error(err));
     }
-    
+
     return (
         <div className="bodyPartVizualizarPerfil">
             <AccessBar />
             <Header />
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
-                    <div className="imagem">
+                    <div className="imgPefilTexto">
                         <img className="imgperfil" src={imgPadrao} alt="perfil" />
                         <h3>Robertinho monstrão</h3>
                         <p>administrador</p>
@@ -46,11 +46,15 @@ export default function PerfilAdm() {
                 </div>
                 <div className="DireitoPerfil">
                     <br />
-                    <select className="selectPerfil">
-                        <option>Filtre sua busca por...</option>
-                        <option>Candidatos</option>
-                        <option>Empresa</option>
-                    </select>
+                    <div className="RowPerfilAdm">
+                        <select className="selectPerfil">
+                            <option>Filtre sua busca por...</option>
+                            <option>Candidatos</option>
+                            <option>Empresa</option>
+                        </select>
+                        <h3><Link to='/banidos'>Banidos</Link></h3>
+                        <h3><Link to='/colaboradores'>Colaboradores</Link></h3>
+                    </div>
                     {
                         Empresas.map((item) => {
                             return (

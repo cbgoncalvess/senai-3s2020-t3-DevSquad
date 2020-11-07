@@ -114,7 +114,11 @@ export default function Header() {
                     </Link>
                     <nav className="navbar">
                         <ul id="menu">
-                            <li><Link to="/">Administrador</Link></li>
+                            <li><Link to="/">Perfil</Link></li>
+                            <li><Link to="/">Principal</Link></li>
+                            <li><Link to="/Estagio">Estagio</Link></li>
+                            <li><Link className="botao" to="/login">Login</Link></li>
+                            <li><Link className="botao1" to="/cadastro">Cadastro</Link></li>
                         </ul>
                     </nav>
                     <MenuMobile className="navmobile none burguer" id="burguer" alt="Menu mobile - Clique para abrir" onClick={event => {
@@ -140,7 +144,9 @@ export default function Header() {
                     <nav className="menumodal">
                         <img src={xBurguer} className="navmobile burguer dex" id="menumodal" alt="" />
                         <ul id="menu-hide" className="none">
-                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/">Perfil</Link></li>
+                            <li><Link to="/">Principal</Link></li>
+                            <li><Link to="/Estagio">Estagio</Link></li>
                         </ul>
                     </nav>
                 </div>

@@ -32,9 +32,11 @@ export default function PerfilEmpresa() {
             <Header />
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
-                    <img className="imgperfil" src={imgPadrao} alt="perfil" />
-                    <h3>Apple</h3>
-                    <p>Empresa</p>
+                    <div className="imgPefilTexto">
+                        <img className="imgperfil" src={imgPadrao} alt="perfil" />
+                        <h3>Apple</h3>
+                        <p>Empresa</p>
+                    </div>
                     <div className="BotoesPerfil">
                         <button className="btPerfil"><h3>Alterar dados</h3></button>
                         <button className="btPerfil"><h3>Alterar senha</h3></button>
@@ -47,9 +49,9 @@ export default function PerfilEmpresa() {
                                 <div className="BoxPerfilCandidato">
                                     <div className="flexBoxPerfilCandidato">
                                         <img src={imgPadrao} />
-                            <h3>{item.nomeCompleto}</h3>
+                                        <h3>{item.nomeCompleto}</h3>
                                     </div>
-                            <h3>{item.telefone}</h3>
+                                    <h3>{item.telefone}</h3>
                                     <h3>Dev 2°Termo-Manhã</h3>
                                 </div>
                             )

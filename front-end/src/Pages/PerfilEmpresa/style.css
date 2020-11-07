@@ -22,3 +22,11 @@ top: 25%;
 left: 25%;
 display: none;
 }
+
+.imgPefilTexto{
+    display: block;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 380px;
+}

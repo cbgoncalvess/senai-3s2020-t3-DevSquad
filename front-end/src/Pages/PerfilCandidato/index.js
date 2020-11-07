@@ -1,4 +1,4 @@
-import React , { useEffect , useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -30,9 +30,11 @@ export default function PerfilCandidato() {
             <Header />
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
-                    <img className="imgperfil" src={imgPadrao} alt="perfil" />
-                    <h3>Matador de herobraine 99</h3>
-                    <p>Candidato</p>
+                    <div className="imgPefilTexto">
+                        <img className="imgperfil" src={imgPadrao} alt="perfil" />
+                        <h3>Matador de herobraine 99</h3>
+                        <p>Candidato</p>
+                    </div>
                     <div className="BotoesPerfil">
                         <button className="btPerfil"><h3>Alterar dados</h3></button>
                         <button className="btPerfil"><h3>Alterar senha</h3></button>
