@@ -18,7 +18,7 @@ export default function PerfilAdm() {
     }, []);
 
     const listarEmpresa = () => {
-        fetch('http://localhost:5000/api/Administrador/ListarEmpresas', {
+        fetch('http://localhost:5000/api/Empresa/ListarEmpresa', {
             method: 'GET',
         })
             .then(response => response.json())

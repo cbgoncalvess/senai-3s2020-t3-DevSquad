@@ -27,6 +27,7 @@ export default function CadastroEmpresa() {
     const [Senha, SetSenha] = useState('');
     const [ConfirmarSenha, SetConfirmarSenha] = useState('');
 <<<<<<< HEAD
+<<<<<<< HEAD
     //const [Telefone, SetTelefone] = useState('');
     //const [Curso, SetCurso] = useState('');
 =======
@@ -53,6 +54,10 @@ export default function CadastroEmpresa() {
     //const [Area, SetArea] = useState('');
 >>>>>>> 8f3d49cb032971f61133d0331fa9ba5039621602
 >>>>>>> 922b7db9be4e61dfc4bf824f731240164b9eb6fc
+=======
+    const [Area, SetArea] = useState('');
+    //const [Areas, SetAreas] = useState([]);
+>>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
     //const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
     //const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
     
@@ -83,6 +88,7 @@ export default function CadastroEmpresa() {
             Email: Email,
             Senha: Senha
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -105,6 +111,8 @@ export default function CadastroEmpresa() {
 >>>>>>> 1ff94155811e23540b69588c33507eb45f76843a
 >>>>>>> 922b7db9be4e61dfc4bf824f731240164b9eb6fc
 >>>>>>> f93eae7209b921875cb1e3b508e37bd99a5b64ad
+=======
+>>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
         };
 
         if (Senha !== ConfirmarSenha || Senha === '' || ConfirmarSenha === '') {

@@ -12,22 +12,15 @@ import VizualizarVagaEmpresa from './Pages/VizualizarVagaEmpresa';
 import Colaboradores from './Pages/CadastrarColaborador';
 import CadastroCandidato from './Pages/CadastroCandidato';
 import CadastroEmpresa from './Pages/CadastroEmpresa';
-<<<<<<< HEAD
-import perfilCandidato from './Pages/PerfilCandidato';
-import perfilEmpresa from './Pages/PerfilEmpresa';
-import BuscarVagas from './Pages/BuscarVaga';
-import Teste from './Pages/Teste';
-import perfilAdm from './Pages/PerfilAdm/index';
-
-=======
 import Banidos from './Pages/ListaBanidos';
 import Perfil from './Pages/PerfilAdm';
 import perfilCandidato from './Pages/PerfilCandidato';
 import perfilEmpresa from './Pages/PerfilEmpresa';
 import BuscarVagas from './Pages/BuscarVaga';
 import VisualizarVagaCandidato from './Pages/VisualizarVagaCandidato';
-<<<<<<< HEAD
+import PerfilAdm from './Pages/PerfilAdm';
 
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
@@ -35,6 +28,8 @@ import VisualizarVagaCandidato from './Pages/VisualizarVagaCandidato';
 >>>>>>> 1ff94155811e23540b69588c33507eb45f76843a
 >>>>>>> 922b7db9be4e61dfc4bf824f731240164b9eb6fc
 >>>>>>> f93eae7209b921875cb1e3b508e37bd99a5b64ad
+=======
+>>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
 function Routes() {
     return (
         <BrowserRouter>
@@ -48,13 +43,9 @@ function Routes() {
             <Route path="/VagaEmpresa" component={VizualizarVagaEmpresa}/>
             <Route path="/cadastro" component={CadastroCandidato} />
             <Route path="/cadastroempresa" component={CadastroEmpresa} />
-<<<<<<< HEAD
-            <Route path="/perfil" component={perfilAdm} />
-=======
             <Route path="/colaboradores" component={Colaboradores} />
             <Route path="/banidos" component={Banidos} />
-            <Route path="/perfil" component={Perfil} />
->>>>>>> 1ff94155811e23540b69588c33507eb45f76843a
+            <Route path="/perfil" component={PerfilAdm} />
             <Route path="/perfilCandidato" component={perfilCandidato} />
             <Route path="/perfilEmpresa" component={perfilEmpresa} />
             <Route path="/principal" component={BuscarVagas} />
