@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.css'
 
-function Input(props){
+function Input(props, ...rest){
     return(
         <div className="Input">
            <label htmlFor={props.name}>{props.label}</label><br />

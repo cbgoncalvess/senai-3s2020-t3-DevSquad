@@ -11,7 +11,7 @@ import AccessMenu from '../../Components/AccessMenu';
 import api from '../../services/api';
 
 
-export default function CadastarVaga() {
+export default function CadastrarVaga() {
 
     const [TituloVaga, SetTituloVaga] = useState('');
     const [Salario, SetSalario] = useState('');

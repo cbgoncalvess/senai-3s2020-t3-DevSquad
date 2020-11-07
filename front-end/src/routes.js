@@ -1,56 +1,61 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
-import Home from './Pages/Home';
-import Sobre from './Pages/Sobre';
-import Login from './Pages/Login';
-import VagasPublicadas from './Pages/ListarVagasPublicadas/Index';
-import CadastarVaga from './Pages/CadastrarVaga/Index';
-import Estagio from './Pages/Estagio/Index';
-import TesteDePesonalidade from './Pages/TesteDePersonalidade/Index';
-import VizualizarVagaEmpresa from './Pages/VizualizarVagaEmpresa';
-import Colaboradores from './Pages/CadastrarColaborador';
+//import { parseJwt } from './services/token';
+
+import Banidos from './Pages/ListaBanidos';
+import BuscarVagas from './Pages/BuscarVaga';
+import CadastrarVaga from './Pages/CadastrarVaga/Index';
 import CadastroCandidato from './Pages/CadastroCandidato';
 import CadastroEmpresa from './Pages/CadastroEmpresa';
-<<<<<<< HEAD
-import perfilCandidato from './Pages/PerfilCandidato';
-import perfilEmpresa from './Pages/PerfilEmpresa';
-import BuscarVagas from './Pages/BuscarVaga';
-=======
->>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
-import Banidos from './Pages/ListaBanidos';
+import Colaboradores from './Pages/CadastrarColaborador';
+import Estagio from './Pages/Estagio/Index';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
 import Perfil from './Pages/PerfilAdm';
+import PerfilCandidato from './Pages/PerfilCandidato';
+import PerfilEmpresa from './Pages/PerfilEmpresa';
+import Sobre from './Pages/Sobre';
+import TesteDePesonalidade from './Pages/TesteDePersonalidade/Index';
+import VagasPublicadas from './Pages/ListarVagasPublicadas/Index';
 import VisualizarVagaCandidato from './Pages/VisualizarVagaCandidato';
-<<<<<<< HEAD
-=======
-import PerfilAdm from './Pages/PerfilAdm';
->>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
+import VizualizarVagaEmpresa from './Pages/VizualizarVagaEmpresa';
+
+/*
+const PrivateRoute = ({ component: Component, ...rest}) => {
+    <Route {...rest} render={props => (
+        parseJwt() ? (
+            <Component {...props} />
+        ) : (
+            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+        )
+    )} />
+}
+*/
 
 function Routes() {
     return (
-        <BrowserRouter>
-            <Route path="/" exact component={Home} />
-            <Route path="/sobre" component={Sobre} />
-            <Route path="/login" component={Login} />
-            <Route path="/VagasPublicadas" component={VagasPublicadas} />
-            <Route path="/CadastrarVaga" component={CadastarVaga} />
-            <Route path="/Estagio" component={Estagio} />
-            <Route path="/TesteDePersonalidade" component={TesteDePesonalidade} />
-            <Route path="/VagaEmpresa" component={VizualizarVagaEmpresa}/>
-            <Route path="/cadastro" component={CadastroCandidato} />
-            <Route path="/cadastroempresa" component={CadastroEmpresa} />
-            <Route path="/colaboradores" component={Colaboradores} />
-            <Route path="/banidos" component={Banidos} />
-<<<<<<< HEAD
-            <Route path="/perfil" component={Perfil} />
-=======
-            <Route path="/perfil" component={PerfilAdm} />
->>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
-            <Route path="/perfilCandidato" component={perfilCandidato} />
-            <Route path="/perfilEmpresa" component={perfilEmpresa} />
-            <Route path="/principal" component={BuscarVagas} />
-            <Route path="/VisualizarVagaCandidato" component={VisualizarVagaCandidato} />
-        </BrowserRouter>
+        <Router>
+            <Switch>
+                <Route path="/banidos" component={Banidos} />
+                <Route path="/principal" component={BuscarVagas} />
+                <Route path="/cadastro/vaga" component={CadastrarVaga} />
+                <Route path="/cadastro" exact component={CadastroCandidato} />
+                <Route path="/cadastro/empresa" component={CadastroEmpresa} />
+                <Route path="/colaboradores" component={Colaboradores} />
+                <Route path="/Estagio" component={Estagio} />
+                <Route path="/" exact component={Home} />
+                <Route path="/login" component={Login} />
+                <Route path="/perfil" component={Perfil} />
+                <Route path="/perfilCandidato" component={PerfilCandidato} />
+                <Route path="/perfilEmpresa" component={PerfilEmpresa} />
+                <Route path="/sobre" component={Sobre} />
+                <Route path="/TesteDePersonalidade" component={TesteDePesonalidade} />
+                <Route path="/VagasPublicadas" component={VagasPublicadas} />
+                <Route path="/VisualizarVagaCandidato" component={VisualizarVagaCandidato} />
+                <Route path="/VagaEmpresa" component={VizualizarVagaEmpresa}/>
+            </Switch>
+        </Router>
     );
 }
 

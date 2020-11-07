@@ -38,7 +38,7 @@ export default function Home() {
                             <p>oportunidades</p>
                             <br />
                             <div>
-                                <Link to="/cadastroempresa"><button className="BtnStartEmpresa"><h2>EMPRESA</h2></button></Link>
+                                <Link to="/cadastro/empresa"><button className="BtnStartEmpresa"><h2>EMPRESA</h2></button></Link>
                             </div>
                         </div>
 

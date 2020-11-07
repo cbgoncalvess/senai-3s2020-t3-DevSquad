@@ -22,8 +22,37 @@ import './style.css';
 
 export default function BuscarVaga(){
     
-    // const [ListVagas, SetListVagas] = useState([]);
-    // const [SetListTecnologias, SetListTecnologias] = useState([]);
+    const [ListVagas, SetListVagas] = useState([]);
+    const [Tecologias, SetTecnologia] = useState([]);
+
+    
+    useEffect(() => {
+        listarVagas();
+    }, []);
+
+    const listarVagas = () => {
+        fetch('http://localhost:5000/api/Vagas/ListarVagasPublicadas', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                SetTecnologia(dados.tecnologias)
+                SetListVagas(dados);
+            })
+            .catch(err => console.error(err));
+    }
+
+    const listarTecnologias = () => {
+        fetch('http://localhost:5000/api/Empresa/ListarTecnologia', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                SetTecnologia(dados)
+            })
+            .catch(err => console.error(err));
+    }
+
 
     return(
         <body>
@@ -39,28 +68,36 @@ export default function BuscarVaga(){
                 </div>
 
                 <div className="vagas">
-                    <div className="vaga">
-                        <div className="VagaCompleta">
-                            <img src={imgEmpresa} className="ImagemEmpresa" ></img>
-                            <div className="MainVaga">
-                                <h3>Desenvolvedor back-end jr.</h3>
-                                <div className="InfoVagas">
-                                    <InfoVaga NomeProp={"Microsoft corporation"} source={IconEmpresa}></InfoVaga>
-                                    <InfoVaga NomeProp={"São paulo"} source={imgLocalizacao}></InfoVaga>
-                                    <InfoVaga NomeProp={"Júnior"} source={imgFuncao}></InfoVaga>
-                                    <InfoVaga NomeProp={"CLT"} source={imgTipoContrato}></InfoVaga>
-                                    <InfoVaga NomeProp={"3.000"} source={imgSalario}></InfoVaga>
-                                    <InfoVaga NomeProp={"Area de desenvolvimento"} source={imgDesenvolvimento}></InfoVaga>
-                                </div>
-                                <div className="TecnologiasVaga">
-                                    <Tag NomeTag={"Angular"}></Tag>
-                                    <Tag NomeTag={"Angular"}></Tag>
-                                    <Tag NomeTag={"Angular"}></Tag>
-                                    <Tag NomeTag={"Angular"}></Tag>
+                {
+                    ListVagas.map((item) => {
+                        return (
+                            <div key={item.idVaga} className="vaga">
+                                <div className="VagaCompleta">
+                                    <img src={imgEmpresa} className="ImagemEmpresa" alt=""></img>
+                                    <div className="MainVaga">
+                                        <h3>Titulo da vaga</h3>
+                                        <div className="InfoVagas">
+                                            <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
+                                            <InfoVaga NomeProp={item.localidade} source={imgLocalizacao} />
+                                            <InfoVaga NomeProp={item.experiencia} source={imgFuncao} />
+                                            <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato} />
+                                            <InfoVaga NomeProp={item.salario} source={imgSalario} />
+                                            <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento} />
+                                        </div>
+                                        <div className="TecnologiasVaga">
+                                            {item.tecnologias.map((tec) => {
+                                                return (
+                                                    <Tag key={tec}  NomeTag={tec}></Tag>
+                                                )
+                                            })
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        )
+                    })
+                }
                 </div>
             </div>
             <Footer />
