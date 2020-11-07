@@ -49,7 +49,7 @@ export default function Header() {
     const token = localStorage.getItem('token');
 
     //se o valor de token estiver indefinido ou nulo, chama o menu deslogado, se não chama o menu para quando o usuário estiver logado
-    if (token === null) {
+    if (token === null || token !== '') {
         // Deslogado
         return (
             <header>

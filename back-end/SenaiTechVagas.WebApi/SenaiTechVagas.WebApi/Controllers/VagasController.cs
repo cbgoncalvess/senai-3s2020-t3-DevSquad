@@ -165,6 +165,19 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
+        [HttpGet("VagaCompleta")]
+        public IActionResult ListarVagasCompleta(int id)
+        {
+            try
+            {
+                id = 3;
+                return Ok(_Vaga.BuscarPorId(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
 
         /// <summary>
         /// Lista vagas pelo filtro por nivel de experiencia

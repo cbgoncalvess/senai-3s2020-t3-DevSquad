@@ -148,16 +148,8 @@ padding: 2vh 10vw;
         font-weight: bolder;
         border: unset;
     }
-<<<<<<< HEAD
     
     /* .conteudo {
-=======
-
-
-   /* Parte q esta dando problema-------  */
-
-    .conteudo {
->>>>>>> f93eae7209b921875cb1e3b508e37bd99a5b64ad
         padding: 15px;
         width: 50%;
         display: flex;
@@ -184,10 +176,6 @@ padding: 2vh 10vw;
         background-repeat: repeat-y;
         background-position: right 0px top 100px;    
     } */
-<<<<<<< HEAD
-=======
-    /* Parte q esta dando problema-------  */
->>>>>>> f93eae7209b921875cb1e3b508e37bd99a5b64ad
 
     @media (max-width: 1000px){
         #modalTeste > div.janela > div.conteudoModal{

@@ -129,6 +129,86 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
+        public VagaCompletaViewModel BuscarPorId(int idVaga)
+        {
+            try
+            {
+                string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019;Initial Catalog=Db_TechVagas; User id=sa; pwd=sa@132";
+                List<VagaCompletaViewModel> listvagas = new List<VagaCompletaViewModel>();
+                // Declara a SqlConnection passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
+                {
+                    // Declara a instrução a ser executada
+                    string querySelectAll =
+                   "SELECT v.DescricaoVaga,v.DescricaoBeneficio,v.DescricaoEmpresa,v.Estado,v.Cep,v.Logradouro,v.Complemento,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                   " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
+                   " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
+                   " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +                   
+                   " WHERE v.IdVaga=@IdVaga";
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                    {
+                        cmd.Parameters.AddWithValue("@IdVaga", idVaga);
+
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
+                        while (rdr.Read())
+                        {
+                            bool teveAcao = false;
+
+                            // Instancia um objeto jogo 
+                            VagaCompletaViewModel vm = new VagaCompletaViewModel
+                            {
+                                // Atribui às propriedades os valores das colunas da tabela do banco
+                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                                Experiencia = rdr["Experiencia"].ToString(),
+                                TipoContrato = rdr["TipoContrato"].ToString(),
+                                Localidade = rdr["Localidade"].ToString(),
+                                Salario = Convert.ToDecimal(rdr["Salario"]),
+                                RazaoSocial = rdr["RazaoSocial"].ToString(),
+                                DescricaoBeneficio = rdr["DescricaoBeneficio"].ToString(),
+                                DescricaoEmpresa = rdr["DescricaoVaga"].ToString(),
+                                DescricaoVaga = rdr["DescricaoVaga"].ToString(),
+                                Estado = rdr["Estado"].ToString(),
+                                Cep = rdr["Cep"].ToString(),
+                                Logradouro = rdr["Logradouro"].ToString(),
+                                Complemento = rdr["Complemento"].ToString()
+                            };
+                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
+
+                            vm.Tecnologias = new List<string>();
+
+                            for (int i = 0; i < listvagas.Count; i++)
+                            {
+                                if (vm.IdVaga == listvagas[i].IdVaga)
+                                {
+                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
+                                    teveAcao = true;
+                                }
+                            }
+                            if (teveAcao == true)
+                                continue;//é do While
+                            else vm.Tecnologias.Add(NomeTecnologia);
+                            // Adiciona a vaga criada à lista de vagas
+                            listvagas.Add(vm);
+                        }
+                    }
+                }
+                return listvagas[0];
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public bool DeletarVaga(int idVaga)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())

@@ -18,18 +18,8 @@ import perfilCandidato from './Pages/PerfilCandidato';
 import perfilEmpresa from './Pages/PerfilEmpresa';
 import BuscarVagas from './Pages/BuscarVaga';
 import VisualizarVagaCandidato from './Pages/VisualizarVagaCandidato';
-import PerfilAdm from './Pages/PerfilAdm';
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> 1ff94155811e23540b69588c33507eb45f76843a
->>>>>>> 922b7db9be4e61dfc4bf824f731240164b9eb6fc
->>>>>>> f93eae7209b921875cb1e3b508e37bd99a5b64ad
-=======
->>>>>>> b04324ca3ca6e7ace6d044ad11a20d24e94989c7
 function Routes() {
     return (
         <BrowserRouter>
@@ -45,7 +35,7 @@ function Routes() {
             <Route path="/cadastroempresa" component={CadastroEmpresa} />
             <Route path="/colaboradores" component={Colaboradores} />
             <Route path="/banidos" component={Banidos} />
-            <Route path="/perfil" component={PerfilAdm} />
+            <Route path="/perfil" component={Perfil} />
             <Route path="/perfilCandidato" component={perfilCandidato} />
             <Route path="/perfilEmpresa" component={perfilEmpresa} />
             <Route path="/principal" component={BuscarVagas} />
