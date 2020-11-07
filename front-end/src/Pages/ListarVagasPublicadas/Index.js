@@ -26,11 +26,11 @@ export default function VagasPublicadas() {
     const [Tecologias, SetTecnologia] = useState([]);
 
     useEffect(() => {
-        //listarVagas();
+        listarVagas();
     }, []);
 
     const listarVagas = () => {
-        fetch('http://localhost:5000/api/', {
+        fetch('http://localhost:5000/api/Empresa/ListarVagasPublicadas', {
             method: 'GET',
         })
             .then(response => response.json())

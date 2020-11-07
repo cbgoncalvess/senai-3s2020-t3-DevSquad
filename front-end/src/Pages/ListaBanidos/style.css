@@ -1,0 +1,128 @@
+.marginBanidos {
+    margin: 5vw 25vw 5vw 25vw;
+}
+
+.tituloBanidos {
+    font-size: 2.5vw;
+}
+
+.filtroBanidos {
+    display: flex;
+    align-items: center;
+}
+
+.selectBanidos {
+    margin: 2vw 0vw 2vw 1vw;
+    background-color: rgba(0, 0, 0, 0.664);
+    color: #ffff;
+    border-radius: 0.5vh;
+}
+
+.banidoBox {
+    background: #ffff;
+    padding: 3vh;
+    display: flex;
+    margin-bottom: 5vh;
+    justify-content: space-between;
+}
+
+.banidoBox p {
+    font-size: 1.1vw;
+}
+
+.colunaMobile {
+    display: flex;
+}
+
+.banido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.banido img {
+    width: 5vw;
+}
+
+.banido h4 {
+    margin-top: 1vh;
+    font-size: 1.5vw;
+}
+
+.banido p {
+    font-size: 1vw;
+}
+
+.user {
+    margin-bottom: 1vh;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 3vh;
+}
+
+.info p {
+    height: 3vw;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.desbanir {
+    display: flex;
+    margin-left: 3vh;
+}
+
+.desbanir img {
+    margin-left: 1vh;
+    width: 1vw;
+    height: 1vw;
+}
+
+
+@media (max-width: 1100px) {
+    .marginBanidos {
+        margin: 2.5vw 15vw 2.5vw 15vw;
+    }
+    
+    .banidoBox p {
+        font-size: 1.5vw;
+    }
+
+    .tituloBanidos {
+        font-size: 2.7vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .marginBanidos {
+        margin: 1vw 2.5vw 1vw 2.5vw;
+    }
+
+    .tituloBanidos {
+        font-size: 4vw;
+    }
+    
+    .banidoBox p {
+        font-size: 2.3vw;
+    }
+
+    .colunaMobile {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .info {
+        margin-left: 0vh;
+        margin-top: 2vw;
+    }
+}

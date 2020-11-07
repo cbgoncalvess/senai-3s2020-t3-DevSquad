@@ -9,6 +9,9 @@ import './style.css';
 
 // imagens
 import imglogin from '../../assets/ImagemimgLogin.png';
+import AccessBar from '../../Components/AccessBar';
+import Header from '../../Components/Header';
+import AccessMenu from '../../Components/AccessMenu';
 
 export default function Login() {
 
@@ -23,7 +26,7 @@ export default function Login() {
             senha: senha
         }
 
-        fetch('http://localhost:5000/api/Conta/login', {
+        fetch('http://localhost:5000/api/login', {
 
             method: 'POST',
             body: JSON.stringify(login),
@@ -43,6 +46,10 @@ export default function Login() {
 
     return (
         <div className="bodyPartLogin">
+            <AccessBar/>
+            <Header/>
+            <AccessMenu/>
+            <div className="meioLogin">
             <div className="sessaoLogar">
                 <div>
                     <button>sou uma empresa</button>
@@ -75,6 +82,9 @@ export default function Login() {
                 </div>
             </div>
             <img src={imglogin} className="imagemDireito"/>
+            </div>
+            
+            <Footer/>
         </div>
     );
 }

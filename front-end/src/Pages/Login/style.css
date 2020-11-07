@@ -1,6 +1,6 @@
 .division-logar-title > p {height: initial; color: #5f5f5f;}
 
-.bodyPartLogin{
+.meioLogin{
     display: flex;
 }
 
@@ -120,16 +120,58 @@ background-color: #f3f3f3;}
     border-radius: 4px;
     color: #fff;}
 
-.imagemDireito{
-    width: 50%;
-}
 
 .bodyPartLogin > img{
     height: 100vh;
 }
 
-@media(max-width:1116){
+@media(max-width:1116px){
+    .sessaoLogar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        background-color: #f3f3f3;
+        height: 100vh;
+    }
     .imagemDireito{
         display: none;
-    } 
+    }
+
+    .sessaoLogar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #f3f3f3;}
+    
+    .sessaoLogar > div 
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+        height: 60%;
+    }
+}
+
+@media(max-width:600px){
+    .divisionBtn {
+   display: flex;
+   justify-content: space-around;
+    }
+
+    .sessaoLogar > div {
+        display: contents;
+    }
+
+    .divisionBtn {
+        width:-webkit-fill-available;
+    }
+
+        .division-logar {
+            width: auto;
+            padding: 10px;
+        }
 }
