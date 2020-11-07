@@ -66,7 +66,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// caso contrário, retorna um HTTP Code (400) e a mensagem: Uma exceção 
         /// ocorreu. Tente novamente.
         /// </returns>
-        [Authorize(Roles="1")]
+        //[Authorize(Roles="1")]
         [HttpGet]
         public IActionResult ListarCandidatos()
         {

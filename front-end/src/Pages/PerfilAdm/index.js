@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -12,10 +12,10 @@ import imgPadrao from '../../assets/android-character-symbol.png';
 import './style.css';
 
 export default function PerfilAdm() {
+
     const [Empresas, SetEmpresa] = useState([]);
-    useEffect(() => {
-        listarEmpresa();
-    }, []);
+    const [Candidatos, SetCandidato] = useState([]);
+    let [Opcao, SetOpcao] = useState('');
 
     const listarEmpresa = () => {
         fetch('http://localhost:5000/api/Empresa/ListarEmpresa', {
@@ -26,6 +26,29 @@ export default function PerfilAdm() {
                 SetEmpresa(dados);
             })
             .catch(err => console.error(err));
+    }
+
+    const listarCandidatos = () => {
+        fetch('http://localhost:5000/api/Candidato', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                SetCandidato(dados);
+            })
+            .catch(err => console.error(err));
+    }
+
+    function Listar() {
+        if (Opcao === "Candidatos") {
+            listarCandidatos();
+            
+            Opcao = '';
+        }
+        else if (Opcao === "Empresas") {
+            listarEmpresa();
+            Opcao = '';
+        }
     }
 
     return (
@@ -47,46 +70,72 @@ export default function PerfilAdm() {
                 <div className="DireitoPerfil">
                     <br />
                     <div className="RowPerfilAdm">
-                        <select className="selectPerfil">
+                        <select className="selectPerfil" onChange={e => SetOpcao(e.target.value)} onClick={Listar} value={Opcao}>
                             <option>Filtre sua busca por...</option>
-                            <option>Candidatos</option>
-                            <option>Empresa</option>
+                            <option value="Candidatos">Candidatos</option>
+                            <option value="Empresas">Empresa</option>
                         </select>
                         <h3><Link to='/banidos'>Banidos</Link></h3>
                         <h3><Link to='/colaboradores'>Colaboradores</Link></h3>
                     </div>
                     {
-                        Empresas.map((item) => {
-                            return (
-                                <div className="BoxPerfil">
-                                    <div className="flexBoxPerfil">
-                                        <img className="imgUsuario" src={imgPadrao} alt="usuario" />
-                                        <div className="ColumnNomeEmail">
-                                            <h2>{item.razaoSocial}</h2>
-                                            <p>{item.nomeReponsavel}</p>
-                                        </div>
-                                    </div>
-                                    <div className="ColumnPerfilBanir">
-                                        <img className="Delete" src={imgDelete} alt="Delete" />
-                                        <button className="btVerPerfil"><h4>Ver perfil</h4></button>
-                                    </div>
-                                </div>
-                            )
-                        })
+                        Listar()
                     }
                 </div>
-            </div>
-            <div className="peliculaPerfilAdm"></div>
-            <div className="modalPerfilAdm">
-                <h2>Editar seus dados pessoais</h2>
-                <form>
-                    <Input className="InputCadastro" name="email" label="Email" />
-                    <div className="btEditarEstagioDiv">
-                        <button className="btVaga"><h3>Editar</h3></button>
-                    </div>
-                </form>
             </div>
             <Footer />
         </div>
     );
+
+    function CandidatoView() {
+        return (
+            <div>
+                {
+                    Candidatos.map((item) => {
+                        return (
+                            <div key={item.idCandidato} className="BoxPerfil">
+                                <div className="flexBoxPerfil">
+                                    <img className="imgUsuario" src={imgPadrao} alt="usuario" />
+                                    <div className="ColumnNomeEmail">
+                                        <h2>{item.nomeCompleto}</h2>
+                                        <p>{item.nomeReponsavel}</p>
+                                    </div>
+                                </div>
+                                <div className="ColumnPerfilBanir">
+                                    <img className="Delete" src={imgDelete} alt="Delete" />
+                                    <button className="btVerPerfil"><h4>Ver perfil</h4></button>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        );
+    }
+    function EmpresaView() {
+        return (
+            <div>
+                {
+                    Empresas.map((item) => {
+                        return (
+                            <div key={item.idEmpresa} className="BoxPerfil">
+                                <div className="flexBoxPerfil">
+                                    <img className="imgUsuario" src={imgPadrao} alt="usuario" />
+                                    <div className="ColumnNomeEmail">
+                                        <h2>{item.razaoSocial}</h2>
+                                        <p>{item.nomeReponsavel}</p>
+                                    </div>
+                                </div>
+                                <div className="ColumnPerfilBanir">
+                                    <img className="Delete" src={imgDelete} alt="Delete" />
+                                    <button className="btVerPerfil"><h4>Ver perfil</h4></button>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        );
+    }
 }
+
