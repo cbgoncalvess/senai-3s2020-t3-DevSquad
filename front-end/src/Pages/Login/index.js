@@ -20,7 +20,6 @@ export default function Login() {
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    let [resposta, SetResponse] = useState('');
 
     const login = () => {
 

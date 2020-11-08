@@ -64,13 +64,13 @@ export default function CadastroEmpresa() {
         }else{
             api.post('/Candidato', data)
             .then(function (response) {
+                alert("Candidato cadastrado com sucesso");
+                history.push('/');
                 console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             });
-
-            history.push('/');
         }
     }
 

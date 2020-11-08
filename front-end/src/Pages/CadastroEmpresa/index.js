@@ -63,13 +63,13 @@ export default function CadastroEmpresa() {
         else{
             api.post('/Empresa', data)
             .then(function (response) {
+                alert("Empresa cadastrada com sucesso");
+                history.push('/');
                 console.log(response);
             })
             .catch(function (error) {
                 console.log(error);
             });
-            alert("cadastro efetuado com sucesso")
-            history.push('/');
         }
     }
 

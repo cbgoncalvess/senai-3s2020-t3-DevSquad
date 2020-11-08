@@ -176,6 +176,10 @@
        .VagaCompleta{
            display: block;
        }
+
+       .Edit-Delete>a{
+           font-size: 15px;
+       }
    }
    
    .none{

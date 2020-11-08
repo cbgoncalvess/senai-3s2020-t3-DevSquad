@@ -45,6 +45,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                     vaga.DataPublicacao = DateTime.Now;
                     ctx.Add(vaga);
                     ctx.SaveChanges();
+                    var VagaNova = ctx.Vaga.FirstOrDefault(v => v == vaga);
+                    var Vaga = ctx.Vaga.Find(VagaNova.IdVaga);
+                    int idTecnologia = 1;
+                    var a=(new VagaTecnologia { IdVaga = Vaga.IdVaga, IdTecnologia = idTecnologia });
+                    ctx.Add(a);
+                    ctx.SaveChanges();
                     return true;
                 }
                 catch(Exception e)

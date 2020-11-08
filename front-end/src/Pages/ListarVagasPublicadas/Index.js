@@ -23,6 +23,7 @@ import './style.css';
 
 export default function VagasPublicadas() {
     const [ListaDeVagas, SetListVagas] = useState([]);
+    const[TecnologiasDaVaga,SetTecnologiasDaVaga]=useState([]);
     const [Tecnologias, SetTecnologias] = useState([]);
     let [Tecnologia, SetTecnologia] = useState('');
     const [idVaga, SetIdVaga] = useState(0);
@@ -128,7 +129,6 @@ export default function VagasPublicadas() {
         }
     }
 
-
     function ApareceRemoverTecnologia() {
         let idAdcPelicula = document.getElementById("peliculaRemoverTecnologia");
         let idModalTecnologia = document.getElementById("ModalRemoverTecnologia");
@@ -202,6 +202,7 @@ export default function VagasPublicadas() {
                                     <h6 className="underlineText" onClick={event => {
                                         event.preventDefault();
                                         ApareceRemoverTecnologia();
+                                        SetTecnologiasDaVaga(item.tecnologias);
                                         SetIdVaga(item.idVaga);
                                     }}>Remover tecnologia</h6>
                                 </div>
@@ -216,12 +217,12 @@ export default function VagasPublicadas() {
                 <h2>Remover tecnologia Vaga</h2>
                 <form>
                     <div className="select">
-                        <label>Área</label>
+                        <label>Tecnologias</label>
                         <select className="div-select" onChange={e => SetTecnologia(e.target.value)} value={Tecnologia}>
                             <option value="0">Selecione a tecnologia que deseja remover</option>
                             {
-                                Tecnologias.map((item) => {
-                                    return <option value={item.tecnologia}>{item.nomeTecnologia}</option>
+                                TecnologiasDaVaga.map((item) => {
+                                    return <option value={item.tecnologia}>{item}</option>
                                 })
                             }
                         </select>
@@ -235,7 +236,7 @@ export default function VagasPublicadas() {
                 <h2>Adicionar uma tecnologia na Vaga</h2>
                 <form>
                     <div className="select">
-                        <label>Área</label>
+                        <label>Tecnologias</label>
                         <select className="div-select" onChange={e => SetTecnologia(e.target.value)} value={Tecnologia}>
                             <option value="0">Selecione uma área de atuação</option>
                             {

@@ -3,7 +3,6 @@ import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import Input from '../../Components/Input';
-import Select from '../../Components/Select/Index';
 import { useHistory } from 'react-router-dom';
 import './style.css';
 import AccessMenu from '../../Components/AccessMenu';
@@ -31,6 +30,8 @@ export default function CadastarVaga() {
     useEffect(() => {
         listarAreas();
     }, []);
+
+    let history = useHistory();
 
     const listarAreas = () => {
         fetch('http://localhost:5000/api/Usuario/ListarAreas', {
@@ -61,7 +62,11 @@ export default function CadastarVaga() {
             descricaoBeneficio: DescricaoBeneficio
         };
         api.post('/Vagas/adcVaga', form)
-        .then(response => console.log(response))
+        .then(response => {
+            alert("Vaga cadastrada com sucesso");
+            history.push('/VagasPublicadas');
+            console.log(response)
+        })
         .catch(err => console.log(err))
     }
 
