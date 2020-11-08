@@ -1,6 +1,5 @@
-body{
+.corpo{
     background: #F0F0F0;
-    
 }
 
 .margin {
@@ -21,6 +20,11 @@ body{
     padding: 3vh;
     display: flex;
     margin-bottom: 5vh;
+    justify-content: space-between;
+}
+
+.horizontal {
+    display: flex;
 }
 
 .perfil {

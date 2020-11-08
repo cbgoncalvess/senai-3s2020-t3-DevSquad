@@ -70,7 +70,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      border-radius: .8vw;
+      border-radius: 10px;
   }
   
   .botao1 {

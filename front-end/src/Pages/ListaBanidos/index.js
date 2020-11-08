@@ -11,12 +11,13 @@ import Delete from '../../assets/images/cancel.png';
 import Refresh from '../../assets/images/refresh.png';
 import AccessMenu from '../../Components/AccessMenu';
 
-export default function ListaBanidos () {
-    const [banidos, setBanidos] = useState([]);
+export default function ListaBanidos() {
+    const [Banidos, setBanidos] = useState([]);
+    const [TipoUsuario, setTipoUsuario] = useState([]);
 
     useEffect(() => {
         listarBanidos();
-        //listarTipoUsuario();
+        listarTipoUsuario();
     }, []);
 
     const listarBanidos = () => {
@@ -30,18 +31,18 @@ export default function ListaBanidos () {
             .catch(err => console.error(err));
     }
 
-    //const listarTipoUsuario = () => {
-        //fetch('http://localhost:5000/api/TipoUsuario/id', {
-            //method: 'GET',
-        //})
-            //.then(response => response.json())
-            //.then(dados => {
-                //setTipoUsuario(dados);
-            //})
-            //.catch(err => console.error(err));
-    //}
+    const listarTipoUsuario = () => {
+    fetch('http://localhost:5000/api/TipoUsuario', {
+    method: 'GET',
+    })
+    .then(response => response.json())
+    .then(dados => {
+    setTipoUsuario(dados);
+    })
+    .catch(err => console.error(err));
+    }
     return (
-        <body>
+        <body className="corpo">
             <AccessBar />
             <Header />
             <AccessMenu />
@@ -49,7 +50,7 @@ export default function ListaBanidos () {
                 <h1 className="tituloBanidos">Lista de Banidos</h1>
 
                 <div className="filtroBanidos">
-                    <h5>Filtrar por: </h5>    
+                    <h5>Filtrar por: </h5>
                     <select className="selectBanidos">
                         <option value="" disabled selected>Selecione</option>
                         <option value="Empresas">Empresas</option>
@@ -58,13 +59,14 @@ export default function ListaBanidos () {
                         <option value="Colaboradores">Colaboradores</option>
                     </select>
                 </div>
-                {banidos.map((item) => {
+                {
+                Banidos.map((item) => {
                     return (
                         <div key={item.idUsuario} className="banidoBox">
                             <div className="colunaMobile">
                                 <div className="banido">
-                                    <img className="user" src={User}/>
-                                    <p>{item.nomeTipoUsuario}</p>
+                                    <img className="user" src={User} />
+                                    <p>{item.idTipoUsuario}</p>
                                     <h4>Marcelo Fontes</h4>
                                 </div>
                                 <div className="info">
@@ -76,17 +78,15 @@ export default function ListaBanidos () {
                                 <p>Banido em: 25/08/20</p>
                                 <div className="desbanir">
                                     <p>Desbanir</p>
-                                    <img src={Refresh}/>
+                                    <img src={Refresh} />
                                 </div>
                             </div>
                         </div>
                     )
                 })
                 }
-            
+
             </div>
-
-
             <Footer />
         </body>
     )

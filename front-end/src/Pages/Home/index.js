@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
@@ -8,6 +8,7 @@ import Svg from '../../Components/imgsvg/Index';
 import Confidence from '../../Components/imgsvg/confidence';
 import Surprise from '../../Components/imgsvg/surprise';
 
+import { Link } from 'react-router-dom';
 
 import imgPadrao from '../../assets/android-character-symbol.png';
 import imgPerfil from '../../assets/perfil-comportamental-online.png';
@@ -36,7 +37,8 @@ export default function Home() {
                             <p>Empresas com interesse de divulgar </p>
                             <p>oportunidades</p>
                             <br />
-                            <div><button className="BtnStartEmpresa"><h2>EMPRESA</h2></button>
+                            <div>
+                                <Link to="/cadastroempresa"><button className="BtnStartEmpresa"><h2>EMPRESA</h2></button></Link>
                             </div>
                         </div>
 
@@ -45,7 +47,7 @@ export default function Home() {
                             <p>no curso</p>
                             <br />
                             <div>
-                                <button className="BtnStartCandidato"><h2>CANDIDATO</h2></button>
+                                <Link to="/cadastro"><button className="BtnStartCandidato"><h2>CANDIDATO</h2></button></Link>
                             </div>
                         </div>
                     </div>

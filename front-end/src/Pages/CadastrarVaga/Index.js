@@ -54,6 +54,7 @@ export default function CadastarVaga() {
             cidade: Cidade,
             cep: CEP,
             logradouro: Logradouro,
+            localidade:Estado,
             complemento: Complemento,
             descricaoVaga: DescricaoVaga,
             descricaoEmpresa: DescricaoEmpresa,
@@ -94,18 +95,18 @@ export default function CadastarVaga() {
                                     <label>Experiência</label>
                                     <select className="div-select" onChange={e => SetExperiencia(e.target.value)} value={Experiencia}>
                                         <option value="0">Selecione um nivel de experiencia</option>
-                                        <option value="CLT">CLT</option>
-                                        <option value="PJ">PJ</option>
-                                        <option value="Estagio">Estagio</option>
+                                        <option value="Pleno">Pleno</option>
+                                        <option value="Sênior">Sênior</option>
+                                        <option value="Junior">Júnior</option>
                                     </select>
                                 </div>
                                 <div className="select">
                                     <label>Tipo de contrato</label>
                                     <select className="div-select" onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato}>
                                         <option value="0">Selecione um tipo de contrato</option>
-                                        <option value="Pleno">Pleno</option>
-                                        <option value="Sênior">Sênior</option>
-                                        <option value="Junior">Júnior</option>
+                                        <option value="CLT">CLT</option>
+                                        <option value="PJ">PJ</option>
+                                        <option value="Estagio">Estagio</option>
                                     </select>
                                 </div>
                                 <Input className="InputCadastro" name="Estado" label="Estado" onChange={e => SetEstado(e.target.value)} />

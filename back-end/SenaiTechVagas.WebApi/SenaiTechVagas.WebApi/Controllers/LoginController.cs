@@ -30,14 +30,15 @@ namespace SenaiTechVagas.WebApi.Controllers
 
             if(usuarioLogar == null)
             {
-                return BadRequest("Se fudeu mano");
+                return BadRequest("Se ferrou");
             }
             
             var claims = new[]
               {
                 new Claim(JwtRegisteredClaimNames.Email, usuarioLogar.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, usuarioLogar.IdUsuario.ToString()),
-                new Claim(ClaimTypes.Role, usuarioLogar.IdTipoUsuario.ToString())
+                new Claim(ClaimTypes.Role, usuarioLogar.IdTipoUsuario.ToString()),
+                new Claim("Role",usuarioLogar.IdTipoUsuario.ToString())
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("SenaiTechVagas-chave-autenticacao"));

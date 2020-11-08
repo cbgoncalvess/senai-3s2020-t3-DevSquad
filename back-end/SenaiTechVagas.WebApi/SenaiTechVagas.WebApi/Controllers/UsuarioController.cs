@@ -29,7 +29,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que lista os usuários cadastrados 
         /// </summary>
         /// <returns>Retorna lista de usuários cadastrados</returns>
-        [Authorize(Roles = "1")]
+        
         [HttpGet]
         public IActionResult ListaUsuario()
         {
@@ -117,6 +117,32 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return Ok("Usuário desbanido");
             }
             return NotFound("Usuário não encontrado para ser Desbanido");
+        }
+
+
+        /// <summary>
+        /// Método que cadastra usuário do tipo colaborador
+        /// </summary>
+        /// <param name="colaborador">Dados do tipo de usuário do tipo colaborador</param>
+        /// <returns>Novo usuário do tipo colaborador</returns>
+        [HttpPost("Colaborador")]
+        public IActionResult CadastrarColaborador(Usuario colaborador)
+        {
+            try
+            {
+                if (usuarioRepository.CadastrarColaborador(colaborador))
+                {
+                    return Ok("Colaborador cadastrado com sucesso.");
+                }
+                else
+                {
+                    return BadRequest("Erro ao cadastrar colaborador, tente novamente.");
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Uma exceção ocorreu. Tente novamente.");
+            }
         }
 
     }

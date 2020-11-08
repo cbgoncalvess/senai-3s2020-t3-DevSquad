@@ -2,6 +2,8 @@ import React from 'react';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
+import AccessBar from '../../Components/AccessBar';
+import AccessMenu from '../../Components/AccessMenu';
 
 import LogoSenai from '../../assets/images/logo_senai.png';
 import LogoTime from '../../assets/images/logo_devsquad.png';
@@ -13,12 +15,12 @@ import Douglas from '../../assets/images/linkedin_douglas.png';
 import Marcos from '../../assets/images/linkedin_marcos.png';
 
 import './style.css';
-import AccessBar from '../../Components/AccessBar';
-import AccessMenu from '../../Components/AccessMenu';
+
+
 
 export default function Sobre() {
     return(
-        <body>
+        <body className="corpo">
             <AccessBar />
             <Header />
             <AccessMenu />
@@ -45,23 +47,23 @@ export default function Sobre() {
 
                     <div className ="devsBox">
                         <div id="item1" className="dev">
-                            <img src={Alexia} alt="Linkedin da desenvolvedora Alexia"/>
+                            <img src={Alexia} className="imgSobre" alt="Linkedin da desenvolvedora Alexia"/>
                             <h3>Aléxia Melhado</h3>
                         </div>
                         <div id="item2" className="dev">
-                            <img src={Andre} alt="Linkedin do desenvolvedor Andre"/>
+                            <img src={Andre} className="imgSobre" alt="Linkedin do desenvolvedor Andre"/>
                             <h3>Andre Akira</h3>
                         </div>
                         <div id="item3" className="dev">
-                            <img src={Carlos} alt="Linkedin do desenvolvedor Carlos"/>
+                            <img src={Carlos} className="imgSobre" alt="Linkedin do desenvolvedor Carlos"/>
                             <h3>Carlos Eduardo</h3>
                         </div>
                         <div id="item4" className="dev">
-                            <img src={Douglas} alt="Linkedin do desenvolvedor Douglas"/>
+                            <img src={Douglas} className="imgSobre" alt="Linkedin do desenvolvedor Douglas"/>
                             <h3>Douglas Mantovani</h3>
                         </div>
                         <div id="item5" className="dev">
-                            <img src={Marcos} alt="Linkedin do desenvolvedor Marcos"/>
+                            <img src={Marcos} className="imgSobre" alt="Linkedin do desenvolvedor Marcos"/>
                             <h3>Marcos Tomás</h3>
                         </div>          
                     </div>

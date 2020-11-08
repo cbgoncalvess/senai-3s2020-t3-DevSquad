@@ -24,6 +24,8 @@ namespace SenaiTechVagas.WebApi.Interfaces
 
         List<Usuario> Colaboradores();
 
+        bool CadastrarColaborador(Usuario colaborador);
+
 
     }
 }

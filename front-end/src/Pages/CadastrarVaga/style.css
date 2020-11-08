@@ -1,9 +1,3 @@
-*{
-    padding: 0px;
-    margin: 0px;
-   
-}
-
 .meio{
     display: flex;
     width: 100%;
@@ -15,6 +9,7 @@
     width: 50%;
     padding: 3vw;
 }
+
 
 .Direito{
     text-align: center;

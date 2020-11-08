@@ -99,5 +99,29 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             return ctx.Usuario.Where(u => u.IdTipoUsuario == 1).ToList();
         }
+
+        public bool CadastrarColaborador(Usuario colaborador)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Usuario novoColaborador = new Usuario()
+                    {
+                        Email = colaborador.Email,
+                        Senha = colaborador.Senha,
+                        IdTipoUsuario = 1
+                    };
+                    ctx.Add(novoColaborador);
+                    ctx.SaveChanges();
+                    return true;
+
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
