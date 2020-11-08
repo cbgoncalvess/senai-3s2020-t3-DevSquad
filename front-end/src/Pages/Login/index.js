@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { parseJwt } from '../../services/token'
 
 // components 
 import Footer from '../../Components/Footer';
@@ -21,29 +22,34 @@ export default function Login() {
     const [senha, setSenha] = useState('');
 
     const login = () => {
-        const login = {
+        const loginForm = {
             email: email,
             senha: senha
         }
-
         fetch('http://localhost:5000/api/Login', {
 
             method: 'POST',
-            body: JSON.stringify(login),
+            body: JSON.stringify(loginForm),
             headers: {
                 'content-type': 'application/json'
             }
-        })
-
-            .then(response => response.json())
+        }).then(response => response.json())
             .then(dados => {
-                localStorage.setItem("token", dados.token)
-                history.push("/")
+                if (dados.token != undefined) {
+                    localStorage.setItem("token", dados.token)
+                    if (parseJwt().Role === "1") {
+                        history.push("/perfil");
+                    } else if (parseJwt().Role === "2") {
+                        history.push("/perfilCandidato");
+                    } else if (parseJwt().Role === "3") {
+                        history.push("/perfilEmpresa");
+                    }
+                }else{
+                    alert('Email ou senha inválido')
+                }
             })
             .catch(err => console.error(err))
-
     }
-
     return (
         <div className="bodyPartLogin">
             <AccessBar />

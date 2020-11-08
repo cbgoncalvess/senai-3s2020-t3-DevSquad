@@ -111,7 +111,7 @@ export default function CadastarVaga() {
                                 </div>
                                 <Input className="InputCadastro" name="Estado" label="Estado" onChange={e => SetEstado(e.target.value)} />
                                 <Input className="InputCadastro" name="Cidade" label="Cidade" onChange={e => SetCidade(e.target.value)} />
-                                <Input className="InputCadastro" name="CEP" label="CEP" onChange={e => SetCEP(e.target.value)} />
+                                <Input className="InputCadastro" name="CEP" label="CEP" onChange={e => SetCEP(e.target.value)} maxLength={"8"} />
                                 <Input className="InputCadastro" name="Logradouro" label="Logradouro" onChange={e => SetLogradouro(e.target.value)} />
                                 <Input className="InputCadastro" name="Complemento" label="Complemento" onChange={e => SetComplemento(e.target.value)} />
                                 <div className="text-area">

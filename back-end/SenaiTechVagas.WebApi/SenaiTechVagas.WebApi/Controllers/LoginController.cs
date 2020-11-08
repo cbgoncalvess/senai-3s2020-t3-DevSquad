@@ -52,8 +52,6 @@ namespace SenaiTechVagas.WebApi.Controllers
                 expires: DateTime.Now.AddMinutes(30),    // tempo de expiração
                 signingCredentials: creds                // credenciais do token
             );
-
-
             return Ok(new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token)

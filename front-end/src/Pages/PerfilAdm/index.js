@@ -38,11 +38,10 @@ export default function PerfilAdm() {
             })
             .catch(err => console.error(err));
     }
-
+///Arrumar um if para evitar que as requisiçoes se repitam desmecessariamente
     function Listar() {
         if (Opcao === "Candidatos") {
             listarCandidatos();
-            
             Opcao = '';
         }
         else if (Opcao === "Empresas") {
@@ -79,7 +78,7 @@ export default function PerfilAdm() {
                         <h3><Link to='/colaboradores'>Colaboradores</Link></h3>
                     </div>
                     {
-                        Listar()
+                        View()
                     }
                 </div>
             </div>
@@ -87,55 +86,57 @@ export default function PerfilAdm() {
         </div>
     );
 
-    function CandidatoView() {
-        return (
-            <div>
-                {
-                    Candidatos.map((item) => {
-                        return (
-                            <div key={item.idCandidato} className="BoxPerfil">
-                                <div className="flexBoxPerfil">
-                                    <img className="imgUsuario" src={imgPadrao} alt="usuario" />
-                                    <div className="ColumnNomeEmail">
-                                        <h2>{item.nomeCompleto}</h2>
-                                        <p>{item.nomeReponsavel}</p>
+    function View() {
+        if (Opcao === 'Candidatos') {
+            return (
+                <div>
+                    {
+                        Candidatos.map((item) => {
+                            return (
+                                <div key={item.idCandidato} className="BoxPerfil">
+                                    <div className="flexBoxPerfil">
+                                        <img className="imgUsuario" src={imgPadrao} alt="usuario" />
+                                        <div className="ColumnNomeEmail">
+                                            <h2>{item.nomeCompleto}</h2>
+                                            <p>{item.nomeReponsavel}</p>
+                                        </div>
+                                    </div>
+                                    <div className="ColumnPerfilBanir">
+                                        <img className="Delete" src={imgDelete} alt="Delete" />
+                                        <button className="btVerPerfil"><h4>Ver perfil</h4></button>
                                     </div>
                                 </div>
-                                <div className="ColumnPerfilBanir">
-                                    <img className="Delete" src={imgDelete} alt="Delete" />
-                                    <button className="btVerPerfil"><h4>Ver perfil</h4></button>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        );
-    }
-    function EmpresaView() {
-        return (
-            <div>
-                {
-                    Empresas.map((item) => {
-                        return (
-                            <div key={item.idEmpresa} className="BoxPerfil">
-                                <div className="flexBoxPerfil">
-                                    <img className="imgUsuario" src={imgPadrao} alt="usuario" />
-                                    <div className="ColumnNomeEmail">
-                                        <h2>{item.razaoSocial}</h2>
-                                        <p>{item.nomeReponsavel}</p>
+                            )
+                        })
+                    }
+                </div>
+            );
+        } else if (Opcao === 'Empresas') {
+
+            return (
+                <div>
+                    {
+                        Empresas.map((item) => {
+                            return (
+                                <div key={item.idEmpresa} className="BoxPerfil">
+                                    <div className="flexBoxPerfil">
+                                        <img className="imgUsuario" src={imgPadrao} alt="usuario" />
+                                        <div className="ColumnNomeEmail">
+                                            <h2>{item.razaoSocial}</h2>
+                                            <p>{item.nomeReponsavel}</p>
+                                        </div>
+                                    </div>
+                                    <div className="ColumnPerfilBanir">
+                                        <img className="Delete" src={imgDelete} alt="Delete" />
+                                        <button className="btVerPerfil"><h4>Ver perfil</h4></button>
                                     </div>
                                 </div>
-                                <div className="ColumnPerfilBanir">
-                                    <img className="Delete" src={imgDelete} alt="Delete" />
-                                    <button className="btVerPerfil"><h4>Ver perfil</h4></button>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        );
+                            )
+                        })
+                    }
+                </div>
+            );
+        }
     }
 }
 

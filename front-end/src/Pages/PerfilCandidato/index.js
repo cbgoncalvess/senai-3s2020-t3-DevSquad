@@ -23,6 +23,22 @@ export default function PerfilCandidato() {
     // const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
     // const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
     //   const [Vagas,setVagasInscritas]=useState([]);
+    const [Vagas, setVagas] = useState([]);
+
+    useEffect(() => {
+        listarVagas();
+    }, []);
+
+    const listarVagas = () => {
+        fetch('http://localhost:5000/api/Vagas/ListarVagasPublicadas', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                setVagas(dados);
+            })
+            .catch(err => console.error(err));
+    }
     return (
         <div className="bodyPartVizualizarPerfil">
 
@@ -41,14 +57,20 @@ export default function PerfilCandidato() {
                     </div>
                 </div>
                 <div className="DireitoPerfil">
-                    <div className="BoxPerfilCandidato">
-                        <div className="flexBoxPerfilCandidato">
-                            <img src={imgPadrao} />
-                            <h3>Android</h3>
-                        </div>
-                        <h3>Area de desenvolvimento</h3>
-                        <h3>Salario:3.000</h3>
-                    </div>
+                    {
+                        Vagas.map((item) => {
+                            return (
+                                <div className="BoxPerfilCandidato">
+                                    <div className="flexBoxPerfilCandidato">
+                                        <img src={imgPadrao} />
+                                        <h3>{item.razaoSocial}</h3>
+                                    </div>
+                                    <h3>{item.tipoContrato}</h3>
+                                    <h3>{item.salario}</h3>
+                                </div>
+                            );
+                        })
+                    }
                 </div>
             </div>
             <div className="peliculaPerfilCandidato"></div>

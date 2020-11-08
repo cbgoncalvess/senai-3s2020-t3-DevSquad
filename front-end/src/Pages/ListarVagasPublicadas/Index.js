@@ -23,11 +23,35 @@ import './style.css';
 
 export default function VagasPublicadas() {
     const [ListaDeVagas, SetListVagas] = useState([]);
-    const [Tecologias, SetTecnologia] = useState([]);
+    const [Tecnologias, SetTecnologias] = useState([]);
+    let [Tecnologia, SetTecnologia] = useState('');
+    let [idVaga, SetIdVaga] = useState(0);
 
     useEffect(() => {
         listarVagas();
+        listarTecnologias();
     }, []);
+
+    const DeletarTecnologia = () => {
+        const form = {
+            idTecnologia: Tecnologia.idTecnologia,
+            idVaga: idVaga
+        };
+        if (window.confirm('Deseja excluir a tecnologia')) {
+            fetch('http://localhost:5000/api/Vagas/RemoverTecnologia', {
+                method: 'DELETE',
+                body: JSON.stringify(form),
+                headers: {
+                    authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+                }
+            })
+                .then(response => response.json())
+                .then(dados => {
+                    listarVagas();
+                })
+                .catch(err => console.error(err));
+        }
+    }
 
     const listarVagas = () => {
         fetch('http://localhost:5000/api/Vagas/ListarVagasPublicadas', {
@@ -35,21 +59,54 @@ export default function VagasPublicadas() {
         })
             .then(response => response.json())
             .then(dados => {
-                SetTecnologia(dados.tecnologias)
                 SetListVagas(dados);
             })
             .catch(err => console.error(err));
     }
 
     const listarTecnologias = () => {
-        fetch('http://localhost:5000/api/Empresa/ListarTecnologia', {
+        fetch('http://localhost:5000/api/Tecnologia', {
             method: 'GET',
         })
             .then(response => response.json())
             .then(dados => {
-                SetTecnologia(dados)
+                SetTecnologias(dados)
             })
             .catch(err => console.error(err));
+    }
+
+    function ApareceEditarVaga() {
+        let idEditarPelicula = document.getElementById("peliculaEditarVaga");
+        let idModalVaga = document.getElementById("ModalEditarVaga");
+        if (idEditarPelicula.classList == "peliculaEditarVaga none")
+            idEditarPelicula.classList.remove("none");
+        idModalVaga.classList.remove("none");
+    }
+
+    function btn_fechar() {
+        let idModalVaga = document.getElementById("ModalEditarVaga");
+        let idEditarPelicula = document.getElementById("peliculaEditarVaga");
+        if (idEditarPelicula.classList != "peliculaEditarVaga none") {
+            idEditarPelicula.classList.add("none");
+            idModalVaga.classList.add("none");
+        }
+    }
+
+    function ApareceAdicionarTecnologia() {
+        let idAdcPelicula = document.getElementById("peliculaAddTecnologia");
+        let idModalTecnologia = document.getElementById("ModalAdicionarTecnologia");
+        if (idAdcPelicula.classList == "peliculaAddTecnologia none")
+            idAdcPelicula.classList.remove("none");
+        idModalTecnologia.classList.remove("none");
+    }
+
+    function btn_fecharTecnologia() {
+        let idAdcPelicula = document.getElementById("peliculaAddTecnologia");
+        let idModalTecnologia = document.getElementById("ModalAdicionarTecnologia");
+        if (idAdcPelicula.classList != "peliculaAddTecnologia none") {
+            idAdcPelicula.classList.add("none");
+            idModalTecnologia.classList.add("none");
+        }
     }
 
     return (
@@ -60,6 +117,7 @@ export default function VagasPublicadas() {
             <div className="ImagemHeader">
                 <h1>Bem vindo Empresa</h1>
             </div>
+
             <div className="ListaDeVagas">
                 <h2>Vagas que você publicou nos últimos dias</h2>
                 <br />
@@ -69,7 +127,10 @@ export default function VagasPublicadas() {
                             <div key={item.idVaga} className="vaga">
                                 <div className="Edit-Delete">
                                     <a>Publicou a vaga em 10/02/2020</a>
-                                    <img className="Edit" src={imgEdit} />
+                                    <img className="Edit" src={imgEdit} id="btn-EditarVaga" onClick={event => {
+                                        event.preventDefault();
+                                        ApareceEditarVaga();
+                                    }} />
                                     <img className="Delete" src={imgDelete} />
                                 </div>
                                 <div className="VagaCompleta">
@@ -87,7 +148,7 @@ export default function VagasPublicadas() {
                                         <div className="TecnologiasVaga">
                                             {item.tecnologias.map((tec) => {
                                                 return (
-                                                        <Tag key={tec}  NomeTag={tec}></Tag>
+                                                    <Tag key={tec} NomeTag={tec}></Tag>
                                                 )
                                             })
                                             }
@@ -95,8 +156,15 @@ export default function VagasPublicadas() {
                                     </div>
                                 </div>
                                 <div className="AdicionarRemoverTecnologia">
-                                    <a className="Link" href="teste">Adicionar tecnologia</a>
-                                    <a className="Link" href="teste">Remover tecnologia</a>
+                                    <h6 className="underlineText" onClick={event => {
+                                        event.preventDefault();
+                                        ApareceAdicionarTecnologia();
+                                    }}>Adicionar tecnologia</h6>
+
+                                    <h6 className="underlineText" onClick={event => {
+                                        event.preventDefault();
+                                        DeletarTecnologia();
+                                    }}>Remover tecnologia</h6>
                                 </div>
                             </div>
                         )
@@ -104,8 +172,27 @@ export default function VagasPublicadas() {
                 }
             </div>
 
-            <div id="peliculaEditarVaga" className="ModalPeliculaNone"></div>
-            <div id="ModalEditarVaga" className="ModalEditarNone" >
+            <div id="peliculaAddTecnologia" className="peliculaAddTecnologia none" onClick={btn_fecharTecnologia}></div>
+            <div id="ModalAdicionarTecnologia" className="ModalAdicionarTecnologia none">
+                <h2>Adicionar uma tecnologia na Vaga</h2>
+                <form>
+                    <div className="select">
+                        <label>Área</label>
+                        <select className="div-select" onChange={e => SetTecnologia(e.target.value)} value={Tecnologia}>
+                            <option value="0">Selecione uma área de atuação</option>
+                            {
+                                Tecnologias.map((item) => {
+                                    return <option value={item.tecnologia}>{item.nomeTecnologia}</option>
+                                })
+                            }
+                        </select>
+                    </div>
+                    <button>Adicionar</button>
+                </form>
+            </div>
+
+            <div id="peliculaEditarVaga" className="peliculaEditarVaga none" onClick={btn_fechar}></div>
+            <div id="ModalEditarVaga" className="ModalEditarVaga none">
                 <h2>Editar sua Vaga</h2>
                 <form>
                     <Input className="InputCadastro" name="TituloVaga" label="Titulo da Vaga" />
@@ -130,7 +217,6 @@ export default function VagasPublicadas() {
                     </div>
                     <br />
                     <div className="btVagaDiv">
-                        <button className="btVaga"><h3>Editar Vaga</h3></button>
                     </div>
                 </form>
             </div>
