@@ -25,39 +25,43 @@ namespace SenaiTechVagas.WebApi.Controllers
         [HttpPost]
         public IActionResult LoginUsuario(LoginViewModel login)
         {
-           
-            Usuario usuarioLogar = usuarioRepository.Logar(login.Email, login.Senha);
-
-            if(usuarioLogar == null)
+            try
             {
-                return BadRequest("Se ferrou");
-            }
-            
-            var claims = new[]
-              {
+                Usuario usuarioLogar = usuarioRepository.Logar(login.Email, login.Senha);
+
+                if (usuarioLogar == null)
+                {
+                    return BadRequest("Se ferrou");
+                }
+
+                var claims = new[]
+                  {
                 new Claim(JwtRegisteredClaimNames.Email, usuarioLogar.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, usuarioLogar.IdUsuario.ToString()),
                 new Claim(ClaimTypes.Role, usuarioLogar.IdTipoUsuario.ToString()),
                 new Claim("Role",usuarioLogar.IdTipoUsuario.ToString())
             };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("SenaiTechVagas-chave-autenticacao"));
+                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("SenaiTechVagas-chave-autenticacao"));
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var token = new JwtSecurityToken(
-                issuer: "SenaiTechVagas.WebApi",         // emissor do token
-                audience: "SenaiTechVagas.WebApi",       // destinatário do token
-                claims: claims,                          // dados definidos acima
-                expires: DateTime.Now.AddMinutes(30),    // tempo de expiração
-                signingCredentials: creds                // credenciais do token
-            );
-            return Ok(new
+                var token = new JwtSecurityToken(
+                    issuer: "SenaiTechVagas.WebApi",         // emissor do token
+                    audience: "SenaiTechVagas.WebApi",       // destinatário do token
+                    claims: claims,                          // dados definidos acima
+                    expires: DateTime.Now.AddMinutes(30),    // tempo de expiração
+                    signingCredentials: creds                // credenciais do token
+                );
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(token)
+                });
+            }
+            catch (Exception)
             {
-                token = new JwtSecurityTokenHandler().WriteToken(token)
-            });
+                return BadRequest();
+            } 
         }
-
     }
-
 }

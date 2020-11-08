@@ -67,12 +67,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeletarVagaTecnologia(int idTecnologia,int idVaga)
+        [HttpDelete]
+        public IActionResult DeletarVagaTecnologia(VagaTecnologia vg)
         {
             try
             {
-                if (ChamandoVagaTecnologia.DeletarVagaTecnologia(idTecnologia, idVaga))
+                if (ChamandoVagaTecnologia.DeletarVagaTecnologia(vg.IdTecnologia, vg.IdVaga))
                 {
                     return StatusCode(201);
                 }

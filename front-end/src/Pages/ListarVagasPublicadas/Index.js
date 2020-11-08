@@ -25,7 +25,7 @@ export default function VagasPublicadas() {
     const [ListaDeVagas, SetListVagas] = useState([]);
     const [Tecnologias, SetTecnologias] = useState([]);
     let [Tecnologia, SetTecnologia] = useState('');
-    let [idVaga, SetIdVaga] = useState(0);
+    const [idVaga, SetIdVaga] = useState(0);
 
     useEffect(() => {
         listarVagas();
@@ -34,23 +34,40 @@ export default function VagasPublicadas() {
 
     const DeletarTecnologia = () => {
         const form = {
-            idTecnologia: Tecnologia.idTecnologia,
+            idTecnologia: 3,
             idVaga: idVaga
         };
-        if (window.confirm('Deseja excluir a tecnologia')) {
-            fetch('http://localhost:5000/api/Vagas/RemoverTecnologia', {
-                method: 'DELETE',
-                body: JSON.stringify(form),
-                headers: {
-                    authorization: 'Bearer ' + localStorage.getItem('token-filmes')
-                }
+        fetch('http://localhost:5000/api/VagaTecnologia', {
+            method: 'DELETE',
+            body: JSON.stringify(form),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                listarVagas();
             })
-                .then(response => response.json())
-                .then(dados => {
-                    listarVagas();
-                })
-                .catch(err => console.error(err));
-        }
+            .catch(err => console.error(err));
+    }
+
+    const AdicionarTecnologia = () => {
+        const form = {
+            idTecnologia: 3,
+            idVaga: idVaga
+        };
+        fetch('http://localhost:5000/api/VagaTecnologia', {
+            method: 'POST',
+            body: JSON.stringify(form),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                listarVagas();
+            })
+            .catch(err => console.error(err));
     }
 
     const listarVagas = () => {
@@ -96,7 +113,8 @@ export default function VagasPublicadas() {
         let idAdcPelicula = document.getElementById("peliculaAddTecnologia");
         let idModalTecnologia = document.getElementById("ModalAdicionarTecnologia");
         if (idAdcPelicula.classList == "peliculaAddTecnologia none")
-            idAdcPelicula.classList.remove("none");
+            console.log(idVaga);
+        idAdcPelicula.classList.remove("none");
         idModalTecnologia.classList.remove("none");
     }
 
@@ -104,6 +122,25 @@ export default function VagasPublicadas() {
         let idAdcPelicula = document.getElementById("peliculaAddTecnologia");
         let idModalTecnologia = document.getElementById("ModalAdicionarTecnologia");
         if (idAdcPelicula.classList != "peliculaAddTecnologia none") {
+            idAdcPelicula.classList.add("none");
+            idModalTecnologia.classList.add("none");
+            console.log(idVaga);
+        }
+    }
+
+
+    function ApareceRemoverTecnologia() {
+        let idAdcPelicula = document.getElementById("peliculaRemoverTecnologia");
+        let idModalTecnologia = document.getElementById("ModalRemoverTecnologia");
+        if (idAdcPelicula.classList == "peliculaRemoverTecnologia none")
+            idAdcPelicula.classList.remove("none");
+        idModalTecnologia.classList.remove("none");
+    }
+
+    function btn_fecharRemoverTecnologia() {
+        let idAdcPelicula = document.getElementById("peliculaRemoverTecnologia");
+        let idModalTecnologia = document.getElementById("ModalRemoverTecnologia");
+        if (idAdcPelicula.classList != "peliculaRemoverTecnologia none") {
             idAdcPelicula.classList.add("none");
             idModalTecnologia.classList.add("none");
         }
@@ -143,7 +180,7 @@ export default function VagasPublicadas() {
                                             <InfoVaga NomeProp={item.experiencia} source={imgFuncao} />
                                             <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato} />
                                             <InfoVaga NomeProp={item.salario} source={imgSalario} />
-                                            <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento} />
+                                            <InfoVaga NomeProp={"Desenvolvimento"} source={imgDesenvolvimento} />
                                         </div>
                                         <div className="TecnologiasVaga">
                                             {item.tecnologias.map((tec) => {
@@ -159,17 +196,38 @@ export default function VagasPublicadas() {
                                     <h6 className="underlineText" onClick={event => {
                                         event.preventDefault();
                                         ApareceAdicionarTecnologia();
+                                        SetIdVaga(item.idVaga);
                                     }}>Adicionar tecnologia</h6>
 
                                     <h6 className="underlineText" onClick={event => {
                                         event.preventDefault();
-                                        DeletarTecnologia();
+                                        ApareceRemoverTecnologia();
+                                        SetIdVaga(item.idVaga);
                                     }}>Remover tecnologia</h6>
                                 </div>
                             </div>
                         )
                     })
                 }
+            </div>
+
+            <div id="peliculaRemoverTecnologia" className="peliculaRemoverTecnologia none" onClick={btn_fecharRemoverTecnologia}></div>
+            <div id="ModalRemoverTecnologia" className="ModalRemoverTecnologia none">
+                <h2>Remover tecnologia Vaga</h2>
+                <form>
+                    <div className="select">
+                        <label>Área</label>
+                        <select className="div-select" onChange={e => SetTecnologia(e.target.value)} value={Tecnologia}>
+                            <option value="0">Selecione a tecnologia que deseja remover</option>
+                            {
+                                Tecnologias.map((item) => {
+                                    return <option value={item.tecnologia}>{item.nomeTecnologia}</option>
+                                })
+                            }
+                        </select>
+                    </div>
+                    <button onClick={DeletarTecnologia}>Adicionar</button>
+                </form>
             </div>
 
             <div id="peliculaAddTecnologia" className="peliculaAddTecnologia none" onClick={btn_fecharTecnologia}></div>
@@ -187,7 +245,7 @@ export default function VagasPublicadas() {
                             }
                         </select>
                     </div>
-                    <button>Adicionar</button>
+                    <button onClick={AdicionarTecnologia}>Adicionar</button>
                 </form>
             </div>
 

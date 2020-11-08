@@ -17,7 +17,7 @@ export default function PerfilEmpresa() {
     }, []);
 
     const listarCandidatos = () => {
-        fetch('http://localhost:5000/api/Administrador/ListarCandidatos', {
+        fetch('http://localhost:5000/api/Candidato', {
             method: 'GET',
         })
             .then(response => response.json())
@@ -51,7 +51,7 @@ export default function PerfilEmpresa() {
                                         <img src={imgPadrao} />
                                         <h3>{item.nomeCompleto}</h3>
                                     </div>
-                                    <h3>{item.telefone}</h3>
+                                    <h3>{item.area}</h3>
                                     <h3>Dev 2°Termo-Manhã</h3>
                                 </div>
                             )

@@ -20,8 +20,10 @@ export default function Login() {
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    let [resposta, SetResponse] = useState('');
 
     const login = () => {
+
         const loginForm = {
             email: email,
             senha: senha
@@ -33,10 +35,12 @@ export default function Login() {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(response => response.json())
+        }).then(response => response.json()
+        )
             .then(dados => {
-                if (dados.token != undefined) {
+                if (dados.token !== undefined) {
                     localStorage.setItem("token", dados.token)
+                    console.log(dados.status);
                     if (parseJwt().Role === "1") {
                         history.push("/perfil");
                     } else if (parseJwt().Role === "2") {
@@ -44,12 +48,11 @@ export default function Login() {
                     } else if (parseJwt().Role === "3") {
                         history.push("/perfilEmpresa");
                     }
-                }else{
-                    alert('Email ou senha inválido')
                 }
             })
             .catch(err => console.error(err))
     }
+
     return (
         <div className="bodyPartLogin">
             <AccessBar />

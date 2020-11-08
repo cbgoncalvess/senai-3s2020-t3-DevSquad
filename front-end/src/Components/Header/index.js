@@ -213,7 +213,7 @@ export default function Header() {
                     </Link>
                     <nav className="navbar">
                         <ul id="menu">
-                            <li><Link to="/">Sobre</Link></li>
+                            <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/CadastrarVaga">Divulgar vaga</Link></li>
                             <li><Link to="/VagasPublicadas">Minhas vagas</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
@@ -233,7 +233,7 @@ export default function Header() {
                         }}
                         />
                         <ul id="menu-hide" className="none">
-                            <li><Link to="/">Sobre</Link></li>
+                            <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/CadastrarVaga">Divulgar vaga</Link></li>
                             <li><Link to="/VagasPublicadas">Minhas vagas</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
@@ -245,7 +245,7 @@ export default function Header() {
                     <nav className="menumodal">
                         <img src={xBurguer} className="navmobile burguer dex" id="menumodal" alt="" />
                         <ul id="menu-hide" className="none">
-                            <li><Link to="/">Sobre</Link></li>
+                            <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/CadastrarVaga">Divulgar vaga</Link></li>
                             <li><Link to="/VagasPublicadas">Minhas vagas</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
