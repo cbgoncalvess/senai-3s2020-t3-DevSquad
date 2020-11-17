@@ -6,9 +6,9 @@ import Header from '../../Components/Header';
 
 import './style.css';
 
-import User from '../../assets/images/user.png';
-import Delete from '../../assets/images/cancel.png';
-import Refresh from '../../assets/images/refresh.png';
+import User from '../../assets/images/user.webp';
+import Delete from '../../assets/images/cancel.webp';
+import Refresh from '../../assets/images/refresh.webp';
 import AccessMenu from '../../Components/AccessMenu';
 
 export default function ListaBanidos() {

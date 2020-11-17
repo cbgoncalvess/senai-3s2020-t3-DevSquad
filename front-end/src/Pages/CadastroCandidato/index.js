@@ -10,7 +10,7 @@ import Input from '../../Components/Input';
 import BlueButton from '../../Components/BlueButton';
 import Footer from '../../Components/Footer';
 
-import imagemCadastroCandidato from '../../assets/imgCadastroCandidato.png';
+import imagemCadastroCandidato from '../../assets/imgCadastroCandidato.webp';
 
 import './style.css';
 

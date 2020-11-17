@@ -8,7 +8,7 @@ import Input from '../../Components/Input';
 import BlueButton from '../../Components/BlueButton';
 import Footer from '../../Components/Footer';
 
-import imagemCadastroEmpresa from '../../assets/imgCadastroEmpresa.png';
+import imagemCadastroEmpresa from '../../assets/imgCadastroEmpresa.webp';
 
 import './style.css';
 

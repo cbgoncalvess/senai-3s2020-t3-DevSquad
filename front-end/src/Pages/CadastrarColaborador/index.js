@@ -6,8 +6,8 @@ import api from '../../services/api';
 
 import './style.css';
 
-import User from '../../assets/images/user.png';
-import Delete from '../../assets/images/cancel.png';
+import User from '../../assets/images/user.webp';
+import Delete from '../../assets/images/cancel.webp';
 import Input from '../../Components/Input';
 import AccessBar from '../../Components/AccessBar';
 import BlackButton from '../../Components/BlackButton';

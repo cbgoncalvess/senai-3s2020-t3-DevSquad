@@ -8,12 +8,12 @@ import AccessBar from '../../Components/AccessBar';
 import AccessMenu from '../../Components/AccessMenu';
 import Footer from '../../Components/Footer';
 
-import imgLobo from '../../../src/assets/lobo.png'
-import imgTubarao from '../../../src/assets/tubarao.png'
-import imgAguia from '../../../src/assets/aguia.png'
-import imgGato from '../../../src/assets/gato.png'
+import imgLobo from '../../../src/assets/lobo.webp'
+import imgTubarao from '../../../src/assets/tubarao.webp'
+import imgAguia from '../../../src/assets/aguia.webp'
+import imgGato from '../../../src/assets/gato.webp'
 
-import bgTeste from '../../assets/bg-teste.png';
+import bgTeste from '../../assets/bg-teste.webp';
 
 
 

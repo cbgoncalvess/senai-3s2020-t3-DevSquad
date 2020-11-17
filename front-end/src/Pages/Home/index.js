@@ -11,8 +11,8 @@ import Surprise from '../../Components/imgsvg/surprise';
 
 import { Link } from 'react-router-dom';
 
-import imgPadrao from '../../assets/android-character-symbol.png';
-import imgPerfil from '../../assets/perfil-comportamental-online.png';
+import imgPadrao from '../../assets/android-character-symbol.webp';
+import imgPerfil from '../../assets/perfil-comportamental-online.webp';
 
 import './style.css';
 

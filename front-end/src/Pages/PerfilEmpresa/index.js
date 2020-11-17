@@ -5,7 +5,7 @@ import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
 import Input from '../../Components/Input/index';
 
-import imgPadrao from '../../assets/android-character-symbol.png';
+import imgPadrao from '../../assets/android-character-symbol.webp';
 
 import './style.css';
 
