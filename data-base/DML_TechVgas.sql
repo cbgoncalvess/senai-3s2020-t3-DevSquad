@@ -70,8 +70,6 @@ Insert into Area(NomeArea)VALUES
 
 
 
-
-
 INSERT INTO Empresa (NomeReponsavel, CNPJ, EmailContato, NomeFantasia, RazaoSocial, Telefone, 
 						NumFuncionario,NumCNAE, CEP, Logradouro, Complemento, Localidade, UF, IdUsuario)
 VALUES		('Marcos', '3242432433', 'Marcos@gmail.com', 'TechVagas', 'TechVagas', '40028922', 

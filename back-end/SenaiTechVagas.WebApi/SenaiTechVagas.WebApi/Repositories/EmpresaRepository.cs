@@ -15,7 +15,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 
     public class EmpresaRepository : IEmpresaRepository
     {
-    string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS;Initial Catalog=Db_TechVagas;integrated Security=True";
+    string stringConexao = "Data Source=DESKTOP-7H5DJOO;Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -350,7 +350,6 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
-                string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS;Initial Catalog=Db_TechVagas;integrated Security=True";
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão

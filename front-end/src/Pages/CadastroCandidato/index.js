@@ -123,7 +123,8 @@ export default function CadastroEmpresa() {
                                 type="text"
                                 placeholder="Maria dos Santos"
                                 required
-                                requiredError="O seu nome deve ser preenchido"
+                                maxLength={35}
+                                minLength={5}
                                 onChange={e => SetNomeCompleto(e.target.value)}
                             />
 
@@ -131,9 +132,11 @@ export default function CadastroEmpresa() {
                                 name="rg"
                                 className="cadastre"
                                 label="RG:"
-                                type="text"
+                                type="number"
                                 placeholder="00.000.000-0"
                                 required
+                                maxLength={9}
+                                minLength={9}
                                 onChange={e => SetRg(e.target.value)}
                             />
 
@@ -141,9 +144,11 @@ export default function CadastroEmpresa() {
                                 name="cpf"
                                 className="cadastre"
                                 label="CPF:"
-                                type="text"
+                                type="number"
                                 placeholder="000.000.000-00"
-                                required
+                                rrequired
+                                maxLength={11}
+                                minLength={11}
                                 onChange={e => SetCPF(e.target.value)}
                             />
 
@@ -151,7 +156,7 @@ export default function CadastroEmpresa() {
                                 name="telefone"
                                 className="cadastre"
                                 label="Telefone:"
-                                type="text"
+                                type="tel"
                                 placeholder="(11) 91234-5678"
                                 required
                                 onChange={e => SetTelefone(e.target.value)}
@@ -164,12 +169,14 @@ export default function CadastroEmpresa() {
                                 type="text"
                                 placeholder="linkedin.com/in/maria-dos-santos"
                                 required
+                                maxLength={150}
+                                minLength={5}
                                 onChange={e => SetLinkedin(e.target.value)}
                             />
 
                             <div className="select">
                                 <label>Curso</label> <br />
-                                <select className="cadastre" onChange={e => SetCurso(e.target.value)} value={Curso}>
+                                <select className="cadastre" onChange={e => SetCurso(e.target.value)} value={Curso} required>
                                     <option value="0">Selecione seu curso</option>
                                     {
                                         Cursos.map((item) => {
@@ -183,7 +190,7 @@ export default function CadastroEmpresa() {
 
                             <div className="select">
                                 <label>Área</label>
-                                <select className="cadastre" onChange={e => SetArea(e.target.value)} value={Area}>
+                                <select className="cadastre" onChange={e => SetArea(e.target.value)} value={Area} required>
                                     <option value="0">Selecione sua área</option>
                                     {
                                         Areas.map((item) => {
@@ -202,6 +209,8 @@ export default function CadastroEmpresa() {
                                 type="text"
                                 placeholder="exemplo@exemplo.com"
                                 required
+                                maxLength={35}
+                                minLength={5}
                                 onChange={e => { SetEmail(e.target.value) }}
                             />
 
@@ -212,6 +221,8 @@ export default function CadastroEmpresa() {
                                 type="password"
                                 placeholder="Digite sua senha"
                                 required
+                                maxLength={20}
+                                minLength={10}
                                 onChange={e => SetSenha(e.target.value)}
                             />
 
@@ -222,12 +233,14 @@ export default function CadastroEmpresa() {
                                 type="password"
                                 placeholder="Confirme a senha"
                                 required
+                                maxLength={20}
+                                minLength={10}
                                 onChange={e => SetConfirmarSenha(e.target.value)}
                             />
 
                             <div className="select">
                                 <label>Pergunta de seguranca</label>
-                                <select className="cadastre" onChange={e => SetPergunta(e.target.value)} value={Area}>
+                                <select className="cadastre" onChange={e => SetPergunta(e.target.value)} value={Area} required>
                                     <option value="0">Selecione sua pergunta de segurança</option>
                                     <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
                                 </select>
@@ -240,6 +253,8 @@ export default function CadastroEmpresa() {
                                 type="text"
                                 placeholder="Meu cachorro se chama..."
                                 required
+                                maxLength={20}
+                                minLength={5}
                                 onChange={e => SetResposta(e.target.value)}
                             />
                             <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>

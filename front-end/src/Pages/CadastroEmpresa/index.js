@@ -95,6 +95,9 @@ export default function CadastroEmpresa() {
                                 label="Nome do responsável:"
                                 type="text"
                                 placeholder="Barão de Mauá"
+                                maxLength={35}
+                                minLength={5}
+                                required
                                 required
                                 onChange={e => SetNomeResponsavel(e.target.value)}
                             />
@@ -104,6 +107,8 @@ export default function CadastroEmpresa() {
                                 label="CNPJ:"
                                 type="text"
                                 placeholder="00.000.000/0001-00"
+                                maxLength={11}
+                                minLength={11}
                                 required
                                 onChange={e => SetCNPJ(e.target.value)}
                             />
@@ -114,6 +119,8 @@ export default function CadastroEmpresa() {
                                 label="E-mail para contato:"
                                 type="text"
                                 placeholder="contato@company.com"
+                                maxLength={254}
+                                minLength={3}
                                 required
                                 onChange={e => SetEmailContato(e.target.value)}
                             />
@@ -124,6 +131,8 @@ export default function CadastroEmpresa() {
                                 label="Nome fantasia:"
                                 type="text"
                                 placeholder="CPTM"
+                                maxLength={50}
+                                minLength={6}
                                 required
                                 onChange={e => SetNomeFantasia(e.target.value)}
                             />
@@ -134,6 +143,8 @@ export default function CadastroEmpresa() {
                                 label="Razão social:"
                                 type="text"
                                 placeholder="São Paulo Railway Company Ltd."
+                                maxLength={50}
+                                minLength={5}
                                 required
                                 onChange={e => SetRazaoSocial(e.target.value)}
                             />
@@ -142,7 +153,10 @@ export default function CadastroEmpresa() {
                                 className="cadastre"
                                 label="Telefone da empresa:"
                                 type="text"
-                                placeholder="(11) 4002-8922"
+                                placeholder="(11)4002-8922"
+                                maxLength={14}
+                                minLength={11}
+                                required
                                 required
                                 onChange={e => SetTelefone(e.target.value)}
                             />
@@ -152,6 +166,9 @@ export default function CadastroEmpresa() {
                                 className="cadastre"
                                 label="Número de funcionários:"
                                 type="number"
+                                maxLength={4}
+                                minLength={1}
+                                required
                                 required
                                 onChange={e => SetNumFuncionario(e.target.value)}
                             />
@@ -162,6 +179,8 @@ export default function CadastroEmpresa() {
                                 label="Número CNAE:"
                                 type="text"
                                 placeholder="00.00-0-0"
+                                maxLength={9}
+                                minLength={6}
                                 required
                                 onChange={e => SetNumCNAE(e.target.value)}
                             />
@@ -172,6 +191,8 @@ export default function CadastroEmpresa() {
                                 label="CEP:"
                                 type="text"
                                 placeholder="00000-000"
+                                maxLength={8}
+                                minLength={8}
                                 required
                                 onChange={e => SetCEP(e.target.value)}
                             />
@@ -179,8 +200,10 @@ export default function CadastroEmpresa() {
                             <Input
                                 name="address"
                                 className="cadastre"
-                                label="Endereço da empresa:"
+                                label="Logradouro da empresa:"
                                 type="text"
+                                maxLength={50}
+                                minLength={5}
                                 required
                                 onChange={e => SetLogradouro(e.target.value)}
                             />
@@ -189,13 +212,16 @@ export default function CadastroEmpresa() {
                                 name="address2"
                                 className="cadastre"
                                 label="Complemento:"
+                                maxLength={30}
+                                minLength={5}
+                                required
                                 type="text"
                                 onChange={e => SetComplemento(e.target.value)}
                             />
 
                             <div className="select">
                                 <label>Estado</label>
-                                <select className="cadastre" onChange={e => SetEstado(e.target.value)} value={Estado}>
+                                <select className="cadastre" onChange={e => SetEstado(e.target.value)} value={Estado} required>
                                     <option value="0">Selecione seu estado</option>
                                     <option value="AC">Acre</option>
                                     <option value="AM">Amazonas</option>
@@ -228,11 +254,13 @@ export default function CadastroEmpresa() {
                             </div>
 
                             <Input
-                                name="ciadade"
+                                name="cidade"
                                 className="cadastre"
                                 label="Cidade:"
                                 type="text"
                                 placeholder="São paulo"
+                                maxLength={30}
+                                minLength={4}
                                 required
                                 onChange={e => SetCidade(e.target.value)}
                             />
@@ -242,6 +270,8 @@ export default function CadastroEmpresa() {
                                 className="cadastre"
                                 label="Email de acesso:"
                                 type="text"
+                                maxLength={254}
+                                minLength={3}
                                 required
                                 onChange={e => SetEmail(e.target.value)}
                             />
@@ -252,6 +282,8 @@ export default function CadastroEmpresa() {
                                 label="Senha de acesso:"
                                 placeholder="login@gmail.com"
                                 type="password"
+                                maxLength={20}
+                                minLength={10}
                                 required
                                 onChange={e => SetSenha(e.target.value)}
                             />
@@ -261,13 +293,15 @@ export default function CadastroEmpresa() {
                                 className="cadastre"
                                 label="Confirme a senha:"
                                 type="password"
+                                maxLength={20}
+                                minLength={10}
                                 required
                                 onChange={e => SetConfirmarSenha(e.target.value)}
                             />
 
                             <div className="select">
                                 <label>Pergunta de seguranca</label>
-                                <select className="cadastre" onChange={e => SetPergunta(e.target.value)} value={PerguntaSeguranca}>
+                                <select className="cadastre" onChange={e => SetPergunta(e.target.value)} value={PerguntaSeguranca} required>
                                     <option value="0">Selecione uma pergunta de segurança</option>
                                     <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
                                 </select>
@@ -281,6 +315,9 @@ export default function CadastroEmpresa() {
                                 placeholder="Meu cachorro se chama..."
                                 required
                                 onChange={e => SetResposta(e.target.value)}
+                                maxLength={20}
+                                minLength={3}
+                                required
                             />
                             <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>
 

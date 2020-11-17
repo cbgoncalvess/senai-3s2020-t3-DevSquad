@@ -14,7 +14,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class AdministradorRepository:IAdministradorRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS;Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=DESKTOP-7H5DJOO;Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarCurso(int id, Curso curso)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -1017,6 +1017,72 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 Console.WriteLine(e);
                 return null;
+            }
+        }
+
+        public List<Usuario> ListarEmailsCandidato()
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Usuario.Select(c => new Usuario {Email=c.Email}).Where(u=>u.IdTipoUsuario==2).ToList();
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<Empresa> ListarNomeEmpresas()
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Empresa.Select(u => new Empresa {RazaoSocial=u.RazaoSocial}).ToList();
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public Candidato BuscarCandidatoPorEmail(string email)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    var EmailBuscado = ctx.Usuario.FirstOrDefault(s => s.Email == email);
+                    if (EmailBuscado == null)
+                        return null;
+                    var CandidatoBuscado = ctx.Candidato.FirstOrDefault(u=>u.IdUsuarioNavigation==EmailBuscado);
+                    if (CandidatoBuscado == null)
+                        return null;
+                    return CandidatoBuscado;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public Empresa BuscarEmpresaPorEmail(string RazaoSocial)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.Empresa.FirstOrDefault(u=>u.RazaoSocial==RazaoSocial);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
     }
