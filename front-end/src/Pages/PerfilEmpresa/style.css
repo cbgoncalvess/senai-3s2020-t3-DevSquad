@@ -1,0 +1,60 @@
+#peliculaPerfilEmpresa{
+    background-color: rgb(00, 00, 00,0.63);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    }
+    
+#modalPerfilEmpresa{
+width: 50%;
+height: 60%;
+overflow-y: auto;
+background-color: white;
+text-align: center;
+border-radius: 5px;
+padding: 20px;
+position: fixed;
+top: 25%;
+left: 25%;
+}
+
+.BotoesPerfilEmpresa{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+.imgPefilTexto{
+    display: block;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 380px;
+}
+
+#peliculaAlterarSenhaEmpresa{
+    background-color: rgb(00, 00, 00,0.63);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalAlterarSenhaEmpresa{
+    width: 50%;
+    height: 40%;
+    overflow-y: auto;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 20px;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+}
