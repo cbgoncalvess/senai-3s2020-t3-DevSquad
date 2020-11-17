@@ -6,17 +6,17 @@ import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import Input from '../../Components/Input';
 
-import imgDelete from '../../assets/delete.png'
-import imgEdit from '../../assets/black-ink-pen.png'
-import imgEmpresa from '../../assets/Teste.png'
+import imgDelete from '../../assets/delete.webp'
+import imgEdit from '../../assets/black-ink-pen.webp'
+import imgEmpresa from '../../assets/Teste.webp'
 import Tag from '../../Components/Tag/Index';
 import InfoVaga from '../../Components/InfoVaga/Index';
-import imgDesenvolvimento from '../../assets/web-programming.png';
-import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.png';
-import imgSalario from '../../assets/money (1).png';
-import imgTipoContrato from '../../assets/gears.png';
-import imgFuncao from '../../assets/rocket-launch.png';
-import IconEmpresa from '../../assets/building.png';
+import imgDesenvolvimento from '../../assets/web-programming.webp';
+import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
+import imgSalario from '../../assets/money (1).webp';
+import imgTipoContrato from '../../assets/gears.webp';
+import imgFuncao from '../../assets/rocket-launch.webp';
+import IconEmpresa from '../../assets/building.webp';
 import AccessMenu from '../../Components/AccessMenu';
 
 import './style.css';

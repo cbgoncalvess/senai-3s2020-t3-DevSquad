@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import imgDelete from '../../assets/delete.png'
-import imgEdit from '../../assets/black-ink-pen.png'
+import imgDelete from '../../assets/delete.webp'
+import imgEdit from '../../assets/black-ink-pen.webp'
 
-import imgEnterprise from '../../assets/enterprise.png'
-import imgCertificate from '../../assets/certificate.png';
-import imgWorker from '../../assets/worker.png'
-import imgPadrao from '../../assets/android-character-symbol.png';
+import imgEnterprise from '../../assets/enterprise.webp'
+import imgCertificate from '../../assets/certificate.webp';
+import imgWorker from '../../assets/worker.webp'
+import imgPadrao from '../../assets/android-character-symbol.webp';
 
 import './style.css'
 

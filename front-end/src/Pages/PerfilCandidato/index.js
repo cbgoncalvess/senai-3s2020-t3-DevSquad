@@ -6,7 +6,7 @@ import AccessBar from '../../Components/AccessBar';
 import Input from '../../Components/Input/index';
 import api from '../../services/api';
 
-import imgPadrao from '../../assets/android-character-symbol.png';
+import imgPadrao from '../../assets/android-character-symbol.webp';
 
 import './style.css';
 

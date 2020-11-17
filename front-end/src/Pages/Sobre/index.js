@@ -5,14 +5,14 @@ import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
 import AccessMenu from '../../Components/AccessMenu';
 
-import LogoSenai from '../../assets/images/logo_senai.png';
-import LogoTime from '../../assets/images/logo_devsquad.png';
+import LogoSenai from '../../assets/images/logo_senai.webp';
+import LogoTime from '../../assets/images/logo_devsquad.webp';
 
-import Alexia from '../../assets/images/linkedin_alexia.png';
-import Andre from '../../assets/images/linkedin_andre.png';
-import Carlos from '../../assets/images/linkedin_carlos.png';
-import Douglas from '../../assets/images/linkedin_douglas.png';
-import Marcos from '../../assets/images/linkedin_marcos.png';
+import Alexia from '../../assets/images/linkedin_alexia.webp';
+import Andre from '../../assets/images/linkedin_andre.webp';
+import Carlos from '../../assets/images/linkedin_carlos.webp';
+import Douglas from '../../assets/images/linkedin_douglas.webp';
+import Marcos from '../../assets/images/linkedin_marcos.webp';
 
 import './style.css';
 
