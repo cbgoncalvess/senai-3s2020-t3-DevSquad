@@ -21,6 +21,7 @@ import VagasPublicadas from './Pages/ListarVagasPublicadas/Index';
 import VisualizarVagaCandidato from './Pages/VisualizarVagaCandidato';
 import VizualizarVagaEmpresa from './Pages/VizualizarVagaEmpresa';
 import ListarCandidatosInscritos from './Pages/ListarCandidatosInscritosAdmin';
+import DashboardInscricaoCandidato from './Pages/DashbordInscricaoCandidato';
 
 /*
 const PrivateRoute = ({ component: Component, ...rest}) => {
@@ -56,6 +57,7 @@ function Routes() {
                 <Route path="/VisualizarVagaCandidato" component={VisualizarVagaCandidato} />
                 <Route path="/VagaEmpresa" component={VizualizarVagaEmpresa}/>
                 <Route path="/VizualizarVagaAdmin" component={ListarCandidatosInscritos}/>
+                <Route path="/DashboardInscricaoCandidato" component={DashboardInscricaoCandidato}/>
             </Switch>
         </Router>
     );

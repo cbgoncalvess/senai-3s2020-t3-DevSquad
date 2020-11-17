@@ -36,11 +36,8 @@ export default function CadastroEmpresa() {
     const emailRegex = /^\S+@\S+\.\S+$/g;
 
     useEffect(() => {
-        api.get('/Usuario/ListarCurso',)
-            .then(response => {
-                SetCursos(response.data);
-            });
         listarAreas();
+        listarcurso();
     }, []);
 
     const listarAreas = () => {
@@ -54,15 +51,17 @@ export default function CadastroEmpresa() {
             .catch(err => console.error(err));
     }
 
+
+
     let verificacaoEmail = emailRegex.test(Email);
 
     function salvar(e) {
         e.preventDefault();
         if (Senha !== ConfirmarSenha) {
             alert("As senhas não estão parecidas");
-        }else if(verificacaoEmail !== true){
+        } else if (verificacaoEmail !== true) {
             alert('O e-mail deve ser válido');
-        }else {
+        } else {
             const data = {
                 nomeCompleto: NomeCompleto,
                 rg: Rg,
@@ -86,12 +85,22 @@ export default function CadastroEmpresa() {
                 if (response.status !== 200) {
                     console.log(response);
                     alert("Não foi possivel efetuar o cadastro");
-                }else{
+                } else {
                     alert("Cadastrado com sucesso");
                     history.push("/");
                 }
             }).catch(err => console.error(err))
         }
+    }
+    const listarcurso = () => {
+        fetch('http://localhost:5000/api/Usuario/ListarCurso', {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(dados => {
+                SetCursos(dados);
+            })
+            .catch(err => console.error(err));
     }
 
     return (
