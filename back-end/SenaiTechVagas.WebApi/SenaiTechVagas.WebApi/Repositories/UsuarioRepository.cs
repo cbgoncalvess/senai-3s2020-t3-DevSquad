@@ -24,6 +24,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
+        string stringConexao = "Data Source=DESKTOP-7H5DJOO;Initial Catalog=Db_TechVagas;integrated Security=True";
         public Usuario Login(string email, string senha)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -151,8 +152,12 @@ namespace SenaiTechVagas.WebApi.Repositories
         public List<ListarVagasViewModel> ListarVagasEmGeral()
         {
             try
+<<<<<<< HEAD
             {
                 string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
+=======
+            {               
+>>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão
@@ -226,7 +231,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
+=======
+>>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão
@@ -305,7 +313,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
+=======
+>>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão
@@ -383,7 +394,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
+=======
+>>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
                 List<ListarVagasViewModel> listvagasBuscadas = new List<ListarVagasViewModel>();
 
@@ -466,7 +480,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
+=======
+>>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
                 List<VagaCompletaViewModel> listvagas = new List<VagaCompletaViewModel>();
                 // Declara a SqlConnection passando a string de conexão
                 using (SqlConnection con = new SqlConnection(stringConexao))
@@ -550,7 +567,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
+=======
+>>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
                 // Declara a SqlConnection passando a string de conexão
                 using (SqlConnection con = new SqlConnection(stringConexao))

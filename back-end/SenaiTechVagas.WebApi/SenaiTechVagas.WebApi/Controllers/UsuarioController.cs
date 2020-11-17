@@ -115,7 +115,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        [Authorize]
         [HttpPut("RecuperarSenha")]
         public IActionResult RecuperarSenha(AlterarSenhaViewModel vm)
         {
@@ -289,7 +288,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todos os cursos
         /// </summary>
         /// <returns></returns>
+<<<<<<< HEAD
         //[Authorize]
+=======
+       // [Authorize]
+>>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
         [HttpGet("ListarCurso")]
         public IActionResult ListarCurso()
         {

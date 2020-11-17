@@ -44,5 +44,9 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool AlterarSenhaDoUsuario(string email, string NovaSenha);
         bool AlterarSenhaDeQualquerUsuario(string Email,string Senha);
         List<ListarInscricoesViewModel> ListarCandidatosInscritos(int idVaga);
+        List<Usuario> ListarEmailsCandidato();
+        List<Empresa> ListarNomeEmpresas();
+        Candidato BuscarCandidatoPorEmail(string email);
+        Empresa BuscarEmpresaPorRazaoSocial(string RazaoEmail);
     }
 }

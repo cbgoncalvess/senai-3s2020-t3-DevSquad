@@ -33,7 +33,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <returns>Retorna um HTTP Code (201) e a mensagem "true", caso contrário,
         /// retorna um HTTP Code (400)e a mensagem "Uma exceção ocorreu. Tente novamente."
         /// </returns>
-       [Authorize(Roles = "1")]
+       //[Authorize(Roles = "1")]
         [HttpGet("ListarEmpresas")]
         public IActionResult ListaEmpresas()
         {

@@ -75,9 +75,12 @@ VALUES		('Desenvolvimento'),
 			('Redes'),
 			('Multimidia');
 
+<<<<<<< HEAD
 GO
 
 
+=======
+>>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
 INSERT INTO Empresa (NomeReponsavel, CNPJ, EmailContato, NomeFantasia, RazaoSocial, Telefone, 
 						NumFuncionario,NumCNAE, CEP, Logradouro, Complemento, Localidade, UF, IdUsuario)
 VALUES		('Marcos', '3242432433', 'Marcos@gmail.com', 'TechVagas', 'TechVagas', '40028922', 

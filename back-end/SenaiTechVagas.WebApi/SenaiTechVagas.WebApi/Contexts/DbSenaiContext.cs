@@ -34,7 +34,11 @@ namespace SenaiTechVagas.WebApi.Contexts
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+<<<<<<< HEAD
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True");
+=======
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-7H5DJOO; Initial Catalog=Db_TechVagas;integrated Security=True");
+>>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
             }
         }
 

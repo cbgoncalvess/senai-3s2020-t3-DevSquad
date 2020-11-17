@@ -63,23 +63,23 @@ export default function CadastrarVaga() {
             descricaoEmpresa: DescricaoEmpresa,
             descricaoBeneficio: DescricaoBeneficio
         };
-        api.post('/Empresa/AdicionarVaga', form,{
+        api.post('/Empresa/AdicionarVaga', form, {
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
-        .then(function (respose) {
-            if (respose.status !== 200) {
-                alert("Não foi possivel cadastrar a vaga");
-            } else {
-                alert("Vaga cadastrada com sucesso");
-                history.push('/VagasPublicadas');
-            }
-        })
-        .catch(err => console.log(err))
+            .then(function (respose) {
+                if (respose.status !== 200) {
+                    alert("Não foi possivel cadastrar a vaga");
+                } else {
+                    alert("Vaga cadastrada com sucesso");
+                    history.push('/VagasPublicadas');
+                }
+            })
+            .catch(err => console.log(err))
     }
-    
-    
+
+
     return (
         <body>
             <AccessBar />
@@ -93,11 +93,27 @@ export default function CadastrarVaga() {
                             <form onSubmit={event => {
                                 event.preventDefault();
                             }}>
-                                <Input className="InputCadastro" name="TituloVaga" label="Título da Vaga" onChange={e => SetTituloVaga(e.target.value)} />
-                                <Input className="InputCadastro" name="Salario" label="Salário" onChange={e => SetSalario(e.target.value)} />
+                                <Input className="InputCadastro"
+                                    name="TituloVaga"
+                                    label="Título da Vaga"
+                                    onChange={e => SetTituloVaga(e.target.value)}
+                                    type="text"
+                                    maxLength={50}
+                                    minLength={5}
+                                    required
+                                />
+
+                                <Input className="InputCadastro"
+                                    name="Salario"
+                                    type="number"
+                                    label="Salário"
+                                    onChange={e => SetSalario(e.target.value)}
+                                    required
+                                />
+
                                 <div className="select">
                                     <label>Área</label>
-                                    <select className="div-select" onChange={e => SetArea(e.target.value)} value={Area}>
+                                    <select className="div-select" onChange={e => SetArea(e.target.value)} value={Area} required>
                                         <option value="0">Selecione uma área de atuação</option>
                                         {
                                             ListAreas.map((item) => {
@@ -108,7 +124,7 @@ export default function CadastrarVaga() {
                                 </div>
                                 <div className="select">
                                     <label>Experiência</label>
-                                    <select className="div-select" onChange={e => SetExperiencia(e.target.value)} value={Experiencia}>
+                                    <select className="div-select" onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
                                         <option value="0">Selecione um nivel de experiencia</option>
                                         <option value="Pleno">Pleno</option>
                                         <option value="Sênior">Sênior</option>
@@ -117,27 +133,109 @@ export default function CadastrarVaga() {
                                 </div>
                                 <div className="select">
                                     <label>Tipo de contrato</label>
-                                    <select className="div-select" onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato}>
+                                    <select className="div-select" onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato} required>
                                         <option value="0">Selecione um tipo de contrato</option>
                                         <option value="CLT">CLT</option>
                                         <option value="PJ">PJ</option>
                                         <option value="Estagio">Estagio</option>
                                     </select>
                                 </div>
-                                <Input className="InputCadastro" name="Estado" label="Estado" onChange={e => SetEstado(e.target.value)} />
-                                <Input className="InputCadastro" name="Cidade" label="Cidade" onChange={e => SetCidade(e.target.value)} />
-                                <Input className="InputCadastro" name="CEP" label="CEP" onChange={e => SetCEP(e.target.value)} maxLength={"8"} />
-                                <Input className="InputCadastro" name="Logradouro" label="Logradouro" onChange={e => SetLogradouro(e.target.value)} />
-                                <Input className="InputCadastro" name="Complemento" label="Complemento" onChange={e => SetComplemento(e.target.value)} />
+                                <div className="select">
+                                    <label>Estado</label>
+                                    <select className="cadastre" onChange={e => SetEstado(e.target.value)} value={Estado} required>
+                                        <option value="0">Selecione seu estado</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                                <Input className="InputCadastro"
+                                    name="Cidade"
+                                    label="Cidade"
+                                    type="text"
+                                    onChange={e => SetCidade(e.target.value)}
+                                    maxLength={50}
+                                    minLength={5}
+                                    required />
+
+                                <Input className="InputCadastro"
+                                    name="CEP"
+                                    type="number"
+                                    label="CEP"
+                                    onChange={e => SetCEP(e.target.value)}
+                                    maxLength={50}
+                                    minLength={5}
+                                    required
+                                />
+
+                                <Input className="InputCadastro"
+                                    name="Logradouro"
+                                    label="Logradouro"
+                                    type="text"
+                                    onChange={e => SetLogradouro(e.target.value)}
+                                    maxLength={255}
+                                    minLength={5}
+                                    required
+                                />
+
+                                <Input className="InputCadastro"
+                                    name="Complemento"
+                                    label="Complemento"
+                                    type="text"
+                                    onChange={e => SetComplemento(e.target.value)}
+                                    maxLength={255}
+                                    minLength={5}
+                                    required
+                                />
                                 <div className="text-area">
                                     <label>Descrição da vaga</label>
-                                    <textarea name="DescricaoVaga" onChange={e => SetDescricaoVaga(e.target.value)}></textarea>
+                                    <textarea
+                                        name="DescricaoVaga"
+                                        onChange={e => SetDescricaoVaga(e.target.value)}
+                                        required
+                                        maxLength={700}
+                                        minLength={5}
+                                    ></textarea>
                                     <br />
                                     <label>Descrição da empresa</label>
-                                    <textarea onChange={e => SetDescricaoEmpresa(e.target.value)} name="DescricaoEmpresa"></textarea>
+                                    <textarea onChange={e => SetDescricaoEmpresa(e.target.value)}
+                                        name="DescricaoEmpresa"
+                                        required
+                                        maxLength={700}
+                                        minLength={5}
+                                    ></textarea>
                                     <br />
                                     <label>Descrição dos benefícios</label>
-                                    <textarea name="DescricaoBeneficio" onChange={e => SetDescricaoBeneficio(e.target.value)}></textarea>
+                                    <textarea name="DescricaoBeneficio"
+                                        onChange={e => SetDescricaoBeneficio(e.target.value)}
+                                        required
+                                        maxLength={700}
+                                        minLength={5}
+                                    ></textarea>
                                 </div>
                                 <br />
                                 <div className="btVagaDiv">

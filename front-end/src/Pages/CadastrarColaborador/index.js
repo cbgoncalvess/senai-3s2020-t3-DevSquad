@@ -143,7 +143,9 @@ export default function CadastrarColaborador() {
                             label="*E-mail" 
                             type="text" 
                             placeholder="exemplo@exemplo.com"
-                            required 
+                            maxLength={254}
+                            minLength={3}
+                            required
                             onChange={e => SetEmail(e.target.value)} 
                             />
 
@@ -152,6 +154,8 @@ export default function CadastrarColaborador() {
                             label="*Senha" 
                             type="password" 
                             placeholder="*********" 
+                            maxLength={30}
+                            minLength={10}
                             required
                             onChange={e => SetSenha(e.target.value)}
                             />
@@ -160,6 +164,8 @@ export default function CadastrarColaborador() {
                             label="*Confirmar Senha" 
                             type="password" 
                             placeholder="*********" 
+                            maxLength={30}
+                            minLength={10}
                             required
                             onChange={e => SetConfirmarSenha(e.target.value)}
                             />
