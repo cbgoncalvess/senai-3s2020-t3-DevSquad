@@ -266,7 +266,7 @@ export default function CadastroEmpresa() {
                             />
 
                             <div className="select">
-                                <label>Pergunta de seguranca</label>
+                                <label>Pergunta de segurança</label>
                                 <select className="cadastre" onChange={e => SetPergunta(e.target.value)} value={PerguntaSeguranca}>
                                     <option value="0">Selecione uma pergunta de segurança</option>
                                     <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>

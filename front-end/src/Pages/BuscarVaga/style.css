@@ -1,7 +1,55 @@
-.content-searchJobs{
-    width: 100%;
+.content-searchJobs {
+  width: 100%;
+  background-color: #aba5a561;
 }
 
-.imgBackground-searchJobs{
-    width: 100%
+.imgBackground-searchJobs {
+  width: 100%;
+}
+.vaga {
+  width: 98%;
+  display: grid;
+  grid-area: 1 / 2 / 6 / 3;
+  margin-top: 1vh;
+  border-radius: 1em;
+}
+.VagaCompleta {
+  width: 100%;
+}
+
+.VagaCompleta :hover {
+  cursor: pointer;
+}
+
+#filter-searchJobs {
+  display: grid;
+  grid-area: 1 / 1 / 4 / 2;
+  width: 80%;
+  margin: 1vh 0 0 1vw;
+}
+
+.main-content-search-jobs{
+  display: grid;
+  grid-template-columns: 15% 85% ;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+.btn-filter {
+  border-radius: 4px;
+  border: solid #767676 0.01px;
+  margin-top: 1vh;
+}
+
+button .btn-filter :hover{
+  cursor: auto;
+  background-color: #000;
+}
+
+#btn-all {
+  border-radius: 4px;
+  border: solid #767676 0.01px;
+}
+
+#filter-searchJobs p {
+  margin-top: 15px;
 }

@@ -1,9 +1,11 @@
 USE Db_TechVagas
 
-use master
+USE MASTER
 GO
+
 SELECT * FROM Area
-Go
+GO
+
 SELECT * FROM Curso
 GO
 
@@ -15,6 +17,7 @@ GO
 
 SELECT * FROM TipoUsuario
 GO
+
 SELECT * FROM Empresa
 GO
 
@@ -27,12 +30,15 @@ GO
 SELECT * FROM Usuario
 GO
 
-
-
 SELECT * FROM Vaga
 GO
 
+
 SELECT * FROM VagaTecnologia
+GO
+INSERT INTO VagaTecnologia(IdVaga,IdTecnologia)
+VALUES		(6,4),
+			(7,4);
 GO
 
 SELECT * FROM Estagio

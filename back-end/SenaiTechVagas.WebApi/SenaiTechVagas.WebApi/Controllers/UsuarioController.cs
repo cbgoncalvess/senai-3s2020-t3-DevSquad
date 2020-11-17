@@ -177,7 +177,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Listar todas as areas
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet("ListarArea")]
         public IActionResult ListarArea()
         {
@@ -289,7 +289,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todos os cursos
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet("ListarCurso")]
         public IActionResult ListarCurso()
         {
