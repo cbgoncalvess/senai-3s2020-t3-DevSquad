@@ -11,13 +11,13 @@ import InfoVaga from '../../Components/InfoVaga/Index';
 import Tag from '../../Components/Tag/Index';
 
 // images
-import imgEmpresa from '../../assets/Teste.png'
-import imgDesenvolvimento from '../../assets/web-programming.png';
-import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.png';
-import imgSalario from '../../assets/money (1).png';
-import imgTipoContrato from '../../assets/gears.png';
-import imgFuncao from '../../assets/rocket-launch.png';
-import IconEmpresa from '../../assets/building.png';
+import imgEmpresa from '../../assets/Teste.webp'
+import imgDesenvolvimento from '../../assets/web-programming.webp';
+import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
+import imgSalario from '../../assets/money (1).webp';
+import imgTipoContrato from '../../assets/gears.webp';
+import imgFuncao from '../../assets/rocket-launch.webp';
+import IconEmpresa from '../../assets/building.webp';
 
 
 
