@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import api from "../../services/api";
-
 import AccessBar from "../../Components/AccessBar";
 import Header from "../../Components/Header";
 import AccessMenu from "../../Components/AccessMenu";
@@ -50,7 +48,7 @@ export default function CadastroEmpresa() {
       .catch((err) => console.error(err));
   };
 
-  let verificacaoEmail = emailRegex.test(Email);
+  const verificacaoEmail = emailRegex.test(Email);
 
   function salvar(e) {
     e.preventDefault();
@@ -107,8 +105,6 @@ export default function CadastroEmpresa() {
       <AccessBar />
       <Header />
       <AccessMenu />
-
-<<<<<<< HEAD
       <div className="registerApplicant">
         <div className="box-form">
           <div className="form-content">
@@ -125,7 +121,8 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="Maria dos Santos"
                 required
-                requiredError="O seu nome deve ser preenchido"
+                maxLength={35}
+                minLength={5}
                 onChange={(e) => SetNomeCompleto(e.target.value)}
               />
 
@@ -133,9 +130,11 @@ export default function CadastroEmpresa() {
                 name="rg"
                 className="cadastre"
                 label="RG:"
-                type="text"
+                type="number"
                 placeholder="00.000.000-0"
                 required
+                maxLength={9}
+                minLength={9}
                 onChange={(e) => SetRg(e.target.value)}
               />
 
@@ -143,9 +142,11 @@ export default function CadastroEmpresa() {
                 name="cpf"
                 className="cadastre"
                 label="CPF:"
-                type="text"
+                type="number"
                 placeholder="000.000.000-00"
-                required
+                rrequired
+                maxLength={11}
+                minLength={11}
                 onChange={(e) => SetCPF(e.target.value)}
               />
 
@@ -153,7 +154,7 @@ export default function CadastroEmpresa() {
                 name="telefone"
                 className="cadastre"
                 label="Telefone:"
-                type="text"
+                type="tel"
                 placeholder="(11) 91234-5678"
                 required
                 onChange={(e) => SetTelefone(e.target.value)}
@@ -166,6 +167,8 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="linkedin.com/in/maria-dos-santos"
                 required
+                maxLength={150}
+                minLength={5}
                 onChange={(e) => SetLinkedin(e.target.value)}
               />
 
@@ -175,6 +178,7 @@ export default function CadastroEmpresa() {
                   className="cadastre"
                   onChange={(e) => SetCurso(e.target.value)}
                   value={Curso}
+                  required
                 >
                   <option value="0">Selecione seu curso</option>
                   {Cursos.map((item) => {
@@ -191,6 +195,7 @@ export default function CadastroEmpresa() {
                   className="cadastre"
                   onChange={(e) => SetArea(e.target.value)}
                   value={Area}
+                  required
                 >
                   <option value="0">Selecione sua área</option>
                   {Areas.map((item) => {
@@ -206,6 +211,8 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="exemplo@exemplo.com"
                 required
+                maxLength={35}
+                minLength={5}
                 onChange={(e) => {
                   SetEmail(e.target.value);
                 }}
@@ -218,6 +225,8 @@ export default function CadastroEmpresa() {
                 type="password"
                 placeholder="Digite sua senha"
                 required
+                maxLength={20}
+                minLength={10}
                 onChange={(e) => SetSenha(e.target.value)}
               />
 
@@ -228,6 +237,8 @@ export default function CadastroEmpresa() {
                 type="password"
                 placeholder="Confirme a senha"
                 required
+                maxLength={20}
+                minLength={10}
                 onChange={(e) => SetConfirmarSenha(e.target.value)}
               />
 
@@ -236,9 +247,10 @@ export default function CadastroEmpresa() {
                 <select
                   className="cadastre"
                   onChange={(e) => SetPergunta(e.target.value)}
-                  value={PerguntaSeguranca}
+                  value={Area}
+                  required
                 >
-                  <option value="0">Selecione uma pergunta de segurança</option>
+                  <option value="0">Selecione sua pergunta de segurança</option>
                   <option value="Como se chama o seu cachorro">
                     Como se chama o seu cachorro
                   </option>
@@ -252,158 +264,11 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="Meu cachorro se chama..."
                 required
+                maxLength={20}
+                minLength={5}
                 onChange={(e) => SetResposta(e.target.value)}
               />
               <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>
-=======
-                <div className="box-form">
-                    <div className="form-content">
-                        <h1>Cadastre-se como Candidato</h1>
-                        <p>Bem-vindo ao cadastro do candidato. <br />Ficamos felizes de tê-lo na nossa plataforma</p>
-                        <form className="form" onSubmit={salvar}>
-                            <Input
-                                name="fullName"
-                                className="cadastre"
-                                label="Nome completo:"
-                                type="text"
-                                placeholder="Maria dos Santos"
-                                required
-                                maxLength={35}
-                                minLength={5}
-                                onChange={e => SetNomeCompleto(e.target.value)}
-                            />
-
-                            <Input
-                                name="rg"
-                                className="cadastre"
-                                label="RG:"
-                                type="number"
-                                placeholder="00.000.000-0"
-                                required
-                                maxLength={9}
-                                minLength={9}
-                                onChange={e => SetRg(e.target.value)}
-                            />
-
-                            <Input
-                                name="cpf"
-                                className="cadastre"
-                                label="CPF:"
-                                type="number"
-                                placeholder="000.000.000-00"
-                                rrequired
-                                maxLength={11}
-                                minLength={11}
-                                onChange={e => SetCPF(e.target.value)}
-                            />
-
-                            <Input
-                                name="telefone"
-                                className="cadastre"
-                                label="Telefone:"
-                                type="tel"
-                                placeholder="(11) 91234-5678"
-                                required
-                                onChange={e => SetTelefone(e.target.value)}
-                            />
-
-                            <Input
-                                name="linkedin"
-                                className="cadastre"
-                                label="LinkedIn:"
-                                type="text"
-                                placeholder="linkedin.com/in/maria-dos-santos"
-                                required
-                                maxLength={150}
-                                minLength={5}
-                                onChange={e => SetLinkedin(e.target.value)}
-                            />
-
-                            <div className="select">
-                                <label>Curso</label> <br />
-                                <select className="cadastre" onChange={e => SetCurso(e.target.value)} value={Curso} required>
-                                    <option value="0">Selecione seu curso</option>
-                                    {
-                                        Cursos.map((item) => {
-                                            return (
-                                                <option value={item.idCurso}>{item.nomeCurso}</option>
-                                            );
-                                        })
-                                    }
-                                </select>
-                            </div>
-
-                            <div className="select">
-                                <label>Área</label>
-                                <select className="cadastre" onChange={e => SetArea(e.target.value)} value={Area} required>
-                                    <option value="0">Selecione sua área</option>
-                                    {
-                                        Areas.map((item) => {
-                                            return (
-                                                <option value={item.idArea}>{item.nomeArea}</option>
-                                            );
-                                        })
-                                    }
-                                </select>
-                            </div>
-
-                            <Input
-                                name="email"
-                                className="cadastre"
-                                label="E-mail:"
-                                type="text"
-                                placeholder="exemplo@exemplo.com"
-                                required
-                                maxLength={35}
-                                minLength={5}
-                                onChange={e => { SetEmail(e.target.value) }}
-                            />
-
-                            <Input
-                                name="password"
-                                className="cadastre"
-                                label="Senha:"
-                                type="password"
-                                placeholder="Digite sua senha"
-                                required
-                                maxLength={20}
-                                minLength={10}
-                                onChange={e => SetSenha(e.target.value)}
-                            />
-
-                            <Input
-                                name="password-confirm"
-                                className="cadastre"
-                                label="Confirmar senha:"
-                                type="password"
-                                placeholder="Confirme a senha"
-                                required
-                                maxLength={20}
-                                minLength={10}
-                                onChange={e => SetConfirmarSenha(e.target.value)}
-                            />
-
-                            <div className="select">
-                                <label>Pergunta de seguranca</label>
-                                <select className="cadastre" onChange={e => SetPergunta(e.target.value)} value={Area} required>
-                                    <option value="0">Selecione sua pergunta de segurança</option>
-                                    <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
-                                </select>
-                            </div>
-
-                            <Input
-                                name="Resposta seguranca"
-                                className="cadastre"
-                                label="Resposta de segurança:"
-                                type="text"
-                                placeholder="Meu cachorro se chama..."
-                                required
-                                maxLength={20}
-                                minLength={5}
-                                onChange={e => SetResposta(e.target.value)}
-                            />
-                            <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>
->>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
 
               <div className="form-button">
                 <BlueButton type="submit" name="Criar conta">

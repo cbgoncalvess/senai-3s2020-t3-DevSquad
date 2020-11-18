@@ -1,57 +1,58 @@
-.registerCompany{
-    background-color: #E5E5E5;
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%; 
-    grid-template-rows: 20% 20% 20% 20% 20% ;
-    box-sizing: content-box;
+.registerCompany {
+  background-color: #e5e5e5;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+  box-sizing: content-box;
 }
 
-.box-form{
-    display: grid;
-    grid-area: 1 / 1 / 6 / 4;
-    box-sizing: content-box;
+.box-form {
+  display: grid;
+  grid-area: 1 / 1 / 6 / 4;
+  box-sizing: content-box;
 }
 
-.form-content{
-    display: flex;
-    justify-content: center;
-    background-color: #FFF ;
-    border-radius: 5em;
-    box-sizing: content-box;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    text-align: center;
+.form-content {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 5em;
+  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  text-align: center;
 }
 
-.form-content h1{
-    color: #005767;
+.form-content h1 {
+  color: #005767;
 }
 
-.form-content p{
-    color: #707070 ;
+.form-content p {
+  color: #707070;
 }
 
-.form-content label{
-    color: #9B9B9B ;
+.form-content label {
+  color: #9b9b9b;
 }
 
-.Input{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
+.Input {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 .Input label {
-    display: flex;
-    justify-content: content;
+  display: flex;
+  justify-content: content;
 }
 
-.cadastre{
-    height: 40px;
-    border-radius: 6px;
-    background-color: #EFEFEF;
-    border: none;
-    padding-left: 5px;
+.cadastre {
+  height: 40px;
+  width: 100%;
+  border-radius: 6px;
+  background-color: #efefef;
+  border: none;
+  padding-left: 5px;
 }
 /* Esconde as setas dos inputs de tipo number */
 
@@ -62,37 +63,43 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
- /* Firefox */
-input[type=number] {
-    -moz-appearance:textfield;
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
-body > div.registerCompany > div.box-img > img{
-    width: 40vw;
-    height: 500%;
-    object-fit: cover;
+body > div.registerCompany > div.box-img > img {
+  width: 40vw;
+  height: 500%;
+  object-fit: cover;
 }
 
-body > div.registerCompany > div.box-form > div > div > div.form-button > button{
-    cursor: pointer;
+body
+  > div.registerCompany
+  > div.box-form
+  > div
+  > div
+  > div.form-button
+  > button {
+  cursor: pointer;
 }
 
-#root{
-    overflow-x: hidden;
+#root {
+  overflow-x: hidden;
 }
 
-@media (max-width: 900px){
-    body > div.registerCompany > div.box-img > img{
-        display: none;
-    }
-    body > div.registerCompany > div.box-form{
-        width: 94vw !important;
-        justify-content: center;
-    }
-    body > div.registerCompany > div.box-form > div{
-        width: 80vw !important;
-        padding: 5vw;
-    }
+@media (max-width: 900px) {
+  body > div.registerCompany > div.box-img > img {
+    display: none;
+  }
+  body > div.registerCompany > div.box-form {
+    width: 94vw !important;
+    justify-content: center;
+  }
+  body > div.registerCompany > div.box-form > div {
+    width: 80vw !important;
+    padding: 5vw;
+  }
 }
 
 /* 
@@ -111,11 +118,11 @@ grid-area: 2 / 2 / 4 / 4;
 
 /* ACCESS MENU */
 
-.preto .box-form{
-    background: black !important;
+.preto .box-form {
+  background: black !important;
 }
 
 .preto .form-content,
-.preto div.box-form > div > h1{
-    background: #373737 !important;
+.preto div.box-form > div > h1 {
+  background: #373737 !important;
 }
