@@ -33,63 +33,36 @@ export default function CadastroEmpresa() {
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
 
   const history = useHistory();
+
   const emailRegex = /^\S+@\S+\.\S+$/g;
+  const validaCep = /^[0-9]{8}$/g;
+
+  let verificacaoCep = validaCep.test(CEP);
   let verificacaoEmail = emailRegex.test(Email);
 
-  function limpa_formulário_cep() {
-    //Limpa valores do formulário de cep.
-    document.getElementById("rua").value = "";
-    document.getElementById("cidade").value = "";
-    document.getElementById("uf").value = "";
-  }
+  /* 
+    Cria um elemento javascript.
+      var script = document.createElement("script");
+    Sincroniza com o callback.
+      script.src = `https://viacep.com.br/ws/${cep}/json/?callback=meu_callback`;
+    Insere script no documento e carrega o conteúdo.
+      document.body.appendChild(script);
+  */
 
-  function meu_callback(conteudo) {
-    if (!("erro" in conteudo)) {
-      //Atualiza os campos com os valores.
-      document.getElementById("rua").value = conteudo.logradouro;
-      document.getElementById("cidade").value = conteudo.localidade;
-      document.getElementById("uf").value = conteudo.uf;
-    } //end if.
-    else {
-      //CEP não Encontrado.
-      limpa_formulário_cep();
-      alert("CEP não encontrado.");
-    }
-  }
-
-  function pesquisacep(valor) {
-    //Nova variável "cep" somente com dígitos.
-    var cep = valor.replace(/\D/g, "");
-
-    //Verifica se campo cep possui valor informado.
-    if (cep != "") {
-      //Expressão regular para validar o CEP.
-      var validacep = /^[0-9]{8}$/;
-
-      //Valida o formato do CEP.
-      if (validacep.test(cep)) {
-        //Preenche os campos com "..." enquanto consulta webservice.
-        Logradouro = "...";
-        Cidade = "...";
-        Estado = "...";
-
-        //Cria um elemento javascript.
-        var script = document.createElement("script");
-
-        //Sincroniza com o callback.
-        script.src = `https://viacep.com.br/ws/${cep}/json/?callback=meu_callback`;
-
-        //Insere script no documento e carrega o conteúdo.
-        document.body.appendChild(script);
-      } else {
-        //cep é inválido.
-        limpa_formulário_cep();
-        alert("Formato de CEP inválido.");
-      }
-    } //end if.
-    else {
-      //cep sem valor, limpa formulário.
-      limpa_formulário_cep();
+  function buscarCep(valor) {
+    if (verificacaoCep) {
+      const URL = `https://viacep.com.br/ws/${valor}/json/`;
+      fetch(URL)
+        .then((resposta) => resposta.json())
+        .then((data) => {
+          console.log(data);
+          document.getElementById("rua").value = data.logradouro;
+          document.getElementById("cidade").value = data.localidade;
+          document.getElementById("uf").value = data.uf;
+        })
+        .catch((erro) => console.error(erro));
+    } else {
+      alert("Escreve direito esse cep porra");
     }
   }
 
@@ -254,12 +227,10 @@ export default function CadastroEmpresa() {
                 label="CEP:"
                 type="text"
                 placeholder="00000-000"
-                maxLength={8}
-                minLength={8}
                 required
                 onBlur={(e) => {
                   e.preventDefault();
-                  pesquisacep(e.target.value);
+                  buscarCep(e.target.value);
                 }}
                 onChange={(e) => SetCEP(e.target.value)}
               />
@@ -270,6 +241,7 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="Logradouro da empresa:"
                 type="text"
+                placeholder="Rua dos Bobos, 000"
                 maxLength={50}
                 minLength={5}
                 required
@@ -341,10 +313,13 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetConfirmarSenha(e.target.value)}
               />
 
-              <div className="select">
-                <label>Pergunta de seguranca</label>
+              <div>
+                <label className="select-cadastroCandidato-title">
+                  Pergunta de seguranca
+                </label>
+                <br />
                 <select
-                  className="cadastre"
+                  className="select-cadastroCandidato"
                   onChange={(e) => SetPergunta(e.target.value)}
                   value={PerguntaSeguranca}
                   required

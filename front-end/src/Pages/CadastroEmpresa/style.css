@@ -126,3 +126,12 @@ grid-area: 2 / 2 / 4 / 4;
 .preto div.box-form > div > h1 {
   background: #373737 !important;
 }
+
+#cidade,
+#uf:read-only {
+  cursor: not-allowed;
+}
+
+#rua {
+  cursor: context-menu;
+}

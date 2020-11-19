@@ -172,10 +172,11 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetLinkedin(e.target.value)}
               />
 
-              <div className="select">
-                <label>Curso</label> <br />
+              <div>
+                <label className="select-cadastroCandidato-title">Curso</label>
+                <br />
                 <select
-                  className="cadastre"
+                  className="select-cadastroCandidato"
                   onChange={(e) => SetCurso(e.target.value)}
                   value={Curso}
                   required
@@ -189,10 +190,13 @@ export default function CadastroEmpresa() {
                 </select>
               </div>
 
-              <div className="select">
-                <label>Área</label>
+              <div>
+                <label className="select-cadastroCandidato-title-area">
+                  Área
+                </label>
+                <br />
                 <select
-                  className="cadastre"
+                  className="select-cadastroCandidato"
                   onChange={(e) => SetArea(e.target.value)}
                   value={Area}
                   required
@@ -242,10 +246,13 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetConfirmarSenha(e.target.value)}
               />
 
-              <div className="select">
-                <label>Pergunta de seguranca</label>
+              <div>
+                <label className="select-cadastroCandidato-title">
+                  Pergunta de seguranca:
+                </label>
+                <br />
                 <select
-                  className="cadastre"
+                  className="select-cadastroCandidato"
                   onChange={(e) => SetPergunta(e.target.value)}
                   value={Area}
                   required

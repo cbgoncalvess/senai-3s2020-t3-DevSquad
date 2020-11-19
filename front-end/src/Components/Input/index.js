@@ -9,7 +9,7 @@ function Input(props) {
       <input
         className={props.className}
         type={props.type}
-        id={props.name}
+        id={props.id}
         placeholder={props.placeholder}
         onChange={props.onChange}
         value={props.value}
