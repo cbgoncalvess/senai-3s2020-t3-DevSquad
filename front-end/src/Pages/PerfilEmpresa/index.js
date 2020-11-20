@@ -166,7 +166,7 @@ const EditarDadosDaEmpresa = () =>
                 <div className="EsquerdoPerfil">
                     <div className="imgPefilTexto">
                         <img className="imgperfil" src={imgPadrao} alt="perfil" />
-                        <h3>Apple</h3>
+    <h3>{RazaoSocial}</h3>
                         <p>Empresa</p>
                     </div>
                     <div className="BotoesPerfilEmpresa">

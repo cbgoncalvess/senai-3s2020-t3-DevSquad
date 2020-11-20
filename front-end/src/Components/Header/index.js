@@ -173,6 +173,7 @@ export default function Header() {
                             <li><Link to="/perfilCandidato">Perfil</Link></li>
                             <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/">Ver inscrições</Link></li>
+                            <li><Link to="/principal">Principal</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
                         </ul>
                     </nav>
@@ -193,6 +194,7 @@ export default function Header() {
                             <li><Link to="/">Principal</Link></li>
                             <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/">Ver inscrições</Link></li>
+                            <li><Link to="/principal">Principal</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
                         </ul>
                     </nav>
@@ -205,6 +207,7 @@ export default function Header() {
                             <li><Link to="/">Principal</Link></li>
                             <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/">Ver inscrições</Link></li>
+                            <li><Link to="/principal">Principal</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
                         </ul>
                     </nav>

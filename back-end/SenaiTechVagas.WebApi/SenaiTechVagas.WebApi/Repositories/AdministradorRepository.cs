@@ -14,11 +14,8 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class AdministradorRepository:IAdministradorRepository
     {
-<<<<<<< HEAD
-        string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
-=======
-        string stringConexao = "Data Source=DESKTOP-7H5DJOO;Initial Catalog=Db_TechVagas;integrated Security=True";
->>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+
         public bool AtualizarCurso(int id, Curso curso)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -1045,6 +1042,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
+                    ctx.Vaga.Include(u => u.VagaTecnologia).ThenInclude(u=>u.IdTecnologiaNavigation); ;
                     return ctx.Empresa.Select(u => new Empresa {RazaoSocial=u.RazaoSocial}).ToList();
                 }
                 catch (Exception)
@@ -1075,7 +1073,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public Empresa BuscarEmpresaPorEmail(string RazaoSocial)
+        public Empresa BuscarEmpresaPorRazaoSocial(string RazaoSocial)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {

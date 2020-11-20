@@ -75,12 +75,6 @@ VALUES		('Desenvolvimento'),
 			('Redes'),
 			('Multimidia');
 
-<<<<<<< HEAD
-GO
-
-
-=======
->>>>>>> 7b07ced0e8f5a4cc23039b70dfca68321686c83e
 INSERT INTO Empresa (NomeReponsavel, CNPJ, EmailContato, NomeFantasia, RazaoSocial, Telefone, 
 						NumFuncionario,NumCNAE, CEP, Logradouro, Complemento, Localidade, UF, IdUsuario)
 VALUES		('Marcos', '3242432433', 'Marcos@gmail.com', 'TechVagas', 'TechVagas', '40028922', 
@@ -91,15 +85,7 @@ INSERT INTO Area (NomeArea)
 VALUES		('Desenvolvimento'),
 			('Redes'),
 			('Multimídia');
-
 GO
-/*
-	Para Consertar:
-	INSERT INTO Candidato (NomeCompleto, RG, CPF, Telefone, LinkLinkedinCandidato, Area, IdCurso, IdUsuario)
-	VALUES		('Douglas Mantovani', '311233752', '73829940076', '1198529874', 'https://www.linkedin.com/feed/', 'Developer', 2, 3),
-				('Aléxia Vitória', '214002391', '97616998038', '1195246587', 'https://www.linkedin.com/feed/teste', 'Desenvolvedor', 3 , 4);
-	GO
-*/
 
 INSERT INTO Vaga (TituloVaga, DescricaoVaga, DescricaoEmpresa, DescricaoBeneficio, DataPublicacao, DataExpiracao,
 					Experiencia, TipoContrato, Salario, Localidade, Estado, CEP, Logradouro, Complemento, IdEmpresa, IdArea)
@@ -118,10 +104,10 @@ VALUES		('29-05-2020', 26, 4, 5);
 GO
 
 INSERT INTO Inscricao (DataInscricao, IdCandidato, IdVaga, IdStatusInscricao)
-VALUES		('08-08-2020', 3, 10, 2);		
+VALUES		('08-08-2020', 3, 15, 2);		
 GO
 
-UPDATE Inscricao SET IdStatusInscricao=2 WHERE IdInscricao=5
+UPDATE Inscricao SET IdStatusInscricao=2 WHERE IdInscricao=6
 
 INSERT INTO VagaTecnologia (IdTecnologia, IdVaga)
 VALUES		(2, 1),
@@ -136,3 +122,4 @@ GO
 use master
 drop database Db_TechVagas
 
+select *from vaga
