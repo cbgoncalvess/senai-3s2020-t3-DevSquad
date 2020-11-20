@@ -24,6 +24,7 @@ export default function PerfilCandidato() {
     const [Vagas, setVagas] = useState([]);
 
     const [NovaSenha, SetNovaSenha] = useState('');
+    const [SenhaAtual, SetSenha] = useState('');
     const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
     const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
 
@@ -78,9 +79,8 @@ export default function PerfilCandidato() {
 
     const AlterarSenha = () => {
         const form = {
-            perguntaSeguranca: PerguntaSeguranca,
-            respostaSeguranca: RespostaSeguranca,
-            senha: NovaSenha,
+            senhaAtual:SenhaAtual,
+            novaSenha:NovaSenha
         };
         fetch('http://localhost:5000/api/Usuario/AlterarSenha', {
             method: 'PUT',
@@ -91,7 +91,7 @@ export default function PerfilCandidato() {
             }
         }).then(function (respose) {
             if (respose.status !== 200) {
-                alert("Não foi possivel editar esse estagio");
+                alert("Não foi possivel alterar a senha");
             } else {
                 alert("Editado com sucesso");
             }
@@ -252,6 +252,7 @@ export default function PerfilCandidato() {
                 <h2>Alterar senha</h2>
                 <form>
                     <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)} />
+                    <Input className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)} />
                     <button className="btVaga" onClick={AlterarSenha}>Alterar senha</button>
                 </form>
             </div>

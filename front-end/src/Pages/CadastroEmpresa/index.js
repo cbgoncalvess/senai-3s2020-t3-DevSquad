@@ -40,15 +40,6 @@ export default function CadastroEmpresa() {
   let verificacaoCep = validaCep.test(CEP);
   let verificacaoEmail = emailRegex.test(Email);
 
-  /* 
-    Cria um elemento javascript.
-      var script = document.createElement("script");
-    Sincroniza com o callback.
-      script.src = `https://viacep.com.br/ws/${cep}/json/?callback=meu_callback`;
-    Insere script no documento e carrega o conteúdo.
-      document.body.appendChild(script);
-  */
-
   function buscarCep(valor) {
     if (verificacaoCep) {
       const URL = `https://viacep.com.br/ws/${valor}/json/`;

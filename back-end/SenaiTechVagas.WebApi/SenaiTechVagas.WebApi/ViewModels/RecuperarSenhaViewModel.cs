@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SenaiTechVagas.WebApi.ViewModels
 {
-    public class AlterarSenhaViewModel
+    public class RecuperarSenhaViewModel
     {
         public string Email { get; set; }
         public string Pergunta { get; set; }

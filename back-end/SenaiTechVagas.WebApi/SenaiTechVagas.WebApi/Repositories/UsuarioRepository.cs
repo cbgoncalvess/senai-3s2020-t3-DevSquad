@@ -24,7 +24,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS;Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=DESKTOP-7H5DJOO;Initial Catalog=Db_TechVagas;integrated Security=True";
         public Usuario Login(string email, string senha)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -661,7 +661,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool RecuperarSenha(AlterarSenhaViewModel vm)
+        public bool RecuperarSenha(RecuperarSenhaViewModel vm)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -697,7 +697,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool AlterarSenhaUsuarioLogado(string NovaSenha, int idUsuario)
+        public bool AlterarSenhaUsuarioLogado(AlterarSenhaUsuarioLogadoViewModel vm, int idUsuario)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -707,10 +707,17 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (usuarioBuscado == null)
                         return false;
 
-                    usuarioBuscado.Senha = Crypter.Criptografador(NovaSenha);
+                    vm.NovaSenha = Crypter.Criptografador(vm.NovaSenha);
+                    vm.SenhaAtual = Crypter.Criptografador(vm.SenhaAtual);
+                    if (usuarioBuscado.Senha == vm.SenhaAtual)
+                    {
+                    usuarioBuscado.Senha = vm.NovaSenha;
                     ctx.Update(usuarioBuscado);
                     ctx.SaveChanges();
                     return true;
+                    }
+
+                    return false;
                 }
                 catch (Exception)
                 {

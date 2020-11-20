@@ -24,6 +24,7 @@ export default function PerfilEmpresa() {
     const [Estado, SetEstado] = useState('');
     const [Cidade, SetCidade] = useState('');
     const [NovaSenha, SetNovaSenha] = useState('');
+    const [SenhaAtual,setSenha]=useState('');
     const [Candidatos, SetCandidato] = useState([]);
 
     useEffect(() => {
@@ -90,7 +91,8 @@ const EditarDadosDaEmpresa = () =>
 
     const AlterarSenha = () => {
         const form = {
-            senha:NovaSenha
+            novaSenha:NovaSenha,
+            SenhaAtual:SenhaAtual
         };
         fetch('http://localhost:5000/api/Usuario/AlterarSenha', {
             method: 'PUT',
@@ -218,7 +220,8 @@ const EditarDadosDaEmpresa = () =>
             <div id="modalAlterarSenhaEmpresa" className="modalAlterarSenhaEmpresa none">
                 <h2>Alterar senha</h2>
                 <form>
-                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e=>SetNovaSenha(e.target.value)}/>
+                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)} />
+                    <Input className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => setSenha(e.target.value)} />
                     <button className="btVaga" onClick={AlterarSenha}>Alterar senha</button>
                 </form>
             </div>

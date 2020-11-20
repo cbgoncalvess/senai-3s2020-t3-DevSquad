@@ -95,12 +95,12 @@ namespace SenaiTechVagas.WebApi.Controllers
 
         [Authorize]
         [HttpPut("AlterarSenha")]
-        public IActionResult AlterarSenha(Usuario usuario)
+        public IActionResult AlterarSenha(AlterarSenhaUsuarioLogadoViewModel vm)
         {
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                if (usuarioRepository.AlterarSenhaUsuarioLogado(usuario.Senha,idUsuario))
+                if (usuarioRepository.AlterarSenhaUsuarioLogado(vm,idUsuario))
                 {
                     return Ok("Senha alterada");
                 }
@@ -116,7 +116,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         [HttpPut("RecuperarSenha")]
-        public IActionResult RecuperarSenha(AlterarSenhaViewModel vm)
+        public IActionResult RecuperarSenha(RecuperarSenhaViewModel vm)
         {
             try
             { 

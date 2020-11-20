@@ -128,3 +128,5 @@ GO
 
 USE MASTER
 DROP DATABASE Db_TechVagas
+
+update Usuario set idTipoUsuario=2 where IdUsuario=2

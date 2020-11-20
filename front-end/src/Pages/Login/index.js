@@ -104,7 +104,6 @@ export default function Login() {
             <div className="meioLogin">
                 <div className="sessaoLogar">
                     <div>
-                        <button>sou uma empresa</button>
                         <div className="division-logar">
                             <div className="division-logar-title">
                                 <h2>login</h2>

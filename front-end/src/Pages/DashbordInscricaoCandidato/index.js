@@ -19,11 +19,12 @@ import imgTipoContrato from '../../assets/gears.webp';
 import imgFuncao from '../../assets/rocket-launch.webp';
 import IconEmpresa from '../../assets/building.webp';
 
-
-
 export default function InscricaoDashboardCandidato() {
-
     const [vagas, setVagas] = useState([]);
+
+    useEffect(() => {
+        listar();
+    }, []);
 
     const listar = () => {
         fetch('http://localhost:5000/api/Candidato/ListarVagasInscritas', {
@@ -32,7 +33,10 @@ export default function InscricaoDashboardCandidato() {
                 'content-type': 'application/json',
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
-        }).then(response => response).catch(e => e.console.error(e));
+        }).then(response => response.json())
+            .then(dados => {
+                setVagas(dados);
+            }).catch(e => e.console.error(e));
     }
     return (
         <div className="InscricaoDashboardCandidato">
@@ -43,50 +47,53 @@ export default function InscricaoDashboardCandidato() {
                     <h2>Bem-vindo Candidato ;)!</h2>
                 </div>
 
-
                 <section className="sessaoVagaInscritas">
 
                     <div className="title-vagas-inscritas"><h3>Vagas que você se inscreveu:</h3></div>
 
-                    {vagas.map((item) => {
-                        return (
-                            <div className="vaga" key={item.idVaga}>
+                    <div className="listadeVagas">
+                        {
+                            vagas.map((item) => {
+                                return (
+                                    <div className="vaga" key={item.idVaga}>
 
 
-                                <div className="VagaCompleta">
+                                        <div className="VagaCompleta">
 
-                                    <img src={imgEmpresa} className="ImagemEmpresa" ></img>
+                                            <img src={imgEmpresa} className="ImagemEmpresa" ></img>
 
-                                    <div className="MainVaga">
+                                            <div className="MainVaga">
 
-                                        <h3>Titulo da vaga</h3>
+                                                <h3>Titulo da vaga</h3>
 
-                                        <div className="InfoVagas">
-                                            <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
-                                            <InfoVaga NomeProp={item.localidade} source={imgLocalizacao} />
-                                            <InfoVaga NomeProp={item.experiencia} source={imgFuncao} />
-                                            <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato} />
-                                            <InfoVaga NomeProp={item.salario} source={imgSalario} />
-                                            <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento} />
+                                                <div className="InfoVagas">
+                                                    <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
+                                                    <InfoVaga NomeProp={item.localidade} source={imgLocalizacao} />
+                                                    <InfoVaga NomeProp={item.experiencia} source={imgFuncao} />
+                                                    <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato} />
+                                                    <InfoVaga NomeProp={item.salario} source={imgSalario} />
+                                                    <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento} />
+                                                </div>
+
+                                                <div className="TecnologiasVaga">
+                                                    {item.tecnologias.map((tec) => {
+                                                        return (
+                                                            <Tag key={tec} NomeTag={tec}></Tag>
+                                                        )
+                                                    })}
+                                                </div>
+
+                                                <div className="divisionBtnRevogar">
+                                                    <button className="btnRevogar">revogar inscrição</button>
+                                                </div>
+
+                                            </div>
                                         </div>
-
-                                        <div className="TecnologiasVaga">
-                                            {item.tecnologias.map((tec) => {
-                                                return (
-                                                    <Tag key={tec} NomeTag={tec}></Tag>
-                                                )
-                                            })}
-                                        </div>
-
-                                        <div className="divisionBtnRevogar">
-                                            <button className="btnRevogar">revogar inscrição</button>
-                                        </div>
-
                                     </div>
-                                </div>
-                            </div>
-                        )
-                    })}
+                                )
+                            })}
+                    </div>
+
 
                 </section>
 

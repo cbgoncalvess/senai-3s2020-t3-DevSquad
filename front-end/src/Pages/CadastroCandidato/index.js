@@ -26,17 +26,17 @@ export default function CadastroEmpresa() {
   const [Area, SetArea] = useState(0);
   const [PerguntaSeguranca, SetPergunta] = useState("");
   const [RespostaSeguranca, SetResposta] = useState("");
-  const [Areas, SetAreas] = useState([]);
-
+  
   const history = useHistory();
-
+  
   const emailRegex = /^\S+@\S+\.\S+$/g;
-
+  
   useEffect(() => {
     listarAreas();
     listarcurso();
   }, []);
-
+  
+  const [Areas, SetAreas] = useState([]);
   const listarAreas = () => {
     fetch("http://localhost:5000/api/Usuario/ListarArea", {
       method: "GET",

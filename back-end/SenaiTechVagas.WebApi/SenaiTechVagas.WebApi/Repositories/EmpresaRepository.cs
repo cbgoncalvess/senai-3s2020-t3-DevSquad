@@ -16,7 +16,7 @@ namespace SenaiTechVagas.WebApi.Repositories
     public class EmpresaRepository : IEmpresaRepository
     {
 
-    string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+    string stringConexao = "Data Source=DESKTOP-7H5DJOO; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -33,11 +33,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     if (EmpresaAtualizada.Cnpj != null)
                     {
-                        empresaBuscada.Cnpj = EmpresaAtualizada.Cnpj;
+                        empresaBuscada.Cnpj = EmpresaAtualizada.Cnpj.Trim();
                     }
                     if (EmpresaAtualizada.EmailContato != null)
                     {
-                        empresaBuscada.EmailContato = EmpresaAtualizada.EmailContato;
+                        empresaBuscada.EmailContato = EmpresaAtualizada.EmailContato.Trim();
                     }
                     if (EmpresaAtualizada.NomeFantasia != null)
                     {
@@ -49,7 +49,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     if (EmpresaAtualizada.Telefone != null)
                     {
-                        empresaBuscada.Telefone = EmpresaAtualizada.Telefone;
+                        empresaBuscada.Telefone = EmpresaAtualizada.Telefone.Trim();
                     }
                     if (EmpresaAtualizada.NumFuncionario != empresaBuscada.NumFuncionario)
                     {
@@ -57,11 +57,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     if (EmpresaAtualizada.NumCnae != null)
                     {
-                        empresaBuscada.NumCnae = EmpresaAtualizada.NumCnae;
+                        empresaBuscada.NumCnae = EmpresaAtualizada.NumCnae.Trim();
                     }
                     if (EmpresaAtualizada.Cep != null)
                     {
-                        empresaBuscada.Cep = EmpresaAtualizada.Cep;
+                        empresaBuscada.Cep = EmpresaAtualizada.Cep.Trim();
                     }
                     if (EmpresaAtualizada.Logradouro != null)
                     {
@@ -123,7 +123,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         return false;
 
                     if (vaga.Cep != null)
-                        vagaBuscada.Cep = vaga.Cep;
+                        vagaBuscada.Cep = vaga.Cep.Trim();
 
                     if (vaga.Complemento != null)
                         vagaBuscada.Complemento = vaga.Complemento;
