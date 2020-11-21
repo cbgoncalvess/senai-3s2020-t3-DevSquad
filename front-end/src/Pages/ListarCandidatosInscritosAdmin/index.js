@@ -18,8 +18,6 @@ import './style.css';
 
 export default function ListarCandidatosInscritos() {
 
-    //DeletarInscricao
-
     const [Candidatos, setCandidatos] = useState([]);
     const [idInscricao, setInscricao] = useState(0);
 

@@ -16,7 +16,7 @@ namespace SenaiTechVagas.WebApi.Repositories
     public class EmpresaRepository : IEmpresaRepository
     {
 
-    string stringConexao = "Data Source=DESKTOP-7H5DJOO; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -245,9 +245,20 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    ctx.Add(vagaTecnologia);
-                    ctx.SaveChanges();
-                    return true;
+                    VagaTecnologia vaga = ctx.VagaTecnologia.FirstOrDefault(u => u.IdVaga == vagaTecnologia.IdVaga && u.IdTecnologia == 1);
+                    if (vaga == null)
+                    {
+                        ctx.Add(vagaTecnologia);
+                        ctx.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        ctx.Add(vagaTecnologia);
+                        ctx.Remove(vaga);
+                        ctx.SaveChanges();
+                        return true;
+                    }
                 }
                 catch (Exception)
                 {
@@ -351,6 +362,7 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+                
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão
@@ -518,7 +530,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             try
             {
                 List<ListarInscricoesViewModel> listInscricoes = new List<ListarInscricoesViewModel>();
-
                 // Declara a SqlConnection passando a string de conexão
                 using (SqlConnection con = new SqlConnection(stringConexao))
                 {

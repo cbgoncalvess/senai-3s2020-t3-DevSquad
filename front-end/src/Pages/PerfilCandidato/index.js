@@ -189,16 +189,17 @@ export default function PerfilCandidato() {
                     </div>
                 </div>
                 <div className="DireitoPerfil">
+                <h2 className="Desrcicao-Perfil">Vagas em que você se inscreveu</h2>
                     {
                         Vagas.map((item) => {
                             return (
                                 <div className="BoxPerfilCandidato">
                                     <div className="flexBoxPerfilCandidato">
                                         <img src={imgPadrao} />
-                                        <h3>{item.razaoSocial}</h3>
+                                        <h3>{"Nome da empresa:"+item.razaoSocial}</h3>
                                     </div>
-                                    <h3>{item.tipoContrato}</h3>
-                                    <h3>{item.salario}</h3>
+                                    <h3>{"Tipo do contrato:"+item.tipoContrato}</h3>
+                                    <h3>{"Salario:"+"R$"+item.salario}</h3>
                                 </div>
                             );
                         })

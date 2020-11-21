@@ -119,6 +119,10 @@ export default function Estagio() {
     const listarEstagios = () => {
         fetch('http://localhost:5000/api/Administrador/ListarEstagios', {
             method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
         })
             .then(response => response.json())
             .then(dados => {
