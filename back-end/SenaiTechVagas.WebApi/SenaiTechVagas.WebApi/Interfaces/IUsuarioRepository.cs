@@ -20,8 +20,8 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<ListarVagasViewModel> ListarPesquisaTecnologia(string NomeTecnologia);
         string VerificarSeCredencialJaFoiCadastrada(VerificacaoViewModel vm);
         VagaCompletaViewModel BuscarVagaPeloId(int id);
-        bool RecuperarSenha(AlterarSenhaViewModel vm);
-        bool AlterarSenhaUsuarioLogado(string NovaSenha,int idUsuario);
+        bool RecuperarSenha(RecuperarSenhaViewModel vm);
+        bool AlterarSenhaUsuarioLogado(AlterarSenhaUsuarioLogadoViewModel vm,int idUsuario);
         List<Tecnologia> ListarTecnologia();
         List<Area> ListarAreas();
     }

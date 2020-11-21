@@ -59,3 +59,25 @@
 .DescricaoEmpresa,.DescricaoBeneficio,.DescricaoVaga{
     margin-bottom: 10px;
 }
+
+
+@media(max-width:1000px){
+    .Meio-Inscricoes{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Esquerdo-Inscricoes{
+        height: unset;
+        width: 100%;
+    }
+
+    .Direito-Inscricoes{
+        height: unset;
+        width: 100%;
+    }
+
+    .DadosInscrito{
+        flex-wrap: wrap;
+    }
+}

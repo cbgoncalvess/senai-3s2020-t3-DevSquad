@@ -104,7 +104,6 @@ export default function Login() {
             <div className="meioLogin">
                 <div className="sessaoLogar">
                     <div>
-                        <button>sou uma empresa</button>
                         <div className="division-logar">
                             <div className="division-logar-title">
                                 <h2>login</h2>
@@ -150,8 +149,8 @@ export default function Login() {
                     <Input className="InputCadastro" name="RespostaSeguranca" label="Resposta de seguranca" onChange={e=>SetRespostaSeguranca(e.target.value)}/>
                     <Input className="InputCadastro" name="emailRecuperacao" label="Seu email" onChange={e=>setEmail(e.target.value)}/>
                     <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e=>SetNovaSenha(e.target.value)}/>
-                    <button className="btVaga" onClick={RecuperarSenha}>Alterar senha</button>
                 </form>
+                    <button className="btVaga" onClick={RecuperarSenha}>Alterar senha</button>
             </div>
             <Footer />
         </div>

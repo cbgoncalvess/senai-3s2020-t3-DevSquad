@@ -115,6 +115,7 @@ export default function Header() {
                     <nav className="navbar">
                         <ul id="menu">
                             <li><Link to="/sobre">Sobre</Link></li>
+                            <li><Link to="/cadastro/Estagio">Cadastrar estágio</Link></li>
                             <li><Link to="/colaboradores">Colaboradores</Link></li>
                             <li><Link to="/banidos">Banidos</Link></li>
                             <li><Link to="/perfil">Perfil</Link></li>
@@ -137,6 +138,7 @@ export default function Header() {
                         />
                         <ul id="menu-hide" className="none">
                             <li><Link to="/sobre">Sobre</Link></li>
+                            <li><Link to="/cadastro/Estagio">Cadastrar estágio</Link></li>
                             <li><Link to="/colaboradores">Colaboradores</Link></li>
                             <li><Link to="/banidos">Banidos</Link></li>
                             <li><Link to="/perfil">Perfil</Link></li>
@@ -151,6 +153,7 @@ export default function Header() {
                         <img src={xBurguer} className="navmobile burguer dex" id="menumodal" alt="" />
                         <ul id="menu-hide" className="none">
                             <li><Link to="/sobre">Sobre</Link></li>
+                            <li><Link to="/cadastro/Estagio">Cadastrar estágio</Link></li>
                             <li><Link to="/colaboradores">Colaboradores</Link></li>
                             <li><Link to="/banidos">Banidos</Link></li>
                             <li><Link to="/perfil">Perfil</Link></li>
@@ -170,9 +173,10 @@ export default function Header() {
                     </Link>
                     <nav className="navbar">
                         <ul id="menu">
+                            <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
                             <li><Link to="/perfilCandidato">Perfil</Link></li>
                             <li><Link to="/sobre">Sobre</Link></li>
-                            <li><Link to="/">Ver inscrições</Link></li>
+                            <li><Link to="/principal">Principal</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
                         </ul>
                     </nav>
@@ -190,9 +194,11 @@ export default function Header() {
                         }}
                         />
                         <ul id="menu-hide" className="none">
+                        <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
                             <li><Link to="/">Principal</Link></li>
                             <li><Link to="/sobre">Sobre</Link></li>
-                            <li><Link to="/">Ver inscrições</Link></li>
+                            <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
+                            <li><Link to="/principal">Principal</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
                         </ul>
                     </nav>
@@ -204,7 +210,8 @@ export default function Header() {
                         <ul id="menu-hide" className="none">
                             <li><Link to="/">Principal</Link></li>
                             <li><Link to="/sobre">Sobre</Link></li>
-                            <li><Link to="/">Ver inscrições</Link></li>
+                            <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
+                            <li><Link to="/principal">Principal</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
                         </ul>
                     </nav>

@@ -35,19 +35,19 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     if (CandidatoAtualizado.Rg != null)
                     {
-                        CandidatoBuscado.Rg = CandidatoAtualizado.Rg;
+                        CandidatoBuscado.Rg = CandidatoAtualizado.Rg.Trim();
                     }
                     if (CandidatoAtualizado.Cpf != null)
                     {
-                        CandidatoBuscado.Cpf = CandidatoAtualizado.Cpf;
+                        CandidatoBuscado.Cpf = CandidatoAtualizado.Cpf.Trim();
                     }
                     if (CandidatoAtualizado.Telefone != null)
                     {
-                        CandidatoBuscado.Telefone = CandidatoAtualizado.Telefone;
+                        CandidatoBuscado.Telefone = CandidatoAtualizado.Telefone.Trim();
                     }
                     if (CandidatoAtualizado.LinkLinkedinCandidato != null)
                     {
-                        CandidatoBuscado.LinkLinkedinCandidato = CandidatoAtualizado.LinkLinkedinCandidato;
+                        CandidatoBuscado.LinkLinkedinCandidato = CandidatoAtualizado.LinkLinkedinCandidato.Trim();
                     }
                     
                     if (CandidatoAtualizado.IdCurso >=1)
@@ -82,7 +82,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
                     for (int i = 0; i < ListaDeInscricoes.Count; i++)
                     {
+<<<<<<< HEAD
                         string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
+=======
+                        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+>>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
                         // Declara a SqlConnection passando a string de conexão
                         using (SqlConnection con = new SqlConnection(stringConexao))
                         {

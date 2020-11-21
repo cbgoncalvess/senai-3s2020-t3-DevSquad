@@ -25,8 +25,7 @@ export default function VisualizarVaga() {
 
     
     let history = useHistory();
-    function meCandidatar() {history.push("/perfilCandidato");}
-
+    
     let [idVaga, setIdVaga] = useState(0);
     const [Experiencia, setExperiencia] = useState('');
     const [TipoContrato, setTipoContrato] = useState('');
@@ -37,6 +36,8 @@ export default function VisualizarVaga() {
     const [Tecnologias, setTecnologias] = useState([]);
     const [Cidade, setCidade] = useState('');
     const [TituloVaga, setTituloVaga] = useState('');
+    const[Area,setArea]=useState('');
+    const[RazaoSocial,setRazaoSocial]=useState('');
     const [Logradouro, setLogradouro] = useState('');
     const [Complemento, setComplemento] = useState('');
 
@@ -56,15 +57,25 @@ export default function VisualizarVaga() {
                 authorization: 'Bearer ' + localStorage.getItem('token'),
                 'content-type': 'application/json'
             }
-        }).then(response => response)
+        }).then(response => response.json())
+        .then(dados=>{
+            alert(dados)
+            history.push("/perfilCandidato")
+        })
            .catch(err => console.error(err));
     }
 
     const listar = () => {
         fetch('http://localhost:5000/api/Usuario/BuscarPorId/'+idVaga, {
             method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token'),
+                'content-type': 'application/json'
+            }
         }).then(response => response.json()).then(dados => {
             setIdVaga(dados.idVaga);
+            setArea(dados.nomeArea);
+            setRazaoSocial(dados.razaoSocial);
             setTituloVaga(dados.tituloVaga);
             setLogradouro(dados.logradouro);
             setTipoContrato(dados.tipoContrato);
@@ -111,7 +122,7 @@ export default function VisualizarVaga() {
                         <div className="divisionTagsVagas">
 
                             <div className="card-vaga-info">
-                                <InfoVaga NomeProp={"Empresa"} source={IconEmpresa} />
+                                <InfoVaga NomeProp={RazaoSocial} source={IconEmpresa} />
                                 <InfoVaga NomeProp={Cidade} source={imgLocalizacao} />
                                 <InfoVaga NomeProp={Experiencia} source={imgFuncao} />
                             </div>
@@ -119,7 +130,7 @@ export default function VisualizarVaga() {
                             <div className="card-vaga-info">
                                 <InfoVaga NomeProp={TipoContrato} source={imgTipoContrato} />
                                 <InfoVaga NomeProp={Salario} source={imgSalario} />
-                                <InfoVaga NomeProp={"Área de desenvolvimento"} source={imgDesenvolvimento} />
+                                <InfoVaga NomeProp={Area} source={imgDesenvolvimento} />
                             </div>
                         </div>
                     </div>

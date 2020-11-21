@@ -24,6 +24,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public Usuario Login(string email, string senha)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -151,8 +152,7 @@ namespace SenaiTechVagas.WebApi.Repositories
         public List<ListarVagasViewModel> ListarVagasEmGeral()
         {
             try
-            {
-                string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS;Initial Catalog=Db_TechVagas;integrated Security=True";
+            { 
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão
@@ -226,7 +226,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@123";
+=======
+>>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão
@@ -305,7 +308,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@123";
+=======
+>>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão
@@ -383,7 +389,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@123";
+=======
+>>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
                 List<ListarVagasViewModel> listvagasBuscadas = new List<ListarVagasViewModel>();
 
@@ -466,7 +475,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@123";
+=======
+>>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
                 List<VagaCompletaViewModel> listvagas = new List<VagaCompletaViewModel>();
                 // Declara a SqlConnection passando a string de conexão
                 using (SqlConnection con = new SqlConnection(stringConexao))
@@ -550,7 +562,10 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@123";
+=======
+>>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
                 // Declara a SqlConnection passando a string de conexão
                 using (SqlConnection con = new SqlConnection(stringConexao))
@@ -666,7 +681,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool RecuperarSenha(AlterarSenhaViewModel vm)
+        public bool RecuperarSenha(RecuperarSenhaViewModel vm)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -702,7 +717,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool AlterarSenhaUsuarioLogado(string NovaSenha, int idUsuario)
+        public bool AlterarSenhaUsuarioLogado(AlterarSenhaUsuarioLogadoViewModel vm, int idUsuario)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -712,10 +727,17 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (usuarioBuscado == null)
                         return false;
 
-                    usuarioBuscado.Senha = Crypter.Criptografador(NovaSenha);
+                    vm.NovaSenha = Crypter.Criptografador(vm.NovaSenha);
+                    vm.SenhaAtual = Crypter.Criptografador(vm.SenhaAtual);
+                    if (usuarioBuscado.Senha == vm.SenhaAtual)
+                    {
+                    usuarioBuscado.Senha = vm.NovaSenha;
                     ctx.Update(usuarioBuscado);
                     ctx.SaveChanges();
                     return true;
+                    }
+
+                    return false;
                 }
                 catch (Exception)
                 {

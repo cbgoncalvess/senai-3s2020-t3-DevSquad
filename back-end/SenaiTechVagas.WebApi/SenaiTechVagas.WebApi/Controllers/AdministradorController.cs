@@ -51,6 +51,34 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <param name="idVaga">Identificador da vaga</param>
         /// <returns>Retorna uma vaga com lista de candidatos inscritos</returns>
         [Authorize(Roles = "1")]
+        [HttpGet("listaEmpresaRazaoSocial")]
+        public IActionResult ListaEmpresasRazaoSocial()
+        {
+            try
+            {
+                return Ok(_Admin.ListarNomeEmpresas());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpGet("listaEmailCandidato")]
+        public IActionResult ListaEmailsCandidato()
+        {
+            try
+            {
+                return Ok(_Admin.ListarEmailsCandidato());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize(Roles = "1")]
         [HttpGet("ListarCandidatosInscritosAdm/{idVaga}")]
         public IActionResult ListarCandidatosInscritos(int idVaga)
         {
@@ -120,7 +148,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Método para Administrador que lista estágios cadastrados.
         /// </summary>
+<<<<<<< HEAD
         /// <returns>Retorna lista de estágios cadastrados.</returns>
+=======
+        /// <returns></returns>
+>>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
         [Authorize(Roles = "1")]
         [HttpGet("ListarEstagios")]
         public IActionResult ListarEstagios()
@@ -414,15 +446,12 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <returns>Retorna um novo estágio cadastrado.</returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarEstagio")]
-        public IActionResult AdicionarEstagio(Estagio estagioNovo)
+        public IActionResult AdicionarEstagio(CadastrarEstagioViewModel estagioNovo)
         {
             try
             {
                 if (estagioNovo.PeriodoEstagio > 36)
                     return BadRequest("O periodo nao pode ser maior que 36 meses");
-
-                if (_Admin.VerificarSeExiste(estagioNovo.IdCandidato))
-                    return BadRequest("Estagio ja existe");
 
                 if (_Admin.CadastrarEstagio(estagioNovo))
                     return StatusCode(201);

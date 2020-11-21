@@ -15,7 +15,6 @@ import Tag from '../../Components/Tag/Index';
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
-import Select from '../../Components/Select/Index';
 import Input from '../../Components/Input';
 
 export default function Estagio() {
@@ -120,6 +119,10 @@ export default function Estagio() {
     const listarEstagios = () => {
         fetch('http://localhost:5000/api/Administrador/ListarEstagios', {
             method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
         })
             .then(response => response.json())
             .then(dados => {

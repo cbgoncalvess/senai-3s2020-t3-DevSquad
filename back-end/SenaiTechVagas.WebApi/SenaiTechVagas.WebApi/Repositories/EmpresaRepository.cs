@@ -15,7 +15,12 @@ namespace SenaiTechVagas.WebApi.Repositories
 
     public class EmpresaRepository : IEmpresaRepository
     {
+<<<<<<< HEAD
     string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
+=======
+
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+>>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
         public bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -32,11 +37,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     if (EmpresaAtualizada.Cnpj != null)
                     {
-                        empresaBuscada.Cnpj = EmpresaAtualizada.Cnpj;
+                        empresaBuscada.Cnpj = EmpresaAtualizada.Cnpj.Trim();
                     }
                     if (EmpresaAtualizada.EmailContato != null)
                     {
-                        empresaBuscada.EmailContato = EmpresaAtualizada.EmailContato;
+                        empresaBuscada.EmailContato = EmpresaAtualizada.EmailContato.Trim();
                     }
                     if (EmpresaAtualizada.NomeFantasia != null)
                     {
@@ -48,7 +53,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     if (EmpresaAtualizada.Telefone != null)
                     {
-                        empresaBuscada.Telefone = EmpresaAtualizada.Telefone;
+                        empresaBuscada.Telefone = EmpresaAtualizada.Telefone.Trim();
                     }
                     if (EmpresaAtualizada.NumFuncionario != empresaBuscada.NumFuncionario)
                     {
@@ -56,11 +61,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     if (EmpresaAtualizada.NumCnae != null)
                     {
-                        empresaBuscada.NumCnae = EmpresaAtualizada.NumCnae;
+                        empresaBuscada.NumCnae = EmpresaAtualizada.NumCnae.Trim();
                     }
                     if (EmpresaAtualizada.Cep != null)
                     {
-                        empresaBuscada.Cep = EmpresaAtualizada.Cep;
+                        empresaBuscada.Cep = EmpresaAtualizada.Cep.Trim();
                     }
                     if (EmpresaAtualizada.Logradouro != null)
                     {
@@ -122,7 +127,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         return false;
 
                     if (vaga.Cep != null)
-                        vagaBuscada.Cep = vaga.Cep;
+                        vagaBuscada.Cep = vaga.Cep.Trim();
 
                     if (vaga.Complemento != null)
                         vagaBuscada.Complemento = vaga.Complemento;
@@ -244,9 +249,20 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    ctx.Add(vagaTecnologia);
-                    ctx.SaveChanges();
-                    return true;
+                    VagaTecnologia vaga = ctx.VagaTecnologia.FirstOrDefault(u => u.IdVaga == vagaTecnologia.IdVaga && u.IdTecnologia == 1);
+                    if (vaga == null)
+                    {
+                        ctx.Add(vagaTecnologia);
+                        ctx.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        ctx.Add(vagaTecnologia);
+                        ctx.Remove(vaga);
+                        ctx.SaveChanges();
+                        return true;
+                    }
                 }
                 catch (Exception)
                 {
@@ -350,7 +366,11 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
+<<<<<<< HEAD
                 string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
+=======
+                
+>>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão
@@ -518,7 +538,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             try
             {
                 List<ListarInscricoesViewModel> listInscricoes = new List<ListarInscricoesViewModel>();
-
                 // Declara a SqlConnection passando a string de conexão
                 using (SqlConnection con = new SqlConnection(stringConexao))
                 {

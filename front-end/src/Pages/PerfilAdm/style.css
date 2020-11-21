@@ -164,6 +164,16 @@ display: none;
     display: none;
 }
 
+.div-select{
+    width: 100%;
+    height: 36px;
+}
+
+.select{
+    padding: 1vw;
+    width: 100%;
+}
+
 @media(max-width:1120px){
     .BotoesPerfil{
         flex-wrap: wrap;
