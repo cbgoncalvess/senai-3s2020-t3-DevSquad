@@ -24,6 +24,9 @@ namespace SenaiTechVagas.WebApi.Controllers
             _empresaIRepository = new EmpresaRepository();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [HttpGet("ExpirarVagas")]
         public void ExpirarVaga()
         {
@@ -85,7 +88,10 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "3")]
         [HttpGet("ListarCandidatosEstagiando")]
         public IActionResult ListarCandidatosEstagiando()
@@ -342,6 +348,11 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "3")]
         [HttpGet("BuscarEmpresaPorId")]
         public IActionResult BuscarCandidatoPorId()
