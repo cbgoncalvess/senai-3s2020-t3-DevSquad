@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import AccessBar from "../../Components/AccessBar";
 import AccessMenu from "../../Components/AccessMenu";
 import Footer from "../../Components/Footer";
-import Robot from "../../Components/imgsvg/robot.js";
+import Lock from "../../Components/imgsvg/lock";
 
 import Techvagas from "../../assets/logops.webp";
 
@@ -34,7 +34,7 @@ const Unauthorized = () => {
           </p>
         </div>
         <div className="not-found-img">
-          <Robot />
+          <Lock />
         </div>
       </div>
       <Footer />

@@ -40,6 +40,10 @@ export default function CadastroEmpresa() {
   let verificacaoCep = validaCep.test(CEP);
   let verificacaoEmail = emailRegex.test(Email);
 
+  let pass1 = document.querySelector("#password-cadastro");
+  let pass2 = document.querySelector("#confirmPassword-cadastro");
+  let result = document.querySelector(".password-matching-text");
+
   function buscarCep(valor) {
     if (verificacaoCep) {
       const URL = `https://viacep.com.br/ws/${valor}/json/`;
@@ -53,9 +57,17 @@ export default function CadastroEmpresa() {
         })
         .catch((erro) => console.error(erro));
     } else {
-      alert("Escreve direito esse cep porra");
+      alert("O CEP é inválido");
     }
   }
+
+  const escreverResultado = () => {
+    if (Senha != ConfirmarSenha) {
+      result.innerText = "As senhas não conferem";
+    } else {
+      result.innerText = "As senhas conferem";
+    }
+  };
 
   function salvar(e) {
     e.preventDefault();
@@ -180,7 +192,7 @@ export default function CadastroEmpresa() {
                 name="phoneNumber"
                 className="cadastre"
                 label="Telefone da empresa:"
-                type="text"
+                type="tel"
                 placeholder="(11)4002-8922"
                 maxLength={14}
                 minLength={11}
@@ -300,6 +312,7 @@ export default function CadastroEmpresa() {
               />
 
               <Input
+                id="password-cadastro"
                 name="password"
                 className="cadastre"
                 label="Senha de acesso:"
@@ -307,10 +320,12 @@ export default function CadastroEmpresa() {
                 maxLength={20}
                 minLength={10}
                 required
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetSenha(e.target.value)}
               />
 
               <Input
+                id="confirmPassword-cadastro"
                 name="password-confirm"
                 className="cadastre"
                 label="Confirme a senha:"
@@ -318,8 +333,11 @@ export default function CadastroEmpresa() {
                 maxLength={20}
                 minLength={10}
                 required
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetConfirmarSenha(e.target.value)}
               />
+
+              <p className="password-matching-text"></p>
 
               <div>
                 <label className="select-cadastroCandidato-title">
