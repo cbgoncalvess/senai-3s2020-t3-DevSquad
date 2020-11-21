@@ -65,7 +65,7 @@ export default function VizualizarVagaEmpresa() {
     }
 
     function CandidatosAprovados(){
-        history.push("/VizualizarCandidatosAprovados")
+        history.push("/candidatosAprovados")
     }
 
     const Aprovar = () => {

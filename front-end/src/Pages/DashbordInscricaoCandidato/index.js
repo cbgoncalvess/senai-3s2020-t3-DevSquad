@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 //style
-import './style.css';
+ import './style.css';
 
 // components
 import AccessBar from '../../Components/AccessBar/index';

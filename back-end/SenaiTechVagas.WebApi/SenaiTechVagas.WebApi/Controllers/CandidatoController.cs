@@ -29,10 +29,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
        /// <summary>
-       /// Atualiza informações do candidato
+       /// Método que atualiza informações do candidato.
        /// </summary>
-       /// <param name="candidato"></param>
-       /// <returns></returns>
+       /// <param name="candidato">Objeto candidato</param>
+       /// <returns>Retorna candidato com suas informações atualizadas.</returns>
         [Authorize(Roles="2")]
         [HttpPut("AtualizarCandidato")]
         public IActionResult AtualizarCandidato(AtualizarCandidatoViewModel candidato)
@@ -56,10 +56,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// O candidato podera se inscrever
+        /// Método para Candidato se inscrever
         /// </summary>
-        /// <param name="InscricaoNovo"></param>
-        /// <returns></returns>
+        /// <param name="InscricaoNovo">Objeto InscricaoNovo</param>
+        /// <returns>Retorna uma nova inscrição na vaga.</returns>
         [Authorize(Roles = "2")]
         [HttpPost("AdicionarInscricao")]
         public IActionResult AdicionarInscricao(Inscricao InscricaoNovo)
@@ -87,10 +87,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// O  candidato podera remover a inscricao
+        /// Método de revogar a inscrição da vaga.
         /// </summary>
-        /// <param name="idInscricao"></param>
-        /// <returns></returns>
+        /// <param name="idInscricao">Identificador Inscrição</param>
+        /// <returns>Retonar uma revogação de inscrição.</returns>
         [Authorize(Roles = "2")]
         [HttpDelete("RevogarInscricao/{idInscricao}")]
         public IActionResult DeletarInscricao(int idInscricao)
@@ -114,9 +114,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista todas as vagas em que o candidato se inscreveu
+        /// Método que lista vagas em inscritas do candidatos.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna vagas em inscritas do candidato.</returns>
         [Authorize(Roles ="2")]
         [HttpGet("ListarVagasInscritas")]
         public IActionResult ListarVagasInscritas()
@@ -133,6 +133,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Método que busca candidato.
+        /// </summary>
+        /// <returns>Retorna candidato buscado.</returns>
         [Authorize(Roles = "2")]
         [HttpGet("BuscarCandidatoPorId")]
         public IActionResult BuscarCandidatoPorId()
