@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 //style
-// import './style.css';
+ import './style.css';
 
 // components
 import AccessBar from '../../Components/AccessBar/index';
@@ -11,17 +11,6 @@ import InfoVaga from '../../Components/InfoVaga/Index';
 import Tag from '../../Components/Tag/Index';
 
 // images
-<<<<<<< HEAD
-import imgEmpresa from '../../assets/images/Teste.webp';
-import imgDesenvolvimento from '../../assets/images/web-programming.webp';
-import imgLocalizacao from '../../assets/images/big-map-placeholder-outlined-symbol-of-interface.webp';
-import imgSalario from '../../assets/images/money (1).webp';
-import imgTipoContrato from '../../assets/images/gears.webp';
-import imgFuncao from '../../assets/images/rocket-launch.webp';
-import IconEmpresa from '../../assets/images/building.webp';
-
-
-=======
 import imgEmpresa from '../../assets/Teste.webp'
 import imgDesenvolvimento from '../../assets/web-programming.webp';
 import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
@@ -29,7 +18,6 @@ import imgSalario from '../../assets/money (1).webp';
 import imgTipoContrato from '../../assets/gears.webp';
 import imgFuncao from '../../assets/rocket-launch.webp';
 import IconEmpresa from '../../assets/building.webp';
->>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
 
 export default function InscricaoDashboardCandidato() {
     const [vagas, setVagas] = useState([]);
