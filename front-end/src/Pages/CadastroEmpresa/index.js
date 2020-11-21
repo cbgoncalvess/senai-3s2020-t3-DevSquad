@@ -210,7 +210,7 @@ export default function CadastroEmpresa() {
                 required
                 onChange={(e) => SetNumCNAE(e.target.value)}
               />
-
+              {/* 
               <Input
                 id="cep"
                 name="cep"
@@ -219,12 +219,23 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="00000-000"
                 required
-                onBlur={(e) => {
-                  e.preventDefault();
-                  buscarCep(e.target.value);
-                }}
-                onChange={(e) => SetCEP(e.target.value)}
-              />
+              /> */}
+              <div className="Input">
+                <label>CEP:</label>
+                <br />
+                <input
+                  type="text"
+                  className="cadastre"
+                  id="cep"
+                  data-mask="00000-000"
+                  data-mask-selectonfocus="true"
+                  onBlur={(e) => {
+                    e.preventDefault();
+                    buscarCep(e.target.value);
+                  }}
+                  onChange={(e) => SetCEP(e.target.value)}
+                />
+              </div>
 
               <Input
                 id="rua"
@@ -250,25 +261,31 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetComplemento(e.target.value)}
               />
 
-              <Input
-                id="cidade"
-                name="cidade"
-                className="cadastre"
-                label="Cidade"
-                type="text"
-                required
-                onChange={(e) => SetCidade(e.target.value)}
-              />
+              <div className="Input">
+                <label>Cidade:</label>
+                <br />
+                <input
+                  type="text"
+                  className="cadastre"
+                  id="cidade"
+                  required
+                  disabled
+                  onChange={(e) => SetCidade(e.target.value)}
+                />
+              </div>
 
-              <Input
-                id="uf"
-                name="estado"
-                className="cadastre"
-                label="Estado"
-                type="text"
-                required
-                onChange={(e) => SetEstado(e.target.value)}
-              />
+              <div className="Input">
+                <label>UF:</label>
+                <br />
+                <input
+                  type="text"
+                  className="cadastre"
+                  id="uf"
+                  required
+                  disabled
+                  onChange={(e) => SetEstado(e.target.value)}
+                />
+              </div>
 
               <Input
                 name="EmailUser"
