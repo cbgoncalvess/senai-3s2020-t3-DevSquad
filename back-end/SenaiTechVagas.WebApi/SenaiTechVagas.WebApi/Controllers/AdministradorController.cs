@@ -148,11 +148,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Método para Administrador que lista estágios cadastrados.
         /// </summary>
-<<<<<<< HEAD
         /// <returns>Retorna lista de estágios cadastrados.</returns>
-=======
-        /// <returns></returns>
->>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
         [Authorize(Roles = "1")]
         [HttpGet("ListarEstagios")]
         public IActionResult ListarEstagios()

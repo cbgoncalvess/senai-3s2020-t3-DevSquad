@@ -129,15 +129,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-<<<<<<< HEAD
         /// <summary>
         /// Método que recupera senha
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
         [Authorize]
-=======
->>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
         [HttpPut("RecuperarSenha")]
         public IActionResult RecuperarSenha(RecuperarSenhaViewModel vm)
         {
@@ -198,12 +195,8 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Método que lista área.
         /// </summary>
-<<<<<<< HEAD
         /// <returns>Retorna lista de área cadastradas</returns>
-=======
-        /// <returns></returns>
->>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
-        //[Authorize]
+        [Authorize]
         [HttpGet("ListarArea")]
         public IActionResult ListarArea()
         {
@@ -314,12 +307,8 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Método que lista cursos cadastrados
         /// </summary>
-<<<<<<< HEAD
         /// <returns>Retorna cursos cadastrados.</returns>
-        //[Authorize]
-=======
-        /// <returns></returns>
->>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
+        [Authorize]
         [HttpGet("ListarCurso")]
         public IActionResult ListarCurso()
         {

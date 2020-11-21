@@ -82,11 +82,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                     List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
                     for (int i = 0; i < ListaDeInscricoes.Count; i++)
                     {
-<<<<<<< HEAD
                         string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
-=======
-                        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
->>>>>>> fabe768ad2d9cb0066ad414603250e8433092a98
+                        //string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
                         // Declara a SqlConnection passando a string de conexão
                         using (SqlConnection con = new SqlConnection(stringConexao))
                         {
