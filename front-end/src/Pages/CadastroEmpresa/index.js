@@ -40,6 +40,10 @@ export default function CadastroEmpresa() {
   let verificacaoCep = validaCep.test(CEP);
   let verificacaoEmail = emailRegex.test(Email);
 
+  let pass1 = document.querySelector("#password-cadastro");
+  let pass2 = document.querySelector("#confirmPassword-cadastro");
+  let result = document.querySelector(".password-matching-text");
+
   function buscarCep(valor) {
     if (verificacaoCep) {
       const URL = `https://viacep.com.br/ws/${valor}/json/`;
@@ -53,9 +57,17 @@ export default function CadastroEmpresa() {
         })
         .catch((erro) => console.error(erro));
     } else {
-      alert("Escreve direito esse cep porra");
+      alert("O CEP é inválido");
     }
   }
+
+  const escreverResultado = () => {
+    if (Senha != ConfirmarSenha) {
+      result.innerText = "As senhas não conferem";
+    } else {
+      result.innerText = "As senhas conferem";
+    }
+  };
 
   function salvar(e) {
     e.preventDefault();
@@ -180,7 +192,7 @@ export default function CadastroEmpresa() {
                 name="phoneNumber"
                 className="cadastre"
                 label="Telefone da empresa:"
-                type="text"
+                type="tel"
                 placeholder="(11)4002-8922"
                 maxLength={14}
                 minLength={11}
@@ -210,7 +222,7 @@ export default function CadastroEmpresa() {
                 required
                 onChange={(e) => SetNumCNAE(e.target.value)}
               />
-
+              {/* 
               <Input
                 id="cep"
                 name="cep"
@@ -221,12 +233,23 @@ export default function CadastroEmpresa() {
                 maxLength={8}
                 minLength={8}
                 required
-                onBlur={(e) => {
-                  e.preventDefault();
-                  buscarCep(e.target.value);
-                }}
-                onChange={(e) => SetCEP(e.target.value)}
-              />
+              /> */}
+              <div className="Input">
+                <label>CEP:</label>
+                <br />
+                <input
+                  type="text"
+                  className="cadastre"
+                  id="cep"
+                  data-mask="00000-000"
+                  data-mask-selectonfocus="true"
+                  onBlur={(e) => {
+                    e.preventDefault();
+                    buscarCep(e.target.value);
+                  }}
+                  onChange={(e) => SetCEP(e.target.value)}
+                />
+              </div>
 
               <Input
                 id="rua"
@@ -252,25 +275,31 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetComplemento(e.target.value)}
               />
 
-              <Input
-                id="cidade"
-                name="cidade"
-                className="cadastre"
-                label="Cidade"
-                type="text"
-                required
-                onChange={(e) => SetCidade(e.target.value)}
-              />
+              <div className="Input">
+                <label>Cidade:</label>
+                <br />
+                <input
+                  type="text"
+                  className="cadastre"
+                  id="cidade"
+                  required
+                  disabled
+                  onChange={(e) => SetCidade(e.target.value)}
+                />
+              </div>
 
-              <Input
-                id="uf"
-                name="estado"
-                className="cadastre"
-                label="Estado"
-                type="text"
-                required
-                onChange={(e) => SetEstado(e.target.value)}
-              />
+              <div className="Input">
+                <label>UF:</label>
+                <br />
+                <input
+                  type="text"
+                  className="cadastre"
+                  id="uf"
+                  required
+                  disabled
+                  onChange={(e) => SetEstado(e.target.value)}
+                />
+              </div>
 
               <Input
                 name="EmailUser"
@@ -285,6 +314,7 @@ export default function CadastroEmpresa() {
               />
 
               <Input
+                id="password-cadastro"
                 name="password"
                 className="cadastre"
                 label="Senha de acesso:"
@@ -292,10 +322,12 @@ export default function CadastroEmpresa() {
                 maxLength={15}
                 minLength={9}
                 required
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetSenha(e.target.value)}
               />
 
               <Input
+                id="confirmPassword-cadastro"
                 name="password-confirm"
                 className="cadastre"
                 label="Confirme a senha:"
@@ -303,8 +335,11 @@ export default function CadastroEmpresa() {
                 maxLength={15}
                 minLength={9}
                 required
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetConfirmarSenha(e.target.value)}
               />
+
+              <p className="password-matching-text"></p>
 
               <div>
                 <label className="select-cadastroCandidato-title">

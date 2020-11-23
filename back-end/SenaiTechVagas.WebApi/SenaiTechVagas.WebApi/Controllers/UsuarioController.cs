@@ -30,6 +30,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             usuarioRepository = new UsuarioRepository();
         }
    
+        /// <summary>
+        /// Método que adiciona um novo candidato.
+        /// </summary>
+        /// <param name="NovoCandidato"></param>
+        /// <returns></returns>
         [HttpPost("Candidato")]
         public IActionResult CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato)
         {
@@ -62,7 +67,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-       
+       /// <summary>
+       /// Método que adiciona uma nova empresa
+       /// </summary>
+       /// <param name="empresa"></param>
+       /// <returns></returns>
         [HttpPost("Empresa")]
         public IActionResult CadastrarEmpresa(CadastrarEmpresaViewModel empresa)
         {
@@ -93,6 +102,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
         [Authorize]
         [HttpPut("AlterarSenha")]
         public IActionResult AlterarSenha(AlterarSenhaUsuarioLogadoViewModel vm)
@@ -115,6 +129,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Método que recupera senha
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
+        [Authorize]
         [HttpPut("RecuperarSenha")]
         public IActionResult RecuperarSenha(RecuperarSenhaViewModel vm)
         {
@@ -136,9 +156,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista todas as vagas publicadas
+        /// Métedo que lista Vagas publicadas.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna vagas publicadas</returns>
         [Authorize]
         [HttpGet("ListarTodasAsVagas")]
         public IActionResult ListarVagasEmGeral()
@@ -154,10 +174,29 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Listar todas as areas
+        /// Método que lista Vagas da área.
         /// </summary>
-        /// <returns></returns>
-        //[Authorize]
+        /// <param name="id">Identificador ListarVagasArea</param>
+        /// <returns>Retorna lista de VagasArea</returns>
+        [Authorize]
+        [HttpGet("ListarVagasArea/{id}")]
+        public IActionResult ListarVagasArea(int id)
+        {
+            try
+            {
+                return Ok(usuarioRepository.ListarVagasArea(id));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Método que lista área.
+        /// </summary>
+        /// <returns>Retorna lista de área cadastradas</returns>
+        [Authorize]
         [HttpGet("ListarArea")]
         public IActionResult ListarArea()
         {
@@ -172,10 +211,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Busca a vaga pelo id
+        /// Método que busca Vaga
         /// </summary>
-        /// <param name="idVaga"></param>
-        /// <returns></returns>
+        /// <param name="idVaga">Identificador Vaga</param>
+        /// <returns>REtorna Vaga buscada.</returns>
         [Authorize]
         [HttpGet("BuscarPorId/{idVaga}")]
         public IActionResult BuscarVagaPeloId(int idVaga)
@@ -191,10 +230,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista vagas pela barra de pesquisa nome da tecnologia
+        /// Método que lista tecnologias.
         /// </summary>
-        /// <param name="NomeTecnologia"></param>
-        /// <returns></returns>
+        /// <param name="NomeTecnologia">Objeto Tecnologia</param>
+        /// <returns>Retorna lista de tecnologia.</returns>
         [Authorize]
         [HttpGet("Tecnologia/{NomeTecnologia}")]
         public IActionResult ListarVagasPelaTecnologia(string NomeTecnologia)
@@ -210,9 +249,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista todas as tecnologias
+        /// Método que lista tecnologia cadastrados
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna tecnogias.</returns>
         [Authorize]
         [HttpGet("ListarTecnologia")]
         public IActionResult ListarTecnologia()
@@ -228,9 +267,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista todos os cursos
+        /// Método que lista cursos cadastrados
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna cursos cadastrados.</returns>
+        [Authorize]
         [HttpGet("ListarCurso")]
         public IActionResult ListarCurso()
         {

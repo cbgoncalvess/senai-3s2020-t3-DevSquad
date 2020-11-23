@@ -24,10 +24,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         public LoginController() { usuarioRepository = new UsuarioRepository(); }
 
         /// <summary>
-        /// O usuario passa um email e senha e recebe um token de volta e é considerado logado pelo sistema
+        /// Método que logar com suas informações e tem acesso suas permissões.
         /// </summary>
         /// <param name="login"></param>
-        /// <returns></returns>
+        /// <returns>Retorna usuário logado com suas permissões.</returns>
         [HttpPost]
         public IActionResult LoginUsuario(LoginViewModel login)
         {

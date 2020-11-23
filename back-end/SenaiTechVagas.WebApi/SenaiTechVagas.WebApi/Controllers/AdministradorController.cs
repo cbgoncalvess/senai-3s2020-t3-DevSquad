@@ -28,7 +28,7 @@ namespace SenaiTechVagas.WebApi.Controllers
 
         /*----------------------------------------GET START-----------------------------*/
         /// <summary>
-        /// Lista todos os objetos da tabela Empresa
+        /// Método que lista as empresas cadastradas com suas informações.
         /// </summary>
         /// <returns>Retorna um HTTP Code (201) e a mensagem "true", caso contrário,
         /// retorna um HTTP Code (400)e a mensagem "Uma exceção ocorreu. Tente novamente."
@@ -47,6 +47,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Método que busca vaga pelo seu identificador e mostra lista de candidatos inscritos.
+        /// </summary>
+        /// <param name="idVaga">Identificador da vaga</param>
+        /// <returns>Retorna uma vaga com lista de candidatos inscritos</returns>
         [Authorize(Roles = "1")]
         [HttpGet("listaEmpresaRazaoSocial")]
         public IActionResult ListaEmpresasRazaoSocial()
@@ -108,9 +113,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista todos os candidatos
+        /// Lista todos os candidatos cadastrados.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna todos candidatos cadastrados.</returns>
         [Authorize(Roles = "1")]
         [HttpGet("ListarCandidatos")]
         public IActionResult ListarCandidatos()
@@ -125,6 +130,9 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Método que faz quantidade de usuários/estágios cadastrados.
+        /// <returns>Retorna uma quantidade de usuários/estágios cadastrados.</returns>
         [Authorize(Roles = "1")]
         [HttpGet("Estatisticas")]
         public IActionResult ListarEstatisticas()
@@ -140,9 +148,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// O administrador podera listar os estagios
+        /// Método para Administrador que lista estágios cadastrados.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna lista de estágios cadastrados.</returns>
         [Authorize(Roles = "1")]
         [HttpGet("ListarEstagios")]
         public IActionResult ListarEstagios()
@@ -158,9 +166,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// O administrador podera listar os estagios por filtro meses
+        /// Método Administrador que lista estágios cadastrados por filtro meses.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna lista estágios cadastrados por filtro meses.</returns>
         [Authorize(Roles = "1")]
         [HttpGet("ListarEstagio/{NumeroDeMeses}")]
         public IActionResult ListarFiltroPeriodo(int NumeroDeMeses)
@@ -176,9 +184,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista todos os statusInscricao
+        /// Método que lista todos os statusInscricao.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna lista todos os statusInscricao.</returns>
         [Authorize(Roles ="1")]
         [HttpGet("ListarStatusInscricao")]
         public IActionResult ListarStatusInscricao()
@@ -194,9 +202,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista Todos os Tipos de usuario
+        /// Método que lista os tipos de usuários.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna lista os tipos de usuários.</returns>
         [Authorize(Roles = "1")]
         [HttpGet("ListarTipoUsuario")]
         public IActionResult ListarTipoUsuario()
@@ -212,9 +220,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista todos os administradores
+        /// Método que lista todos os Administradores cadastrados.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna que lista todos os Administradores cadastrados.</returns>
         [Authorize(Roles = "1")]
         [HttpGet("ListarColaboradores")]
         public IActionResult ListaAdministradores()
@@ -232,13 +240,11 @@ namespace SenaiTechVagas.WebApi.Controllers
 
         /*----------------------------------------DELETE START------------------------------*/
         /// <summary>
-        /// Apaga as informações de um objeto único da tabela candidato.
+        /// Método que remove candidato pelo seu identificador, do sistema.
         /// </summary>
-        /// <param name="id">Identificador único de cada objeto da tabela candidato, 
-        /// do tipo inteiro.</param>
-        /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso contrário, retorna 
-        /// um HTTP Code (400) e a mensagem: Uma exceção ocorreu. Tente novamente.</returns>
-        //[Authorize(Roles = "1")]
+        /// <param name="id">Identificador do candidato.</param>
+        /// <returns>Retorna uma remoção de candidato do sistema.</returns>
+        [Authorize(Roles = "1")]
         [HttpDelete("DeletarCandidato/{id}")]
         public IActionResult DeletarCandidato(int id)
         {
@@ -255,16 +261,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        /// <summary>
-        /// Apagar um objeto da tabela Empresa em que seu identificador único corresponda 
-        /// a informação passada na requisição.
-        /// </summary>
+        /// <summary>Método que remove Empresa pelo seu identificador, do sistema./// </summary>
         /// <param name="idEmpresa">Identificador único de cada objeto da tabela candidato, do 
         /// tipo inteiro.</param>
-        /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso ocorra um erro na 
-        /// informação passada, retorna-se, então, false, caso haja uma exceção, retorna-se,
-        /// então, um HTTP Code (400) e a mensagem: "Uma exceção ocorreu. Tente novamente."</returns>
-       // [Authorize(Roles = "1")]
+        /// <returns>Identificador do Empresa.</returns>
+        [Authorize(Roles = "1")]
         [HttpDelete("DeletarEmpresa/{idEmpresa}")]
         public IActionResult DeletarEmpresa(int idEmpresa)
         {
@@ -282,11 +283,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// O administrador podera eletar os estagios
-        /// </summary>
-        /// <param name="idEstagio"></param>
-        /// <returns></returns>
-        //[Authorize(Roles = "1")]
+        /// Método para Administrador remover estagios cadastrados./// </summary>
+        /// <param name="idEstagio">Identificador do estágio.</param>
+        /// <returns>Retorna uma remoção de Estágio.</returns>
+        [Authorize(Roles = "1")]
         [HttpDelete("DeletarEstagio/{idEstagio}")]
         public IActionResult DeletarEstagio(int idEstagio)
         {
@@ -303,10 +303,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// O  candidato podera remover a inscricao
+        /// Método para Candidato remover sua inscrição da vaga.
         /// </summary>
-        /// <param name="idInscricao"></param>
-        /// <returns></returns>
+        /// <param name="idInscricao">Identificador de inscrição.</param>
+        /// <returns>Retorna revogação de inscrição.</returns>
         [Authorize(Roles = "1")]
         [HttpDelete("DeletarInscricao/{idInscricao}")]
         public IActionResult DeletarInscricao(int idInscricao)
@@ -325,10 +325,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Deleta um usuario do tipo administrador passando o id de usuario dele,o idUsuario 1 não pode ser deletado
+        /// Método que remove Administrador do sistema.
         /// </summary>
-        /// <param name="idUsuario"></param>
-        /// <returns></returns>
+        /// <param name="idUsuario">Identificador Administrador</param>
+        /// <returns>Retorna uma remoção de Ádministrador</returns>
         [Authorize(Roles = "1")]
         [HttpDelete("DeletarAdminstrador/{idUsuario}")]
         public IActionResult DeletarAdministrador(int idUsuario)
@@ -347,10 +347,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Deleta a vaga por id
-        /// </summary>
-        /// <param name="idVaga"></param>
-        /// <returns></returns>
+        /// Método para Administrador que remove Vaga./// </summary>
+        /// <param name="idVaga">Identificador de vaga</param>
+        /// <returns>Retorna vaga removida.</returns>
         [Authorize(Roles = "1")]
         [HttpDelete("DeletarVaga/{idVaga}")]
         public IActionResult DeletarVaga(int idVaga)
@@ -372,10 +371,10 @@ namespace SenaiTechVagas.WebApi.Controllers
 
         /*----------------------------------------POST START---------------------------------*/
         /// <summary>
-        /// Adciona um curso novo
+        /// Método para Administrador adicionar novo curso
         /// </summary>
-        /// <param name="novoCurso"></param>
-        /// <returns></returns>
+        /// <param name="novoCurso">Objeto novo curso</param>
+        /// <returns>Retorna um novo curso cadastrado.</returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarCurso")]
         public IActionResult CadastrarCurso(Curso novoCurso)
@@ -394,10 +393,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Cadastra uma nova area
+        /// Método para Administrador adicionar uma nova área.
         /// </summary>
-        /// <param name="NovaArea"></param>
-        /// <returns></returns>
+        /// <param name="NovaArea">Objeto novaArea</param>
+        /// <returns>Retorna NovaArea cadastrada</returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarArea")]
         public IActionResult CadastrarArea(Area NovaArea)
@@ -430,10 +429,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Cadastra um adminsitrador
+        /// Método para Administrador, adicionar novo Adminsitrador
         /// </summary>
-        /// <param name="usuarioAdmin"></param>
-        /// <returns></returns>
+        /// <param name="usuarioAdmin">Objeto novoAdmin</param>
+        /// <returns>Retorna um novo Administrador cadastrados.</returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarColaborador")]
         public IActionResult CadastrarAdministrador(Usuario usuarioAdmin)
@@ -453,11 +452,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// O admininistrador podera cadastrar um novo estagio
+        /// Método para Admininistrador adicionar novo estágio.
         /// </summary>
-        /// <param name="estagioNovo"></param>
-        /// <returns></returns>
-        //[Authorize(Roles = "1")]
+        /// <param name="estagioNovo">Objeto novoEstagio</param>
+        /// <returns>Retorna um novo estágio cadastrado.</returns>
+        [Authorize(Roles = "1")]
         [HttpPost("AdicionarEstagio")]
         public IActionResult AdicionarEstagio(CadastrarEstagioViewModel estagioNovo)
         {
@@ -479,10 +478,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        ///Adiciona um novo tipo de status de inscricao
+        ///Método para Admnistrador adiciona novo tipo de status de inscrição.
         /// </summary>
-        /// <param name="status"></param>
-        /// <returns></returns>
+        /// <param name="status">Objeto novoTipoInscrição</param>
+        /// <returns>Retorna uma novo tipo de inscrição cadastrada.</returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarStatusInscricao")]
         public IActionResult AdicionarStatusInscricao(StatusInscricao status)
@@ -501,10 +500,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Adicona uma nova tecnologia 
+        /// Método para Administrador adicionar nova tecnologia.
         /// </summary>
-        /// <param name="novaTecnologia"></param>
-        /// <returns></returns>
+        /// <param name="novaTecnologia">Objeto novaTecnologia</param>
+        /// <returns>Retorna uma nova Tecnologia cadastrada.</returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarTecnologia")]
         public IActionResult CadastrarTecnologia(Tecnologia novaTecnologia)
@@ -523,10 +522,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// Adiciona um novo tipo de usuario
+        /// Método para Administrador adicionar novo tipo de usuario.
         /// </summary>
-        /// <param name="novoTipoUsuario"></param>
-        /// <returns></returns>
+        /// <param name="novoTipoUsuario">Objeto novoTipoUsuario</param>
+        /// <returns>Retorna um novo tipo de usuário cadastrado.</returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarTipoUsuario")]
         public IActionResult CadastrarTipoUsuario(TipoUsuario novoTipoUsuario)
@@ -548,10 +547,10 @@ namespace SenaiTechVagas.WebApi.Controllers
 
         /*----------------------------------------PUT START---------------------------------*/
         /// <summary>
-        /// Atualiza o nome de um curso na tabela cursos passando o id
+        /// Método que atualiza informações do curso.
         /// </summary>
-        /// <param name="idCurso"></param>
-        /// <param name="curso"></param>
+        /// <param name="idCurso">Identificador do curso</param>
+        /// <param name="curso">Objeto curso</param>
         /// <returns></returns>
         [Authorize(Roles ="1")]
         [HttpPut("AtualizarCurso/{id}")]
@@ -584,6 +583,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Método que altera password de Administrador
+        /// </summary>
+        /// <param name="usuario">Objeto usuario</param>
+        /// <returns>Retorna uma nova senha atualizada.</returns>
         [Authorize(Roles ="1")]
         [HttpPut("AlterarSenhaDeQualquerUsuario")]
         public IActionResult AterarSenhaDeQualquerUsuario(Usuario usuario)
@@ -602,11 +606,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Atualiza a area
+        /// Método que atualiza informações de Área.
         /// </summary>
-        /// <param name="idArea"></param>
-        /// <param name="area"></param>
-        /// <returns></returns>
+        /// <param name="idArea">Identificador de área</param>
+        /// <param name="area">Objeto área</param>
+        /// <returns>Retorna área atualizada</returns>
         [Authorize(Roles = "1")]
         [HttpPut("AtualizarArea/{id}")]
         public IActionResult AtualizarArea(int idArea,Area area)
@@ -625,12 +629,12 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// O adminstrador podera atualizar o estagio
+        /// Método que atualizar informações de estágio.
         /// </summary>
-        /// <param name="idEstagio"></param>
-        /// <param name="estagio"></param>
-        /// <returns></returns>
-        //[Authorize(Roles = "1")]
+        /// <param name="idEstagio">Identificador de estágio.</param>
+        /// <param name="estagio">Objeto de estágio.</param>
+        /// <returns>Retorna atualização de estágio.</returns>
+        [Authorize(Roles = "1")]
         [HttpPut("AtualizarEstagio/{idEstagio}")]
         public IActionResult AtualizarEstagio(int idEstagio, AtualizarEstagioViewModel estagio)
         {
@@ -651,11 +655,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Atualiza o nome de um status da inscricao
+        /// Método que atualiza informações de status da inscrição.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="status"></param>
-        /// <returns></returns>
+        /// <param name="id">Identificador status de inscrição</param>
+        /// <param name="status">Objeto status de inscrição</param>
+        /// <returns>Retorna status de inscrição atualizado.</returns>
         [Authorize(Roles = "1")]
         [HttpPut("AtualizarStatusInscricao/{id}")]
         public IActionResult AtualizarStatusInscricao(int id, StatusInscricao status)
@@ -673,11 +677,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// A  atualiza o nome de uma tecnologia
+        /// Método que atualiza informações de tecnologia.
         /// </summary>
-        /// <param name="tecnologia"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="tecnologia">Objeto tecnologia</param>
+        /// <param name="id">Identificador de Tecnologia</param>
+        /// <returns>Retorna tecnologia atualizada.</returns>
         [Authorize(Roles = "1")]
         [HttpPut("AtualizarTecnologia/{id}")]
         public IActionResult AtualizarTecnologia(Tecnologia tecnologia, int id)
@@ -695,11 +699,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        ///Atualiza o nome de um tipo de usuario
+        ///Método que atualiza informações de tipo de usuário.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="tipoUsuario"></param>
-        /// <returns></returns>
+        /// <param name="id">Identificador tipo de usuário</param>
+        /// <param name="tipoUsuario">Objeto tipo de usuário</param>
+        /// <returns>Retorna tipo de usuário atualizado.</returns>
         [Authorize(Roles = "1")]
         [HttpPut("AtualizarTipoUsuario/{id}")]
         public IActionResult AtualizarTipoUsuario(int id, TipoUsuario tipoUsuario)
@@ -718,9 +722,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método que bani usuário pelo seu identificador 
+        /// Método que bani usuário
         /// </summary>
-        /// <param name="id">Identificador do usuário</param>
+        /// <param name="id">Identificador de usuário</param>
+        /// <returns>Retorna usuário banido.</returns>
         [Authorize(Roles = "1")]
         [HttpPut("Banir/{id}")]
         public IActionResult BanirUsuario(int id)
@@ -739,10 +744,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método que desbane usuário pelo seu identificador 
+        /// Método que desbane usuário.
         /// </summary>
         /// <param name="id">Identificador do usuário</param>
-        /// <returns>retorna um usuário no estado normal de seu tipo usuário</returns>
+        /// <returns>Retorna usuário no seu estado normal de tipo usuário.</returns>
         [Authorize(Roles = "1")]
         [HttpPut("Desbanir/{id}")]
         public IActionResult DesbanirUsuario(int id)
