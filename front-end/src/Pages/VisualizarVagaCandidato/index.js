@@ -14,6 +14,7 @@ import Header from '../../Components/Header';
 
 // imagens
 import imgDesenvolvimento from '../../assets/web-programming.webp';
+import imgGlobal from '../../assets/global.png';
 import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
 import imgSalario from '../../assets/money (1).webp';
 import imgTipoContrato from '../../assets/gears.webp';
@@ -38,6 +39,7 @@ export default function VisualizarVaga() {
     const [TituloVaga, setTituloVaga] = useState('');
     const[Area,setArea]=useState('');
     const[RazaoSocial,setRazaoSocial]=useState('');
+    const[tipoPresenca,setTipoPresenca]=useState('');
     const [Logradouro, setLogradouro] = useState('');
     const [Complemento, setComplemento] = useState('');
 
@@ -75,6 +77,7 @@ export default function VisualizarVaga() {
         }).then(response => response.json()).then(dados => {
             setIdVaga(dados.idVaga);
             setArea(dados.nomeArea);
+            setTipoPresenca(dados.tipoPresenca);
             setRazaoSocial(dados.razaoSocial);
             setTituloVaga(dados.tituloVaga);
             setLogradouro(dados.logradouro);
@@ -131,6 +134,7 @@ export default function VisualizarVaga() {
                                 <InfoVaga NomeProp={TipoContrato} source={imgTipoContrato} />
                                 <InfoVaga NomeProp={Salario} source={imgSalario} />
                                 <InfoVaga NomeProp={Area} source={imgDesenvolvimento} />
+                                <InfoVaga NomeProp={tipoPresenca} source={imgGlobal} />
                             </div>
                         </div>
                     </div>

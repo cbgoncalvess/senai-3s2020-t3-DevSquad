@@ -117,7 +117,7 @@ export default function VizualizarVagaEmpresa() {
                 <div className="VagaCompleta">
                     <img src={imgEmpresa} className="ImagemEmpresa" ></img>
                     <div className="MainVaga">
-                        <h3 value={TituloVaga}></h3>
+                        <h3>{TituloVaga}</h3>
                         <div className="InfoVagas">
                             <InfoVaga NomeProp={RazaoSocial} source={IconEmpresa}></InfoVaga>
                             <InfoVaga NomeProp={Cidade} source={imgLocalizacao}></InfoVaga>

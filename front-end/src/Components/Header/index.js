@@ -106,7 +106,6 @@ export default function Header() {
                     <img src={logops} className="logo" alt="Logomarca da empresa TechVagas. Home SENAI TechVagas" />
                     <nav className="navbar">
                         <ul id="menu">
-                            <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/cadastro/Estagio">Cadastrar estágio</Link></li>
                             <li><Link to="/colaboradores">Colaboradores</Link></li>
                             <li><Link to="/banidos">Banidos</Link></li>
@@ -129,7 +128,6 @@ export default function Header() {
                         }}
                         />
                         <ul id="menu-hide" className="none">
-                            <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/cadastro/Estagio">Cadastrar estágio</Link></li>
                             <li><Link to="/colaboradores">Colaboradores</Link></li>
                             <li><Link to="/banidos">Banidos</Link></li>
@@ -144,7 +142,6 @@ export default function Header() {
                     <nav className="menumodal">
                         <img src={xBurguer} className="navmobile burguer dex" id="menumodal" alt="" />
                         <ul id="menu-hide" className="none">
-                            <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/cadastro/Estagio">Cadastrar estágio</Link></li>
                             <li><Link to="/colaboradores">Colaboradores</Link></li>
                             <li><Link to="/banidos">Banidos</Link></li>

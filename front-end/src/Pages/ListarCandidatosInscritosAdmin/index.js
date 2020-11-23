@@ -4,8 +4,9 @@ import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 
-import imgEmpresa from '../../assets/Teste.webp'
-import imgDelete from '../../assets/delete.webp'
+import imgEmpresa from '../../assets/Teste.webp';
+import imgDelete from '../../assets/delete.webp';
+import imgGlobal from '../../assets/global.png';
 import InfoVaga from '../../Components/InfoVaga/Index';
 import imgDesenvolvimento from '../../assets/web-programming.webp';
 import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
@@ -26,6 +27,9 @@ export default function ListarCandidatosInscritos() {
     const [Experiencia, setExperiencia] = useState('');
     const [TipoContrato, setTipoContrato] = useState('');
     const [Salario, setSalario] = useState('');
+    const[TipoPresenca,setPresenca]=useState('');
+    const[Area,setArea]=useState('');
+    const[razaoSocial,setRazaoSocial]=useState('');
     const [Cidade, setCidade] = useState('');
     const [TituloVaga, setTituloVaga] = useState('');
     const [DescricaoBeneficio, setDescricaoBeneficio] = useState('');
@@ -62,6 +66,9 @@ export default function ListarCandidatosInscritos() {
         }).then(response => response.json()).then(dados => {
             setIdVaga(dados.idVaga);
             setTituloVaga(dados.tituloVaga);
+            setRazaoSocial(dados.razaoSocial);
+            setPresenca(dados.tipoPresenca);
+            setArea(dados.nomeArea);
             setTipoContrato(dados.tipoContrato);
             setSalario(dados.salario);
             setCidade(dados.localidade);
@@ -127,7 +134,6 @@ export default function ListarCandidatosInscritos() {
                                             <p className="NomeCurso">{item.nomeCurso}</p>
                                         </div>
                                     </div>
-                                    <h5>Ver perfil</h5>
                                 </div>
                             )
                         })
@@ -140,14 +146,15 @@ export default function ListarCandidatosInscritos() {
                             <div className="VagaCompleta">
                                 <img src={imgEmpresa} className="ImagemEmpresa" ></img>
                                 <div className="MainVaga">
-                                    <h3>Titulo da vaga</h3>
+                <h3>{TituloVaga}</h3>
                                     <div className="InfoVagas">
-                                        <InfoVaga NomeProp={"item.razaoSocial"} source={IconEmpresa} />
+                                        <InfoVaga NomeProp={razaoSocial} source={IconEmpresa} />
                                         <InfoVaga NomeProp={Cidade} source={imgLocalizacao} />
                                         <InfoVaga NomeProp={Experiencia} source={imgFuncao} />
                                         <InfoVaga NomeProp={TipoContrato} source={imgTipoContrato} />
                                         <InfoVaga NomeProp={Salario} source={imgSalario} />
-                                        <InfoVaga NomeProp={"Desenvolvimento"} source={imgDesenvolvimento} />
+                                        <InfoVaga NomeProp={Area} source={imgDesenvolvimento} />
+                                        <InfoVaga NomeProp={TipoPresenca} source={imgGlobal}/>
                                     </div>
                                 </div>
                             </div>

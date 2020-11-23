@@ -33,7 +33,7 @@ export default function VagasPublicadas() {
 
     /* Editar Vaga */
     const [Experiencia, setExperiencia] = useState('');
-    const [Area,setArea]=useState(Number);
+    const [Area,setArea]=useState(0);
     const [TipoContrato, setTipoContrato] = useState('');
     const [Salario, setSalario] = useState(0);
     const [DescricaoBeneficio, setDescricaoBeneficio] = useState('');
@@ -82,7 +82,7 @@ export default function VagasPublicadas() {
             }
         }).then(response => response.json()).then(dados => {
             setTituloVaga(dados.tituloVaga);
-            setArea(dados.nomeArea);
+            setArea(dados.idArea);
             setEstado(dados.estado);
             setLogradouro(dados.logradouro);
             setTipoContrato(dados.tipoContrato);
@@ -271,6 +271,7 @@ export default function VagasPublicadas() {
                 alert("Não foi possivel deletar esta vaga");
             } else {
                 alert("Vaga deletada com sucesso com sucesso");
+                listarVagas();
             }
         })
             .catch(err => console.error(err));
@@ -416,7 +417,7 @@ export default function VagasPublicadas() {
                             <option value="0">Selecione um nivel de experiencia</option>
                             <option value="Pleno">Pleno</option>
                             <option value="Sênior">Sênior</option>
-                            <option value="Junior">Júnior</option>
+                            <option value="Júnior">Júnior</option>
                         </select>
                     </div>
 
@@ -426,7 +427,7 @@ export default function VagasPublicadas() {
                             <option value="0">Selecione um tipo de contrato</option>
                             <option value="CLT">CLT</option>
                             <option value="PJ">PJ</option>
-                            <option value="Estagio">Estagio</option>
+                            <option value="Está gio">Estagio</option>
                         </select>
                     </div>
                     <Input className="InputCadastro" value={Estado} name="Estado" label="Estado" onChange={e => setEstado(e.target.value)} />

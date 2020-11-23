@@ -9,6 +9,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
     {
         public string TituloVaga { get; set; }
         public int IdVaga { get; set; }
+        public int IdArea { get; set; }
         public string Experiencia { get; set; }
         public string NomeArea { get; set; }
         public string TipoContrato { get; set; }

@@ -133,6 +133,23 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "2")]
+        [HttpGet("ListarVagasPrincipal")]
+        public IActionResult ListarVagasPrincipal()
+        {
+            try
+            {
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                Candidato c=_candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+
+                return Ok(_candidatoRepository.ListarVagasArea(c.IdCursoNavigation.IdArea));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Uma exceção ocorreu. Tente novamente.");
+            }
+        }
+
         /// <summary>
         /// Método que busca candidato.
         /// </summary>

@@ -20,7 +20,6 @@ export default function PerfilCandidato() {
     const [Area, SetArea] = useState('');
 
     const [Cursos, setCursos] = useState([]);
-    const [Areas, setAreas] = useState([])
     const [Vagas, setVagas] = useState([]);
 
     const [NovaSenha, SetNovaSenha] = useState('');
@@ -29,7 +28,6 @@ export default function PerfilCandidato() {
     useEffect(() => {
         listarVagas();
         BuscarCandidatoPorId();
-        listarAreas();
         lisCursos();
     }, []);
 
@@ -42,20 +40,6 @@ export default function PerfilCandidato() {
             .then(response => {
                 setCursos(response.data);
             });
-    }
-
-    const listarAreas = () => {
-        fetch('http://localhost:5000/api/Usuario/ListarArea', {
-            method: 'GET',
-            headers: {
-                authorization: 'Bearer ' + localStorage.getItem('token')
-            }
-        })
-            .then(response => response.json())
-            .then(dados => {
-                setAreas(dados);
-            })
-            .catch(err => console.error(err));
     }
 
     const BuscarCandidatoPorId = () => {
@@ -245,20 +229,6 @@ export default function PerfilCandidato() {
                                 Cursos.map((item) => {
                                     return (
                                         <option value={item.idCurso}>{item.nomeCurso}</option>
-                                    );
-                                })
-                            }
-                        </select>
-                    </div>
-
-                    <div className="select">
-                        <label>Áreas</label>
-                        <select className="cadastre" onChange={e => SetArea(e.target.value)} value={Area} required>
-                            <option value="0">Selecione sua área</option>
-                            {
-                                Areas.map((item) => {
-                                    return (
-                                        <option value={item.idArea}>{item.nomeArea}</option>
                                     );
                                 })
                             }

@@ -33,6 +33,8 @@ GO
 SELECT * FROM Vaga
 GO
 
+Update Vaga set TipoContrato='Estágio' where IdVaga=2
+
 
 SELECT * FROM VagaTecnologia
 GO

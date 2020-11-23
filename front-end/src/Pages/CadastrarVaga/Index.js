@@ -159,7 +159,7 @@ export default function CadastrarVaga() {
                                         <option value="0">Selecione um nivel de experiencia</option>
                                         <option value="Pleno">Pleno</option>
                                         <option value="Sênior">Sênior</option>
-                                        <option value="Junior">Júnior</option>
+                                        <option value="Júnior">Júnior</option>
                                     </select>
                                 </div>
                                 <div className="select">
@@ -215,7 +215,7 @@ export default function CadastrarVaga() {
 
                                 <Input className="InputCadastro"
                                     name="CEP"
-                                    type="number"
+                                    type="text"
                                     label="CEP"
                                     onChange={e => SetCEP(e.target.value)}
                                     maxLength={8}
