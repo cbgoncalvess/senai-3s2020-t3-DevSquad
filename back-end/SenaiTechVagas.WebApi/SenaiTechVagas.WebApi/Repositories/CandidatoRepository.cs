@@ -59,7 +59,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch(Exception e)
+                catch(Exception)
                 {
                     return false;
                 }
@@ -88,11 +88,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                         {
                             // Declara a instrução a ser executada
                             string querySelectAll =
-                            "SELECT are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                            "SELECT trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                             " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                             " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                             " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
                             " INNER JOIN Area are on are.IdArea=v.IdArea"+
+                            " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
                             " WHERE v.IdVaga =@IDVaga ";
                             con.Open();
 
@@ -122,7 +123,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                                         Salario = Convert.ToDecimal(rdr["Salario"]),
                                         RazaoSocial = rdr["RazaoSocial"].ToString(),
                                         NomeArea = rdr["NomeArea"].ToString(),
-                                        TituloVaga=rdr["TituloVaga"].ToString()
+                                        TituloVaga=rdr["TituloVaga"].ToString(),
+                                        TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString()
                                     };
                                     var NomeTecnologia = rdr["NomeTecnologia"].ToString();
                                     vm.Tecnologias = new List<string>();
@@ -146,7 +148,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     return listvagas;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -186,7 +188,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -205,7 +207,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }

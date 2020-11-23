@@ -5,6 +5,7 @@ import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 
 import imgEmpresa from '../../assets/Teste.webp'
+import imgDelete from '../../assets/delete.webp'
 import InfoVaga from '../../Components/InfoVaga/Index';
 import imgDesenvolvimento from '../../assets/web-programming.webp';
 import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
@@ -86,7 +87,7 @@ export default function ListarCandidatosInscritos() {
     }
 
     const DeletarVaga = () => {
-        fetch('http://localhost:5000/api/Administrador/DeletarVaga/'+idVaga, {
+        fetch('http://localhost:5000/api/Administrador/DeletarVaga/' + idVaga, {
             method: 'DELETE',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
@@ -100,6 +101,7 @@ export default function ListarCandidatosInscritos() {
         }).catch(err => console.error(err));
     }
 
+
     return (
         <div className="bodyPartInscricoesAdm">
             <AccessBar />
@@ -111,11 +113,13 @@ export default function ListarCandidatosInscritos() {
                         Candidatos.map((item) => {
                             return (
                                 <div key={item.idInscricao} className="BoxInscricao">
-                                    <h5 className="RemoverText" onClick={e => {
-                                        e.preventDefault();
-                                        setInscricao(item.idInscricao);
-                                        DeletarInscricao();
-                                    }}>Remover da vaga X</h5>
+                                    <div className="Edit-Delete">
+                                    <img className="Delete" src={imgDelete} onClick={e => {
+                                         e.preventDefault();
+                                         setInscricao(item.idInscricao);
+                                         DeletarInscricao();
+                                    }} />
+                                </div>
                                     <div className="DadosInscrito">
                                         <img src={imgEmpresa} />
                                         <div className="Column-Inscricao">
@@ -127,12 +131,12 @@ export default function ListarCandidatosInscritos() {
                                 </div>
                             )
                         })
-                    }
-                </div>
+                    } 
+                </div> 
                 <div className="Direito-Inscricoes">
                     <div className="VagaDescricao">
-                        <h5 className="ExcluirVagaText" onClick={DeletarVaga}>Excluir vaga</h5>
                         <div className="vaga">
+                        <h5 className="ExcluirVagaText" onClick={DeletarVaga}>Excluir vaga</h5>
                             <div className="VagaCompleta">
                                 <img src={imgEmpresa} className="ImagemEmpresa" ></img>
                                 <div className="MainVaga">
@@ -163,7 +167,7 @@ export default function ListarCandidatosInscritos() {
                                 <h3>Descricao beneficios</h3>
                                 <p>{DescricaoBeneficio}</p>
                             </div>
-                        </div>      
+                        </div>
                     </div>
                 </div>
             </div>

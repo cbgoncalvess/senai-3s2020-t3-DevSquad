@@ -154,25 +154,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista a vaga pelo id area
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [Authorize]
-        [HttpGet("ListarVagasArea/{id}")]
-        public IActionResult ListarVagasArea(int id)
-        {
-            try
-            {
-                return Ok(usuarioRepository.ListarVagasArea(id));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
         /// Listar todas as areas
         /// </summary>
         /// <returns></returns>
@@ -202,44 +183,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 return Ok(usuarioRepository.BuscarVagaPeloId(idVaga));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
-        /// Lista vagas pelo filtro tipo de contrato
-        /// </summary>
-        /// <param name="NomeTipoContrato"></param>
-        /// <returns></returns>
-        [Authorize]
-        [HttpGet("TipoContrato/{NomeTipoContrato}")]
-        public IActionResult ListarVagasFiltroTipoContarto(string NomeTipoContrato)
-        {
-            try
-            {
-                return Ok(usuarioRepository.ListarFiltroTipoContrato(NomeTipoContrato));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
-        /// Lista vagas pelo filtro por nivel de experiencia
-        /// </summary>
-        /// <param name="NivelExperiencia"></param>
-        /// <returns></returns>
-        [Authorize]
-        [HttpGet("NivelExperiencia/{NivelExperiencia}")]
-        public IActionResult ListarVagas(string NivelExperiencia)
-        {
-            try
-            {
-                return Ok(usuarioRepository.ListarFiltroNivelExperiencia(NivelExperiencia));
             }
             catch (Exception)
             {

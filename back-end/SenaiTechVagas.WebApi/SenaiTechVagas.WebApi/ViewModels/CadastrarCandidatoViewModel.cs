@@ -14,7 +14,6 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string Cpf { get; set; }
         public string Telefone { get; set; }
         public string LinkLinkedinCandidato { get; set; }
-        public int IdArea { get; set; }
         public int IdCurso { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }

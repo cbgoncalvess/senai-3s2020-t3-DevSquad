@@ -141,14 +141,27 @@ export default function Login() {
                 <form>
                     <div className="select">
                         <label>Resposta de segurança</label>
-                        <select className="div-select" onChange={e => SetPerguntaSeguranca(e.target.value)} value={PerguntaSeguranca}>
+                        <select className="div-select" onChange={e => SetPerguntaSeguranca(e.target.value)} value={PerguntaSeguranca} required>
                             <option value="0">Selecione sua pergunta de segurança</option>
                             <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
                         </select>
                     </div>
-                    <Input className="InputCadastro" name="RespostaSeguranca" label="Resposta de seguranca" onChange={e=>SetRespostaSeguranca(e.target.value)}/>
-                    <Input className="InputCadastro" name="emailRecuperacao" label="Seu email" onChange={e=>setEmail(e.target.value)}/>
-                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e=>SetNovaSenha(e.target.value)}/>
+                    <Input className="InputCadastro" name="RespostaSeguranca" label="Resposta de seguranca" onChange={e=>SetRespostaSeguranca(e.target.value)} 
+                                    maxLength={20}
+                                    minLength={5}
+                                    required 
+                                    />
+
+                    <Input className="InputCadastro" name="emailRecuperacao" label="Seu email" onChange={e=>setEmail(e.target.value)}
+                    maxLength={154}
+                    minLength={5}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e=>SetNovaSenha(e.target.value)}
+                    maxLength={15}
+                    minLength={9}
+                    required />
                 </form>
                     <button className="btVaga" onClick={RecuperarSenha}>Alterar senha</button>
             </div>

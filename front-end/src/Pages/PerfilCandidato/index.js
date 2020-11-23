@@ -25,8 +25,6 @@ export default function PerfilCandidato() {
 
     const [NovaSenha, SetNovaSenha] = useState('');
     const [SenhaAtual, SetSenha] = useState('');
-    const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
-    const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
 
     useEffect(() => {
         listarVagas();
@@ -210,14 +208,38 @@ export default function PerfilCandidato() {
             <div id="modalPerfilCandidato" className="modalPerfilCandidato none">
                 <h2>Editar seus dados pessoais</h2>
                 <form>
-                    <Input className="InputCadastro" value={NomeCompleto} name="NomeCompleto" label="Nome completo" onChange={e => SetNomeCompleto(e.target.value)} />
-                    <Input className="InputCadastro" value={Rg} name="Rg" label="RG" onChange={e => SetRg(e.target.value)} />
-                    <Input className="InputCadastro" value={CPF} name="CPF" label="CPF" onChange={e => SetCPF(e.target.value)} />
-                    <Input className="InputCadastro" value={Telefone} name="Telefone" label="Telefone" onChange={e => SetTelefone(e.target.value)} />
-                    <Input className="InputCadastro" value={Linkedin} name="Linkedin" label="Linkedin" onChange={e => SetLinkedin(e.target.value)} />
+                    <Input className="InputCadastro" value={NomeCompleto} name="NomeCompleto" label="Nome completo" onChange={e => SetNomeCompleto(e.target.value)}
+                    maxLength={35}
+                    minLength={5}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={Rg} name="Rg" label="RG" onChange={e => SetRg(e.target.value)}
+                    maxLength={9}
+                    minLength={9}
+                    required 
+                    />
+                    
+                    <Input className="InputCadastro" value={CPF} name="CPF" label="CPF" onChange={e => SetCPF(e.target.value)}
+                    maxLength={11}
+                    minLength={11}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={Telefone} name="Telefone" label="Telefone" onChange={e => SetTelefone(e.target.value)}
+                    maxLength={14}
+                    minLength={11}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={Linkedin} name="Linkedin" label="Linkedin" onChange={e => SetLinkedin(e.target.value)} 
+                    maxLength={150}
+                    minLength={5}
+                    required 
+                    />
                     <div className="select">
                         <label>Cursos</label> <br />
-                        <select className="cadastre" onChange={e => SetCurso(e.target.value)} value={Curso}>
+                        <select className="cadastre" onChange={e => SetCurso(e.target.value)} value={Curso} required>
                             <option value="0">Selecione seu curso</option>
                             {
                                 Cursos.map((item) => {
@@ -231,7 +253,7 @@ export default function PerfilCandidato() {
 
                     <div className="select">
                         <label>Áreas</label>
-                        <select className="cadastre" onChange={e => SetArea(e.target.value)} value={Area}>
+                        <select className="cadastre" onChange={e => SetArea(e.target.value)} value={Area} required>
                             <option value="0">Selecione sua área</option>
                             {
                                 Areas.map((item) => {
@@ -252,8 +274,16 @@ export default function PerfilCandidato() {
             <div id="modalAlterarSenhaCandidato" className="modalAlterarSenhaCandidato none">
                 <h2>Alterar senha</h2>
                 <form>
-                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)} />
-                    <Input className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)} />
+                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
+                    maxLength={15}
+                    minLength={9}
+                    required 
+                    />
+                    <Input className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)}
+                    maxLength={15}
+                    minLength={9}
+                    required 
+                    />
                     <button className="btVaga" onClick={AlterarSenha}>Alterar senha</button>
                 </form>
             </div>

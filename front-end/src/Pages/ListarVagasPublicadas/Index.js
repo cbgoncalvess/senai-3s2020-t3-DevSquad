@@ -7,6 +7,7 @@ import Footer from '../../Components/Footer';
 import Input from '../../Components/Input';
 
 import imgDelete from '../../assets/delete.webp'
+import imgGlobal from '../../assets/global.png'
 import imgEdit from '../../assets/black-ink-pen.webp'
 import imgEmpresa from '../../assets/Teste.webp'
 import Tag from '../../Components/Tag/Index';
@@ -315,12 +316,13 @@ export default function VagasPublicadas() {
                                             IrParaInscricoes();
                                         }}>{item.tituloVaga}</h3>
                                         <div className="InfoVagas">
-                                            <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
-                                            <InfoVaga NomeProp={item.localidade} source={imgLocalizacao} />
-                                            <InfoVaga NomeProp={item.experiencia} source={imgFuncao} />
-                                            <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato} />
-                                            <InfoVaga NomeProp={item.salario} source={imgSalario} />
-                                            <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento} />
+                                            <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa}/>
+                                            <InfoVaga NomeProp={item.localidade} source={imgLocalizacao}/>
+                                            <InfoVaga NomeProp={item.experiencia} source={imgFuncao}/>
+                                            <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato}/>
+                                            <InfoVaga NomeProp={item.salario} source={imgSalario}/>
+                                            <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento}/>
+                                            <InfoVaga NomeProp={item.tipoPresenca} source={imgGlobal}/>
                                         </div>
                                         <div className="TecnologiasVaga">
                                             {item.tecnologias.map((tec) => {

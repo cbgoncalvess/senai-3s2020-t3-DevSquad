@@ -31,7 +31,7 @@ export default function Header() {
     }
 
     const logout = () => {
-        localStorage.removeItem('token');
+        localStorage.clear();
         history.push('/');
     }
 
@@ -50,7 +50,6 @@ export default function Header() {
 
     //se o valor de token estiver indefinido ou nulo, chama o menu deslogado, se não chama o menu para quando o usuário estiver logado
     if (token === null) {
-        // Deslogado
         return (
             <header>
                 <div className="header">
@@ -69,11 +68,6 @@ export default function Header() {
                         event.preventDefault();
                         BurguerMenu();
                     }} />
-                    {/* <img src={burguerMenu} className="navmobile none burguer" id="burguer" alt="" onClick={event => {
-                    event.preventDefault();
-                    BurguerMenu();
-                }}
-                /> */}
                 </div>
 
                 <div id="modalPrincipal" className="modalPrincipal none">
@@ -109,9 +103,7 @@ export default function Header() {
         return (
             <header>
                 <div className="header">
-                    <Link to="/" title="Logomarca da empresa TechVagas. Home SENAI TechVagas">
-                        <img src={logops} className="logo" alt="" />
-                    </Link>
+                    <img src={logops} className="logo" alt="Logomarca da empresa TechVagas. Home SENAI TechVagas" />
                     <nav className="navbar">
                         <ul id="menu">
                             <li><Link to="/sobre">Sobre</Link></li>
@@ -168,9 +160,7 @@ export default function Header() {
         return (
             <header>
                 <div className="header">
-                    <Link to="/" title="Logomarca da empresa TechVagas. Home SENAI TechVagas">
-                        <img src={logops} className="logo" alt="" />
-                    </Link>
+                    <img src={logops} className="logo" alt="Logomarca da empresa TechVagas. Home SENAI TechVagas" />
                     <nav className="navbar">
                         <ul id="menu">
                             <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
@@ -194,7 +184,7 @@ export default function Header() {
                         }}
                         />
                         <ul id="menu-hide" className="none">
-                        <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
+                            <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
                             <li><Link to="/">Principal</Link></li>
                             <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
@@ -224,9 +214,7 @@ export default function Header() {
         return (
             <header>
                 <div className="header">
-                    <Link to="/" title="Logomarca da empresa TechVagas. Home SENAI TechVagas">
-                        <img src={logops} className="logo" alt="" />
-                    </Link>
+                    <img src={logops} className="logo" alt="Logomarca da empresa TechVagas. Home SENAI TechVagas" />
                     <nav className="navbar">
                         <ul id="menu">
                             <li><Link to="/sobre">Sobre</Link></li>

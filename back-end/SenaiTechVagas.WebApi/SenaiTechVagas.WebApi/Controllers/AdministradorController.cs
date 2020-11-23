@@ -33,7 +33,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <returns>Retorna um HTTP Code (201) e a mensagem "true", caso contrário,
         /// retorna um HTTP Code (400)e a mensagem "Uma exceção ocorreu. Tente novamente."
         /// </returns>
-       [Authorize(Roles = "1")]
+        [Authorize(Roles = "1")]
         [HttpGet("ListarEmpresas")]
         public IActionResult ListaEmpresas()
         {
@@ -415,6 +415,20 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "1")]
+        [HttpPost("AdicionarTipoPresenca")]
+        public IActionResult AdicionarTipoPresenca(TipoRegimePresencial trp)
+        {
+            try
+            {
+                return Ok(_Admin.AdicionarTipoPresenca(trp));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         /// <summary>
         /// Cadastra um adminsitrador
         /// </summary>
@@ -549,6 +563,20 @@ namespace SenaiTechVagas.WebApi.Controllers
                     return Ok("Curso atualizado com sucesso");
                 else
                     return BadRequest("Não foi possivel atualizar o curso");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpPut("AtualizarTipoPresenca/{id}")]
+        public IActionResult AtualizarTipoPresenca(int id,TipoRegimePresencial trp)
+        {
+            try
+            {
+                return Ok(_Admin.AtualizarTipoPresenca(id,trp));
             }
             catch (Exception)
             {

@@ -17,5 +17,6 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string Localidade { get; set; }
         public string RazaoSocial { get; set; }
         public List<string> Tecnologias { get; set; }
+        public string TipoPresenca { get; set; }
     }
 }

@@ -46,5 +46,8 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<ListarInscricoesViewModel> ListarCandidatosInscritos(int idVaga);
         List<Usuario> ListarEmailsCandidato();
         List<Empresa> ListarNomeEmpresas();
+        bool AdicionarTipoPresenca(TipoRegimePresencial trp);
+        bool AtualizarTipoPresenca(int id,TipoRegimePresencial trp);
+        
     }
 }

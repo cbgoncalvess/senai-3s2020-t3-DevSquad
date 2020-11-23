@@ -654,7 +654,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 // Retorna a lista de vagas
                 return listEmpresas;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
@@ -1039,7 +1039,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     var a = ctx.Usuario.Where(u => u.IdTipoUsuario == 2).Select(c => new Usuario {IdUsuario=c.IdUsuario, Email = c.Email }).ToList();
                     return a;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -1057,6 +1057,49 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception)
                 {
                     return null;
+                }
+            }
+        }
+
+        public bool AdicionarTipoPresenca(TipoRegimePresencial trp)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    if (trp.NomeTipoRegimePresencial != null)
+                    {
+                        ctx.Add(trp);
+                        ctx.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool AtualizarTipoPresenca(int id,TipoRegimePresencial trp)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    TipoRegimePresencial tipo = ctx.TipoRegimePresencial.Find(id);
+                    if (trp.NomeTipoRegimePresencial != null&&tipo!=null)
+                    {
+                        ctx.Update(trp);
+                        ctx.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception)
+                {
+                    return false;
                 }
             }
         }

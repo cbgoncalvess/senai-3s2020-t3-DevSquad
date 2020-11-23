@@ -12,6 +12,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string Experiencia { get; set; }
         public string NomeArea { get; set; }
         public string TipoContrato { get; set; }
+        public string TipoPresenca { get; set; }
         public decimal Salario { get; set; }
         public string Localidade { get; set; }
         public string RazaoSocial { get; set; }
