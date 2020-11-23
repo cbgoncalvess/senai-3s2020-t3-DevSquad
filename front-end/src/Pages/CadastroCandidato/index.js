@@ -23,7 +23,6 @@ export default function CadastroEmpresa() {
   const [Email, SetEmail] = useState("");
   const [Senha, SetSenha] = useState("");
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
-  const [Area, SetArea] = useState(0);
   const [PerguntaSeguranca, SetPergunta] = useState("");
   const [RespostaSeguranca, SetResposta] = useState("");
   
@@ -32,21 +31,8 @@ export default function CadastroEmpresa() {
   const emailRegex = /^\S+@\S+\.\S+$/g;
   
   useEffect(() => {
-    listarAreas();
     listarcurso();
   }, []);
-  
-  const [Areas, SetAreas] = useState([]);
-  const listarAreas = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarArea", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        SetAreas(dados);
-      })
-      .catch((err) => console.error(err));
-  };
 
   const verificacaoEmail = emailRegex.test(Email);
 
@@ -64,7 +50,6 @@ export default function CadastroEmpresa() {
         telefone: Telefone,
         linkLinkedinCandidato: Linkedin,
         idCurso: Curso,
-        idArea: Area,
         email: Email,
         senha: Senha,
         respostaSeguranca: RespostaSeguranca,
@@ -89,6 +74,7 @@ export default function CadastroEmpresa() {
         .catch((err) => console.error(err));
     }
   }
+
   const listarcurso = () => {
     fetch("http://localhost:5000/api/Usuario/ListarCurso", {
       method: "GET",
@@ -126,15 +112,16 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetNomeCompleto(e.target.value)}
               />
 
+                  
               <Input
                 name="rg"
                 className="cadastre"
                 label="RG:"
-                type="number"
-                placeholder="00.000.000-0"
-                required
+                type="text"
+                placeholder="000.000.000-00"  //Por algum motivo o max e minLength deste campo n está funcionando
                 maxLength={9}
                 minLength={9}
+                required 
                 onChange={(e) => SetRg(e.target.value)}
               />
 
@@ -142,9 +129,9 @@ export default function CadastroEmpresa() {
                 name="cpf"
                 className="cadastre"
                 label="CPF:"
-                type="number"
-                placeholder="000.000.000-00"
-                rrequired
+                type="text"
+                placeholder="000.000.000-00"  //Por algum motivo o max e minLength deste campo n está funcionando
+                required
                 maxLength={11}
                 minLength={11}
                 onChange={(e) => SetCPF(e.target.value)}
@@ -154,9 +141,11 @@ export default function CadastroEmpresa() {
                 name="telefone"
                 className="cadastre"
                 label="Telefone:"
-                type="tel"
+                type="text"
                 placeholder="(11) 91234-5678"
-                required
+                maxLength={14}
+                minLength={11}
+                required 
                 onChange={(e) => SetTelefone(e.target.value)}
               />
 
@@ -190,24 +179,6 @@ export default function CadastroEmpresa() {
                 </select>
               </div>
 
-              <div>
-                <label className="select-cadastroCandidato-title-area">
-                  Área
-                </label>
-                <br />
-                <select
-                  className="select-cadastroCandidato"
-                  onChange={(e) => SetArea(e.target.value)}
-                  value={Area}
-                  required
-                >
-                  <option value="0">Selecione sua área</option>
-                  {Areas.map((item) => {
-                    return <option value={item.idArea}>{item.nomeArea}</option>;
-                  })}
-                </select>
-              </div>
-
               <Input
                 name="email"
                 className="cadastre"
@@ -215,7 +186,7 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="exemplo@exemplo.com"
                 required
-                maxLength={35}
+                maxLength={154}
                 minLength={5}
                 onChange={(e) => {
                   SetEmail(e.target.value);
@@ -229,8 +200,8 @@ export default function CadastroEmpresa() {
                 type="password"
                 placeholder="Digite sua senha"
                 required
-                maxLength={20}
-                minLength={10}
+                maxLength={15}
+                minLength={9}
                 onChange={(e) => SetSenha(e.target.value)}
               />
 
@@ -241,8 +212,8 @@ export default function CadastroEmpresa() {
                 type="password"
                 placeholder="Confirme a senha"
                 required
-                maxLength={20}
-                minLength={10}
+                maxLength={15}
+                minLength={9}
                 onChange={(e) => SetConfirmarSenha(e.target.value)}
               />
 
@@ -254,7 +225,7 @@ export default function CadastroEmpresa() {
                 <select
                   className="select-cadastroCandidato"
                   onChange={(e) => SetPergunta(e.target.value)}
-                  value={Area}
+                  value={""}
                   required
                 >
                   <option value="0">Selecione sua pergunta de segurança</option>

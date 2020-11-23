@@ -30,8 +30,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Método que lista as empresas cadastradas com suas informações.
         /// </summary>
-        /// <returns>Retorna empresas cadastradas./// </returns>
-       [Authorize(Roles = "1")]
+        /// <returns>Retorna um HTTP Code (201) e a mensagem "true", caso contrário,
+        /// retorna um HTTP Code (400)e a mensagem "Uma exceção ocorreu. Tente novamente."
+        /// </returns>
+        [Authorize(Roles = "1")]
         [HttpGet("ListarEmpresas")]
         public IActionResult ListaEmpresas()
         {
@@ -412,6 +414,20 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        [Authorize(Roles = "1")]
+        [HttpPost("AdicionarTipoPresenca")]
+        public IActionResult AdicionarTipoPresenca(TipoRegimePresencial trp)
+        {
+            try
+            {
+                return Ok(_Admin.AdicionarTipoPresenca(trp));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         /// <summary>
         /// Método para Administrador, adicionar novo Adminsitrador
         /// </summary>
@@ -552,6 +568,21 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
+
+        [Authorize(Roles = "1")]
+        [HttpPut("AtualizarTipoPresenca/{id}")]
+        public IActionResult AtualizarTipoPresenca(int id,TipoRegimePresencial trp)
+        {
+            try
+            {
+                return Ok(_Admin.AtualizarTipoPresenca(id,trp));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         /// <summary>
         /// Método que altera password de Administrador
         /// </summary>

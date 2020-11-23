@@ -129,7 +129,7 @@ export default function CadastroEmpresa() {
             </p>
             <form className="form" onSubmit={salvar}>
               <Input
-                name="responsibleName"
+                name={"responsibleName"}
                 className="cadastre"
                 label="Nome do responsável:"
                 type="text"
@@ -145,8 +145,8 @@ export default function CadastroEmpresa() {
                 label="CNPJ:"
                 type="text"
                 placeholder="00.000.000/0001-00"
-                maxLength={11}
-                minLength={11}
+                maxLength={14}
+                minLength={14}
                 required
                 onChange={(e) => SetCNPJ(e.target.value)}
               />
@@ -170,7 +170,7 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="CPTM"
                 maxLength={50}
-                minLength={6}
+                minLength={5}
                 required
                 onChange={(e) => SetNomeFantasia(e.target.value)}
               />
@@ -215,8 +215,8 @@ export default function CadastroEmpresa() {
                 label="Número CNAE:"
                 type="text"
                 placeholder="00.00-0-0"
-                maxLength={9}
-                minLength={6}
+                maxLength={7}
+                minLength={7}
                 required
                 onChange={(e) => SetNumCNAE(e.target.value)}
               />
@@ -228,6 +228,8 @@ export default function CadastroEmpresa() {
                 label="CEP:"
                 type="text"
                 placeholder="00000-000"
+                maxLength={8}
+                minLength={8}
                 required
               /> */}
               <div className="Input">
@@ -315,8 +317,8 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="Senha de acesso:"
                 type="password"
-                maxLength={20}
-                minLength={10}
+                maxLength={15}
+                minLength={9}
                 required
                 onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetSenha(e.target.value)}
@@ -328,8 +330,8 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="Confirme a senha:"
                 type="password"
-                maxLength={20}
-                minLength={10}
+                maxLength={15}
+                minLength={9}
                 required
                 onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetConfirmarSenha(e.target.value)}

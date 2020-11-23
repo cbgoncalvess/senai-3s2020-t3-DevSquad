@@ -8,6 +8,7 @@ import imgEmpresa from '../../assets/Teste.webp'
 import './style.css';
 import Tag from '../../Components/Tag/Index';
 import imgDesenvolvimento from '../../assets/web-programming.webp';
+import imgGlobal from '../../assets/global.png'
 import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
 import imgSalario from '../../assets/money (1).webp';
 import imgTipoContrato from '../../assets/gears.webp';
@@ -25,6 +26,9 @@ export default function VizualizarVagaEmpresa() {
     const [Cidade, setCidade] = useState('');
     const [TituloVaga, setTituloVaga] = useState('');
     const [Candidatos, SetCandidato] = useState([]);
+    const[NomeArea,setNomeArea]=useState('');
+    const[TipoPresenca,setTipoPresenca]=useState('');
+    const[RazaoSocial,setRazaoSocial]=useState('');
 
     let history=useHistory();
     useEffect(() => {
@@ -47,6 +51,9 @@ export default function VizualizarVagaEmpresa() {
             setTecnologias(dados.tecnologias);
             setCidade(dados.localidade);
             setExperiencia(dados.experiencia);
+            setNomeArea(dados.nomeArea);
+            setTipoPresenca(dados.tipoPresenca);
+            setRazaoSocial(dados.razaoSocial);
         }).catch(err => console.error(err));
     }
 
@@ -110,14 +117,15 @@ export default function VizualizarVagaEmpresa() {
                 <div className="VagaCompleta">
                     <img src={imgEmpresa} className="ImagemEmpresa" ></img>
                     <div className="MainVaga">
-                        <h3 value={TituloVaga}></h3>
+                        <h3>{TituloVaga}</h3>
                         <div className="InfoVagas">
-                            <InfoVaga NomeProp={"Microsoft"} source={IconEmpresa}></InfoVaga>
+                            <InfoVaga NomeProp={RazaoSocial} source={IconEmpresa}></InfoVaga>
                             <InfoVaga NomeProp={Cidade} source={imgLocalizacao}></InfoVaga>
                             <InfoVaga NomeProp={Experiencia} source={imgFuncao}></InfoVaga>
                             <InfoVaga NomeProp={TipoContrato} source={imgTipoContrato}></InfoVaga>
                             <InfoVaga NomeProp={Salario} source={imgSalario}></InfoVaga>
-                            <InfoVaga NomeProp={"Area de desenvolvimento"} source={imgDesenvolvimento}></InfoVaga>
+                            <InfoVaga NomeProp={TipoPresenca} source={imgGlobal}/>
+                            <InfoVaga NomeProp={NomeArea} source={imgDesenvolvimento}></InfoVaga>
                         </div>
                         <div className="TecnologiasVaga">
                             {

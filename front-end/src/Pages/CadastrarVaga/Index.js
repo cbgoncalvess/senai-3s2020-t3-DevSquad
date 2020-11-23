@@ -26,9 +26,12 @@ export default function CadastrarVaga() {
     const [DescricaoEmpresa, SetDescricaoEmpresa] = useState('');
     const [DescricaoBeneficio, SetDescricaoBeneficio] = useState('');
     const [ListAreas, SetListArea] = useState([]);
+    const [ListTipoPresencas,setTipoPresencas]=useState([]);
+    const [IdTipoPresenca,setIdTipoPresenca]=useState(0);
 
     useEffect(() => {
         listarAreas();
+        ListarTipoPresencas();
     }, []);
 
     let history = useHistory();
@@ -47,11 +50,26 @@ export default function CadastrarVaga() {
             .catch(err => console.error(err));
     }
 
+    const ListarTipoPresencas = () => {
+        fetch('http://localhost:5000/api/Empresa/ListarTipoPresenca', {
+            method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                setTipoPresencas(dados);
+            })
+            .catch(err => console.error(err));
+    }
+
     const salvar = () => {
         const form = {
             tituloVaga: TituloVaga,
             salario: Salario,
             idArea: Area,
+            idTipoRegimePresencial:IdTipoPresenca,
             experiencia: Experiencia,
             tipoContrato: TipoDeContrato,
             estado: Estado,
@@ -98,7 +116,7 @@ export default function CadastrarVaga() {
                                     label="Título da Vaga"
                                     onChange={e => SetTituloVaga(e.target.value)}
                                     type="text"
-                                    maxLength={50}
+                                    maxLength={40}
                                     minLength={5}
                                     required
                                 />
@@ -122,13 +140,26 @@ export default function CadastrarVaga() {
                                         }
                                     </select>
                                 </div>
+
+                                <div className="select">
+                                    <label>Tipo de presença</label>
+                                    <select className="div-select" onChange={e => setIdTipoPresenca(e.target.value)} value={IdTipoPresenca} required>
+                                        <option value="0">Selecione um tipo de presenca</option>
+                                        {
+                                            ListTipoPresencas.map((item) => {
+                                                return <option value={item.idTipoRegimePresencial}>{item.nomeTipoRegimePresencial}</option>
+                                            })
+                                        }
+                                    </select>
+                                </div>
+
                                 <div className="select">
                                     <label>Experiência</label>
                                     <select className="div-select" onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
                                         <option value="0">Selecione um nivel de experiencia</option>
                                         <option value="Pleno">Pleno</option>
                                         <option value="Sênior">Sênior</option>
-                                        <option value="Junior">Júnior</option>
+                                        <option value="Júnior">Júnior</option>
                                     </select>
                                 </div>
                                 <div className="select">
@@ -184,11 +215,11 @@ export default function CadastrarVaga() {
 
                                 <Input className="InputCadastro"
                                     name="CEP"
-                                    type="number"
+                                    type="text"
                                     label="CEP"
                                     onChange={e => SetCEP(e.target.value)}
-                                    maxLength={50}
-                                    minLength={5}
+                                    maxLength={8}
+                                    minLength={8}
                                     required
                                 />
 

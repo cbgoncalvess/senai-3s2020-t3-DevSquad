@@ -22,5 +22,6 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string Cep { get; set; }
         public string Logradouro { get; set; }
         public string Complemento { get; set; }
+        public int idTipoPresenca { get; set; }
     }
 }
