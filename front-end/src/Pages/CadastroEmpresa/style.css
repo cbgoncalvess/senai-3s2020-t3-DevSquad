@@ -88,6 +88,11 @@ body
   overflow-x: hidden;
 }
 
+.password-matching-text {
+  display: flex;
+  text-align: left;
+}
+
 @media (max-width: 900px) {
   body > div.registerCompany > div.box-img > img {
     display: none;

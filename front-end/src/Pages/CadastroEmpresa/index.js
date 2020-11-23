@@ -40,8 +40,6 @@ export default function CadastroEmpresa() {
   let verificacaoCep = validaCep.test(CEP);
   let verificacaoEmail = emailRegex.test(Email);
 
-  let pass1 = document.querySelector("#password-cadastro");
-  let pass2 = document.querySelector("#confirmPassword-cadastro");
   let result = document.querySelector(".password-matching-text");
 
   function buscarCep(valor) {
