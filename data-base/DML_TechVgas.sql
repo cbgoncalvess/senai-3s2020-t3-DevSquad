@@ -14,6 +14,8 @@ MANTENHA A LÍNGUA - DO SEU SQL SERVER - EM PORTUGUÊS DO BRASIL
 
 */
 
+select * from Inscricao
+
 USE Db_TechVagas
 GO
 
@@ -23,6 +25,12 @@ VALUES		('Administrador'),
 			('Empresa'),
 			('Banido');
 GO
+
+select * from Usuario
+select * from TipoRegimePresencial
+
+insert Into TipoRegimePresencial(NomeTipoRegimePresencial)VALUES
+('Semi-presencial'),('Presencial'),('Remoto')
 
 INSERT INTO Curso (NomeCurso, TipoCurso,IdArea)
 VALUES		('Desenvolvimento de Sistemas - 1T - M', 'Técnico',1),
@@ -75,3 +83,4 @@ VALUES		('Desenvolvimento'),
 			('Multimídia');
 GO
 
+Select * from Inscricao

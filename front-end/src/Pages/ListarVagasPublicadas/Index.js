@@ -128,6 +128,7 @@ export default function VagasPublicadas() {
     })
       .then((response) => response.json())
       .then((dados) => {
+        alert(dados)
         listarVagas();
       })
       .catch((err) => console.error(err));

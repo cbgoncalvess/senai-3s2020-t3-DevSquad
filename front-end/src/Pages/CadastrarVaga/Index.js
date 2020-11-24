@@ -90,8 +90,8 @@ export default function CadastrarVaga() {
                 if (respose.status !== 200) {
                     alert("Não foi possivel cadastrar a vaga");
                 } else {
-                    alert("Vaga cadastrada com sucesso");
-                    history.push('/VagasPublicadas');
+                    //alert("Vaga cadastrada com sucesso");
+                    //history.push('/VagasPublicadas');
                 }
             })
             .catch(err => console.log(err))

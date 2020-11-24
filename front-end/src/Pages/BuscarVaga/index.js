@@ -113,7 +113,7 @@ export default function BuscarVaga() {
             })}
         </div>
       );
-    }else if(OpcaoFiltro=="CLT" ||OpcaoFiltro== "PJ" || OpcaoFiltro== "Estágio"){
+    }else if(OpcaoFiltro=="CLT" ||OpcaoFiltro== "PJ" || OpcaoFiltro== "Estagio"){
       VagaTipoContrato.splice(0, Number.MAX_VALUE);
       FiltrarTipoContrato(OpcaoFiltro);
       return (
@@ -293,7 +293,7 @@ export default function BuscarVaga() {
             <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='CLT'>
               CLT
             </button>
-            <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='Estágio'>
+            <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='Estagio'>
               Estágio
             </button>
             <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='PJ'>

@@ -371,6 +371,7 @@ export default function PerfilEmpresa() {
               type="text"
               className="InputCadastro"
               id="uf"
+              value={Estado}
               required
               disabled
             />

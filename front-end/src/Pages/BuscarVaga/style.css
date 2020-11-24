@@ -23,7 +23,7 @@
 
 #filter-searchJobs {
   display: grid;
-  grid-area: 1 / 1 / 4 / 2;
+  grid-area: 1 / 1 / 2 / 2;
   width: 80%;
   margin: 1vh 0 0 1vw;
 }

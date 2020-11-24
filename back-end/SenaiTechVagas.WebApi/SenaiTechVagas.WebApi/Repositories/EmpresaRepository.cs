@@ -17,7 +17,7 @@ namespace SenaiTechVagas.WebApi.Repositories
     {
         //string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
         
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=DESKTOP-7H5DJOO; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -126,6 +126,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (vaga.Cep != null)
                         vagaBuscada.Cep = vaga.Cep.Trim();
 
+                    if (vaga.TituloVaga != null)
+                        vagaBuscada.TituloVaga = vaga.TituloVaga.Trim();
+
                     if (vaga.idTipoPresenca != 0)
                         vagaBuscada.IdTipoRegimePresencial = vaga.idTipoPresenca;
 
@@ -162,14 +165,13 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (vaga.TipoContrato != null)
                         vagaBuscada.TipoContrato = vaga.TipoContrato;
 
-                    if (vaga.DataExpiracao>vagaBuscada.DataExpiracao&&vaga.DataExpiracao.Month>vagaBuscada.DataExpiracao.Month)
-                        vagaBuscada.DataExpiracao = vaga.DataExpiracao;
                     ctx.Update(vagaBuscada);
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    Console.WriteLine(e);
                     return false;
                 }
             }
@@ -279,6 +281,10 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     var BuscandoVagaTecnologia = ctx.VagaTecnologia.FirstOrDefault(u => u == vaga);
                     if (BuscandoVagaTecnologia == null)
+                        return false;
+
+                    int Vaga = ctx.VagaTecnologia.Where(u => u.IdVaga == vaga.IdVaga).Count();
+                    if (Vaga == 1)
                         return false;
 
                     ctx.Remove(BuscandoVagaTecnologia);
@@ -521,7 +527,8 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    return ctx.Empresa.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                    var a= ctx.Empresa.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                    return a;
                 }
                 catch (Exception)
                 {
