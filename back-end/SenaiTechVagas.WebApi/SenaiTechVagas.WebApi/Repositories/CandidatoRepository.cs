@@ -90,12 +90,20 @@ namespace SenaiTechVagas.WebApi.Repositories
                         {
                             // Declara a instrução a ser executada
                             string querySelectAll =
+<<<<<<< HEAD
+                            "SELECT inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+=======
                             "SELECT trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+>>>>>>> c44ee1250db26307547097bbbb446ccfff68967f
                             " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                             " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                             " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
                             " INNER JOIN Area are on are.IdArea=v.IdArea"+
+<<<<<<< HEAD
+                            " INNER JOIN Inscricao inscri on inscri.IdVaga=v.IdVaga" +
+=======
                             " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
+>>>>>>> c44ee1250db26307547097bbbb446ccfff68967f
                             " WHERE v.IdVaga =@IDVaga ";
                             con.Open();
 
@@ -121,6 +129,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                                         IdVaga = Convert.ToInt32(rdr["IdVaga"]),
                                         Experiencia = rdr["Experiencia"].ToString(),
                                         TipoContrato = rdr["TipoContrato"].ToString(),
+                                        IdInscricao = Convert.ToInt32(rdr["IdInscricao"]),
                                         Localidade = rdr["Localidade"].ToString(),
                                         Salario = Convert.ToDecimal(rdr["Salario"]),
                                         RazaoSocial = rdr["RazaoSocial"].ToString(),
