@@ -38,7 +38,6 @@ export default function CadastroEmpresa() {
   }, []);
 
   const verificacaoEmail = emailRegex.test(Email);
-
   const escreverResultado = () => {
     if (Senha !== ConfirmarSenha) {
       result.style.color = "red";

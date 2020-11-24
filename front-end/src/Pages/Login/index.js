@@ -76,7 +76,6 @@ export default function Login() {
         } else {
           alert("Editado com sucesso");
         }
-<<<<<<< HEAD
       })
       .catch((err) => console.error(err));
   };
@@ -132,78 +131,6 @@ export default function Login() {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-=======
-    }
-
-    return (
-        <div className="Login">
-            <AccessBar />
-            <Header />
-            <AccessMenu />
-            <main className="principalLogin">
-                <section className="sessaoLogar">
-
-                        <div className="division-logar">
-
-                            <div className="division-logar-title">
-                                <h2>login</h2>
-                                <p className="sub-titulo">Bem-vindo ao SENAI | TechVagas</p>
-                            </div>
-
-                            <form className="form-logar" onSubmit={event => {
-                                event.preventDefault();
-                                login();
-                            }}>
-
-                                <div className="divisionCampo">
-                                    <label>Usuário ou E-mail:</label>
-                                    <input type="text" name="email" className="inputUser" placeholder="exemplo@exemplo.com / mariasantos" onChange={e => setEmail(e.target.value)} />
-                                </div>
-
-                                <div className="divisionCampo divisionPassword">
-                                    <label>Senha:</label>
-                                    <input type="password" name="password" placeholder="******" className="inputPassword" onChange={e => setSenha(e.target.value)} />
-                                    <h5 className="recuperarPassword" onClick={ApareceRecuperarSenhaCandidato}>Recuperar senha</h5>
-                                </div>
-                            </form>
-
-                            <div className="divisionBtn">
-                                <button className="btnNew"><Link className="link-cad-conta" to="/cadastro">criar conta</Link></button>
-                                <button className="btnLogar" onClick={login}>entrar</button>
-                            </div>
-
-                        </div>
-                    
-
-
-                </section>
-
-                <img src={imglogin} className="imgBannerLogin" />
-            </main>
-
-            <div id="peliculaRecuperarSenhaCandidato" className="peliculaRecuperarSenhaCandidato none" onClick={btn_fecharRecuperarSenhaCandidato}></div>
-            <div id="modalRecuperarSenhaCandidato" className="modalRecuperarSenhaCandidato none">
-                <h2>Alterar senha</h2>
-                <form>
-                    <div className="select">
-                        <label>Resposta de segurança</label>
-                        <select className="div-select" onChange={e => SetPerguntaSeguranca(e.target.value)} value={PerguntaSeguranca} required>
-                            <option value="0">Selecione sua pergunta de segurança</option>
-                            <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
-                        </select>
-                    </div>
-                    <Input className="InputCadastro" name="RespostaSeguranca" label="Resposta de seguranca" onChange={e=>SetRespostaSeguranca(e.target.value)} 
-                                    maxLength={20}
-                                    minLength={5}
-                                    required 
-                                    />
-
-                    <Input className="InputCadastro" name="emailRecuperacao" label="Seu email" onChange={e=>setEmail(e.target.value)}
-                    maxLength={154}
-                    minLength={5}
-                    required 
-                    />
->>>>>>> abf31c481188f852708e3c89531f9b5e4dc96e9e
 
                 <div className="divisionCampo divisionPassword">
                   <label>Senha:</label>

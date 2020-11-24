@@ -36,12 +36,15 @@ export default function CadastroEmpresa() {
 
   const emailRegex = /^\S+@\S+\.\S+$/g;
   const validaCep = /^[0-9]{8}$/g;
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/g;
 
   let verificacaoCep = validaCep.test(CEP);
   let verificacaoEmail = emailRegex.test(Email);
+  let verificacaoSenha = senhaRegex.test(Senha);
 
-  let result = document.querySelector(".password-matching-text");
   let redBox = document.querySelector("#confirmPassword-cadastro");
+  let result = document.querySelector(".password-matching-text");
+  let instructions = document.querySelector(".password-instructions-text");
 
   function buscarCep(valor) {
     if (verificacaoCep) {
@@ -49,38 +52,50 @@ export default function CadastroEmpresa() {
       fetch(URL)
         .then((resposta) => resposta.json())
         .then((data) => {
-          document.getElementById("rua").value = data.logradouro;
-          document.getElementById("cidade").value = data.localidade;
-          document.getElementById("uf").value = data.uf;
-          SetLogradouro(data.logradouro);
-          SetCidade(data.localidade);
-          SetEstado(data.uf);
+          if (data.logradouro || data.localidade || data.uf !== undefined) {
+            document.getElementById("rua").value = data.logradouro;
+            document.getElementById("cidade").value = data.localidade;
+            document.getElementById("uf").value = data.uf;
+            SetLogradouro(data.logradouro);
+            SetCidade(data.localidade);
+            SetEstado(data.uf);
+          } else {
+            alert('O CEP não existe');
+          }
         })
         .catch((erro) => console.error(erro));
     } else {
-      alert("O CEP é inválido");
+      alert("O CEP deve conter apenas 8 números");
     }
   }
 
   const escreverResultado = () => {
-    if (Senha !== ConfirmarSenha) {
-      result.style.color = "red";
+    if (Senha !== ConfirmarSenha || verificacaoSenha) {
       redBox.style.border = "solid red 1px";
       redBox.style.boxShadow = "3px 3px 3px gray";
+      result.style.color = "red";
+      instructions.style.color = "red";
       result.innerText = "As senhas não conferem";
+      instructions.innerText =
+        `A senha deve conter 8 caracteres, dentre eles:
+      • 1 letra minúscula
+      • 1 letra maiúscula
+      • 1 número
+      • 1 caractere especial`;
     } else {
-      result.style.color = "unset";
       redBox.style.border = "unset";
       redBox.style.boxShadow = "unset";
+      result.style.color = "unset";
+      instructions.style.color = "unset";
       result.innerText = "As senhas conferem";
+      instructions.innerText = "";
     }
   };
 
   function salvar(e) {
     e.preventDefault();
-
     if (Senha !== ConfirmarSenha) {
-      alert("as senhas não estão equivalentes");
+      alert("As senhas são difererentes");
     } else if (verificacaoEmail !== true) {
       alert("O e-mail deve ser válido");
     } else {
@@ -232,18 +247,7 @@ export default function CadastroEmpresa() {
                 required
                 onChange={(e) => SetNumCNAE(e.target.value)}
               />
-              {/* 
-              <Input
-                id="cep"
-                name="cep"
-                className="cadastre"
-                label="CEP:"
-                type="text"
-                placeholder="00000-000"
-                maxLength={8}
-                minLength={8}
-                required
-              /> */}
+
               <div className="Input">
                 <label>CEP:</label>
                 <br />
@@ -267,10 +271,8 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="Logradouro da empresa:"
                 type="text"
-                placeholder="Rua dos Bobos, 000"
                 maxLength={50}
                 minLength={5}
-                required
               />
 
               <Input
@@ -310,7 +312,7 @@ export default function CadastroEmpresa() {
                 name="EmailUser"
                 className="cadastre"
                 label="Email de acesso:"
-                placeholder="email@email.com"
+                placeholder="email@company.com"
                 type="text"
                 maxLength={254}
                 minLength={3}
@@ -327,6 +329,7 @@ export default function CadastroEmpresa() {
                 maxLength={15}
                 minLength={9}
                 required
+                autocomplete="new-password"
                 onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetSenha(e.target.value)}
               />
@@ -345,6 +348,7 @@ export default function CadastroEmpresa() {
               />
 
               <p className="password-matching-text"></p>
+              <p className="password-instructions-text"></p>
 
               <div>
                 <label className="select-cadastroCandidato-title">
