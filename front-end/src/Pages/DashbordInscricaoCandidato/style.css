@@ -36,3 +36,12 @@
     vertical-align: middle;
     text-transform: uppercase;
     font-weight: bold;}
+
+
+    /* resposivo  */
+
+@media only screen and (min-width: 100px) {
+.bannerDashboardCandidato > h2{text-align: center;}
+
+.title-vagas-inscritas > h3 {text-align: center;}
+}

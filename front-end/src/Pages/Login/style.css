@@ -1,38 +1,25 @@
 .division-logar-title > p {height: initial; color: #5f5f5f;}
 
-.meioLogin{
+.principalLogin {
     display: flex;
-}
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f3f3;}
 
 .sessaoLogar{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 55vw;
-background-color: #f3f3f3;}
+    width: 55vw;}
 
-.sessaoLogar > div {
+.form-logar {
+    height: 22vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    height: 73vh;}
-
-.sessaoLogar > div > button{
-    width: 198px;
-    height: 49px;
-    border: none;
-    outline: none;
-    background: #005767;
-    border-radius: 4px;
-    color: #FFFFFF;
-    font-size: 18px;
-    text-transform: uppercase;
-    vertical-align: middle;
-    text-decoration: none;
-    margin-bottom: 2vh;}
-
+    align-items: center;
+    justify-content: space-between;}
+    
 .division-logar {
     border: none;
     border-radius: 20px;
@@ -55,8 +42,7 @@ background-color: #f3f3f3;}
     font-size: 36px;
     color: #005767;
     text-transform: capitalize;
-    font-weight: 400;
-}
+    font-weight: 400;}
  
 .divisionCampo{
     display: flex;
@@ -121,9 +107,7 @@ background-color: #f3f3f3;}
     color: #fff;}
 
 
-.bodyPartLogin > img{
-    height: 100vh;
-}
+.Login > img{height: 100vh;}
 
 #peliculaRecuperarSenhaCandidato{
     background-color: rgb(00, 00, 00,0.63);
@@ -132,8 +116,7 @@ background-color: #f3f3f3;}
     position: fixed;
     top: 0;
     justify-content: center;
-    align-items: center;
-}
+    align-items: center;}
 
 #modalRecuperarSenhaCandidato{
     width: 50%;
@@ -145,56 +128,38 @@ background-color: #f3f3f3;}
     padding: 20px;
     position: fixed;
     top: 25%;
-    left: 25%;
-}
+    left: 25%;}
 
-@media(max-width:1116px){
-    .sessaoLogar {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100vw;
-        background-color: #f3f3f3;
-        height: 100vh;
-    }
-    .imagemDireito{
-        display: none;
-    }
+@media only screen and (max-width: 700px) {
 
-    .sessaoLogar{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: #f3f3f3;}
+.imgBannerLogin {display: none;}
+
+.principalLogin {
+    padding: 3em 0px;
+    flex-direction: column;}
     
-    .sessaoLogar > div 
-    {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: start;
-        height: 60%;
+.divisionBtn {width: 243px;}
+.division-logar {width: 360px;}
+.form-logar {height: 23vh;}
+
+.divisionCampo {height: 9vh;}
     }
+
+@media only screen and (max-width: 775px) {
+.division-logar {width: 508px;}
+
+.principalLogin {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    }
+
+.imgBannerLogin {display: none;}
+
+.divisionBtn {width: 300px;}
+
+.divisionPassword {height: 11vh;}
+
+.form-logar {height: 23vh;}
 }
 
-@media(max-width:600px){
-    .divisionBtn {
-   display: flex;
-   justify-content: space-around;
-    }
-
-    .sessaoLogar > div {
-        display: contents;
-    }
-
-    .divisionBtn {
-        width:-webkit-fill-available;
-    }
-
-        .division-logar {
-            width: auto;
-            padding: 10px;
-        }
-}

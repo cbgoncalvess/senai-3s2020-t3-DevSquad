@@ -97,18 +97,20 @@ export default function Login() {
     }
 
     return (
-        <div className="bodyPartLogin">
+        <div className="Login">
             <AccessBar />
             <Header />
             <AccessMenu />
-            <div className="meioLogin">
-                <div className="sessaoLogar">
-                    <div>
+            <main className="principalLogin">
+                <section className="sessaoLogar">
+
                         <div className="division-logar">
+
                             <div className="division-logar-title">
                                 <h2>login</h2>
                                 <p className="sub-titulo">Bem-vindo ao SENAI | TechVagas</p>
                             </div>
+
                             <form className="form-logar" onSubmit={event => {
                                 event.preventDefault();
                                 login();
@@ -125,15 +127,20 @@ export default function Login() {
                                     <h5 className="recuperarPassword" onClick={ApareceRecuperarSenhaCandidato}>Recuperar senha</h5>
                                 </div>
                             </form>
+
                             <div className="divisionBtn">
                                 <button className="btnNew"><Link className="link-cad-conta" to="/cadastro">criar conta</Link></button>
                                 <button className="btnLogar" onClick={login}>entrar</button>
                             </div>
+
                         </div>
-                    </div>
-                </div>
-                <img src={imglogin} className="imagemDireito" />
-            </div>
+                    
+
+
+                </section>
+
+                <img src={imglogin} className="imgBannerLogin" />
+            </main>
 
             <div id="peliculaRecuperarSenhaCandidato" className="peliculaRecuperarSenhaCandidato none" onClick={btn_fecharRecuperarSenhaCandidato}></div>
             <div id="modalRecuperarSenhaCandidato" className="modalRecuperarSenhaCandidato none">
