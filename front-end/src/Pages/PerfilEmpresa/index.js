@@ -197,19 +197,61 @@ export default function PerfilEmpresa() {
             <div id="modalPerfilEmpresa" className="modalPerfilEmpresa none">
                 <h2>Editar seus dados pessoais</h2>
                 <form>
-                    <Input className="InputCadastro" value={NomeResponsavel} name="NomeResponsavel" label="Nome do responsável" onChange={e => SetNomeResponsavel(e.target.value)} />
-                    <Input className="InputCadastro" value={RazaoSocial} name="RazaoSocial" label="Razão social" onChange={e => SetRazaoSocial(e.target.value)} />
-                    <Input className="InputCadastro" value={NomeFantasia} name="NomeFantasia" label="Nome fantasia" onChange={e => SetNomeFantasia(e.target.value)} />
-                    <Input className="InputCadastro" value={CNPJ} name="CNPJ" label="CNPJ" onChange={e => SetCNPJ(e.target.value)} />
-                    <Input className="InputCadastro" value={EmailContato} name="EmailConato" label="Email para contato" onChange={e => SetEmailContato(e.target.value)} />
-                    <Input className="InputCadastro" value={Telefone} name="Telefone" label="Telefone" onChange={e => SetTelefone(e.target.value)} />
-                    <Input className="InputCadastro" value={NumFuncionario} name="NumFuncionarios" label="Número de fúncionarios" onChange={e => SetNumFuncionario(e.target.value)} />
-                    <Input className="InputCadastro" value={NumCNAE} name="NumCNAE" label="Número do CNAE" onChange={e => SetNumCNAE(e.target.value)} />
-                    <Input className="InputCadastro" value={CEP} name="CEP" label="CEP" onChange={e => SetCEP(e.target.value)} />
-                    <Input className="InputCadastro" value={Logradouro} name="Logradouro" label="Logradouro" onChange={e => SetLogradouro(e.target.value)} />
-                    <Input className="InputCadastro" value={Complemento} name="Complemento" label="Complemento" onChange={e => SetComplemento(e.target.value)} />
-                    <Input className="InputCadastro" value={Estado} name="Estado" label="Estado" onChange={e => SetEstado(e.target.value)} />
-                    <Input className="InputCadastro" value={Cidade} name="Cidade" label="Cidade" onChange={e => SetCidade(e.target.value)} />
+                    <Input className="InputCadastro" value={NomeResponsavel} name="NomeResponsavel" label="Nome do responsável" onChange={e => SetNomeResponsavel(e.target.value)}
+                    maxLength={35}
+                    minLength={5}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={RazaoSocial} name="RazaoSocial" label="Razão social" onChange={e => SetRazaoSocial(e.target.value)} 
+                    maxLength={50}
+                    minLength={5}
+                    requi
+                    red 
+                    />
+                    <Input className="InputCadastro" value={NomeFantasia} name="NomeFantasia" label="Nome fantasia" onChange={e => SetNomeFantasia(e.target.value)}
+                    maxLength={50}
+                    minLength={5}
+                    required />
+                    <Input className="InputCadastro" value={CNPJ} name="CNPJ" label="CNPJ" onChange={e => SetCNPJ(e.target.value)}
+                    maxLength={14}
+                    minLength={14}                    required 
+                    />
+
+                    <Input className="InputCadastro" value={EmailContato} name="EmailConato" label="Email para contato" onChange={e => SetEmailContato(e.target.value)}
+                    maxLength={254}
+                    minLength={5}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={Telefone} name="Telefone" label="Telefone" onChange={e => SetTelefone(e.target.value)}
+                    maxLength={14}
+                    minLength={11}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={NumFuncionario} name="NumFuncionarios" label="Número de fúncionarios" onChange={e => SetNumFuncionario(e.target.value)} required/>
+
+                    <Input className="InputCadastro" value={NumCNAE} name="NumCNAE" label="Número do CNAE" onChange={e => SetNumCNAE(e.target.value)} 
+                    maxLength={7}
+                    minLength={7}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={CEP} name="CEP" label="CEP" onChange={e => SetCEP(e.target.value)}
+                    maxLength={8}
+                    minLength={8}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={Logradouro} name="Logradouro" label="Logradouro" onChange={e => SetLogradouro(e.target.value)} required/>
+
+                    <Input className="InputCadastro" value={Complemento} name="Complemento" label="Complemento" onChange={e => SetComplemento(e.target.value)} required/>
+
+                    <Input className="InputCadastro" value={Estado} name="Estado" label="Estado" onChange={e => SetEstado(e.target.value)} required />
+
+                    <Input className="InputCadastro" value={Cidade} name="Cidade" label="Cidade" onChange={e => SetCidade(e.target.value)} required/>
+
                     <div className="btEditarEstagioDiv">
                         <button className="btVaga" onClick={EditarDadosDaEmpresa}><h3>Editar</h3></button>
                     </div>
@@ -220,8 +262,17 @@ export default function PerfilEmpresa() {
             <div id="modalAlterarSenhaEmpresa" className="modalAlterarSenhaEmpresa none">
                 <h2>Alterar senha</h2>
                 <form>
-                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)} />
-                    <Input className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => setSenha(e.target.value)} />
+                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
+                    maxLength={15}
+                    minLength={9}
+                    required 
+                    />
+                    
+                    <Input className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => setSenha(e.target.value)} 
+                    maxLength={15}
+                    minLength={9}
+                    required 
+                    />
                     <button className="btVaga" onClick={AlterarSenha}>Alterar senha</button>
                 </form>
             </div>

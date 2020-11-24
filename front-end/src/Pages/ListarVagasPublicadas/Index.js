@@ -7,6 +7,7 @@ import Footer from '../../Components/Footer';
 import Input from '../../Components/Input';
 
 import imgDelete from '../../assets/delete.webp'
+import imgGlobal from '../../assets/global.png'
 import imgEdit from '../../assets/black-ink-pen.webp'
 import imgEmpresa from '../../assets/Teste.webp'
 import Tag from '../../Components/Tag/Index';
@@ -32,7 +33,7 @@ export default function VagasPublicadas() {
 
     /* Editar Vaga */
     const [Experiencia, setExperiencia] = useState('');
-    const [Area,setArea]=useState(Number);
+    const [Area,setArea]=useState(0);
     const [TipoContrato, setTipoContrato] = useState('');
     const [Salario, setSalario] = useState(0);
     const [DescricaoBeneficio, setDescricaoBeneficio] = useState('');
@@ -81,7 +82,7 @@ export default function VagasPublicadas() {
             }
         }).then(response => response.json()).then(dados => {
             setTituloVaga(dados.tituloVaga);
-            setArea(dados.nomeArea);
+            setArea(dados.idArea);
             setEstado(dados.estado);
             setLogradouro(dados.logradouro);
             setTipoContrato(dados.tipoContrato);
@@ -270,6 +271,7 @@ export default function VagasPublicadas() {
                 alert("Não foi possivel deletar esta vaga");
             } else {
                 alert("Vaga deletada com sucesso com sucesso");
+                listarVagas();
             }
         })
             .catch(err => console.error(err));
@@ -315,12 +317,13 @@ export default function VagasPublicadas() {
                                             IrParaInscricoes();
                                         }}>{item.tituloVaga}</h3>
                                         <div className="InfoVagas">
-                                            <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
-                                            <InfoVaga NomeProp={item.localidade} source={imgLocalizacao} />
-                                            <InfoVaga NomeProp={item.experiencia} source={imgFuncao} />
-                                            <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato} />
-                                            <InfoVaga NomeProp={item.salario} source={imgSalario} />
-                                            <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento} />
+                                            <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa}/>
+                                            <InfoVaga NomeProp={item.localidade} source={imgLocalizacao}/>
+                                            <InfoVaga NomeProp={item.experiencia} source={imgFuncao}/>
+                                            <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato}/>
+                                            <InfoVaga NomeProp={item.salario} source={imgSalario}/>
+                                            <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento}/>
+                                            <InfoVaga NomeProp={item.tipoPresenca} source={imgGlobal}/>
                                         </div>
                                         <div className="TecnologiasVaga">
                                             {item.tecnologias.map((tec) => {
@@ -414,7 +417,7 @@ export default function VagasPublicadas() {
                             <option value="0">Selecione um nivel de experiencia</option>
                             <option value="Pleno">Pleno</option>
                             <option value="Sênior">Sênior</option>
-                            <option value="Junior">Júnior</option>
+                            <option value="Júnior">Júnior</option>
                         </select>
                     </div>
 
@@ -424,7 +427,7 @@ export default function VagasPublicadas() {
                             <option value="0">Selecione um tipo de contrato</option>
                             <option value="CLT">CLT</option>
                             <option value="PJ">PJ</option>
-                            <option value="Estagio">Estagio</option>
+                            <option value="Está gio">Estagio</option>
                         </select>
                     </div>
                     <Input className="InputCadastro" value={Estado} name="Estado" label="Estado" onChange={e => setEstado(e.target.value)} />

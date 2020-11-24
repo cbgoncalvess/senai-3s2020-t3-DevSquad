@@ -35,6 +35,7 @@
     color: #ffffff;
     vertical-align: middle;
     text-transform: uppercase;
+<<<<<<< HEAD
     font-weight: bold;}
 
 
@@ -44,4 +45,7 @@
 .bannerDashboardCandidato > h2{text-align: center;}
 
 .title-vagas-inscritas > h3 {text-align: center;}
+=======
+    font-weight: bold;
+>>>>>>> c44ee1250db26307547097bbbb446ccfff68967f
 }

@@ -154,8 +154,8 @@ export default function CadastrarColaborador() {
                             label="*Senha" 
                             type="password" 
                             placeholder="*********" 
-                            maxLength={30}
-                            minLength={10}
+                            maxLength={15}
+                            minLength={9}
                             required
                             onChange={e => SetSenha(e.target.value)}
                             />
@@ -164,8 +164,8 @@ export default function CadastrarColaborador() {
                             label="*Confirmar Senha" 
                             type="password" 
                             placeholder="*********" 
-                            maxLength={30}
-                            minLength={10}
+                            maxLength={15}
+                            minLength={9}
                             required
                             onChange={e => SetConfirmarSenha(e.target.value)}
                             />

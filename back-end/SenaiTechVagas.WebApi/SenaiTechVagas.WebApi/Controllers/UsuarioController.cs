@@ -103,9 +103,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Altera a senha do usuario logado no perfil
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="vm"></param>
         /// <returns></returns>
         [Authorize]
         [HttpPut("AlterarSenha")]
@@ -134,7 +134,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [Authorize]
         [HttpPut("RecuperarSenha")]
         public IActionResult RecuperarSenha(RecuperarSenhaViewModel vm)
         {
@@ -166,25 +165,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 return Ok(usuarioRepository.ListarVagasEmGeral());
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
-        /// Método que lista Vagas da área.
-        /// </summary>
-        /// <param name="id">Identificador ListarVagasArea</param>
-        /// <returns>Retorna lista de VagasArea</returns>
-        [Authorize]
-        [HttpGet("ListarVagasArea/{id}")]
-        public IActionResult ListarVagasArea(int id)
-        {
-            try
-            {
-                return Ok(usuarioRepository.ListarVagasArea(id));
             }
             catch (Exception)
             {
@@ -230,63 +210,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método que lista filtro tipo de contrato
-        /// </summary>
-        /// <param name="NomeTipoContrato">Objeto NomeTipoContrato</param>
-        /// <returns>Retorna lista filtro tipo de contrato.</returns>
-        [Authorize]
-        [HttpGet("TipoContrato/{NomeTipoContrato}")]
-        public IActionResult ListarVagasFiltroTipoContarto(string NomeTipoContrato)
-        {
-            try
-            {
-                return Ok(usuarioRepository.ListarFiltroTipoContrato(NomeTipoContrato));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
-        /// Método que lista filtro de vaga, por nível de experiência.
-        /// </summary>
-        /// <param name="NivelExperiencia">Objeto NivelExperiencia</param>
-        /// <returns>Retorna lista de nível de experiência.</returns>
-        [Authorize]
-        [HttpGet("NivelExperiencia/{NivelExperiencia}")]
-        public IActionResult ListarVagas(string NivelExperiencia)
-        {
-            try
-            {
-                return Ok(usuarioRepository.ListarFiltroNivelExperiencia(NivelExperiencia));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
-        /// Método que lista tecnologias.
-        /// </summary>
-        /// <param name="NomeTecnologia">Objeto Tecnologia</param>
-        /// <returns>Retorna lista de tecnologia.</returns>
-        [Authorize]
-        [HttpGet("Tecnologia/{NomeTecnologia}")]
-        public IActionResult ListarVagasPelaTecnologia(string NomeTecnologia)
-        {
-            try
-            {
-                return Ok(usuarioRepository.ListarPesquisaTecnologia(NomeTecnologia));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
         /// Método que lista tecnologia cadastrados
         /// </summary>
         /// <returns>Retorna tecnogias.</returns>
@@ -308,7 +231,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que lista cursos cadastrados
         /// </summary>
         /// <returns>Retorna cursos cadastrados.</returns>
-        [Authorize]
         [HttpGet("ListarCurso")]
         public IActionResult ListarCurso()
         {

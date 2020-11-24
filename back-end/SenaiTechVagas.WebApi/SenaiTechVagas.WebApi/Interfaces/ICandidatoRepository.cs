@@ -13,6 +13,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<ListarVagasViewModel> ListarInscricoes(int idUsuario);
         bool SeInscrever(Inscricao NovaInscricao);
         bool RevogarInscricao(int idInscricao,int idCandidato);
+        List<ListarVagasViewModel> ListarVagasArea(int idArea);
         /*------------VERIFICAÇÕES INICIO-------------*/
         Candidato BuscarCandidatoPorIdUsuario(int idUsuario);
         bool VerificarSeInscricaoExiste(int idVaga, int idCandidato);

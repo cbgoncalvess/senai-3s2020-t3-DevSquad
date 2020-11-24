@@ -192,8 +192,16 @@ const DeletarVaga = () => {
             <div id="modalAlterarSenhaUsuario" className="modalAlterarSenhaUsuario none">
                 <h2>Alterar senha</h2>
                 <form>
-                    <Input className="InputCadastro" name="Email" label="Email" onChange={e => SetEmail(e.target.value)} />
-                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)} />
+                    <Input className="InputCadastro" name="Email" label="Email" onChange={e => SetEmail(e.target.value)}
+                    maxLength={154}
+                    minLength={5}
+                    required
+                    />
+                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
+                    maxLength={15}
+                    minLength={9}
+                    required
+                    />
                     <button className="btVaga" onClick={AlterarSenha}>Alterar senha</button>
                 </form>
             </div>
