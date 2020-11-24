@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 //style
- import './style.css';
+import './style.css';
 
 // components
 import AccessBar from '../../Components/AccessBar/index';
@@ -21,6 +21,7 @@ import IconEmpresa from '../../assets/building.webp';
 
 export default function InscricaoDashboardCandidato() {
     const [vagas, setVagas] = useState([]);
+    let [idInscricao, setIdInscricao] = useState(0);
 
     useEffect(() => {
         listar();
@@ -35,8 +36,25 @@ export default function InscricaoDashboardCandidato() {
             }
         }).then(response => response.json())
             .then(dados => {
-                setVagas(dados);
-            }).catch(e => e.console.error(e));
+                setVagas(dados)
+            }).catch(erro => console.error(erro));
+    }
+
+    const revogarInscricao = () => {
+
+        fetch('http://localhost:5000/api/Candidato/RevogarInscricao/' + idInscricao, {
+
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        }).then(response => response.json())
+            .then(dados => {
+                alert(dados);
+                listar();
+            })
+            .catch(err => console.error(err))
     }
     return (
         <div className="InscricaoDashboardCandidato">
@@ -84,7 +102,11 @@ export default function InscricaoDashboardCandidato() {
                                                 </div>
 
                                                 <div className="divisionBtnRevogar">
-                                                    <button className="btnRevogar">revogar inscrição</button>
+                                                    <button className="btnRevogar" onClick={e => {
+                                                        e.preventDefault();
+                                                        idInscricao = item.idInscricao;
+                                                        revogarInscricao();
+                                                    }}>revogar inscrição</button>
                                                 </div>
 
                                             </div>
