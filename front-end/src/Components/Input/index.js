@@ -17,6 +17,7 @@ function Input(props) {
         minLength={props.minLength}
         onBlur={props.onBlur}
         onKeyUp={props.onKeyUp}
+        onKeyPress={props.onKeyPress}
         required
       />
     </div>

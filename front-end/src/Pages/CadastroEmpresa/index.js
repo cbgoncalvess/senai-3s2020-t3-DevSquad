@@ -41,6 +41,7 @@ export default function CadastroEmpresa() {
   let verificacaoEmail = emailRegex.test(Email);
 
   let result = document.querySelector(".password-matching-text");
+  let redBox = document.querySelector("#confirmPassword-cadastro");
 
   function buscarCep(valor) {
     if (verificacaoCep) {
@@ -48,10 +49,12 @@ export default function CadastroEmpresa() {
       fetch(URL)
         .then((resposta) => resposta.json())
         .then((data) => {
-          console.log(data);
           document.getElementById("rua").value = data.logradouro;
           document.getElementById("cidade").value = data.localidade;
           document.getElementById("uf").value = data.uf;
+          SetLogradouro(data.logradouro);
+          SetCidade(data.localidade);
+          SetEstado(data.uf);
         })
         .catch((erro) => console.error(erro));
     } else {
@@ -60,9 +63,15 @@ export default function CadastroEmpresa() {
   }
 
   const escreverResultado = () => {
-    if (Senha != ConfirmarSenha) {
+    if (Senha !== ConfirmarSenha) {
+      result.style.color = "red";
+      redBox.style.border = "solid red 1px";
+      redBox.style.boxShadow = "3px 3px 3px gray";
       result.innerText = "As senhas não conferem";
     } else {
+      result.style.color = "unset";
+      redBox.style.border = "unset";
+      redBox.style.boxShadow = "unset";
       result.innerText = "As senhas conferem";
     }
   };
@@ -94,6 +103,7 @@ export default function CadastroEmpresa() {
         RespostaSeguranca: RespostaSeguranca,
         PerguntaSeguranca: PerguntaSeguranca,
       };
+      console.log(data);
       fetch("http://localhost:5000/api/Usuario/Empresa", {
         method: "POST",
         body: JSON.stringify(data),
@@ -148,6 +158,9 @@ export default function CadastroEmpresa() {
                 maxLength={14}
                 minLength={14}
                 required
+                onKeyPress={(e) => {
+                  "return e.charCode >= 48 && e.charCode <= 57";
+                }}
                 onChange={(e) => SetCNPJ(e.target.value)}
               />
 
@@ -170,7 +183,6 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="CPTM"
                 maxLength={50}
-                minLength={5}
                 required
                 onChange={(e) => SetNomeFantasia(e.target.value)}
               />
@@ -259,7 +271,6 @@ export default function CadastroEmpresa() {
                 maxLength={50}
                 minLength={5}
                 required
-                onChange={(e) => SetLogradouro(e.target.value)}
               />
 
               <Input
@@ -267,8 +278,6 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="Complemento:"
                 maxLength={30}
-                minLength={5}
-                required
                 type="text"
                 onChange={(e) => SetComplemento(e.target.value)}
               />
@@ -282,7 +291,6 @@ export default function CadastroEmpresa() {
                   id="cidade"
                   required
                   disabled
-                  onChange={(e) => SetCidade(e.target.value)}
                 />
               </div>
 
@@ -295,7 +303,6 @@ export default function CadastroEmpresa() {
                   id="uf"
                   required
                   disabled
-                  onChange={(e) => SetEstado(e.target.value)}
                 />
               </div>
 

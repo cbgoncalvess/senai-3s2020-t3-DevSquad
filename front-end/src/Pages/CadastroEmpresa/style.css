@@ -91,6 +91,7 @@ body
 .password-matching-text {
   display: flex;
   text-align: left;
+  padding: 0 1vw; 
 }
 
 @media (max-width: 900px) {

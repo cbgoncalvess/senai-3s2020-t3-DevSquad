@@ -1,155 +1,158 @@
-.Questionario{
-padding: 2vh 10vw;
+.Questionario {
+  padding: 2vh 10vw;
 }
 
-#root > div > div.heightomg > div{
-    height: -webkit-fill-available;
+#root > div > div.heightomg > div {
+  height: -webkit-fill-available;
 }
 
-.InputRadius{
-    background: transparent !important;
+.InputRadius {
+  background: transparent !important;
 }
 
-.aligncenter{
-    text-align: center;
-    padding: 2vw;
+.aligncenter {
+  text-align: center;
+  padding: 2vw;
 }
 
-#root > div > div.centro > button{
-    width: auto;
-    height: auto;
-    padding: 12px 25px;
-    background: #353535;
-    border-radius: 4px;
-    color: white;
-    border: #353535 solid 1px !important;
-    transition: .5s;
-    font-weight: 700;
-
+#root > div > div.centro > button {
+  width: auto;
+  height: auto;
+  padding: 12px 44px;
+  background: #353535;
+  border-radius: 4px;
+  color: white;
+  border: #353535 solid 1px !important;
+  transition: 0.5s;
+  font-weight: 700;
 }
 
 .centro {
-    text-align: center;
-    padding: 30px 0;
+  text-align: center;
+  padding: 30px 0;
 }
 
-#root > div > div.centro > button:hover{
-    padding: 12px 25px;
-    background: white;
-    border-radius: 4px;
-    color: #353535;
-    border: white solid 1px;
-    transition: .5s;
-    cursor: pointer;
-    font-weight: 700;
+#root > div > div.centro > button:hover {
+  background: white;
+  border-radius: 4px;
+  color: #353535;
+  border: white solid 1px;
+  transition: 0.5s;
+  cursor: pointer;
+  font-weight: 700;
 }
 
-#root > div > h1{
-    margin: 2vw 0vw 0vw 10vw;
+#root > div > h1 {
+  margin: 2vw 0vw 0vw 10vw;
 }
 .none {
-    display: none;
-    }
-    
-    .pelicula,.modal {
-        background-color: rgb(00, 00, 00,0.63);
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-    }
-    
-    .janela {
-        background-color: whitesmoke;
-        position: fixed;
-        top: 2%;
-        left: 10%;
-        width: 80%;
-        max-height: 90%;
-        min-height: 75%;
-        padding: 20px;
-    }
-    
-    .conteudoModal {
-        display: flex;
-        flex-direction: row;
-    }
-    
-    .headModal {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 35px;
-    }
-    
-    .animais {
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        flex-direction: column;
-    }
-    
-    .animal {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        animation-delay: 20s;
-    }
-    
-    .alinhar {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        min-width: 190px;
-    } 
-    
-    .palavraChave {
-        font-size: 20px;
-    }
+  display: none;
+}
 
-    
-    .logoTipo {
-        width: 200px;
-        
-    }
-    
-    .aguia, #fechar {
-        width: 100px;
-        box-shadow: -3px -3px 5px #ffffff,
-        3px 3px 5px #a8a8a8;
-        border-radius: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 10px 7px 0 0;
-        padding: 5px;}
-    
-    .aguia:active, #fechar:active{
-        box-shadow: inset -3px -3px 5px #ffffff, inset 3px 3px 5px #a8a8a8;
-        text-align: -webkit-center;
-    }
-    
-    .aguia:active > .aguia, #fechar:active > #fechar{
-        min-width: 95px;
-        height: 95px;
-        box-shadow: inset -3px -3px 5px #ffffff, inset 3px 3px 5px #a8a8a8;
-    
-    }
-    
-    #fechar {
-        position: absolute;
-        top: 0%;
-        right:2%;
-        width: 40px;
-        height: 40px;
-        font-size: large;
-        font-weight: bolder;
-        border: unset;
-    }
-    
-    /* .conteudo {
+.pelicula,
+.modal {
+  background-color: rgb(00, 00, 00, 0.63);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+}
+
+.janela {
+  background-color: whitesmoke;
+  position: fixed;
+  top: 2%;
+  left: 10%;
+  width: 80%;
+  max-height: 90%;
+  min-height: 75%;
+  padding: 20px;
+}
+
+.conteudoModal {
+  display: flex;
+  flex-direction: row;
+}
+
+.conteudo {
+  padding: 5vw;
+}
+
+.headModal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.animais {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.animal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  animation-delay: 20s;
+}
+
+.alinhar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 190px;
+}
+
+.palavraChave {
+  font-size: 20px;
+}
+
+.logoTipo {
+  width: 200px;
+}
+
+.aguia,
+#fechar {
+  width: 100px;
+  box-shadow: -3px -3px 5px #ffffff, 3px 3px 5px #a8a8a8;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 7px 10px 0;
+  padding: 5px;
+}
+
+.aguia:active,
+#fechar:active {
+  box-shadow: inset -3px -3px 5px #ffffff, inset 3px 3px 5px #a8a8a8;
+  text-align: -webkit-center;
+}
+
+.aguia:active > .aguia,
+#fechar:active > #fechar {
+  min-width: 95px;
+  height: 95px;
+  box-shadow: inset -3px -3px 5px #ffffff, inset 3px 3px 5px #a8a8a8;
+}
+
+#fechar {
+  position: absolute;
+  top: 0%;
+  right: 2%;
+  width: 40px;
+  height: 40px;
+  font-size: large;
+  font-weight: bolder;
+  border: unset;
+}
+
+/* .conteudo {
         padding: 15px;
         width: 50%;
         display: flex;
@@ -177,62 +180,66 @@ padding: 2vh 10vw;
         background-position: right 0px top 100px;    
     } */
 
-    @media (max-width: 1000px){
-        #modalTeste > div.janela > div.conteudoModal{
-            display: unset;
-        }
-        .alinhar, .animal{
-            display: unset;
-        }
+@media (max-width: 1000px) {
+  #modalTeste > div.janela > div.conteudoModal {
+    display: unset;
+  }
+  .alinhar,
+  .animal {
+    display: unset;
+  }
 
-        .animais{
-            justify-content: space-between;
-            flex-direction: row;
-            width: -webkit-fill-available;
-        }
-        #modalTeste > div.janela > div.conteudoModal > div.conteudo{
-            width: -webkit-fill-available;
-        }
-    }
+  .animais {
+    justify-content: space-between;
+    flex-direction: row;
+    width: -webkit-fill-available;
+  }
+  #modalTeste > div.janela > div.conteudoModal > div.conteudo {
+    width: -webkit-fill-available;
+  }
+}
 
-    @media (min-width: 701px){
-        .animais{
-            display: flex;
-        }
-    }
+@media (min-width: 701px) {
+  .animais {
+    display: flex;
+  }
+}
 
-    @media (max-width: 700px){
-        #modalTeste > div.janela{
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-        .animais{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-        .conteudo{
-            width: -webkit-fill-available;
-        }
-        .palavraChave{
-            font-size: 16px;
-        }
-        #menu-hide > li > a{
-            font-size: 5vw;
-        }
-    }
+@media (max-width: 700px) {
+  #modalTeste > div.janela {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .animais {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .conteudo {
+    width: -webkit-fill-available;
+    padding: 2vw;
+  }
+  .palavraChave {
+    font-size: 16px;
+  }
+  #menu-hide > li > a {
+    font-size: 5vw;
+  }
+}
 
-    .preto .InputRadius, .preto #root > div > h1, .preto #root > div{
-        background: transparent !important;
-    }
+.preto .InputRadius,
+.preto #root > div > h1,
+.preto #root > div {
+  background: transparent !important;
+}
 
-    .maior #root > div > h1{
-        font-size: 37px;
-    }
+.maior #root > div > h1 {
+  font-size: 37px;
+}
 
-    .maior #root > div > div.centro > button{
-        font-size: 20px;
-    }
+.maior #root > div > div.centro > button {
+  font-size: 20px;
+}
 
-    .preto #pelicula{
-        background: rgba(0, 0, 0, .5) !important;
-    }
+.preto #pelicula {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
