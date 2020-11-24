@@ -18,6 +18,7 @@ function Input(props) {
         onBlur={props.onBlur}
         onKeyUp={props.onKeyUp}
         onKeyPress={props.onKeyPress}
+        autoComplete={props.autoComplete}
         required
       />
     </div>

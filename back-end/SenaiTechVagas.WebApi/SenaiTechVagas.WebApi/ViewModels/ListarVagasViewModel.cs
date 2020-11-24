@@ -19,5 +19,9 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public List<string> Tecnologias { get; set; }
         public int IdInscricao { get; set; }
         public string TipoPresenca { get; set; }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 851af33f9dc19566fbac7020289a1bfd39aa7472
     }
 }

@@ -43,7 +43,11 @@
 @media only screen and (min-width: 100px) {
 .bannerDashboardCandidato > h2{text-align: center;}
 
+<<<<<<< HEAD
 .title-vagas-inscritas > h3 {text-align: center;
     font-weight: bold;
 }
+=======
+.title-vagas-inscritas > h3 {text-align: center;}
+>>>>>>> 851af33f9dc19566fbac7020289a1bfd39aa7472
 }
