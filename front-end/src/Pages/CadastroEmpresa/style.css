@@ -91,7 +91,20 @@ body
 .password-matching-text {
   display: flex;
   text-align: left;
-  padding: 0 1vw; 
+  padding: 0 1vw;
+}
+
+.password-instructions-text{
+  text-align:justify;
+  padding: 0 1vw;
+}
+
+#cidade, #uf {
+  cursor: not-allowed;
+}
+
+#rua {
+  cursor: context-menu;
 }
 
 @media (max-width: 900px) {
@@ -131,13 +144,4 @@ grid-area: 2 / 2 / 4 / 4;
 .preto .form-content,
 .preto div.box-form > div > h1 {
   background: #373737 !important;
-}
-
-#cidade,
-#uf:read-only {
-  cursor: not-allowed;
-}
-
-#rua {
-  cursor: context-menu;
 }

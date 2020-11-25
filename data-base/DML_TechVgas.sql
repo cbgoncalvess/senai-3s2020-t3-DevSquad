@@ -13,9 +13,6 @@ MANTENHA A LÍNGUA - DO SEU SQL SERVER - EM PORTUGUÊS DO BRASIL
 	Reconfigure
 
 */
-
-select * from Inscricao
-
 USE Db_TechVagas
 GO
 
@@ -26,37 +23,6 @@ VALUES		('Administrador'),
 			('Banido');
 GO
 
-<<<<<<< HEAD
-select * from Usuario
-select * from TipoRegimePresencial
-
-insert Into TipoRegimePresencial(NomeTipoRegimePresencial)VALUES
-('Semi-presencial'),('Presencial'),('Remoto')
-
-INSERT INTO Curso (NomeCurso, TipoCurso,IdArea)
-VALUES		('Desenvolvimento de Sistemas - 1T - M', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 2T - M', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 3T - M', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 1T - T', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 2T - T', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 3T - T', 'Técnico',1),
-			('Redes de Computadores - 1T - M', 'Técnico',2),
-			('Redes de Computadores - 2T - M', 'Técnico',2),
-			('Redes de Computadores - 3T - M', 'Técnico',2),
-			('Redes de Computadores - 1T - T', 'Técnico',2),
-			('Redes de Computadores - 2T - T', 'Técnico',2),
-			('Redes de Computadores - 3T - T', 'Técnico',2),
-			('Multimídia - 1T - M', 'Técnico',3),
-			('Multimídia - 2T - M', 'Técnico',3),
-			('Multimídia - 3T - M', 'Técnico',3),
-			('Multimídia - 1T - T', 'Técnico',3),
-			('Multimídia - 2T - T', 'Técnico',3),
-			('Multimídia - 3T - T', 'Técnico',3);
-GO
-
-
-=======
->>>>>>> 851af33f9dc19566fbac7020289a1bfd39aa7472
 INSERT INTO StatusInscricao (NomeStatusInscricao)
 VALUES		('Aprovado'),
 			('Em Andamento'),
@@ -86,9 +52,6 @@ VALUES		('Desenvolvimento'),
 			('Multimídia');
 GO
 
-<<<<<<< HEAD
-Select * from Inscricao
-=======
 INSERT INTO Curso (NomeCurso, TipoCurso,IdArea)
 VALUES		('Desenvolvimento de Sistemas - 1T - M', 'Técnico',1),
 			('Desenvolvimento de Sistemas - 2T - M', 'Técnico',1),
@@ -115,4 +78,3 @@ VALUES		('Presencial'),
 			('Semipresencial'),
 			('Remoto');
 GO
->>>>>>> 851af33f9dc19566fbac7020289a1bfd39aa7472

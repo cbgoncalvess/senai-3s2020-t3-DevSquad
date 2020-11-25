@@ -29,28 +29,53 @@ export default function CadastroEmpresa() {
   const history = useHistory();
 
   const emailRegex = /^\S+@\S+\.\S+$/g;
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/g;
 
   let result = document.querySelector(".password-matching-text");
   let redBox = document.querySelector("#confirmarSenha-cadastroCandidato");
+  let instructions = document.querySelector(".password-instructions-text");
 
+  const verificacaoEmail = emailRegex.test(Email);
+  let verificacaoSenha = senhaRegex.test(Senha);
+  let verificacaoConfirmarSenha = senhaRegex.test(ConfirmarSenha);
+  
   useEffect(() => {
     listarcurso();
   }, []);
 
-  const verificacaoEmail = emailRegex.test(Email);
+  
   const escreverResultado = () => {
     if (Senha !== ConfirmarSenha) {
-      result.style.color = "red";
       redBox.style.border = "solid red 1px";
       redBox.style.boxShadow = "3px 3px 3px gray";
+      result.style.color = "red";
       result.innerText = "As senhas não conferem";
+
     } else {
-      result.style.color = "black";
       redBox.style.border = "unset";
       redBox.style.boxShadow = "unset";
+      result.style.color = "unset";
       result.innerText = "As senhas conferem";
     }
+
+    if(verificacaoSenha !== true || verificacaoConfirmarSenha !== true){
+      redBox.style.border = "solid red 1px";
+      redBox.style.boxShadow = "3px 3px 3px gray";
+      instructions.style.color = "red";
+      instructions.innerText =
+        `A senha deve conter 8 caracteres, dentre eles:
+      • 1 letra minúscula
+      • 1 letra maiúscula
+      • 1 número
+      • 1 caractere especial`;
+    }else{
+      redBox.style.border = "unset";
+      redBox.style.boxShadow = "unset";
+      instructions.style.color = "unset";
+      instructions.innerText = "";
+    }
   };
+
 
   function salvar(e) {
     e.preventDefault();
@@ -236,6 +261,7 @@ export default function CadastroEmpresa() {
               />
 
               <p className="password-matching-text"></p>
+              <p className="password-instructions-text"></p>
 
               <div>
                 <label className="select-cadastroCandidato-title">

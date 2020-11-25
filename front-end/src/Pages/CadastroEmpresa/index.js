@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import AccessBar from "../../Components/AccessBar";
@@ -41,6 +41,7 @@ export default function CadastroEmpresa() {
   let verificacaoCep = validaCep.test(CEP);
   let verificacaoEmail = emailRegex.test(Email);
   let verificacaoSenha = senhaRegex.test(Senha);
+  let verificacaoConfirmarSenha = senhaRegex.test(ConfirmarSenha);
 
   let redBox = document.querySelector("#confirmPassword-cadastro");
   let result = document.querySelector(".password-matching-text");
@@ -70,24 +71,33 @@ export default function CadastroEmpresa() {
   }
 
   const escreverResultado = () => {
-    if (Senha !== ConfirmarSenha || verificacaoSenha) {
+    if (Senha !== ConfirmarSenha) {
       redBox.style.border = "solid red 1px";
       redBox.style.boxShadow = "3px 3px 3px gray";
       result.style.color = "red";
-      instructions.style.color = "red";
       result.innerText = "As senhas não conferem";
+
+    } else {
+      redBox.style.border = "unset";
+      redBox.style.boxShadow = "unset";
+      result.style.color = "unset";
+      result.innerText = "As senhas conferem";
+    }
+
+    if(verificacaoSenha !== true || verificacaoConfirmarSenha !== true){
+      redBox.style.border = "solid red 1px";
+      redBox.style.boxShadow = "3px 3px 3px gray";
+      instructions.style.color = "red";
       instructions.innerText =
         `A senha deve conter 8 caracteres, dentre eles:
       • 1 letra minúscula
       • 1 letra maiúscula
       • 1 número
       • 1 caractere especial`;
-    } else {
+    }else{
       redBox.style.border = "unset";
       redBox.style.boxShadow = "unset";
-      result.style.color = "unset";
       instructions.style.color = "unset";
-      result.innerText = "As senhas conferem";
       instructions.innerText = "";
     }
   };
@@ -98,7 +108,9 @@ export default function CadastroEmpresa() {
       alert("As senhas são difererentes");
     } else if (verificacaoEmail !== true) {
       alert("O e-mail deve ser válido");
-    } else {
+    } else if(verificacaoSenha !== true){
+      alert('A senha não atende aos requisitos')
+    }else {
       const data = {
         NomeReponsavel: NomeResponsavel,
         Cnpj: CNPJ,
@@ -219,8 +231,8 @@ export default function CadastroEmpresa() {
                 label="Telefone da empresa:"
                 type="tel"
                 placeholder="(11)4002-8922"
-                maxLength={14}
-                minLength={11}
+                maxLength={11}
+                minLength={10}
                 required
                 onChange={(e) => SetTelefone(e.target.value)}
               />
@@ -274,7 +286,7 @@ export default function CadastroEmpresa() {
                 maxLength={50}
                 minLength={5}
               />
-
+{/* 
               <Input
                 name="address2"
                 className="cadastre"
@@ -282,7 +294,19 @@ export default function CadastroEmpresa() {
                 maxLength={30}
                 type="text"
                 onChange={(e) => SetComplemento(e.target.value)}
-              />
+              /> */}
+
+              <div className="Input">
+                <label>Complemento:</label>
+                <br />
+                <input
+                  type="text"
+                  name="address2"
+                  maxLength={30}
+                  className="cadastre"
+                  onChange={(e) => SetComplemento(e.target.value)}
+                />
+              </div>
 
               <div className="Input">
                 <label>Cidade:</label>

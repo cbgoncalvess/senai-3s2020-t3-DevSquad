@@ -1,53 +1,61 @@
-.bannerDashboardCandidato{
-    background-image: url("../../assets//bannerVisualizarVaga.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 50vh;
-    width: 100%;
-    display: flex;  
-    justify-content: center;
-    align-items: center}
+.bannerDashboardCandidato {
+  background-image: url("../../assets//bannerVisualizarVaga.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.bannerDashboardCandidato > h2{
-    color: #ffffff;
-    font-size: 40px;
-    font-weight: 200;}
-
+.bannerDashboardCandidato > h2 {
+  color: #ffffff;
+  font-size: 40px;
+  font-weight: 200;
+}
 
 .sessaoVagaInscritas {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;}
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
 
-.title-vagas-inscritas > h3 {font-size: 28px;margin: 2em 0px;}
+.title-vagas-inscritas > h3 {
+  font-size: 28px;
+  margin: 2em 0px;
+}
 
-.divisionBtnRevogar{display: flex; justify-content: flex-end; align-items: center;}
+.divisionBtnRevogar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-.btnRevogar{
-    width: 246px;
-    height: 36px;
-    outline: none;
-    border: none;
-    border-radius: 4px;
-    background:#FF000F;
-    font-size:16px;
-    color: #ffffff;
-    vertical-align: middle;
-    text-transform: uppercase;
-    font-weight: bold;}
+.btnRevogar {
+  width: 246px;
+  height: 36px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background: #ff000f;
+  font-size: 16px;
+  color: #ffffff;
+  vertical-align: middle;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 
-
-    /* resposivo  */
+/* resposivo  */
 
 @media only screen and (min-width: 100px) {
-.bannerDashboardCandidato > h2{text-align: center;}
+  .bannerDashboardCandidato > h2 {
+    text-align: center;
+  }
 
-<<<<<<< HEAD
-.title-vagas-inscritas > h3 {text-align: center;
+  .title-vagas-inscritas > h3 {
+    text-align: center;
     font-weight: bold;
-}
-=======
-.title-vagas-inscritas > h3 {text-align: center;}
->>>>>>> 851af33f9dc19566fbac7020289a1bfd39aa7472
+  }
 }
