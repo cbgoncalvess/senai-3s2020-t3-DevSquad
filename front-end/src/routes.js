@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch,Redirect} from "react-router-dom";
 
 //import { usuarioAutenticado } from "./services/token";
 
@@ -26,56 +26,96 @@ import DashboardInscricaoCandidato from "./Pages/DashbordInscricaoCandidato";
 import CadastrarEstagiario from "./Pages/CadastrarEstagiario";
 import Unauthorized from "./Pages/Unauthorized";
 import VizualizarCandidatosAprovados from "./Pages/CandidatosAprovados";
+import {parseJwt} from './services/token'
 
-/*const PrivateRoute = ({ component: Component, ...rest }) => {
-  <Route
-    {...rest}
-    render={(props) =>
-      usuarioAutenticado() ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{ pathname: "/unauthorized", state: { from: props.location } }}
-        />
-      )
-    }
-  />;
-};*/
 
 function Routes() {
+
+  const RotaPrivadaComum = ({ component : Component, ...rest}) => (
+    <Route
+    {...rest}
+      render={props =>
+        localStorage.getItem('token') !== null && parseJwt().Role ==='2' ? (
+        // Se sim, renderiza de acordo com a rota solicitada e permitida
+        <Component{...props} />
+        ) : (
+        // Se não, redireciona para a página de login
+          <Redirect
+            to={{ pathname: "/login"}}
+          />
+        )
+      }
+    />
+  );
+
+
+  const RotaPrivadaAdm = ({ component : Component, ...rest}) => (
+    <Route
+    {...rest}
+      render={props =>
+        localStorage.getItem('token') !== null && parseJwt().Role ==='1' ? (
+        // Se sim, renderiza de acordo com a rota solicitada e permitida
+        <Component{...props} />
+        ) : (
+        // Se não, redireciona para a página de login
+          <Redirect
+            to={{ pathname: "/unauthorized"}}
+          />
+        )
+      }
+    />
+  );
+
+  const RotaPrivadaEmpresa = ({ component : Component, ...rest}) => (
+    <Route
+    {...rest}
+      render={props =>
+        localStorage.getItem('token') !== null && parseJwt().Role ==='3' ? (
+        // Se sim, renderiza de acordo com a rota solicitada e permitida
+        <Component{...props} />
+        ) : (
+        // Se não, redireciona para a página de login
+          <Redirect
+            to={{ pathname: "/login"}}
+          />
+        )
+      }
+    />
+  );
+
   return (
     <Router>
       <Switch>
-        <Route path="/banidos" component={Banidos} />
-        <Route
+        <RotaPrivadaAdm path="/banidos" component={Banidos} />
+        <RotaPrivadaEmpresa
           path="/candidatosAprovados"
           component={VizualizarCandidatosAprovados}
         />
-        <Route path="/principal" component={BuscarVagas} />
-        <Route path="/cadastro/vaga" component={CadastrarVaga} />
-        <Route path="/cadastro/Estagio" component={CadastrarEstagiario} />
+        <RotaPrivadaComum path="/principal" component={BuscarVagas} />
+        <RotaPrivadaEmpresa path="/cadastro/vaga" component={CadastrarVaga} />
+        <RotaPrivadaAdm path="/cadastro/Estagio" component={CadastrarEstagiario} />
         <Route path="/cadastro" exact component={CadastroCandidato} />
         <Route path="/cadastro/empresa" component={CadastroEmpresa} />
-        <Route path="/colaboradores" component={Colaboradores} />
-        <Route path="/Estagio" component={Estagio} />
+        <RotaPrivadaAdm path="/colaboradores" component={Colaboradores} />
+        <RotaPrivadaAdm path="/Estagio" component={Estagio} />
         <Route path="/" exact component={Home} />
         <Route path="/login" component={Login} />
-        <Route path="/perfil" component={Perfil} />
-        <Route path="/perfilCandidato" component={PerfilCandidato} />
-        <Route path="/perfilEmpresa" component={PerfilEmpresa} />
+        <RotaPrivadaAdm path="/perfil" component={Perfil} />
+        <RotaPrivadaComum path="/perfilCandidato" component={PerfilCandidato} />
+        <RotaPrivadaEmpresa path="/perfilEmpresa" component={PerfilEmpresa} />
         <Route path="/sobre" component={Sobre} />
         <Route path="/TesteDePersonalidade" component={TesteDePesonalidade} />
-        <Route path="/VagasPublicadas" component={VagasPublicadas} />
-        <Route
+        <RotaPrivadaEmpresa path="/VagasPublicadas" component={VagasPublicadas} />
+        <RotaPrivadaComum
           path="/VisualizarVagaCandidato"
           component={VisualizarVagaCandidato}
         />
-        <Route path="/VagaEmpresa" component={VizualizarVagaEmpresa} />
-        <Route
+        <RotaPrivadaEmpresa path="/VagaEmpresa" component={VizualizarVagaEmpresa} />
+        <RotaPrivadaAdm
           path="/VizualizarVagaAdmin"
           component={ListarCandidatosInscritos}
         />
-        <Route
+        <RotaPrivadaComum
           path="/DashboardInscricaoCandidato"
           component={DashboardInscricaoCandidato}
         />
