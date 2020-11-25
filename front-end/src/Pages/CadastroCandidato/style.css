@@ -87,6 +87,17 @@
 
 .blue-button{
     margin: unset;
+    cursor: pointer;
+    padding: 12px 44px;
+}
+
+.preto .blue-button{
+    color: yellow;
+    text-decoration: underline !important;
+}
+
+.maior .blue-button{
+    font-size: 16px;
 }
 
 @media(max-width: 900px){
@@ -94,9 +105,24 @@
         display: none;
     }
 
+    .registerApplicant{
+        display: unset;
+    }
+
+    .box-form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .form-content{
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 280px !important;
+    }
+
+    body > div.registerApplicant > div.box-form > div > form > div:nth-child(11) > label{
+        margin: unset;
     }
 }

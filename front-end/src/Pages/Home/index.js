@@ -101,7 +101,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="LinkVaga">
-                                <a className="Link" href="teste">Ver mais sobre a vaga</a>
+                                <a className="Link" href="/login">Ver mais sobre a vaga</a>
                             </div>
                         </div>
                         <div className="Vaga">
@@ -123,7 +123,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="LinkVaga">
-                                <a className="Link" href="teste">Ver mais sobre a vaga</a>
+                                <a className="Link" href="/login">Ver mais sobre a vaga</a>
                             </div>
                         </div>
                         <div className="Vaga">
@@ -146,7 +146,7 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="LinkVaga">
-                                <a className="Link" href="teste">Ver mais sobre a vaga</a>
+                                <a className="Link" href="/login">Ver mais sobre a vaga</a>
                             </div>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ export default function Home() {
                         <br />
                         <br />
                         <div className="btnTeste">
-                            <a href="/TesteDePersonalidade"><button className="bt"><h4>FAZER O TESTE</h4></button></a>
+                            <a href="/TesteDePersonalidade"><button className="bt">FAZER O TESTE</button></a>
                         </div>
                         <br />
                     </div>

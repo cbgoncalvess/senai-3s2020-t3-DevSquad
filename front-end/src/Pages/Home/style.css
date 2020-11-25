@@ -110,6 +110,7 @@ border-radius: 4px;
 color: white;
 border: #353535 solid 1px !important;
 transition: .5s;
+font-weight: bold;
 }
 
 .heightomg{
@@ -117,11 +118,7 @@ transition: .5s;
 }
 
 .bt:hover{
-    width: auto;
-    height: auto;
-    padding: 12px 25px;
     background: white;
-    border-radius: 4px;
     color: #353535;
     border: white solid 1px;
     transition: .5s;
@@ -188,6 +185,17 @@ body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > di
 .preto body > div.bodyPart > div.TesteDePersonalidade,
 .preto body > div.bodyPart > div.Imagens{
     background: black;
+}
+
+.preto .bt,
+.preto body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button > h2,
+.preto body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button > h2{
+    color: yellow !important;
+    text-decoration: underline !important;
+}
+
+.preto .bt:hover{
+    color: #373737 !important;
 }
 
 @media(max-width:888px){

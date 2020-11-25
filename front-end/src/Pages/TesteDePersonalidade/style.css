@@ -18,7 +18,7 @@ padding: 2vh 10vw;
 #root > div > div.centro > button{
     width: auto;
     height: auto;
-    padding: 12px 25px;
+    padding: 12px 45px;
     background: #353535;
     border-radius: 4px;
     color: white;
@@ -34,7 +34,6 @@ padding: 2vh 10vw;
 }
 
 #root > div > div.centro > button:hover{
-    padding: 12px 25px;
     background: white;
     border-radius: 4px;
     color: #353535;
@@ -123,7 +122,7 @@ padding: 2vh 10vw;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 10px 7px 0 0;
+        margin: 10px 7px 10px 0;
         padding: 5px;}
     
     .aguia:active, #fechar:active{
@@ -147,6 +146,22 @@ padding: 2vh 10vw;
         font-size: large;
         font-weight: bolder;
         border: unset;
+    }
+
+    .conteudo{
+        padding: 5vw;
+    }
+
+    .preto div.centro > button{
+        color: yellow !important;
+    }
+
+    .preto div.centro > button:hover{
+        color: #373737 !important;
+    }
+
+    .maior div.centro > button{
+        font-size: 18px !important;
     }
     
     /* .conteudo {
@@ -178,6 +193,10 @@ padding: 2vh 10vw;
     } */
 
     @media (max-width: 1000px){
+        .conteudo{
+            padding: unset;
+            padding-top: 5vw;
+        }
         #modalTeste > div.janela > div.conteudoModal{
             display: unset;
         }

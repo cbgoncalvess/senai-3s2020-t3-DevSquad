@@ -111,14 +111,19 @@ background-color: #f3f3f3;}
     border: none;
     background: none;}
 
+div.meioLogin > div > div > button{
+    display: none !important;
+}
+
 .link-cad-conta{color: #707070;font-size: 16px;}
 
 .btnLogar {
-    width: 104px;
-    height: 38px;
+    padding: 12px 44px;
     background: #005767;
     border-radius: 4px;
-    color: #fff;}
+    color: #fff;
+    margin-left: 20px;
+}
 
 
 .bodyPartLogin > img{
@@ -146,6 +151,24 @@ background-color: #f3f3f3;}
     position: fixed;
     top: 25%;
     left: 25%;
+}
+
+.preto .sessaoLogar{
+    background: black !important;
+}
+
+/* acces menu */
+
+.preto .btnLogar{
+    color: yellow;
+}
+
+.maior .btnLogar{
+    font-size: 20px;
+}
+
+.maior .recuperarPassword{
+    font-size: 14px;
 }
 
 @media(max-width:1116px){
