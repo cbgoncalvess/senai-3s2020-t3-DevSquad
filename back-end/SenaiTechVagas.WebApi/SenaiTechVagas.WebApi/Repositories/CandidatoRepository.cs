@@ -15,7 +15,11 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class CandidatoRepository : ICandidatoRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+<<<<<<< HEAD
+        string stringConexao = "Data Source=DESKTOP-7H5DJOO; Initial Catalog=Db_TechVagas;integrated Security=True";
+=======
+        string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
+>>>>>>> 851af33f9dc19566fbac7020289a1bfd39aa7472
         //string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
 
         //Em ordem CRUD - Criar, Ler, Atualizar, Deletar
@@ -90,11 +94,16 @@ namespace SenaiTechVagas.WebApi.Repositories
                         {
                             // Declara a instrução a ser executada
                             string querySelectAll =
-                            "SELECT trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+<<<<<<< HEAD
+                            "SELECT trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+=======
+                            "SELECT inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+>>>>>>> 851af33f9dc19566fbac7020289a1bfd39aa7472
                             " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                             " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                             " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
                             " INNER JOIN Area are on are.IdArea=v.IdArea"+
+                            " INNER JOIN Inscricao inscri on inscri.IdVaga=v.IdVaga" +
                             " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
                             " WHERE v.IdVaga =@IDVaga ";
                             con.Open();
@@ -121,6 +130,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                                         IdVaga = Convert.ToInt32(rdr["IdVaga"]),
                                         Experiencia = rdr["Experiencia"].ToString(),
                                         TipoContrato = rdr["TipoContrato"].ToString(),
+                                        IdInscricao = Convert.ToInt32(rdr["IdInscricao"]),
                                         Localidade = rdr["Localidade"].ToString(),
                                         Salario = Convert.ToDecimal(rdr["Salario"]),
                                         RazaoSocial = rdr["RazaoSocial"].ToString(),
@@ -150,7 +160,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     return listvagas;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return null;
                 }

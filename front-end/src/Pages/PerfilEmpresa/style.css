@@ -1,64 +1,76 @@
-#peliculaPerfilEmpresa{
-    background-color: rgb(00, 00, 00,0.63);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    justify-content: center;
-    align-items: center;
-    }
-    
-#modalPerfilEmpresa{
-width: 50%;
-height: 60%;
-overflow-y: auto;
-background-color: white;
-text-align: center;
-border-radius: 5px;
-padding: 20px;
-position: fixed;
-top: 25%;
-left: 25%;
+#peliculaPerfilEmpresa {
+  background-color: rgb(00, 00, 00, 0.63);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  justify-content: center;
+  align-items: center;
 }
 
-.BotoesPerfilEmpresa{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    justify-content: space-between;
+#modalPerfilEmpresa {
+  width: 50%;
+  height: 60%;
+  overflow-y: auto;
+  background-color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px;
+  position: fixed;
+  top: 25%;
+  left: 25%;
 }
 
-.imgPefilTexto{
-    display: block;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    margin-bottom: 380px;
+.BotoesPerfilEmpresa {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-#peliculaAlterarSenhaEmpresa{
-    background-color: rgb(00, 00, 00,0.63);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    justify-content: center;
-    align-items: center;
+.imgPefilTexto {
+  display: block;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 380px;
 }
 
-#modalAlterarSenhaEmpresa{
-    width: 50%;
-    height: 40%;
-    overflow-y: auto;
-    background-color: white;
-    text-align: center;
-    border-radius: 5px;
-    padding: 20px;
-    position: fixed;
-    top: 25%;
-    left: 25%;
+#peliculaAlterarSenhaEmpresa {
+  background-color: rgb(00, 00, 00, 0.63);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  justify-content: center;
+  align-items: center;
 }
 
-.Desrcicao-Perfil{
-    padding: 20px;
+#modalAlterarSenhaEmpresa {
+  width: 50%;
+  height: 40%;
+  overflow-y: auto;
+  background-color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px;
+  position: fixed;
+  top: 25%;
+  left: 25%;
+}
+
+.Desrcicao-Perfil {
+  padding: 20px;
+}
+/* 
+.meioPerfil {
+  display: grid;
+  grid-template-columns: 33.3% 66.6%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+*/
+.EsquerdoPerfil {
+  background-color: white;
+  border-right: solid 1px;
+  border-right-width: 0 2px 2px 0;
 }

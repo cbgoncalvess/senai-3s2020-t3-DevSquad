@@ -25,16 +25,32 @@ export default function CadastroEmpresa() {
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
   const [PerguntaSeguranca, SetPergunta] = useState("");
   const [RespostaSeguranca, SetResposta] = useState("");
-  
+
   const history = useHistory();
-  
+
   const emailRegex = /^\S+@\S+\.\S+$/g;
-  
+
+  let result = document.querySelector(".password-matching-text");
+  let redBox = document.querySelector("#confirmarSenha-cadastroCandidato");
+
   useEffect(() => {
     listarcurso();
   }, []);
 
   const verificacaoEmail = emailRegex.test(Email);
+  const escreverResultado = () => {
+    if (Senha !== ConfirmarSenha) {
+      result.style.color = "red";
+      redBox.style.border = "solid red 1px";
+      redBox.style.boxShadow = "3px 3px 3px gray";
+      result.innerText = "As senhas não conferem";
+    } else {
+      result.style.color = "black";
+      redBox.style.border = "unset";
+      redBox.style.boxShadow = "unset";
+      result.innerText = "As senhas conferem";
+    }
+  };
 
   function salvar(e) {
     e.preventDefault();
@@ -112,16 +128,15 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetNomeCompleto(e.target.value)}
               />
 
-                  
               <Input
                 name="rg"
                 className="cadastre"
                 label="RG:"
                 type="text"
-                placeholder="000.000.000-00"  //Por algum motivo o max e minLength deste campo n está funcionando
+                placeholder="000.000.000-00" //Por algum motivo o max e minLength deste campo n está funcionando
                 maxLength={9}
                 minLength={9}
-                required 
+                required
                 onChange={(e) => SetRg(e.target.value)}
               />
 
@@ -130,7 +145,7 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="CPF:"
                 type="text"
-                placeholder="000.000.000-00"  //Por algum motivo o max e minLength deste campo n está funcionando
+                placeholder="000.000.000-00" //Por algum motivo o max e minLength deste campo n está funcionando
                 required
                 maxLength={11}
                 minLength={11}
@@ -145,7 +160,7 @@ export default function CadastroEmpresa() {
                 placeholder="(11) 91234-5678"
                 maxLength={14}
                 minLength={11}
-                required 
+                required
                 onChange={(e) => SetTelefone(e.target.value)}
               />
 
@@ -202,10 +217,12 @@ export default function CadastroEmpresa() {
                 required
                 maxLength={15}
                 minLength={9}
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetSenha(e.target.value)}
               />
 
               <Input
+                id="confirmarSenha-cadastroCandidato"
                 name="password-confirm"
                 className="cadastre"
                 label="Confirmar senha:"
@@ -214,8 +231,11 @@ export default function CadastroEmpresa() {
                 required
                 maxLength={15}
                 minLength={9}
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetConfirmarSenha(e.target.value)}
               />
+
+              <p className="password-matching-text"></p>
 
               <div>
                 <label className="select-cadastroCandidato-title">
