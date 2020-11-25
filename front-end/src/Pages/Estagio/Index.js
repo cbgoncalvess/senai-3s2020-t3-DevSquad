@@ -183,10 +183,10 @@ export default function Estagio() {
             <br />
             <select className="selectEstagio">
                 <option>Filtre sua busca por meses</option>
-                <option>3Meses</option>
-                <option>6Meses</option>
-                <option>9Meses</option>
-                <option>12Meses</option>
+                <option value="3">3Meses</option>
+                <option value="6">6Meses</option>
+                <option value="9">9Meses</option>
+                <option value="12">12Meses</option>
             </select>
             <div className="ListaEstagios">
                 {
