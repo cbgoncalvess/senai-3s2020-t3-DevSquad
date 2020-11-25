@@ -162,8 +162,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (vaga.TipoContrato != null)
                         vagaBuscada.TipoContrato = vaga.TipoContrato;
 
-                    if (vaga.DataExpiracao>vagaBuscada.DataExpiracao&&vaga.DataExpiracao.Month>vagaBuscada.DataExpiracao.Month)
-                        vagaBuscada.DataExpiracao = vaga.DataExpiracao;
                     ctx.Update(vagaBuscada);
                     ctx.SaveChanges();
                     return true;

@@ -118,7 +118,7 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="RG:"
                 type="text"
-                placeholder="000.000.000-00"  //Por algum motivo o max e minLength deste campo n está funcionando
+                placeholder="000.000.000-00" 
                 maxLength={9}
                 minLength={9}
                 required 
@@ -130,7 +130,7 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="CPF:"
                 type="text"
-                placeholder="000.000.000-00"  //Por algum motivo o max e minLength deste campo n está funcionando
+                placeholder="000.000.000-00"
                 required
                 maxLength={11}
                 minLength={11}
