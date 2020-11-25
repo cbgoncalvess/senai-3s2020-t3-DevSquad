@@ -141,7 +141,7 @@ export default function CadastrarVaga() {
                                 </div>
                                 <br />
                                 <div className="btVagaDiv">
-                                    <button className="btVaga" onClick={salvar}><h3>Cadastrar</h3></button>
+                                    <button className="btVaga" onClick={salvar}>Cadastrar</button>
                                 </div>
                             </form>
                         </div>

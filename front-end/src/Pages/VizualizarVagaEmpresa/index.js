@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import {useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
+import AccessMenu from '../../Components/AccessMenu';
 import imgEmpresa from '../../assets/Teste.png'
 import './style.css';
 import Tag from '../../Components/Tag/Index';
@@ -26,9 +27,9 @@ export default function VizualizarVagaEmpresa() {
     const [TituloVaga, setTituloVaga] = useState('');
     const [Candidatos, SetCandidato] = useState([]);
 
-    let history=useHistory();
+    let history = useHistory();
     useEffect(() => {
-        idVaga=localStorage.getItem('idVagaSelecionadaEmpresa');
+        idVaga = localStorage.getItem('idVagaSelecionadaEmpresa');
         listarCandidatos();
         BuscarPorId();
     }, []);
@@ -51,7 +52,7 @@ export default function VizualizarVagaEmpresa() {
     }
 
     const listarCandidatos = () => {
-        fetch('http://localhost:5000/api/Empresa/ListarCandidatosInscritos/'+idVaga, {
+        fetch('http://localhost:5000/api/Empresa/ListarCandidatosInscritos/' + idVaga, {
             method: 'GET',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
@@ -64,7 +65,7 @@ export default function VizualizarVagaEmpresa() {
             .catch(err => console.error(err));
     }
 
-    function CandidatosAprovados(){
+    function CandidatosAprovados() {
         history.push("/VizualizarCandidatosAprovados")
     }
 
@@ -102,6 +103,7 @@ export default function VizualizarVagaEmpresa() {
         <div className="bodyPartVizualizarVagaEmpresa">
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="BannerVizualizarVagaEmpresa">
                 <h1>Veja quem se candidatou a sua vaga</h1>
             </div>
@@ -131,39 +133,41 @@ export default function VizualizarVagaEmpresa() {
                     </div>
                 </div>
             </div>
-            <button className="btAprovados" onClick={CandidatosAprovados}>Candidatos aprovados para esta vaga</button>
+            <div className="textRight">
+                <button className="btAprovados" onClick={CandidatosAprovados}>Candidatos aprovados</button>
+            </div>
             <div className="ListaDeInscicoes">
-                    {
-                        Candidatos.map((item) => {
-                            return (
-                                <div key={item.idCandidato} className="Inscricao">
-                                    <div className="CabecaInscricao">
-                                        <img src={imgEmpresa} alt="ImagemPerfil" />
-                                        <h3>{item.nomeCandidato}</h3>
-                                        <hr className="hr" />
+                {
+                    Candidatos.map((item) => {
+                        return (
+                            <div key={item.idCandidato} className="Inscricao">
+                                <div className="CabecaInscricao">
+                                    <img src={imgEmpresa} alt="ImagemPerfil" />
+                                    <h3>{item.nomeCandidato}</h3>
+                                    <hr className="hr" />
                                     <h5>{item.nomeCurso}</h5>
-                                    </div>
-                                    <div className="CorpoInscricao">
-                                        <Tag NomeTag={"E-mail:"+item.email}></Tag>
-                                        <Tag NomeTag={"Telefone:"+item.telefone}></Tag>
-                                        <a className="Link" href="teste">Ver perfil</a>
-                                    </div>
-                                    <div className="AprovarRecusar">
-                                        <button className="Aprovar" onClick={event => {
-                                            event.preventDefault();
-                                            setInscricao(item.idInscricao);
-                                            Aprovar();
-                                        }}>Aprovar</button>
-                                        <button className="Recusar" onClick={event => {
-                                            event.preventDefault();
-                                            setInscricao(item.idInscricao);
-                                            Reprovar();
-                                        }}>Reprovar</button>
-                                    </div>
                                 </div>
-                            );
-                        })
-                    }
+                                <div className="CorpoInscricao">
+                                    <Tag NomeTag={"E-mail:" + item.email}></Tag>
+                                    <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
+                                    <a className="Link" href="teste">Ver perfil</a>
+                                </div>
+                                <div className="AprovarRecusar">
+                                    <button className="Aprovar" onClick={event => {
+                                        event.preventDefault();
+                                        setInscricao(item.idInscricao);
+                                        Aprovar();
+                                    }}>Aprovar</button>
+                                    <button className="Recusar" onClick={event => {
+                                        event.preventDefault();
+                                        setInscricao(item.idInscricao);
+                                        Reprovar();
+                                    }}>Reprovar</button>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
             </div>
             <Footer />
         </div>

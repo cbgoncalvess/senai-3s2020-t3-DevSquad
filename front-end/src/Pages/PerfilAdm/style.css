@@ -52,7 +52,7 @@
  
  #modalAlterarSenhaUsuario{
      width: 50%;
-    height: 30%;
+    height: 50%;
     overflow-y: auto;
     background-color: white;
     text-align: center;
@@ -62,6 +62,7 @@
     top: 25%;
     left: 25%;
  }
+
 
 .BoxPerfil{
     display: flex;
@@ -124,13 +125,14 @@ align-items: flex-end;
 }
 
 .btPerfil{
-    width: 130px;
-    height: 40px;
     background-color: #FF000F;
     border: none;
     color: white;
     border-radius: 4px;
     margin-bottom: 20px;
+    padding: 12px 44px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .selectPerfil{
@@ -162,6 +164,38 @@ display: none;
     top: 25%;
     left: 25%;
     display: none;
+}
+
+.preto .DireitoPerfil, 
+.preto .EsquerdoPerfil, 
+.preto .RowPerfilAdm,
+.preto .imgPefilTexto,
+.preto .BotoesPerfil{
+    background: transparent !important;
+}
+
+.preto .btPerfil{
+    color: yellow;
+    text-decoration: underline;
+}
+
+.preto .EsquerdoPerfil{
+    border-right: solid 1px white;
+    background: #333330 !important;
+}
+
+.preto .modalAlterarSenhaUsuario,
+.preto #modalAlterarSenhaUsuario > h2{
+    color: black !important;
+}
+
+.maior .btPerfil{
+    font-size: 16px;
+}
+
+.btVaga{
+    font-weight: bold;
+    cursor: pointer;
 }
 
 @media(max-width:1120px){

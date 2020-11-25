@@ -129,3 +129,19 @@
     font-size: 20px;
     font-weight: 600;
     margin: 27px 0px;}
+
+    .preto .infoVagaVisualizar{
+        background: #373737 !important;
+    }
+
+    .preto .sessaoVisualizarVaga{
+        background: transparent !important;
+    }
+
+    .preto .imgBannerDescriVaga{
+        border-bottom: solid 1px white;
+    }
+
+    .preto .divisionBeneVaga{
+        border-top: 1px white solid;
+    }

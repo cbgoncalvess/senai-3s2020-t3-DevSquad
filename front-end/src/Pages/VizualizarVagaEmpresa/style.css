@@ -86,8 +86,29 @@ border-radius: 5px;
     color: white;
     background-color: red;
     margin-bottom: 50px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 #root > div > div.ListaDeInscicoes > div:nth-child(n) > div.CorpoInscricao > div:nth-child(n){
     width: 90%;
+}
+
+.textRight{
+    margin-right: 20px;
+    text-align: end;
+}
+
+.preto div.BannerVizualizarVagaEmpresa > h1,
+.preto .BannerVizualizarVagaEmpresa{
+    background: transparent !important;
+}
+
+.preto .btAprovados{
+    color: yellow !important;
+    text-decoration: underline;
+}
+
+.maior .btAprovados{
+    font-size: 16px !important;
 }

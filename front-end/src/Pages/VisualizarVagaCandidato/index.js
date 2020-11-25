@@ -11,6 +11,7 @@ import InfoVaga from '../../Components/InfoVaga/Index';
 import Footer from '../../Components/Footer/index';
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
+import AccessMenu from '../../Components/AccessMenu';
 
 // imagens
 import imgDesenvolvimento from '../../assets/web-programming.png';
@@ -23,9 +24,9 @@ import { useHistory } from 'react-router-dom';
 
 export default function VisualizarVaga() {
 
-    
+
     let history = useHistory();
-    function meCandidatar() {history.push("/perfilCandidato");}
+    function meCandidatar() { history.push("/perfilCandidato"); }
 
     let [idVaga, setIdVaga] = useState(0);
     const [Experiencia, setExperiencia] = useState('');
@@ -41,11 +42,11 @@ export default function VisualizarVaga() {
     const [Complemento, setComplemento] = useState('');
 
     useEffect(() => {
-        idVaga=localStorage.getItem('idVagaSelecionada');
+        idVaga = localStorage.getItem('idVagaSelecionada');
         listar();
     }, []);
 
-    const SeCandidatar= () => {
+    const SeCandidatar = () => {
         const form = {
             idVaga: idVaga
         };
@@ -57,11 +58,11 @@ export default function VisualizarVaga() {
                 'content-type': 'application/json'
             }
         }).then(response => response)
-           .catch(err => console.error(err));
+            .catch(err => console.error(err));
     }
 
     const listar = () => {
-        fetch('http://localhost:5000/api/Usuario/BuscarPorId/'+idVaga, {
+        fetch('http://localhost:5000/api/Usuario/BuscarPorId/' + idVaga, {
             method: 'GET',
         }).then(response => response.json()).then(dados => {
             setIdVaga(dados.idVaga);
@@ -83,6 +84,7 @@ export default function VisualizarVaga() {
         <div className="VisualizarVaga">
             <AccessBar />
             <Header />
+            <AccessMenu />
             <main className="sessaoVisualizarVaga">
 
                 <section className="imgBannerDescriVaga">

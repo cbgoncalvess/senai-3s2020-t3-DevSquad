@@ -61,13 +61,12 @@ body > div > div > div.Esquerdo > div > form{
 }
 
 .btVaga{
-    width: 130px;
-    height: 40px;
     background-color: #FF000F;
     border: none;
     color: white;
     border-radius: 4px;
     justify-content: center;
+    padding: 12px 44px;
 }
 
 .btVagaDiv{
@@ -75,6 +74,7 @@ body > div > div > div.Esquerdo > div > form{
     justify-content: center;
     align-items: center;
 }
+
 
 @media(max-width:780px){
     .Direito{
@@ -85,10 +85,23 @@ body > div > div > div.Esquerdo > div > form{
     .Esquerdo{
         width: 100%;
     }
+
+    body > div.bodyPartCadastrarVaga > div > div.Esquerdo > div > h2{
+        text-align: center;
+    }
 }
 
 /* ADAPTANDO MENU DE ACESSIBILIDADE */
 
 .preto .Esquerdo{
     background: black !important;
+}
+
+.preto .btVaga{
+    color: yellow !important;
+    text-decoration: underline;
+}
+
+.maior .btVaga{
+    font-size: 16px;
 }
