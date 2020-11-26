@@ -1,13 +1,155 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import InfoVaga from './Components/InfoVaga/index';
 import Tag from './Components/Tag/index';
 
 export default function App() {
-  const tes = '../mobile/assets/Images/gears.webp';
+
+  useEffect(() => {
+    idVaga=localStorage.getItem('idVagaSelecionadaEmpresa');
+    listarCandidatos();
+    BuscarPorId();
+}, []);
+
+  const [Inscricoes, setInscricoes] = useState([]);
+  let [idVaga, setIdVaga] = useState(0);
+  const [idInscricao, setInscricao] = useState(0);
+  const [Experiencia, setExperiencia] = useState('');
+  const [TipoContrato, setTipoContrato] = useState('');
+  const [Salario, setSalario] = useState('');
+  const [Tecnologias, setTecnologias] = useState([]);
+  const [Cidade, setCidade] = useState('');
+  const [TituloVaga, setTituloVaga] = useState('');
+  const[NomeArea,setNomeArea]=useState('');
+  const[TipoPresenca,setTipoPresenca]=useState('');
+  const[RazaoSocial,setRazaoSocial]=useState('');
+
+  const listarCandidatos = () => {
+    fetch('http://localhost:5000/api/Empresa/ListarCandidatosInscritos/'+2, {
+        method: 'GET',
+        headers: {
+            authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+    })
+        .then(response => response.json())
+        .then(dados => {
+            setInscricoes(dados);
+        })
+        .catch(err => console.error(err));
+}
+
+const BuscarPorId = () => {
+  fetch('http://localhost:5000/api/Usuario/BuscarPorId/' + 2, {
+      method: 'GET',
+      headers: {
+          authorization: 'Bearer ' + localStorage.getItem('token')
+      }
+  }).then(response => response.json()).then(dados => {
+      setIdVaga(dados.idVaga);
+      setTituloVaga(dados.tituloVaga);
+      setTipoContrato(dados.tipoContrato);
+      setSalario(dados.salario);
+      setTecnologias(dados.tecnologias);
+      setCidade(dados.localidade);
+      setExperiencia(dados.experiencia);
+      setNomeArea(dados.nomeArea);
+      setTipoPresenca(dados.tipoPresenca);
+      setRazaoSocial(dados.razaoSocial);
+  }).catch(err => console.error(err));
+}
+
+const Aprovar = () => {
+  fetch('http://localhost:5000/api/Empresa/Aprovar/' + idInscricao, {
+      method: 'PUT',
+      headers: {
+          'content-type': 'application/json',
+          authorization: 'Bearer ' + localStorage.getItem('token')
+      }
+  }).then(function (respose) {
+      if (respose.status !== 200) {
+          alert("Não foi possivel aprovar este candidato");
+      }
+      listarCandidatos();
+  }).catch(err => console.error(err));
+}
+
+const Reprovar = () => {
+  fetch('http://localhost:5000/api/Empresa/Reprovar/' + idInscricao, {
+      method: 'PUT',
+      headers: {
+          'content-type': 'application/json',
+          authorization: 'Bearer ' + localStorage.getItem('token')
+      }
+  }).then(function (respose) {
+      if (respose.status !== 200) {
+          alert("Não foi possivel Reprovar este candidato");
+      }
+      listarCandidatos();
+  }).catch(err => console.error(err));
+}
+
   return (
     <View style={styles.teste}>
       <View >
+        <ImageBackground source={require('../mobile/assets/Images/bannerVisualizarVaga.webp')} style={styles.BannerVizualizarVagaEmpresa}>
+          <Text style={styles.TextoHeader}>Veja quem se inscreveu para esta vaga</Text>
+        </ImageBackground>
+      </View>
+
+      <View style={styles.Vaga}>
+        <View style={styles.VagaCompleta}>
+          <Image style={styles.ImagemEmpresa} source={require('../mobile/assets/Images/Teste.webp')} />
+          <View style={styles.MainVaga}>
+            <Text style={styles.TituloVaga}>{TituloVaga}</Text>
+            <View style={styles.InfoVagas}>
+              <InfoVaga NomeProp={RazaoSocial} nomeImage={require('../mobile/assets/Images/building.webp')}></InfoVaga>
+              <InfoVaga NomeProp={Cidade} nomeImage={require('../mobile/assets/Images/big-map-placeholder-outlined-symbol-of-interface.webp')}></InfoVaga>
+              <InfoVaga NomeProp={Experiencia} nomeImage={require('../mobile/assets/Images/rocket-launch.webp')}></InfoVaga>
+              <InfoVaga NomeProp={TipoContrato} nomeImage={require('../mobile/assets/Images/gears.webp')}></InfoVaga>
+              <InfoVaga NomeProp={Salario} nomeImage={require('../mobile/assets/Images/money (1).webp')}></InfoVaga>
+              <InfoVaga NomeProp={TipoPresenca} nomeImage={require('../mobile/assets/Images/global.png')}></InfoVaga>
+              <InfoVaga NomeProp={NomeArea} nomeImage={require('../mobile/assets/Images/web-programming.webp')}></InfoVaga>
+            </View>
+            <View style={styles.TecnologiasVaga}>
+              {
+                Tecnologias.map((item)=>{
+                  return(
+                    <Tag NomeTag={item}></Tag>
+                  );
+                })
+              }
+            </View>
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.ListaInscricoes}>
+        {
+          Inscricoes.map((item) => {
+            return (
+              <View key={item.idInscricao} style={styles.Inscricao}>
+                <View style={styles.HeaderInscricao}>
+                  <Image style={styles.imagemCandidato} source={require('./assets/Images/android-character-symbol.webp')}></Image>
+                <Text>{item.nomeCandidato}</Text>
+                  <Text style={styles.nomeCandidato}></Text>
+            <Text style={styles.h5}>{item.nomeCurso}</Text>
+                </View>
+
+                <View style={styles.BodyInscricao}>
+                  <Tag NomeTag={"Email:"+item.email}></Tag>
+                  <Tag NomeTag={"Telefone:"+item.telefone}></Tag>
+                </View>
+                <View style={styles.AprovarRecusar}>
+                  <TouchableOpacity style={styles.btAprovar}><Text style={styles.texBtIns}>Aprovar</Text></TouchableOpacity>
+                  <TouchableOpacity style={styles.btReprovar}><Text style={styles.texBtIns}>Recusar</Text></TouchableOpacity>
+                </View>
+              </View>
+            );
+          })
+        }
+      </View>
+
+      {/* <View >
         <ImageBackground source={require('../mobile/assets/Images/bannerVisualizarVaga.webp')} style={styles.BannerVizualizarVagaEmpresa}>
           <Text style={styles.TextoHeader}>Veja quem se inscreveu para essa vaga</Text>
         </ImageBackground>
@@ -52,12 +194,8 @@ export default function App() {
             <Tag NomeTag={"Email:ssfdfsdfsdfsdf"}></Tag>
             <Tag NomeTag={"Telefone:2321323423"}></Tag>
           </View>
-          <View style={styles.AprovarRecusar}>
-            <TouchableOpacity style={styles.btAprovar}><Text style={styles.texBtIns}>Aprovar</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.btReprovar}><Text style={styles.texBtIns}>Recusar</Text></TouchableOpacity>
-          </View>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -66,12 +204,18 @@ const styles = StyleSheet.create({
   teste: {
     backgroundColor: '#DFDFDF'
   },
-  imagemCandidato:{
+  ListaInscricoes: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexWrap: 'wrap'
+  },
+  imagemCandidato: {
     height: 60,
     width: 60,
-    marginTop:9
+    marginTop: 9
   },
-  HeaderInscricao:{
+  HeaderInscricao: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
@@ -125,7 +269,7 @@ const styles = StyleSheet.create({
   TituloVaga: {
     fontSize: '17px'
   },
-  Inscricao:{
+  Inscricao: {
     width: '275px',
     display: 'flex',
     flexDirection: 'column',
@@ -147,8 +291,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     border: 'none',
     borderRadius: '5px',
-    textAlign:'center',
-    justifyContent:'center',
+    textAlign: 'center',
+    justifyContent: 'center',
   },
   btReprovar: {
     backgroundColor: '#FD0F00',
@@ -157,20 +301,20 @@ const styles = StyleSheet.create({
     color: '#fff',
     border: 'none',
     borderRadius: '5px',
-    textAlign:'center',
-    justifyContent:'center',
+    textAlign: 'center',
+    justifyContent: 'center',
   },
-  texBtIns:{
-    color:'#fff',
-    fontWeight:'bold'
+  texBtIns: {
+    color: '#fff',
+    fontWeight: 'bold'
   },
-  BodyInscricao:{
+  BodyInscricao: {
     textAlign: 'center',
     padding: '2vh',
     width: '100%'
   },
-  nomeCandidato:{
+  nomeCandidato: {
     borderBottomColor: 'black',
-    borderWidth:1,
+    borderWidth: 1,
   }
 });
