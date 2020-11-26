@@ -161,24 +161,57 @@
   align-items: center;
 }
 
-#modalRecuperarSenhaCandidato {
-  width: 50%;
-  height: 40%;
-  overflow-y: auto;
-  background-color: white;
-  text-align: center;
-  border-radius: 5px;
-  padding: 20px;
-  position: fixed;
-  top: 25%;
-  left: 25%;
+#peliculaRecuperarSenhaCandidato{
+    background-color: rgb(00, 00, 00,0.63);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    justify-content: center;
+    align-items: center;}
+
+#modalRecuperarSenhaCandidato{
+    width: 50%;
+    height: 40%;
+    overflow-y: auto;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 20px;
+    position: fixed;
+    top: 25%;
+    left: 25%;}
+
+@media only screen and (min-width: 300px) {
+.principalLogin {padding: 100px 0em !important;}
+.divisionBtn { width: 264px !important; }
 }
 
-@media (max-width: 1116px) {
-  .sessaoLogar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media only screen and (min-width: 776px) {
+
+} 
+
+
+@media only screen and (max-width: 700px) {
+
+.imgBannerLogin {display: none;}
+
+.principalLogin {
+    padding: 72px 0em;
+    flex-direction: column;}
+    
+.divisionBtn {width: 243px;}
+.division-logar {width: 360px;}
+.form-logar {height: 23vh;}
+
+.divisionCampo {height: 9vh;}
+    }
+
+@media only screen and (max-width: 1292px) {
+
+.principalLogin {
+    padding: 0px 0em !important;
+    flex-direction: row;
     justify-content: center;
     width: 100vw;
     background-color: #f3f3f3;
@@ -192,43 +225,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #f3f3f3;
-  }
+    height: 787px;}
 
-  .sessaoLogar > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: start;
-    height: 60%;
-  }
+.divisionCampo {height: 10vh;}
+
+.imgBannerLogin {display: none;}
+.divisionBtn {width: 300px;}
+.divisionPassword {height: 11vh;}
+.form-logar {height: 25vh;}
 }
-
-@media (max-width: 600px) {
-  .divisionBtn {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .sessaoLogar > div {
-    display: contents;
-  }
-
-  .divisionBtn {
-    width: -webkit-fill-available;
-  }
-
-  .division-logar {
-    width: auto;
-    padding: 10px;
-  }
-}
-
-.preto div > div.meioLogin > div {
-  background: black !important;
-}
-
-.maior div.divisionCampo.divisionPassword > h5 {
-  font-size: 15px !important;
+@media only screen and (min-width: 1293px) {
+.principalLogin {padding: 0px 0em !important;}
+.divisionBtn{width: 300.8px !important;}
 }

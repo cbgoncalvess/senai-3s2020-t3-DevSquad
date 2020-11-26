@@ -31,6 +31,19 @@
   margin: 2em 0px;
 }
 
+.btnRevogar{
+    width: 246px;
+    height: 36px;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background:#FF000F;
+    font-size:16px;
+    color: #ffffff;
+    vertical-align: middle;
+    text-transform: uppercase;
+    font-weight: bold;}
+    
 .divisionBtnRevogar {
   display: flex;
   justify-content: flex-end;
@@ -58,8 +71,6 @@
     text-align: center;
   }
 
-  .title-vagas-inscritas > h3 {
-    text-align: center;
-    font-weight: bold;
-  }
+.title-vagas-inscritas > h3 {text-align: center;font-weight: bold;}
+    
 }
