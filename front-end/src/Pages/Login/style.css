@@ -130,12 +130,22 @@
     top: 25%;
     left: 25%;}
 
+@media only screen and (min-width: 300px) {
+.principalLogin {padding: 100px 0em !important;}
+.divisionBtn { width: 264px !important; }
+}
+
+@media only screen and (min-width: 776px) {
+
+} 
+
+
 @media only screen and (max-width: 700px) {
 
 .imgBannerLogin {display: none;}
 
 .principalLogin {
-    padding: 3em 0px;
+    padding: 72px 0em;
     flex-direction: column;}
     
 .divisionBtn {width: 243px;}
@@ -145,21 +155,23 @@
 .divisionCampo {height: 9vh;}
     }
 
-@media only screen and (max-width: 775px) {
-.division-logar {width: 508px;}
+@media only screen and (max-width: 1292px) {
 
 .principalLogin {
+    padding: 0px 0em !important;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    }
+    height: 787px;}
+
+.divisionCampo {height: 10vh;}
 
 .imgBannerLogin {display: none;}
-
 .divisionBtn {width: 300px;}
-
 .divisionPassword {height: 11vh;}
-
-.form-logar {height: 23vh;}
+.form-logar {height: 25vh;}
 }
-
+@media only screen and (min-width: 1293px) {
+.principalLogin {padding: 0px 0em !important;}
+.divisionBtn{width: 300.8px !important;}
+}
