@@ -28,8 +28,8 @@ const Unauthorized = () => {
           <h3>Você não pode mexer aqui. Autentique-se</h3>
           <p>
             Volte para a{" "}
-            <Link to="/" className="pagina-principal-link">
-              página principal.
+            <Link to="/login" className="pagina-principal-link">
+              página de login..
             </Link>
           </p>
         </div>

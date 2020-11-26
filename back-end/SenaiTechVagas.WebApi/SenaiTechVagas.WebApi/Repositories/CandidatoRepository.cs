@@ -15,8 +15,13 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class CandidatoRepository : ICandidatoRepository
     {
+<<<<<<< HEAD
         string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
         //string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+=======
+
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+>>>>>>> ed69dde050182f41960054358fe75edc5245037f
 
         //Em ordem CRUD - Criar, Ler, Atualizar, Deletar
         public bool AtualizarCandidato(int idUsuario,AtualizarCandidatoViewModel CandidatoAtualizado)
@@ -90,12 +95,13 @@ namespace SenaiTechVagas.WebApi.Repositories
                         {
                             // Declara a instrução a ser executada
                             string querySelectAll =
-                            "SELECT inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                            "SELECT trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                             " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                             " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                             " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
                             " INNER JOIN Area are on are.IdArea=v.IdArea"+
                             " INNER JOIN Inscricao inscri on inscri.IdVaga=v.IdVaga" +
+                            " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
                             " WHERE v.IdVaga =@IDVaga ";
                             con.Open();
 

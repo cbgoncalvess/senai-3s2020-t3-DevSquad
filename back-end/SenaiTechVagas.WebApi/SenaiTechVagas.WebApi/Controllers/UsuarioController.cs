@@ -195,7 +195,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="idVaga">Identificador Vaga</param>
         /// <returns>REtorna Vaga buscada.</returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet("BuscarPorId/{idVaga}")]
         public IActionResult BuscarVagaPeloId(int idVaga)
         {

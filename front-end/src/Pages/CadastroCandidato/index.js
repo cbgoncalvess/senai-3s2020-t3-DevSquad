@@ -25,16 +25,57 @@ export default function CadastroEmpresa() {
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
   const [PerguntaSeguranca, SetPergunta] = useState("");
   const [RespostaSeguranca, SetResposta] = useState("");
-  
+
   const history = useHistory();
-  
+
   const emailRegex = /^\S+@\S+\.\S+$/g;
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/g;
+
+  let result = document.querySelector(".password-matching-text");
+  let redBox = document.querySelector("#confirmarSenha-cadastroCandidato");
+  let instructions = document.querySelector(".password-instructions-text");
+
+  const verificacaoEmail = emailRegex.test(Email);
+  let verificacaoSenha = senhaRegex.test(Senha);
+  let verificacaoConfirmarSenha = senhaRegex.test(ConfirmarSenha);
   
   useEffect(() => {
     listarcurso();
   }, []);
 
-  const verificacaoEmail = emailRegex.test(Email);
+  
+  const escreverResultado = () => {
+    if (Senha !== ConfirmarSenha) {
+      redBox.style.border = "solid red 1px";
+      redBox.style.boxShadow = "3px 3px 3px gray";
+      result.style.color = "red";
+      result.innerText = "As senhas não conferem";
+
+    } else {
+      redBox.style.border = "unset";
+      redBox.style.boxShadow = "unset";
+      result.style.color = "unset";
+      result.innerText = "As senhas conferem";
+    }
+
+    if(verificacaoSenha !== true || verificacaoConfirmarSenha !== true){
+      redBox.style.border = "solid red 1px";
+      redBox.style.boxShadow = "3px 3px 3px gray";
+      instructions.style.color = "red";
+      instructions.innerText =
+        `A senha deve conter 8 caracteres, dentre eles:
+      • 1 letra minúscula
+      • 1 letra maiúscula
+      • 1 número
+      • 1 caractere especial`;
+    }else{
+      redBox.style.border = "unset";
+      redBox.style.boxShadow = "unset";
+      instructions.style.color = "unset";
+      instructions.innerText = "";
+    }
+  };
+
 
   function salvar(e) {
     e.preventDefault();
@@ -112,16 +153,15 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetNomeCompleto(e.target.value)}
               />
 
-                  
               <Input
                 name="rg"
                 className="cadastre"
                 label="RG:"
                 type="text"
-                placeholder="000.000.000-00"  //Por algum motivo o max e minLength deste campo n está funcionando
+                placeholder="000.000.000-00" 
                 maxLength={9}
                 minLength={9}
-                required 
+                required
                 onChange={(e) => SetRg(e.target.value)}
               />
 
@@ -130,7 +170,7 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="CPF:"
                 type="text"
-                placeholder="000.000.000-00"  //Por algum motivo o max e minLength deste campo n está funcionando
+                placeholder="000.000.000-00"
                 required
                 maxLength={11}
                 minLength={11}
@@ -145,7 +185,7 @@ export default function CadastroEmpresa() {
                 placeholder="(11) 91234-5678"
                 maxLength={14}
                 minLength={11}
-                required 
+                required
                 onChange={(e) => SetTelefone(e.target.value)}
               />
 
@@ -202,10 +242,12 @@ export default function CadastroEmpresa() {
                 required
                 maxLength={15}
                 minLength={9}
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetSenha(e.target.value)}
               />
 
               <Input
+                id="confirmarSenha-cadastroCandidato"
                 name="password-confirm"
                 className="cadastre"
                 label="Confirmar senha:"
@@ -214,8 +256,12 @@ export default function CadastroEmpresa() {
                 required
                 maxLength={15}
                 minLength={9}
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetConfirmarSenha(e.target.value)}
               />
+
+              <p className="password-matching-text"></p>
+              <p className="password-instructions-text"></p>
 
               <div>
                 <label className="select-cadastroCandidato-title">

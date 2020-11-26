@@ -335,7 +335,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (_Admin.DeletarInscricao(idUsuario))
+                if (_Admin.DeletarAdministrador(idUsuario))
                     return Ok("Administrador deletado com sucesso");
                 else
                     return BadRequest("Não foi possivel deletar o adminstrador");

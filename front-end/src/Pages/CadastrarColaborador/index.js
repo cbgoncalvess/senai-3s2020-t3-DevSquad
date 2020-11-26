@@ -72,20 +72,18 @@ export default function CadastrarColaborador() {
             .catch(err => console.error(err));
     }
     
-    const Banir =()=>{
-            fetch('http://localhost:5000/api/Administrador/Banir/'+idColaborador, {
-                method: 'PUT',
+    const DeletarAdm =()=>{
+            fetch('http://localhost:5000/api/Administrador/DeletarAdminstrador/'+idColaborador, {
+                method: 'DELETE',
                 headers: {
                     authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             })
-            .then(function(respose){
-                if(respose.status!==200){
-                    alert("Não foi possivel banir este usuario");
-                }else{
-                    alert("O usuario ja está banido da plataforma");
-                    listarColaboradores();
-                }})
+            .then(response => response.json())
+            .then(dados => {
+                alert(dados);
+                listarColaboradores();
+            })
             .catch(err => console.error(err));
     }
 
@@ -114,11 +112,11 @@ export default function CadastrarColaborador() {
                                         
                                         <div className="ban">
                                             <div className="banir">
-                                                <p>Banir</p>
+                                                <p>Deletar</p>
                                                 <img src={Delete} onClick={e=>{
                                                     e.preventDefault();
                                                     setColaborador(item.idUsuario);
-                                                    Banir();
+                                                    DeletarAdm();
                                                 }}/>
                                             </div>
                                         </div>

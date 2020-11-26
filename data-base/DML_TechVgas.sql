@@ -13,7 +13,6 @@ MANTENHA A LÍNGUA - DO SEU SQL SERVER - EM PORTUGUÊS DO BRASIL
 	Reconfigure
 
 */
-
 USE Db_TechVagas
 GO
 
@@ -23,28 +22,6 @@ VALUES		('Administrador'),
 			('Empresa'),
 			('Banido');
 GO
-
-INSERT INTO Curso (NomeCurso, TipoCurso,IdArea)
-VALUES		('Desenvolvimento de Sistemas - 1T - M', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 2T - M', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 3T - M', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 1T - T', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 2T - T', 'Técnico',1),
-			('Desenvolvimento de Sistemas - 3T - T', 'Técnico',1),
-			('Redes de Computadores - 1T - M', 'Técnico',2),
-			('Redes de Computadores - 2T - M', 'Técnico',2),
-			('Redes de Computadores - 3T - M', 'Técnico',2),
-			('Redes de Computadores - 1T - T', 'Técnico',2),
-			('Redes de Computadores - 2T - T', 'Técnico',2),
-			('Redes de Computadores - 3T - T', 'Técnico',2),
-			('Multimídia - 1T - M', 'Técnico',3),
-			('Multimídia - 2T - M', 'Técnico',3),
-			('Multimídia - 3T - M', 'Técnico',3),
-			('Multimídia - 1T - T', 'Técnico',3),
-			('Multimídia - 2T - T', 'Técnico',3),
-			('Multimídia - 3T - T', 'Técnico',3);
-GO
-
 
 INSERT INTO StatusInscricao (NomeStatusInscricao)
 VALUES		('Aprovado'),
@@ -75,3 +52,29 @@ VALUES		('Desenvolvimento'),
 			('Multimídia');
 GO
 
+INSERT INTO Curso (NomeCurso, TipoCurso,IdArea)
+VALUES		('Desenvolvimento de Sistemas - 1T - M', 'Técnico',1),
+			('Desenvolvimento de Sistemas - 2T - M', 'Técnico',1),
+			('Desenvolvimento de Sistemas - 3T - M', 'Técnico',1),
+			('Desenvolvimento de Sistemas - 1T - T', 'Técnico',1),
+			('Desenvolvimento de Sistemas - 2T - T', 'Técnico',1),
+			('Desenvolvimento de Sistemas - 3T - T', 'Técnico',1),
+			('Redes de Computadores - 1T - M', 'Técnico',2),
+			('Redes de Computadores - 2T - M', 'Técnico',2),
+			('Redes de Computadores - 3T - M', 'Técnico',2),
+			('Redes de Computadores - 1T - T', 'Técnico',2),
+			('Redes de Computadores - 2T - T', 'Técnico',2),
+			('Redes de Computadores - 3T - T', 'Técnico',2),
+			('Multimídia - 1T - M', 'Técnico',3),
+			('Multimídia - 2T - M', 'Técnico',3),
+			('Multimídia - 3T - M', 'Técnico',3),
+			('Multimídia - 1T - T', 'Técnico',3),
+			('Multimídia - 2T - T', 'Técnico',3),
+			('Multimídia - 3T - T', 'Técnico',3);
+GO
+
+INSERT INTO TipoRegimePresencial(NomeTipoRegimePresencial)
+VALUES		('Presencial'),
+			('Semipresencial'),
+			('Remoto');
+GO
