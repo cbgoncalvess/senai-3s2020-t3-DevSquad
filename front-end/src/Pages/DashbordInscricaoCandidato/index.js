@@ -75,15 +75,13 @@ export default function InscricaoDashboardCandidato() {
                             vagas.map((item) => {
                                 return (
                                     <div className="vaga" key={item.idVaga}>
-
-
+                                <p>{"Voce se inscreveu em:"+item.dataInscricao}</p>
                                         <div className="VagaCompleta">
-
                                             <img src={imgEmpresa} className="ImagemEmpresa" ></img>
 
                                             <div className="MainVaga">
 
-                                                <h3>Titulo da vaga</h3>
+                                <h3>{item.tituloVaga}</h3>
 
                                                 <div className="InfoVagas">
                                                     <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
@@ -118,9 +116,7 @@ export default function InscricaoDashboardCandidato() {
                             })}
                     </div>
 
-
                 </section>
-
 
             </main>
             <Footer />

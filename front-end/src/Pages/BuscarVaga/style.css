@@ -53,3 +53,45 @@ button .btn-filter :hover{
 #filter-searchJobs p {
   margin-top: 15px;
 }
+
+
+
+/* .BarraPesquisa{
+  display:flex;
+  height: 250px;  
+  align-items: center;
+  justify-content:center;
+  flex-direction: column;
+  background-image: url("../../assets/bannerBuscarVagas.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.PeliculaPesquisa{
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  width: 700px;
+  height: 50px;
+  background-color: #5E2A2A;
+  opacity: 0.8;
+  box-sizing: border-box;
+  border: solid #5E2A2A;
+}
+
+.InputPesquisa{
+  display: flex;
+  width: 500px;
+  height: 25px;
+}
+
+#BotaoPesquisa{
+  margin-left: 10px;
+  width: 100px;
+  height: 29px;
+  background-color: #713C3C;
+  color: white;
+  border-radius: 5px;
+}  */

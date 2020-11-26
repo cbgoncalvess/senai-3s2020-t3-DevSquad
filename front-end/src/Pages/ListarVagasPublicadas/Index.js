@@ -298,7 +298,7 @@ export default function VagasPublicadas() {
           return (
             <div key={item.idVaga} className="vaga">
               <div className="Edit-Delete">
-                <a>Publicou a vaga em 10/02/2020</a>
+                <p>{"Sua vaga expira em:"+item.dataExpiracao}</p>
                 <img
                   className="Edit"
                   src={imgEdit}
