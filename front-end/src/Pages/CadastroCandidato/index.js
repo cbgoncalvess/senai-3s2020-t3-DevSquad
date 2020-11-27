@@ -103,15 +103,11 @@ export default function CadastroEmpresa() {
           "content-type": "application/json",
         },
       })
-        .then((response) => {
-          if (response.status !== 200) {
-            console.log(response);
-            alert("Não foi possivel efetuar o cadastro");
-          } else {
-            alert("Cadastrado com sucesso");
-            history.push("/");
-          }
-        })
+      .then((response) => response.json())
+      .then((dados) => {
+        alert(dados);
+        history.push("/");
+      })
         .catch((err) => console.error(err));
     }
   }

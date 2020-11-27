@@ -22,7 +22,6 @@ import IconEmpresa from '../../assets/building.webp';
 
 export default function InscricaoDashboardCandidato() {
     const [vagas, setVagas] = useState([]);
-    let [idInscricao, setIdInscricao] = useState(0);
 
     useEffect(() => {
         listar();
@@ -41,7 +40,7 @@ export default function InscricaoDashboardCandidato() {
             }).catch(erro => console.error(erro));
     }
 
-    const revogarInscricao = () => {
+    const revogarInscricao = (idInscricao) => {
 
         fetch('http://localhost:5000/api/Candidato/RevogarInscricao/' + idInscricao, {
 
@@ -102,11 +101,7 @@ export default function InscricaoDashboardCandidato() {
                                                 </div>
 
                                                 <div className="divisionBtnRevogar">
-                                                    <button className="btnRevogar" onClick={e => {
-                                                        e.preventDefault();
-                                                        idInscricao = item.idInscricao;
-                                                        revogarInscricao();
-                                                    }}>revogar inscrição</button>
+                                                    <button className="btnRevogar" onClick={()=>revogarInscricao(item.idInscricao)}>revogar inscrição</button>
                                                 </div>
 
                                             </div>

@@ -29,38 +29,32 @@ export default function PerfilAdm() {
         history.push("/VizualizarVagaAdmin");
     }
 
-    const Banir =()=>{
-        fetch('http://localhost:5000/api/Administrador/Banir/'+idUsuario, {
+    const Banir =(id)=>{
+        fetch('http://localhost:5000/api/Administrador/Banir/'+id, {
             method: 'PUT',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
-        .then(function(respose){
-            if(respose.status!==200){
-                alert("Não foi possivel banir este usuario");
-            }else{
-                alert("O usuario ja está banido da plataforma");
+        .then(response => response.json())
+            .then(dados => {
+                alert(dados);
                 listarEmpresa();
                 listarCandidatos();
-            }})
-        .catch(err => console.error(err));
+            }).catch(err => console.error(err));
 }
 
-const DeletarVaga = () => {
-    fetch('http://localhost:5000/api/Administrador/DeletarVaga/' + idVaga, {
+const DeletarVaga = (id) => {
+    fetch('http://localhost:5000/api/Administrador/DeletarVaga/' + id, {
         method: 'DELETE',
         headers: {
             authorization: 'Bearer ' + localStorage.getItem('token')
         }
-    }).then(function (respose) {
-        if (respose.status !== 200) {
-            alert("Não foi possivel deletar esta vaga");
-        } else {
-            alert("Vaga deletada com sucesso");
-        }
-    })
-        .catch(err => console.error(err));
+    }).then(response => response.json())
+    .then(dados => {
+        alert(dados);
+        listarVagas();
+    }).catch(err => console.error(err));
 }
 
     const listarEmpresa = () => {
@@ -104,7 +98,7 @@ const DeletarVaga = () => {
             })
             .catch(err => console.error(err));
     }
-    ///Arrumar um if para evitar que as requisiçoes se repitam desmecessariamente
+
     function Listar() {
         if (Opcao === "Candidatos" && Candidatos.length <= 0) {
             listarCandidatos();
@@ -132,12 +126,9 @@ const DeletarVaga = () => {
                 'content-type': 'application/json',
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
-        }).then(function (respose) {
-            if (respose.status !== 200) {
-                alert("Não foi possivel");
-            } else {
-                alert("Senha alterada com sucesso");
-            }
+        }).then(response => response.json())
+        .then(dados => {
+            alert(dados);
         }).catch(err => console.error(err));
     }
 
@@ -225,10 +216,7 @@ const DeletarVaga = () => {
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">
-                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={E => {
-                                            setidUsuario(item.idUsuario);
-                                            Banir();
-                                        }} />
+                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>Banir(item.idUsuario)}/>
                                         <button className="btVerPerfil"><h4>Ver perfil</h4></button>
                                     </div>
                                 </div>
@@ -253,10 +241,7 @@ const DeletarVaga = () => {
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">
-                                        <img className="Delete" onClick={E => {
-                                            setidUsuario(item.idUsuario);
-                                            Banir();
-                                        }} src={imgDelete} alt="Delete" />
+                                        <img className="Delete" onClick={()=>Banir(item.idUsuario)} src={imgDelete} alt="Delete" />
                                         <button className="btVerPerfil"><h4>Ver perfil</h4></button>
                                     </div>
                                 </div>
@@ -280,10 +265,7 @@ const DeletarVaga = () => {
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">
-                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={E => {
-                                            idVaga=item.idVaga;
-                                            DeletarVaga();
-                                        }} />
+                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>DeletarVaga(item.idVaga)}/>
                                         <button className="btVerPerfil" onClick={e=>{
                                             e.preventDefault();
                                             idVaga=item.idVaga;

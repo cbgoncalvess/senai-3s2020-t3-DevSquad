@@ -14,7 +14,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class AdministradorRepository : IAdministradorRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@123";
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas; integrated Security=True";
         public bool AtualizarCurso(int id, Curso curso)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())

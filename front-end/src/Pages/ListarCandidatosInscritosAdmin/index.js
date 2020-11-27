@@ -17,6 +17,7 @@ import IconEmpresa from '../../assets/building.webp';
 import AccessMenu from '../../Components/AccessMenu';
 
 import './style.css';
+import { useHistory } from 'react-router-dom';
 
 export default function ListarCandidatosInscritos() {
 
@@ -36,25 +37,26 @@ export default function ListarCandidatosInscritos() {
     const [DescricaoEmpresa, setDescricaoEmpresa] = useState('');
     const [DescricaoVaga, setDescricaoVaga] = useState('');
 
+let History=useHistory();
+
     useEffect(() => {
         idVaga = localStorage.getItem('idVagaSelecionadaAdm');
         listarCandidatos();
         BuscarPorId();
     }, []);
 
-    const DeletarInscricao = () => {
-        fetch('http://localhost:5000/api/Administrador/DeletarInscricao/' + idInscricao, {
+    const DeletarInscricao = (id) => {
+        fetch('http://localhost:5000/api/Administrador/DeletarInscricao/' + id, {
             method: 'DELETE',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
-        }).then(function (respose) {
-            if (respose.status !== 200) {
-                alert("Não foi possivel deletar esta inscricao");
-            } else {
-                alert("Inscrição deletada com sucesso");
-            }
-        }).catch(err => console.error(err));
+        }).then(response => response.json())
+        .then(dados => {
+         alert(dados);
+         listarCandidatos();
+        })
+        .catch(err => console.error(err));
     }
 
     const BuscarPorId = () => {
@@ -99,12 +101,10 @@ export default function ListarCandidatosInscritos() {
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
-        }).then(function (respose) {
-            if (respose.status !== 200) {
-                alert("Não foi possivel deletar esta inscricao");
-            } else {
-                alert("Inscrição deletada com sucesso");
-            }
+        }).then(response => response.json())
+        .then(dados => {
+         alert(dados);
+         History.push('/perfil');
         }).catch(err => console.error(err));
     }
 
@@ -121,11 +121,7 @@ export default function ListarCandidatosInscritos() {
                             return (
                                 <div key={item.idInscricao} className="BoxInscricao">
                                     <div className="Edit-Delete">
-                                    <img className="Delete" src={imgDelete} onClick={e => {
-                                         e.preventDefault();
-                                         setInscricao(item.idInscricao);
-                                         DeletarInscricao();
-                                    }} />
+                                    <img className="Delete" src={imgDelete} onClick={()=>DeletarInscricao(item.idInscricao)} />
                                 </div>
                                     <div className="DadosInscrito">
                                         <img src={imgEmpresa} />
@@ -146,7 +142,7 @@ export default function ListarCandidatosInscritos() {
                             <div className="VagaCompleta">
                                 <img src={imgEmpresa} className="ImagemEmpresa" ></img>
                                 <div className="MainVaga">
-                <h3>{TituloVaga}</h3>
+                                <h3>{TituloVaga}</h3>
                                     <div className="InfoVagas">
                                         <InfoVaga NomeProp={razaoSocial} source={IconEmpresa} />
                                         <InfoVaga NomeProp={Cidade} source={imgLocalizacao} />

@@ -80,7 +80,7 @@ export default function Estagio() {
             .catch(err => console.error(err));
     }
 
-    const DeletarEstagio = () => {
+    const DeletarEstagio = (idEstagio) => {
         fetch('http://localhost:5000/api/Administrador/DeletarEstagio/'+idEstagio, {
             method: 'DELETE',
             headers: {
@@ -90,6 +90,7 @@ export default function Estagio() {
         })
             .then(response => response.json())
             .then(dados => {
+                alert(dados)
             })
             .catch(err => console.error(err));
     }
@@ -198,10 +199,7 @@ export default function Estagio() {
                                         setIdEstagio(item.idEstagio);
                                         AparecerEditarEstagio();
                                     }} />
-                                    <img className="Delete" src={imgDelete} onClick={event => {
-                                        setIdEstagio(item.idEstagio);
-                                        DeletarEstagio();
-                                    }} />
+                                    <img className="Delete" src={imgDelete} onClick={()=>DeletarEstagio(item.idEstagio)}/>
                                 </div>
                                 <div className="CabecaEstagio">
                                     <img src={imgPadrao} alt="ImagemPerfil" />
@@ -263,7 +261,7 @@ export default function Estagio() {
                         </select>
                     </div>
                     <div className="btEditarEstagioDiv">
-                        <button className="btVaga" onClick={EditarEstagio}><h3>Editar</h3></button>
+                        <button className="btVaga" onClick={EditarEstagio}>Editar</button>
                     </div>
                 </form>
             </div>

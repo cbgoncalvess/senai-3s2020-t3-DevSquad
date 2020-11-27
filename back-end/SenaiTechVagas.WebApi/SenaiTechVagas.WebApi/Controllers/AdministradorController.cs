@@ -47,11 +47,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        /// <summary>
-        /// Método que busca vaga pelo seu identificador e mostra lista de candidatos inscritos.
-        /// </summary>
-        /// <param name="idVaga">Identificador da vaga</param>
-        /// <returns>Retorna uma vaga com lista de candidatos inscritos</returns>
         [Authorize(Roles = "1")]
         [HttpGet("listaEmpresaRazaoSocial")]
         public IActionResult ListaEmpresasRazaoSocial()

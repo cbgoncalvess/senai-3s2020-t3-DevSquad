@@ -158,6 +158,7 @@ export default function VagasPublicadas() {
     })
       .then((response) => response.json())
       .then((dados) => {
+        alert(dados);
         listarVagas();
       })
       .catch((err) => console.error(err));
@@ -264,20 +265,17 @@ export default function VagasPublicadas() {
     }
   }
 
-  const DeletarVaga = () => {
-    fetch("http://localhost:5000/api/Empresa/DeletarVagaEmpresa/" + idVaga, {
+  const DeletarVaga = (id) => {
+    fetch("http://localhost:5000/api/Empresa/DeletarVagaEmpresa/" + id, {
       method: "DELETE",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
-      .then(function (respose) {
-        if (respose.status !== 200) {
-          alert("Não foi possivel deletar esta vaga");
-        } else {
-          alert("Vaga deletada com sucesso com sucesso");
-          listarVagas();
-        }
+      .then(response => response.json())
+      .then(dados => {
+       alert(dados);
+       listarVagas()
       })
       .catch((err) => console.error(err));
   };
@@ -314,12 +312,7 @@ export default function VagasPublicadas() {
                 <img
                   className="Delete"
                   src={imgDelete}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    SetIdVaga(item.idVaga);
-                    DeletarVaga();
-                  }}
-                />
+                  onClick={()=>DeletarVaga(item.idVaga)}/>
               </div>
               <div className="VagaCompleta">
                 <img src={imgEmpresa} className="ImagemEmpresa"></img>
