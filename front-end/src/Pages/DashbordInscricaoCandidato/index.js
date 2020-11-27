@@ -62,7 +62,7 @@ export default function InscricaoDashboardCandidato() {
             <Header />
             <main className="">
                 <div className="bannerDashboardCandidato">
-                    <h2>Bem-vindo Candidato ;)!</h2>
+                    <h2>Bem-vindo, Candidato ;)!</h2>
                 </div>
 
                 <section className="sessaoVagaInscritas">

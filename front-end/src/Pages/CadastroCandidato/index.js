@@ -8,6 +8,8 @@ import Input from "../../Components/Input";
 import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
 
+import { mascara } from '../../services/mask';
+
 import imagemCadastroCandidato from "../../assets/imgCadastroCandidato.webp";
 
 import "./style.css";
@@ -42,7 +44,6 @@ export default function CadastroEmpresa() {
   useEffect(() => {
     listarcurso();
   }, []);
-
   
   const escreverResultado = () => {
     if (Senha !== ConfirmarSenha) {
@@ -162,6 +163,7 @@ export default function CadastroEmpresa() {
               />
 
               <Input
+                id="cpf"
                 name="cpf"
                 className="cadastre"
                 label="CPF:"
@@ -170,7 +172,11 @@ export default function CadastroEmpresa() {
                 required
                 maxLength={11}
                 minLength={11}
-                onChange={(e) => SetCPF(e.target.value)}
+                onChange={(e) => {
+                    SetCPF(e.target.value);
+                    mascara(e.target.value);
+                  }
+                }
               />
 
               <Input

@@ -54,3 +54,109 @@ button .btn-filter :hover{
   margin-top: 15px;
 }
 
+@media(max-width: 768px){
+  .main-content-search-jobs{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #filter-searchJobs{
+    display: flex;
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: justify;
+    margin: 10px 15px 10px 10px;
+  }
+
+  #filter-searchJobs button{
+    text-align: center;
+  }
+
+  #filter-searchJobs p{
+    margin: 1vh 0 2vh 2vw;
+    align-items: center;
+  }
+
+  .btn-filter{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 1vw 0 1vw;
+    text-align: center;
+    width: 15vw;
+  }
+
+  .btn-search{
+    height: 28px;
+  }
+
+  .btn-active{
+    margin: 0 1vw 0 1vw;
+    text-align: center;
+    width: 18vw;
+  }
+}
+
+@media(max-width: 645px){
+  #filter-searchJobs{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    margin:15vh 0 15vh 0;
+  }
+
+  .input-searchJobs{
+    padding: 4px;
+    height: 9vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .btn-search{
+    height: 33px;
+  }
+  
+  .btn-filter{
+    width: 95%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-active{
+    width: 95%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media(max-width: 425px){
+  .input-searchJobs{
+    padding: 10px;
+    height: 9vh;
+    display: flex;
+    align-items: center;
+  }
+  .btn-search{
+    height: 36px;
+  }
+}
+
+@media(max-width: 375px){
+  .btn-search{
+    height: 34px;
+  }
+}
+
+@media(max-width: 320px){
+  .btn-search{
+    height: 33px;
+  }
+}
+
+@media(min-width: 1800px){
+  .main-content-search-jobs{
+    font-size: large;
+  }
+}

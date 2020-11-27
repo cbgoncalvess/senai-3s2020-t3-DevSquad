@@ -272,9 +272,9 @@ export default function BuscarVaga() {
       <div className="content-searchJobs">
         <div>
           <Input
-            label="Busque sua vaga aqui"
+          className="input-searchJobs"
             type="text"
-            placeholder="Ex.: Desenvolvedor"
+            placeholder="Busque sua vaga aqui"
           />
           <button class="fa fa-search btn-search"></button>
           <img
@@ -289,7 +289,7 @@ export default function BuscarVaga() {
             <button className="btn-active" id="btn-all" onClick={e=>setOpcaoFiltro(e.target.value)} value=''>
               Todas as vagas
             </button>
-            <p><strong>Filtrar por tipo de contrato:</strong></p>
+            <p><strong>Filtrar por contrato:</strong></p>
             <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='CLT'>
               CLT
             </button>
