@@ -1,104 +1,108 @@
-.ColumnImages>img{
-width: 100px;
-height: 100px;
+.ColumnImages > img {
+  width: 100px;
+  height: 100px;
 }
 
-.ColumnImages{
-display: flex;
-flex-direction: column;
-align-items: center;
+.ColumnImages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.Imagens{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 5vh;
-    flex-wrap: wrap;
+.Imagens {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5vh;
+  flex-wrap: wrap;
 }
 
-.Space>img{
-    width: 30px;
-    height: 30px;
+.textBox {
+  margin-top: 10px;
+  width: 240px;
+  text-align: center;
 }
 
-.Vaga{
-    display: flex;
-    flex-direction: column;
-    background-color: #FAFAFA;
-    width: 280px;
-    padding: 1vw;
-    justify-content: space-between;
-    border-radius: 10px;
+.Space > img {
+  width: 30px;
+  height: 30px;
 }
 
-
-.Tecnologias{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+.Vaga {
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  width: 280px;
+  padding: 1vw;
+  justify-content: space-between;
+  border-radius: 10px;
 }
 
-
-.BoxDeVagas{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.Tecnologias {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.QuadroDeVagas{
-display: flex;
-text-align: center;
-flex-direction: column;
-padding: 3vh;
+.BoxDeVagas {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.TesteDePersonalidade{
-    display: flex;
-    justify-content: space-evenly;
-    padding: 2vw;
-    flex-wrap: wrap;
+.QuadroDeVagas {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  padding: 3vh;
 }
 
-.imgTeste>img{
-    width: 250px;
-    height: 250px;
+.TesteDePersonalidade {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2vw;
+  flex-wrap: wrap;
 }
 
-.BoxDepoimentos{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.imgTeste > img {
+  width: 250px;
+  height: 250px;
 }
 
-.Depoimentos{
-    text-align: center;
-    padding: 3vw;
-    background-color: #E5E5E5;
+.BoxDepoimentos {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.QuadroDeVagas{
-    background-color: #E5E5E5;
+.Depoimentos {
+  text-align: center;
+  padding: 3vw;
+  background-color: #e5e5e5;
 }
 
-.BoxTexto{
-    background-color: #4B4B4B;
-    min-width: 300px;
-    max-width: 400px;
-    height: auto;
-    padding: 2vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: white;
-    text-align: initial;
-    margin: 10px 0;
+.QuadroDeVagas {
+  background-color: #e5e5e5;
 }
 
-hr{
-    background-color: black;
-    width: 100%;
+.BoxTexto {
+  background-color: #4b4b4b;
+  min-width: 300px;
+  max-width: 400px;
+  height: auto;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  text-align: initial;
+  margin: 10px 0;
+}
+
+hr {
+  background-color: black;
+  width: 100%;
 }
 
 .bt{
@@ -110,84 +114,107 @@ border-radius: 4px;
 color: white;
 border: #353535 solid 1px !important;
 transition: .5s;
+font-weight: bold;
 }
 
-.heightomg{
-    height: 0;
+.heightomg {
+  height: 0;
 }
 
 .bt:hover{
-    width: auto;
-    height: auto;
-    padding: 12px 25px;
     background: white;
-    border-radius: 4px;
     color: #353535;
     border: white solid 1px;
     transition: .5s;
     cursor: pointer;
 }
 
-.Link{
-    font-size: 10px;
-    text-decoration: revert;
+.Link {
+  font-size: 10px;
+  text-decoration: revert;
 }
 
-.LinkVaga{
-    font-size: 10px;
-    padding: 1vh 0;
+.LinkVaga {
+  font-size: 10px;
+  padding: 1vh 0;
 }
 
-.EmpresaCandidato{
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 40px;
+.EmpresaCandidato {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 40px;
 }
 
-.Empresa,.Candidato{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+.Empresa,
+.Candidato {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
-.StartImage{
-text-align: center;
-background-image: url("../../assets/esperoquesejaessetamanho.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    color: white;
-    padding: 5vh;
+.StartImage {
+  text-align: center;
+  background-image: url("../../assets/esperoquesejaessetamanho.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 5vh;
 }
 
-.BtnStartCandidato{
-    width: 152px;
-    height: 50px;
-    background: linear-gradient(262.72deg, #FF000F 7.13%, #873040 93.87%);
-    border: 3px solid #FFFFFF;
-    box-sizing: border-box;
-    border-radius:30px;
-    color: white;
+.BtnStartCandidato {
+  width: 152px;
+  height: 50px;
+  background: linear-gradient(262.72deg, #ff000f 7.13%, #873040 93.87%);
+  border: 3px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 30px;
+  color: white;
 }
 
-.BtnStartEmpresa{
-    color: white;
-    width: 152px;
-    height: 50px;
-    background: linear-gradient(81.72deg, #005767 11.84%, #665F68 89.73%);
-    border: 3px solid #FFFFFF;
-    box-sizing: border-box;
-    border-radius:30px;
+.BtnStartEmpresa {
+  color: white;
+  width: 152px;
+  height: 50px;
+  background: linear-gradient(81.72deg, #005767 11.84%, #665f68 89.73%);
+  border: 3px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 30px;
 }
 
-body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button,
-body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button{
-    cursor: pointer;
+body
+  > div.bodyPart
+  > div.StartImage
+  > div.EmpresaCandidato
+  > div.Empresa
+  > div
+  > a
+  > button,
+body
+  > div.bodyPart
+  > div.StartImage
+  > div.EmpresaCandidato
+  > div.Candidato
+  > div
+  > a
+  > button {
+  cursor: pointer;
 }
 
 .preto body > div.bodyPart > div.TesteDePersonalidade,
 .preto body > div.bodyPart > div.Imagens{
     background: black;
+}
+
+.preto .bt,
+.preto body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button > h2,
+.preto body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button > h2{
+    color: yellow !important;
+    text-decoration: underline !important;
+}
+
+.preto .bt:hover{
+    color: #373737 !important;
 }
 
 @media(max-width:888px){
@@ -222,3 +249,8 @@ body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > di
     }
 }
 
+.preto .bt:hover {
+  color: #353535 !important;
+  transition: 0.5s;
+  cursor: pointer;
+}

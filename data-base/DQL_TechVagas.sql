@@ -1,12 +1,7 @@
 USE Db_TechVagas
-
-USE MASTER
 GO
 
-SELECT * FROM Area
-GO
-
-SELECT * FROM Curso
+SELECT * FROM TipoUsuario
 GO
 
 SELECT * FROM StatusInscricao
@@ -15,7 +10,16 @@ GO
 SELECT * FROM Tecnologia
 GO
 
-SELECT * FROM TipoUsuario
+SELECT * FROM Usuario
+GO
+
+SELECT * FROM Area
+GO
+
+SELECT * FROM Curso
+GO
+
+SELECT * FROM TipoRegimePresencial
 GO
 
 SELECT * FROM Empresa
@@ -27,43 +31,25 @@ GO
 SELECT * FROM Inscricao
 GO
 
-SELECT * FROM Usuario
-GO
-
 SELECT * FROM Vaga
 GO
 
-
 SELECT * FROM VagaTecnologia
-GO
-INSERT INTO VagaTecnologia(IdVaga,IdTecnologia)
-VALUES		(6,4),
-			(7,4);
 GO
 
 SELECT * FROM Estagio
 GO
 
-
-update Usuario set idTipoUsuario=2 where idUsuario=4;
-
-
-
 --Lista so os atributos necessarios
-Select  v.IdVaga,NomeTecnologia,v.Experiencia, TipoContrato, Salario,RazaoSocial,v.Localidade from VagaTecnologia      
-inner join Tecnologia on Tecnologia.IdTecnologia=VagaTecnologia.IdTecnologia
-inner join Vaga v on v.IdVaga=VagaTecnologia.IdVaga 
-inner join Empresa on Empresa.IdEmpresa=v.IdEmpresa
-
-
+SELECT  v.IdVaga,NomeTecnologia,v.Experiencia, TipoContrato, Salario,RazaoSocial,v.Localidade FROM VagaTecnologia      
+INNER JOIN Tecnologia ON Tecnologia.IdTecnologia=VagaTecnologia.IdTecnologia
+INNER JOIN Vaga v ON v.IdVaga=VagaTecnologia.IdVaga 
+INNER JOIN Empresa ON Empresa.IdEmpresa=v.IdEmpresa
+GO
 
 --Lista todos os atributos da vaga...
 SELECT * FROM VagaTecnologia
-inner join Vaga on Vaga.IdVaga=VagaTecnologia.IdVaga
-inner join Tecnologia on Tecnologia.IdTecnologia=VagaTecnologia.IdTecnologia
-inner join Empresa on Empresa.IdEmpresa=Vaga.IdEmpresa
-
-
-
-INSERT INTO Area(NomeArea)Values
-('Desenvolvimento'),('Infra-Estrutura'),('Designer')
+INNER JOIN Vaga ON Vaga.IdVaga=VagaTecnologia.IdVaga
+INNER JOIN Tecnologia ON Tecnologia.IdTecnologia=VagaTecnologia.IdTecnologia
+INNER JOIN Empresa ON Empresa.IdEmpresa=Vaga.IdEmpresa
+GO

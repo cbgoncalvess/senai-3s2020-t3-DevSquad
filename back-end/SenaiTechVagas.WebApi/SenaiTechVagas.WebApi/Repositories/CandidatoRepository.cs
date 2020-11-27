@@ -15,6 +15,8 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class CandidatoRepository : ICandidatoRepository
     {
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas; integrated Security=True";
+
         //Em ordem CRUD - Criar, Ler, Atualizar, Deletar
         public bool AtualizarCandidato(int idUsuario,AtualizarCandidatoViewModel CandidatoAtualizado)
         {
@@ -59,7 +61,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch(Exception e)
+                catch(Exception)
                 {
                     return false;
                 }
@@ -82,18 +84,18 @@ namespace SenaiTechVagas.WebApi.Repositories
                     List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
                     for (int i = 0; i < ListaDeInscricoes.Count; i++)
                     {
-                        string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
-                        //string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
                         // Declara a SqlConnection passando a string de conexão
                         using (SqlConnection con = new SqlConnection(stringConexao))
                         {
                             // Declara a instrução a ser executada
                             string querySelectAll =
-                            "SELECT are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                            "SELECT inscri.DataInscricao,trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                             " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                             " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                             " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
                             " INNER JOIN Area are on are.IdArea=v.IdArea"+
+                            " INNER JOIN Inscricao inscri on inscri.IdVaga=v.IdVaga" +
+                            " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
                             " WHERE v.IdVaga =@IDVaga ";
                             con.Open();
 
@@ -119,11 +121,14 @@ namespace SenaiTechVagas.WebApi.Repositories
                                         IdVaga = Convert.ToInt32(rdr["IdVaga"]),
                                         Experiencia = rdr["Experiencia"].ToString(),
                                         TipoContrato = rdr["TipoContrato"].ToString(),
+                                        IdInscricao = Convert.ToInt32(rdr["IdInscricao"]),
                                         Localidade = rdr["Localidade"].ToString(),
                                         Salario = Convert.ToDecimal(rdr["Salario"]),
+                                        DataInscricao=Convert.ToDateTime(rdr["DataInscricao"]),
                                         RazaoSocial = rdr["RazaoSocial"].ToString(),
                                         NomeArea = rdr["NomeArea"].ToString(),
-                                        TituloVaga=rdr["TituloVaga"].ToString()
+                                        TituloVaga=rdr["TituloVaga"].ToString(),
+                                        TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString()
                                     };
                                     var NomeTecnologia = rdr["NomeTecnologia"].ToString();
                                     vm.Tecnologias = new List<string>();
@@ -147,7 +152,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     return listvagas;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -187,7 +192,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -206,19 +211,96 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
             }
         }
+
+        public List<ListarVagasViewModel> ListarVagasArea(int idArea)
+        {
+            try
+            {
+                List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
+                // Declara a SqlConnection passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
+                {
+                    // Declara a instrução a ser executada
+                    string querySelectAll =
+                   "SELECT trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                   " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
+                   " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
+                   " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
+                   " INNER JOIN Area are on are.IdArea=v.IdArea" +
+                   " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
+                   " WHERE are.IdArea=@IdArea";
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                    {
+                        cmd.Parameters.AddWithValue("@IdArea", idArea);
+
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
+                        while (rdr.Read())
+                        {
+                            bool teveAcao = false;
+
+                            // Instancia um objeto jogo 
+                            ListarVagasViewModel vm = new ListarVagasViewModel
+                            {
+                                // Atribui às propriedades os valores das colunas da tabela do banco
+                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                                Experiencia = rdr["Experiencia"].ToString(),
+                                TipoContrato = rdr["TipoContrato"].ToString(),
+                                TituloVaga = rdr["TituloVaga"].ToString(),
+                                Localidade = rdr["Localidade"].ToString(),
+                                Salario = Convert.ToDecimal(rdr["Salario"]),
+                                RazaoSocial = rdr["RazaoSocial"].ToString(),
+                                NomeArea = rdr["NomeArea"].ToString(),
+                                TipoPresenca = rdr["NomeTipoRegimePresencial"].ToString()
+                            };
+                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
+                            vm.Tecnologias = new List<string>();
+
+                            for (int i = 0; i < listvagas.Count; i++)
+                            {
+                                if (vm.IdVaga == listvagas[i].IdVaga)
+                                {
+                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
+                                    teveAcao = true;
+                                }
+                            }
+                            if (teveAcao == true)
+                                continue;//é do While
+                            else vm.Tecnologias.Add(NomeTecnologia);
+                            // Adiciona a vaga criada à lista de vagas
+                            listvagas.Add(vm);
+                        }
+                    }
+                }
+                return listvagas;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public Candidato BuscarCandidatoPorIdUsuario(int idUsuario)
         {
             using(DbSenaiContext ctx=new DbSenaiContext())
             {
                 try
                 {
-                    return ctx.Candidato.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                    return ctx.Candidato.Include(i=>i.IdCursoNavigation).FirstOrDefault(c => c.IdUsuario == idUsuario);
                 }
                 catch (Exception)
                 {

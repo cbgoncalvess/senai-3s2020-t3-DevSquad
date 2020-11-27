@@ -69,23 +69,26 @@ export default function Home() {
           <div className="ColumnImages">
             <Svg />
             <h2>Profissionalismo</h2>
-            <p>Um dos principais pilares da nossa</p>
-            <p>aplicação para demosntrar nosso</p>
-            <p>compromisso o aluno e a empresa</p>
+            <p class="textBox">
+              Um dos principais pilares da nossa aplicação para demonstrar nosso
+              compromisso com o aluno, e com a empresa.
+            </p>
           </div>
           <div className="ColumnImages">
             <Confidence />
             <h2>Confiança</h2>
-            <p>Taxa de empregabilidade supera 80% entre</p>
-            <p>profissionais que concluíram cursos em </p>
-            <p>áreas de tecnologia da informaçãos</p>
+            <p class="textBox">
+              Taxa de empregabilidade supera 80% entre profissionais que
+              concluíram cursos em áreas de tecnologia da informação.
+            </p>
           </div>
           <div className="ColumnImages">
             <Surprise />
             <h2>Surpresa</h2>
-            <p>Quando você menos espera...</p>
-            <p>VOCÊ FOI ACEITO! A plataforma faz com </p>
-            <p>que você tratalhe seus potenciais</p>
+            <p class="textBox">
+              Quando você menos espera: VOCÊ FOI ACEITO! A plataforma faz com
+              que você trabalhe seus potenciais
+            </p>
           </div>
         </div>
         <div className="QuadroDeVagas">
@@ -110,54 +113,103 @@ export default function Home() {
                   <Tag NomeTag={"CSharp"}></Tag>
                   <Tag NomeTag={"React"}></Tag>
                 </div>
-              </div>
-              <div className="LinkVaga">
-                <a className="Link" href="teste">
-                  Ver mais sobre a vaga
-                </a>
-              </div>
-            </div>
-            <div className="Vaga">
-              <div className="Space">
-                <img src={imgPadrao} alt="" />
-                <h3>Youtube</h3>
-                <br />
-                <hr className="hr" />
-                <br />
-                <h4>Desenvolvedor Back-end Jr</h4>
-                <br />
-                <div className="Tecnologias">
-                  <Tag NomeTag={"Angular"}></Tag>
-                  <Tag NomeTag={"C++"}></Tag>
-                  <Tag NomeTag={"Python"}></Tag>
-                  <Tag NomeTag={"Html5"}></Tag>
-                  <Tag NomeTag={"Css3"}></Tag>
-                  <Tag NomeTag={"Java"}></Tag>
+                <div className="QuadroDeVagas">
+                    <br />
+                    <h2>Quadro de vagas</h2>
+                    <p>Aqui você encontra as melhores vagas disponiveis</p>
+                    <br />
+                    <div className="BoxDeVagas">
+                        <div className="Vaga">
+                            <div className="Space">
+                                <img src={imgPadrao} alt="" />
+                                <h3>Google</h3>
+                                <br />
+                                <hr className="hr" />
+                                <br />
+                                <h4>Desenvolvedor Back-end Jr</h4>
+                                <br />
+                                <div className="Tecnologias">
+                                    <Tag NomeTag={"Fluther"}></Tag>
+                                    <Tag NomeTag={"Dart"}></Tag>
+                                    <Tag NomeTag={"Javascript"}></Tag>
+                                    <Tag NomeTag={"CSharp"}></Tag>
+                                    <Tag NomeTag={"React"}></Tag>
+                                </div>
+                            </div>
+                            <div className="LinkVaga">
+                                <a className="Link" href="/login">Ver mais sobre a vaga</a>
+                            </div>
+                        </div>
+                        <div className="Vaga">
+                            <div className="Space">
+                                <img src={imgPadrao} alt="" />
+                                <h3>Youtube</h3>
+                                <br />
+                                <hr className="hr" />
+                                <br />
+                                <h4>Desenvolvedor Back-end Jr</h4>
+                                <br />
+                                <div className="Tecnologias">
+                                    <Tag NomeTag={"Angular"}></Tag>
+                                    <Tag NomeTag={"C++"}></Tag>
+                                    <Tag NomeTag={"Python"}></Tag>
+                                    <Tag NomeTag={"Html5"}></Tag>
+                                    <Tag NomeTag={"Css3"}></Tag>
+                                    <Tag NomeTag={"Java"}></Tag>
+                                </div>
+                            </div>
+                            <div className="LinkVaga">
+                                <a className="Link" href="/login">Ver mais sobre a vaga</a>
+                            </div>
+                        </div>
+                        <div className="Vaga">
+                            <div className="Space">
+                                <img src={imgPadrao} alt="" />
+                                <h3>Apple</h3>
+                                <br />
+                                <hr className="hr" />
+                                <br />
+                                <h4>Desenvolvedor Back-end Jr</h4>
+                                <br />
+                                <div className="Tecnologias">
+                                    <Tag NomeTag={"NodeJs"}></Tag>
+                                    <Tag NomeTag={"VueJs"}></Tag>
+                                    <Tag NomeTag={"MVC"}></Tag>
+                                    <Tag NomeTag={".Net"}></Tag>
+                                    <Tag NomeTag={"Entity Framework"}></Tag>
+                                    <Tag NomeTag={"SQL"}></Tag>
+                                    <Tag NomeTag={"MongoDB"}></Tag>
+                                </div>
+                            </div>
+                            <div className="LinkVaga">
+                                <a className="Link" href="/login">Ver mais sobre a vaga</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
                 </div>
-              </div>
-              <div className="LinkVaga">
-                <a className="Link" href="teste">
-                  Ver mais sobre a vaga
-                </a>
-              </div>
-            </div>
-            <div className="Vaga">
-              <div className="Space">
-                <img src={imgPadrao} alt="" />
-                <h3>Apple</h3>
-                <br />
-                <hr className="hr" />
-                <br />
-                <h4>Desenvolvedor Back-end Jr</h4>
-                <br />
-                <div className="Tecnologias">
-                  <Tag NomeTag={"NodeJs"}></Tag>
-                  <Tag NomeTag={"VueJs"}></Tag>
-                  <Tag NomeTag={"MVC"}></Tag>
-                  <Tag NomeTag={".Net"}></Tag>
-                  <Tag NomeTag={"Entity Framework"}></Tag>
-                  <Tag NomeTag={"SQL"}></Tag>
-                  <Tag NomeTag={"MongoDB"}></Tag>
+
+                <div className="TesteDePersonalidade">
+                    <div className="imgTeste">
+                        <img src={imgPerfil} alt="" />
+                    </div>
+                    <div className="TextoTeste">
+                        <br />
+                        <h2>Teste de perfil comportamental</h2>
+                        <p>As características do mundo animal também podem ser usadas no mundo corporativo.</p>
+                        <p>É possível traçar o perfil de personalidade de cada pessoa e tipo de personalidade, a partir de mapa comportamental.</p>
+                        <p>Este teste indica o animal que nos humanos seríamos no ambiente de trabalho, apontando pontos positivos e negativos</p>
+                        <p>do nosso comportamento.</p>
+                        <br />
+                        <h4>Você é uma Águia, Lobo, Gato ou Tubarão?</h4>
+                        <h4>Faça o teste e descubra!</h4>
+                        <br />
+                        <br />
+                        <div className="btnTeste">
+                            <a href="/TesteDePersonalidade"><button className="bt">FAZER O TESTE</button></a>
+                        </div>
+                        <br />
+                    </div>
                 </div>
               </div>
               <div className="LinkVaga">
@@ -197,9 +249,7 @@ export default function Home() {
             <br />
             <div className="btnTeste">
               <a href="/TesteDePersonalidade">
-                <button className="bt">
-                  <h4>FAZER O TESTE</h4>
-                </button>
+                <button className="bt">Fazer o teste</button>
               </a>
             </div>
             <br />
@@ -213,15 +263,15 @@ export default function Home() {
           <div className="BoxDepoimentos">
             <div className="BoxTexto">
               <div className="Depo">
-                <p>“Fui aluno do SENAI Informática de </p>
+                <p>“Fui aluno do SENAI Informática em </p>
                 <p>1999, mas ainda tenho ótimas </p>
                 <p>memórias da época de estudei lá. </p>
-                <p>Hoje sou CEO da Itaú Personalitte e </p>
+                <p>Hoje, sou CEO da Itaú, e </p>
                 <p>tudo graças ao maravilhoso curso </p>
-                <p>técnico de desenvolviment de </p>
+                <p>técnico de desenvolvimento de </p>
                 <p>sistemas. Só tenho a agradecer essa</p>
-                <p>maravilhoso instituição que pôde me</p>
-                <p>dar essa oportunidade de crescer </p>
+                <p>maravilhosa instituição, que me deu</p>
+                <p>essa oportunidade de crescer </p>
                 <p>como profissional e como ser </p>
                 <p>humano.</p>
                 <p>Muito sucesso para a equipe SENAI!”</p>
@@ -233,9 +283,9 @@ export default function Home() {
               <div className="Depo">
                 <p>“SENAI foi muito importante para a </p>
                 <p>minha formação. Comecei fazendo </p>
-                <p>cursos de redes e hoje trabalho</p>
+                <p>cursos de redes e, hoje, trabalho</p>
                 <p>instalando roteadores de fibra ótica</p>
-                <p>da vivo.</p>
+                <p>da Vivo.</p>
                 <p>Muito obrigado SENAI por fazer isso</p>
                 <p>ser possível! :)”</p>
               </div>
@@ -247,18 +297,18 @@ export default function Home() {
             <div className="BoxTexto">
               <div className="Depo">
                 <p>“Depois de algumas delisusões da</p>
-                <p>área da docencia decidi fazer o curso</p>
+                <p>área da docência, decidi fazer o curso</p>
                 <p>de desenvolvimento de sistemas. </p>
                 <p>Nunca achei que poderia me</p>
                 <p>encontrar numa área que parecia ser</p>
                 <p>impossível para mim. Agradeço ao </p>
-                <p>SENAI e seu corpo docente que </p>
+                <p>SENAI, e seu corpo docente, que </p>
                 <p>estão tornando a minha formação </p>
-                <p>cada vez mais concreta. Hoje posso</p>
-                <p>ainda ser u estudante, mas tenho</p>
+                <p>cada vez mais concreta. Hoje, posso</p>
+                <p>ainda ser um estudante, mas tenho</p>
                 <p>certeza que terei todas a chances </p>
-                <p>que precias.</p>
-                <p>Obrigado SENAI.”</p>
+                <p>que preciasar. Obrigado SENAI!”</p>
+                <br />
               </div>
               <h5 className="NomeDepo">Oswaldo Blablabla - Estudante</h5>
             </div>

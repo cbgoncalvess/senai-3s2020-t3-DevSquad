@@ -26,13 +26,41 @@ export default function CadastrarVaga() {
     const [DescricaoEmpresa, SetDescricaoEmpresa] = useState('');
     const [DescricaoBeneficio, SetDescricaoBeneficio] = useState('');
     const [ListAreas, SetListArea] = useState([]);
+    const [ListTipoPresencas, setTipoPresencas] = useState([]);
+    const [IdTipoPresenca, setIdTipoPresenca] = useState(0);
 
     useEffect(() => {
         listarAreas();
+        ListarTipoPresencas();
     }, []);
 
     let history = useHistory();
 
+    const validaCep = /^[0-9]{8}$/g;
+    let verificacaoCep = validaCep.test(CEP);
+
+    function buscarCep(valor) {
+        if (verificacaoCep) {
+            const URL = `https://viacep.com.br/ws/${valor}/json/`;
+            fetch(URL)
+                .then((resposta) => resposta.json())
+                .then((data) => {
+                    if (data.logradouro || data.localidade || data.uf !== undefined) {
+                        document.getElementById("rua").value = data.logradouro;
+                        document.getElementById("cidade").value = data.localidade;
+                        document.getElementById("uf").value = data.uf;
+                        SetLogradouro(data.logradouro);
+                        SetCidade(data.localidade);
+                        SetEstado(data.uf);
+                    } else {
+                        alert('O CEP não existe');
+                    }
+                })
+                .catch((erro) => console.error(erro));
+        } else {
+            alert("O CEP deve conter apenas 8 números");
+        }
+    }
     const listarAreas = () => {
         fetch('http://localhost:5000/api/Usuario/ListarArea', {
             method: 'GET',
@@ -47,11 +75,26 @@ export default function CadastrarVaga() {
             .catch(err => console.error(err));
     }
 
+    const ListarTipoPresencas = () => {
+        fetch('http://localhost:5000/api/Empresa/ListarTipoPresenca', {
+            method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                setTipoPresencas(dados);
+            })
+            .catch(err => console.error(err));
+    }
+
     const salvar = () => {
         const form = {
             tituloVaga: TituloVaga,
             salario: Salario,
             idArea: Area,
+            idTipoRegimePresencial: IdTipoPresenca,
             experiencia: Experiencia,
             tipoContrato: TipoDeContrato,
             estado: Estado,
@@ -63,23 +106,21 @@ export default function CadastrarVaga() {
             descricaoEmpresa: DescricaoEmpresa,
             descricaoBeneficio: DescricaoBeneficio
         };
-        api.post('/Empresa/AdicionarVaga', form, {
-            headers: {
-                authorization: 'Bearer ' + localStorage.getItem('token')
-            }
-        })
-            .then(function (respose) {
+        if (validaCep) {
+            api.post('/Empresa/AdicionarVaga', form, {
+                headers: {
+                    authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then(function (respose) {
                 if (respose.status !== 200) {
                     alert("Não foi possivel cadastrar a vaga");
                 } else {
                     alert("Vaga cadastrada com sucesso");
                     history.push('/VagasPublicadas');
                 }
-            })
-            .catch(err => console.log(err))
+            }).catch(err => console.log(err))
+        }
     }
-
-
     return (
         <body>
             <AccessBar />
@@ -98,7 +139,7 @@ export default function CadastrarVaga() {
                                     label="Título da Vaga"
                                     onChange={e => SetTituloVaga(e.target.value)}
                                     type="text"
-                                    maxLength={50}
+                                    maxLength={40}
                                     minLength={5}
                                     required
                                 />
@@ -122,13 +163,26 @@ export default function CadastrarVaga() {
                                         }
                                     </select>
                                 </div>
+
+                                <div className="select">
+                                    <label>Tipo de presença</label>
+                                    <select className="div-select" onChange={e => setIdTipoPresenca(e.target.value)} value={IdTipoPresenca} required>
+                                        <option value="0">Selecione um tipo de presenca</option>
+                                        {
+                                            ListTipoPresencas.map((item) => {
+                                                return <option value={item.idTipoRegimePresencial}>{item.nomeTipoRegimePresencial}</option>
+                                            })
+                                        }
+                                    </select>
+                                </div>
+
                                 <div className="select">
                                     <label>Experiência</label>
                                     <select className="div-select" onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
                                         <option value="0">Selecione um nivel de experiencia</option>
                                         <option value="Pleno">Pleno</option>
                                         <option value="Sênior">Sênior</option>
-                                        <option value="Junior">Júnior</option>
+                                        <option value="Júnior">Júnior</option>
                                     </select>
                                 </div>
                                 <div className="select">
@@ -140,59 +194,26 @@ export default function CadastrarVaga() {
                                         <option value="Estagio">Estagio</option>
                                     </select>
                                 </div>
-                                <div className="select">
-                                    <label>Estado</label>
-                                    <select className="cadastre" onChange={e => SetEstado(e.target.value)} value={Estado} required>
-                                        <option value="0">Selecione seu estado</option>
-                                        <option value="AC">Acre</option>
-                                        <option value="AM">Amazonas</option>
-                                        <option value="AL">Alagoas</option>
-                                        <option value="AP">Amapá</option>
-                                        <option value="BA">Bahia</option>
-                                        <option value="CE">Ceará</option>
-                                        <option value="DF">Distrito Federal</option>
-                                        <option value="ES">Espírito Santo</option>
-                                        <option value="GO">Goiás</option>
-                                        <option value="MA">Maranhão</option>
-                                        <option value="MG">Minas Gerais</option>
-                                        <option value="MS">Mato Grosso do Sul</option>
-                                        <option value="MT">Mato Grosso</option>
-                                        <option value="PA">Pará</option>
-                                        <option value="PB">Paraíba</option>
-                                        <option value="PE">Pernambuco</option>
-                                        <option value="PI">Piauí</option>
-                                        <option value="PR">Paraná</option>
-                                        <option value="RJ">Rio de Janeiro</option>
-                                        <option value="RN">Rio Grande do Norte</option>
-                                        <option value="RO">Rondônia</option>
-                                        <option value="RR">Roraima</option>
-                                        <option value="RS">Rio Grande do Sul</option>
-                                        <option value="SE">Sergipe</option>
-                                        <option value="SC">Santa Catarina</option>
-                                        <option value="SP">São Paulo</option>
-                                        <option value="TO">Tocantins</option>
-                                    </select>
+                                <div className="Input">
+                                    <label>CEP:</label>
+                                    <br />
+                                    <input
+                                        type="text"
+                                        className="cadastre"
+                                        id="cep"
+                                        data-mask="00000-000"
+                                        data-mask-selectonfocus="true"
+                                        onBlur={(e) => {
+                                            e.preventDefault();
+                                            buscarCep(e.target.value);
+                                        }}
+                                        onChange={(e) => SetCEP(e.target.value)}
+                                    />
                                 </div>
-                                <Input className="InputCadastro"
-                                    name="Cidade"
-                                    label="Cidade"
-                                    type="text"
-                                    onChange={e => SetCidade(e.target.value)}
-                                    maxLength={50}
-                                    minLength={5}
-                                    required />
 
-                                <Input className="InputCadastro"
-                                    name="CEP"
-                                    type="number"
-                                    label="CEP"
-                                    onChange={e => SetCEP(e.target.value)}
-                                    maxLength={50}
-                                    minLength={5}
-                                    required
-                                />
-
-                                <Input className="InputCadastro"
+                                <Input
+                                    id="rua"
+                                    className="InputCadastro"
                                     name="Logradouro"
                                     label="Logradouro"
                                     type="text"
@@ -202,7 +223,8 @@ export default function CadastrarVaga() {
                                     required
                                 />
 
-                                <Input className="InputCadastro"
+                                <Input
+                                    className="InputCadastro"
                                     name="Complemento"
                                     label="Complemento"
                                     type="text"
@@ -211,6 +233,31 @@ export default function CadastrarVaga() {
                                     minLength={5}
                                     required
                                 />
+
+                                <div className="Input">
+                                    <label>Cidade:</label>
+                                    <br />
+                                    <input
+                                        type="text"
+                                        className="cadastre"
+                                        id="cidade"
+                                        required
+                                        disabled
+                                    />
+                                </div>
+
+                                <div className="Input">
+                                    <label>UF:</label>
+                                    <br />
+                                    <input
+                                        type="text"
+                                        className="cadastre"
+                                        id="uf"
+                                        required
+                                        disabled
+                                    />
+                                </div>
+
                                 <div className="text-area">
                                     <label>Descrição da vaga</label>
                                     <textarea
@@ -239,7 +286,7 @@ export default function CadastrarVaga() {
                                 </div>
                                 <br />
                                 <div className="btVagaDiv">
-                                    <button className="btVaga" onClick={salvar}><h3>Cadastrar</h3></button>
+                                    <button className="btVaga" onClick={salvar}>Cadastrar</button>
                                 </div>
                             </form>
                         </div>

@@ -237,6 +237,21 @@ namespace SenaiTechVagas.WebApi.Controllers
                 return BadRequest();
             }
         }
+
+        [Authorize(Roles = "3")]
+        [HttpGet("ListarTipoPresenca")]
+        public IActionResult ListaTipoRegimePresencial()
+        {
+            try
+            {
+                return Ok(_empresaIRepository.ListarTipoPresenca());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
         /// <summary>
         /// Lista todos os candidatos naquela vaga em especifico
         /// </summary>

@@ -45,12 +45,10 @@ export default function CadastrarColaborador() {
                     authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             })
-            .then(function (response){
-                if(response.status!==200){
-                    alert("Não foi possivel adicionar um novo colaborador")
-                }else{
-                    alert("Cadastro efetuado com sucesso")
-                }
+            .then(response => response.json())
+            .then(dados => {
+                alert(dados);
+                listarColaboradores();
             })
             .catch(function (error) {
                 console.log(error);
@@ -72,20 +70,18 @@ export default function CadastrarColaborador() {
             .catch(err => console.error(err));
     }
     
-    const Banir =()=>{
-            fetch('http://localhost:5000/api/Administrador/Banir/'+idColaborador, {
-                method: 'PUT',
+    const DeletarAdm =(idAdm)=>{
+            fetch('http://localhost:5000/api/Administrador/DeletarAdminstrador/'+idAdm, {
+                method: 'DELETE',
                 headers: {
                     authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             })
-            .then(function(respose){
-                if(respose.status!==200){
-                    alert("Não foi possivel banir este usuario");
-                }else{
-                    alert("O usuario ja está banido da plataforma");
-                    listarColaboradores();
-                }})
+            .then(response => response.json())
+            .then(dados => {
+                alert(dados);
+                listarColaboradores();
+            })
             .catch(err => console.error(err));
     }
 
@@ -114,12 +110,8 @@ export default function CadastrarColaborador() {
                                         
                                         <div className="ban">
                                             <div className="banir">
-                                                <p>Banir</p>
-                                                <img src={Delete} onClick={e=>{
-                                                    e.preventDefault();
-                                                    setColaborador(item.idUsuario);
-                                                    Banir();
-                                                }}/>
+                                                <p>Deletar</p>
+                                                <img src={Delete} onClick={()=>DeletarAdm(item.idUsuario)}/>
                                             </div>
                                         </div>
                                         
@@ -154,8 +146,8 @@ export default function CadastrarColaborador() {
                             label="*Senha" 
                             type="password" 
                             placeholder="*********" 
-                            maxLength={30}
-                            minLength={10}
+                            maxLength={15}
+                            minLength={9}
                             required
                             onChange={e => SetSenha(e.target.value)}
                             />
@@ -164,8 +156,8 @@ export default function CadastrarColaborador() {
                             label="*Confirmar Senha" 
                             type="password" 
                             placeholder="*********" 
-                            maxLength={30}
-                            minLength={10}
+                            maxLength={15}
+                            minLength={9}
                             required
                             onChange={e => SetConfirmarSenha(e.target.value)}
                             />

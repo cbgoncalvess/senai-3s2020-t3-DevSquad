@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 //style
- import './style.css';
+import './style.css';
 
 // components
 import AccessBar from '../../Components/AccessBar/index';
@@ -11,7 +11,8 @@ import InfoVaga from '../../Components/InfoVaga/Index';
 import Tag from '../../Components/Tag/Index';
 
 // images
-import imgEmpresa from '../../assets/Teste.webp'
+import imgEmpresa from '../../assets/Teste.webp';
+import imgGlobal from '../../assets/global.png';
 import imgDesenvolvimento from '../../assets/web-programming.webp';
 import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
 import imgSalario from '../../assets/money (1).webp';
@@ -35,8 +36,25 @@ export default function InscricaoDashboardCandidato() {
             }
         }).then(response => response.json())
             .then(dados => {
-                setVagas(dados);
-            }).catch(e => e.console.error(e));
+                setVagas(dados)
+            }).catch(erro => console.error(erro));
+    }
+
+    const revogarInscricao = (idInscricao) => {
+
+        fetch('http://localhost:5000/api/Candidato/RevogarInscricao/' + idInscricao, {
+
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        }).then(response => response.json())
+            .then(dados => {
+                alert(dados);
+                listar();
+            })
+            .catch(err => console.error(err))
     }
     return (
         <div className="InscricaoDashboardCandidato">
@@ -56,15 +74,13 @@ export default function InscricaoDashboardCandidato() {
                             vagas.map((item) => {
                                 return (
                                     <div className="vaga" key={item.idVaga}>
-
-
+                                <p>{"Voce se inscreveu em:"+item.dataInscricao}</p>
                                         <div className="VagaCompleta">
-
                                             <img src={imgEmpresa} className="ImagemEmpresa" ></img>
 
                                             <div className="MainVaga">
 
-                                                <h3>Titulo da vaga</h3>
+                                <h3>{item.tituloVaga}</h3>
 
                                                 <div className="InfoVagas">
                                                     <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
@@ -73,6 +89,7 @@ export default function InscricaoDashboardCandidato() {
                                                     <InfoVaga NomeProp={item.tipoContrato} source={imgTipoContrato} />
                                                     <InfoVaga NomeProp={item.salario} source={imgSalario} />
                                                     <InfoVaga NomeProp={item.nomeArea} source={imgDesenvolvimento} />
+                                                    <InfoVaga NomeProp={item.tipoPresenca} source={imgGlobal} />
                                                 </div>
 
                                                 <div className="TecnologiasVaga">
@@ -84,7 +101,7 @@ export default function InscricaoDashboardCandidato() {
                                                 </div>
 
                                                 <div className="divisionBtnRevogar">
-                                                    <button className="btnRevogar">revogar inscrição</button>
+                                                    <button className="btnRevogar" onClick={()=>revogarInscricao(item.idInscricao)}>revogar inscrição</button>
                                                 </div>
 
                                             </div>
@@ -94,9 +111,7 @@ export default function InscricaoDashboardCandidato() {
                             })}
                     </div>
 
-
                 </section>
-
 
             </main>
             <Footer />

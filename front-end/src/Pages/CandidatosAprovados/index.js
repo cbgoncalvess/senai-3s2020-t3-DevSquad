@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -9,6 +9,7 @@ import './style.css';
 import Tag from '../../Components/Tag/Index';
 import imgDesenvolvimento from '../../assets/web-programming.webp';
 import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
+import imgGlobal from '../../assets/global.png'
 import imgSalario from '../../assets/money (1).webp';
 import imgTipoContrato from '../../assets/gears.webp';
 import imgFuncao from '../../assets/rocket-launch.webp';
@@ -17,7 +18,6 @@ import InfoVaga from '../../Components/InfoVaga/Index';
 
 export default function VizualizarCandidatosAprovados() {
     let [idVaga, setIdVaga] = useState(0);
-    const [idInscricao, setInscricao] = useState(0);
     const [Experiencia, setExperiencia] = useState('');
     const [TipoContrato, setTipoContrato] = useState('');
     const [Salario, setSalario] = useState('');
@@ -25,15 +25,18 @@ export default function VizualizarCandidatosAprovados() {
     const [Cidade, setCidade] = useState('');
     const [TituloVaga, setTituloVaga] = useState('');
     const [Candidatos, SetCandidato] = useState([]);
+    const [TipoPresenca, setTipoPresenca] = useState('');
+    const [NomeArea, setNomeArea] = useState('');
+    const [RazaoSocial, setRazaoSocial] = useState('');
 
     useEffect(() => {
-        idVaga=localStorage.getItem('idVagaSelecionadaEmpresa');
+        idVaga = localStorage.getItem('idVagaSelecionadaEmpresa');
         listarCandidatos();
         BuscarPorId();
     }, []);
 
     const BuscarPorId = () => {
-        fetch('http://localhost:5000/api/Usuario/BuscarPorId/'+ idVaga, {
+        fetch('http://localhost:5000/api/Usuario/BuscarPorId/' + idVaga, {
             method: 'GET',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
@@ -45,22 +48,25 @@ export default function VizualizarCandidatosAprovados() {
             setSalario(dados.salario);
             setTecnologias(dados.tecnologias);
             setCidade(dados.localidade);
-            setExperiencia(dados.experiencia);      
+            setExperiencia(dados.experiencia);
+            setTipoPresenca(dados.tipoPresenca);
+            setNomeArea(dados.nomeArea);
+            setRazaoSocial(dados.razaoSocial);
         }).catch(err => console.error(err));
     }
 
     const listarCandidatos = () => {
-        fetch('http://localhost:5000/api/Empresa/ListarCandidatosAprovados/'+idVaga, {
+        fetch('http://localhost:5000/api/Empresa/ListarCandidatosAprovados/' + idVaga, {
             method: 'GET',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
-        .then(response => response.json())
-        .then(dados => {
-            SetCandidato(dados);
-        })
-        .catch(err => console.error(err));
+            .then(response => response.json())
+            .then(dados => {
+                SetCandidato(dados);
+            })
+            .catch(err => console.error(err));
     }
 
     return (
@@ -68,21 +74,22 @@ export default function VizualizarCandidatosAprovados() {
             <AccessBar />
             <Header />
             <div className="BannerVizualizarVagaEmpresa">
-                <h1>Veja quem se candidatou a sua vaga</h1>
+                <h1>Veja quem foi aprovado à sua vaga</h1>
             </div>
             <br />
             <div className="vaga">
                 <div className="VagaCompleta">
                     <img src={imgEmpresa} className="ImagemEmpresa" ></img>
                     <div className="MainVaga">
-                        <h3 value={TituloVaga}></h3>
+                        <h3>{TituloVaga}</h3>
                         <div className="InfoVagas">
-                            <InfoVaga NomeProp={"Microsoft"} source={IconEmpresa}></InfoVaga>
+                            <InfoVaga NomeProp={RazaoSocial} source={IconEmpresa}></InfoVaga>
                             <InfoVaga NomeProp={Cidade} source={imgLocalizacao}></InfoVaga>
                             <InfoVaga NomeProp={Experiencia} source={imgFuncao}></InfoVaga>
                             <InfoVaga NomeProp={TipoContrato} source={imgTipoContrato}></InfoVaga>
                             <InfoVaga NomeProp={Salario} source={imgSalario}></InfoVaga>
-                            <InfoVaga NomeProp={"Area de desenvolvimento"} source={imgDesenvolvimento}></InfoVaga>
+                            <InfoVaga NomeProp={TipoPresenca} source={imgGlobal} />
+                            <InfoVaga NomeProp={NomeArea} source={imgDesenvolvimento}></InfoVaga>
                         </div>
                         <div className="TecnologiasVaga">
                             {
@@ -98,25 +105,25 @@ export default function VizualizarCandidatosAprovados() {
             </div>
 
             <div className="ListaDeInscicoes">
-                    {
-                        Candidatos.map((item) => {
-                            return (
-                                <div key={item.idCandidato} className="Inscricao">
-                                    <div className="CabecaInscricao">
-                                        <img src={imgEmpresa} alt="ImagemPerfil" />
-                                        <h3>{item.nomeCandidato}</h3>
-                                        <hr className="hr" />
+                {
+                    Candidatos.map((item) => {
+                        return (
+                            <div key={item.idCandidato} className="Inscricao">
+                                <div className="CabecaInscricao">
+                                    <img src={imgEmpresa} alt="ImagemPerfil" />
+                                    <h3>{item.nomeCandidato}</h3>
+                                    <hr className="hr" />
                                     <h5>{item.nomeCurso}</h5>
-                                    </div>
-                                    <div className="CorpoInscricao">
-                                        <Tag NomeTag={"E-mail:"+item.email}></Tag>
-                                        <Tag NomeTag={"Telefone:"+item.telefone}></Tag>
-                                        <a className="Link" href="teste">Ver perfil</a>
-                                    </div>
                                 </div>
-                            );
-                        })
-                    }
+                                <div className="CorpoInscricao">
+                                    <Tag NomeTag={"E-mail:" + item.email}></Tag>
+                                    <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
+                                    <a className="Link" href="teste">Ver perfil</a>
+                                </div>
+                            </div>
+                        );
+                    })
+                }
             </div>
             <Footer />
         </div>

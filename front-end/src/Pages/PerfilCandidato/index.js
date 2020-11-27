@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
+import AccessMenu from '../../Components/AccessMenu';
 import Input from '../../Components/Input/index';
 import api from '../../services/api';
 
@@ -20,23 +21,19 @@ export default function PerfilCandidato() {
     const [Area, SetArea] = useState('');
 
     const [Cursos, setCursos] = useState([]);
-    const [Areas, setAreas] = useState([])
     const [Vagas, setVagas] = useState([]);
 
     const [NovaSenha, SetNovaSenha] = useState('');
     const [SenhaAtual, SetSenha] = useState('');
-    const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
-    const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
 
     useEffect(() => {
         listarVagas();
         BuscarCandidatoPorId();
-        listarAreas();
         lisCursos();
     }, []);
 
     const lisCursos = () => {
-        api.get('/Usuario/ListarCurso',{
+        api.get('/Usuario/ListarCurso', {
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -44,20 +41,6 @@ export default function PerfilCandidato() {
             .then(response => {
                 setCursos(response.data);
             });
-    }
-
-    const listarAreas = () => {
-        fetch('http://localhost:5000/api/Usuario/ListarArea', {
-            method: 'GET',
-            headers: {
-                authorization: 'Bearer ' + localStorage.getItem('token')
-            }
-        })
-            .then(response => response.json())
-            .then(dados => {
-                setAreas(dados);
-            })
-            .catch(err => console.error(err));
     }
 
     const BuscarCandidatoPorId = () => {
@@ -127,7 +110,7 @@ export default function PerfilCandidato() {
     const listarVagas = () => {
         fetch('http://localhost:5000/api/Candidato/ListarVagasInscritas', {
             method: 'GET',
-            headers:{
+            headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
@@ -176,6 +159,7 @@ export default function PerfilCandidato() {
         <div className="bodyPartVizualizarPerfil">
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
                     <div className="imgPefilTexto">
@@ -184,8 +168,8 @@ export default function PerfilCandidato() {
                         <p>Candidato</p>
                     </div>
                     <div className="BotoesPerfilCandidato">
-                        <button className="btPerfil" onClick={ApareceEditarDados}><h3>Alterar dados</h3></button>
-                        <button className="btPerfil" onClick={ApareceAlterarSenhaCandidato}><h3>Alterar senha</h3></button>
+                        <button className="btPerfil" onClick={ApareceEditarDados}>Alterar dados</button>
+                        <button className="btPerfil" onClick={ApareceAlterarSenhaCandidato}>Alterar senha</button>
                     </div>
                 </div>
                 <div className="DireitoPerfil">
@@ -210,33 +194,43 @@ export default function PerfilCandidato() {
             <div id="modalPerfilCandidato" className="modalPerfilCandidato none">
                 <h2>Editar seus dados pessoais</h2>
                 <form>
-                    <Input className="InputCadastro" value={NomeCompleto} name="NomeCompleto" label="Nome completo" onChange={e => SetNomeCompleto(e.target.value)} />
-                    <Input className="InputCadastro" value={Rg} name="Rg" label="RG" onChange={e => SetRg(e.target.value)} />
-                    <Input className="InputCadastro" value={CPF} name="CPF" label="CPF" onChange={e => SetCPF(e.target.value)} />
-                    <Input className="InputCadastro" value={Telefone} name="Telefone" label="Telefone" onChange={e => SetTelefone(e.target.value)} />
-                    <Input className="InputCadastro" value={Linkedin} name="Linkedin" label="Linkedin" onChange={e => SetLinkedin(e.target.value)} />
+                    <Input className="InputCadastro" value={NomeCompleto} name="NomeCompleto" label="Nome completo" onChange={e => SetNomeCompleto(e.target.value)}
+                    maxLength={35}
+                    minLength={5}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={Rg} name="Rg" label="RG" onChange={e => SetRg(e.target.value)}
+                    maxLength={9}
+                    minLength={9}
+                    required 
+                    />
+                    
+                    <Input className="InputCadastro" value={CPF} name="CPF" label="CPF" onChange={e => SetCPF(e.target.value)}
+                    maxLength={11}
+                    minLength={11}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={Telefone} name="Telefone" label="Telefone" onChange={e => SetTelefone(e.target.value)}
+                    maxLength={14}
+                    minLength={11}
+                    required 
+                    />
+
+                    <Input className="InputCadastro" value={Linkedin} name="Linkedin" label="Linkedin" onChange={e => SetLinkedin(e.target.value)} 
+                    maxLength={150}
+                    minLength={5}
+                    required 
+                    />
                     <div className="select">
                         <label>Cursos</label> <br />
-                        <select className="cadastre" onChange={e => SetCurso(e.target.value)} value={Curso}>
+                        <select className="cadastre" onChange={e => SetCurso(e.target.value)} value={Curso} required>
                             <option value="0">Selecione seu curso</option>
                             {
                                 Cursos.map((item) => {
                                     return (
                                         <option value={item.idCurso}>{item.nomeCurso}</option>
-                                    );
-                                })
-                            }
-                        </select>
-                    </div>
-
-                    <div className="select">
-                        <label>Áreas</label>
-                        <select className="cadastre" onChange={e => SetArea(e.target.value)} value={Area}>
-                            <option value="0">Selecione sua área</option>
-                            {
-                                Areas.map((item) => {
-                                    return (
-                                        <option value={item.idArea}>{item.nomeArea}</option>
                                     );
                                 })
                             }
@@ -252,8 +246,16 @@ export default function PerfilCandidato() {
             <div id="modalAlterarSenhaCandidato" className="modalAlterarSenhaCandidato none">
                 <h2>Alterar senha</h2>
                 <form>
-                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)} />
-                    <Input className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)} />
+                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
+                    maxLength={15}
+                    minLength={9}
+                    required 
+                    />
+                    <Input className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)}
+                    maxLength={15}
+                    minLength={9}
+                    required 
+                    />
                     <button className="btVaga" onClick={AlterarSenha}>Alterar senha</button>
                 </form>
             </div>

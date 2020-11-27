@@ -15,9 +15,8 @@ namespace SenaiTechVagas.WebApi.Repositories
 
     public class EmpresaRepository : IEmpresaRepository
     {
-        string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas; integrated Security=true";
         
-        //string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -106,7 +105,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     AdicionarTecnologiaPadrao(VagaNova.IdVaga);
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -125,6 +124,12 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     if (vaga.Cep != null)
                         vagaBuscada.Cep = vaga.Cep.Trim();
+
+                    if (vaga.TituloVaga != null)
+                        vagaBuscada.TituloVaga = vaga.TituloVaga.Trim();
+
+                    if (vaga.idTipoPresenca != 0)
+                        vagaBuscada.IdTipoRegimePresencial = vaga.idTipoPresenca;
 
                     if (vaga.Complemento != null)
                         vagaBuscada.Complemento = vaga.Complemento;
@@ -159,14 +164,13 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (vaga.TipoContrato != null)
                         vagaBuscada.TipoContrato = vaga.TipoContrato;
 
-                    if (vaga.DataExpiracao>vagaBuscada.DataExpiracao&&vaga.DataExpiracao.Month>vagaBuscada.DataExpiracao.Month)
-                        vagaBuscada.DataExpiracao = vaga.DataExpiracao;
                     ctx.Update(vagaBuscada);
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    Console.WriteLine(e);
                     return false;
                 }
             }
@@ -278,6 +282,10 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (BuscandoVagaTecnologia == null)
                         return false;
 
+                    int Vaga = ctx.VagaTecnologia.Where(u => u.IdVaga == vaga.IdVaga).Count();
+                    if (Vaga == 1)
+                        return false;
+
                     ctx.Remove(BuscandoVagaTecnologia);
                     ctx.SaveChanges();
                     return true;
@@ -363,8 +371,6 @@ namespace SenaiTechVagas.WebApi.Repositories
         {
             try
             {
-                string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
-
                 List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
 
                 // Declara a SqlConnection passando a string de conexão
@@ -372,11 +378,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                    "SELECT are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                    "SELECT v.DataExpiracao,trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                     " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                     " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                     " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
                     " INNER JOIN Area are on are.IdArea=v.IdArea"+
+                    " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
                     " WHERE e.IdEmpresa =@IDEmpresa";
                     con.Open();
 
@@ -404,9 +411,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                                 TipoContrato = rdr["TipoContrato"].ToString(),
                                 Localidade = rdr["Localidade"].ToString(),
                                 Salario = Convert.ToDecimal(rdr["Salario"]),
+                                DataExpiracao=Convert.ToDateTime(rdr["DataExpiracao"]),
                                 RazaoSocial = rdr["RazaoSocial"].ToString(),
                                 NomeArea = rdr["NomeArea"].ToString(),
-                                TituloVaga = rdr["TituloVaga"].ToString()
+                                TituloVaga = rdr["TituloVaga"].ToString(),
+                                TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString()
                             };
                             var NomeTecnologia = rdr["NomeTecnologia"].ToString();
                             vm.Tecnologias = new List<string>();
@@ -450,7 +459,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     return false;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -518,7 +527,23 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    return ctx.Empresa.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                    var a= ctx.Empresa.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                    return a;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public List<TipoRegimePresencial> ListarTipoPresenca()
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    return ctx.TipoRegimePresencial.ToList();
                 }
                 catch (Exception)
                 {

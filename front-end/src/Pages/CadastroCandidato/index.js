@@ -23,32 +23,59 @@ export default function CadastroEmpresa() {
   const [Email, SetEmail] = useState("");
   const [Senha, SetSenha] = useState("");
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
-  const [Area, SetArea] = useState(0);
   const [PerguntaSeguranca, SetPergunta] = useState("");
   const [RespostaSeguranca, SetResposta] = useState("");
-  
+
   const history = useHistory();
-  
+
   const emailRegex = /^\S+@\S+\.\S+$/g;
-  
-  useEffect(() => {
-    listarAreas();
-    listarcurso();
-  }, []);
-  
-  const [Areas, SetAreas] = useState([]);
-  const listarAreas = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarArea", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        SetAreas(dados);
-      })
-      .catch((err) => console.error(err));
-  };
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/g;
+
+  let result = document.querySelector(".password-matching-text");
+  let redBox = document.querySelector("#confirmarSenha-cadastroCandidato");
+  let instructions = document.querySelector(".password-instructions-text");
 
   const verificacaoEmail = emailRegex.test(Email);
+  let verificacaoSenha = senhaRegex.test(Senha);
+  let verificacaoConfirmarSenha = senhaRegex.test(ConfirmarSenha);
+  
+  useEffect(() => {
+    listarcurso();
+  }, []);
+
+  
+  const escreverResultado = () => {
+    if (Senha !== ConfirmarSenha) {
+      redBox.style.border = "solid red 1px";
+      redBox.style.boxShadow = "3px 3px 3px gray";
+      result.style.color = "red";
+      result.innerText = "As senhas não conferem";
+
+    } else {
+      redBox.style.border = "unset";
+      redBox.style.boxShadow = "unset";
+      result.style.color = "unset";
+      result.innerText = "As senhas conferem";
+    }
+
+    if(verificacaoSenha !== true || verificacaoConfirmarSenha !== true){
+      redBox.style.border = "solid red 1px";
+      redBox.style.boxShadow = "3px 3px 3px gray";
+      instructions.style.color = "red";
+      instructions.innerText =
+        `A senha deve conter 8 caracteres, dentre eles:
+      • 1 letra minúscula
+      • 1 letra maiúscula
+      • 1 número
+      • 1 caractere especial`;
+    }else{
+      redBox.style.border = "unset";
+      redBox.style.boxShadow = "unset";
+      instructions.style.color = "unset";
+      instructions.innerText = "";
+    }
+  };
+
 
   function salvar(e) {
     e.preventDefault();
@@ -64,7 +91,6 @@ export default function CadastroEmpresa() {
         telefone: Telefone,
         linkLinkedinCandidato: Linkedin,
         idCurso: Curso,
-        idArea: Area,
         email: Email,
         senha: Senha,
         respostaSeguranca: RespostaSeguranca,
@@ -77,18 +103,15 @@ export default function CadastroEmpresa() {
           "content-type": "application/json",
         },
       })
-        .then((response) => {
-          if (response.status !== 200) {
-            console.log(response);
-            alert("Não foi possivel efetuar o cadastro");
-          } else {
-            alert("Cadastrado com sucesso");
-            history.push("/");
-          }
-        })
+      .then((response) => response.json())
+      .then((dados) => {
+        alert(dados);
+        history.push("/");
+      })
         .catch((err) => console.error(err));
     }
   }
+
   const listarcurso = () => {
     fetch("http://localhost:5000/api/Usuario/ListarCurso", {
       method: "GET",
@@ -130,11 +153,11 @@ export default function CadastroEmpresa() {
                 name="rg"
                 className="cadastre"
                 label="RG:"
-                type="number"
-                placeholder="00.000.000-0"
-                required
+                type="text"
+                placeholder="000.000.000-00" 
                 maxLength={9}
                 minLength={9}
+                required
                 onChange={(e) => SetRg(e.target.value)}
               />
 
@@ -142,9 +165,9 @@ export default function CadastroEmpresa() {
                 name="cpf"
                 className="cadastre"
                 label="CPF:"
-                type="number"
+                type="text"
                 placeholder="000.000.000-00"
-                rrequired
+                required
                 maxLength={11}
                 minLength={11}
                 onChange={(e) => SetCPF(e.target.value)}
@@ -154,8 +177,10 @@ export default function CadastroEmpresa() {
                 name="telefone"
                 className="cadastre"
                 label="Telefone:"
-                type="tel"
+                type="text"
                 placeholder="(11) 91234-5678"
+                maxLength={14}
+                minLength={11}
                 required
                 onChange={(e) => SetTelefone(e.target.value)}
               />
@@ -190,24 +215,6 @@ export default function CadastroEmpresa() {
                 </select>
               </div>
 
-              <div>
-                <label className="select-cadastroCandidato-title-area">
-                  Área
-                </label>
-                <br />
-                <select
-                  className="select-cadastroCandidato"
-                  onChange={(e) => SetArea(e.target.value)}
-                  value={Area}
-                  required
-                >
-                  <option value="0">Selecione sua área</option>
-                  {Areas.map((item) => {
-                    return <option value={item.idArea}>{item.nomeArea}</option>;
-                  })}
-                </select>
-              </div>
-
               <Input
                 name="email"
                 className="cadastre"
@@ -215,7 +222,7 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="exemplo@exemplo.com"
                 required
-                maxLength={35}
+                maxLength={154}
                 minLength={5}
                 onChange={(e) => {
                   SetEmail(e.target.value);
@@ -229,22 +236,28 @@ export default function CadastroEmpresa() {
                 type="password"
                 placeholder="Digite sua senha"
                 required
-                maxLength={20}
-                minLength={10}
+                maxLength={15}
+                minLength={9}
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetSenha(e.target.value)}
               />
 
               <Input
+                id="confirmarSenha-cadastroCandidato"
                 name="password-confirm"
                 className="cadastre"
                 label="Confirmar senha:"
                 type="password"
                 placeholder="Confirme a senha"
                 required
-                maxLength={20}
-                minLength={10}
+                maxLength={15}
+                minLength={9}
+                onKeyUp={() => escreverResultado()}
                 onChange={(e) => SetConfirmarSenha(e.target.value)}
               />
+
+              <p className="password-matching-text"></p>
+              <p className="password-instructions-text"></p>
 
               <div>
                 <label className="select-cadastroCandidato-title">
@@ -254,7 +267,7 @@ export default function CadastroEmpresa() {
                 <select
                   className="select-cadastroCandidato"
                   onChange={(e) => SetPergunta(e.target.value)}
-                  value={Area}
+                  value={""}
                   required
                 >
                   <option value="0">Selecione sua pergunta de segurança</option>
