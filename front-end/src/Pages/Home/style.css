@@ -105,32 +105,28 @@ hr {
   width: 100%;
 }
 
-.bt {
-  width: auto;
-  height: auto;
-  padding: 12px 25px;
-  background: #353535;
-  border-radius: 4px;
-  color: white;
-  border: #353535 solid 1px !important;
-  transition: 0.5s;
-  font-weight: bold;
+.bt{
+width: auto;
+height: auto;
+padding: 12px 25px;
+background: #353535;
+border-radius: 4px;
+color: white;
+border: #353535 solid 1px !important;
+transition: .5s;
+font-weight: bold;
 }
 
 .heightomg {
   height: 0;
 }
 
-.bt:hover {
-  width: auto;
-  height: auto;
-  padding: 12px 25px;
-  background: white;
-  border-radius: 4px;
-  color: #353535 !important;
-  border: white solid 1px;
-  transition: 0.5s;
-  cursor: pointer;
+.bt:hover{
+    background: white;
+    color: #353535;
+    border: white solid 1px;
+    transition: .5s;
+    cursor: pointer;
 }
 
 .Link {
@@ -206,60 +202,51 @@ body
 }
 
 .preto body > div.bodyPart > div.TesteDePersonalidade,
-.preto body > div.bodyPart > div.Imagens {
-  background: black;
+.preto body > div.bodyPart > div.Imagens{
+    background: black;
 }
 
-.maior .bt {
-  font-size: 16px;
+.preto .bt,
+.preto body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button > h2,
+.preto body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button > h2{
+    color: yellow !important;
+    text-decoration: underline !important;
 }
 
-@media (max-width: 888px) {
-  .BoxDepoimentos {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  .BoxTexto {
-    margin-bottom: 50px;
-    padding: 6vw;
-  }
+.preto .bt:hover{
+    color: #373737 !important;
+}
 
-  .BoxDeVagas {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
+@media(max-width:888px){
+    .BoxDepoimentos{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .BoxTexto{
+        margin-bottom: 50px;
+        padding: 6vw;
+    }
 
-  .Vaga {
-    margin-bottom: 50px;
-  }
-  .TesteDePersonalidade {
-    text-align: center;
-  }
-  body > div.bodyPart > div.TesteDePersonalidade > div.TextoTeste {
-    padding: 5vw;
-  }
-  .maior
-    body
-    > div.bodyPart
-    > div.StartImage
-    > div.EmpresaCandidato
-    > div.Candidato
-    > div
-    > button
-    > h2,
-  .maior
-    body
-    > div.bodyPart
-    > div.StartImage
-    > div.EmpresaCandidato
-    > div.Empresa
-    > div
-    > button
-    > h2 {
-    font-size: 20px;
-  }
+    .BoxDeVagas{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .Vaga{
+        margin-bottom: 50px;
+    }
+    .TesteDePersonalidade{
+        text-align:center;
+    }
+    body > div.bodyPart > div.TesteDePersonalidade > div.TextoTeste{
+        padding: 5vw;
+    }
+    .maior body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > button > h2,
+    .maior body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > button > h2{
+        font-size: 20px;
+    }
 }
 
 .preto .bt:hover {

@@ -18,7 +18,7 @@
 #root > div > div.centro > button {
   width: auto;
   height: auto;
-  padding: 12px 44px;
+  padding: 12px 45px;
   background: #353535;
   border-radius: 4px;
   color: white;
@@ -49,7 +49,6 @@
   display: none;
 }
 
-.pelicula,
 .modal {
   background-color: rgb(00, 00, 00, 0.63);
   width: 100%;
@@ -180,29 +179,29 @@
         background-position: right 0px top 100px;    
     } */
 
-@media (max-width: 1000px) {
-  #modalTeste > div.janela > div.conteudoModal {
-    display: unset;
-  }
-  .alinhar,
-  .animal {
-    display: unset;
-  }
-
-  .animais {
-    justify-content: space-between;
-    flex-direction: row;
-    width: -webkit-fill-available;
-  }
-  #modalTeste > div.janela > div.conteudoModal > div.conteudo {
-    width: -webkit-fill-available;
-  }
+.conteudo {
+  padding: unset;
+  padding-top: 5vw;
+}
+#modalTeste > div.janela > div.conteudoModal {
+  display: unset;
+}
+.alinhar,
+.animal {
+  display: unset;
 }
 
-@media (min-width: 701px) {
-  .animais {
-    display: flex;
-  }
+.animais {
+  justify-content: space-between;
+  flex-direction: row;
+  width: -webkit-fill-available;
+}
+#modalTeste > div.janela > div.conteudoModal > div.conteudo {
+  width: -webkit-fill-available;
+}
+
+.animais {
+  display: flex;
 }
 
 @media (max-width: 700px) {

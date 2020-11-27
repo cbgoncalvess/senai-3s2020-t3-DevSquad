@@ -113,54 +113,103 @@ export default function Home() {
                   <Tag NomeTag={"CSharp"}></Tag>
                   <Tag NomeTag={"React"}></Tag>
                 </div>
-              </div>
-              <div className="LinkVaga">
-                <a className="Link" href="teste">
-                  Ver mais sobre a vaga
-                </a>
-              </div>
-            </div>
-            <div className="Vaga">
-              <div className="Space">
-                <img src={imgPadrao} alt="" />
-                <h3>Youtube</h3>
-                <br />
-                <hr className="hr" />
-                <br />
-                <h4>Desenvolvedor Back-end Jr</h4>
-                <br />
-                <div className="Tecnologias">
-                  <Tag NomeTag={"Angular"}></Tag>
-                  <Tag NomeTag={"C++"}></Tag>
-                  <Tag NomeTag={"Python"}></Tag>
-                  <Tag NomeTag={"Html5"}></Tag>
-                  <Tag NomeTag={"Css3"}></Tag>
-                  <Tag NomeTag={"Java"}></Tag>
+                <div className="QuadroDeVagas">
+                    <br />
+                    <h2>Quadro de vagas</h2>
+                    <p>Aqui você encontra as melhores vagas disponiveis</p>
+                    <br />
+                    <div className="BoxDeVagas">
+                        <div className="Vaga">
+                            <div className="Space">
+                                <img src={imgPadrao} alt="" />
+                                <h3>Google</h3>
+                                <br />
+                                <hr className="hr" />
+                                <br />
+                                <h4>Desenvolvedor Back-end Jr</h4>
+                                <br />
+                                <div className="Tecnologias">
+                                    <Tag NomeTag={"Fluther"}></Tag>
+                                    <Tag NomeTag={"Dart"}></Tag>
+                                    <Tag NomeTag={"Javascript"}></Tag>
+                                    <Tag NomeTag={"CSharp"}></Tag>
+                                    <Tag NomeTag={"React"}></Tag>
+                                </div>
+                            </div>
+                            <div className="LinkVaga">
+                                <a className="Link" href="/login">Ver mais sobre a vaga</a>
+                            </div>
+                        </div>
+                        <div className="Vaga">
+                            <div className="Space">
+                                <img src={imgPadrao} alt="" />
+                                <h3>Youtube</h3>
+                                <br />
+                                <hr className="hr" />
+                                <br />
+                                <h4>Desenvolvedor Back-end Jr</h4>
+                                <br />
+                                <div className="Tecnologias">
+                                    <Tag NomeTag={"Angular"}></Tag>
+                                    <Tag NomeTag={"C++"}></Tag>
+                                    <Tag NomeTag={"Python"}></Tag>
+                                    <Tag NomeTag={"Html5"}></Tag>
+                                    <Tag NomeTag={"Css3"}></Tag>
+                                    <Tag NomeTag={"Java"}></Tag>
+                                </div>
+                            </div>
+                            <div className="LinkVaga">
+                                <a className="Link" href="/login">Ver mais sobre a vaga</a>
+                            </div>
+                        </div>
+                        <div className="Vaga">
+                            <div className="Space">
+                                <img src={imgPadrao} alt="" />
+                                <h3>Apple</h3>
+                                <br />
+                                <hr className="hr" />
+                                <br />
+                                <h4>Desenvolvedor Back-end Jr</h4>
+                                <br />
+                                <div className="Tecnologias">
+                                    <Tag NomeTag={"NodeJs"}></Tag>
+                                    <Tag NomeTag={"VueJs"}></Tag>
+                                    <Tag NomeTag={"MVC"}></Tag>
+                                    <Tag NomeTag={".Net"}></Tag>
+                                    <Tag NomeTag={"Entity Framework"}></Tag>
+                                    <Tag NomeTag={"SQL"}></Tag>
+                                    <Tag NomeTag={"MongoDB"}></Tag>
+                                </div>
+                            </div>
+                            <div className="LinkVaga">
+                                <a className="Link" href="/login">Ver mais sobre a vaga</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
                 </div>
-              </div>
-              <div className="LinkVaga">
-                <a className="Link" href="teste">
-                  Ver mais sobre a vaga
-                </a>
-              </div>
-            </div>
-            <div className="Vaga">
-              <div className="Space">
-                <img src={imgPadrao} alt="" />
-                <h3>Apple</h3>
-                <br />
-                <hr className="hr" />
-                <br />
-                <h4>Desenvolvedor Back-end Jr</h4>
-                <br />
-                <div className="Tecnologias">
-                  <Tag NomeTag={"NodeJs"}></Tag>
-                  <Tag NomeTag={"VueJs"}></Tag>
-                  <Tag NomeTag={"MVC"}></Tag>
-                  <Tag NomeTag={".Net"}></Tag>
-                  <Tag NomeTag={"Entity Framework"}></Tag>
-                  <Tag NomeTag={"SQL"}></Tag>
-                  <Tag NomeTag={"MongoDB"}></Tag>
+
+                <div className="TesteDePersonalidade">
+                    <div className="imgTeste">
+                        <img src={imgPerfil} alt="" />
+                    </div>
+                    <div className="TextoTeste">
+                        <br />
+                        <h2>Teste de perfil comportamental</h2>
+                        <p>As características do mundo animal também podem ser usadas no mundo corporativo.</p>
+                        <p>É possível traçar o perfil de personalidade de cada pessoa e tipo de personalidade, a partir de mapa comportamental.</p>
+                        <p>Este teste indica o animal que nos humanos seríamos no ambiente de trabalho, apontando pontos positivos e negativos</p>
+                        <p>do nosso comportamento.</p>
+                        <br />
+                        <h4>Você é uma Águia, Lobo, Gato ou Tubarão?</h4>
+                        <h4>Faça o teste e descubra!</h4>
+                        <br />
+                        <br />
+                        <div className="btnTeste">
+                            <a href="/TesteDePersonalidade"><button className="bt">FAZER O TESTE</button></a>
+                        </div>
+                        <br />
+                    </div>
                 </div>
               </div>
               <div className="LinkVaga">
