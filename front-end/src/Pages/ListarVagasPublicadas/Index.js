@@ -74,6 +74,12 @@ export default function VagasPublicadas() {
       .catch((err) => console.error(err));
   };
 
+  function FormatarSalario(list){
+    for(var i=0;i<list.length;i++){
+      list[i].salario = list[i].salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+    }
+    }
+
   const DadosDaVaga = () => {
     fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + idVaga, {
       method: "GET",
@@ -193,6 +199,7 @@ export default function VagasPublicadas() {
     })
       .then((response) => response.json())
       .then((dados) => {
+        FormatarSalario(dados);
         SetListVagas(dados);
       })
       .catch((err) => console.error(err));

@@ -45,7 +45,7 @@ export default function VizualizarCandidatosAprovados() {
             setIdVaga(dados.idVaga);
             setTituloVaga(dados.tituloVaga);
             setTipoContrato(dados.tipoContrato);
-            setSalario(dados.salario);
+            setSalario(dados.salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
             setTecnologias(dados.tecnologias);
             setCidade(dados.localidade);
             setExperiencia(dados.experiencia);

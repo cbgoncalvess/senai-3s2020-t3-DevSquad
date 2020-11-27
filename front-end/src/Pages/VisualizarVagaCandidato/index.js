@@ -85,7 +85,7 @@ export default function VisualizarVaga() {
         setTituloVaga(dados.tituloVaga);
         setLogradouro(dados.logradouro);
         setTipoContrato(dados.tipoContrato);
-        setSalario(dados.salario);
+        setSalario(dados.salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
         setTecnologias(dados.tecnologias);
         setComplemento(dados.complemento);
         setCidade(dados.localidade);

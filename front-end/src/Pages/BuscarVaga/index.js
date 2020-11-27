@@ -43,6 +43,12 @@ export default function BuscarVaga() {
     }
   }
 
+function FormatarSalario(list){
+for(var i=0;i<list.length;i++){
+  list[i].salario = list[i].salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+}
+}
+
   const FiltrarExperiencia = (Experiencia) => {
     for (let i = 0; i < ListVagas.length; i++) {
       if (ListVagas[i].experiencia == Experiencia) {
@@ -244,7 +250,7 @@ export default function BuscarVaga() {
     }
   }
 
-  function BuscarVagaPeloId(event) {
+  function BuscarVagaPeloId() {
     localStorage.setItem("idVagaSelecionada", idVaga);
     history.push("/VisualizarVagaCandidato");
   }
@@ -258,6 +264,7 @@ export default function BuscarVaga() {
     })
       .then((response) => response.json())
       .then((dados) => {
+        FormatarSalario(dados);
         SetListVagas(dados);
       })
       .catch((err) => console.error(err));
