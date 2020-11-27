@@ -1,6 +1,0 @@
-<<<<<<< HEAD
-[1123/212719.075:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
-=======
-[1124/075847.161:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
->>>>>>> ed69dde050182f41960054358fe75edc5245037f
-[1127/082041.400:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
