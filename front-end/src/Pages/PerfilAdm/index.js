@@ -4,6 +4,7 @@ import {useHistory } from 'react-router-dom'
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
+import AccessMenu from '../../Components/AccessMenu';
 import Input from '../../Components/Input/index';
 
 import imgDelete from '../../assets/delete.webp'
@@ -153,6 +154,7 @@ const DeletarVaga = (id) => {
         <div className="bodyPartVizualizarPerfil">
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
                     <div className="imgPefilTexto">
@@ -161,7 +163,7 @@ const DeletarVaga = (id) => {
                         <p>administrador</p>
                     </div>
                     <div className="BotoesPerfil">
-                        <button className="btPerfil" onClick={ApareceAlterarSenha}><h3>Alterar qualquer senha</h3></button>
+                        <button className="btPerfil" onClick={ApareceAlterarSenha}>Alterar senha</button>
                     </div>
                 </div>
                 <div className="DireitoPerfil">

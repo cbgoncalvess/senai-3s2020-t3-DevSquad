@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
+import AccessMenu from '../../Components/AccessMenu';
 import Input from '../../Components/Input/index';
 import api from '../../services/api';
 
@@ -32,7 +33,7 @@ export default function PerfilCandidato() {
     }, []);
 
     const lisCursos = () => {
-        api.get('/Usuario/ListarCurso',{
+        api.get('/Usuario/ListarCurso', {
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
@@ -109,7 +110,7 @@ export default function PerfilCandidato() {
     const listarVagas = () => {
         fetch('http://localhost:5000/api/Candidato/ListarVagasInscritas', {
             method: 'GET',
-            headers:{
+            headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
@@ -158,6 +159,7 @@ export default function PerfilCandidato() {
         <div className="bodyPartVizualizarPerfil">
             <AccessBar />
             <Header />
+            <AccessMenu />
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
                     <div className="imgPefilTexto">
@@ -166,8 +168,8 @@ export default function PerfilCandidato() {
                         <p>Candidato</p>
                     </div>
                     <div className="BotoesPerfilCandidato">
-                        <button className="btPerfil" onClick={ApareceEditarDados}><h3>Alterar dados</h3></button>
-                        <button className="btPerfil" onClick={ApareceAlterarSenhaCandidato}><h3>Alterar senha</h3></button>
+                        <button className="btPerfil" onClick={ApareceEditarDados}>Alterar dados</button>
+                        <button className="btPerfil" onClick={ApareceAlterarSenhaCandidato}>Alterar senha</button>
                     </div>
                 </div>
                 <div className="DireitoPerfil">
