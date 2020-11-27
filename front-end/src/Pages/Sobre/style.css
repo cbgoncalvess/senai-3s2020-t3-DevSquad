@@ -37,7 +37,7 @@
 
 .dev {
     width: 15vh;
-    margin: 3vh;
+    margin: 1vw;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -48,7 +48,7 @@
 }
 
 .imgSobre {
-    width: 15vh;
+    width: 7vw;
 }
 
 .preto body > div.sobrePage{
@@ -84,13 +84,14 @@
     }
 
     .imgSobre {
-        width: 10vh;
+        width: 6vw;
     }
 
     .devsBox {
         font-size: 2vh;
     }
     .dev {
+        margin: 3vw;
         width: 5vh;
     }
 
