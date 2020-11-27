@@ -25,7 +25,9 @@ export default function Estagio() {
     const [Empresas, SetEmpresas] = useState([]);
     const [Candidatos, SetCandidatos] = useState([]);
     const [Periodo, SetPeriodo] = useState('');
-    const [Estatiscas,setEstatiscas]=useState([]);
+    const [Estatiscas, setEstatiscas] = useState([]);
+    const [EstagioFiltro, setEstagioFiltro] = useState([]);
+    const [Opcao, setOpcao] = useState('');
 
 
     useEffect(() => {
@@ -34,6 +36,89 @@ export default function Estagio() {
         listarEmpresa();
         listarEstatisticas();
     }, []);
+
+
+    function FiltroMeses(opcao) {
+        for (var i = 0; i < Estagios; i++) {
+            if (Estagios[i].periodoEstagiado <= opcao) {
+                EstagioFiltro.push(Estagios[i]);
+            }
+        }
+    }
+
+    function View() {
+        if (Opcao === '') {
+            return (
+                <div className="ListaEstagios">
+                    {
+                        Estagios.map((item) => {
+                            return (
+                                <div key={item.idEstagio} className="Estagio">
+                                    <div className="Ferramentas">
+                                        <img className="Edit" src={imgEdit} onClick={event => {
+                                            setIdEstagio(item.idEstagio);
+                                            AparecerEditarEstagio();
+                                        }} />
+                                        <img className="Delete" src={imgDelete} onClick={() => DeletarEstagio(item.idEstagio)} />
+                                    </div>
+                                    <div className="CabecaEstagio">
+                                        <img src={imgPadrao} alt="ImagemPerfil" />
+                                        <h3>{item.nomeCompleto}</h3>
+                                        <hr className="hr" />
+                                        <h5>{item.nomeCurso}</h5>
+                                    </div>
+                                    <div className="CorpoEstagio">
+                                        <Tag NomeTag={"E-mail:" + item.emailCandidato}></Tag>
+                                        <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
+                                        <Tag NomeTag={"Status:" + item.statusEstagio}></Tag>
+                                        <Tag NomeTag={"Periodo do estagio:" + item.periodoEstagio}></Tag>
+                                        <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
+                                        <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
+                                        <a className="Link" href="teste">Ver perfil</a>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            );
+        } else if (Opcao !== '') {
+            return (
+                <div className="ListaEstagios">
+                    {
+                        EstagioFiltro.map((item) => {
+                            return (
+                                <div key={item.idEstagio} className="Estagio">
+                                    <div className="Ferramentas">
+                                        <img className="Edit" src={imgEdit} onClick={event => {
+                                            setIdEstagio(item.idEstagio);
+                                            AparecerEditarEstagio();
+                                        }} />
+                                        <img className="Delete" src={imgDelete} onClick={() => DeletarEstagio(item.idEstagio)} />
+                                    </div>
+                                    <div className="CabecaEstagio">
+                                        <img src={imgPadrao} alt="ImagemPerfil" />
+                                        <h3>{item.nomeCompleto}</h3>
+                                        <hr className="hr" />
+                                        <h5>{item.nomeCurso}</h5>
+                                    </div>
+                                    <div className="CorpoEstagio">
+                                        <Tag NomeTag={"E-mail:" + item.emailCandidato}></Tag>
+                                        <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
+                                        <Tag NomeTag={"Status:" + item.statusEstagio}></Tag>
+                                        <Tag NomeTag={"Periodo do estagio:" + item.periodoEstagio}></Tag>
+                                        <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
+                                        <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
+                                        <a className="Link" href="teste">Ver perfil</a>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            );
+        }
+    }
 
     const listarEstatisticas = () => {
         fetch('http://localhost:5000/api/Administrador/Estatisticas', {
@@ -81,7 +166,7 @@ export default function Estagio() {
     }
 
     const DeletarEstagio = (idEstagio) => {
-        fetch('http://localhost:5000/api/Administrador/DeletarEstagio/'+idEstagio, {
+        fetch('http://localhost:5000/api/Administrador/DeletarEstagio/' + idEstagio, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
@@ -90,7 +175,8 @@ export default function Estagio() {
         })
             .then(response => response.json())
             .then(dados => {
-                alert(dados)
+                alert(dados);
+                listarEstagios();
             })
             .catch(err => console.error(err));
     }
@@ -101,7 +187,7 @@ export default function Estagio() {
             idEmpresa: Empresa,
             idCandidato: Candidato
         };
-        fetch('http://localhost:5000/api/Administrador/AtualizarEstagio/'+idEstagio, {
+        fetch('http://localhost:5000/api/Administrador/AtualizarEstagio/' + idEstagio, {
             method: 'PUT',
             body: JSON.stringify(form),
             headers: {
@@ -159,7 +245,7 @@ export default function Estagio() {
                 <div className="Empresascadastradas">
                     <img src={imgEnterprise} />
                     <div className="EstatiscaColumn">
-                <h5>{Estatiscas[0]}</h5>
+                        <h5>{Estatiscas[0]}</h5>
                         <br />
                         <h5>Empresas cadastradas</h5>
                     </div>
@@ -182,43 +268,16 @@ export default function Estagio() {
                 </div>
             </div>
             <br />
-            <select className="selectEstagio">
-                <option>Filtre sua busca por meses</option>
-                <option value="3">3Meses</option>
-                <option value="6">6Meses</option>
-                <option value="9">9Meses</option>
-                <option value="12">12Meses</option>
+            <select className="selectEstagio" value={Opcao}>
+                <option value='' onClick={e => setOpcao(e.target.value)}>Filtre sua busca por meses</option>
+                <option value="3" onClick={e => setOpcao(e.target.value)}>3 Meses</option>
+                <option value="6" onClick={e => setOpcao(e.target.value)}>6 Meses</option>
+                <option value="9" onClick={e => setOpcao(e.target.value)}>9 Meses</option>
+                <option value="12" onClick={e => setOpcao(e.target.value)}>12 Meses</option>
             </select>
-            <div className="ListaEstagios">
+            <div>
                 {
-                    Estagios.map((item) => {
-                        return (
-                            <div key={item.idEstagio} className="Estagio">
-                                <div className="Ferramentas">
-                                    <img className="Edit" src={imgEdit} onClick={event => {
-                                        setIdEstagio(item.idEstagio);
-                                        AparecerEditarEstagio();
-                                    }} />
-                                    <img className="Delete" src={imgDelete} onClick={()=>DeletarEstagio(item.idEstagio)}/>
-                                </div>
-                                <div className="CabecaEstagio">
-                                    <img src={imgPadrao} alt="ImagemPerfil" />
-                                    <h3>{item.nomeCompleto}</h3>
-                                    <hr className="hr" />
-                                <h5>{item.nomeCurso}</h5>
-                                </div>
-                                <div className="CorpoEstagio">
-                                    <Tag NomeTag={"E-mail:"+item.emailCandidato}></Tag>
-                                    <Tag NomeTag={"Telefone:"+item.telefone}></Tag>
-                                    <Tag NomeTag={"Status:"+item.statusEstagio}></Tag>
-                                    <Tag NomeTag={"Periodo do estagio:"+item.periodoEstagio}></Tag>
-                                    <Tag NomeTag={"TempoEstagiado:"+item.tempoEstagiado}></Tag>
-                                    <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
-                                    <a className="Link" href="teste">Ver perfil</a>
-                                </div>
-                            </div>
-                        )
-                    })
+                    View()
                 }
             </div>
             <div id="peliculaEstagio" className="peliculaEstagio none" onClick={btn_fecharModalEditarEstagio}></div>

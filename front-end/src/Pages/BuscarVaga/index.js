@@ -30,6 +30,7 @@ export default function BuscarVaga() {
   const [VagaTipoContrato, setVagaTipoContrato] = useState([]);
   const [VagaExperiencia, setVagaExperiencia] = useState([]);
   
+  
   useEffect(() => {
     listarVagas();
     View();

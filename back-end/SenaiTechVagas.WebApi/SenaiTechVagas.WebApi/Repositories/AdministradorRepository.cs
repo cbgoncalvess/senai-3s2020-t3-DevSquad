@@ -72,7 +72,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return false;
                 }
@@ -143,9 +143,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                    " SELECT Estagio.DataCadastro,Curso.NomeCurso,Estagio.IdEstagio,PeriodoEstagio,E.RazaoSocial,C.NomeCompleto,A.NomeArea,C.Telefone,U.Email FROM Estagio" +
                    " INNER JOIN Empresa E on E.IdEmpresa = Estagio.IdEmpresa" +
                    " INNER JOIN Candidato C on C.IdCandidato = Estagio.IdCandidato" +
-                   " INNER JOIN Area A on A.IdArea = C.IdArea" +
                    " INNER JOIN Usuario U on U.IdUsuario = C.IdUsuario" +
-                   " INNER JOIN Curso ON Curso.idCurso=C.idCurso";
+                   " INNER JOIN Curso ON Curso.idCurso=C.idCurso"+
+                   " INNER JOIN Area A ON A.IdArea=Curso.IdArea";
                     con.Open();
                     // Declara o SqlDataReader para receber os dados do banco de dados
                     SqlDataReader rdr;
@@ -199,7 +199,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
             double tempoEmDiasDouble = elapsedSpan.TotalDays;
             int tempoEmDiasInt = Convert.ToInt32(tempoEmDiasDouble);
-            return tempoEmDiasInt;
+            return tempoEmDiasInt / 30;
         }
 
         public bool VerificarSeExiste(int id)

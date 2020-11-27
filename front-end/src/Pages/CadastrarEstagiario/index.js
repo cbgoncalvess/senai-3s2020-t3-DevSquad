@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
+import {useHistory } from "react-router-dom";
 
 import './style.css';
 
@@ -17,6 +18,8 @@ export default function CadastrarEstagiario() {
     const[Perido,setPeriodo]=useState(0);
     const [Candidatos, SetCandidatos] = useState([]);
     const [idCandidato, SetCandidato] = useState(0);
+
+let history=useHistory();
 
     useEffect(() => {
         listaEmpresas();
@@ -54,19 +57,20 @@ export default function CadastrarEstagiario() {
     const CadastrarEstagio = () => {
         const form = {
             idEmpresa:idEmpresa,
-            idCandidato:idCandidato,
+            idUsuario:idCandidato,
             periodoEstagio:Perido
         };
-        api.post('/Empresa/AdicionarVaga', form, {
+        api.post('/Administrador/AdicionarEstagio', form, {
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
             .then(function (respose) {
                 if (respose.status !== 200) {
-                    alert("Não foi possivel cadastrar a estagio");
-                } else {
                     alert("Estágio cadastrado com sucesso");
+                    history.push('/Estagio');
+                } else {
+                    alert("Não foi possivel cadastrar a estagio");
                 }
             })
             .catch(err => console.log(err))
