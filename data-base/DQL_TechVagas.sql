@@ -40,6 +40,8 @@ GO
 SELECT * FROM Estagio
 GO
 
+Update Estagio set DataCadastro='02-03-2020' where IdEstagio=10
+
 --Lista so os atributos necessarios
 SELECT  v.IdVaga,NomeTecnologia,v.Experiencia, TipoContrato, Salario,RazaoSocial,v.Localidade FROM VagaTecnologia      
 INNER JOIN Tecnologia ON Tecnologia.IdTecnologia=VagaTecnologia.IdTecnologia

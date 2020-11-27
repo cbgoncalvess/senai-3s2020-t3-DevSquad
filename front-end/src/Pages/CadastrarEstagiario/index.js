@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
+import {useHistory } from "react-router-dom";
 
 import './style.css';
 
@@ -17,6 +18,8 @@ export default function CadastrarEstagiario() {
     const[Perido,setPeriodo]=useState(0);
     const [Candidatos, SetCandidatos] = useState([]);
     const [idCandidato, SetCandidato] = useState(0);
+
+let history=useHistory();
 
     useEffect(() => {
         listaEmpresas();
@@ -54,19 +57,20 @@ export default function CadastrarEstagiario() {
     const CadastrarEstagio = () => {
         const form = {
             idEmpresa:idEmpresa,
-            idCandidato:idCandidato,
+            idUsuario:idCandidato,
             periodoEstagio:Perido
         };
-        api.post('/Empresa/AdicionarVaga', form, {
+        api.post('/Administrador/AdicionarEstagio', form, {
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         })
             .then(function (respose) {
                 if (respose.status !== 200) {
-                    alert("Não foi possivel cadastrar a estagio");
-                } else {
                     alert("Estágio cadastrado com sucesso");
+                    history.push('/Estagio');
+                } else {
+                    alert("Não foi possivel cadastrar a estagio");
                 }
             })
             .catch(err => console.log(err))
@@ -85,17 +89,8 @@ export default function CadastrarEstagiario() {
                     </div>
                     <div className="alinharEstagiario">
                         <div className="camposEstagiario">
-                            <Input
-                                name="name"
-                                label="*Digite o nome do candidato"
-                                type="text"
-                                placeholder="exemplo: Maria Santos"
-                                required
-                            //onChange={} 
-                            />
-
-                            <div className="select">
-                                <label>Empresas</label>
+                            <div className="selectEstagiario">
+                                <label>*Empresas</label>
                                 <select className="div-select" onChange={e => SetEmpresa(e.target.value)} value={idEmpresa}>
                                     <option value="0">Selecione a empresa contratante</option>
                                     {
@@ -106,8 +101,8 @@ export default function CadastrarEstagiario() {
                                 </select>
                             </div>
 
-                            <div className="select">
-                                <label>Candidatos</label>
+                            <div className="selectEstagiario">
+                                <label>*Candidatos</label>
                                 <select className="div-select" onChange={e => SetCandidato(e.target.value)} value={idCandidato}>
                                     <option value="0">Selecione o email do candidato</option>
                                     {
@@ -118,56 +113,21 @@ export default function CadastrarEstagiario() {
                                 </select>
                             </div>
 
-                            <Input
-                                name="email"
-                                label="*Digite o email do candidato"
-                                type="text"
-                                placeholder="exemplo@exemplo.com"
+                                <Input
+                                className="div-select"
+                                name="Periodo"
+                                type="number"
+                                label="*Periodo (Meses)"
+                                onChange={e => setPeriodo(e.target.value)}
+                                maxLength={3}
+                                minLength={1}
                                 required
-                            //onChange={} 
-                            />
-
-                            <Input
-                                name="cpf"
-                                label="*Digite o CPF"
-                                type="text"
-                                placeholder="000.000.000-00"
-                                required
-                            //onChange={}
-                            />
-
-                            <div className="selectEstagiario">
-                                <label>*Selecione qual a duração do contrato</label>
-                                <select className="selectCurso" >
-                                    <option>3 Meses</option>
-                                    <option>6 Meses</option>
-                                    <option>9 Meses</option>
-                                    <option>12 Meses</option>
-                                </select>
-                            </div>
-
-                            <Input
-                                name="telefone"
-                                label="*Digite o telefone para contato"
-                                type="text"
-                                placeholder="(00) 0000-00000"
-                                required
-                            //onChange={}
-                            />
-
-                            <Input
-                                name="name"
-                                label="*Digite o nome da empresa contratante"
-                                type="text"
-                                placeholder="exemplo: TechVagas"
-                                required
-                            //onChange={} 
-                            />
+                                />
+                            
                         </div>
 
                         <div className="botaoCadastrarEs">
-                            <BlackButton type="submit" name="Cadastrar">Cadastrar</BlackButton>
-                            {/* Adicionar um onclick com o metodo cadastrar estágio */}
+                            <BlackButton type="submit" name="Cadastrar" onClick={CadastrarEstagio}>Cadastrar</BlackButton>
                         </div>
                     </div>
 

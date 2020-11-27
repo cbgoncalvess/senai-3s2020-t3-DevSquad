@@ -152,9 +152,9 @@ export default function CadastrarVaga() {
                                     required
                                 />
 
-                                <div className="select">
-                                    <label>Área</label>
-                                    <select className="div-select" onChange={e => SetArea(e.target.value)} value={Area} required>
+                                <div>
+                                    <label className="select-cadastroCandidato-title">Área</label>
+                                    <select className="select-cadastroCandidato" onChange={e => SetArea(e.target.value)} value={Area} required>
                                         <option value="0">Selecione uma área de atuação</option>
                                         {
                                             ListAreas.map((item) => {
@@ -164,9 +164,9 @@ export default function CadastrarVaga() {
                                     </select>
                                 </div>
 
-                                <div className="select">
-                                    <label>Tipo de presença</label>
-                                    <select className="div-select" onChange={e => setIdTipoPresenca(e.target.value)} value={IdTipoPresenca} required>
+                                <div>
+                                    <label className="select-cadastroCandidato-title">Tipo de presença</label>
+                                    <select className="select-cadastroCandidato" onChange={e => setIdTipoPresenca(e.target.value)} value={IdTipoPresenca} required>
                                         <option value="0">Selecione um tipo de presenca</option>
                                         {
                                             ListTipoPresencas.map((item) => {
@@ -176,18 +176,18 @@ export default function CadastrarVaga() {
                                     </select>
                                 </div>
 
-                                <div className="select">
-                                    <label>Experiência</label>
-                                    <select className="div-select" onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
+                                <div>
+                                    <label className="select-cadastroCandidato-title">Experiência</label>
+                                    <select className="select-cadastroCandidato" onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
                                         <option value="0">Selecione um nivel de experiencia</option>
                                         <option value="Pleno">Pleno</option>
                                         <option value="Sênior">Sênior</option>
                                         <option value="Júnior">Júnior</option>
                                     </select>
                                 </div>
-                                <div className="select">
-                                    <label>Tipo de contrato</label>
-                                    <select className="div-select" onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato} required>
+                                <div>
+                                    <label className="select-cadastroCandidato-title">Tipo de contrato</label>
+                                    <select className="select-cadastroCandidato" onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato} required>
                                         <option value="0">Selecione um tipo de contrato</option>
                                         <option value="CLT">CLT</option>
                                         <option value="PJ">PJ</option>

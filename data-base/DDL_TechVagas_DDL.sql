@@ -134,4 +134,8 @@ CREATE TABLE VagaTecnologia (
 GO
 
 USE MASTER
+<<<<<<< HEAD
 DROP DATABASE Db_TechVagas
+=======
+DROP DATABASE Db_TechVagas
+>>>>>>> 19686b013cfc78c3baf7abaee64b6df293093df6

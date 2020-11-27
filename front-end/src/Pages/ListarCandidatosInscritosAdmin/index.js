@@ -72,7 +72,7 @@ let History=useHistory();
             setPresenca(dados.tipoPresenca);
             setArea(dados.nomeArea);
             setTipoContrato(dados.tipoContrato);
-            setSalario(dados.salario);
+            setSalario(dados.salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
             setCidade(dados.localidade);
             setExperiencia(dados.experiencia);
             setDescricaoBeneficio(dados.descricaoBeneficio);

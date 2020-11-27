@@ -29,7 +29,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /*----------------------------------------GET START-----------------------------*/
         /// <summary>
         /// Método que lista as empresas cadastradas com suas informações.
-        /// </summary>
+        /// </summary>       
         /// <returns>Retorna um HTTP Code (201) e a mensagem "true", caso contrário,
         /// retorna um HTTP Code (400)e a mensagem "Uma exceção ocorreu. Tente novamente."
         /// </returns>
@@ -111,7 +111,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todos os candidatos cadastrados.
         /// </summary>
         /// <returns>Retorna todos candidatos cadastrados.</returns>
-        [Authorize(Roles = "1")]
+        
         [HttpGet("ListarCandidatos")]
         public IActionResult ListarCandidatos()
         {
