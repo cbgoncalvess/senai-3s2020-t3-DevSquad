@@ -134,7 +134,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                         Cpf = NovoCandidato.Cpf,
                         Telefone = NovoCandidato.Telefone,
                         LinkLinkedinCandidato = NovoCandidato.LinkLinkedinCandidato,
-                        IdArea = NovoCandidato.IdArea,
                         IdCurso = NovoCandidato.IdCurso
                     };
 

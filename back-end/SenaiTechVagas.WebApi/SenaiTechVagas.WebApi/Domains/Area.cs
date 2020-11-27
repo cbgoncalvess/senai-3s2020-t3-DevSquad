@@ -7,14 +7,14 @@ namespace SenaiTechVagas.WebApi.Domains
     {
         public Area()
         {
-            Candidato = new HashSet<Candidato>();
+            Curso = new HashSet<Curso>();
             Vaga = new HashSet<Vaga>();
         }
 
         public int IdArea { get; set; }
         public string NomeArea { get; set; }
 
-        public virtual ICollection<Candidato> Candidato { get; set; }
+        public virtual ICollection<Curso> Curso { get; set; }
         public virtual ICollection<Vaga> Vaga { get; set; }
     }
 }
