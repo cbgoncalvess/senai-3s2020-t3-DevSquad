@@ -69,6 +69,10 @@
     left: 25%;
 }
 
+.btPerfil{
+    margin: 10px;
+}
+
 @media(max-width:700px){
     .flexBoxPerfilCandidato>h3{
         font-size: 12px;

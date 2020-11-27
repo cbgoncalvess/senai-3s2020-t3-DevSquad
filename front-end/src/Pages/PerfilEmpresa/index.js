@@ -4,6 +4,7 @@ import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import AccessBar from "../../Components/AccessBar";
 import Input from "../../Components/Input/index";
+import AccessMenu from "../../Components/AccessMenu";
 
 import imgPadrao from "../../assets/android-character-symbol.webp";
 
@@ -34,6 +35,39 @@ export default function PerfilEmpresa() {
   const validaCep = /^[0-9]{8}$/g;
 
   let verificacaoCep = validaCep.test(CEP);
+  const EditarDadosDaEmpresa = () => {
+    const form = {
+      nomeResponsavel: NomeResponsavel,
+      cnpj: CNPJ,
+      nomeFantasia: NomeFantasia,
+      razaoSocial: RazaoSocial,
+      telefone: Telefone,
+      numFuncionario: NumFuncionario,
+      numCnae: NumCNAE,
+      cep: CEP,
+      logradouro: Logradouro,
+      complemento: Complemento,
+      emailContato: EmailContato,
+      estado: Estado,
+      localidade: Cidade,
+    };
+    fetch("http://localhost:5000/api/Empresa/AtualizarEmpresa", {
+      method: "PUT",
+      body: JSON.stringify(form),
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then(function (respose) {
+        if (respose.status !== 200) {
+          alert("Não foi possivel editar os dados da empresa");
+        } else {
+          alert("Editada com sucesso");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
 
   function buscarCep(valor) {
     if (verificacaoCep) {
@@ -77,40 +111,6 @@ export default function PerfilEmpresa() {
         SetEmailContato(dados.emailContato);
         SetEstado(dados.uf);
         SetCidade(dados.localidade);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const EditarDadosDaEmpresa = () => {
-    const form = {
-      nomeResponsavel: NomeResponsavel,
-      cnpj: CNPJ,
-      nomeFantasia: NomeFantasia,
-      razaoSocial: RazaoSocial,
-      telefone: Telefone,
-      numFuncionario: NumFuncionario,
-      numCnae: NumCNAE,
-      cep: CEP,
-      logradouro: Logradouro,
-      complemento: Complemento,
-      emailContato: EmailContato,
-      estado: Estado,
-      localidade: Cidade,
-    };
-    fetch("http://localhost:5000/api/Empresa/AtualizarEmpresa", {
-      method: "PUT",
-      body: JSON.stringify(form),
-      headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then(function (respose) {
-        if (respose.status !== 200) {
-          alert("Não foi possivel editar os dados da empresa");
-        } else {
-          alert("Editada com sucesso");
-        }
       })
       .catch((err) => console.error(err));
   };
@@ -194,6 +194,7 @@ export default function PerfilEmpresa() {
   return (
     <div className="bodyPartVizualizarPerfil">
       <AccessBar />
+      <AccessMenu />
       <Header />
       <div className="meioPerfil">
         <div className="EsquerdoPerfil">
@@ -217,7 +218,7 @@ export default function PerfilEmpresa() {
             return (
               <div className="BoxPerfilCandidato">
                 <div className="flexBoxPerfilCandidato">
-                  <img src={imgPadrao} />
+                  <img src={imgPadrao} alt="Imagem da Empresa" />
                   <h3>{"Nome do estágiario:" + item.nomeCompleto}</h3>
                 </div>
                 <h3>{"CPF:" + item.cpf}</h3>
