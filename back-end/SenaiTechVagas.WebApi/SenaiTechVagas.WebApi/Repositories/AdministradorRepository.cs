@@ -14,11 +14,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class AdministradorRepository : IAdministradorRepository
     {
-<<<<<<< HEAD
-        string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
-=======
-        string stringConexao = "Data Source=DESKTOP-7H5DJOO; Initial Catalog=Db_TechVagas; integrated Security=True";
->>>>>>> 91987da9135672c3e4fc1a063b9dc5bb58817832
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarCurso(int id, Curso curso)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -56,7 +52,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool CadastrarEstagio(CadastrarEstagioViewModel estagio)
+        public string CadastrarEstagio(CadastrarEstagioViewModel estagio)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -64,7 +60,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     var Candidato = ctx.Candidato.FirstOrDefault(u=>u.IdUsuario==estagio.IdUsuario);
                     if (Candidato == null)
-                        return false;
+                        return "Candidato não encontardo";
+
+                    var resposta=VerificarSeExiste(Candidato.IdCandidato);
+                    if (resposta == true)
+                        return "Estágio ja cadastrado";
 
                     Estagio estage = new Estagio() {
                         IdCandidato = Candidato.IdCandidato,
@@ -74,11 +74,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     };
                     ctx.Add(estage);
                     ctx.SaveChanges();
-                    return true;
+                    return "Estágio casdastrado com sucesso";
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    return false;
+                    return "Erro no sistema";
                 }
             }
         }
@@ -206,13 +206,13 @@ namespace SenaiTechVagas.WebApi.Repositories
             return tempoEmDiasInt / 30;
         }
 
-        public bool VerificarSeExiste(int id)
+        public bool VerificarSeExiste(int idCandidato)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == id);
+                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == idCandidato);
                     if (estagioBuscado != null)
                         return true;
 
