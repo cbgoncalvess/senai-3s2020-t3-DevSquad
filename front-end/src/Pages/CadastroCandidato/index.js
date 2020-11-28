@@ -273,13 +273,19 @@ export default function CadastroEmpresa() {
                 <select
                   className="select-cadastroCandidato"
                   onChange={(e) => SetPergunta(e.target.value)}
-                  value={""}
+                  value={PerguntaSeguranca}
                   required
                 >
                   <option value="0">Selecione sua pergunta de segurança</option>
-                  <option value="Como se chama o seu cachorro">
-                    Como se chama o seu cachorro
-                  </option>
+                  <option value="Como se chama o seu cachorro"> Como se chama o seu cachorro</option>
+                  <option value="Qual o seu sobrenome">Qual o seu sobrenome</option>
+                  <option value="Qual o nome da sua mãe/pai">Qual o nome da sua mãe/pai</option>
+                  <option value="Para qual país você gostaria de viajar">Para qual país você gostaria de viajar</option>
+                  <option value="Qual era sua matéria preferida na escola">Qual era sua matéria preferida na escola</option>
+                  <option value="De onde vem sua família">De onde vem sua família</option>
+                  <option value="Do que você mais gosta de fazer nas suas horas vagas">Do que você mais gosta de fazer nas suas horas vagas</option>
+                  <option value="Qual a palavra que te define como pessoa">Qual a palavra que te define como pessoa</option>
+                  <option value="Qual o ano mais importante da sua vida">Qual o ano mais importante da sua vida</option>
                 </select>
               </div>
 

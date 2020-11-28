@@ -24,6 +24,28 @@
     background-color: #E5E5E5;
 }
 
+.select-final{
+    display: flex;
+    padding: 12px;
+    border: none;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.select-final>label{
+text-align: start;
+margin-bottom: 18px;
+}
+
+.select-final>Select{
+    height: 36px;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    background-color: #E0E0E0;
+}
+
 
 .ModalCadastro{
     background-color: white;

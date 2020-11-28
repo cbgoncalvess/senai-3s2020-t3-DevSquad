@@ -223,9 +223,9 @@ export default function PerfilCandidato() {
                     minLength={5}
                     required 
                     />
-                    <div className="select">
-                        <label>Cursos</label> <br />
-                        <select className="cadastre" onChange={e => SetCurso(e.target.value)} value={Curso} required>
+                    <div className="select-final">
+                        <label>Cursos</label>
+                        <select onChange={e => SetCurso(e.target.value)} value={Curso} required>
                             <option value="0">Selecione seu curso</option>
                             {
                                 Cursos.map((item) => {

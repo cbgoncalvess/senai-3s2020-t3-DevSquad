@@ -398,10 +398,9 @@ export default function VagasPublicadas() {
       <div id="ModalRemoverTecnologia" className="ModalRemoverTecnologia none">
         <h2>Remover tecnologia Vaga</h2>
         <form>
-          <div className="select">
+          <div className="select-final">
             <label>Tecnologias</label>
             <select
-              className="div-select"
               onChange={(e) => SetNomeTecnologia(e.target.value)}
               value={NomeTecnologia}
             >
@@ -418,7 +417,7 @@ export default function VagasPublicadas() {
             </select>
           </div>
           <button onClick={DeletarTecnologia} className="btVaga">
-            Adicionar
+            Remover
           </button>
         </form>
       </div>
@@ -434,10 +433,9 @@ export default function VagasPublicadas() {
       >
         <h2>Adicionar uma tecnologia na Vaga</h2>
         <form>
-          <div className="select">
+          <div className="select-final">
             <label>Tecnologias</label>
             <select
-              className="div-select"
               onChange={(e) => SetIdTecnologia(e.target.value)}
               value={idTecnologia}
             >
@@ -479,10 +477,9 @@ export default function VagasPublicadas() {
             label="Salario"
             onChange={(e) => setSalario(e.target.value)}
           />
-          <div className="select">
+          <div className="select-final">
             <label>Área</label>
             <select
-              className="div-select"
               onChange={(e) => setArea(e.target.value)}
               value={Area}
             >
@@ -497,10 +494,9 @@ export default function VagasPublicadas() {
             </select>
           </div>
 
-          <div className="select">
+          <div className="select-final">
             <label>Experiência</label>
             <select
-              className="div-select"
               onChange={(e) => setExperiencia(e.target.value)}
               value={Experiencia}
             >
@@ -511,10 +507,9 @@ export default function VagasPublicadas() {
             </select>
           </div>
 
-          <div className="select">
+          <div className="select-final">
             <label>Tipo de contrato</label>
             <select
-              className="div-select"
               onChange={(e) => setTipoContrato(e.target.value)}
               value={TipoContrato}
             >

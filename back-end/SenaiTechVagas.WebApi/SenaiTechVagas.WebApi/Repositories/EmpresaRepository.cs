@@ -6,6 +6,7 @@ using SenaiTechVagas.WebApi.Interfaces;
 using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -405,13 +406,14 @@ namespace SenaiTechVagas.WebApi.Repositories
                             // Instancia um objeto jogo 
                             ListarVagasViewModel vm = new ListarVagasViewModel
                             {
+                                
                                 // Atribui às propriedades os valores das colunas da tabela do banco
                                 IdVaga = Convert.ToInt32(rdr["IdVaga"]),
                                 Experiencia = rdr["Experiencia"].ToString(),
                                 TipoContrato = rdr["TipoContrato"].ToString(),
                                 Localidade = rdr["Localidade"].ToString(),
                                 Salario = Convert.ToDecimal(rdr["Salario"]),
-                                DataExpiracao=Convert.ToDateTime(rdr["DataExpiracao"]),
+                                DataExpiracao=Convert.ToDateTime((rdr["DataExpiracao"])),
                                 RazaoSocial = rdr["RazaoSocial"].ToString(),
                                 NomeArea = rdr["NomeArea"].ToString(),
                                 TituloVaga = rdr["TituloVaga"].ToString(),

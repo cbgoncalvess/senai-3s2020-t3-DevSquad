@@ -20,10 +20,6 @@ import Input from "../../Components/Input";
 export default function Estagio() {
   const [Estagios, SetEstagios] = useState([]);
   const [idEstagio, setIdEstagio] = useState(0);
-  const [Empresa, SetEmpresa] = useState(0);
-  const [Candidato, SetCandidato] = useState(0);
-  const [Empresas, SetEmpresas] = useState([]);
-  const [Candidatos, SetCandidatos] = useState([]);
   const [Periodo, SetPeriodo] = useState("");
   const [Estatiscas, setEstatiscas] = useState([]);
   const [EstagioFiltro, setEstagioFiltro] = useState([]);
@@ -31,14 +27,12 @@ export default function Estagio() {
 
   useEffect(() => {
     listarEstagios();
-    listarCandidatos();
-    listarEmpresa();
     listarEstatisticas();
   }, []);
 
   function FiltroMeses(opcao) {
-    for (var i = 0; i < Estagios; i++) {
-      if (Estagios[i].periodoEstagiado <= opcao) {
+    for (var i = 0; i < Estagios.length; i++) {
+      if (Estagios[i].tempoEstagiado == opcao) {
         EstagioFiltro.push(Estagios[i]);
       }
     }
@@ -77,7 +71,7 @@ export default function Estagio() {
                   <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
                   <Tag NomeTag={"Status:" + item.statusEstagio}></Tag>
                   <Tag
-                    NomeTag={"Periodo do estagio:" + item.periodoEstagio}
+                    NomeTag={"Periodo do estagio:" + item.periodoEstagio+"meses"}
                   ></Tag>
                   <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
                   <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
@@ -91,6 +85,8 @@ export default function Estagio() {
         </div>
       );
     } else if (Opcao !== "") {
+      EstagioFiltro.splice(0, Number.MAX_VALUE);
+      FiltroMeses(Opcao);
       return (
         <div className="ListaEstagios">
           {EstagioFiltro.map((item) => {
@@ -122,7 +118,7 @@ export default function Estagio() {
                   <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
                   <Tag NomeTag={"Status:" + item.statusEstagio}></Tag>
                   <Tag
-                    NomeTag={"Periodo do estagio:" + item.periodoEstagio}
+                    NomeTag={"Periodo do estagio:" + item.periodoEstagio+"meses"}
                   ></Tag>
                   <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
                   <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
@@ -153,36 +149,6 @@ export default function Estagio() {
       .catch((err) => console.error(err));
   };
 
-  const listarEmpresa = () => {
-    fetch("http://localhost:5000/api/Administrador/ListarEmpresas", {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        SetEmpresas(dados);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const listarCandidatos = () => {
-    fetch("http://localhost:5000/api/Administrador/ListarCandidatos", {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        SetCandidatos(dados);
-      })
-      .catch((err) => console.error(err));
-  };
-
   const DeletarEstagio = (idEstagio) => {
     fetch(
       "http://localhost:5000/api/Administrador/DeletarEstagio/" + idEstagio,
@@ -205,9 +171,7 @@ export default function Estagio() {
 
   const EditarEstagio = () => {
     const form = {
-      periodoEstagio: Periodo,
-      idEmpresa: Empresa,
-      idCandidato: Candidato,
+      periodoEstagio: Periodo
     };
     fetch(
       "http://localhost:5000/api/Administrador/AtualizarEstagio/" + idEstagio,
@@ -296,9 +260,9 @@ export default function Estagio() {
         </div>
       </div>
       <br />
-      <select className="selectEstagio" value={Opcao}>
+      <select className="selectEstagio" onChange={(e) => setOpcao(e.target.value)} value={Opcao}>
         <option value="" onClick={(e) => setOpcao(e.target.value)}>
-          Filtre sua busca por meses
+          Filtre sua busca por tempo estagiado
         </option>
         <option value="3" onClick={(e) => setOpcao(e.target.value)}>
           3 Meses
@@ -322,21 +286,6 @@ export default function Estagio() {
       <div id="modalEstagio" className="modalEstagio none">
         <h2>Editar estágio</h2>
         <form>
-          <div className="select">
-            <label>Nome do candidato</label> <br />
-            <select
-              className="cadastre"
-              onChange={(e) => SetCandidato(e.target.value)}
-              value={Candidato}
-            >
-              <option value="0">Selecione um Candidato</option>
-              {Candidatos.map((item) => {
-                return (
-                  <option value={item.idCandidato}>{item.nomeCompleto}</option>
-                );
-              })}
-            </select>
-          </div>
           <Input
             name="Periodo"
             className="cadastre"
@@ -346,21 +295,6 @@ export default function Estagio() {
             required
             onChange={(e) => SetPeriodo(e.target.value)}
           />
-          <div className="select">
-            <label>Nome da empresa</label> <br />
-            <select
-              className="cadastre"
-              onChange={(e) => SetEmpresa(e.target.value)}
-              value={Empresa}
-            >
-              <option value="0">Selecione uma empresa</option>
-              {Empresas.map((item) => {
-                return (
-                  <option value={item.idEmpresa}>{item.razaoSocial}</option>
-                );
-              })}
-            </select>
-          </div>
           <div className="btEditarEstagioDiv">
             <button className="btVaga" onClick={EditarEstagio}>
               Editar

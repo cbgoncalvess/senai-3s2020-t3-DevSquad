@@ -632,11 +632,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-
                 if (_Admin.AtualizarEstagio(idEstagio, estagio))
                     return Ok("Estagio atualizado");
                 else
-                    return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes sao validas");
+                    return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes são validas");
             }
             catch (Exception)
             {

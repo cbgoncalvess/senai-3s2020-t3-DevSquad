@@ -93,15 +93,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (estagioBuscado == null)
                         return false;
 
-                    if (estagioAtualizado.IdEmpresa >= 1)
-                        estagioBuscado.IdEmpresa = estagioAtualizado.IdEmpresa;
-
-                    if (estagioAtualizado.PeriodoEstagio < 36)
-                        estagioBuscado.PeriodoEstagio = estagioAtualizado.PeriodoEstagio;
-
-                    if (estagioAtualizado.IdCandidato >= 1)
-                        estagioBuscado.IdCandidato = estagioAtualizado.IdCandidato;
-
+                    estagioBuscado.PeriodoEstagio = estagioAtualizado.PeriodoEstagio;
                     ctx.Update(estagioBuscado);
                     ctx.SaveChanges();
                     return true;
