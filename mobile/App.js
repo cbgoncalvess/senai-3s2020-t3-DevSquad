@@ -181,6 +181,47 @@ export default function App() {
 
       {/* <View >
         <ImageBackground source={require('../mobile/assets/Images/bannerVisualizarVaga.webp')} style={styles.BannerVizualizarVagaEmpresa}>
+          <Text style={styles.TextoHeader}>Vagas que você publicou</Text>
+        </ImageBackground>
+      </View>
+
+      <Text style={styles.TextoTitulo}>Vagas que você publicou</Text>
+      <View style={styles.MainVaga}>
+        {ListarVagas.map((teste2) => {
+          return (
+            <View style={styles.Vaga} key={teste2.idVaga}>
+              <View style={styles.VagaCompleta}>
+                <Image style={styles.ImagemEmpresa} source={require('../mobile/assets/Images/Teste.webp')} />
+                <View style={styles.MainVaga}>
+                  <Text style={styles.TituloVaga}>{teste2.tituloVaga}</Text>
+                  <View style={styles.InfoVagas}>
+                    <InfoVaga NomeProp={teste2.razaoSocial} nomeImage={require('../mobile/assets/Images/building.webp')}></InfoVaga>
+                    <InfoVaga NomeProp={teste2.cidade} nomeImage={require('../mobile/assets/Images/big-map-placeholder-outlined-symbol-of-interface.webp')}></InfoVaga>
+                    <InfoVaga NomeProp={teste2.experiencia} nomeImage={require('../mobile/assets/Images/rocket-launch.webp')}></InfoVaga>
+                    <InfoVaga NomeProp={teste2.tipoContrato} nomeImage={require('../mobile/assets/Images/gears.webp')}></InfoVaga>
+                    <InfoVaga NomeProp={teste2.salario} nomeImage={require('../mobile/assets/Images/money (1).webp')}></InfoVaga>
+                    <InfoVaga NomeProp={teste2.tipoPresenca} nomeImage={require('../mobile/assets/Images/global.png')}></InfoVaga>
+                    <InfoVaga NomeProp={teste2.nomeArea} nomeImage={require('../mobile/assets/Images/web-programming.webp')}></InfoVaga>
+                  </View>
+                  <View style={styles.TecnologiasVaga}>
+                    {
+                      teste2.tecnologias.map((teste3) => {
+                        return (
+                          <Tag NomeTag={teste3}></Tag>
+                        )
+                      })
+                    }
+                  </View>
+                </View>
+              </View>
+            </View>)
+        })
+
+        }
+      </View>
+
+      {/* <View >
+        <ImageBackground source={require('../mobile/assets/Images/bannerVisualizarVaga.webp')} style={styles.BannerVizualizarVagaEmpresa}>
           <Text style={styles.TextoHeader}>Veja quem se inscreveu para esta vaga</Text>
         </ImageBackground>
       </View>
@@ -309,6 +350,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     width: "100%",
+  },
+  TextoTitulo: {
+    color: 'black',
+    fontSize: '22px',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginTop: '20px'
   },
   BannerVizualizarVagaEmpresa: {
     justifyContent: "center",
