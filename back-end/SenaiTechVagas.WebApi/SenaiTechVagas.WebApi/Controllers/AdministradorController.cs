@@ -457,14 +457,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (estagioNovo.PeriodoEstagio > 36)
-                    return BadRequest("O periodo nao pode ser maior que 36 meses");
-
-                if (_Admin.CadastrarEstagio(estagioNovo))
-                    return StatusCode(201);
-
+                string resposta=_Admin.CadastrarEstagio(estagioNovo);
+                if (resposta == "Estágio casdastrado com sucesso")
+                    return Ok(resposta);
                 else
-                    return BadRequest("Não foi possivel cadastrar o estagio");
+                    return BadRequest(resposta);           
             }
             catch (Exception)
             {
@@ -635,8 +632,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (_Admin.VerificarSeExiste(estagio.IdCandidato))
-                    return BadRequest("Estagio ja existe");
 
                 if (_Admin.AtualizarEstagio(idEstagio, estagio))
                     return Ok("Estagio atualizado");
