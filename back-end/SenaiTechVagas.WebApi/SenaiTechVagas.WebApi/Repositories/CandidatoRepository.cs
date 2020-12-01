@@ -15,6 +15,10 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class CandidatoRepository : ICandidatoRepository
     {
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1769c210008cc07c311209d8ab7fd644efdf3cbc
         string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
 
         //Em ordem CRUD - Criar, Ler, Atualizar, Deletar
