@@ -59,10 +59,10 @@ export default function Login() {
 
     const RecuperarSenha = () => {
         const form = {
-            email:email,
-            pergunta:PerguntaSeguranca,
-            resposta:RespostaSeguranca,
-            novaSenha:NovaSenha,
+            email: email,
+            pergunta: PerguntaSeguranca,
+            resposta: RespostaSeguranca,
+            novaSenha: NovaSenha,
         };
         fetch('http://localhost:5000/api/Usuario/RecuperarSenha', {
             method: 'PUT',
@@ -70,13 +70,13 @@ export default function Login() {
             headers: {
                 'content-type': 'application/json'
             }
-        }).then(function(respose){
-                if(respose.status!==200){
-                    alert("Não foi possivel alterar a senha,entre em contato com o admin do site caso necessario");
-                }else{
-                    alert("Editado com sucesso");
-                }
-            }).catch(err => console.error(err));
+        }).then(function (respose) {
+            if (respose.status !== 200) {
+                alert("Não foi possivel alterar a senha,entre em contato com o admin do site caso necessario");
+            } else {
+                alert("Editado com sucesso");
+            }
+        }).catch(err => console.error(err));
     }
 
     function ApareceRecuperarSenhaCandidato() {
@@ -104,37 +104,37 @@ export default function Login() {
             <main className="principalLogin">
                 <section className="sessaoLogar">
 
-                        <div className="division-logar">
+                    <div className="division-logar">
 
-                            <div className="division-logar-title">
-                                <h2>login</h2>
-                                <p className="sub-titulo">Bem-vindo ao SENAI | TechVagas</p>
-                            </div>
-
-                            <form className="form-logar" onSubmit={event => {
-                                event.preventDefault();
-                                login();
-                            }}>
-
-                                <div className="divisionCampo">
-                                    <label>Usuário ou E-mail:</label>
-                                    <input type="text" name="email" className="inputUser" placeholder="exemplo@exemplo.com / mariasantos" onChange={e => setEmail(e.target.value)} />
-                                </div>
-
-                                <div className="divisionCampo divisionPassword">
-                                    <label>Senha:</label>
-                                    <input type="password" name="password" placeholder="******" className="inputPassword" onChange={e => setSenha(e.target.value)} />
-                                    <h5 className="recuperarPassword" onClick={ApareceRecuperarSenhaCandidato}>Recuperar senha</h5>
-                                </div>
-                            </form>
-
-                            <div className="divisionBtn">
-                                <button className="btnNew"><Link className="link-cad-conta" to="/cadastro">criar conta</Link></button>
-                                <button className="btnLogar" onClick={login}>entrar</button>
-                            </div>
-
+                        <div className="division-logar-title">
+                            <h2>login</h2>
+                            <p className="sub-titulo">Bem-vindo ao SENAI | TechVagas</p>
                         </div>
-                    
+
+                        <form className="form-logar" onSubmit={event => {
+                            event.preventDefault();
+                            login();
+                        }}>
+
+                            <div className="divisionCampo">
+                                <label>Usuário ou E-mail:</label>
+                                <input type="text" name="email" className="inputUser" placeholder="exemplo@exemplo.com / mariasantos" onChange={e => setEmail(e.target.value)} />
+                            </div>
+
+                            <div className="divisionCampo divisionPassword">
+                                <label>Senha:</label>
+                                <input type="password" name="password" placeholder="******" className="inputPassword" onChange={e => setSenha(e.target.value)} />
+                                <h5 className="recuperarPassword" onClick={ApareceRecuperarSenhaCandidato}>Recuperar senha</h5>
+                            </div>
+                        </form>
+
+                        <div className="divisionBtn">
+                            <button className="btnNew"><Link className="link-cad-conta" to="/cadastro">criar conta</Link></button>
+                            <button className="btnLogar" onClick={login}>entrar</button>
+                        </div>
+
+                    </div>
+
 
 
                 </section>
@@ -142,111 +142,73 @@ export default function Login() {
                 <img src={imglogin} className="imgBannerLogin" />
             </main>
 
-            <div id="peliculaRecuperarSenhaCandidato" className="peliculaRecuperarSenhaCandidato none" onClick={btn_fecharRecuperarSenhaCandidato}></div>
-            <div id="modalRecuperarSenhaCandidato" className="modalRecuperarSenhaCandidato none">
+            <div
+                id="peliculaRecuperarSenhaCandidato"
+                className="peliculaRecuperarSenhaCandidato none"
+                onClick={btn_fecharRecuperarSenhaCandidato}
+            ></div>
+            <div
+                id="modalRecuperarSenhaCandidato"
+                className="modalRecuperarSenhaCandidato none"
+            >
                 <h2>Alterar senha</h2>
                 <form>
-                    <div className="select">
+                    <div className="select-final">
                         <label>Resposta de segurança</label>
-                        <select className="div-select" onChange={e => SetPerguntaSeguranca(e.target.value)} value={PerguntaSeguranca} required>
+                        <select
+                            onChange={(e) => SetPerguntaSeguranca(e.target.value)}
+                            value={PerguntaSeguranca}
+                            required
+                        >
                             <option value="0">Selecione sua pergunta de segurança</option>
                             <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
+                            <option value="Qual o seu sobrenome">Qual o seu sobrenome</option>
+                            <option value="Qual o nome da sua mãe/pai">Qual o nome da sua mãe/pai</option>
+                            <option value="Para qual país você gostaria de viajar">Para qual país você gostaria de viajar</option>
+                            <option value="Qual era sua matéria preferida na escola">Qual era sua matéria preferida na escola</option>
+                            <option value="De onde vem sua família">De onde vem sua família</option>
+                            <option value="Do que você mais gosta de fazer nas suas horas vagas">Do que você mais gosta de fazer nas suas horas vagas</option>
+                            <option value="Qual a palavra que te define como pessoa">Qual a palavra que te define como pessoa</option>
+                            <option value="Qual o ano mais importante da sua vida">Qual o ano mais importante da sua vida</option>
                         </select>
                     </div>
-                    <Input className="InputCadastro" name="RespostaSeguranca" label="Resposta de seguranca" onChange={e=>SetRespostaSeguranca(e.target.value)} 
-                                    maxLength={20}
-                                    minLength={5}
-                                    required 
-                                    />
-
-                    <Input className="InputCadastro" name="emailRecuperacao" label="Seu email" onChange={e=>setEmail(e.target.value)}
-                    maxLength={154}
-                    minLength={5}
-                    required 
+                    <Input
+                        className="InputCadastro"
+                        name="RespostaSeguranca"
+                        label="Resposta de seguranca"
+                        onChange={(e) => SetRespostaSeguranca(e.target.value)}
+                        maxLength={20}
+                        minLength={5}
+                        required
                     />
 
-                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e=>SetNovaSenha(e.target.value)}
-                    maxLength={15}
-                    minLength={9}
-                    required />
+                    <Input
+                        className="InputCadastro"
+                        name="emailRecuperacao"
+                        label="Seu email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        maxLength={154}
+                        minLength={5}
+                        required
+                    />
+
+                    <Input
+                        className="InputCadastro"
+                        name="NovaSenha"
+                        label="Nova senha"
+                        onChange={(e) => SetNovaSenha(e.target.value)}
+                        maxLength={15}
+                        minLength={9}
+                        required
+                    />
                 </form>
-                    <button className="btVaga" onClick={RecuperarSenha}>Alterar senha</button>
+                
+                <button className="btVaga" onClick={RecuperarSenha}>
+                    Alterar senha
+                </button>
             </div>
             <Footer />
         </div>
-<<<<<<< HEAD
     );
 }
-=======
-        <img src={imglogin} className="imagemDireito" />
-      </div>
 
-      <div
-        id="peliculaRecuperarSenhaCandidato"
-        className="peliculaRecuperarSenhaCandidato none"
-        onClick={btn_fecharRecuperarSenhaCandidato}
-      ></div>
-      <div
-        id="modalRecuperarSenhaCandidato"
-        className="modalRecuperarSenhaCandidato none"
-      >
-        <h2>Alterar senha</h2>
-        <form>
-          <div className="select-final">
-            <label>Resposta de segurança</label>
-            <select
-              onChange={(e) => SetPerguntaSeguranca(e.target.value)}
-              value={PerguntaSeguranca}
-              required
-            >
-              <option value="0">Selecione sua pergunta de segurança</option>
-              <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
-              <option value="Qual o seu sobrenome">Qual o seu sobrenome</option>
-              <option value="Qual o nome da sua mãe/pai">Qual o nome da sua mãe/pai</option>
-              <option value="Para qual país você gostaria de viajar">Para qual país você gostaria de viajar</option>
-              <option value="Qual era sua matéria preferida na escola">Qual era sua matéria preferida na escola</option>
-              <option value="De onde vem sua família">De onde vem sua família</option>
-              <option value="Do que você mais gosta de fazer nas suas horas vagas">Do que você mais gosta de fazer nas suas horas vagas</option>
-              <option value="Qual a palavra que te define como pessoa">Qual a palavra que te define como pessoa</option>
-              <option value="Qual o ano mais importante da sua vida">Qual o ano mais importante da sua vida</option>
-            </select>
-          </div>
-          <Input
-            className="InputCadastro"
-            name="RespostaSeguranca"
-            label="Resposta de seguranca"
-            onChange={(e) => SetRespostaSeguranca(e.target.value)}
-            maxLength={20}
-            minLength={5}
-            required
-          />
-
-          <Input
-            className="InputCadastro"
-            name="emailRecuperacao"
-            label="Seu email"
-            onChange={(e) => setEmail(e.target.value)}
-            maxLength={154}
-            minLength={5}
-            required
-          />
-
-          <Input
-            className="InputCadastro"
-            name="NovaSenha"
-            label="Nova senha"
-            onChange={(e) => SetNovaSenha(e.target.value)}
-            maxLength={15}
-            minLength={9}
-            required
-          />
-        </form>
-        <button className="btVaga" onClick={RecuperarSenha}>
-          Alterar senha
-        </button>
-      </div>
-      <Footer />
-    </div>
-  );
-}
->>>>>>> 1769c210008cc07c311209d8ab7fd644efdf3cbc
