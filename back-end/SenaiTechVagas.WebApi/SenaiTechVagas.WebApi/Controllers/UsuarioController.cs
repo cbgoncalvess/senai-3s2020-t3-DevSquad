@@ -48,6 +48,8 @@ namespace SenaiTechVagas.WebApi.Controllers
                     Telefone = NovoCandidato.Telefone,
                     LinkLinkedinCandidato= NovoCandidato.LinkLinkedinCandidato
                 };
+                if (NovoCandidato.CaminhoImagem == null)
+                    NovoCandidato.CaminhoImagem = "Teste.webp";
 
                 var Response = usuarioRepository.VerificarSeCredencialJaFoiCadastrada(vm);
                 if (Response == null)
