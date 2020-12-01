@@ -15,7 +15,10 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class CandidatoRepository : ICandidatoRepository
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1769c210008cc07c311209d8ab7fd644efdf3cbc
         string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
 
         //Em ordem CRUD - Criar, Ler, Atualizar, Deletar
@@ -90,7 +93,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         {
                             // Declara a instrução a ser executada
                             string querySelectAll =
-                            "SELECT trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                            "SELECT inscri.DataInscricao,trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                             " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                             " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                             " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
@@ -125,6 +128,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                                         IdInscricao = Convert.ToInt32(rdr["IdInscricao"]),
                                         Localidade = rdr["Localidade"].ToString(),
                                         Salario = Convert.ToDecimal(rdr["Salario"]),
+                                        DataInscricao=Convert.ToDateTime(rdr["DataInscricao"]),
                                         RazaoSocial = rdr["RazaoSocial"].ToString(),
                                         NomeArea = rdr["NomeArea"].ToString(),
                                         TituloVaga=rdr["TituloVaga"].ToString(),

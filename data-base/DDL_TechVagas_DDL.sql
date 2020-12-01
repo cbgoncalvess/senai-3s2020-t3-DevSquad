@@ -1,10 +1,10 @@
 CREATE DATABASE Db_TechVagas;
 GO
 
+--DDL
 USE Db_TechVagas;
 GO
 
---DDL
 
 CREATE TABLE TipoUsuario (
 	IdTipoUsuario   INT PRIMARY KEY IDENTITY,
@@ -27,7 +27,7 @@ GO
 CREATE TABLE Curso (
 	IdCurso	  INT PRIMARY KEY IDENTITY,
 	NomeCurso VARCHAR (100) NOT NULL UNIQUE,
-	TipoCurso VARCHAR (20) NOT NULL,
+	TipoCurso VARCHAR (30) NOT NULL,
 	IdArea INT FOREIGN KEY REFERENCES Area(IdArea)NOT NULL
 );
 GO
@@ -40,7 +40,7 @@ GO
 
 CREATE TABLE Tecnologia (
 	IdTecnologia   INT PRIMARY KEY IDENTITY,
-	NomeTecnologia VARCHAR (35) UNIQUE NOT NULL
+	NomeTecnologia VARCHAR (40) UNIQUE NOT NULL
 );
 GO
 
@@ -56,7 +56,7 @@ GO
 
 CREATE TABLE Empresa (
 	IdEmpresa	   INT PRIMARY KEY IDENTITY,
-	NomeReponsavel VARCHAR (35) NOT NULL,
+	NomeReponsavel VARCHAR (65) NOT NULL,
 	CNPJ		   CHAR (14) NOT NULL UNIQUE,
 	EmailContato   VARCHAR (254) NOT NULL,
 	NomeFantasia   VARCHAR (50) NOT NULL UNIQUE,
@@ -69,7 +69,7 @@ CREATE TABLE Empresa (
 	Complemento	   VARCHAR (30) NOT NULL,
 	Localidade	   VARCHAR (30) NOT NULL,
 	UF			   VARCHAR (50) NOT NULL,
-	IdUsuario	   INT FOREIGN KEY REFERENCES Usuario (IdUsuario)not null unique
+	IdUsuario	   INT FOREIGN KEY REFERENCES Usuario (IdUsuario)NOT NULL UNIQUE
 );
 GO
 
@@ -88,12 +88,12 @@ GO
 
 CREATE TABLE Vaga (
 	IdVaga			   INT PRIMARY KEY IDENTITY,
-	TituloVaga         VARCHAR(40) NOT NULL,
-	DescricaoVaga	   VARCHAR (700) NOT NULL,
-	DescricaoEmpresa   VARCHAR (255) NOT NULL,
-	DescricaoBeneficio VARCHAR (255) NOT NULL,
-	DataPublicacao	   DATETIME NOT NULL,
-	DataExpiracao	   DATETIME NOT NULL,
+	TituloVaga         VARCHAR(50) NOT NULL,
+	DescricaoVaga	   VARCHAR (750) NOT NULL,
+	DescricaoEmpresa   VARCHAR (750) NOT NULL,
+	DescricaoBeneficio VARCHAR (750) NOT NULL,
+	DataPublicacao	   DATE NOT NULL,
+	DataExpiracao	   DATE NOT NULL,
 	Experiencia		   VARCHAR (50) NOT NULL,
 	TipoContrato	   VARCHAR (50) NOT NULL,
 	Salario			   DECIMAL NOT NULL,
@@ -133,5 +133,7 @@ CREATE TABLE VagaTecnologia (
 );
 GO
 
+
+--Execute estas duas linhas caso queira deletar o banco de dados
 USE MASTER
 DROP DATABASE Db_TechVagas

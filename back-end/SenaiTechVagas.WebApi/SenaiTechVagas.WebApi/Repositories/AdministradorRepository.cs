@@ -14,7 +14,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class AdministradorRepository : IAdministradorRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@123";
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarCurso(int id, Curso curso)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -52,7 +52,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool CadastrarEstagio(CadastrarEstagioViewModel estagio)
+        public string CadastrarEstagio(CadastrarEstagioViewModel estagio)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -60,7 +60,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     var Candidato = ctx.Candidato.FirstOrDefault(u=>u.IdUsuario==estagio.IdUsuario);
                     if (Candidato == null)
-                        return false;
+                        return "Candidato não encontardo";
+
+                    var resposta=VerificarSeExiste(Candidato.IdCandidato);
+                    if (resposta == true)
+                        return "Estágio ja cadastrado";
 
                     Estagio estage = new Estagio() {
                         IdCandidato = Candidato.IdCandidato,
@@ -70,11 +74,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     };
                     ctx.Add(estage);
                     ctx.SaveChanges();
-                    return true;
+                    return "Estágio casdastrado com sucesso";
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return "Erro no sistema";
                 }
             }
         }
@@ -89,15 +93,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (estagioBuscado == null)
                         return false;
 
-                    if (estagioAtualizado.IdEmpresa >= 1)
-                        estagioBuscado.IdEmpresa = estagioAtualizado.IdEmpresa;
-
-                    if (estagioAtualizado.PeriodoEstagio < 36)
-                        estagioBuscado.PeriodoEstagio = estagioAtualizado.PeriodoEstagio;
-
-                    if (estagioAtualizado.IdCandidato >= 1)
-                        estagioBuscado.IdCandidato = estagioAtualizado.IdCandidato;
-
+                    estagioBuscado.PeriodoEstagio = estagioAtualizado.PeriodoEstagio;
                     ctx.Update(estagioBuscado);
                     ctx.SaveChanges();
                     return true;
@@ -143,9 +139,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                    " SELECT Estagio.DataCadastro,Curso.NomeCurso,Estagio.IdEstagio,PeriodoEstagio,E.RazaoSocial,C.NomeCompleto,A.NomeArea,C.Telefone,U.Email FROM Estagio" +
                    " INNER JOIN Empresa E on E.IdEmpresa = Estagio.IdEmpresa" +
                    " INNER JOIN Candidato C on C.IdCandidato = Estagio.IdCandidato" +
-                   " INNER JOIN Area A on A.IdArea = C.IdArea" +
                    " INNER JOIN Usuario U on U.IdUsuario = C.IdUsuario" +
-                   " INNER JOIN Curso ON Curso.idCurso=C.idCurso";
+                   " INNER JOIN Curso ON Curso.idCurso=C.idCurso"+
+                   " INNER JOIN Area A ON A.IdArea=Curso.IdArea";
                     con.Open();
                     // Declara o SqlDataReader para receber os dados do banco de dados
                     SqlDataReader rdr;
@@ -199,16 +195,16 @@ namespace SenaiTechVagas.WebApi.Repositories
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
             double tempoEmDiasDouble = elapsedSpan.TotalDays;
             int tempoEmDiasInt = Convert.ToInt32(tempoEmDiasDouble);
-            return tempoEmDiasInt;
+            return tempoEmDiasInt / 30;
         }
 
-        public bool VerificarSeExiste(int id)
+        public bool VerificarSeExiste(int idCandidato)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == id);
+                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == idCandidato);
                     if (estagioBuscado != null)
                         return true;
 

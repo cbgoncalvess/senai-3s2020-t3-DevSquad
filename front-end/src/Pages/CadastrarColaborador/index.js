@@ -45,12 +45,10 @@ export default function CadastrarColaborador() {
                     authorization: 'Bearer ' + localStorage.getItem('token')
                 }
             })
-            .then(function (response){
-                if(response.status!==200){
-                    alert("Não foi possivel adicionar um novo colaborador")
-                }else{
-                    alert("Cadastro efetuado com sucesso")
-                }
+            .then(response => response.json())
+            .then(dados => {
+                alert(dados);
+                listarColaboradores();
             })
             .catch(function (error) {
                 console.log(error);
@@ -72,8 +70,8 @@ export default function CadastrarColaborador() {
             .catch(err => console.error(err));
     }
     
-    const DeletarAdm =()=>{
-            fetch('http://localhost:5000/api/Administrador/DeletarAdminstrador/'+idColaborador, {
+    const DeletarAdm =(idAdm)=>{
+            fetch('http://localhost:5000/api/Administrador/DeletarAdminstrador/'+idAdm, {
                 method: 'DELETE',
                 headers: {
                     authorization: 'Bearer ' + localStorage.getItem('token')
@@ -113,11 +111,7 @@ export default function CadastrarColaborador() {
                                         <div className="ban">
                                             <div className="banir">
                                                 <p>Deletar</p>
-                                                <img src={Delete} onClick={e=>{
-                                                    e.preventDefault();
-                                                    setColaborador(item.idUsuario);
-                                                    DeletarAdm();
-                                                }}/>
+                                                <img src={Delete} onClick={()=>DeletarAdm(item.idUsuario)}/>
                                             </div>
                                         </div>
                                         

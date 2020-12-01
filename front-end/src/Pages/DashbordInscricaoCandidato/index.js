@@ -22,7 +22,6 @@ import IconEmpresa from '../../assets/building.webp';
 
 export default function InscricaoDashboardCandidato() {
     const [vagas, setVagas] = useState([]);
-    let [idInscricao, setIdInscricao] = useState(0);
 
     useEffect(() => {
         listar();
@@ -37,11 +36,18 @@ export default function InscricaoDashboardCandidato() {
             }
         }).then(response => response.json())
             .then(dados => {
+                FormatarSalario(dados);
                 setVagas(dados)
             }).catch(erro => console.error(erro));
     }
 
-    const revogarInscricao = () => {
+    function FormatarSalario(list){
+        for(var i=0;i<list.length;i++){
+          list[i].salario = list[i].salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+        }
+        }
+
+    const revogarInscricao = (idInscricao) => {
 
         fetch('http://localhost:5000/api/Candidato/RevogarInscricao/' + idInscricao, {
 
@@ -63,7 +69,7 @@ export default function InscricaoDashboardCandidato() {
             <Header />
             <main className="">
                 <div className="bannerDashboardCandidato">
-                    <h2>Bem-vindo Candidato ;)!</h2>
+                    <h2>Bem-vindo, Candidato ;)!</h2>
                 </div>
 
                 <section className="sessaoVagaInscritas">
@@ -75,15 +81,13 @@ export default function InscricaoDashboardCandidato() {
                             vagas.map((item) => {
                                 return (
                                     <div className="vaga" key={item.idVaga}>
-
-
+                                <p>{"Voce se inscreveu em:"+item.dataInscricao}</p>
                                         <div className="VagaCompleta">
-
                                             <img src={imgEmpresa} className="ImagemEmpresa" ></img>
 
                                             <div className="MainVaga">
 
-                                                <h3>Titulo da vaga</h3>
+                                <h3>{item.tituloVaga}</h3>
 
                                                 <div className="InfoVagas">
                                                     <InfoVaga NomeProp={item.razaoSocial} source={IconEmpresa} />
@@ -104,11 +108,7 @@ export default function InscricaoDashboardCandidato() {
                                                 </div>
 
                                                 <div className="divisionBtnRevogar">
-                                                    <button className="btnRevogar" onClick={e => {
-                                                        e.preventDefault();
-                                                        idInscricao = item.idInscricao;
-                                                        revogarInscricao();
-                                                    }}>revogar inscrição</button>
+                                                    <button className="btnRevogar" onClick={()=>revogarInscricao(item.idInscricao)}>revogar inscrição</button>
                                                 </div>
 
                                             </div>
@@ -118,9 +118,7 @@ export default function InscricaoDashboardCandidato() {
                             })}
                     </div>
 
-
                 </section>
-
 
             </main>
             <Footer />

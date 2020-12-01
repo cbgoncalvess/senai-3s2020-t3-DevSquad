@@ -93,85 +93,177 @@
     border: none;
     vertical-align: middle;} 
 
+<<<<<<< HEAD
 .btnNew {
     border: none;
     background: none;}
+=======
+div.meioLogin > div > div > button {
+  display: none !important;
+}
+>>>>>>> 1769c210008cc07c311209d8ab7fd644efdf3cbc
 
 .link-cad-conta{color: #707070;font-size: 16px;}
 
 .btnLogar {
+<<<<<<< HEAD
     width: 104px;
     height: 38px;
     background: #005767;
     border-radius: 4px;
     color: #fff;}
+=======
+  padding: 12px 44px;
+  background: #005767;
+  border-radius: 4px;
+  color: #fff;
+  margin-left: 20px;
+}
+>>>>>>> 1769c210008cc07c311209d8ab7fd644efdf3cbc
 
 
 .Login > img{height: 100vh;}
 
-#peliculaRecuperarSenhaCandidato{
-    background-color: rgb(00, 00, 00,0.63);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    justify-content: center;
-    align-items: center;}
-
-#modalRecuperarSenhaCandidato{
-    width: 50%;
-    height: 40%;
-    overflow-y: auto;
-    background-color: white;
-    text-align: center;
-    border-radius: 5px;
-    padding: 20px;
-    position: fixed;
-    top: 25%;
-    left: 25%;}
-
-@media only screen and (min-width: 300px) {
-.principalLogin {padding: 100px 0em !important;}
-.divisionBtn { width: 264px !important; }
+#peliculaRecuperarSenhaCandidato {
+  background-color: rgb(00, 00, 00, 0.63);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  justify-content: center;
+  align-items: center;
 }
 
-@media only screen and (min-width: 776px) {
+#modalRecuperarSenhaCandidato {
+  width: 50%;
+  height: 40%;
+  overflow-y: auto;
+  background-color: white;
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px;
+  position: fixed;
+  top: 25%;
+  left: 25%;
+}
 
-} 
+.preto .sessaoLogar {
+  background: black !important;
+}
 
+/* acces menu */
 
-@media only screen and (max-width: 700px) {
+.preto .btnLogar {
+  color: yellow;
+}
 
-.imgBannerLogin {display: none;}
+.maior .btnLogar {
+  font-size: 20px;
+}
 
-.principalLogin {
-    padding: 72px 0em;
-    flex-direction: column;}
-    
-.divisionBtn {width: 243px;}
-.division-logar {width: 360px;}
-.form-logar {height: 23vh;}
+.maior .recuperarPassword {
+  font-size: 14px;
+}
 
-.divisionCampo {height: 9vh;}
-    }
-
-@media only screen and (max-width: 1292px) {
-
-.principalLogin {
-    padding: 0px 0em !important;
-    flex-direction: row;
+@media (max-width: 1116px) {
+  .sessaoLogar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     align-items: center;
     height: 787px;}
+=======
+    width: 100vw;
+    background-color: #f3f3f3;
+    height: 100vh;
+  }
+  .imagemDireito {
+    display: none;
+  }
 
-.divisionCampo {height: 10vh;}
+  @media only screen and (min-width: 300px) {
+    .principalLogin {
+      padding: 100px 0em !important;
+    }
+    .divisionBtn {
+      width: 264px !important;
+    }
+  }
+>>>>>>> 1769c210008cc07c311209d8ab7fd644efdf3cbc
 
-.imgBannerLogin {display: none;}
-.divisionBtn {width: 300px;}
-.divisionPassword {height: 11vh;}
-.form-logar {height: 25vh;}
-}
-@media only screen and (min-width: 1293px) {
-.principalLogin {padding: 0px 0em !important;}
-.divisionBtn{width: 300.8px !important;}
+  @media only screen and (min-width: 776px) {
+  }
+
+  @media only screen and (max-width: 700px) {
+    .imgBannerLogin {
+      display: none;
+    }
+
+    .principalLogin {
+      padding: 72px 0em;
+      flex-direction: column;
+    }
+
+    .divisionBtn {
+      width: 243px;
+    }
+    .division-logar {
+      width: 360px;
+    }
+    .form-logar {
+      height: 23vh;
+    }
+
+    .divisionCampo {
+      height: 9vh;
+    }
+  }
+
+  @media only screen and (max-width: 1292px) {
+    .principalLogin {
+      padding: 0px 0em !important;
+      flex-direction: row;
+      justify-content: center;
+      width: 100vw;
+      background-color: #f3f3f3;
+      height: 100vh;
+    }
+    .imagemDireito {
+      display: none;
+    }
+
+    .sessaoLogar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 787px;
+    }
+
+    .divisionCampo {
+      height: 10vh;
+    }
+
+    .imgBannerLogin {
+      display: none;
+    }
+    .divisionBtn {
+      width: 300px;
+    }
+    .divisionPassword {
+      height: 11vh;
+    }
+    .form-logar {
+      height: 25vh;
+    }
+  }
+  @media only screen and (min-width: 1293px) {
+    .principalLogin {
+      padding: 0px 0em !important;
+    }
+    .divisionBtn {
+      width: 300.8px !important;
+    }
+  }
 }

@@ -18,8 +18,6 @@ import imgTipoContrato from "../../assets/gears.webp";
 import imgFuncao from "../../assets/rocket-launch.webp";
 import IconEmpresa from "../../assets/building.webp";
 
-import banner from "../../assets/bannerBuscarVagas.webp";
-
 import "./style.css";
 
 export default function BuscarVaga() {
@@ -29,10 +27,13 @@ export default function BuscarVaga() {
   const [OpcaoFiltro, setOpcaoFiltro] = useState('');
   const [VagaTipoContrato, setVagaTipoContrato] = useState([]);
   const [VagaExperiencia, setVagaExperiencia] = useState([]);
+  const[VagaTecnologia,setVagaTecnologia]=useState([]);
+  const[Tecnologias,setTecnologias]=useState([]);
   
   useEffect(() => {
     listarVagas();
     View();
+    listarTecnologias();
   }, []);
 
   const FiltrarTipoContrato = (tipo) => {
@@ -43,6 +44,12 @@ export default function BuscarVaga() {
     }
   }
 
+function FormatarSalario(list){
+for(var i=0;i<list.length;i++){
+  list[i].salario = list[i].salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+}
+}
+
   const FiltrarExperiencia = (Experiencia) => {
     for (let i = 0; i < ListVagas.length; i++) {
       if (ListVagas[i].experiencia == Experiencia) {
@@ -50,6 +57,18 @@ export default function BuscarVaga() {
       }
     }
   }
+
+const FiltrarTecnologia=(tecnologia)=>{
+for(var i=0;i<ListVagas.length;i++){
+  let Tecnologias=ListVagas[i].tecnologias;
+  for(var o=0;o<Tecnologias.length;o++){
+        if(Tecnologias[o]==tecnologia){
+          VagaTecnologia.push(ListVagas[i]);
+          break;
+        }
+    }
+  }
+}
 
   function View() {
     if (OpcaoFiltro == '') {
@@ -241,10 +260,74 @@ export default function BuscarVaga() {
             })}
         </div>
       );
+    }else if(OpcaoFiltro.length>=1){
+      VagaTecnologia.splice(0, Number.MAX_VALUE);
+      FiltrarTecnologia(OpcaoFiltro);
+      return (
+        <div className="vagas">
+          {
+            VagaTecnologia.map((item) => {
+              return (
+                <div
+                  key={item.idVaga}
+                  className="vaga"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    idVaga = item.idVaga;
+                    BuscarVagaPeloId();
+                  }}
+                >
+                  <div className="VagaCompleta">
+                    <img
+                      src={imgEmpresa}
+                      className="ImagemEmpresa"
+                      alt="Imagem empresa"
+                    ></img>
+                    <div className="MainVaga">
+                      <h3>{item.tituloVaga}</h3>
+                      <div className="InfoVagas">
+                        <InfoVaga
+                          NomeProp={item.razaoSocial}
+                          source={IconEmpresa}
+                        />
+                        <InfoVaga
+                          NomeProp={item.localidade}
+                          source={imgLocalizacao}
+                        />
+                        <InfoVaga
+                          NomeProp={item.experiencia}
+                          source={imgFuncao}
+                        />
+                        <InfoVaga
+                          NomeProp={item.tipoContrato}
+                          source={imgTipoContrato}
+                        />
+                        <InfoVaga NomeProp={item.salario} source={imgSalario} />
+                        <InfoVaga
+                          NomeProp={item.nomeArea}
+                          source={imgDesenvolvimento}
+                        />
+                        <InfoVaga
+                          NomeProp={item.tipoPresenca}
+                          source={imgGlobal}
+                        />
+                      </div>
+                      <div className="TecnologiasVaga">
+                        {item.tecnologias.map((tec) => {
+                          return <Tag key={tec} NomeTag={tec}></Tag>;
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      );
     }
   }
 
-  function BuscarVagaPeloId(event) {
+  function BuscarVagaPeloId() {
     localStorage.setItem("idVagaSelecionada", idVaga);
     history.push("/VisualizarVagaCandidato");
   }
@@ -258,38 +341,64 @@ export default function BuscarVaga() {
     })
       .then((response) => response.json())
       .then((dados) => {
+        FormatarSalario(dados);
         SetListVagas(dados);
       })
       .catch((err) => console.error(err));
   };
 
+  const listarTecnologias = () => {
+    fetch("http://localhost:5000/api/Usuario/ListarTecnologia", {
+      method: "GET",
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((dados) => {
+        setTecnologias(dados);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
-    <body>
+    <div>
       <AccessBar />
       <Header />
       <AccessMenu />
-
-      <div className="content-searchJobs">
-        <div>
-          <Input
-            label="Busque sua vaga aqui"
-            type="text"
-            placeholder="Ex.: Desenvolvedor"
-          />
-          <button class="fa fa-search btn-search"></button>
-          <img
-            src={banner}
-            alt="Pessoa utilizando um computador, que está em cima de uma mesa"
-            className="imgBackground-searchJobs"
-          />
+      <div className="BarraPesquisa">
+        <h2>Busque sua vaga aqui</h2>
+        <br/>
+        <div className="PeliculaPesquisa">
+         <div className="InputPesquisa">
+         <select
+         className="InputPesquisa"
+              onChange={(e) => setOpcaoFiltro(e.target.value)}
+              value={OpcaoFiltro}
+            >
+              <option value="">
+                Selecione a tecnologia que esta buscando
+              </option>
+              {
+              Tecnologias.map((item) => {
+                return (
+                  <option key={item.idTecnologia} value={item.nomeTecnologia}>
+                    {item.nomeTecnologia}
+                  </option>
+                );
+              })}
+            </select>
+         </div>
+         <div><button id="BotaoPesquisa">Pesquisar</button></div>
         </div>
-
+      </div>
+      <div className="content-searchJobs">
         <div className="main-content-search-jobs">
           <div id="filter-searchJobs">
             <button className="btn-active" id="btn-all" onClick={e=>setOpcaoFiltro(e.target.value)} value=''>
               Todas as vagas
             </button>
-            <p><strong>Filtrar por tipo de contrato:</strong></p>
+            <p><strong>Filtrar por contrato:</strong></p>
             <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='CLT'>
               CLT
             </button>
@@ -316,6 +425,6 @@ export default function BuscarVaga() {
         </div>
       </div>
       <Footer />
-    </body>
+    </div>
   );
 }

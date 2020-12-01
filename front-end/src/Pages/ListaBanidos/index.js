@@ -7,7 +7,6 @@ import Header from '../../Components/Header';
 import './style.css';
 
 import User from '../../assets/images/user.webp';
-import Delete from '../../assets/images/cancel.webp';
 import Refresh from '../../assets/images/refresh.webp';
 import AccessMenu from '../../Components/AccessMenu';
 
@@ -19,24 +18,17 @@ export default function ListaBanidos() {
         listarBanidos();
     }, []);
 
-    const DesbanirUsuario = () => {
-        const form = {
-            idUsuario:idUsuario
-        };
-        fetch('http://localhost:5000/api/Administrador/Desbanir/'+idUsuario, {
+    const DesbanirUsuario = (idUsuario) => {
+        fetch('http://localhost:5000/api/Administrador/Desbanir/' + idUsuario, {
             method: 'PUT',
-            body: JSON.stringify(form),
             headers: {
                 'content-type': 'application/json',
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
-        }).then(function(respose){
-                if(respose.status!==200){
-                    alert("Não foi possivel desbanir este usuario");
-                }else{
-                    alert("O usuario ja pode voltar a interagir com a plataforma");
-                    listarBanidos();
-                }
+        }).then(response => response.json())
+            .then(dados => {
+                alert(dados);
+                listarBanidos();
             }).catch(err => console.error(err));
     }
 
@@ -72,33 +64,29 @@ export default function ListaBanidos() {
                     </select>
                 </div>
                 {
-                Banidos.map((item) => {
-                    return (
-                        <div key={item.idUsuario} className="banidoBox">
-                            <div className="colunaMobile">
-                                <div className="banido">
-                                    <img className="user" src={User} />
-                                    <p>{item.email}</p>
-                                    <h4>Marcelo Fontes</h4>
+                    Banidos.map((item) => {
+                        return (
+                            <div key={item.idUsuario} className="banidoBox">
+                                <div className="colunaMobile">
+                                    <div className="banido">
+                                        <img className="user" src={User} />
+                                        <p>{item.email}</p>
+                                        <h4>Marcelo Fontes</h4>
+                                    </div>
+                                    <div className="info">
+                                        <p>ID:{item.idUsuario}</p>
+                                        <p>E-mail: {item.email}</p>
+                                    </div>
                                 </div>
-                                <div className="info">
-                                    <p>ID:{item.idUsuario}</p>
-                                    <p>E-mail: {item.email}</p>
-                                </div>
-                            </div>
-                            <div className="data">
-                                <div className="desbanir">
-                                    <p>Desbanir</p>
-                                    <img src={Refresh} onClick={event => {
-                                        event.preventDefault();
-                                        setUsuario(item.idUsuario);
-                                        DesbanirUsuario();
-                                    }}/>
+                                <div className="data">
+                                    <div className="desbanir">
+                                        <p>Desbanir</p>
+                                        <img src={Refresh} onClick={() => DesbanirUsuario(item.idUsuario)} />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                })
+                        )
+                    })
                 }
             </div>
             <Footer />

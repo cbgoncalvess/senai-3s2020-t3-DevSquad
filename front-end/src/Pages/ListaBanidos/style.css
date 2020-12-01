@@ -87,6 +87,18 @@
     height: 1vw;
 }
 
+.preto body > div.marginBanidos > div > h5{
+    color: black !important;
+}
+
+.preto body > div.marginBanidos > div > h5{
+    color: white !important;
+}
+
+.preto .corpo{
+    background: black !important;
+}
+
 
 @media (max-width: 1100px) {
     .marginBanidos {

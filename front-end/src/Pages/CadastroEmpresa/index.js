@@ -286,15 +286,6 @@ export default function CadastroEmpresa() {
                 maxLength={50}
                 minLength={5}
               />
-{/* 
-              <Input
-                name="address2"
-                className="cadastre"
-                label="Complemento:"
-                maxLength={30}
-                type="text"
-                onChange={(e) => SetComplemento(e.target.value)}
-              /> */}
 
               <div className="Input">
                 <label>Complemento:</label>
@@ -386,9 +377,15 @@ export default function CadastroEmpresa() {
                   required
                 >
                   <option value="0">Selecione uma pergunta de segurança</option>
-                  <option value="Como se chama o seu cachorro">
-                    Como se chama o seu cachorro
-                  </option>
+                  <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
+                  <option value="Qual o seu sobrenome">Qual o seu sobrenome</option>
+                  <option value="Qual o nome da sua mãe/pai">Qual o nome da sua mãe/pai</option>
+                  <option value="Para qual país você gostaria de viajar">Para qual país você gostaria de viajar</option>
+                  <option value="Qual era sua matéria preferida na escola">Qual era sua matéria preferida na escola</option>
+                  <option value="De onde vem sua família">De onde vem sua família</option>
+                  <option value="Do que você mais gosta de fazer nas suas horas vagas">Do que você mais gosta de fazer nas suas horas vagas</option>
+                  <option value="Qual a palavra que te define como pessoa">Qual a palavra que te define como pessoa</option>
+                  <option value="Qual o ano mais importante da sua vida">Qual o ano mais importante da sua vida</option>
                 </select>
               </div>
 

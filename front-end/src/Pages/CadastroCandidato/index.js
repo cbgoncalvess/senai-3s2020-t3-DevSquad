@@ -8,6 +8,8 @@ import Input from "../../Components/Input";
 import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
 
+import { mascara } from '../../services/mask';
+
 import imagemCadastroCandidato from "../../assets/imgCadastroCandidato.webp";
 
 import "./style.css";
@@ -42,7 +44,6 @@ export default function CadastroEmpresa() {
   useEffect(() => {
     listarcurso();
   }, []);
-
   
   const escreverResultado = () => {
     if (Senha !== ConfirmarSenha) {
@@ -103,15 +104,11 @@ export default function CadastroEmpresa() {
           "content-type": "application/json",
         },
       })
-        .then((response) => {
-          if (response.status !== 200) {
-            console.log(response);
-            alert("Não foi possivel efetuar o cadastro");
-          } else {
-            alert("Cadastrado com sucesso");
-            history.push("/");
-          }
-        })
+      .then((response) => response.json())
+      .then((dados) => {
+        alert(dados);
+        history.push("/");
+      })
         .catch((err) => console.error(err));
     }
   }
@@ -166,6 +163,7 @@ export default function CadastroEmpresa() {
               />
 
               <Input
+                id="cpf"
                 name="cpf"
                 className="cadastre"
                 label="CPF:"
@@ -174,7 +172,11 @@ export default function CadastroEmpresa() {
                 required
                 maxLength={11}
                 minLength={11}
-                onChange={(e) => SetCPF(e.target.value)}
+                onChange={(e) => {
+                    SetCPF(e.target.value);
+                    mascara(e.target.value);
+                  }
+                }
               />
 
               <Input
@@ -271,13 +273,19 @@ export default function CadastroEmpresa() {
                 <select
                   className="select-cadastroCandidato"
                   onChange={(e) => SetPergunta(e.target.value)}
-                  value={""}
+                  value={PerguntaSeguranca}
                   required
                 >
                   <option value="0">Selecione sua pergunta de segurança</option>
-                  <option value="Como se chama o seu cachorro">
-                    Como se chama o seu cachorro
-                  </option>
+                  <option value="Como se chama o seu cachorro"> Como se chama o seu cachorro</option>
+                  <option value="Qual o seu sobrenome">Qual o seu sobrenome</option>
+                  <option value="Qual o nome da sua mãe/pai">Qual o nome da sua mãe/pai</option>
+                  <option value="Para qual país você gostaria de viajar">Para qual país você gostaria de viajar</option>
+                  <option value="Qual era sua matéria preferida na escola">Qual era sua matéria preferida na escola</option>
+                  <option value="De onde vem sua família">De onde vem sua família</option>
+                  <option value="Do que você mais gosta de fazer nas suas horas vagas">Do que você mais gosta de fazer nas suas horas vagas</option>
+                  <option value="Qual a palavra que te define como pessoa">Qual a palavra que te define como pessoa</option>
+                  <option value="Qual o ano mais importante da sua vida">Qual o ano mais importante da sua vida</option>
                 </select>
               </div>
 

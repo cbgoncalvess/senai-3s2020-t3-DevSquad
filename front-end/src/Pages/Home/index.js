@@ -18,7 +18,7 @@ import "./style.css";
 
 export default function Home() {
   return (
-    <body>
+    <div>
       <AccessBar />
       <Header />
       <AccessMenu />
@@ -69,26 +69,23 @@ export default function Home() {
           <div className="ColumnImages">
             <Svg />
             <h2>Profissionalismo</h2>
-            <p class="textBox">
-              Um dos principais pilares da nossa aplicação para demonstrar nosso
-              compromisso com o aluno, e com a empresa.
-            </p>
+            <p>Um dos principais pilares da nossa</p>
+            <p>aplicação para demosntrar nosso</p>
+            <p>compromisso o aluno e a empresa</p>
           </div>
           <div className="ColumnImages">
             <Confidence />
             <h2>Confiança</h2>
-            <p class="textBox">
-              Taxa de empregabilidade supera 80% entre profissionais que
-              concluíram cursos em áreas de tecnologia da informação.
-            </p>
+            <p>Taxa de empregabilidade supera 80% entre</p>
+            <p>profissionais que concluíram cursos em </p>
+            <p>áreas de tecnologia da informaçãos</p>
           </div>
           <div className="ColumnImages">
             <Surprise />
             <h2>Surpresa</h2>
-            <p class="textBox">
-              Quando você menos espera: VOCÊ FOI ACEITO! A plataforma faz com
-              que você trabalhe seus potenciais
-            </p>
+            <p>Quando você menos espera...</p>
+            <p>VOCÊ FOI ACEITO! A plataforma faz com </p>
+            <p>que você tratalhe seus potenciais</p>
           </div>
         </div>
         <div className="QuadroDeVagas">
@@ -200,7 +197,9 @@ export default function Home() {
             <br />
             <div className="btnTeste">
               <a href="/TesteDePersonalidade">
-                <button className="bt">Fazer o teste</button>
+                <button className="bt">
+                  <h4>FAZER O TESTE</h4>
+                </button>
               </a>
             </div>
             <br />
@@ -214,15 +213,15 @@ export default function Home() {
           <div className="BoxDepoimentos">
             <div className="BoxTexto">
               <div className="Depo">
-                <p>“Fui aluno do SENAI Informática em </p>
+                <p>“Fui aluno do SENAI Informática de </p>
                 <p>1999, mas ainda tenho ótimas </p>
                 <p>memórias da época de estudei lá. </p>
-                <p>Hoje, sou CEO da Itaú, e </p>
+                <p>Hoje sou CEO da Itaú Personalitte e </p>
                 <p>tudo graças ao maravilhoso curso </p>
-                <p>técnico de desenvolvimento de </p>
+                <p>técnico de desenvolviment de </p>
                 <p>sistemas. Só tenho a agradecer essa</p>
-                <p>maravilhosa instituição, que me deu</p>
-                <p>essa oportunidade de crescer </p>
+                <p>maravilhoso instituição que pôde me</p>
+                <p>dar essa oportunidade de crescer </p>
                 <p>como profissional e como ser </p>
                 <p>humano.</p>
                 <p>Muito sucesso para a equipe SENAI!”</p>
@@ -234,9 +233,9 @@ export default function Home() {
               <div className="Depo">
                 <p>“SENAI foi muito importante para a </p>
                 <p>minha formação. Comecei fazendo </p>
-                <p>cursos de redes e, hoje, trabalho</p>
+                <p>cursos de redes e hoje trabalho</p>
                 <p>instalando roteadores de fibra ótica</p>
-                <p>da Vivo.</p>
+                <p>da vivo.</p>
                 <p>Muito obrigado SENAI por fazer isso</p>
                 <p>ser possível! :)”</p>
               </div>
@@ -248,18 +247,18 @@ export default function Home() {
             <div className="BoxTexto">
               <div className="Depo">
                 <p>“Depois de algumas delisusões da</p>
-                <p>área da docência, decidi fazer o curso</p>
+                <p>área da docencia decidi fazer o curso</p>
                 <p>de desenvolvimento de sistemas. </p>
                 <p>Nunca achei que poderia me</p>
                 <p>encontrar numa área que parecia ser</p>
                 <p>impossível para mim. Agradeço ao </p>
-                <p>SENAI, e seu corpo docente, que </p>
+                <p>SENAI e seu corpo docente que </p>
                 <p>estão tornando a minha formação </p>
-                <p>cada vez mais concreta. Hoje, posso</p>
-                <p>ainda ser um estudante, mas tenho</p>
+                <p>cada vez mais concreta. Hoje posso</p>
+                <p>ainda ser u estudante, mas tenho</p>
                 <p>certeza que terei todas a chances </p>
-                <p>que preciasar. Obrigado SENAI!”</p>
-                <br />
+                <p>que precias.</p>
+                <p>Obrigado SENAI.”</p>
               </div>
               <h5 className="NomeDepo">Oswaldo Blablabla - Estudante</h5>
             </div>
@@ -267,6 +266,6 @@ export default function Home() {
         </div>
       </div>
       <Footer />
-    </body>
+    </div>
   );
 }

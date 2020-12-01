@@ -89,6 +89,38 @@
     margin-top: 5vh;
 }
 
+.botaoCadastrar{
+    text-align: end;
+}
+
+.black-button{
+    background: red !important;
+    padding: 12px 44px;
+    cursor: pointer;
+}
+/* 
+.preto div.margin > div.perfis,
+.preto .cadastrarBox,
+.preto .botaoCadastrar,
+.preto .camposCadastro,
+.preto div.cadastrarBox > div.tituloCadastro > p,
+.preto .Input{
+    background: black !important;
+} */
+
+.preto .black-button{
+    color: yellow !important;
+    text-decoration: underline;
+}
+
+.maior .black-button{
+    font-size: 16px;
+}
+
+.maior .colaboradores{
+    font-size: 35px;
+}
+
 @media (max-width: 1100px) {
     .colaboradores {
         text-align: center;

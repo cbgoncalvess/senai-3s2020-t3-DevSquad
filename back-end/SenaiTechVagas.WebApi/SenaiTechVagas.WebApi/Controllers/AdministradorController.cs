@@ -29,7 +29,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /*----------------------------------------GET START-----------------------------*/
         /// <summary>
         /// Método que lista as empresas cadastradas com suas informações.
-        /// </summary>
+        /// </summary>       
         /// <returns>Retorna um HTTP Code (201) e a mensagem "true", caso contrário,
         /// retorna um HTTP Code (400)e a mensagem "Uma exceção ocorreu. Tente novamente."
         /// </returns>
@@ -47,11 +47,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        /// <summary>
-        /// Método que busca vaga pelo seu identificador e mostra lista de candidatos inscritos.
-        /// </summary>
-        /// <param name="idVaga">Identificador da vaga</param>
-        /// <returns>Retorna uma vaga com lista de candidatos inscritos</returns>
         [Authorize(Roles = "1")]
         [HttpGet("listaEmpresaRazaoSocial")]
         public IActionResult ListaEmpresasRazaoSocial()
@@ -116,7 +111,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todos os candidatos cadastrados.
         /// </summary>
         /// <returns>Retorna todos candidatos cadastrados.</returns>
-        [Authorize(Roles = "1")]
+        
         [HttpGet("ListarCandidatos")]
         public IActionResult ListarCandidatos()
         {
@@ -462,14 +457,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (estagioNovo.PeriodoEstagio > 36)
-                    return BadRequest("O periodo nao pode ser maior que 36 meses");
-
-                if (_Admin.CadastrarEstagio(estagioNovo))
-                    return StatusCode(201);
-
+                string resposta=_Admin.CadastrarEstagio(estagioNovo);
+                if (resposta == "Estágio casdastrado com sucesso")
+                    return Ok(resposta);
                 else
-                    return BadRequest("Não foi possivel cadastrar o estagio");
+                    return BadRequest(resposta);           
             }
             catch (Exception)
             {
@@ -640,13 +632,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (_Admin.VerificarSeExiste(estagio.IdCandidato))
-                    return BadRequest("Estagio ja existe");
-
                 if (_Admin.AtualizarEstagio(idEstagio, estagio))
                     return Ok("Estagio atualizado");
                 else
-                    return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes sao validas");
+                    return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes são validas");
             }
             catch (Exception)
             {

@@ -115,14 +115,12 @@ export default function CadastrarVaga() {
                 if (respose.status !== 200) {
                     alert("Não foi possivel cadastrar a vaga");
                 } else {
-                    //alert("Vaga cadastrada com sucesso");
-                    //history.push('/VagasPublicadas');
+                    alert("Vaga cadastrada com sucesso");
+                    history.push('/VagasPublicadas');
                 }
             }).catch(err => console.log(err))
         }
     }
-
-
     return (
         <body>
             <AccessBar />
@@ -154,9 +152,9 @@ export default function CadastrarVaga() {
                                     required
                                 />
 
-                                <div className="select">
+                                <div className="select-final">
                                     <label>Área</label>
-                                    <select className="div-select" onChange={e => SetArea(e.target.value)} value={Area} required>
+                                    <select onChange={e => SetArea(e.target.value)} value={Area} required>
                                         <option value="0">Selecione uma área de atuação</option>
                                         {
                                             ListAreas.map((item) => {
@@ -166,9 +164,9 @@ export default function CadastrarVaga() {
                                     </select>
                                 </div>
 
-                                <div className="select">
-                                    <label>Tipo de presença</label>
-                                    <select className="div-select" onChange={e => setIdTipoPresenca(e.target.value)} value={IdTipoPresenca} required>
+                                <div className="select-final">
+                                    <label >Tipo de presença</label>
+                                    <select  onChange={e => setIdTipoPresenca(e.target.value)} value={IdTipoPresenca} required>
                                         <option value="0">Selecione um tipo de presenca</option>
                                         {
                                             ListTipoPresencas.map((item) => {
@@ -178,18 +176,18 @@ export default function CadastrarVaga() {
                                     </select>
                                 </div>
 
-                                <div className="select">
+                                <div className="select-final">
                                     <label>Experiência</label>
-                                    <select className="div-select" onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
+                                    <select onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
                                         <option value="0">Selecione um nivel de experiencia</option>
                                         <option value="Pleno">Pleno</option>
                                         <option value="Sênior">Sênior</option>
                                         <option value="Júnior">Júnior</option>
                                     </select>
                                 </div>
-                                <div className="select">
+                                <div className="select-final">
                                     <label>Tipo de contrato</label>
-                                    <select className="div-select" onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato} required>
+                                    <select onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato} required>
                                         <option value="0">Selecione um tipo de contrato</option>
                                         <option value="CLT">CLT</option>
                                         <option value="PJ">PJ</option>
@@ -288,7 +286,7 @@ export default function CadastrarVaga() {
                                 </div>
                                 <br />
                                 <div className="btVagaDiv">
-                                    <button className="btVaga" onClick={salvar}><h3>Cadastrar</h3></button>
+                                    <button className="btVaga" onClick={salvar}>Cadastrar</button>
                                 </div>
                             </form>
                         </div>

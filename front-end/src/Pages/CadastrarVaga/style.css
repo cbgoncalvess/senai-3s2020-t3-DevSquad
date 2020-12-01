@@ -24,6 +24,28 @@
     background-color: #E5E5E5;
 }
 
+.select-final{
+    display: flex;
+    padding: 12px;
+    border: none;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.select-final>label{
+text-align: start;
+margin-bottom: 18px;
+}
+
+.select-final>Select{
+    height: 36px;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    background-color: #E0E0E0;
+}
+
 
 .ModalCadastro{
     background-color: white;
@@ -61,13 +83,12 @@ body > div > div > div.Esquerdo > div > form{
 }
 
 .btVaga{
-    width: 130px;
-    height: 40px;
     background-color: #FF000F;
     border: none;
     color: white;
     border-radius: 4px;
     justify-content: center;
+    padding: 12px 44px;
 }
 
 .btVagaDiv{
@@ -75,6 +96,7 @@ body > div > div > div.Esquerdo > div > form{
     justify-content: center;
     align-items: center;
 }
+
 
 @media(max-width:780px){
     .Direito{
@@ -85,10 +107,23 @@ body > div > div > div.Esquerdo > div > form{
     .Esquerdo{
         width: 100%;
     }
+
+    body > div.bodyPartCadastrarVaga > div > div.Esquerdo > div > h2{
+        text-align: center;
+    }
 }
 
 /* ADAPTANDO MENU DE ACESSIBILIDADE */
 
 .preto .Esquerdo{
     background: black !important;
+}
+
+.preto .btVaga{
+    color: yellow !important;
+    text-decoration: underline;
+}
+
+.maior .btVaga{
+    font-size: 16px;
 }

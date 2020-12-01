@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.vaga>p{
+  text-align: end;
+}
+
 .bannerDashboardCandidato > h2 {
   color: #ffffff;
   font-size: 40px;

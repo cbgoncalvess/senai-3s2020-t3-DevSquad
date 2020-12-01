@@ -74,6 +74,12 @@ export default function VagasPublicadas() {
       .catch((err) => console.error(err));
   };
 
+  function FormatarSalario(list){
+    for(var i=0;i<list.length;i++){
+      list[i].salario = list[i].salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+    }
+    }
+
   const DadosDaVaga = () => {
     fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + idVaga, {
       method: "GET",
@@ -158,6 +164,7 @@ export default function VagasPublicadas() {
     })
       .then((response) => response.json())
       .then((dados) => {
+        alert(dados);
         listarVagas();
       })
       .catch((err) => console.error(err));
@@ -192,6 +199,7 @@ export default function VagasPublicadas() {
     })
       .then((response) => response.json())
       .then((dados) => {
+        FormatarSalario(dados);
         SetListVagas(dados);
       })
       .catch((err) => console.error(err));
@@ -264,20 +272,17 @@ export default function VagasPublicadas() {
     }
   }
 
-  const DeletarVaga = () => {
-    fetch("http://localhost:5000/api/Empresa/DeletarVagaEmpresa/" + idVaga, {
+  const DeletarVaga = (id) => {
+    fetch("http://localhost:5000/api/Empresa/DeletarVagaEmpresa/" + id, {
       method: "DELETE",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
-      .then(function (respose) {
-        if (respose.status !== 200) {
-          alert("Não foi possivel deletar esta vaga");
-        } else {
-          alert("Vaga deletada com sucesso com sucesso");
-          listarVagas();
-        }
+      .then(response => response.json())
+      .then(dados => {
+       alert(dados);
+       listarVagas()
       })
       .catch((err) => console.error(err));
   };
@@ -298,7 +303,7 @@ export default function VagasPublicadas() {
           return (
             <div key={item.idVaga} className="vaga">
               <div className="Edit-Delete">
-                <a>Publicou a vaga em 10/02/2020</a>
+                <p>{"Sua vaga expira em:"+item.dataExpiracao}</p>
                 <img
                   className="Edit"
                   src={imgEdit}
@@ -314,12 +319,7 @@ export default function VagasPublicadas() {
                 <img
                   className="Delete"
                   src={imgDelete}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    SetIdVaga(item.idVaga);
-                    DeletarVaga();
-                  }}
-                />
+                  onClick={()=>DeletarVaga(item.idVaga)}/>
               </div>
               <div className="VagaCompleta">
                 <img src={imgEmpresa} className="ImagemEmpresa"></img>
@@ -398,10 +398,9 @@ export default function VagasPublicadas() {
       <div id="ModalRemoverTecnologia" className="ModalRemoverTecnologia none">
         <h2>Remover tecnologia Vaga</h2>
         <form>
-          <div className="select">
+          <div className="select-final">
             <label>Tecnologias</label>
             <select
-              className="div-select"
               onChange={(e) => SetNomeTecnologia(e.target.value)}
               value={NomeTecnologia}
             >
@@ -418,7 +417,7 @@ export default function VagasPublicadas() {
             </select>
           </div>
           <button onClick={DeletarTecnologia} className="btVaga">
-            Adicionar
+            Remover
           </button>
         </form>
       </div>
@@ -434,10 +433,9 @@ export default function VagasPublicadas() {
       >
         <h2>Adicionar uma tecnologia na Vaga</h2>
         <form>
-          <div className="select">
+          <div className="select-final">
             <label>Tecnologias</label>
             <select
-              className="div-select"
               onChange={(e) => SetIdTecnologia(e.target.value)}
               value={idTecnologia}
             >
@@ -479,10 +477,9 @@ export default function VagasPublicadas() {
             label="Salario"
             onChange={(e) => setSalario(e.target.value)}
           />
-          <div className="select">
+          <div className="select-final">
             <label>Área</label>
             <select
-              className="div-select"
               onChange={(e) => setArea(e.target.value)}
               value={Area}
             >
@@ -497,10 +494,9 @@ export default function VagasPublicadas() {
             </select>
           </div>
 
-          <div className="select">
+          <div className="select-final">
             <label>Experiência</label>
             <select
-              className="div-select"
               onChange={(e) => setExperiencia(e.target.value)}
               value={Experiencia}
             >
@@ -511,10 +507,9 @@ export default function VagasPublicadas() {
             </select>
           </div>
 
-          <div className="select">
+          <div className="select-final">
             <label>Tipo de contrato</label>
             <select
-              className="div-select"
               onChange={(e) => setTipoContrato(e.target.value)}
               value={TipoContrato}
             >

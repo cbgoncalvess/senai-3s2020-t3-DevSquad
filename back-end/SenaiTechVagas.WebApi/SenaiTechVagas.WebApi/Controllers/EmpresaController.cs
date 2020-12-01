@@ -115,7 +115,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="vagaTecnologia"></param>
         /// <returns></returns>
-        //[Authorize(Roles = "3")]
+        [Authorize(Roles = "3")]
         [HttpPost("AdicionarTecnologiaNaVaga")]
         public IActionResult AdicionarTecnologia(VagaTecnologia vagaTecnologia)
         {
@@ -226,6 +226,8 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+               
+
                 Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
@@ -257,14 +259,15 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="idVaga"></param>
         /// <returns></returns>
-        //[Authorize(Roles ="3")]
+        [Authorize(Roles ="3")]
         [HttpGet("ListarCandidatosInscritos/{idVaga}")]
         public IActionResult ListarCandidatosInscritos(int idVaga)
         {
             try
             {
-                //var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(2);
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+ 
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 
@@ -320,6 +323,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+               
                 Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();

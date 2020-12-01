@@ -174,5 +174,79 @@ export default function Login() {
             </div>
             <Footer />
         </div>
+<<<<<<< HEAD
     );
 }
+=======
+        <img src={imglogin} className="imagemDireito" />
+      </div>
+
+      <div
+        id="peliculaRecuperarSenhaCandidato"
+        className="peliculaRecuperarSenhaCandidato none"
+        onClick={btn_fecharRecuperarSenhaCandidato}
+      ></div>
+      <div
+        id="modalRecuperarSenhaCandidato"
+        className="modalRecuperarSenhaCandidato none"
+      >
+        <h2>Alterar senha</h2>
+        <form>
+          <div className="select-final">
+            <label>Resposta de segurança</label>
+            <select
+              onChange={(e) => SetPerguntaSeguranca(e.target.value)}
+              value={PerguntaSeguranca}
+              required
+            >
+              <option value="0">Selecione sua pergunta de segurança</option>
+              <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
+              <option value="Qual o seu sobrenome">Qual o seu sobrenome</option>
+              <option value="Qual o nome da sua mãe/pai">Qual o nome da sua mãe/pai</option>
+              <option value="Para qual país você gostaria de viajar">Para qual país você gostaria de viajar</option>
+              <option value="Qual era sua matéria preferida na escola">Qual era sua matéria preferida na escola</option>
+              <option value="De onde vem sua família">De onde vem sua família</option>
+              <option value="Do que você mais gosta de fazer nas suas horas vagas">Do que você mais gosta de fazer nas suas horas vagas</option>
+              <option value="Qual a palavra que te define como pessoa">Qual a palavra que te define como pessoa</option>
+              <option value="Qual o ano mais importante da sua vida">Qual o ano mais importante da sua vida</option>
+            </select>
+          </div>
+          <Input
+            className="InputCadastro"
+            name="RespostaSeguranca"
+            label="Resposta de seguranca"
+            onChange={(e) => SetRespostaSeguranca(e.target.value)}
+            maxLength={20}
+            minLength={5}
+            required
+          />
+
+          <Input
+            className="InputCadastro"
+            name="emailRecuperacao"
+            label="Seu email"
+            onChange={(e) => setEmail(e.target.value)}
+            maxLength={154}
+            minLength={5}
+            required
+          />
+
+          <Input
+            className="InputCadastro"
+            name="NovaSenha"
+            label="Nova senha"
+            onChange={(e) => SetNovaSenha(e.target.value)}
+            maxLength={15}
+            minLength={9}
+            required
+          />
+        </form>
+        <button className="btVaga" onClick={RecuperarSenha}>
+          Alterar senha
+        </button>
+      </div>
+      <Footer />
+    </div>
+  );
+}
+>>>>>>> 1769c210008cc07c311209d8ab7fd644efdf3cbc
