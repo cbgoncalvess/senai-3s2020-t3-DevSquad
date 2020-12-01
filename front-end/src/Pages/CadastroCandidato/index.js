@@ -32,7 +32,7 @@ export default function CadastroEmpresa() {
   const history = useHistory();
 
   const emailRegex = /^\S+@\S+\.\S+$/g;
-  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/g;
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{8,})/g;
 
   let result = document.querySelector(".password-matching-text");
   let redBox = document.querySelector("#confirmarSenha-cadastroCandidato");
@@ -104,33 +104,35 @@ export default function CadastroEmpresa() {
       alert("As senhas não estão parecidas");
     } else if (verificacaoEmail !== true) {
       alert("O e-mail deve ser válido");
-    } else {
-      const data = {
-        nomeCompleto: NomeCompleto,
-        rg: Rg,
-        cpf: CPF,
-        telefone: Telefone,
-        linkLinkedinCandidato: Linkedin,
-        idCurso: Curso,
-        email: Email,
-        senha: Senha,
-        respostaSeguranca: RespostaSeguranca,
-        perguntaSeguranca: PerguntaSeguranca,
-        CaminhoImagem:CaminhoImagem
-      };
-      fetch("http://localhost:5000/api/Usuario/Candidato", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "content-type": "application/json",
-        },
+    } else if(verificacaoSenha || verificacaoConfirmarSenha){
+      alert('A senha não confere com o padrão solicitado');
+    }else {
+    const data = {
+      nomeCompleto: NomeCompleto,
+      rg: Rg,
+      cpf: CPF,
+      telefone: Telefone,
+      linkLinkedinCandidato: Linkedin,
+      idCurso: Curso,
+      email: Email,
+      senha: Senha,
+      respostaSeguranca: RespostaSeguranca,
+      perguntaSeguranca: PerguntaSeguranca,
+      CaminhoImagem:CaminhoImagem
+    };
+    fetch("http://localhost:5000/api/Usuario/Candidato", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+    .then((response) => response.json())
+    .then((dados) => {
+      console.log(dados);
+      history.push("/");
       })
-      .then((response) => response.json())
-      .then((dados) => {
-        console.log(dados);
-        history.push("/");
-      })
-        .catch((err) => console.error(err));
+      .catch((err) => console.error(err));
     }
   }
 

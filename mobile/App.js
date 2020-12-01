@@ -19,7 +19,7 @@ export default function App() {
           name="CandidatosAprovados"
           component={VizualizarCandidatosAprovados}
         />
-        <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
