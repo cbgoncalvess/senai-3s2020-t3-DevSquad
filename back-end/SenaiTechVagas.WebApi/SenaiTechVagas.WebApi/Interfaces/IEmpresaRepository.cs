@@ -23,7 +23,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<ListarVagasViewModel> ListarVagasDaEmpresa(int idEmpresa);
         List<ListarInscricoesViewModel> ListarCandidatosInscritos(int idVaga);
         List<ListarInscricoesViewModel> ListarCandidatosAprovados(int idVaga);
-        Empresa BuscarEmpresaPorIdUsuario(int idUsuario);
+        EmpresaCompletaViewModel BuscarEmpresaPorIdUsuario(int idUsuario);
         List<Candidato> ListarCandidatosEstagiandoNaEmpresa(int idEmpresa);
         List<TipoRegimePresencial> ListarTipoPresenca();
         /*------------VERIFICAÇÕES INICIO-------------*/

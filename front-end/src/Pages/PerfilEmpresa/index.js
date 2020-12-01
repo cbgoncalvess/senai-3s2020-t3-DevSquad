@@ -27,6 +27,7 @@ export default function PerfilEmpresa() {
   const [NovaSenha, SetNovaSenha] = useState("");
   const [SenhaAtual, setSenha] = useState("");
   const [Candidatos, SetCandidato] = useState([]);
+  const[CaminhoImagem,setCaminho]=useState('');
 
   useEffect(() => {
     listarCandidatos();
@@ -111,6 +112,7 @@ export default function PerfilEmpresa() {
         SetEmailContato(dados.emailContato);
         SetEstado(dados.uf);
         SetCidade(dados.localidade);
+        setCaminho(dados.caminhoImagem);
       })
       .catch((err) => console.error(err));
   };
@@ -199,7 +201,7 @@ export default function PerfilEmpresa() {
       <div className="meioPerfil">
         <div className="EsquerdoPerfil">
           <div className="imgPefilTexto">
-            <img className="imgperfil" src={imgPadrao} alt="perfil" />
+            <img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" />
             <h3>{RazaoSocial}</h3>
             <p>Empresa</p>
           </div>

@@ -42,6 +42,7 @@ export default function VisualizarVaga() {
   const [tipoPresenca, setTipoPresenca] = useState("");
   const [Logradouro, setLogradouro] = useState("");
   const [Complemento, setComplemento] = useState("");
+  const[CaminhoImagem,setCaminho]=useState("");
 
   useEffect(() => {
     idVaga = localStorage.getItem("idVagaSelecionada");
@@ -93,6 +94,7 @@ export default function VisualizarVaga() {
         setDescricaoBeneficio(dados.descricaoBeneficio);
         setDescricaoEmpresa(dados.descricaoEmpresa);
         setDescricaoVaga(dados.descricaoVaga);
+        setCaminho(dados.caminhoImagem);
       })
       .catch((err) => console.error(err));
   };
@@ -117,7 +119,7 @@ export default function VisualizarVaga() {
 
         <section className="infoVagaVisualizar">
           <div className="icard-division">
-            <img src={imgteste} alt="Logo da empresa" />
+            <img src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="Logo da empresa" />
 
             <div className="divisionTagsVagas">
               <div className="card-vaga-info">

@@ -48,8 +48,8 @@ namespace SenaiTechVagas.WebApi.Controllers
                     Telefone = NovoCandidato.Telefone,
                     LinkLinkedinCandidato= NovoCandidato.LinkLinkedinCandidato
                 };
-                if (NovoCandidato.CaminhoImagem == null)
-                    NovoCandidato.CaminhoImagem = "Teste.webp";
+                if (NovoCandidato.CaminhoImagem == null|| NovoCandidato.CaminhoImagem.Length<=2)
+                    NovoCandidato.CaminhoImagem = "user.png";
 
                 var Response = usuarioRepository.VerificarSeCredencialJaFoiCadastrada(vm);
                 if (Response == null)
@@ -79,6 +79,8 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
+                if (empresa.CaminhoImagem == null || empresa.CaminhoImagem.Length <= 2)
+                    empresa.CaminhoImagem = "Teste.webp";
                 VerificacaoViewModel vm = new VerificacaoViewModel()
                 {
                     Email = empresa.Email,

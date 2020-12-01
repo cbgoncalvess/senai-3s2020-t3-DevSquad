@@ -83,7 +83,7 @@ export default function InscricaoDashboardCandidato() {
                                     <div className="vaga" key={item.idVaga}>
                                 <p>{"Voce se inscreveu em:"+item.dataInscricao}</p>
                                         <div className="VagaCompleta">
-                                            <img src={imgEmpresa} className="ImagemEmpresa" ></img>
+                                            <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} className="ImagemEmpresa" ></img>
 
                                             <div className="MainVaga">
 
