@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {ImageBackground,StyleSheet,Text,View,TouchableOpacity,Image} from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function VizualizarVagaEmpresa({navigation}) {
-
+export default function VizualizarVagaEmpresa({ navigation }) {
   const [Inscricoes, setInscricoes] = useState([]);
   const [Experiencia, setExperiencia] = useState("");
   const [TipoContrato, setTipoContrato] = useState("");
@@ -22,131 +28,180 @@ export default function VizualizarVagaEmpresa({navigation}) {
     listarCandidatos();
   }, []);
 
-const listarCandidatos = async () => {
-  fetch("http://localhost:5000/api/Empresa/ListarCandidatosInscritos/" + await AsyncStorage.getItem("VagaSelecionada"), {
-    method: "GET"
-  })
-    .then((response) => response.json())
-    .then((dados) => {
-      setInscricoes(dados);
-    })
-    .catch((err) => console.error(err));
-};
-
-const BuscarPorId = async () => {
-  fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + await AsyncStorage.getItem("VagaSelecionada"), {
-    method: "GET"
-  })
-    .then((response) => response.json())
-    .then((dados) => {
-      setTituloVaga(dados.tituloVaga);
-      setTipoContrato(dados.tipoContrato);
-      setSalario(dados.salario);
-      setTecnologias(dados.tecnologias);
-      setCidade(dados.localidade);
-      setExperiencia(dados.experiencia);
-      setNomeArea(dados.nomeArea);
-      setTipoPresenca(dados.tipoPresenca);
-      setRazaoSocial(dados.razaoSocial);
-      console.log(RazaoSocial)
-    })
-    .catch((err) => console.error(err));
-};
-
-const Aprovar = (id) => {
-  fetch("http://localhost:5000/api/Empresa/Aprovar/" + id, {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-      authorization: "Bearer " + localStorage.getItem("token"),
-    },
-  })
-    .then(function (respose) {
-      if (respose.status !== 200) {
-        alert("Não foi possivel aprovar este candidato");
+  const listarCandidatos = async () => {
+    fetch(
+      "http://localhost:5000/api/Empresa/ListarCandidatosInscritos/" +
+        (await AsyncStorage.getItem("VagaSelecionada")),
+      {
+        method: "GET",
       }
-      listarCandidatos();
-    })
-    .catch((err) => console.error(err));
-};
+    )
+      .then((response) => response.json())
+      .then((dados) => {
+        setInscricoes(dados);
+      })
+      .catch((err) => console.error(err));
+  };
 
-const Reprovar = (id) => {
-  fetch("http://localhost:5000/api/Empresa/Reprovar/" + id, {
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-      authorization: "Bearer " + localStorage.getItem("token"),
-    },
-  })
-    .then(function (respose) {
-      if (respose.status !== 200) {
-        alert("Não foi possivel Reprovar este candidato");
+  const BuscarPorId = async () => {
+    fetch(
+      "http://localhost:5000/api/Usuario/BuscarPorId/" +
+        (await AsyncStorage.getItem("VagaSelecionada")),
+      {
+        method: "GET",
       }
-      listarCandidatos();
-    })
-    .catch((err) => console.error(err));
-};
+    )
+      .then((response) => response.json())
+      .then((dados) => {
+        setTituloVaga(dados.tituloVaga);
+        setTipoContrato(dados.tipoContrato);
+        setSalario(dados.salario);
+        setTecnologias(dados.tecnologias);
+        setCidade(dados.localidade);
+        setExperiencia(dados.experiencia);
+        setNomeArea(dados.nomeArea);
+        setTipoPresenca(dados.tipoPresenca);
+        setRazaoSocial(dados.razaoSocial);
+        console.log(RazaoSocial);
+      })
+      .catch((err) => console.error(err));
+  };
 
-return(
-  <View>
-    <View >
-        <ImageBackground source={require('../../assets/Images/bannerVisualizarVaga.webp')} style={styles.BannerVizualizarVagaEmpresa}>
-          <Text style={styles.TextoHeader}>Veja quem se inscreveu para esta vaga</Text>
+  const Aprovar = (id) => {
+    fetch("http://localhost:5000/api/Empresa/Aprovar/" + id, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then(function (respose) {
+        if (respose.status !== 200) {
+          alert("Não foi possivel aprovar este candidato");
+        }
+        listarCandidatos();
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const Reprovar = (id) => {
+    fetch("http://localhost:5000/api/Empresa/Reprovar/" + id, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then(function (respose) {
+        if (respose.status !== 200) {
+          alert("Não foi possivel Reprovar este candidato");
+        }
+        listarCandidatos();
+      })
+      .catch((err) => console.error(err));
+  };
+
+  return (
+    <View>
+      <View>
+        <ImageBackground
+          source={require("../../assets/Images/bannerVisualizarVaga.webp")}
+          style={styles.BannerVizualizarVagaEmpresa}
+        >
+          <Text style={styles.TextoHeader}>
+            Veja quem se inscreveu para esta vaga
+          </Text>
         </ImageBackground>
       </View>
       <View style={styles.Vaga}>
         <View style={styles.VagaCompleta}>
-          <Image style={styles.ImagemEmpresa} source={require('../../assets/Images/Teste.webp')} />
+          <Image
+            style={styles.ImagemEmpresa}
+            source={require("../../assets/Images/Teste.webp")}
+          />
           <View style={styles.MainVaga}>
             <Text style={styles.TituloVaga}>{TituloVaga}</Text>
             <View style={styles.InfoVagas}>
-              <InfoVaga NomeProp={RazaoSocial} nomeImage={require('../../assets/Images/building.webp')}></InfoVaga>
-              <InfoVaga NomeProp={Cidade} nomeImage={require('../../assets/Images/big-map-placeholder-outlined-symbol-of-interface.webp')}></InfoVaga>
-              <InfoVaga NomeProp={Experiencia} nomeImage={require('../../assets/Images/rocket-launch.webp')}></InfoVaga>
-              <InfoVaga NomeProp={TipoContrato} nomeImage={require('../../assets/Images/gears.webp')}></InfoVaga>
-              <InfoVaga NomeProp={Salario} nomeImage={require('../../assets/Images/money (1).webp')}></InfoVaga>
-              <InfoVaga NomeProp={TipoPresenca} nomeImage={require('../../assets/Images/global.png')}></InfoVaga>
-              <InfoVaga NomeProp={NomeArea} nomeImage={require('../../assets/Images/web-programming.webp')}></InfoVaga>
+              <InfoVaga
+                NomeProp={RazaoSocial}
+                nomeImage={require("../../assets/Images/building.webp")}
+              ></InfoVaga>
+              <InfoVaga
+                NomeProp={Cidade}
+                nomeImage={require("../../assets/Images/big-map-placeholder-outlined-symbol-of-interface.webp")}
+              ></InfoVaga>
+              <InfoVaga
+                NomeProp={Experiencia}
+                nomeImage={require("../../assets/Images/rocket-launch.webp")}
+              ></InfoVaga>
+              <InfoVaga
+                NomeProp={TipoContrato}
+                nomeImage={require("../../assets/Images/gears.webp")}
+              ></InfoVaga>
+              <InfoVaga
+                NomeProp={Salario}
+                nomeImage={require("../../assets/Images/money (1).webp")}
+              ></InfoVaga>
+              <InfoVaga
+                NomeProp={TipoPresenca}
+                nomeImage={require("../../assets/Images/global.png")}
+              ></InfoVaga>
+              <InfoVaga
+                NomeProp={NomeArea}
+                nomeImage={require("../../assets/Images/web-programming.webp")}
+              ></InfoVaga>
             </View>
             <View style={styles.TecnologiasVaga}>
-              {
-                Tecnologias.map((item)=>{
-                  return(
-                    <Tag NomeTag={item}></Tag>
-                  );
-                })
-              }
+              {Tecnologias.map((item) => {
+                return <Tag NomeTag={item}></Tag>;
+              })}
             </View>
           </View>
         </View>
       </View>
-      <TouchableOpacity style={styles.btVerAprovados} onPress={()=>navigation.navigate('CandidatosAprovados')}><Text style={styles.texBtIns}>Ver candidatos aprovados</Text></TouchableOpacity>
+      <TouchableOpacity
+        style={styles.btVerAprovados}
+        onPress={() => navigation.navigate("CandidatosAprovados")}
+      >
+        <Text style={styles.texBtIns}>Ver candidatos aprovados</Text>
+      </TouchableOpacity>
       <View style={styles.ListaInscricoes}>
-        {
-          Inscricoes.map((item) => {
-            return (
-              <View key={item.idInscricao} style={styles.Inscricao}>
-                <View style={styles.HeaderInscricao}>
-                  <Image style={styles.imagemCandidato} source={require('../../assets/Images/android-character-symbol.webp')}></Image>
+        {Inscricoes.map((item) => {
+          return (
+            <View key={item.idInscricao} style={styles.Inscricao}>
+              <View style={styles.HeaderInscricao}>
+                <Image
+                  style={styles.imagemCandidato}
+                  source={require("../../assets/Images/android-character-symbol.webp")}
+                ></Image>
                 <Text>{item.nomeCandidato}</Text>
-                  <Text style={styles.nomeCandidato}></Text>
-            <Text style={styles.h5}>{item.nomeCurso}</Text>
-                </View>
-                <View style={styles.BodyInscricao}>
-                  <Tag NomeTag={"Email:"+item.email}></Tag>
-                  <Tag NomeTag={"Telefone:"+item.telefone}></Tag>
-                </View>
-                <View style={styles.AprovarRecusar}>
-                  <TouchableOpacity style={styles.btAprovar} onPress={()=>Aprovar(item.idInscricao)}><Text style={styles.texBtIns}>Aprovar</Text></TouchableOpacity>
-                  <TouchableOpacity style={styles.btReprovar} onPress={()=>Reprovar(item.idInscricao)}><Text style={styles.texBtIns}>Recusar</Text></TouchableOpacity>
-                </View>
+                <Text style={styles.nomeCandidato}></Text>
+                <Text style={styles.h5}>{item.nomeCurso}</Text>
               </View>
-            );
-          })
-        }
+              <View style={styles.BodyInscricao}>
+                <Tag NomeTag={"Email:" + item.email}></Tag>
+                <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
+              </View>
+              <View style={styles.AprovarRecusar}>
+                <TouchableOpacity
+                  style={styles.btAprovar}
+                  onPress={() => Aprovar(item.idInscricao)}
+                >
+                  <Text style={styles.texBtIns}>Aprovar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.btReprovar}
+                  onPress={() => Reprovar(item.idInscricao)}
+                >
+                  <Text style={styles.texBtIns}>Recusar</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          );
+        })}
       </View>
-  </View>
-);
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -171,11 +226,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   TextoTitulo: {
-    color: 'black',
-    fontSize: '22px',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginTop: '20px'
+    color: "black",
+    fontSize: 22,
+    textAlign: "center",
+    fontWeight: "bold",
+    marginTop: "20px",
   },
   BannerVizualizarVagaEmpresa: {
     justifyContent: "center",
@@ -186,7 +241,7 @@ const styles = StyleSheet.create({
   },
   TextoHeader: {
     color: "#fff",
-    fontSize: "25px",
+    fontSize: 25,
   },
   Vaga: {
     backgroundColor: "#FAFAFA",
@@ -196,7 +251,7 @@ const styles = StyleSheet.create({
   },
   VagaCompleta: {
     flexDirection: "row",
-    borderRadius: "4px",
+    borderRadius: 4,
     padding: "3vh",
     flexWrap: "wrap",
   },
@@ -223,7 +278,7 @@ const styles = StyleSheet.create({
     width: "100px",
   },
   TituloVaga: {
-    fontSize: "17px",
+    fontSize: 17,
   },
   Inscricao: {
     width: "275px",
@@ -231,7 +286,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "white",
-    borderRadius: "5px",
+    borderRadius: 5,
     marginBottom: "50px",
   },
   AprovarRecusar: {
@@ -245,8 +300,8 @@ const styles = StyleSheet.create({
     height: "36px",
     width: "107px",
     color: "#fff",
-    border: "none",
-    borderRadius: "5px",
+    borderWidth: 0,
+    borderRadius: 5,
     textAlign: "center",
     justifyContent: "center",
   },
@@ -255,18 +310,18 @@ const styles = StyleSheet.create({
     height: "36px",
     width: "107px",
     color: "#fff",
-    border: "none",
-    borderRadius: "5px",
+    borderWidth: 0,
+    borderRadius: 5,
     textAlign: "center",
     justifyContent: "center",
   },
-  btVerAprovados:{
+  btVerAprovados: {
     height: "36px",
     width: "207px",
-    padding:'10px',
-    backgroundColor:'red',
-    marginLeft:'10px',
-    alignItems:'center'
+    padding: "10px",
+    backgroundColor: "red",
+    marginLeft: "10px",
+    alignItems: "center",
   },
   texBtIns: {
     color: "#fff",
