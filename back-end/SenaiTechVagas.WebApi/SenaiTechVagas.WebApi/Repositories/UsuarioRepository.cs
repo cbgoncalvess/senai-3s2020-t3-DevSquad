@@ -19,7 +19,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=DESKTOP-7H5DJOO; Initial Catalog=Db_TechVagas;integrated Security=True";
         public Usuario Login(string email, string senha)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -138,7 +138,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -230,11 +230,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                   "SELECT are.IdArea,trp.NomeTipoRegimePresencial,v.TituloVaga,v.DescricaoVaga,v.DescricaoBeneficio,v.DescricaoEmpresa,v.Estado,v.CEP,v.Logradouro,v.Complemento,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                   "SELECT U.CaminhoImagem,are.IdArea,trp.NomeTipoRegimePresencial,v.TituloVaga,v.DescricaoVaga,v.DescricaoBeneficio,v.DescricaoEmpresa,v.Estado,v.CEP,v.Logradouro,v.Complemento,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                    " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                    " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
                    " INNER JOIN Area are on are.IdArea=v.IdArea" +
+                   " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario" +
                    " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
                    " WHERE v.IdVaga=@IdVaga";
                     con.Open();
@@ -261,6 +262,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                                 // Atribui às propriedades os valores das colunas da tabela do banco
                                 IdVaga = Convert.ToInt32(rdr["IdVaga"]),
                                 IdArea = Convert.ToInt32(rdr["IdArea"]),
+                                CaminhoImagem=rdr["CaminhoImagem"].ToString(),
                                 Experiencia = rdr["Experiencia"].ToString(),
                                 TituloVaga = rdr["TituloVaga"].ToString(),
                                 TipoContrato = rdr["TipoContrato"].ToString(),

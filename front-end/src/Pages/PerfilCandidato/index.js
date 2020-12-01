@@ -181,7 +181,7 @@ export default function PerfilCandidato() {
                             return (
                                 <div className="BoxPerfilCandidato">
                                     <div className="flexBoxPerfilCandidato">
-                                        <img src={imgPadrao} />
+                                        <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} />
                                         <h3>{"Nome da empresa:"+item.razaoSocial}</h3>
                                     </div>
                                     <h3>{"Tipo do contrato:"+item.tipoContrato}</h3>

@@ -418,7 +418,7 @@ export default function CadastroEmpresa() {
                 placeholder="Meu cachorro se chama..."
                 required
                 onChange={(e) => SetResposta(e.target.value)}
-                maxLength={20}
+                maxLength={50}
                 minLength={3}
               />
               <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>

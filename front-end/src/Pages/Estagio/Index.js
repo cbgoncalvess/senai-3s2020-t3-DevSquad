@@ -61,7 +61,7 @@ export default function Estagio() {
                   />
                 </div>
                 <div className="CabecaEstagio">
-                  <img src={imgPadrao} alt="ImagemPerfil" />
+                  <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="ImagemPerfil" />
                   <h3>{item.nomeCompleto}</h3>
                   <hr className="hr" />
                   <h5>{item.nomeCurso}</h5>
@@ -108,7 +108,7 @@ export default function Estagio() {
                   />
                 </div>
                 <div className="CabecaEstagio">
-                  <img src={imgPadrao} alt="ImagemPerfil" />
+                  <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="ImagemPerfil" />
                   <h3>{item.nomeCompleto}</h3>
                   <hr className="hr" />
                   <h5>{item.nomeCurso}</h5>

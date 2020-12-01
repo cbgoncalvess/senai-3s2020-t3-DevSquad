@@ -128,19 +128,20 @@ VALUES('possarle@gmail.com', '932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bd
 ('Marcos@gmail.com', '932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef', 2,'Como se chama o seu cachorro','Trovão')
 GO
 
+select * from Usuario
 SELECT * FROM Candidato
 
-INSERT INTO Empresa(NomeReponsavel,CNPJ,EmailContato,NomeFantasia,RazaoSocial,Telefone,NumFuncionario,NumCNAE,CEP,Logradouro,Complemento,Localidade,UF,IdUsuario,CaminhoImagem)
-VALUES('Jucelino','12312345672123','SenaiContato@gmail.com','SENAI Informatica','SENAI Informatica','12341111111','50','2342345','12345679','Rua Barão de Limeira','Perto da Folha de São Paulo','São Paulo','SP',2,'947062.jpg'),
-	  ('DevSquad','12312345672124','DevSquadContato@gmail.com','TechVagas','TechVagas','12341111112','50','1234567','12345679','Rua Barão de Limeira','Perto da Folha de São Paulo','São Paulo','SP',3,'')
+INSERT INTO Empresa(NomeReponsavel,CNPJ,EmailContato,NomeFantasia,RazaoSocial,Telefone,NumFuncionario,NumCNAE,CEP,Logradouro,Complemento,Localidade,UF,IdUsuario)
+VALUES('Jucelino','12312345672123','SenaiContato@gmail.com','SENAI Informatica','SENAI Informatica','12341111111','50','2342345','12345679','Rua Barão de Limeira','Perto da Folha de São Paulo','São Paulo','SP',2),
+	  ('DevSquad','12312345672124','DevSquadContato@gmail.com','TechVagas','TechVagas','12341111112','50','1234567','12345679','Rua Barão de Limeira','Perto da Folha de São Paulo','São Paulo','SP',3)
 GO
 
-INSERT INTO Candidato(NomeCompleto,RG,CPF,Telefone,LinkLinkedinCandidato,IdCurso,IdUsuario,CaminhoImagem)
-VALUES('Alexia Melhado','123452345','12387624567','12341112345','Alexia/Linkedin.com',6,4,''),
-('André Akira','123352345','12487664567','52341102345','André/Linkedin.com',6,5,''),
-('Carlos Eduardo','123352245','12387664567','52371112345','Carlos/Linkedin.com',6,6,''),
-('Douglas Mantovani','122652345','18487664567','52301112345','Douglas/Linkedin.com',6,7,'947062.jpg'),
-('Marcos Paulo','123352645','12487694567','52301872345','Marcos/Linkedin.com',6,8,'')
+INSERT INTO Candidato(NomeCompleto,RG,CPF,Telefone,LinkLinkedinCandidato,IdCurso,IdUsuario)
+VALUES('Alexia Melhado','123452345','12387624567','12341112345','Alexia/Linkedin.com',6,4),
+('André Akira','123352345','12487664567','52341102345','André/Linkedin.com',6,5),
+('Carlos Eduardo','123352245','12387664567','52371112345','Carlos/Linkedin.com',6,6),
+('Douglas Mantovani','122652345','18487664567','52301112345','Douglas/Linkedin.com',6,7),
+('Marcos Paulo','123352645','12487694567','52301872345','Marcos/Linkedin.com',6,8)
 GO
 
 INSERT INTO Vaga(TituloVaga,DescricaoVaga,DescricaoEmpresa,DescricaoBeneficio,DataPublicacao,DataExpiracao,Experiencia,TipoContrato,Salario,Localidade,Estado,CEP,Logradouro,IdTipoRegimePresencial,Complemento,IdEmpresa,IdArea)

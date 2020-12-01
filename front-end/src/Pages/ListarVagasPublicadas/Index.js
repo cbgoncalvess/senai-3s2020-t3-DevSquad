@@ -322,7 +322,7 @@ export default function VagasPublicadas() {
                   onClick={()=>DeletarVaga(item.idVaga)}/>
               </div>
               <div className="VagaCompleta">
-                <img src={imgEmpresa} className="ImagemEmpresa"></img>
+                <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} className="ImagemEmpresa"></img>
                 <div className="MainVaga">
                   <h3
                     onClick={(e) => {

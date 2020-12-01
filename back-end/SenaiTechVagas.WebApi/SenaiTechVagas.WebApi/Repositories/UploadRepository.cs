@@ -19,6 +19,8 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
 
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), savingFolder);
+            //string Nova = pathToSave + "/joker.jpg";
+            //    File.(Nova);
 
             if (arquivo.Length > 0)
             {
@@ -29,7 +31,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     arquivo.CopyTo(stream);
                 }
-
                 return fileName;
             }
             else
