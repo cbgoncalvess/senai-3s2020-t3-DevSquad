@@ -77,7 +77,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                         Email = empresa.Email.Trim(),
                         Senha = empresa.Senha,
                         RespostaSeguranca=empresa.RespostaSeguranca,
-                        PerguntaSeguranca=empresa.PerguntaSeguranca
+                        PerguntaSeguranca=empresa.PerguntaSeguranca,
+                        CaminhoImagem=empresa.CaminhoImagem
                     };
 
                     Empresa NovaEmpresa = new Empresa()
@@ -119,7 +120,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                         Senha = NovoCandidato.Senha,
                         IdTipoUsuario = 2,
                         RespostaSeguranca = NovoCandidato.RespostaSeguranca,
-                        PerguntaSeguranca = NovoCandidato.PerguntaSeguranca
+                        PerguntaSeguranca = NovoCandidato.PerguntaSeguranca,
+                        CaminhoImagem = NovoCandidato.CaminhoImagem
                     };
                     Candidato applicant = new Candidato()
                     {

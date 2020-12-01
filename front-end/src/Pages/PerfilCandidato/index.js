@@ -19,6 +19,7 @@ export default function PerfilCandidato() {
     const [Linkedin, SetLinkedin] = useState('');
     const [Curso, SetCurso] = useState('');
     const [Area, SetArea] = useState('');
+    const[CaminhoImagem,setCaminho]=useState('');
 
     const [Cursos, setCursos] = useState([]);
     const [Vagas, setVagas] = useState([]);
@@ -57,6 +58,7 @@ export default function PerfilCandidato() {
             SetNomeCompleto(dados.nomeCompleto);
             SetArea(dados.idArea);
             SetCurso(dados.idCurso);
+            setCaminho(dados.caminhoImagem)
         }).catch(err => console.error(err));
     }
 
@@ -163,7 +165,7 @@ export default function PerfilCandidato() {
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
                     <div className="imgPefilTexto">
-                        <img className="imgperfil" src={imgPadrao} alt="perfil" />
+                        <img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" />
                         <h3>{NomeCompleto}</h3>
                         <p>Candidato</p>
                     </div>

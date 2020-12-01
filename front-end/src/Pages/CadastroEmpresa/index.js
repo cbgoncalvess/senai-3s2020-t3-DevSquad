@@ -31,6 +31,7 @@ export default function CadastroEmpresa() {
   let [Cidade, SetCidade] = useState("");
   const [Senha, SetSenha] = useState("");
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
+  const[CaminhoImagem,setCaminho]=useState('');
 
   const history = useHistory();
 
@@ -129,6 +130,7 @@ export default function CadastroEmpresa() {
         Senha: Senha,
         RespostaSeguranca: RespostaSeguranca,
         PerguntaSeguranca: PerguntaSeguranca,
+        CaminhoImagem:CaminhoImagem
       };
       console.log(data);
       fetch("http://localhost:5000/api/Usuario/Empresa", {
@@ -150,6 +152,24 @@ export default function CadastroEmpresa() {
     }
   }
 
+  const uploadFile = (event) => {
+    event.preventDefault();
+
+    let formdata = new FormData();
+
+    formdata.append('arquivo', event.target.files[0]);
+
+    fetch('http://localhost:5000/api/Upload',{
+        method : 'POST',
+        body : formdata
+    })
+    .then(response => response.json())
+    .then(data => {
+        setCaminho(data);
+    })
+    .catch(err => console.log(err))
+}
+
   return (
     <body>
       <AccessBar />
@@ -165,6 +185,7 @@ export default function CadastroEmpresa() {
               nossa plataforma
             </p>
             <form className="form" onSubmit={salvar}>
+            <input type="file" className="SelecionarFoto" onChange={event => { uploadFile(event)}}/>
               <Input
                 name={"responsibleName"}
                 className="cadastre"

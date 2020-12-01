@@ -33,6 +33,6 @@ namespace SenaiTechVagas.WebApi.ViewModels
 
         [StringLength(20, MinimumLength = 5)]
         public string RespostaSeguranca { get; set; }
-
+        public string CaminhoImagem { get; set; }
     }
 }

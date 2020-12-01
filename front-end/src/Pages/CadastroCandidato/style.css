@@ -56,6 +56,15 @@
   width: 100%;
 }
 
+.SelecionarFoto{
+  padding: 1vw;
+  width: 100%;
+  height: 36px;
+  background-color: #E0E0E0;
+  border: none;
+  border-radius: 6px;
+}
+
 .cadastre {
   height: 40px;
   width: 80%;

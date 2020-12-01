@@ -87,9 +87,9 @@ for(var i=0;i<ListVagas.length;i++){
                 >
                   <div className="VagaCompleta">
                     <img
-                      src={imgEmpresa}
+                      src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem}
                       className="ImagemEmpresa"
-                      alt=""
+                      alt="Imagem de perfil"
                     ></img>
                     <div className="MainVaga">
                       <h3>{item.tituloVaga}</h3>

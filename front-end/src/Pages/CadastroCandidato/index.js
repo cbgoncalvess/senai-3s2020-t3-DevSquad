@@ -27,6 +27,7 @@ export default function CadastroEmpresa() {
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
   const [PerguntaSeguranca, SetPergunta] = useState("");
   const [RespostaSeguranca, SetResposta] = useState("");
+  const [CaminhoImagem, setCaminho] = useState('');
 
   const history = useHistory();
 
@@ -45,6 +46,25 @@ export default function CadastroEmpresa() {
     listarcurso();
   }, []);
   
+
+  const uploadFile = (event) => {
+    event.preventDefault();
+
+    let formdata = new FormData();
+
+    formdata.append('arquivo', event.target.files[0]);
+
+    fetch('http://localhost:5000/api/Upload',{
+        method : 'POST',
+        body : formdata
+    })
+    .then(response => response.json())
+    .then(data => {
+        setCaminho(data.caminhoImagem);
+    })
+    .catch(err => console.log(err))
+}
+
   const escreverResultado = () => {
     if (Senha !== ConfirmarSenha) {
       redBox.style.border = "solid red 1px";
@@ -96,6 +116,7 @@ export default function CadastroEmpresa() {
         senha: Senha,
         respostaSeguranca: RespostaSeguranca,
         perguntaSeguranca: PerguntaSeguranca,
+        CaminhoImagem:CaminhoImagem
       };
       fetch("http://localhost:5000/api/Usuario/Candidato", {
         method: "POST",
@@ -106,7 +127,7 @@ export default function CadastroEmpresa() {
       })
       .then((response) => response.json())
       .then((dados) => {
-        alert(dados);
+        console.log(dados);
         history.push("/");
       })
         .catch((err) => console.error(err));
@@ -138,6 +159,8 @@ export default function CadastroEmpresa() {
               Ficamos felizes de tê-lo na nossa plataforma
             </p>
             <form className="form" onSubmit={salvar}>
+
+              <input type="file" className="SelecionarFoto" onChange={event => { uploadFile(event)}}/>
               <Input
                 name="fullName"
                 className="cadastre"

@@ -96,7 +96,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                             " INNER JOIN Area are on are.IdArea=v.IdArea"+
                             " INNER JOIN Inscricao inscri on inscri.IdVaga=v.IdVaga" +
                             " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
-                            " WHERE v.IdVaga =@IDVaga ";
+                            " WHERE v.IdVaga =@IDVaga AND inscri.IdInscricao=@IDInscricao ";
                             con.Open();
 
                             // Declara o SqlDataReader para receber os dados do banco de dados
@@ -106,6 +106,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                             using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
                             {
                                 cmd.Parameters.AddWithValue("@IDVaga", ListaDeInscricoes[i].IdVaga);
+                                cmd.Parameters.AddWithValue("@IDInscricao", ListaDeInscricoes[i].IdInscricao);
                                 // Executa a query e armazena os dados no rdr
                                 rdr = cmd.ExecuteReader();
 
@@ -123,8 +124,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                                         TipoContrato = rdr["TipoContrato"].ToString(),
                                         IdInscricao = Convert.ToInt32(rdr["IdInscricao"]),
                                         Localidade = rdr["Localidade"].ToString(),
+                                        DataInscricao = Convert.ToDateTime(rdr["DataInscricao"]).ToString("dd/MM/yyyy"),
                                         Salario = Convert.ToDecimal(rdr["Salario"]),
-                                        DataInscricao=Convert.ToDateTime(rdr["DataInscricao"]),
                                         RazaoSocial = rdr["RazaoSocial"].ToString(),
                                         NomeArea = rdr["NomeArea"].ToString(),
                                         TituloVaga=rdr["TituloVaga"].ToString(),
@@ -228,7 +229,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                   "SELECT trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                   "SELECT e.CaminhoImagem,trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                    " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                    " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
@@ -258,6 +259,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                             {
                                 // Atribui às propriedades os valores das colunas da tabela do banco
                                 IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                               CaminhoImagem=rdr["CaminhoImagem"].ToString(),
                                 Experiencia = rdr["Experiencia"].ToString(),
                                 TipoContrato = rdr["TipoContrato"].ToString(),
                                 TituloVaga = rdr["TituloVaga"].ToString(),

@@ -226,7 +226,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-               
 
                 Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)

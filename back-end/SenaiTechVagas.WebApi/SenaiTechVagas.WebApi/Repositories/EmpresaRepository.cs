@@ -413,11 +413,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                                 TipoContrato = rdr["TipoContrato"].ToString(),
                                 Localidade = rdr["Localidade"].ToString(),
                                 Salario = Convert.ToDecimal(rdr["Salario"]),
-                                DataExpiracao=Convert.ToDateTime((rdr["DataExpiracao"])),
                                 RazaoSocial = rdr["RazaoSocial"].ToString(),
                                 NomeArea = rdr["NomeArea"].ToString(),
                                 TituloVaga = rdr["TituloVaga"].ToString(),
-                                TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString()
+                                TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString(),
+                             DataExpiracao = Convert.ToDateTime(rdr["DataExpiracao"]).ToString("dd/MM/yyyy")
                             };
                             var NomeTecnologia = rdr["NomeTecnologia"].ToString();
                             vm.Tecnologias = new List<string>();
