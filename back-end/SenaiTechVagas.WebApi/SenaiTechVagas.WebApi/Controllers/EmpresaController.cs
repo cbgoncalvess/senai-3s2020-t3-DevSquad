@@ -66,7 +66,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="VagaNovo"></param>
         /// <returns></returns>
-        [Authorize(Roles = "3")]
+        //[Authorize(Roles = "3")]
         [HttpPost("AdicionarVaga")]
         public IActionResult AdicionarVaga(Vaga VagaNovo)
         {

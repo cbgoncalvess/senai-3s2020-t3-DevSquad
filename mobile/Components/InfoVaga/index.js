@@ -13,14 +13,14 @@ export default function InfoVaga(props) {
 const styles = StyleSheet.create({
     InfoVagas: {
     flexDirection:'row',
-    justifycontent: 'space-between',
-    alignitems: 'center',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     margin: '10px',
-    flexwrap: 'wrap'
+    flexWrap: 'wrap'
   },
     ImageInfoVaga:{
     width:'25px',
     height:'25px', 
-    marginright:'9px'
+    marginRight:'9px'
   }
 });
