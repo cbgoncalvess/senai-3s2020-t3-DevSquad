@@ -182,9 +182,8 @@ export default function Header() {
                         />
                         <ul id="menu-hide" className="none">
                             <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
-                            <li><Link to="/">Principal</Link></li>
+                            <li><Link to="/perfilCandidato">Perfil</Link></li>
                             <li><Link to="/sobre">Sobre</Link></li>
-                            <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
                             <li><Link to="/principal">Principal</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
                         </ul>
@@ -195,9 +194,9 @@ export default function Header() {
                     <nav className="menumodal">
                         <img src={xBurguer} className="navmobile burguer dex" id="menumodal" alt="" />
                         <ul id="menu-hide" className="none">
-                            <li><Link to="/">Principal</Link></li>
-                            <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/DashboardInscricaoCandidato">Ver inscrições</Link></li>
+                            <li><Link to="/perfilCandidato">Perfil</Link></li>
+                            <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link to="/principal">Principal</Link></li>
                             <li><Link className="botao1" onClick={logout}>Sair</Link></li>
                         </ul>

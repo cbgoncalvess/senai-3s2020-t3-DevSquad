@@ -7,6 +7,7 @@ import AccessMenu from "../../Components/AccessMenu";
 import Input from "../../Components/Input";
 import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
+import Userimg from '../../assets/images/user.webp'
 
 import { mascara } from '../../services/mask';
 
@@ -147,6 +148,18 @@ export default function CadastroEmpresa() {
       .catch((err) => console.error(err));
   };
 
+function View(){
+  if(CaminhoImagem=='' && CaminhoImagem.length<3){
+    return(
+    <img className="imagemCadastro" src={Userimg}/>
+    );
+  }else if(CaminhoImagem.length>3){
+    return(
+      <img className="imagemCadastro" src={'http://localhost:5000/ImageBackUp/'+CaminhoImagem}/>
+      );
+  }
+}
+
   return (
     <body>
       <AccessBar />
@@ -160,9 +173,13 @@ export default function CadastroEmpresa() {
               Bem-vindo ao cadastro do candidato. <br />
               Ficamos felizes de tê-lo na nossa plataforma
             </p>
+              <div className="imgCadastroPerfil">
+              {View()}
+              <br/>
+              <button className="btSelecionar"><label htmlFor="ButtonImage" className="lbBt">Selecione uma imagem</label></button>
+              </div>
             <form className="form" onSubmit={salvar}>
-
-              <input type="file" className="SelecionarFoto" onChange={event => { uploadFile(event)}}/>
+              <input type="file" className="none" id="ButtonImage" onChange={event => { uploadFile(event)}}/>
               <Input
                 name="fullName"
                 className="cadastre"

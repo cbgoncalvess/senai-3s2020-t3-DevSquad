@@ -12,28 +12,54 @@ namespace SenaiTechVagas.WebApi.Repositories
     {
         public string Upload(IFormFile arquivo, string savingFolder)
         {
-
-            if (savingFolder == null)
+            try
             {
-                savingFolder = Path.Combine("imagens");
-            }
-
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), savingFolder);
-            //string Nova = pathToSave + "/joker.jpg";
-            //    File.(Nova);
-
-            if (arquivo.Length > 0)
-            {
-                var fileName = ContentDispositionHeaderValue.Parse(arquivo.ContentDisposition).FileName.Trim('"');
-                var fullPath = Path.Combine(pathToSave, fileName);
-
-                using (var stream = new FileStream(fullPath, FileMode.Create))
+                if (savingFolder == null)
                 {
-                    arquivo.CopyTo(stream);
+                    savingFolder = Path.Combine("imagens");
                 }
-                return fileName;
+
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), savingFolder);
+
+                if (savingFolder == "ImageBackUp")
+                {
+                    string[] fileEntries = Directory.GetFiles(pathToSave);
+                    if (fileEntries.Length >= 10)
+                    {
+                        for(int i=0;i<fileEntries.Length; i++)
+                        {
+                            File.Delete(fileEntries[i]);
+                        }
+                    }
+                }
+
+                if (arquivo.FileName.Length >3)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(arquivo.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        arquivo.CopyTo(stream);
+                    }
+
+                    var NomeArquivo = arquivo.FileName;
+                    string Extensao = NomeArquivo.Split('.')[1].Trim();
+                    string Nome = DateTime.Now.ToString("ddMMyyyyHHmmss") + "." + Extensao;
+
+                    string sourceFile = Path.Combine(Directory.GetCurrentDirectory(), savingFolder+"/"+ arquivo.FileName);
+
+                     string source =Path.Combine(Directory.GetCurrentDirectory(), savingFolder + "/" );  
+                     System.IO.FileInfo fi = new System.IO.FileInfo(sourceFile);   
+                     fi.MoveTo(source+Nome);  
+                    return Nome;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch (Exception)
             {
                 return null;
             }

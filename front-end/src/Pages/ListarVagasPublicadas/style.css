@@ -55,7 +55,25 @@
    flex-direction: row;
    flex-wrap: wrap;
    }
+
+   .btSelecionar{
+    width: 50%;
+    height: 36px;
+    background-color: #f12525;
+    border: none;
+    border-radius: 6px;
+   }
    
+.lbBt{
+    color: white;
+}
+
+body > div.registerApplicant > div.box-form > div > form > button > label{
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
    .VagaCompleta{
        display: flex;
        border-radius: 4px;

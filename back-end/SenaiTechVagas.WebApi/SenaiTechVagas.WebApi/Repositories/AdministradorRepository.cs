@@ -7,6 +7,7 @@ using SenaiTechVagas.WebApi.Utils;
 using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class AdministradorRepository : IAdministradorRepository
     {
-        string stringConexao = "Data Source=DESKTOP-7H5DJOO; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarCurso(int id, Curso curso)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -573,6 +574,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                         ctx.Remove(empresaBuscada);
                         ctx.Remove(usuarioBuscado);
                         ctx.SaveChanges();
+                        if (usuarioBuscado.CaminhoImagem != "Teste.webp")
+                        {
+                        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/");
+                        string CaminhoDoArquivo = pathToSave + usuarioBuscado.CaminhoImagem;
+                        File.Delete(CaminhoDoArquivo);
+                        }
                         return true;
                     }
 
@@ -582,6 +589,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                         ctx.Remove(candidatoBuscado);
                         ctx.Remove(usuarioBuscado);
                         ctx.SaveChanges();
+                        if (usuarioBuscado.CaminhoImagem != "user.png")
+                        {
+                            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/");
+                            string CaminhoDoArquivo = pathToSave + usuarioBuscado.CaminhoImagem;
+                            File.Delete(CaminhoDoArquivo);
+                        }
                         return true;
                     }
                     return false;
@@ -1098,6 +1111,24 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception)
                 {
                     return false;
+                }
+            }
+        }
+
+        public UploadImagem BuscarImagemPerfilAdm(int idAms)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    var usuario = ctx.Usuario.Find(idAms);
+                    UploadImagem up = new UploadImagem();
+                    up.CaminhoImagem = usuario.CaminhoImagem;
+                    return up;
+                }
+                catch (Exception)
+                {
+                    return null;
                 }
             }
         }

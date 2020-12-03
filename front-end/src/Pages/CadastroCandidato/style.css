@@ -56,13 +56,24 @@
   width: 100%;
 }
 
-.SelecionarFoto{
-  padding: 1vw;
-  width: 100%;
-  height: 36px;
-  background-color: #E0E0E0;
-  border: none;
-  border-radius: 6px;
+body > div.registerApplicant > div.box-form > div > div > button > label{
+  color: white;
+  font-weight: bold;
+}
+
+.imagemCadastro{
+  display: flex;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 100px;
+}
+
+.imgCadastroPerfil{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .cadastre {

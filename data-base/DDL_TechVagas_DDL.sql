@@ -5,6 +5,9 @@ GO
 USE Db_TechVagas;
 GO
 
+update Usuario set CaminhoImagem='Teste.webp' where IdUsuario=1; 
+
+select * from Usuario
 
 CREATE TABLE TipoUsuario (
 	IdTipoUsuario   INT PRIMARY KEY IDENTITY,

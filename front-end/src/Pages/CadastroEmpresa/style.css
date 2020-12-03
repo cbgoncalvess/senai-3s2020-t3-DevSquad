@@ -28,6 +28,12 @@
   color: #005767;
 }
 
+
+body > div.registerCompany > div.box-form > div > div > button > label{
+  color: white;
+    font-weight: bold;
+  }
+
 .form-content p {
   color: #707070;
 }

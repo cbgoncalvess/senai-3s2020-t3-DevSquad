@@ -9,6 +9,7 @@ import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
 
 import imagemCadastroEmpresa from "../../assets/imgCadastroEmpresa.webp";
+import Userimg from '../../assets/Teste.webp'
 
 import "./style.css";
 
@@ -104,14 +105,14 @@ export default function CadastroEmpresa() {
   };
 
   function salvar(e) {
-    e.preventDefault();
-    if (Senha !== ConfirmarSenha) {
-      alert("As senhas são difererentes");
-    } else if (verificacaoEmail !== true) {
-      alert("O e-mail deve ser válido");
-    } else if(verificacaoSenha !== true){
-      alert('A senha não atende aos requisitos')
-    }else {
+   e.preventDefault();
+   if (Senha !== ConfirmarSenha) {
+     alert("As senhas são difererentes");
+   } else if (verificacaoEmail !== true) {
+     alert("O e-mail deve ser válido");
+   } else if(verificacaoSenha !== true){
+     alert('A senha não atende aos requisitos')
+   }else {
       const data = {
         NomeReponsavel: NomeResponsavel,
         Cnpj: CNPJ,
@@ -170,6 +171,18 @@ export default function CadastroEmpresa() {
     .catch(err => console.log(err))
 }
 
+function View(){
+  if(CaminhoImagem=='' && CaminhoImagem.length<3){
+    return(
+    <img className="imagemCadastro" src={Userimg}/>
+    );
+  }else if(CaminhoImagem.length>3){
+    return(
+      <img className="imagemCadastro" src={'http://localhost:5000/ImageBackUp/'+CaminhoImagem}/>
+      );
+  }
+}
+
   return (
     <body>
       <AccessBar />
@@ -184,8 +197,12 @@ export default function CadastroEmpresa() {
               Bem-vindo ao cadastro de empresa. Ficamos felizes de tê-la na
               nossa plataforma
             </p>
+            <div className="imgCadastroPerfil">
+              {View()}
+              <br/>
+              <button className="btSelecionar"><label htmlFor="ButtonImage" className="lbBt">Selecione uma imagem</label></button>
+              </div>
             <form className="form" onSubmit={salvar}>
-            <input type="file" className="SelecionarFoto" onChange={event => { uploadFile(event)}}/>
               <Input
                 name={"responsibleName"}
                 className="cadastre"

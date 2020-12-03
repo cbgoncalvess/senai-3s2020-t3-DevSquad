@@ -128,9 +128,6 @@ VALUES('possarle@gmail.com', '932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bd
 ('Marcos@gmail.com', '932f3c1b56257ce8539ac269d7aab42550dacf8818d075f0bdf1990562aae3ef', 2,'Como se chama o seu cachorro','Trovão')
 GO
 
-select * from Usuario
-SELECT * FROM Candidato
-
 INSERT INTO Empresa(NomeReponsavel,CNPJ,EmailContato,NomeFantasia,RazaoSocial,Telefone,NumFuncionario,NumCNAE,CEP,Logradouro,Complemento,Localidade,UF,IdUsuario)
 VALUES('Jucelino','12312345672123','SenaiContato@gmail.com','SENAI Informatica','SENAI Informatica','12341111111','50','2342345','12345679','Rua Barão de Limeira','Perto da Folha de São Paulo','São Paulo','SP',2),
 	  ('DevSquad','12312345672124','DevSquadContato@gmail.com','TechVagas','TechVagas','12341111112','50','1234567','12345679','Rua Barão de Limeira','Perto da Folha de São Paulo','São Paulo','SP',3)

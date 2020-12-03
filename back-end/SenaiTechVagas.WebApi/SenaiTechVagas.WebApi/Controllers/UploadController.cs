@@ -22,7 +22,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
              var arquivo = Request.Form.Files[0];
 
-             var Imagem= rep.Upload(arquivo, "imgPerfil");
+             var Imagem= rep.Upload(arquivo, "ImageBackUp");
             UploadImagem test = new UploadImagem();
             test.CaminhoImagem = Imagem;
             

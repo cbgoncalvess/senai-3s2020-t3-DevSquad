@@ -112,6 +112,13 @@ namespace SenaiTechVagas.WebApi
                 RequestPath = "/imgPerfil"
             });
 
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                       Path.Combine(Directory.GetCurrentDirectory(), "ImageBackUp")),
+                RequestPath = "/ImageBackUp"
+            });
+
             app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -54,6 +55,21 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 return Ok(_Admin.ListarNomeEmpresas());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize(Roles = "1")]
+        [HttpGet("ImagemPerfilAdm")]
+        public IActionResult BuscarImagem()
+        {
+            try
+            {
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                return Ok(_Admin.BuscarImagemPerfilAdm(idUsuario));
             }
             catch (Exception)
             {
