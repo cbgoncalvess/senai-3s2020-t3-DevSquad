@@ -48,5 +48,6 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<Empresa> ListarNomeEmpresas();
         bool AdicionarTipoPresenca(TipoRegimePresencial trp);
         bool AtualizarTipoPresenca(int id,TipoRegimePresencial trp);
+        UploadImagem BuscarImagemPerfilAdm(int idAms);
     }
 }

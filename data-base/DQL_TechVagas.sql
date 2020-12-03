@@ -1,6 +1,10 @@
 USE Db_TechVagas
 GO
 
+USE MASTER
+
+--DQL
+
 SELECT * FROM TipoUsuario
 GO
 
@@ -13,8 +17,12 @@ GO
 SELECT * FROM Usuario
 GO
 
+update Usuario set CaminhoImagem='Teste.webp' where IdUsuario=10
+
 SELECT * FROM Area
 GO
+
+update Usuario set CaminhoImagem='user.png' where IdUsuario=9
 
 SELECT * FROM Curso
 GO
@@ -40,8 +48,6 @@ GO
 SELECT * FROM Estagio
 GO
 
-Update Estagio set DataCadastro='02-03-2020' where IdEstagio=10
-
 --Lista so os atributos necessarios
 SELECT  v.IdVaga,NomeTecnologia,v.Experiencia, TipoContrato, Salario,RazaoSocial,v.Localidade FROM VagaTecnologia      
 INNER JOIN Tecnologia ON Tecnologia.IdTecnologia=VagaTecnologia.IdTecnologia
@@ -55,3 +61,13 @@ INNER JOIN Vaga ON Vaga.IdVaga=VagaTecnologia.IdVaga
 INNER JOIN Tecnologia ON Tecnologia.IdTecnologia=VagaTecnologia.IdTecnologia
 INNER JOIN Empresa ON Empresa.IdEmpresa=Vaga.IdEmpresa
 GO
+
+
+SELECT inscri.DataInscricao,trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia
+                             INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga
+                             INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia
+                             INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa
+                             INNER JOIN Area are on are.IdArea=v.IdArea
+                             INNER JOIN Inscricao inscri on inscri.IdVaga=v.IdVaga
+                             INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial
+                             WHERE v.IdVaga =1 AND inscri.IdInscricao=4

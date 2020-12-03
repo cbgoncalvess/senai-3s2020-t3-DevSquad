@@ -56,6 +56,26 @@
   width: 100%;
 }
 
+body > div.registerApplicant > div.box-form > div > div > button > label{
+  color: white;
+  font-weight: bold;
+}
+
+.imagemCadastro{
+  display: flex;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 100px;
+}
+
+.imgCadastroPerfil{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .cadastre {
   height: 40px;
   width: 80%;

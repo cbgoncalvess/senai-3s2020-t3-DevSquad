@@ -28,6 +28,7 @@ export default function VizualizarCandidatosAprovados() {
     const [TipoPresenca, setTipoPresenca] = useState('');
     const [NomeArea, setNomeArea] = useState('');
     const [RazaoSocial, setRazaoSocial] = useState('');
+    const[CaminhoImagem,setCaminho]=useState('');
 
     useEffect(() => {
         idVaga = localStorage.getItem('idVagaSelecionadaEmpresa');
@@ -52,6 +53,7 @@ export default function VizualizarCandidatosAprovados() {
             setTipoPresenca(dados.tipoPresenca);
             setNomeArea(dados.nomeArea);
             setRazaoSocial(dados.razaoSocial);
+            setCaminho(dados.caminhoImagem);
         }).catch(err => console.error(err));
     }
 
@@ -79,7 +81,7 @@ export default function VizualizarCandidatosAprovados() {
             <br />
             <div className="vaga">
                 <div className="VagaCompleta">
-                    <img src={imgEmpresa} className="ImagemEmpresa" ></img>
+                    <img src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} className="ImagemEmpresa" ></img>
                     <div className="MainVaga">
                         <h3>{TituloVaga}</h3>
                         <div className="InfoVagas">
@@ -110,7 +112,7 @@ export default function VizualizarCandidatosAprovados() {
                         return (
                             <div key={item.idCandidato} className="Inscricao">
                                 <div className="CabecaInscricao">
-                                    <img src={imgEmpresa} alt="ImagemPerfil" />
+                                <img className="imgperfilInscricao" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="ImagemPerfil" />
                                     <h3>{item.nomeCandidato}</h3>
                                     <hr className="hr" />
                                     <h5>{item.nomeCurso}</h5>
@@ -118,7 +120,6 @@ export default function VizualizarCandidatosAprovados() {
                                 <div className="CorpoInscricao">
                                     <Tag NomeTag={"E-mail:" + item.email}></Tag>
                                     <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
-                                    <a className="Link" href="teste">Ver perfil</a>
                                 </div>
                             </div>
                         );

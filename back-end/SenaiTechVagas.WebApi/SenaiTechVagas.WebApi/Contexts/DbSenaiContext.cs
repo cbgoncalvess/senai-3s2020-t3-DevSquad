@@ -143,7 +143,7 @@ namespace SenaiTechVagas.WebApi.Contexts
 
                 entity.Property(e => e.TipoCurso)
                     .IsRequired()
-                    .HasMaxLength(20)
+                    .HasMaxLength(30)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.IdAreaNavigation)
@@ -215,7 +215,7 @@ namespace SenaiTechVagas.WebApi.Contexts
 
                 entity.Property(e => e.NomeReponsavel)
                     .IsRequired()
-                    .HasMaxLength(35)
+                    .HasMaxLength(65)
                     .IsUnicode(false);
 
                 entity.Property(e => e.NumCnae)
@@ -306,7 +306,7 @@ namespace SenaiTechVagas.WebApi.Contexts
 
             modelBuilder.Entity<Tecnologia>(entity =>
             {
-                entity.HasKey(e => e.IdTecnologia)
+                entity.HasKey(e => e.IdTecnologia) 
                     .HasName("PK__Tecnolog__5ECD2D113CB7C228");
 
                 entity.HasIndex(e => e.NomeTecnologia)
@@ -315,7 +315,7 @@ namespace SenaiTechVagas.WebApi.Contexts
 
                 entity.Property(e => e.NomeTecnologia)
                     .IsRequired()
-                    .HasMaxLength(35)
+                    .HasMaxLength(40)
                     .IsUnicode(false);
             });
 
@@ -352,6 +352,10 @@ namespace SenaiTechVagas.WebApi.Contexts
                 entity.HasIndex(e => e.Email)
                     .HasName("UQ__Usuario__A9D1053421223B85")
                     .IsUnique();
+
+                entity.Property(e => e.CaminhoImagem)
+                    .HasMaxLength(120)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Email)
                     .IsRequired()
@@ -397,23 +401,23 @@ namespace SenaiTechVagas.WebApi.Contexts
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DataExpiracao).HasColumnType("datetime");
+                entity.Property(e => e.DataExpiracao).HasColumnType("date");
 
-                entity.Property(e => e.DataPublicacao).HasColumnType("datetime");
+                entity.Property(e => e.DataPublicacao).HasColumnType("date");
 
                 entity.Property(e => e.DescricaoBeneficio)
                     .IsRequired()
-                    .HasMaxLength(255)
+                    .HasMaxLength(750)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DescricaoEmpresa)
                     .IsRequired()
-                    .HasMaxLength(255)
+                    .HasMaxLength(750)
                     .IsUnicode(false);
 
                 entity.Property(e => e.DescricaoVaga)
                     .IsRequired()
-                    .HasMaxLength(700)
+                    .HasMaxLength(750)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Estado)
@@ -445,7 +449,7 @@ namespace SenaiTechVagas.WebApi.Contexts
 
                 entity.Property(e => e.TituloVaga)
                     .IsRequired()
-                    .HasMaxLength(40)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.IdAreaNavigation)

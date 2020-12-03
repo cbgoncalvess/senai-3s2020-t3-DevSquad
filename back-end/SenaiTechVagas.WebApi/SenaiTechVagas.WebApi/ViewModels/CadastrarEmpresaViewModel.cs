@@ -45,7 +45,8 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string Senha { get; set; }
         public string RespostaSeguranca { get; set; }
 
-        [StringLength(20, MinimumLength = 5)]
+        [StringLength(50, MinimumLength = 5)]
         public string PerguntaSeguranca { get; set; }
+        public string CaminhoImagem { get; set; }
     }
 }

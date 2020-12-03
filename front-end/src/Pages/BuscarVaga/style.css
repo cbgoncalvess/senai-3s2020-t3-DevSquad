@@ -131,6 +131,47 @@ button .btn-filter :hover{
   }
 }
 
+.BarraPesquisa{
+  display:flex;
+  height: 250px;  
+  align-items: center;
+  justify-content:center;
+  flex-direction: column;
+  background-image: url("../../assets/bannerBuscarVagas.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.PeliculaPesquisa{
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  width: 50%;
+  height: 50px;
+  background-color: #5E2A2A;
+  opacity: 0.8;
+  box-sizing: border-box;
+  border: solid #5E2A2A;
+  padding: 15px;
+}
+
+.InputPesquisa{
+  display: flex;
+  width: 100%;
+  height: 25px;
+}
+
+#BotaoPesquisa{
+  margin-left: 10px;
+  width: 100px;
+  height: 29px;
+  background-color: #713C3C;
+  color: white;
+  border-radius: 5px;
+}
+
 @media(max-width: 425px){
   .input-searchJobs{
     padding: 10px;
@@ -140,6 +181,11 @@ button .btn-filter :hover{
   }
   .btn-search{
     height: 36px;
+  }
+
+  .PeliculaPesquisa{
+    flex-direction: column;
+    height: 100px;
   }
 }
 

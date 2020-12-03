@@ -27,6 +27,7 @@ export default function PerfilEmpresa() {
   const [NovaSenha, SetNovaSenha] = useState("");
   const [SenhaAtual, setSenha] = useState("");
   const [Candidatos, SetCandidato] = useState([]);
+  const[CaminhoImagem,setCaminho]=useState('');
 
   useEffect(() => {
     listarCandidatos();
@@ -111,6 +112,7 @@ export default function PerfilEmpresa() {
         SetEmailContato(dados.emailContato);
         SetEstado(dados.uf);
         SetCidade(dados.localidade);
+        setCaminho(dados.caminhoImagem);
       })
       .catch((err) => console.error(err));
   };
@@ -191,6 +193,27 @@ export default function PerfilEmpresa() {
     }
   }
 
+  const AtualizarImagem = (event) => {
+    event.preventDefault();
+
+    let formdata = new FormData();
+
+    formdata.append('arquivo', event.target.files[0]);
+
+    fetch('http://localhost:5000/api/Usuario/AlterarImagem',{
+        method : 'PUT',
+        headers: {
+            authorization: 'Bearer ' + localStorage.getItem('token')
+        },
+        body : formdata
+    })
+    .then(response => response.json())
+    .then(data => {
+        setCaminho(data.caminhoImagem);
+    })
+    .catch(err => console.log(err))
+}
+
   return (
     <div className="bodyPartVizualizarPerfil">
       <AccessBar />
@@ -199,7 +222,8 @@ export default function PerfilEmpresa() {
       <div className="meioPerfil">
         <div className="EsquerdoPerfil">
           <div className="imgPefilTexto">
-            <img className="imgperfil" src={imgPadrao} alt="perfil" />
+          <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
+          <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" /></label>
             <h3>{RazaoSocial}</h3>
             <p>Empresa</p>
           </div>

@@ -48,6 +48,8 @@ namespace SenaiTechVagas.WebApi.Controllers
                     Telefone = NovoCandidato.Telefone,
                     LinkLinkedinCandidato= NovoCandidato.LinkLinkedinCandidato
                 };
+                if (NovoCandidato.CaminhoImagem == null|| NovoCandidato.CaminhoImagem.Length<=2)
+                    NovoCandidato.CaminhoImagem = "user.png";
 
                 var Response = usuarioRepository.VerificarSeCredencialJaFoiCadastrada(vm);
                 if (Response == null)
@@ -77,6 +79,8 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
+                if (empresa.CaminhoImagem == null || empresa.CaminhoImagem.Length <= 2)
+                    empresa.CaminhoImagem = "Teste.webp";
                 VerificacaoViewModel vm = new VerificacaoViewModel()
                 {
                     Email = empresa.Email,
@@ -195,7 +199,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="idVaga">Identificador Vaga</param>
         /// <returns>REtorna Vaga buscada.</returns>
-       // [Authorize]
+        [Authorize]
         [HttpGet("BuscarPorId/{idVaga}")]
         public IActionResult BuscarVagaPeloId(int idVaga)
         {
@@ -237,6 +241,25 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 return Ok(usuarioRepository.ListarCurso());
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [Authorize]
+        [HttpPut("AlterarImagem")]
+        public IActionResult AlterarImagemPerfil([FromForm] string e)
+        {
+            try
+            {
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                var arquivo = Request.Form.Files[0];
+                var a=usuarioRepository.AlterarImagemPerfil(idUsuario, arquivo);
+                UploadImagem imagem = new UploadImagem();
+                imagem.CaminhoImagem = a;
+                    return Ok(imagem);
             }
             catch (Exception)
             {

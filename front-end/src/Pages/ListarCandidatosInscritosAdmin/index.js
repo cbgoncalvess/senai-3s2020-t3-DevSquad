@@ -23,7 +23,6 @@ export default function ListarCandidatosInscritos() {
 
     const [Candidatos, setCandidatos] = useState([]);
     const [idInscricao, setInscricao] = useState(0);
-
     let [idVaga, setIdVaga] = useState(0);
     const [Experiencia, setExperiencia] = useState('');
     const [TipoContrato, setTipoContrato] = useState('');
@@ -36,6 +35,7 @@ export default function ListarCandidatosInscritos() {
     const [DescricaoBeneficio, setDescricaoBeneficio] = useState('');
     const [DescricaoEmpresa, setDescricaoEmpresa] = useState('');
     const [DescricaoVaga, setDescricaoVaga] = useState('');
+    const[caminhoImagem,setCaminho]=useState('');
 
 let History=useHistory();
 
@@ -78,6 +78,7 @@ let History=useHistory();
             setDescricaoBeneficio(dados.descricaoBeneficio);
             setDescricaoEmpresa(dados.descricaoEmpresa);
             setDescricaoVaga(dados.descricaoVaga);
+            setCaminho(dados.caminhoImagem);
         }).catch(err => console.error(err));
     }
 
@@ -124,7 +125,7 @@ let History=useHistory();
                                     <img className="Delete" src={imgDelete} onClick={()=>DeletarInscricao(item.idInscricao)} />
                                 </div>
                                     <div className="DadosInscrito">
-                                        <img src={imgEmpresa} />
+                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} />
                                         <div className="Column-Inscricao">
                                             <h3>{item.nomeCandidato}</h3>
                                             <p className="NomeCurso">{item.nomeCurso}</p>
@@ -140,7 +141,7 @@ let History=useHistory();
                         <div className="vaga">
                         <h5 className="ExcluirVagaText" onClick={DeletarVaga}>Excluir vaga</h5>
                             <div className="VagaCompleta">
-                                <img src={imgEmpresa} className="ImagemEmpresa" ></img>
+                                <img src={'http://localhost:5000/imgPerfil/'+caminhoImagem} className="ImagemEmpresa" ></img>
                                 <div className="MainVaga">
                                 <h3>{TituloVaga}</h3>
                                     <div className="InfoVagas">

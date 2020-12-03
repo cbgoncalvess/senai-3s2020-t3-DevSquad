@@ -13,10 +13,7 @@ import AccessBar from '../../Components/AccessBar';
 import BlackButton from '../../Components/BlackButton';
 import AccessMenu from '../../Components/AccessMenu';
 
-
-
 export default function CadastrarColaborador() {
-    const[idColaborador,setColaborador]=useState(0);
     const [Colaboradores, setColaboradores] = useState([]);
     const [Email,SetEmail]=useState('');
     const [Senha, SetSenha] = useState('');

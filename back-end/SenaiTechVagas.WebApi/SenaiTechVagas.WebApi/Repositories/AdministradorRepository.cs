@@ -7,6 +7,7 @@ using SenaiTechVagas.WebApi.Utils;
 using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -136,7 +137,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                   " SELECT Estagio.DataCadastro,Curso.NomeCurso,Estagio.IdEstagio,PeriodoEstagio,E.RazaoSocial,C.NomeCompleto,A.NomeArea,C.Telefone,U.Email FROM Estagio" +
+                   " SELECT U.CaminhoImagem,Estagio.DataCadastro,Curso.NomeCurso,Estagio.IdEstagio,PeriodoEstagio,E.RazaoSocial,C.NomeCompleto,A.NomeArea,C.Telefone,U.Email FROM Estagio" +
                    " INNER JOIN Empresa E on E.IdEmpresa = Estagio.IdEmpresa" +
                    " INNER JOIN Candidato C on C.IdCandidato = Estagio.IdCandidato" +
                    " INNER JOIN Usuario U on U.IdUsuario = C.IdUsuario" +
@@ -162,6 +163,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                                 idEstagio = Convert.ToInt32(rdr["IdEstagio"]),
                                 NomeCompleto = (rdr["NomeCompleto"]).ToString(),
                                 EmailCandidato = (rdr["Email"]).ToString(),
+                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
                                 PeriodoEstagio = Convert.ToInt32(rdr["PeriodoEstagio"]),
                                 Telefone = (rdr["Telefone"]).ToString(),
                                 RazaoSocial = (rdr["RazaoSocial"]).ToString(),
@@ -402,7 +404,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                   " SELECT NomeCompleto,Email,IdCandidato,U.IdUsuario,TU.IdTipoUsuario FROM Candidato" +
+                   " SELECT U.CaminhoImagem,NomeCompleto,Email,IdCandidato,U.IdUsuario,TU.IdTipoUsuario FROM Candidato" +
                    " INNER JOIN Usuario U on U.IdUsuario = Candidato.IdUsuario" +
                    " INNER JOIN TipoUsuario TU on TU.IdTipoUsuario=U.IdTipoUsuario";
                     con.Open();
@@ -429,7 +431,8 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                             Usuario U = new Usuario
                             {
-                                Email = (rdr["Email"]).ToString()
+                                Email = (rdr["Email"]).ToString(),
+                                CaminhoImagem=(rdr["CaminhoImagem"]).ToString()
                             };
 
                             TipoUsuario Tu = new TipoUsuario
@@ -571,6 +574,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                         ctx.Remove(empresaBuscada);
                         ctx.Remove(usuarioBuscado);
                         ctx.SaveChanges();
+                        if (usuarioBuscado.CaminhoImagem != "Teste.webp")
+                        {
+                        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/");
+                        string CaminhoDoArquivo = pathToSave + usuarioBuscado.CaminhoImagem;
+                        File.Delete(CaminhoDoArquivo);
+                        }
                         return true;
                     }
 
@@ -580,6 +589,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                         ctx.Remove(candidatoBuscado);
                         ctx.Remove(usuarioBuscado);
                         ctx.SaveChanges();
+                        if (usuarioBuscado.CaminhoImagem != "user.png")
+                        {
+                            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/");
+                            string CaminhoDoArquivo = pathToSave + usuarioBuscado.CaminhoImagem;
+                            File.Delete(CaminhoDoArquivo);
+                        }
                         return true;
                     }
                     return false;
@@ -601,7 +616,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                   " SELECT RazaoSocial,EmailContato,U.Email,IdEmpresa,U.IdUsuario,TU.IdTipoUsuario FROM Empresa" +
+                   " SELECT U.CaminhoImagem,RazaoSocial,EmailContato,U.Email,IdEmpresa,U.IdUsuario,TU.IdTipoUsuario FROM Empresa" +
                    " INNER JOIN Usuario U on U.IdUsuario = Empresa.IdUsuario" +
                    " INNER JOIN TipoUsuario TU on TU.IdTipoUsuario=U.IdTipoUsuario";
                     con.Open();
@@ -629,7 +644,8 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                             Usuario U = new Usuario
                             {
-                                Email = (rdr["Email"]).ToString()
+                                Email = (rdr["Email"]).ToString(),
+                                CaminhoImagem=(rdr["CaminhoImagem"]).ToString()
                             };
 
                             TipoUsuario Tu = new TipoUsuario
@@ -979,7 +995,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                    "SELECT Inscricao.IdStatusInscricao,C.IdCandidato,IdInscricao,C.NomeCompleto,C.Telefone,Curso.NomeCurso,U.Email FROM Inscricao" +
+                    "SELECT U.CaminhoImagem,Inscricao.IdStatusInscricao,C.IdCandidato,IdInscricao,C.NomeCompleto,C.Telefone,Curso.NomeCurso,U.Email FROM Inscricao" +
                     " INNER JOIN Candidato C ON C.IdCandidato=Inscricao.IdCandidato" +
                     " INNER JOIN Usuario U ON U.IdUsuario=C.IdUsuario" +
                     " INNER JOIN Curso ON Curso.IdCurso=C.IdCurso" +
@@ -1008,7 +1024,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                                 NomeCandidato = rdr["NomeCompleto"].ToString(),
                                 Telefone = rdr["Telefone"].ToString(),
                                 NomeCurso = rdr["NomeCurso"].ToString(),
-                                Email = rdr["Email"].ToString()
+                                Email = rdr["Email"].ToString(),
+                                CaminhoImagem=rdr["CaminhoImagem"].ToString()
                             };
                             listInscricoes.Add(vm);
                         }
@@ -1094,6 +1111,24 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception)
                 {
                     return false;
+                }
+            }
+        }
+
+        public UploadImagem BuscarImagemPerfilAdm(int idAms)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    var usuario = ctx.Usuario.Find(idAms);
+                    UploadImagem up = new UploadImagem();
+                    up.CaminhoImagem = usuario.CaminhoImagem;
+                    return up;
+                }
+                catch (Exception)
+                {
+                    return null;
                 }
             }
         }

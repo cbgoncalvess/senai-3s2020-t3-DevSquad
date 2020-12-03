@@ -19,6 +19,7 @@ export default function PerfilCandidato() {
     const [Linkedin, SetLinkedin] = useState('');
     const [Curso, SetCurso] = useState('');
     const [Area, SetArea] = useState('');
+    const[CaminhoImagem,setCaminho]=useState('');
 
     const [Cursos, setCursos] = useState([]);
     const [Vagas, setVagas] = useState([]);
@@ -57,6 +58,7 @@ export default function PerfilCandidato() {
             SetNomeCompleto(dados.nomeCompleto);
             SetArea(dados.idArea);
             SetCurso(dados.idCurso);
+            setCaminho(dados.caminhoImagem)
         }).catch(err => console.error(err));
     }
 
@@ -155,6 +157,27 @@ export default function PerfilCandidato() {
         }
     }
 
+    const AtualizarImagem = (event) => {
+        event.preventDefault();
+    
+        let formdata = new FormData();
+    
+        formdata.append('arquivo', event.target.files[0]);
+    
+        fetch('http://localhost:5000/api/Usuario/AlterarImagem',{
+            method : 'PUT',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            },
+            body : formdata
+        })
+        .then(response => response.json())
+        .then(data => {
+            setCaminho(data.caminhoImagem);
+        })
+        .catch(err => console.log(err))
+    }
+
     return (
         <div className="bodyPartVizualizarPerfil">
             <AccessBar />
@@ -163,7 +186,8 @@ export default function PerfilCandidato() {
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
                     <div className="imgPefilTexto">
-                        <img className="imgperfil" src={imgPadrao} alt="perfil" />
+                    <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
+                        <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil"/></label>
                         <h3>{NomeCompleto}</h3>
                         <p>Candidato</p>
                     </div>
@@ -179,7 +203,7 @@ export default function PerfilCandidato() {
                             return (
                                 <div className="BoxPerfilCandidato">
                                     <div className="flexBoxPerfilCandidato">
-                                        <img src={imgPadrao} />
+                                        <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} />
                                         <h3>{"Nome da empresa:"+item.razaoSocial}</h3>
                                     </div>
                                     <h3>{"Tipo do contrato:"+item.tipoContrato}</h3>

@@ -7,6 +7,7 @@ import AccessMenu from "../../Components/AccessMenu";
 import Input from "../../Components/Input";
 import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
+import Userimg from '../../assets/images/user.webp'
 
 import { mascara } from '../../services/mask';
 
@@ -27,11 +28,12 @@ export default function CadastroEmpresa() {
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
   const [PerguntaSeguranca, SetPergunta] = useState("");
   const [RespostaSeguranca, SetResposta] = useState("");
+  const [CaminhoImagem, setCaminho] = useState('');
 
   const history = useHistory();
 
   const emailRegex = /^\S+@\S+\.\S+$/g;
-  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/g;
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{8,})/g;
 
   let result = document.querySelector(".password-matching-text");
   let redBox = document.querySelector("#confirmarSenha-cadastroCandidato");
@@ -45,6 +47,25 @@ export default function CadastroEmpresa() {
     listarcurso();
   }, []);
   
+
+  const uploadFile = (event) => {
+    event.preventDefault();
+
+    let formdata = new FormData();
+
+    formdata.append('arquivo', event.target.files[0]);
+
+    fetch('http://localhost:5000/api/Upload',{
+        method : 'POST',
+        body : formdata
+    })
+    .then(response => response.json())
+    .then(data => {
+        setCaminho(data.caminhoImagem);
+    })
+    .catch(err => console.log(err))
+}
+
   const escreverResultado = () => {
     if (Senha !== ConfirmarSenha) {
       redBox.style.border = "solid red 1px";
@@ -84,32 +105,35 @@ export default function CadastroEmpresa() {
       alert("As senhas não estão parecidas");
     } else if (verificacaoEmail !== true) {
       alert("O e-mail deve ser válido");
-    } else {
-      const data = {
-        nomeCompleto: NomeCompleto,
-        rg: Rg,
-        cpf: CPF,
-        telefone: Telefone,
-        linkLinkedinCandidato: Linkedin,
-        idCurso: Curso,
-        email: Email,
-        senha: Senha,
-        respostaSeguranca: RespostaSeguranca,
-        perguntaSeguranca: PerguntaSeguranca,
-      };
-      fetch("http://localhost:5000/api/Usuario/Candidato", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "content-type": "application/json",
-        },
+    } else if(verificacaoSenha || verificacaoConfirmarSenha){
+      alert('A senha não confere com o padrão solicitado');
+    }else {
+    const data = {
+      nomeCompleto: NomeCompleto,
+      rg: Rg,
+      cpf: CPF,
+      telefone: Telefone,
+      linkLinkedinCandidato: Linkedin,
+      idCurso: Curso,
+      email: Email,
+      senha: Senha,
+      respostaSeguranca: RespostaSeguranca,
+      perguntaSeguranca: PerguntaSeguranca,
+      CaminhoImagem:CaminhoImagem
+    };
+    fetch("http://localhost:5000/api/Usuario/Candidato", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+    .then((response) => response.json())
+    .then((dados) => {
+      console.log(dados);
+      history.push("/");
       })
-      .then((response) => response.json())
-      .then((dados) => {
-        alert(dados);
-        history.push("/");
-      })
-        .catch((err) => console.error(err));
+      .catch((err) => console.error(err));
     }
   }
 
@@ -124,6 +148,18 @@ export default function CadastroEmpresa() {
       .catch((err) => console.error(err));
   };
 
+function View(){
+  if(CaminhoImagem=='' && CaminhoImagem.length<3){
+    return(
+    <img className="imagemCadastro" src={Userimg}/>
+    );
+  }else if(CaminhoImagem.length>3){
+    return(
+      <img className="imagemCadastro" src={'http://localhost:5000/ImageBackUp/'+CaminhoImagem}/>
+      );
+  }
+}
+
   return (
     <body>
       <AccessBar />
@@ -137,7 +173,13 @@ export default function CadastroEmpresa() {
               Bem-vindo ao cadastro do candidato. <br />
               Ficamos felizes de tê-lo na nossa plataforma
             </p>
+              <div className="imgCadastroPerfil">
+              {View()}
+              <br/>
+              <button className="btSelecionar"><label htmlFor="ButtonImage" className="lbBt">Selecione uma imagem</label></button>
+              </div>
             <form className="form" onSubmit={salvar}>
+              <input type="file" className="none" id="ButtonImage" onChange={event => { uploadFile(event)}}/>
               <Input
                 name="fullName"
                 className="cadastre"

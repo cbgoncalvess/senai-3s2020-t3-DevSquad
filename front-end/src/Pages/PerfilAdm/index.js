@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 import {useHistory } from 'react-router-dom'
 
 import Header from '../../Components/Header';
@@ -22,8 +22,27 @@ export default function PerfilAdm() {
     const [NovaSenha, SetNovaSenha] = useState('');
     const [Email, SetEmail] = useState([]);
     let [Opcao, SetOpcao] = useState('');
+    const[CaminhoImagem,setCaminho]=useState('');
+
+    useEffect(() => {
+        BuscarImagem();
+      }, []);
 
     let history=useHistory();
+
+    const BuscarImagem = () => {
+        fetch('http://localhost:5000/api/Administrador/ImagemPerfilAdm', {
+            method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                setCaminho(dados.caminhoImagem);
+            })
+            .catch(err => console.error(err));
+    }
     
     function IrParaInscricoes(){
         localStorage.setItem("idVagaSelecionadaAdm", idVaga);
@@ -150,6 +169,27 @@ const DeletarVaga = (id) => {
         }
     }
 
+    const AtualizarImagem = (event) => {
+        event.preventDefault();
+    
+        let formdata = new FormData();
+    
+        formdata.append('arquivo', event.target.files[0]);
+    
+        fetch('http://localhost:5000/api/Usuario/AlterarImagem',{
+            method : 'PUT',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            },
+            body : formdata
+        })
+        .then(response => response.json())
+        .then(data => {
+            setCaminho(data.caminhoImagem);
+        })
+        .catch(err => console.log(err))
+    }
+
     return (
         <div className="bodyPartVizualizarPerfil">
             <AccessBar />
@@ -157,8 +197,9 @@ const DeletarVaga = (id) => {
             <AccessMenu />
             <div className="meioPerfil">
                 <div className="EsquerdoPerfil">
+                    <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
                     <div className="imgPefilTexto">
-                        <img className="imgperfil" src={imgPadrao} alt="perfil" />
+                        <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" /></label>
                         <h3>Robertinho monstrão</h3>
                         <p>administrador</p>
                     </div>
@@ -211,7 +252,7 @@ const DeletarVaga = (id) => {
                             return (
                                 <div key={item.idCandidato} className="BoxPerfil">
                                     <div className="flexBoxPerfil">
-                                        <img className="imgUsuario" src={imgPadrao} alt="usuario" />
+                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem} alt="usuario" />
                                         <div className="ColumnNomeEmail">
                                             <h2>{item.nomeCompleto}</h2>
                                             <p>{item.idUsuarioNavigation.email}</p>
@@ -236,7 +277,7 @@ const DeletarVaga = (id) => {
                             return (
                                 <div key={item.idEmpresa} className="BoxPerfil">
                                     <div className="flexBoxPerfil">
-                                        <img className="imgUsuario" src={imgPadrao} alt="usuario" />
+                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem} alt="usuario" />
                                         <div className="ColumnNomeEmail">
                                             <h2>{item.razaoSocial}</h2>
                                             <p>{item.emailContato}</p>
@@ -260,7 +301,7 @@ const DeletarVaga = (id) => {
                             return (
                                 <div key={item.idEmpresa} className="BoxPerfil">
                                     <div className="flexBoxPerfil">
-                                        <img className="imgUsuario" src={imgPadrao} alt="usuario" />
+                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="usuario" />
                                         <div className="ColumnNomeEmail">
                                             <h2>{item.tituloVaga}</h2>
                                             <p>{item.nomeArea}</p>
