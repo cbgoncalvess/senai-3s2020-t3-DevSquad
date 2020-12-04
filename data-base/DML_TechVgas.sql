@@ -142,9 +142,9 @@ VALUES('Alexia Melhado','123452345','12387624567','12341112345','Alexia/Linkedin
 GO
 
 INSERT INTO Vaga(TituloVaga,DescricaoVaga,DescricaoEmpresa,DescricaoBeneficio,DataPublicacao,DataExpiracao,Experiencia,TipoContrato,Salario,Localidade,Estado,CEP,Logradouro,IdTipoRegimePresencial,Complemento,IdEmpresa,IdArea)
-VALUES('Desenvolvedor Full Stack','Será o responsavel por resolver os nossos problemas','Somos um grupo em uma curva grande de crescimento no mercado','você será o nosso funcionário','30-11-2020','30-12-2020','Pleno','CLT',2000,'São Paulo','SP','14875458','Rua Barão de Limeira',1,'Perto da folha',2,1),
+VALUES('Desenvolvedor Full Stack','Será o responsavel por resolver os nossos problemas','Somos um grupo em uma curva grande de crescimento no mercado','você será o nosso funcionário','30-11-2020','30-12-2020','Pleno','CLT',2000,'São Paulo','SP','14875458','Rua Barão de Limeira',1,'Perto da folha',1,1),
 ('Técnico de Redes','Será o responsavel por resolver os nossos problemas','Somos um grupo em uma curva grande de crescimento no mercado','você será o nosso funcionário','30-11-2020','30-12-2020','Pleno','PJ',5000,'São Paulo','SP','14875458','Rua Barão de Limeira',2,'Perto da folha',1,1),
-('Designer','Será o responsavel por estilizar nosso sistema','Somos um grupo em uma curva grande de crescimento no mercado','você será o nosso funcionário','30-11-2020','30-12-2020','Júnior','CLT',3000,'São Paulo','SP','14875458','Rua Barão de Limeira',3,'Perto da folha',2,1)
+('Designer','Será o responsavel por estilizar nosso sistema','Somos um grupo em uma curva grande de crescimento no mercado','você será o nosso funcionário','30-11-2020','30-12-2020','Júnior','CLT',3000,'São Paulo','SP','14875458','Rua Barão de Limeira',3,'Perto da folha',1,1)
 GO
 
 INSERT INTO Estagio(DataCadastro,PeriodoEstagio,IdCandidato,IdEmpresa)

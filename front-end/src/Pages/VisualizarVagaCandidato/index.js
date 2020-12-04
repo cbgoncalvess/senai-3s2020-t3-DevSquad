@@ -42,7 +42,7 @@ export default function VisualizarVaga() {
   const [tipoPresenca, setTipoPresenca] = useState("");
   const [Logradouro, setLogradouro] = useState("");
   const [Complemento, setComplemento] = useState("");
-  const[CaminhoImagem,setCaminho]=useState("");
+  const [CaminhoImagem, setCaminho] = useState("");
 
   useEffect(() => {
     idVaga = localStorage.getItem("idVagaSelecionada");
@@ -86,7 +86,12 @@ export default function VisualizarVaga() {
         setTituloVaga(dados.tituloVaga);
         setLogradouro(dados.logradouro);
         setTipoContrato(dados.tipoContrato);
-        setSalario(dados.salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
+        setSalario(
+          dados.salario.toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL",
+          })
+        );
         setTecnologias(dados.tecnologias);
         setComplemento(dados.complemento);
         setCidade(dados.localidade);
@@ -119,7 +124,11 @@ export default function VisualizarVaga() {
 
         <section className="infoVagaVisualizar">
           <div className="icard-division">
-            <img src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="Logo da empresa" />
+            <img
+              className="ImagemEmpresa"
+              src={"http://localhost:5000/imgPerfil/" + CaminhoImagem}
+              alt="Logo da empresa"
+            />
 
             <div className="divisionTagsVagas">
               <div className="card-vaga-info">
