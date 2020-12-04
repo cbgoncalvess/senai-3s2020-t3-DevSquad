@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+//import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function VizualizarVagaEmpresa() {
   const [Inscricoes, setInscricoes] = useState([]);
@@ -30,7 +30,7 @@ export default function VizualizarVagaEmpresa() {
   const listarCandidatosAprovados = async () => {
     fetch(
       "http://localhost:5000/api/Empresa/ListarCandidatosAprovados/" +
-        (await AsyncStorage.getItem("VagaSelecionada")),
+       // (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
       }
@@ -45,7 +45,7 @@ export default function VizualizarVagaEmpresa() {
   const BuscarPorId = async () => {
     fetch(
       "http://localhost:5000/api/Usuario/BuscarPorId/" +
-        (await AsyncStorage.getItem("VagaSelecionada")),
+       // (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
       }

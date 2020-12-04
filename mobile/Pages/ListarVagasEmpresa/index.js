@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+//import AsyncStorage from "@react-native-async-storage/async-storage";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
 
@@ -24,7 +24,7 @@ export default function ListarVagasEmpresa({ navigation }) {
 
   async function ArmazenarIdVaga() {
     try {
-      await AsyncStorage.setItem("VagaSelecionada", idVaga);
+      //await AsyncStorage.setItem("VagaSelecionada", idVaga);
       navigation.navigate("VagaEmpresa");
     } catch (e) {
       console.log(e);
