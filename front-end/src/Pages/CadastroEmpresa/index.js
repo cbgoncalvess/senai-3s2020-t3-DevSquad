@@ -9,7 +9,7 @@ import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
 
 import imagemCadastroEmpresa from "../../assets/imgCadastroEmpresa.webp";
-import Userimg from '../../assets/Teste.webp'
+import Userimg from "../../assets/Teste.webp";
 
 import "./style.css";
 
@@ -32,7 +32,7 @@ export default function CadastroEmpresa() {
   let [Cidade, SetCidade] = useState("");
   const [Senha, SetSenha] = useState("");
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
-  const[CaminhoImagem,setCaminho]=useState('');
+  const [CaminhoImagem, setCaminho] = useState("");
 
   const history = useHistory();
 
@@ -63,7 +63,7 @@ export default function CadastroEmpresa() {
             SetCidade(data.localidade);
             SetEstado(data.uf);
           } else {
-            alert('O CEP não existe');
+            alert("O CEP não existe");
           }
         })
         .catch((erro) => console.error(erro));
@@ -78,7 +78,6 @@ export default function CadastroEmpresa() {
       redBox.style.boxShadow = "3px 3px 3px gray";
       result.style.color = "red";
       result.innerText = "As senhas não conferem";
-
     } else {
       redBox.style.border = "unset";
       redBox.style.boxShadow = "unset";
@@ -86,17 +85,16 @@ export default function CadastroEmpresa() {
       result.innerText = "As senhas conferem";
     }
 
-    if(verificacaoSenha !== true || verificacaoConfirmarSenha !== true){
+    if (verificacaoSenha !== true || verificacaoConfirmarSenha !== true) {
       redBox.style.border = "solid red 1px";
       redBox.style.boxShadow = "3px 3px 3px gray";
       instructions.style.color = "red";
-      instructions.innerText =
-        `A senha deve conter 8 caracteres, dentre eles:
+      instructions.innerText = `A senha deve conter 8 caracteres, dentre eles:
       • 1 letra minúscula
       • 1 letra maiúscula
       • 1 número
       • 1 caractere especial`;
-    }else{
+    } else {
       redBox.style.border = "unset";
       redBox.style.boxShadow = "unset";
       instructions.style.color = "unset";
@@ -105,14 +103,14 @@ export default function CadastroEmpresa() {
   };
 
   function salvar(e) {
-   e.preventDefault();
-   if (Senha !== ConfirmarSenha) {
-     alert("As senhas são difererentes");
-   } else if (verificacaoEmail !== true) {
-     alert("O e-mail deve ser válido");
-   } else if(verificacaoSenha !== true){
-     alert('A senha não atende aos requisitos')
-   }else {
+    e.preventDefault();
+    if (Senha !== ConfirmarSenha) {
+      alert("As senhas são difererentes");
+    } else if (verificacaoEmail !== true) {
+      alert("O e-mail deve ser válido");
+    } else if (verificacaoSenha !== true) {
+      alert("A senha não atende aos requisitos");
+    } else {
       const data = {
         NomeReponsavel: NomeResponsavel,
         Cnpj: CNPJ,
@@ -131,7 +129,7 @@ export default function CadastroEmpresa() {
         Senha: Senha,
         RespostaSeguranca: RespostaSeguranca,
         PerguntaSeguranca: PerguntaSeguranca,
-        CaminhoImagem:CaminhoImagem
+        CaminhoImagem: CaminhoImagem,
       };
       console.log(data);
       fetch("http://localhost:5000/api/Usuario/Empresa", {
@@ -158,30 +156,31 @@ export default function CadastroEmpresa() {
 
     let formdata = new FormData();
 
-    formdata.append('arquivo', event.target.files[0]);
+    formdata.append("arquivo", event.target.files[0]);
 
-    fetch('http://localhost:5000/api/Upload',{
-        method : 'POST',
-        body : formdata
+    fetch("http://localhost:5000/api/Upload", {
+      method: "POST",
+      body: formdata,
     })
-    .then(response => response.json())
-    .then(data => {
-        setCaminho(data);
-    })
-    .catch(err => console.log(err))
-}
+      .then((response) => response.json())
+      .then((data) => {
+        setCaminho(data.caminhoImagem);
+      })
+      .catch((err) => console.log(err));
+  };
 
-function View(){
-  if(CaminhoImagem=='' && CaminhoImagem.length<3){
-    return(
-    <img className="imagemCadastro" src={Userimg}/>
-    );
-  }else if(CaminhoImagem.length>3){
-    return(
-      <img className="imagemCadastro" src={'http://localhost:5000/ImageBackUp/'+CaminhoImagem}/>
+  function View() {
+    if (CaminhoImagem == "" && CaminhoImagem.length < 3) {
+      return <img className="imagemCadastro" src={Userimg} />;
+    } else if (CaminhoImagem.length > 3) {
+      return (
+        <img
+          className="imagemCadastro"
+          src={"http://localhost:5000/ImageBackUp/" + CaminhoImagem}
+        />
       );
+    }
   }
-}
 
   return (
     <body>
@@ -199,10 +198,22 @@ function View(){
             </p>
             <div className="imgCadastroPerfil">
               {View()}
-              <br/>
-              <button className="btSelecionar"><label htmlFor="ButtonImage" className="lbBt">Selecione uma imagem</label></button>
-              </div>
+              <br />
+              <button className="btSelecionar">
+                <label htmlFor="ButtonImage" className="lbBt">
+                  Selecione uma imagem
+                </label>
+              </button>
+            </div>
             <form className="form" onSubmit={salvar}>
+              <input
+                type="file"
+                className="none"
+                id="ButtonImage"
+                onChange={(event) => {
+                  uploadFile(event);
+                }}
+              />
               <Input
                 name={"responsibleName"}
                 className="cadastre"
@@ -306,6 +317,8 @@ function View(){
                   className="cadastre"
                   id="cep"
                   data-mask="00000-000"
+                  maxLength={8}
+                  minLength={8}
                   data-mask-selectonfocus="true"
                   onBlur={(e) => {
                     e.preventDefault();
@@ -415,15 +428,33 @@ function View(){
                   required
                 >
                   <option value="0">Selecione uma pergunta de segurança</option>
-                  <option value="Como se chama o seu cachorro">Como se chama o seu cachorro</option>
-                  <option value="Qual o seu sobrenome">Qual o seu sobrenome</option>
-                  <option value="Qual o nome da sua mãe/pai">Qual o nome da sua mãe/pai</option>
-                  <option value="Para qual país você gostaria de viajar">Para qual país você gostaria de viajar</option>
-                  <option value="Qual era sua matéria preferida na escola">Qual era sua matéria preferida na escola</option>
-                  <option value="De onde vem sua família">De onde vem sua família</option>
-                  <option value="Do que você mais gosta de fazer nas suas horas vagas">Do que você mais gosta de fazer nas suas horas vagas</option>
-                  <option value="Qual a palavra que te define como pessoa">Qual a palavra que te define como pessoa</option>
-                  <option value="Qual o ano mais importante da sua vida">Qual o ano mais importante da sua vida</option>
+                  <option value="Como se chama o seu cachorro">
+                    Como se chama o seu cachorro
+                  </option>
+                  <option value="Qual o seu sobrenome">
+                    Qual o seu sobrenome
+                  </option>
+                  <option value="Qual o nome da sua mãe/pai">
+                    Qual o nome da sua mãe/pai
+                  </option>
+                  <option value="Para qual país você gostaria de viajar">
+                    Para qual país você gostaria de viajar
+                  </option>
+                  <option value="Qual era sua matéria preferida na escola">
+                    Qual era sua matéria preferida na escola
+                  </option>
+                  <option value="De onde vem sua família">
+                    De onde vem sua família
+                  </option>
+                  <option value="Do que você mais gosta de fazer nas suas horas vagas">
+                    Do que você mais gosta de fazer nas suas horas vagas
+                  </option>
+                  <option value="Qual a palavra que te define como pessoa">
+                    Qual a palavra que te define como pessoa
+                  </option>
+                  <option value="Qual o ano mais importante da sua vida">
+                    Qual o ano mais importante da sua vida
+                  </option>
                 </select>
               </div>
 

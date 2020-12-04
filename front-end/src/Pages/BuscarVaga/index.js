@@ -10,7 +10,7 @@ import Input from "../../Components/Input";
 import imgEmpresa from "../../assets/Teste.webp";
 import Tag from "../../Components/Tag/Index";
 import InfoVaga from "../../Components/InfoVaga/Index";
-import imgGlobal from '../../assets/global.png';
+import imgGlobal from "../../assets/global.png";
 import imgDesenvolvimento from "../../assets/web-programming.webp";
 import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
 import imgSalario from "../../assets/money (1).webp";
@@ -24,12 +24,12 @@ export default function BuscarVaga() {
   let history = useHistory();
   const [ListVagas, SetListVagas] = useState([]);
   let [idVaga, SetIdVaga] = useState(0);
-  const [OpcaoFiltro, setOpcaoFiltro] = useState('');
+  const [OpcaoFiltro, setOpcaoFiltro] = useState("");
   const [VagaTipoContrato, setVagaTipoContrato] = useState([]);
   const [VagaExperiencia, setVagaExperiencia] = useState([]);
-  const[VagaTecnologia,setVagaTecnologia]=useState([]);
-  const[Tecnologias,setTecnologias]=useState([]);
-  
+  const [VagaTecnologia, setVagaTecnologia] = useState([]);
+  const [Tecnologias, setTecnologias] = useState([]);
+
   useEffect(() => {
     listarVagas();
     View();
@@ -42,13 +42,16 @@ export default function BuscarVaga() {
         VagaTipoContrato.push(ListVagas[i]);
       }
     }
-  }
+  };
 
-function FormatarSalario(list){
-for(var i=0;i<list.length;i++){
-  list[i].salario = list[i].salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
-}
-}
+  function FormatarSalario(list) {
+    for (var i = 0; i < list.length; i++) {
+      list[i].salario = list[i].salario.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      });
+    }
+  }
 
   const FiltrarExperiencia = (Experiencia) => {
     for (let i = 0; i < ListVagas.length; i++) {
@@ -56,272 +59,284 @@ for(var i=0;i<list.length;i++){
         VagaExperiencia.push(ListVagas[i]);
       }
     }
-  }
+  };
 
-const FiltrarTecnologia=(tecnologia)=>{
-for(var i=0;i<ListVagas.length;i++){
-  let Tecnologias=ListVagas[i].tecnologias;
-  for(var o=0;o<Tecnologias.length;o++){
-        if(Tecnologias[o]==tecnologia){
+  const FiltrarTecnologia = (tecnologia) => {
+    for (var i = 0; i < ListVagas.length; i++) {
+      let Tecnologias = ListVagas[i].tecnologias;
+      for (var o = 0; o < Tecnologias.length; o++) {
+        if (Tecnologias[o] == tecnologia) {
           VagaTecnologia.push(ListVagas[i]);
           break;
         }
+      }
     }
-  }
-}
+  };
 
   function View() {
-    if (OpcaoFiltro == '') {
+    if (OpcaoFiltro == "") {
       return (
         <div className="vagas">
-          {
-            ListVagas.map((item) => {
-              return (
-                <div
-                  key={item.idVaga}
-                  className="vaga"
-                  onClick={(event) => {
-                    idVaga = item.idVaga;
-                    BuscarVagaPeloId();
-                  }}
-                >
-                  <div className="VagaCompleta">
-                    <img
-                      src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem}
-                      className="ImagemEmpresa"
-                      alt="Imagem de perfil"
-                    ></img>
-                    <div className="MainVaga">
-                      <h3>{item.tituloVaga}</h3>
-                      <div className="InfoVagas">
-                        <InfoVaga
-                          NomeProp={item.razaoSocial}
-                          source={IconEmpresa}
-                        />
-                        <InfoVaga
-                          NomeProp={item.localidade}
-                          source={imgLocalizacao}
-                        />
-                        <InfoVaga
-                          NomeProp={item.experiencia}
-                          source={imgFuncao}
-                        />
-                        <InfoVaga
-                          NomeProp={item.tipoContrato}
-                          source={imgTipoContrato}
-                        />
-                        <InfoVaga NomeProp={item.salario} source={imgSalario} />
-                        <InfoVaga
-                          NomeProp={item.nomeArea}
-                          source={imgDesenvolvimento}
-                        />
-                        <InfoVaga
-                          NomeProp={item.tipoPresenca}
-                          source={imgGlobal}
-                        />
-                      </div>
-                      <div className="TecnologiasVaga">
-                        {item.tecnologias.map((tec) => {
-                          return <Tag key={tec} NomeTag={tec}></Tag>;
-                        })}
-                      </div>
+          {ListVagas.map((item) => {
+            return (
+              <div
+                key={item.idVaga}
+                className="vaga"
+                onClick={(event) => {
+                  idVaga = item.idVaga;
+                  BuscarVagaPeloId();
+                }}
+              >
+                <div className="VagaCompleta">
+                  <img
+                    src={
+                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem
+                    }
+                    className="ImagemEmpresa"
+                    alt="Imagem de perfil"
+                  ></img>
+                  <div className="MainVaga">
+                    <h3>{item.tituloVaga}</h3>
+                    <div className="InfoVagas">
+                      <InfoVaga
+                        NomeProp={item.razaoSocial}
+                        source={IconEmpresa}
+                      />
+                      <InfoVaga
+                        NomeProp={item.localidade}
+                        source={imgLocalizacao}
+                      />
+                      <InfoVaga
+                        NomeProp={item.experiencia}
+                        source={imgFuncao}
+                      />
+                      <InfoVaga
+                        NomeProp={item.tipoContrato}
+                        source={imgTipoContrato}
+                      />
+                      <InfoVaga NomeProp={item.salario} source={imgSalario} />
+                      <InfoVaga
+                        NomeProp={item.nomeArea}
+                        source={imgDesenvolvimento}
+                      />
+                      <InfoVaga
+                        NomeProp={item.tipoPresenca}
+                        source={imgGlobal}
+                      />
+                    </div>
+                    <div className="TecnologiasVaga">
+                      {item.tecnologias.map((tec) => {
+                        return <Tag key={tec} NomeTag={tec}></Tag>;
+                      })}
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
       );
-    }else if(OpcaoFiltro=="CLT" ||OpcaoFiltro== "PJ" || OpcaoFiltro== "Estagio"){
+    } else if (
+      OpcaoFiltro == "CLT" ||
+      OpcaoFiltro == "PJ" ||
+      OpcaoFiltro == "Estagio"
+    ) {
       VagaTipoContrato.splice(0, Number.MAX_VALUE);
       FiltrarTipoContrato(OpcaoFiltro);
       return (
         <div className="vagas">
-          {
-            VagaTipoContrato.map((item) => {
-              return (
-                <div
-                  key={item.idVaga}
-                  className="vaga"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    idVaga = item.idVaga;
-                    BuscarVagaPeloId();
-                  }}
-                >
-                  <div className="VagaCompleta">
-                    <img
-                      src={imgEmpresa}
-                      className="ImagemEmpresa"
-                      alt="Imagem empresa"
-                    ></img>
-                    <div className="MainVaga">
-                      <h3>{item.tituloVaga}</h3>
-                      <div className="InfoVagas">
-                        <InfoVaga
-                          NomeProp={item.razaoSocial}
-                          source={IconEmpresa}
-                        />
-                        <InfoVaga
-                          NomeProp={item.localidade}
-                          source={imgLocalizacao}
-                        />
-                        <InfoVaga
-                          NomeProp={item.experiencia}
-                          source={imgFuncao}
-                        />
-                        <InfoVaga
-                          NomeProp={item.tipoContrato}
-                          source={imgTipoContrato}
-                        />
-                        <InfoVaga NomeProp={item.salario} source={imgSalario} />
-                        <InfoVaga
-                          NomeProp={item.nomeArea}
-                          source={imgDesenvolvimento}
-                        />
-                        <InfoVaga
-                          NomeProp={item.tipoPresenca}
-                          source={imgGlobal}
-                        />
-                      </div>
-                      <div className="TecnologiasVaga">
-                        {item.tecnologias.map((tec) => {
-                          return <Tag key={tec} NomeTag={tec}></Tag>;
-                        })}
-                      </div>
+          {VagaTipoContrato.map((item) => {
+            return (
+              <div
+                key={item.idVaga}
+                className="vaga"
+                onClick={(event) => {
+                  event.preventDefault();
+                  idVaga = item.idVaga;
+                  BuscarVagaPeloId();
+                }}
+              >
+                <div className="VagaCompleta">
+                  <img
+                    src={
+                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem
+                    }
+                    className="ImagemEmpresa"
+                    alt="Imagem empresa"
+                  ></img>
+                  <div className="MainVaga">
+                    <h3>{item.tituloVaga}</h3>
+                    <div className="InfoVagas">
+                      <InfoVaga
+                        NomeProp={item.razaoSocial}
+                        source={IconEmpresa}
+                      />
+                      <InfoVaga
+                        NomeProp={item.localidade}
+                        source={imgLocalizacao}
+                      />
+                      <InfoVaga
+                        NomeProp={item.experiencia}
+                        source={imgFuncao}
+                      />
+                      <InfoVaga
+                        NomeProp={item.tipoContrato}
+                        source={imgTipoContrato}
+                      />
+                      <InfoVaga NomeProp={item.salario} source={imgSalario} />
+                      <InfoVaga
+                        NomeProp={item.nomeArea}
+                        source={imgDesenvolvimento}
+                      />
+                      <InfoVaga
+                        NomeProp={item.tipoPresenca}
+                        source={imgGlobal}
+                      />
+                    </div>
+                    <div className="TecnologiasVaga">
+                      {item.tecnologias.map((tec) => {
+                        return <Tag key={tec} NomeTag={tec}></Tag>;
+                      })}
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
       );
-    }else if(OpcaoFiltro=="Júnior" ||OpcaoFiltro== "Pleno" || OpcaoFiltro== "Sênior"){
+    } else if (
+      OpcaoFiltro == "Júnior" ||
+      OpcaoFiltro == "Pleno" ||
+      OpcaoFiltro == "Sênior"
+    ) {
       VagaExperiencia.splice(0, Number.MAX_VALUE);
       FiltrarExperiencia(OpcaoFiltro);
       return (
         <div className="vagas">
-          {
-            VagaExperiencia.map((item) => {
-              return (
-                <div
-                  key={item.idVaga}
-                  className="vaga"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    idVaga = item.idVaga;
-                    BuscarVagaPeloId();
-                  }}
-                >
-                  <div className="VagaCompleta">
-                    <img
-                      src={imgEmpresa}
-                      className="ImagemEmpresa"
-                      alt="Imagem empresa"
-                    ></img>
-                    <div className="MainVaga">
-                      <h3>{item.tituloVaga}</h3>
-                      <div className="InfoVagas">
-                        <InfoVaga
-                          NomeProp={item.razaoSocial}
-                          source={IconEmpresa}
-                        />
-                        <InfoVaga
-                          NomeProp={item.localidade}
-                          source={imgLocalizacao}
-                        />
-                        <InfoVaga
-                          NomeProp={item.experiencia}
-                          source={imgFuncao}
-                        />
-                        <InfoVaga
-                          NomeProp={item.tipoContrato}
-                          source={imgTipoContrato}
-                        />
-                        <InfoVaga NomeProp={item.salario} source={imgSalario} />
-                        <InfoVaga
-                          NomeProp={item.nomeArea}
-                          source={imgDesenvolvimento}
-                        />
-                        <InfoVaga
-                          NomeProp={item.tipoPresenca}
-                          source={imgGlobal}
-                        />
-                      </div>
-                      <div className="TecnologiasVaga">
-                        {item.tecnologias.map((tec) => {
-                          return <Tag key={tec} NomeTag={tec}></Tag>;
-                        })}
-                      </div>
+          {VagaExperiencia.map((item) => {
+            return (
+              <div
+                key={item.idVaga}
+                className="vaga"
+                onClick={(event) => {
+                  event.preventDefault();
+                  idVaga = item.idVaga;
+                  BuscarVagaPeloId();
+                }}
+              >
+                <div className="VagaCompleta">
+                  <img
+                    src={
+                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem
+                    }
+                    className="ImagemEmpresa"
+                    alt="Imagem empresa"
+                  ></img>
+                  <div className="MainVaga">
+                    <h3>{item.tituloVaga}</h3>
+                    <div className="InfoVagas">
+                      <InfoVaga
+                        NomeProp={item.razaoSocial}
+                        source={IconEmpresa}
+                      />
+                      <InfoVaga
+                        NomeProp={item.localidade}
+                        source={imgLocalizacao}
+                      />
+                      <InfoVaga
+                        NomeProp={item.experiencia}
+                        source={imgFuncao}
+                      />
+                      <InfoVaga
+                        NomeProp={item.tipoContrato}
+                        source={imgTipoContrato}
+                      />
+                      <InfoVaga NomeProp={item.salario} source={imgSalario} />
+                      <InfoVaga
+                        NomeProp={item.nomeArea}
+                        source={imgDesenvolvimento}
+                      />
+                      <InfoVaga
+                        NomeProp={item.tipoPresenca}
+                        source={imgGlobal}
+                      />
+                    </div>
+                    <div className="TecnologiasVaga">
+                      {item.tecnologias.map((tec) => {
+                        return <Tag key={tec} NomeTag={tec}></Tag>;
+                      })}
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
       );
-    }else if(OpcaoFiltro.length>=1){
+    } else if (OpcaoFiltro.length >= 1) {
       VagaTecnologia.splice(0, Number.MAX_VALUE);
       FiltrarTecnologia(OpcaoFiltro);
       return (
         <div className="vagas">
-          {
-            VagaTecnologia.map((item) => {
-              return (
-                <div
-                  key={item.idVaga}
-                  className="vaga"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    idVaga = item.idVaga;
-                    BuscarVagaPeloId();
-                  }}
-                >
-                  <div className="VagaCompleta">
-                    <img
-                      src={imgEmpresa}
-                      className="ImagemEmpresa"
-                      alt="Imagem empresa"
-                    ></img>
-                    <div className="MainVaga">
-                      <h3>{item.tituloVaga}</h3>
-                      <div className="InfoVagas">
-                        <InfoVaga
-                          NomeProp={item.razaoSocial}
-                          source={IconEmpresa}
-                        />
-                        <InfoVaga
-                          NomeProp={item.localidade}
-                          source={imgLocalizacao}
-                        />
-                        <InfoVaga
-                          NomeProp={item.experiencia}
-                          source={imgFuncao}
-                        />
-                        <InfoVaga
-                          NomeProp={item.tipoContrato}
-                          source={imgTipoContrato}
-                        />
-                        <InfoVaga NomeProp={item.salario} source={imgSalario} />
-                        <InfoVaga
-                          NomeProp={item.nomeArea}
-                          source={imgDesenvolvimento}
-                        />
-                        <InfoVaga
-                          NomeProp={item.tipoPresenca}
-                          source={imgGlobal}
-                        />
-                      </div>
-                      <div className="TecnologiasVaga">
-                        {item.tecnologias.map((tec) => {
-                          return <Tag key={tec} NomeTag={tec}></Tag>;
-                        })}
-                      </div>
+          {VagaTecnologia.map((item) => {
+            return (
+              <div
+                key={item.idVaga}
+                className="vaga"
+                onClick={(event) => {
+                  event.preventDefault();
+                  idVaga = item.idVaga;
+                  BuscarVagaPeloId();
+                }}
+              >
+                <div className="VagaCompleta">
+                  <img
+                    src={
+                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem
+                    }
+                    className="ImagemEmpresa"
+                    alt="Imagem empresa"
+                  ></img>
+                  <div className="MainVaga">
+                    <h3>{item.tituloVaga}</h3>
+                    <div className="InfoVagas">
+                      <InfoVaga
+                        NomeProp={item.razaoSocial}
+                        source={IconEmpresa}
+                      />
+                      <InfoVaga
+                        NomeProp={item.localidade}
+                        source={imgLocalizacao}
+                      />
+                      <InfoVaga
+                        NomeProp={item.experiencia}
+                        source={imgFuncao}
+                      />
+                      <InfoVaga
+                        NomeProp={item.tipoContrato}
+                        source={imgTipoContrato}
+                      />
+                      <InfoVaga NomeProp={item.salario} source={imgSalario} />
+                      <InfoVaga
+                        NomeProp={item.nomeArea}
+                        source={imgDesenvolvimento}
+                      />
+                      <InfoVaga
+                        NomeProp={item.tipoPresenca}
+                        source={imgGlobal}
+                      />
+                    </div>
+                    <div className="TecnologiasVaga">
+                      {item.tecnologias.map((tec) => {
+                        return <Tag key={tec} NomeTag={tec}></Tag>;
+                      })}
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
         </div>
       );
     }
@@ -368,19 +383,16 @@ for(var i=0;i<ListVagas.length;i++){
       <AccessMenu />
       <div className="BarraPesquisa">
         <h2>Busque sua vaga aqui</h2>
-        <br/>
+        <br />
         <div className="PeliculaPesquisa">
-         <div className="InputPesquisa">
-         <select
-         className="InputPesquisa"
+          <div className="InputPesquisa">
+            <select
+              className="InputPesquisa"
               onChange={(e) => setOpcaoFiltro(e.target.value)}
               value={OpcaoFiltro}
             >
-              <option value="">
-                Selecione a tecnologia que esta buscando
-              </option>
-              {
-              Tecnologias.map((item) => {
+              <option value="">Selecione a tecnologia que esta buscando</option>
+              {Tecnologias.map((item) => {
                 return (
                   <option key={item.idTecnologia} value={item.nomeTecnologia}>
                     {item.nomeTecnologia}
@@ -388,40 +400,73 @@ for(var i=0;i<ListVagas.length;i++){
                 );
               })}
             </select>
-         </div>
-         <div><button id="BotaoPesquisa">Pesquisar</button></div>
+          </div>
+          <div>
+            <button id="BotaoPesquisa">Pesquisar</button>
+          </div>
         </div>
       </div>
       <div className="content-searchJobs">
         <div className="main-content-search-jobs">
           <div id="filter-searchJobs">
-            <button className="btn-active" id="btn-all" onClick={e=>setOpcaoFiltro(e.target.value)} value=''>
+            <button
+              className="btn-active"
+              id="btn-all"
+              onClick={(e) => setOpcaoFiltro(e.target.value)}
+              value=""
+            >
               Todas as vagas
             </button>
-            <p><strong>Filtrar por contrato:</strong></p>
-            <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='CLT'>
+            <p>
+              <strong>Filtrar por contrato:</strong>
+            </p>
+            <button
+              className="btn-filter"
+              onClick={(e) => setOpcaoFiltro(e.target.value)}
+              value="CLT"
+            >
               CLT
             </button>
-            <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='Estagio'>
+            <button
+              className="btn-filter"
+              onClick={(e) => setOpcaoFiltro(e.target.value)}
+              value="Estagio"
+            >
               Estágio
             </button>
-            <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='PJ'>
+            <button
+              className="btn-filter"
+              onClick={(e) => setOpcaoFiltro(e.target.value)}
+              value="PJ"
+            >
               PJ
             </button>
-            <p><strong>Filtrar por experiência:</strong></p>
-            <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='Júnior'>
+            <p>
+              <strong>Filtrar por experiência:</strong>
+            </p>
+            <button
+              className="btn-filter"
+              onClick={(e) => setOpcaoFiltro(e.target.value)}
+              value="Júnior"
+            >
               Júnior
             </button>
-            <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='Pleno'>
+            <button
+              className="btn-filter"
+              onClick={(e) => setOpcaoFiltro(e.target.value)}
+              value="Pleno"
+            >
               Pleno
             </button>
-            <button className="btn-filter" onClick={e=>setOpcaoFiltro(e.target.value)} value='Sênior'>
+            <button
+              className="btn-filter"
+              onClick={(e) => setOpcaoFiltro(e.target.value)}
+              value="Sênior"
+            >
               Sênior
             </button>
           </div>
-          {
-          View()
-          }
+          {View()}
         </div>
       </div>
       <Footer />

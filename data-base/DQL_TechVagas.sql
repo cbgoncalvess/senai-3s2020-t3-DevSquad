@@ -17,12 +17,8 @@ GO
 SELECT * FROM Usuario
 GO
 
-update Usuario set CaminhoImagem='Teste.webp' where IdUsuario=10
-
 SELECT * FROM Area
 GO
-
-update Usuario set CaminhoImagem='user.png' where IdUsuario=9
 
 SELECT * FROM Curso
 GO
