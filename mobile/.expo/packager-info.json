@@ -1,19 +1,10 @@
 {
-<<<<<<< HEAD
+  "devToolsPort": 19002,
   "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
   "packagerPort": null,
   "packagerPid": null,
-=======
-  "expoServerPort": 19000,
-  "expoServerNgrokUrl": "https://hn-zph.anonymous.mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.hn-zph.anonymous.mobile.exp.direct",
-  "ngrokPid": 7644,
-  "packagerPort": 19001,
-  "packagerPid": 11280,
->>>>>>> ade6c0449de0c4ec7041cfd1a7d32726e5621214
   "webpackServerPort": null,
-  "devToolsPort": 19002
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
