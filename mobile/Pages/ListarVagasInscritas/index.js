@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {ImageBackground,StyleSheet,Text,View,TouchableOpacity,Image,Alert} from "react-native";
-
+import InfoVaga from "../../Components/InfoVaga/index";
+import Tag from "../../Components/Tag/index";
 export default function ListarVagasInscritas() {
 
     const [ListarVagasInscritas, setListarVagasInscritas] = useState([]);

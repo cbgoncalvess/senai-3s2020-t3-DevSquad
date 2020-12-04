@@ -3,12 +3,6 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
-<<<<<<< HEAD
-  "urlRandomness": null,
-  "https": false,
-  "scheme": null
-=======
-  "urlRandomness": "hn-zph",
+  "urlRandomness": "hf-q6m",
   "https": false
->>>>>>> ade6c0449de0c4ec7041cfd1a7d32726e5621214
 }

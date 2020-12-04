@@ -4,9 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity,
   Image,
-  Alert,
 } from "react-native";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
@@ -110,7 +108,7 @@ export default function VizualizarVagaEmpresa() {
           style={styles.BannerVizualizarVagaEmpresa}
         >
           <Text style={styles.TextoHeader}>
-            Veja quem se inscreveu para esta vaga
+            Veja quem foi aprovado para esta vaga
           </Text>
         </ImageBackground>
       </View>
