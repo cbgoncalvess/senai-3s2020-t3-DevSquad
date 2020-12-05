@@ -1,47 +1,21 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import parseJwt from '../../token.js';
 
 export default function Login({ navigation }) {
-
-  function parseJwt(){
-    
-    var token = AsyncStorage.getItem("token");
-    console.log(token);
-    if(token){
- 
-        //codificação para transferência de conteúdo - tipo de criptografia do jwt
-        //a chave [1] faz com que seja armazenado na variável apenas o payload, que é o que interessa agora
-        //linha do split, basicamente tá pegando todo o token e cortando em partes separadas pelo ponto, aí separa o token em 3: header, payload e signature
-        var base64Url = token.split('.')[1];
-      console.log(base64Url);
-        // EXPERESSÕES REGULARES - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
-        //replace substitui uma sequência de caracteres por outra
-        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-
-         
-        //A função window.atob(base64) ou WindowBase64.atob()
-        //decodifica uma string de dados que foi codificada através da codificação base-64
-        //decodifica a base64 para string, através do método atob
-        //e converte a string para JSON
-        let c = JSON.parse(window.atob(base64));
-        console.log(c);
-        return JSON.parse(window.atob(base64));
-    }}
-
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  
-  const login = async () => {
-  
+  let[Token,setToken]=useState('');
+
+  function parseJwt(){  
+    if(Token.length>10){
+        var base64Url =Token.split('.')[1];
+        var base64 =base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        return JSON.parse(window.atob(base64));
+    }
+}
+
+  function login (){
     const loginForm = {
       email: email,
       senha: senha
@@ -55,17 +29,15 @@ export default function Login({ navigation }) {
       }
     }).then(response => response.json()
     )
-      .then(dados => {
-        if (dados.token !== undefined) {          
-
-          AsyncStorage.setItem("token", dados.token)
-
-          if (parseJwt().Role === "2") {
-            navigation.navigate("ListarVagasInscritas");
-          } else if (parseJwt().Role === "3") {
-            navigation.navigate("ListarVagaEmpresa");
-          }
-        }
+      .then(dados => {  
+        if(dados.token!==undefined){
+        AsyncStorage.setItem("token",dados.token)
+        Token =dados.token;
+        if (parseJwt().Role === "2") {
+          navigation.navigate("ListarVagasInscritas");
+      } else if (parseJwt().Role === "3") {
+          navigation.navigate("ListarVagaEmpresa");}
+      }
       })
       .catch(err => console.error(err))
   }
@@ -82,7 +54,6 @@ export default function Login({ navigation }) {
           <View style={styles.formlogar}>
             <View style={styles.divisionCampo}>
               <Text style={styles.divisionCampoText}>Usuário ou E-mail:</Text>
-              {/* <input type="text" name="email" style={styles.inputUser} placeholder="exemplo@exemplo.com / mariasantos"  /> */}
               <TextInput
                 placeholder={"exemplo@exemplo.com "}
                 style={styles.inputUser}
@@ -92,7 +63,6 @@ export default function Login({ navigation }) {
 
             <View style={styles.divisionCampo} style={styles.divisionPassword}>
               <Text style={styles.divisionCampoText}>Senha:</Text>
-              {/* <input type="password" name="password" placeholder="******" style={styles.inputPassword}/> */}
               <TextInput
                 placeholder={"********"}
                 style={styles.inputPassword}
@@ -106,11 +76,7 @@ export default function Login({ navigation }) {
           <View style={styles.divisionBtn}>
             <TouchableOpacity
               style={styles.btnLogar}
-<<<<<<< HEAD
               onPress={() => login()}
-=======
-              onPress={() => navigation.navigate("ListarVagaEmpresa")}
->>>>>>> 1c49cebb915d066b134f465c45da720db8126ed0
             >
               <Text style={styles.textLogin}>Login</Text>
             </TouchableOpacity>

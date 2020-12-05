@@ -35,6 +35,9 @@ export default function VizualizarVagaEmpresa({ navigation }) {
         (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
+        headers: {
+          authorization: "Bearer " +await AsyncStorage.getItem("token"),
+        }
       }
     )
       .then((response) => response.json())
@@ -50,6 +53,9 @@ export default function VizualizarVagaEmpresa({ navigation }) {
         (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
+        headers: {
+          authorization: "Bearer " +await AsyncStorage.getItem("token"),
+        }
       }
     )
       .then((response) => response.json())
@@ -68,13 +74,12 @@ export default function VizualizarVagaEmpresa({ navigation }) {
       .catch((err) => console.error(err));
   };
 
-  const Aprovar = (id) => {
+  const Aprovar = async (id) => {
     fetch("http://localhost:5000/api/Empresa/Aprovar/" + id, {
       method: "PUT",
       headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
+        authorization: "Bearer " +await AsyncStorage.getItem("token"),
+      }
     })
       .then(function (respose) {
         if (respose.status !== 200) {
@@ -85,13 +90,12 @@ export default function VizualizarVagaEmpresa({ navigation }) {
       .catch((err) => console.error(err));
   };
 
-  const Reprovar = (id) => {
+  const Reprovar = async(id) => {
     fetch("http://localhost:5000/api/Empresa/Reprovar/" + id, {
       method: "PUT",
       headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
+        authorization: "Bearer " +await AsyncStorage.getItem("token"),
+      }
     })
       .then(function (respose) {
         if (respose.status !== 200) {

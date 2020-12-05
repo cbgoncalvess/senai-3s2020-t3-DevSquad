@@ -32,9 +32,9 @@ export default function VizualizarVagaEmpresa() {
     fetch(
       "http://localhost:5000/api/Empresa/ListarCandidatosAprovados/" +
        (await AsyncStorage.getItem("VagaSelecionada")),
-      {
-        method: "GET",
-      }
+      {method: "GET", headers: {
+        authorization: "Bearer " +await AsyncStorage.getItem("token"),
+      }}
     )
       .then((response) => response.json())
       .then((dados) => {
@@ -47,9 +47,11 @@ export default function VizualizarVagaEmpresa() {
     fetch(
       "http://localhost:5000/api/Usuario/BuscarPorId/" +
         (await AsyncStorage.getItem("VagaSelecionada")),
-      {
-        method: "GET",
+      {method: "GET",
+      headers: {
+        authorization: "Bearer " +await AsyncStorage.getItem("token"),
       }
+    }
     )
       .then((response) => response.json())
       .then((dados) => {
