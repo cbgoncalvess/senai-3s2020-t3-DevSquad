@@ -219,13 +219,14 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todas as vagas que a empresa publicou
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles = "3")]
+        //[Authorize(Roles = "3")]
         [HttpGet("ListarVagasPublicadas")]
         public IActionResult ListarVagas()
         {
             try
             {
-                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                //var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                var idUsuario = 3;
                 EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
@@ -257,13 +258,14 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="idVaga"></param>
         /// <returns></returns>
-        [Authorize(Roles ="3")]
+        //[Authorize(Roles ="3")]
         [HttpGet("ListarCandidatosInscritos/{idVaga}")]
         public IActionResult ListarCandidatosInscritos(int idVaga)
         {
             try
             {
-                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                //var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                var idUsuario = 3;
                 EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
@@ -313,13 +315,14 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="idVaga"></param>
         /// <returns></returns>
-        [Authorize(Roles = "3")]
+        //[Authorize(Roles = "3")]
         [HttpGet("ListarCandidatosAprovados/{idVaga}")]
         public IActionResult ListarCandidatoAprovados(int idVaga)
         {
             try
             {
-                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                //var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                var idUsuario = 3;
                 EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();

@@ -32,27 +32,24 @@ return (
         <View>
             <Text style={styles.TextoTitulo}>Vagas em que você se inscreveu</Text>
         </View>
+        <View style={styles.MainVaga}>
         {ListarVagasInscritas.map((item) => {
         return (
             <View style={styles.Vaga} key={item.idVaga}>
                 <View style={styles.VagaCompleta}>
                     <Image
                         style={styles.ImagemEmpresa}
-                        source={require("../../assets/Images/Teste.webp")}
+                        source={{uri:'http://localhost:5000/imgPerfil/'+item.caminhoImagem}}
                     />
                     <View style={styles.MainVaga}>
-                        <Text style={styles.TituloVaga} onPress={(e) => {
-                            e.preventDefault();
-                            idVaga = item.idVaga;
-                            ArmazenarIdVaga();
-                            }}>{item.tituloVaga}</Text>
+                        <Text style={styles.TituloVaga}>{item.tituloVaga}</Text>
                         <View style={styles.InfoVagas}>
                             <InfoVaga
                                 NomeProp={item.razaoSocial}
                                 nomeImage={require("../../assets/Images/building.webp")}
                             ></InfoVaga>
                             <InfoVaga
-                                NomeProp={item.cidade}
+                                NomeProp={item.localidade}
                                 nomeImage={require("../../assets/Images/big-map-placeholder-outlined-symbol-of-interface.webp")}
                             ></InfoVaga>
                             <InfoVaga
@@ -86,9 +83,8 @@ return (
             </View>
         );
         })}
-        
+        </View>  
     </View>
-    
 );
 }
 
@@ -109,13 +105,13 @@ const styles = StyleSheet.create({
     },
     TextoTitulo: {
         textAlign: "center",
-        marginTop: "2vw",
         fontSize: "25px",
+        padding:30,
+        fontWeight:'bold'
     },
     Vaga: {
         backgroundColor: "#FAFAFA",
         marginBottom: "20px",
-        display: "flex",
         flexDirection: "column",
     },
     VagaCompleta: {
@@ -123,21 +119,20 @@ const styles = StyleSheet.create({
         borderRadius: "4px",
         padding: "3vh",
         flexWrap: "wrap",
+        justifyContent:'center'
       },
     MainVaga: {
-        display: "flex",
         flexDirection: "column",
-        textAlign: "center",
-        width: "90%",
+        width: "100%",
+        textAlign:'center',
+        padding:15
     },
     InfoVagas: {
-        display: "flex",
         justifyContent: "space-around",
         flexDirection: "row",
         flexWrap: "wrap",
     },
     TecnologiasVaga: {
-        display: "flex",
         justifyContent: "space-around",
         flexDirection: "row",
         flexWrap: "wrap",

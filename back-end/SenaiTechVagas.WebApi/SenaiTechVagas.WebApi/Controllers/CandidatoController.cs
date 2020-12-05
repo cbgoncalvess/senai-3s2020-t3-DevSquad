@@ -117,13 +117,14 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que lista vagas em inscritas do candidatos.
         /// </summary>
         /// <returns>Retorna vagas em inscritas do candidato.</returns>
-        [Authorize(Roles ="2")]
+        //[Authorize(Roles ="2")]
         [HttpGet("ListarVagasInscritas")]
         public IActionResult ListarVagasInscritas()
         {
             try
             {
-                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                //var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                var idUsuario = 2;
                 return Ok(_candidatoRepository.ListarInscricoes(idUsuario));
             }
             catch(Exception)
@@ -162,7 +163,7 @@ namespace SenaiTechVagas.WebApi.Controllers
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
                 return Ok(_candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
