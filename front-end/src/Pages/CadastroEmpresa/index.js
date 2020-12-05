@@ -220,7 +220,7 @@ export default function CadastroEmpresa() {
                 label="Nome do responsável:"
                 type="text"
                 placeholder="Barão de Mauá"
-                maxLength={35}
+                maxLength={65}
                 minLength={5}
                 required
                 onChange={(e) => SetNomeResponsavel(e.target.value)}
@@ -247,7 +247,7 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="contato@company.com"
                 maxLength={254}
-                minLength={3}
+                minLength={5}
                 required
                 onChange={(e) => SetEmailContato(e.target.value)}
               />
@@ -334,7 +334,7 @@ export default function CadastroEmpresa() {
                 className="cadastre"
                 label="Logradouro da empresa:"
                 type="text"
-                maxLength={50}
+                maxLength={155}
                 minLength={5}
               />
 
@@ -344,7 +344,7 @@ export default function CadastroEmpresa() {
                 <input
                   type="text"
                   name="address2"
-                  maxLength={30}
+                  maxLength={255}
                   className="cadastre"
                   onChange={(e) => SetComplemento(e.target.value)}
                 />
@@ -359,6 +359,8 @@ export default function CadastroEmpresa() {
                   id="cidade"
                   required
                   disabled
+                  maxLength={150}
+                  minLength={5}
                 />
               </div>
 
@@ -371,6 +373,8 @@ export default function CadastroEmpresa() {
                   id="uf"
                   required
                   disabled
+                  maxLength={2}
+                  minLength={2}
                 />
               </div>
 
@@ -381,7 +385,7 @@ export default function CadastroEmpresa() {
                 placeholder="email@company.com"
                 type="text"
                 maxLength={254}
-                minLength={3}
+                minLength={5}
                 required
                 onChange={(e) => SetEmail(e.target.value)}
               />
@@ -466,8 +470,8 @@ export default function CadastroEmpresa() {
                 placeholder="Meu cachorro se chama..."
                 required
                 onChange={(e) => SetResposta(e.target.value)}
-                maxLength={50}
-                minLength={3}
+                maxLength={30}
+                minLength={5}
               />
               <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>
 

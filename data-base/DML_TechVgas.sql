@@ -16,7 +16,6 @@ MANTENHA A LÍNGUA - DO SEU SQL SERVER - EM PORTUGUÊS DO BRASIL
 
 */
 USE Db_TechVagas
-use master
 GO
 
 --DML
