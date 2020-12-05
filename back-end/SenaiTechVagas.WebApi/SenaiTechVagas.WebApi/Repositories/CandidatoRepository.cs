@@ -15,7 +15,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class CandidatoRepository : ICandidatoRepository
     {
-        string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
 
         //Em ordem CRUD - Criar, Ler, Atualizar, Deletar
         public bool AtualizarCandidato(int idUsuario, AtualizarCandidatoViewModel CandidatoAtualizado)

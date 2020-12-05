@@ -21,7 +21,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        string stringConexao = "Data Source=DESKTOP-1CB35NO; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
         public Usuario Login(string email, string senha)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
