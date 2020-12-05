@@ -227,7 +227,7 @@ const DeletarVaga = (id) => {
                 <h2>Alterar senha</h2>
                 <form>
                     <Input className="InputCadastro" name="Email" label="Email" onChange={e => SetEmail(e.target.value)}
-                    maxLength={154}
+                    maxLength={254}
                     minLength={5}
                     required
                     />
@@ -235,6 +235,7 @@ const DeletarVaga = (id) => {
                     maxLength={15}
                     minLength={9}
                     required
+                    type="password"
                     />
                     <button className="btVaga" onClick={AlterarSenha}>Alterar senha</button>
                 </form>

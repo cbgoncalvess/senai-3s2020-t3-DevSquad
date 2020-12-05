@@ -16,7 +16,7 @@ export default function PerfilEmpresa() {
   const [NomeFantasia, SetNomeFantasia] = useState("");
   const [RazaoSocial, SetRazaoSocial] = useState("");
   const [Telefone, SetTelefone] = useState("");
-  const [NumFuncionario, SetNumFuncionario] = useState("");
+  const [NumFuncionario, SetNumFuncionario] = useState(0);
   const [NumCNAE, SetNumCNAE] = useState("");
   const [CEP, SetCEP] = useState("");
   const [Logradouro, SetLogradouro] = useState("");
@@ -49,8 +49,8 @@ export default function PerfilEmpresa() {
       logradouro: Logradouro,
       complemento: Complemento,
       emailContato: EmailContato,
-      estado: Estado,
-      localidade: Cidade,
+      Estado: Estado,
+      Localidade: Cidade,
     };
     fetch("http://localhost:5000/api/Empresa/AtualizarEmpresa", {
       method: "PUT",

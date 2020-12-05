@@ -79,7 +79,7 @@ CREATE TABLE Candidato (
 	RG					  CHAR (9) NOT NULL,
 	CPF					  CHAR (11) NOT NULL UNIQUE,
 	Telefone			  VARCHAR (11) NOT NULL UNIQUE,
-	LinkLinkedinCandidato VARCHAR (150) NOT NULL UNIQUE,
+	LinkLinkedinCandidato VARCHAR (150)UNIQUE,
 	IdCurso				  INT FOREIGN KEY REFERENCES Curso (IdCurso),
 	IdUsuario			  INT FOREIGN KEY REFERENCES Usuario (IdUsuario) NOT NULL UNIQUE,
 );

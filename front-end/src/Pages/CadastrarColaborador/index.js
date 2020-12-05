@@ -136,7 +136,7 @@ export default function CadastrarColaborador() {
               type="text"
               placeholder="exemplo@exemplo.com"
               maxLength={254}
-              minLength={3}
+              minLength={5}
               required
               onChange={(e) => SetEmail(e.target.value)}
             />

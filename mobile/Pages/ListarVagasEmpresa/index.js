@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+//import AsyncStorage from "@react-native-async-storage/async-storage";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
 
@@ -24,7 +24,7 @@ export default function ListarVagasEmpresa({ navigation }) {
 
   async function ArmazenarIdVaga() {
     try {
-      await AsyncStorage.setItem("VagaSelecionada", idVaga);
+      //await AsyncStorage.setItem("VagaSelecionada", idVaga);
       navigation.navigate("VagaEmpresa");
     } catch (e) {
       console.log(e);
@@ -40,16 +40,15 @@ export default function ListarVagasEmpresa({ navigation }) {
           <Text style={styles.TextoHeader}>Vagas que você publicou</Text>
         </ImageBackground>
       </View>
-
-      <Text style={styles.TextoTitulo}>Vagas que você publicou</Text>
       <View style={styles.MainVaga}>
-        {ListarVagas.map((teste2) => {
+        {
+        ListarVagas.map((teste2) => {
           return (
             <View style={styles.Vaga} key={teste2.idVaga}>
               <View style={styles.VagaCompleta}>
                 <Image
                   style={styles.ImagemEmpresa}
-                  source={require("../../assets/Images/Teste.webp")}
+                  source={{uri:'http://localhost:5000/imgPerfil/'+teste2.caminhoImagem}}
                 />
                 <View style={styles.MainVaga}>
                   <Text
@@ -68,7 +67,7 @@ export default function ListarVagasEmpresa({ navigation }) {
                       nomeImage={require("../../assets/Images/building.webp")}
                     ></InfoVaga>
                     <InfoVaga
-                      NomeProp={teste2.cidade}
+                      NomeProp={teste2.localidade}
                       nomeImage={require("../../assets/Images/big-map-placeholder-outlined-symbol-of-interface.webp")}
                     ></InfoVaga>
                     <InfoVaga
@@ -137,7 +136,6 @@ const styles = StyleSheet.create({
   Vaga: {
     backgroundColor: "#FAFAFA",
     marginBottom: "20px",
-    display: "flex",
     flexDirection: "column",
   },
   VagaCompleta: {
@@ -145,21 +143,20 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: "3vh",
     flexWrap: "wrap",
+    justifyContent:'center'
   },
   MainVaga: {
-    display: "flex",
     flexDirection: "column",
-    textAlign: "center",
-    width: "90%",
+    width: "100%",
+    alignItems:'center',
+    padding:15
   },
   InfoVagas: {
-    display: "flex",
     justifyContent: "space-around",
     flexDirection: "row",
     flexWrap: "wrap",
   },
   TecnologiasVaga: {
-    display: "flex",
     justifyContent: "space-around",
     flexDirection: "row",
     flexWrap: "wrap",

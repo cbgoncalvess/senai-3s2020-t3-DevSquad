@@ -14,6 +14,7 @@ import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import AccessMenu from '../../Components/AccessMenu';
 import Input from '../../Components/Input';
+import ModalMensagem from '../../Components/ModalMensagem';
 
 export default function Login() {
 
@@ -22,10 +23,13 @@ export default function Login() {
     const [NovaSenha, SetNovaSenha] = useState('');
     const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
     const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
+    const [Mensagem,setMensagem]=useState('');
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
+
+    
     const login = () => {
 
         const loginForm = {
@@ -44,7 +48,6 @@ export default function Login() {
             .then(dados => {
                 if (dados.token !== undefined) {
                     localStorage.setItem("token", dados.token)
-                    console.log(dados.status);
                     if (parseJwt().Role === "1") {
                         history.push("/perfil");
                     } else if (parseJwt().Role === "2") {
@@ -52,9 +55,26 @@ export default function Login() {
                     } else if (parseJwt().Role === "3") {
                         history.push("/perfilEmpresa");
                     }
+                }else{
+                    if(dados.error.length==0){
+                        setMensagem(dados)
+                        AparecelbErro();
+                    }else{
+                        setMensagem("Suas credencias não são válidas")
+                        AparecelbErro();
+                    }
                 }
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.log(err);
+                setMensagem("Suas credencias não são válidas");
+                AparecelbErro();
+            })
+    }
+    function AparecelbErro(){
+        let idlbErro = document.getElementById("lbErro");
+        if (idlbErro.classList == "LabelErro none")
+        idlbErro.classList.remove("none");
     }
 
     const RecuperarSenha = () => {
@@ -115,7 +135,6 @@ export default function Login() {
                             event.preventDefault();
                             login();
                         }}>
-
                             <div className="divisionCampo">
                                 <label>Usuário ou E-mail:</label>
                                 <input type="text" name="email" className="inputUser" placeholder="exemplo@exemplo.com / mariasantos" onChange={e => setEmail(e.target.value)} />
@@ -124,8 +143,9 @@ export default function Login() {
                             <div className="divisionCampo divisionPassword">
                                 <label>Senha:</label>
                                 <input type="password" name="password" placeholder="******" className="inputPassword" onChange={e => setSenha(e.target.value)} />
-                                <h5 className="recuperarPassword" onClick={ApareceRecuperarSenhaCandidato}>Recuperar senha</h5>
                             </div>
+                    <label className="LabelErro none" id="lbErro">{Mensagem}</label>
+                                <h5 className="recuperarPassword" onClick={ApareceRecuperarSenhaCandidato}>Recuperar senha</h5>
                         </form>
 
                         <div className="divisionBtn">
@@ -134,9 +154,6 @@ export default function Login() {
                         </div>
 
                     </div>
-
-
-
                 </section>
 
                 <img src={imglogin} className="imgBannerLogin" />
@@ -187,7 +204,7 @@ export default function Login() {
                         name="emailRecuperacao"
                         label="Seu email"
                         onChange={(e) => setEmail(e.target.value)}
-                        maxLength={154}
+                        maxLength={254}
                         minLength={5}
                         required
                     />
@@ -199,6 +216,7 @@ export default function Login() {
                         onChange={(e) => SetNovaSenha(e.target.value)}
                         maxLength={15}
                         minLength={9}
+                        type="password"
                         required
                     />
                 </form>
