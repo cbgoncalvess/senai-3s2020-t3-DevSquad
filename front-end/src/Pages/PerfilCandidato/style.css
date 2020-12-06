@@ -82,4 +82,16 @@
         .BoxPerfilCandidato>h3{
             font-size: 12px;
         }
+    
+    .meioPerfil{
+        flex-wrap: wrap;
+    }
+
+    .EsquerdoPerfil{
+        width: 100%;
+    }
+
+    .imgPefilTexto{
+        
+    }
 }

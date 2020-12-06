@@ -74,3 +74,10 @@
   border-right: solid 1px;
   border-right-width: 0 2px 2px 0;
 }
+
+@media(max-width:700px){
+
+  .imgPefilTexto{
+      margin-bottom: 0px;
+  }
+}

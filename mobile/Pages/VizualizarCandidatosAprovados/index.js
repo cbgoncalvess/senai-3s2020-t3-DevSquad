@@ -135,7 +135,7 @@ export default function VizualizarVagaEmpresa() {
               <View style={styles.HeaderInscricao}>
                 <Image
                   style={styles.imagemCandidato}
-                  source={require("../../assets/Images/android-character-symbol.webp")}
+                  source={{uri:'http://localhost:5000/imgPerfil/'+item.caminhoImagem}}
                 ></Image>
                 <Text>{item.nomeCandidato}</Text>
                 <Text style={styles.nomeCandidato}></Text>
@@ -226,9 +226,13 @@ const styles = StyleSheet.create({
   ImagemEmpresa: {
     height: "100px",
     width: "100px",
+    borderRadius:100
   },
   TituloVaga: {
     fontSize: 17,
+    textDecorationLine: "underline",
+    textDecorationStyle: "solid",
+    textDecorationColor: "#000"
   },
   Inscricao: {
     width: "275px",

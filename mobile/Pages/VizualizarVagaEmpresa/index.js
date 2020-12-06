@@ -164,12 +164,12 @@ export default function VizualizarVagaEmpresa({ navigation }) {
           </View>
         </View>
       </View>
-      <TouchableOpacity
+      <View style={styles.btAprovados}><TouchableOpacity
         style={styles.btVerAprovados}
         onPress={() => navigation.navigate("CandidatosAprovados")}
       >
         <Text style={styles.texBtIns}>Ver candidatos aprovados</Text>
-      </TouchableOpacity>
+      </TouchableOpacity></View>
       <View style={styles.ListaInscricoes}>
         {Inscricoes.map((item) => {
           return (
@@ -177,7 +177,7 @@ export default function VizualizarVagaEmpresa({ navigation }) {
               <View style={styles.HeaderInscricao}>
                 <Image
                   style={styles.imagemCandidato}
-                  source={require("../../assets/Images/android-character-symbol.webp")}
+                  source={{uri:'http://localhost:5000/imgPerfil/'+item.caminhoImagem}}
                 ></Image>
                 <Text>{item.nomeCandidato}</Text>
                 <Text style={styles.nomeCandidato}></Text>
@@ -223,6 +223,12 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     marginTop: 9,
+    borderRadius:20
+  },
+  btAprovados:{
+  justifyContent:'center',
+  alignItems:'center',
+  paddingBottom:20
   },
   HeaderInscricao: {
     display: "flex",
@@ -282,9 +288,13 @@ const styles = StyleSheet.create({
   ImagemEmpresa: {
     height: "100px",
     width: "100px",
+    borderRadius:100
   },
   TituloVaga: {
     fontSize: 17,
+    textDecorationLine: "underline",
+    textDecorationStyle: "solid",
+    textDecorationColor: "#000"
   },
   Inscricao: {
     width: "275px",

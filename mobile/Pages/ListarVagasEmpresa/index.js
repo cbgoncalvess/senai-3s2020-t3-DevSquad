@@ -167,9 +167,13 @@ const styles = StyleSheet.create({
   ImagemEmpresa: {
     height: "100px",
     width: "100px",
+    borderRadius:100
   },
   TituloVaga: {
     fontSize: 17,
+    textDecorationLine: "underline",
+    textDecorationStyle: "solid",
+    textDecorationColor: "#000"
   },
   nomeCandidato: {
     borderBottomColor: "black",

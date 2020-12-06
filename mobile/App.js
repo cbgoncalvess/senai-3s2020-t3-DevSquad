@@ -15,11 +15,11 @@ export default function App() {
   return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Splash">
-          <Stack.Screen name="ListarVagaEmpresa" component={ListarVagasEmpresa}/>
+          <Stack.Screen name="ListarVagaEmpresa" component={ListarVagasEmpresa} options={{ headerShown: false }}/>
           <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
           <Stack.Screen name="VagaEmpresa" component={VizualizarVagaEmpresa}/>
           <Stack.Screen name="CandidatosAprovados" component={VizualizarCandidatosAprovados}/>
-          <Stack.Screen name="ListarVagasInscritas" component={ListarVagasInscritas}/>
+          <Stack.Screen name="ListarVagasInscritas" component={ListarVagasInscritas} options={{ headerShown: false }}/>
           <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>

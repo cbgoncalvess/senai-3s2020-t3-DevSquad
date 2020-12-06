@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity,} from "react-native";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,Alert} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   let[Token,setToken]=useState('');
+  const[MensagemErro,SetMensagem]=useState('')
+
+
 
   function parseJwt(){  
     if(Token.length>10){
@@ -30,13 +33,16 @@ export default function Login({ navigation }) {
     }).then(response => response.json()
     )
       .then(dados => {  
-        if(dados.token!==undefined){
+        if(dados.token!==undefined)
+      {
         AsyncStorage.setItem("token",dados.token)
         Token =dados.token;
         if (parseJwt().Role === "2") {
           navigation.navigate("ListarVagasInscritas");
-      } else if (parseJwt().Role === "3") {
+        } else if (parseJwt().Role === "3") {
           navigation.navigate("ListarVagaEmpresa");}
+      }else{
+        SetMensagem("Suas credencias não são válidas");
       }
       })
       .catch(err => console.error(err))
@@ -69,8 +75,9 @@ export default function Login({ navigation }) {
                 secureTextEntry={true}
                 onChange={e => setSenha(e.target.value)}
               />
-              <Text style={styles.recuperarPassword}>Recuperar senha</Text>
             </View>
+              <View style={styles.lbErro} nativeID={"lbErro"}><Text style={styles.lbErroText}>{MensagemErro}</Text></View>
+              <Text style={styles.recuperarPassword}>Recuperar senha</Text>
           </View>
 
           <View style={styles.divisionBtn}>
@@ -118,7 +125,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
   },
-
+lbErro:{
+  alignItems:'center'
+},
   divisionLogarTitle: {
     flexDirection: "column",
     height: "8vh",
@@ -136,12 +145,14 @@ const styles = StyleSheet.create({
   divisionCampo: {
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "8vh",
+    height: "12vh",
     alignItems: "flex-start",
     marginBottom: 25
   },
-
-  divisionPassword: { height: "11vh" },
+lbErroText:{
+  color:'red'
+},
+  divisionPassword: { height: "12vh" },
 
   divisionCampoText: { fontWeight: "600" },
 
