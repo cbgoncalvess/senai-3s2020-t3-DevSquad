@@ -31,6 +31,23 @@ export default function ListarVagasInscritas() {
       .catch((err) => console.error(err));
   };
 
+  const revogarInscricao = (idInscricao) => {
+
+    fetch('http://localhost:5000/api/Candidato/RevogarInscricao/' + idInscricao, {
+
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json',
+            authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+    }).then(response => response.json())
+        .then(dados => {
+            alert(dados);
+            listar();
+        })
+        .catch(err => console.error(err))
+  };
+
   return (
     <View style={styles.Fundo}>
       <View style={styles.teste}>
@@ -93,6 +110,12 @@ export default function ListarVagasInscritas() {
                       return <Tag NomeTag={subItem}></Tag>;
                     })}
                   </View>
+                  <TouchableOpacity
+                    style={styles.btnRevogar}
+                    onPress={() => revogarInscricao(item.idInscricao)}
+                  >
+                    <Text style={styles.texBtIns}>Aprovar</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
@@ -163,5 +186,19 @@ const styles = StyleSheet.create({
     nomeCandidato: {
         borderBottomColor: "black",
         borderWidth: 1,
+    },
+    btnRevogar: {
+      backgroundColor: "#00982B",
+      height: "36px",
+      width: "107px",
+      color: "#fff",
+      borderWidth: 0,
+      borderRadius: 5,
+      textAlign: "center",
+      justifyContent: "center",
+    },
+    texBtIns: {
+      color: "#fff",
+      fontWeight: "bold",
     },
 });
