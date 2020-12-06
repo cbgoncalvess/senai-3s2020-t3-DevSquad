@@ -178,7 +178,10 @@ function View(){
               <br/>
               <button className="btSelecionar"><label htmlFor="ButtonImage" className="lbBt">Selecione uma imagem</label></button>
               </div>
-            <form className="form" onSubmit={salvar}>
+            <form className="form" onSubmit={e =>{
+              e.preventDefault();
+              salvar();
+              }}>
               <input type="file" className="none" id="ButtonImage" onChange={event => { uploadFile(event)}}/>
               <Input
                 name="fullName"
@@ -187,7 +190,7 @@ function View(){
                 type="text"
                 placeholder="Maria dos Santos"
                 required
-                maxLength={35}
+                maxLength={65}
                 minLength={5}
                 onChange={(e) => SetNomeCompleto(e.target.value)}
               />
@@ -227,7 +230,7 @@ function View(){
                 label="Telefone:"
                 type="text"
                 placeholder="(11) 91234-5678"
-                maxLength={14}
+                maxLength={11}
                 minLength={11}
                 required
                 onChange={(e) => SetTelefone(e.target.value)}
@@ -239,7 +242,6 @@ function View(){
                 label="LinkedIn:"
                 type="text"
                 placeholder="linkedin.com/in/maria-dos-santos"
-                required
                 maxLength={150}
                 minLength={5}
                 onChange={(e) => SetLinkedin(e.target.value)}
@@ -270,7 +272,7 @@ function View(){
                 type="text"
                 placeholder="exemplo@exemplo.com"
                 required
-                maxLength={154}
+                maxLength={254}
                 minLength={5}
                 onChange={(e) => {
                   SetEmail(e.target.value);
@@ -338,7 +340,7 @@ function View(){
                 type="text"
                 placeholder="Meu cachorro se chama..."
                 required
-                maxLength={20}
+                maxLength={30}
                 minLength={5}
                 onChange={(e) => SetResposta(e.target.value)}
               />

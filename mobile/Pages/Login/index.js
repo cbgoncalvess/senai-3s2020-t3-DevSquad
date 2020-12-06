@@ -1,17 +1,47 @@
-import React from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-//import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity,} from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }) {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  let[Token,setToken]=useState('');
+
+  function parseJwt(){  
+    if(Token.length>10){
+        var base64Url =Token.split('.')[1];
+        var base64 =base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        return JSON.parse(window.atob(base64));
+    }
+}
+
+  function login (){
+    const loginForm = {
+      email: email,
+      senha: senha
+    }
+    fetch('http://localhost:5000/api/Login', {
+  
+      method: 'POST',
+      body: JSON.stringify(loginForm),
+      headers: {
+        'content-type': 'application/json'
+      }
+    }).then(response => response.json()
+    )
+      .then(dados => {  
+        if(dados.token!==undefined){
+        AsyncStorage.setItem("token",dados.token)
+        Token =dados.token;
+        if (parseJwt().Role === "2") {
+          navigation.navigate("ListarVagasInscritas");
+      } else if (parseJwt().Role === "3") {
+          navigation.navigate("ListarVagaEmpresa");}
+      }
+      })
+      .catch(err => console.error(err))
+  }
+  
   return (
     <View style={styles.login}>
       <View style={styles.sessaoLogar}>
@@ -24,20 +54,20 @@ export default function Login({ navigation }) {
           <View style={styles.formlogar}>
             <View style={styles.divisionCampo}>
               <Text style={styles.divisionCampoText}>Usuário ou E-mail:</Text>
-              {/* <input type="text" name="email" style={styles.inputUser} placeholder="exemplo@exemplo.com / mariasantos" onChange={e => setEmail(e.target.value)} /> */}
               <TextInput
                 placeholder={"exemplo@exemplo.com "}
                 style={styles.inputUser}
+                onChange={e => setEmail(e.target.value)}
               />
             </View>
 
             <View style={styles.divisionCampo} style={styles.divisionPassword}>
               <Text style={styles.divisionCampoText}>Senha:</Text>
-              {/* <input type="password" name="password" placeholder="******" style={styles.inputPassword} onChange={e => setSenha(e.target.value)} /> */}
               <TextInput
                 placeholder={"********"}
                 style={styles.inputPassword}
                 secureTextEntry={true}
+                onChange={e => setSenha(e.target.value)}
               />
               <Text style={styles.recuperarPassword}>Recuperar senha</Text>
             </View>
@@ -46,14 +76,12 @@ export default function Login({ navigation }) {
           <View style={styles.divisionBtn}>
             <TouchableOpacity
               style={styles.btnLogar}
-              onPress={() => navigation.navigate("ListarVagasInscritas")}
+              onPress={() => login()}
             >
               <Text style={styles.textLogin}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>
-
-        <Image style={styles.imglogin} />
       </View>
     </View>
   );
@@ -115,7 +143,7 @@ const styles = StyleSheet.create({
 
   divisionPassword: { height: "11vh" },
 
-  divisionCampoText: { fontWeight: "600"},
+  divisionCampoText: { fontWeight: "600" },
 
   inputUser: {
     paddingLeft: "1em",
@@ -151,15 +179,17 @@ const styles = StyleSheet.create({
     borderRadius: "4px"
   },
 
-  textLogin:{
+  textLogin: {
     fontSize: "16px",
     textTransform: "uppercase",
     fontWeight: "bold",
-    color: "white"},
+    color: "white"
+  },
 
-    recuperarPassword:{
-        marginLeft: 90,
-        marginRight: 10,
-        color: "#707070",
-        fontSize: 14}
+  recuperarPassword: {
+    marginLeft: 90,
+    marginRight: 10,
+    color: "#707070",
+    fontSize: 14
+  }
 });

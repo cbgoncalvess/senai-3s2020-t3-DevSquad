@@ -139,7 +139,7 @@ export default function CadastrarVaga() {
                                     label="Título da Vaga"
                                     onChange={e => SetTituloVaga(e.target.value)}
                                     type="text"
-                                    maxLength={40}
+                                    maxLength={50}
                                     minLength={5}
                                     required
                                 />
@@ -198,6 +198,8 @@ export default function CadastrarVaga() {
                                     <label>CEP:</label>
                                     <br />
                                     <input
+                                    maxLength={8}
+                                    minLength={8}
                                         type="text"
                                         className="cadastre"
                                         id="cep"
@@ -218,7 +220,7 @@ export default function CadastrarVaga() {
                                     label="Logradouro"
                                     type="text"
                                     onChange={e => SetLogradouro(e.target.value)}
-                                    maxLength={255}
+                                    maxLength={150}
                                     minLength={5}
                                     required
                                 />
@@ -243,6 +245,8 @@ export default function CadastrarVaga() {
                                         id="cidade"
                                         required
                                         disabled
+                                        maxLength={255}
+                                        minLength={5}
                                     />
                                 </div>
 
@@ -255,6 +259,8 @@ export default function CadastrarVaga() {
                                         id="uf"
                                         required
                                         disabled
+                                        maxLength={2}
+                                        minLength={2}
                                     />
                                 </div>
 
@@ -264,7 +270,7 @@ export default function CadastrarVaga() {
                                         name="DescricaoVaga"
                                         onChange={e => SetDescricaoVaga(e.target.value)}
                                         required
-                                        maxLength={700}
+                                        maxLength={750}
                                         minLength={5}
                                     ></textarea>
                                     <br />
@@ -272,7 +278,7 @@ export default function CadastrarVaga() {
                                     <textarea onChange={e => SetDescricaoEmpresa(e.target.value)}
                                         name="DescricaoEmpresa"
                                         required
-                                        maxLength={700}
+                                        maxLength={750}
                                         minLength={5}
                                     ></textarea>
                                     <br />
@@ -280,7 +286,7 @@ export default function CadastrarVaga() {
                                     <textarea name="DescricaoBeneficio"
                                         onChange={e => SetDescricaoBeneficio(e.target.value)}
                                         required
-                                        maxLength={700}
+                                        maxLength={750}
                                         minLength={5}
                                     ></textarea>
                                 </div>

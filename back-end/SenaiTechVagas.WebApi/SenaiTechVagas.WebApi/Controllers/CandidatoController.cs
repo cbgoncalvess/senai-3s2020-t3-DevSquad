@@ -162,7 +162,7 @@ namespace SenaiTechVagas.WebApi.Controllers
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
                 return Ok(_candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }

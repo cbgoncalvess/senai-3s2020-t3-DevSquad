@@ -8,11 +8,13 @@ namespace SenaiTechVagas.WebApi.ViewModels
 {
     public class CadastrarEstagioViewModel
     {
+        [Required]
         public int PeriodoEstagio { get; set; }
 
-        [StringLength(50, MinimumLength = 5)]
-        public string RazaoSocial { get; set; }
+        [Required]
         public int IdEmpresa { get; set; }
+
+        [Required]
         public int IdUsuario { get; set; }
     }
 }

@@ -1,5 +1,13 @@
 .division-logar-title > p {height: initial; color: #5f5f5f;}
 
+.LabelErro{
+    color: unset;
+    font-weight: unset;
+    color: red;
+    font-size: small;
+    text-align: center;
+}
+
 .principalLogin {
     display: flex;
     justify-content: space-between;

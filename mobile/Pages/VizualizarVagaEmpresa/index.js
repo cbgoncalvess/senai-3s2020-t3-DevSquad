@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
-//import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function VizualizarVagaEmpresa({ navigation }) {
   const [Inscricoes, setInscricoes] = useState([]);
@@ -22,6 +22,7 @@ export default function VizualizarVagaEmpresa({ navigation }) {
   const [NomeArea, setNomeArea] = useState("");
   const [TipoPresenca, setTipoPresenca] = useState("");
   const [RazaoSocial, setRazaoSocial] = useState("");
+  const [CaminhoImagem,setCaminho]=useState("");
 
   useEffect(() => {
     BuscarPorId();
@@ -31,9 +32,12 @@ export default function VizualizarVagaEmpresa({ navigation }) {
   const listarCandidatos = async () => {
     fetch(
       "http://localhost:5000/api/Empresa/ListarCandidatosInscritos/" +
-        //(await AsyncStorage.getItem("VagaSelecionada")),
+        (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
+        headers: {
+          authorization: "Bearer " +await AsyncStorage.getItem("token"),
+        }
       }
     )
       .then((response) => response.json())
@@ -46,9 +50,12 @@ export default function VizualizarVagaEmpresa({ navigation }) {
   const BuscarPorId = async () => {
     fetch(
       "http://localhost:5000/api/Usuario/BuscarPorId/" +
-        //(await AsyncStorage.getItem("VagaSelecionada")),
+        (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
+        headers: {
+          authorization: "Bearer " +await AsyncStorage.getItem("token"),
+        }
       }
     )
       .then((response) => response.json())
@@ -62,18 +69,17 @@ export default function VizualizarVagaEmpresa({ navigation }) {
         setNomeArea(dados.nomeArea);
         setTipoPresenca(dados.tipoPresenca);
         setRazaoSocial(dados.razaoSocial);
-        console.log(RazaoSocial);
+        setCaminho(dados.caminhoImagem);
       })
       .catch((err) => console.error(err));
   };
 
-  const Aprovar = (id) => {
+  const Aprovar = async (id) => {
     fetch("http://localhost:5000/api/Empresa/Aprovar/" + id, {
       method: "PUT",
       headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
+        authorization: "Bearer " +await AsyncStorage.getItem("token"),
+      }
     })
       .then(function (respose) {
         if (respose.status !== 200) {
@@ -84,13 +90,12 @@ export default function VizualizarVagaEmpresa({ navigation }) {
       .catch((err) => console.error(err));
   };
 
-  const Reprovar = (id) => {
+  const Reprovar = async(id) => {
     fetch("http://localhost:5000/api/Empresa/Reprovar/" + id, {
       method: "PUT",
       headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
+        authorization: "Bearer " +await AsyncStorage.getItem("token"),
+      }
     })
       .then(function (respose) {
         if (respose.status !== 200) {
@@ -117,7 +122,7 @@ export default function VizualizarVagaEmpresa({ navigation }) {
         <View style={styles.VagaCompleta}>
           <Image
             style={styles.ImagemEmpresa}
-            source={require("../../assets/Images/Teste.webp")}
+            source={{uri:'http://localhost:5000/imgPerfil/'+CaminhoImagem}}
           />
           <View style={styles.MainVaga}>
             <Text style={styles.TituloVaga}>{TituloVaga}</Text>
@@ -254,6 +259,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: "3vh",
     flexWrap: "wrap",
+    justifyContent:'center'
   },
   MainVaga: {
     display: "flex",

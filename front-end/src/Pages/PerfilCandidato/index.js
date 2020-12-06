@@ -191,7 +191,7 @@ export default function PerfilCandidato() {
                         <h3>{NomeCompleto}</h3>
                         <p>Candidato</p>
                     </div>
-                    <div className="BotoesPerfilCandidato">
+                    <div className="BotoesPerfilEmpresa">
                         <button className="btPerfil" onClick={ApareceEditarDados}>Alterar dados</button>
                         <button className="btPerfil" onClick={ApareceAlterarSenhaCandidato}>Alterar senha</button>
                     </div>
@@ -219,7 +219,7 @@ export default function PerfilCandidato() {
                 <h2>Editar seus dados pessoais</h2>
                 <form>
                     <Input className="InputCadastro" value={NomeCompleto} name="NomeCompleto" label="Nome completo" onChange={e => SetNomeCompleto(e.target.value)}
-                    maxLength={35}
+                    maxLength={65}
                     minLength={5}
                     required 
                     />
@@ -238,7 +238,7 @@ export default function PerfilCandidato() {
 
                     <Input className="InputCadastro" value={Telefone} name="Telefone" label="Telefone" onChange={e => SetTelefone(e.target.value)}
                     maxLength={14}
-                    minLength={11}
+                    minLength={10}
                     required 
                     />
 
