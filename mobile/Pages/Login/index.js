@@ -1,47 +1,53 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity,} from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }) {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  let[Token,setToken]=useState('');
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  let [Token, setToken] = useState("");
 
-  function parseJwt(){  
-    if(Token.length>10){
-        var base64Url =Token.split('.')[1];
-        var base64 =base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        return JSON.parse(window.atob(base64));
+  function parseJwt() {
+    if (Token.length > 10) {
+      var base64Url = Token.split(".")[1];
+      var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      return JSON.parse(window.atob(base64));
     }
-}
+  }
 
-  function login (){
+  function login() {
     const loginForm = {
       email: email,
-      senha: senha
-    }
-    fetch('http://localhost:5000/api/Login', {
-  
-      method: 'POST',
+      senha: senha,
+    };
+    fetch("http://localhost:5000/api/Login", {
+      method: "POST",
       body: JSON.stringify(loginForm),
       headers: {
-        'content-type': 'application/json'
-      }
-    }).then(response => response.json()
-    )
-      .then(dados => {  
-        if(dados.token!==undefined){
-        AsyncStorage.setItem("token",dados.token)
-        Token =dados.token;
-        if (parseJwt().Role === "2") {
-          navigation.navigate("ListarVagasInscritas");
-      } else if (parseJwt().Role === "3") {
-          navigation.navigate("ListarVagaEmpresa");}
-      }
+        "content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((dados) => {
+        if (dados.token !== undefined) {
+          AsyncStorage.setItem("token", dados.token);
+          Token = dados.token;
+          if (parseJwt().Role === "2") {
+            navigation.navigate("ListarVagasInscritas");
+          } else if (parseJwt().Role === "3") {
+            navigation.navigate("ListarVagaEmpresa");
+          }
+        }
       })
-      .catch(err => console.error(err))
+      .catch((err) => console.error(err));
   }
-  
+
   return (
     <View style={styles.login}>
       <View style={styles.sessaoLogar}>
@@ -57,7 +63,7 @@ export default function Login({ navigation }) {
               <TextInput
                 placeholder={"exemplo@exemplo.com "}
                 style={styles.inputUser}
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </View>
 
@@ -67,17 +73,14 @@ export default function Login({ navigation }) {
                 placeholder={"********"}
                 style={styles.inputPassword}
                 secureTextEntry={true}
-                onChange={e => setSenha(e.target.value)}
+                onChange={(e) => setSenha(e.target.value)}
               />
               <Text style={styles.recuperarPassword}>Recuperar senha</Text>
             </View>
           </View>
 
           <View style={styles.divisionBtn}>
-            <TouchableOpacity
-              style={styles.btnLogar}
-              onPress={() => login()}
-            >
+            <TouchableOpacity style={styles.btnLogar} onPress={() => login()}>
               <Text style={styles.textLogin}>Login</Text>
             </TouchableOpacity>
           </View>
@@ -95,7 +98,7 @@ const styles = StyleSheet.create({
   },
 
   sessaoLogar: {
-    flexDirection: "colunm",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     width: "400px",
@@ -105,12 +108,12 @@ const styles = StyleSheet.create({
     height: "22vh",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "spaceBetween",
+    justifyContent: "space-between",
   },
 
   divisionLogar: {
-    borderWidth: "none",
-    borderRadius: "20px",
+    borderWidth: 0,
+    borderRadius: 20,
     backgroundColor: "#FFFFFF",
     width: "611px",
     height: "596px",
@@ -121,13 +124,13 @@ const styles = StyleSheet.create({
 
   divisionLogarTitle: {
     flexDirection: "column",
-    height: "8vh",
+    height: "8vh", //Não funciona vh no mobile
     justifyContent: "space-between",
     alignItems: "center",
   },
 
   divisionLogarTitleText: {
-    fontSize: "36px",
+    fontSize: 36,
     color: "#005767",
     textTransform: "capitalize",
     fontWeight: "400",
@@ -136,9 +139,9 @@ const styles = StyleSheet.create({
   divisionCampo: {
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "8vh",
+    height: "8vh", //Não funciona vh no mobile
     alignItems: "flex-start",
-    marginBottom: 25
+    marginBottom: 25,
   },
 
   divisionPassword: { height: "11vh" },
@@ -147,7 +150,7 @@ const styles = StyleSheet.create({
 
   inputUser: {
     paddingLeft: "1em",
-    borderRadius: "4px",
+    borderRadius: 4,
     width: "295px",
     height: "44.51px",
     backgroundColor: "#f3f3f3",
@@ -155,7 +158,7 @@ const styles = StyleSheet.create({
 
   inputPassword: {
     paddingLeft: "1em",
-    borderRadius: "4px",
+    borderRadius: 4,
     width: "295px",
     height: "44.51px",
     backgroundColor: "#f3f3f3",
@@ -169,27 +172,27 @@ const styles = StyleSheet.create({
   },
 
   btnLogar: {
-    textDecoration: "none",
+    textDecorationLine: "none",
     borderWidth: 0,
     alignItems: "center",
     justifyContent: "center",
     width: "150px",
     height: "38px",
     backgroundColor: "#005767",
-    borderRadius: "4px"
+    borderRadius: 4,
   },
 
   textLogin: {
-    fontSize: "16px",
+    fontSize: 16,
     textTransform: "uppercase",
     fontWeight: "bold",
-    color: "white"
+    color: "white",
   },
 
   recuperarPassword: {
     marginLeft: 90,
     marginRight: 10,
     color: "#707070",
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 });
