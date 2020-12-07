@@ -10,8 +10,11 @@ namespace SenaiTechVagas.WebApi.Interfaces
     interface IAdministradorRepository
     {
         bool CadastrarArea(Area area);
+        CandidatoCompletoViewModel BuscarCandidatoPorIdUsuario(int idUsuario);
+        List<ListarVagasViewModel> ListarVagasDaEmpresa(int idEmpresa);
         bool AtualizarArea(int idArea, Area area);
         bool CadastrarCurso(Curso curso);
+        EmpresaCompletaViewModel BuscarEmpresaPorIdUsuario(int idUsuario);
         bool AtualizarCurso(int id, Curso curso);
         List<ListarEstagiosViewModel> ListarEstagios();
         string CadastrarEstagio(CadastrarEstagioViewModel estagio);
@@ -49,5 +52,6 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool AdicionarTipoPresenca(TipoRegimePresencial trp);
         bool AtualizarTipoPresenca(int id,TipoRegimePresencial trp);
         UploadImagem BuscarImagemPerfilAdm(int idAms);
+        List<ListarVagasViewModel> ListarInscricoes(int idUsuario);
     }
 }

@@ -14,6 +14,8 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string Telefone { get; set; }
         public string LinkLinkedinCandidato { get; set; }
         public int idCurso{ get; set; }
+        public string NomeCurso { get; set; }
+        public string NomeArea { get; set; }
         public int IdArea { get; set; }
         public string CaminhoImagem { get; set; }
     }

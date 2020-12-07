@@ -7,8 +7,6 @@ import AccessMenu from '../../Components/AccessMenu';
 import Input from '../../Components/Input/index';
 import api from '../../services/api';
 
-import imgPadrao from '../../assets/android-character-symbol.webp';
-
 import './style.css';
 
 export default function PerfilCandidato() {

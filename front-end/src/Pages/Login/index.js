@@ -136,7 +136,7 @@ export default function Login() {
                             login();
                         }}>
                             <div className="divisionCampo">
-                                <label>Usuário ou E-mail:</label>
+                                <label>E-mail:</label>
                                 <input type="text" name="email" className="inputUser" placeholder="exemplo@exemplo.com / mariasantos" onChange={e => setEmail(e.target.value)} />
                             </div>
 

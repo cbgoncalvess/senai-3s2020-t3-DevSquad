@@ -155,7 +155,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     return listvagas;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
@@ -355,7 +355,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         return null;
                     }
                 }
-            }catch(Exception)
+            }catch(Exception e)
             {
                 return null;
             }

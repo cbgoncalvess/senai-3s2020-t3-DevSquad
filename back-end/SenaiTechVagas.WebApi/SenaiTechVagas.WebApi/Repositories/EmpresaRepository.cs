@@ -444,9 +444,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                 // Retorna a lista de vagas
                 return listvagas;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
                 return null;
             }
         }

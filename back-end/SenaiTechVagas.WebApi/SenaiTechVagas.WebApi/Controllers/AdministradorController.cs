@@ -28,6 +28,83 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /*----------------------------------------GET START-----------------------------*/
+
+        /// <summary>
+        /// Método que lista vagas em inscritas do candidatos.
+        /// </summary>
+        /// <returns>Retorna vagas em inscritas do candidato.</returns>
+        [Authorize(Roles = "1")]
+        [HttpGet("ListarVagasInscritasAdm/{id}")]
+        public IActionResult ListarVagasInscritas(int id)
+        {
+            try
+            {
+                return Ok(_Admin.ListarInscricoes(id));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Uma exceção ocorreu. Tente novamente.");
+            }
+        }
+
+        /// <summary>
+        /// Método que busca candidato.
+        /// </summary>
+        /// <returns>Retorna candidato buscado.</returns>
+        [Authorize(Roles = "1")]
+        [HttpGet("BuscarCandidatoPorIdAdm/{id}")]
+        public IActionResult BuscarCandidatoPorId(int id)
+        {
+            try
+            {
+                return Ok(_Admin.BuscarCandidatoPorIdUsuario(id));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Uma exceção ocorreu. Tente novamente.");
+            }
+        }
+
+        /// <summary>
+        /// Lista todas as vagas que a empresa publicou
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "1")]
+        [HttpGet("ListarVagasEmpresaAdm/{id}")]
+        public IActionResult ListarVagas(int id)
+        {
+            try
+            {
+                EmpresaCompletaViewModel empresa = _Admin.BuscarEmpresaPorIdUsuario(id);
+                if (empresa == null)
+                    return BadRequest();
+
+                return Ok(_Admin.ListarVagasDaEmpresa(empresa.IdEmpresa));
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles = "1")]
+        [HttpGet("BuscarEmpresaPorIdAdm/{id}")]
+        public IActionResult BuscarEmpresaPorId(int id)
+        {
+            try
+            {
+                return Ok(_Admin.BuscarEmpresaPorIdUsuario(id));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Uma exceção ocorreu. Tente novamente.");
+            }
+        }
+
         /// <summary>
         /// Método que lista as empresas cadastradas com suas informações.
         /// </summary>       

@@ -61,6 +61,7 @@ export default function PerfilAdm() {
                 alert(dados);
                 listarEmpresa();
                 listarCandidatos();
+                listarVagas();
             }).catch(err => console.error(err));
 }
 
@@ -200,7 +201,7 @@ const DeletarVaga = (id) => {
                     <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
                     <div className="imgPefilTexto">
                         <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" /></label>
-                        <h3>Robertinho monstrão</h3>
+                        <h3>Roberto Possarle</h3>
                         <p>administrador</p>
                     </div>
                     <div className="BotoesPerfil">
@@ -261,7 +262,11 @@ const DeletarVaga = (id) => {
                                     </div>
                                     <div className="ColumnPerfilBanir">
                                         <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>Banir(item.idUsuario)}/>
-                                        <button className="btVerPerfil"><h4>Ver perfil</h4></button>
+                                        <button className="btVerPerfil" onClick={e=>{
+                                            e.preventDefault();
+                                            localStorage.setItem("CandidatoSelecionado",item.idUsuario);
+                                            history.push("PerfilCandidatoAdm");
+                                        }}><h4>Ver perfil</h4></button>
                                     </div>
                                 </div>
                             )
@@ -286,7 +291,11 @@ const DeletarVaga = (id) => {
                                     </div>
                                     <div className="ColumnPerfilBanir">
                                         <img className="Delete" onClick={()=>Banir(item.idUsuario)} src={imgDelete} alt="Delete" />
-                                        <button className="btVerPerfil"><h4>Ver perfil</h4></button>
+                                        <button className="btVerPerfil" onClick={e=>{
+                                            e.preventDefault();
+                                            localStorage.setItem("IdEmpresaSelecionada",item.idUsuario);
+                                            history.push("/PerfilEmpresaAdm")
+                                        }}><h4>Ver perfil</h4></button>
                                     </div>
                                 </div>
                             )

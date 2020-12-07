@@ -1,15 +1,14 @@
-import React ,{useState}from "react";
+import React from "react";
+import { useHistory,Link } from "react-router-dom";
+
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import AccessBar from "../../Components/AccessBar";
-import Tag from "../../Components/Tag/Index";
 import AccessMenu from "../../Components/AccessMenu";
+import Tag from "../../Components/Tag/Index";
 import Svg from "../../Components/imgsvg/Index";
 import Confidence from "../../Components/imgsvg/confidence";
 import Surprise from "../../Components/imgsvg/surprise";
-// import ModalGeneric from '../../Components/ModalGeneric/Index';
-
-import { Link } from "react-router-dom";
 
 import imgPadrao from "../../assets/android-character-symbol.webp";
 import imgPerfil from "../../assets/perfil-comportamental-online.webp";
@@ -17,12 +16,12 @@ import imgPerfil from "../../assets/perfil-comportamental-online.webp";
 import "./style.css";
 
 export default function Home() {
+  let history = useHistory();
   return (
     <div>
       <AccessBar />
       <Header />
       <AccessMenu />
-      {/* <ModalGeneric titleModal="Edição de vagas" btnName="Editar"/> */}
       <div className="bodyPart">
         <div className="StartImage">
           <div className="StartText">
@@ -112,9 +111,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="LinkVaga">
-                <a className="Link" href="teste">
-                  Ver mais sobre a vaga
-                </a>
+                <h4 className="UnderlineText" onClick={()=>history.push("/login")}>Ver mais sobre a vaga</h4>
               </div>
             </div>
             <div className="Vaga">
@@ -136,9 +133,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="LinkVaga">
-                <a className="Link" href="teste">
-                  Ver mais sobre a vaga
-                </a>
+              <h4 className="UnderlineText" onClick={()=>history.push("/login")}>Ver mais sobre a vaga</h4>
               </div>
             </div>
             <div className="Vaga">
@@ -161,9 +156,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="LinkVaga">
-                <a className="Link" href="teste">
-                  Ver mais sobre a vaga
-                </a>
+              <h4 className="UnderlineText" onClick={()=>history.push("/login")}>Ver mais sobre a vaga</h4>
               </div>
             </div>
           </div>

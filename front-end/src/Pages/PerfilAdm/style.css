@@ -206,9 +206,6 @@
 }
 
 @media (max-width: 700px) {
-  .EsquerdoPerfil {
-    display: none;
-  }
 
   .DireitoPerfil {
     width: 100%;

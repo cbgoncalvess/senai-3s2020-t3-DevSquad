@@ -67,3 +67,7 @@ SELECT inscri.DataInscricao,trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.
                              INNER JOIN Inscricao inscri on inscri.IdVaga=v.IdVaga
                              INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial
                              WHERE v.IdVaga =1 AND inscri.IdInscricao=4
+
+
+
+							 update Usuario set CaminhoImagem='user.png' where IdUsuario>0
