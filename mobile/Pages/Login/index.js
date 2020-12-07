@@ -44,7 +44,10 @@ export default function Login({ navigation }) {
         SetMensagem("Suas credencias não são válidas");
       }
       })
-      .catch((err) => console.error(err));
+      .catch((err) =>{
+        console.log(err);
+        SetMensagem("Suas credencias não são válidas");
+      });
   }
 
   return (

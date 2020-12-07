@@ -20,7 +20,7 @@ import Input from "../../Components/Input";
 export default function Estagio() {
   const [Estagios, SetEstagios] = useState([]);
   const [idEstagio, setIdEstagio] = useState(0);
-  const [Periodo, SetPeriodo] = useState("");
+  const [Periodo, SetPeriodo] = useState(0);
   const [Estatiscas, setEstatiscas] = useState([]);
   const [EstagioFiltro, setEstagioFiltro] = useState([]);
   const [Opcao, setOpcao] = useState("");
@@ -50,6 +50,7 @@ export default function Estagio() {
                     className="Edit"
                     src={imgEdit}
                     onClick={(event) => {
+                      event.preventDefault();
                       setIdEstagio(item.idEstagio);
                       AparecerEditarEstagio();
                     }}
@@ -173,8 +174,7 @@ export default function Estagio() {
     const form = {
       periodoEstagio: Periodo
     };
-    fetch(
-      "http://localhost:5000/api/Administrador/AtualizarEstagio/" + idEstagio,
+    fetch("http://localhost:5000/api/Administrador/AtualizarEstagio/" + idEstagio,
       {
         method: "PUT",
         body: JSON.stringify(form),

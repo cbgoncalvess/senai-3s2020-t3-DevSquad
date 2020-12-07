@@ -23,6 +23,10 @@
   text-align: center;
 }
 
+.UnderlineText{
+  text-decoration: underline;
+}
+
 .Space > img {
   width: 30px;
   height: 30px;

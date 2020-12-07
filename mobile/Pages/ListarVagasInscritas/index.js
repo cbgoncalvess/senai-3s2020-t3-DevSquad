@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Image,
+  ScrollView
 } from "react-native";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
@@ -43,13 +44,14 @@ export default function ListarVagasInscritas() {
     }).then(response => response.json())
         .then(dados => {
             alert(dados);
-            listar();
+            listarVagasInscritas();
         })
         .catch(err => console.error(err))
   };
 
   return (
-    <View style={styles.Fundo}>
+<ScrollView>
+<View style={styles.Fundo}>
       <View style={styles.teste}>
         <ImageBackground
           source={require("../../assets/Images/bannerVisualizarVaga.webp")}
@@ -114,7 +116,7 @@ export default function ListarVagasInscritas() {
                     style={styles.btnRevogar}
                     onPress={() => revogarInscricao(item.idInscricao)}
                   >
-                    <Text style={styles.texBtIns}>Aprovar</Text>
+                    <Text style={styles.texBtIns}>RevogarInscricao</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -123,6 +125,7 @@ export default function ListarVagasInscritas() {
         })}
       </View>
     </View>
+</ScrollView>
   );
 }
 
@@ -188,11 +191,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     btnRevogar: {
-      backgroundColor: "#00982B",
-      height: "36px",
-      width: "107px",
-      color: "#fff",
+      backgroundColor: "red",
       borderWidth: 0,
+      padding:5,
       borderRadius: 5,
       textAlign: "center",
       justifyContent: "center",

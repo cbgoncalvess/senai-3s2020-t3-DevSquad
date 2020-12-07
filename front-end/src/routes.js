@@ -20,12 +20,14 @@ import Sobre from "./Pages/Sobre";
 import TesteDePesonalidade from "./Pages/TesteDePersonalidade/Index";
 import VagasPublicadas from "./Pages/ListarVagasPublicadas/Index";
 import VisualizarVagaCandidato from "./Pages/VisualizarVagaCandidato";
-import VizualizarVagaEmpresa from "./Pages/VizualizarVagaEmpresa";
+import VizualizarVagaEmpresa from "./Pages/VisualizarVagaEmpresa";
 import ListarCandidatosInscritos from "./Pages/ListarCandidatosInscritosAdmin";
 import DashboardInscricaoCandidato from "./Pages/DashbordInscricaoCandidato";
 import CadastrarEstagiario from "./Pages/CadastrarEstagiario";
 import Unauthorized from "./Pages/Unauthorized";
 import VizualizarCandidatosAprovados from "./Pages/CandidatosAprovados";
+import VisualizarEmpresaAdm from "./Pages/VisualizarEmpresaAdm";
+import VisualizarCandidatoAdm from "./Pages/VisualizarCandidatoAdm";
 import {parseJwt} from './services/token'
 
 
@@ -93,6 +95,8 @@ function Routes() {
         />
         <RotaPrivadaComum path="/principal" component={BuscarVagas} />
         <RotaPrivadaEmpresa path="/cadastro/vaga" component={CadastrarVaga} />
+        <RotaPrivadaAdm path="/PerfilEmpresaAdm" component={VisualizarEmpresaAdm} />
+        <RotaPrivadaAdm path="/PerfilCandidatoAdm" component={VisualizarCandidatoAdm} />
         <RotaPrivadaAdm path="/cadastro/Estagio" component={CadastrarEstagiario} />
         <Route path="/cadastro" exact component={CadastroCandidato} />
         <Route path="/cadastro/empresa" component={CadastroEmpresa} />

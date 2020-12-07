@@ -1132,5 +1132,315 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
+
+        public EmpresaCompletaViewModel BuscarEmpresaPorIdUsuario(int idUsuario)
+        {
+            try
+            {
+                // Declara a conexão passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
+                {
+                    // Declara a query que será executada
+                    string querySelectById =
+                        "SELECT E.*,U.CaminhoImagem FROM Empresa E" +
+                        " INNER JOIN Usuario U ON U.IdUsuario=E.IdUsuario" +
+                        " WHERE U.IdUsuario = @ID";
+
+                    // Abre a conexão com o banco de dados
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectById, con))
+                    {
+                        // Passa o valor do parâmetro
+                        cmd.Parameters.AddWithValue("@ID", idUsuario);
+
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Caso o resultado da query possua registro
+                        if (rdr.Read())
+                        {
+                            // Instancia um objeto usuario 
+                            EmpresaCompletaViewModel usuario = new EmpresaCompletaViewModel
+                            {
+                                IdEmpresa = Convert.ToInt32(rdr["IdEmpresa"]),
+                                NomeReponsavel = rdr["NomeReponsavel"].ToString(),
+                                EmailContato = rdr["EmailContato"].ToString(),
+                                Cnpj = rdr["Cnpj"].ToString(),
+                                NomeFantasia = rdr["NomeFantasia"].ToString(),
+                                RazaoSocial = rdr["RazaoSocial"].ToString(),
+                                Telefone = rdr["Telefone"].ToString(),
+                                NumFuncionario = Convert.ToInt32(rdr["NumFuncionario"]),
+                                NumCnae = rdr["NumCnae"].ToString(),
+                                Cep = rdr["Cep"].ToString(),
+                                Logradouro = rdr["Logradouro"].ToString(),
+                                Complemento = rdr["Complemento"].ToString(),
+                                Localidade = rdr["Localidade"].ToString(),
+                                Uf = rdr["Uf"].ToString(),
+                                CaminhoImagem = rdr["CaminhoImagem"].ToString()
+                            };
+
+                            // Retorna o usuario buscado
+                            return usuario;
+                        }
+
+                        // Caso o resultado da query não possua registros, retorna null
+                        return null;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
+        public List<ListarVagasViewModel> ListarVagasDaEmpresa(int idEmpresa)
+        {
+            try
+            {
+                List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
+
+                // Declara a SqlConnection passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
+                {
+                    // Declara a instrução a ser executada
+                    string querySelectAll =
+                    "SELECT U.CaminhoImagem,v.DataExpiracao,trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                    " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
+                    " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
+                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
+                    " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario" +
+                    " INNER JOIN Area are on are.IdArea=v.IdArea" +
+                    " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
+                    " WHERE e.IdEmpresa =@IDEmpresa";
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                    {
+                        cmd.Parameters.AddWithValue("@IDEmpresa", idEmpresa);
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
+                        while (rdr.Read())
+                        {
+                            bool teveAcao = false;
+
+                            // Instancia um objeto jogo 
+                            ListarVagasViewModel vm = new ListarVagasViewModel
+                            {
+
+                                // Atribui às propriedades os valores das colunas da tabela do banco
+                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                                Experiencia = rdr["Experiencia"].ToString(),
+                                TipoContrato = rdr["TipoContrato"].ToString(),
+                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
+                                Localidade = rdr["Localidade"].ToString(),
+                                Salario = Convert.ToDecimal(rdr["Salario"]),
+                                RazaoSocial = rdr["RazaoSocial"].ToString(),
+                                NomeArea = rdr["NomeArea"].ToString(),
+                                TituloVaga = rdr["TituloVaga"].ToString(),
+                                TipoPresenca = rdr["NomeTipoRegimePresencial"].ToString(),
+                                DataExpiracao = Convert.ToDateTime(rdr["DataExpiracao"]).ToString("dd/MM/yyyy")
+                            };
+                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
+                            vm.Tecnologias = new List<string>();
+
+                            for (int i = 0; i < listvagas.Count; i++)
+                            {
+                                if (vm.IdVaga == listvagas[i].IdVaga)
+                                {
+                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
+                                    teveAcao = true;
+                                }
+                            }
+                            if (teveAcao == true)
+                                continue;
+                            else vm.Tecnologias.Add(NomeTecnologia);
+                            // Adiciona a vaga criada à lista de vagas
+                            listvagas.Add(vm);
+                        }
+                    }
+                }
+
+                // Retorna a lista de vagas
+                return listvagas;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
+        public CandidatoCompletoViewModel BuscarCandidatoPorIdUsuario(int idUsuario)
+        {
+            try
+            {
+                // Declara a conexão passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
+                {
+                    // Declara a query que será executada
+                    string querySelectById =
+                        "SELECT  A.NomeArea,cur.NomeCurso,A.IdArea,C.IdCandidato,cur.IdCurso,NomeCompleto,Rg,Cpf,Telefone,C.LinkLinkedinCandidato,U.CaminhoImagem FROM Candidato C" +
+                        " INNER JOIN Curso cur ON cur.IdCurso=C.IdCurso" +
+                        " INNER JOIN Area A ON A.IdArea=cur.IdArea" +
+                        " INNER JOIN Usuario U ON U.IdUsuario=C.IdUsuario" +
+                        " WHERE U.IdUsuario = @ID";
+
+                    // Abre a conexão com o banco de dados
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectById, con))
+                    {
+                        // Passa o valor do parâmetro
+                        cmd.Parameters.AddWithValue("@ID", idUsuario);
+
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Caso o resultado da query possua registro
+                        if (rdr.Read())
+                        {
+                            // Instancia um objeto usuario 
+                            CandidatoCompletoViewModel usuario = new CandidatoCompletoViewModel
+                            {
+                                // Atribui às propriedades os valores das colunas da tabela do banco
+                                IdCandidato = Convert.ToInt32(rdr["IdCandidato"]),
+                                idCurso = Convert.ToInt32(rdr["IdCurso"]),
+                                IdArea = Convert.ToInt32(rdr["IdArea"]),
+                                NomeCompleto = rdr["NomeCompleto"].ToString(),
+                                NomeArea = rdr["NomeArea"].ToString(),
+                                NomeCurso = rdr["NomeCurso"].ToString(),
+                                Rg = rdr["Rg"].ToString(),
+                                Cpf = rdr["Cpf"].ToString(),
+                                Telefone = rdr["Telefone"].ToString(),
+                                LinkLinkedinCandidato = rdr["LinkLinkedinCandidato"].ToString(),
+                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
+
+                            };
+
+                            // Retorna o usuario buscado
+                            return usuario;
+                        }
+
+                        // Caso o resultado da query não possua registros, retorna null
+                        return null;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<ListarVagasViewModel> ListarInscricoes(int idUsuario)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Candidato candidato = ctx.Candidato.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                    if (candidato == null)
+                        return null;
+
+                    List<Inscricao> ListaDeInscricoes = ctx.Inscricao.Where(v => v.IdCandidato == candidato.IdCandidato).ToList();
+                    if (ListaDeInscricoes == null)
+                        return null;
+                    List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
+                    for (int i = 0; i < ListaDeInscricoes.Count; i++)
+                    {
+                        // Declara a SqlConnection passando a string de conexão
+                        using (SqlConnection con = new SqlConnection(stringConexao))
+                        {
+                            // Declara a instrução a ser executada
+                            string querySelectAll =
+                            "SELECT U.CaminhoImagem,inscri.DataInscricao,trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                            " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
+                            " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
+                            " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
+                            " INNER JOIN Area are on are.IdArea=v.IdArea" +
+                            " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario" +
+                            " INNER JOIN Inscricao inscri on inscri.IdVaga=v.IdVaga" +
+                            " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
+                            " WHERE v.IdVaga =@IDVaga AND inscri.IdInscricao=@IDInscricao ";
+                            con.Open();
+
+                            // Declara o SqlDataReader para receber os dados do banco de dados
+                            SqlDataReader rdr;
+
+                            // Declara o SqlCommand passando o comando a ser executado e a conexão
+                            using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                            {
+                                cmd.Parameters.AddWithValue("@IDVaga", ListaDeInscricoes[i].IdVaga);
+                                cmd.Parameters.AddWithValue("@IDInscricao", ListaDeInscricoes[i].IdInscricao);
+                                // Executa a query e armazena os dados no rdr
+                                rdr = cmd.ExecuteReader();
+
+                                // Enquanto houver registros para serem lidos no rdr, o laço se repete
+                                while (rdr.Read())
+                                {
+                                    bool teveAcao = false;
+
+                                    // Instancia um objeto jogo 
+                                    ListarVagasViewModel vm = new ListarVagasViewModel
+                                    {
+                                        // Atribui às propriedades os valores das colunas da tabela do banco
+                                        IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                                        Experiencia = rdr["Experiencia"].ToString(),
+                                        CaminhoImagem = rdr["CaminhoImagem"].ToString(),
+                                        TipoContrato = rdr["TipoContrato"].ToString(),
+                                        IdInscricao = Convert.ToInt32(rdr["IdInscricao"]),
+                                        Localidade = rdr["Localidade"].ToString(),
+                                        DataInscricao = Convert.ToDateTime(rdr["DataInscricao"]).ToString("dd/MM/yyyy"),
+                                        Salario = Convert.ToDecimal(rdr["Salario"]),
+                                        RazaoSocial = rdr["RazaoSocial"].ToString(),
+                                        NomeArea = rdr["NomeArea"].ToString(),
+                                        TituloVaga = rdr["TituloVaga"].ToString(),
+                                        TipoPresenca = rdr["NomeTipoRegimePresencial"].ToString()
+                                    };
+                                    var NomeTecnologia = rdr["NomeTecnologia"].ToString();
+                                    vm.Tecnologias = new List<string>();
+
+                                    for (int e = 0; e < listvagas.Count; e++)
+                                    {
+                                        if (vm.IdVaga == listvagas[e].IdVaga)
+                                        {
+                                            listvagas[e].Tecnologias.Add(NomeTecnologia);
+                                            teveAcao = true;
+                                        }
+                                    }
+                                    if (teveAcao == true)
+                                        continue;
+                                    else vm.Tecnologias.Add(NomeTecnologia);
+                                    // Adiciona a vaga criada à lista de vagas
+                                    listvagas.Add(vm);
+                                }
+                            }
+                        }
+                    }
+                    return listvagas;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }
