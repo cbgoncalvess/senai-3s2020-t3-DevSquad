@@ -20,16 +20,16 @@ export default function Principal({ navigation }) {
 
   useEffect(() => {
     listarVagas();
-    View();
+    Vizualizar();
     listarTecnologias();
   }, []);
 
   const FiltrarTecnologia = (tecnologia) => {
-    for (var i = 0; i < ListVagas.length; i++) {
-      let Tecnologias = ListVagas[i].tecnologias;
+    for (var i = 0; i < ListarVagas.length; i++) {
+      let Tecnologias = ListarVagas[i].tecnologias;
       for (var o = 0; o < Tecnologias.length; o++) {
         if (Tecnologias[o] == tecnologia) {
-          VagaTecnologia.push(ListVagas[i]);
+          VagaTecnologia.push(ListarVagas[i]);
           break;
         }
       }
@@ -137,7 +137,9 @@ if (Opcao== "") {
   );
   }else if (Opcao.length >= 1) {
     VagaTecnologia.splice(0, Number.MAX_VALUE);
+    console.log(Opcao)
     FiltrarTecnologia(Opcao);
+    console.log(VagaTecnologia);
     return(
 <View style={styles.MainVaga}>
           {
@@ -221,17 +223,17 @@ if (Opcao== "") {
             style={styles.BannerVizualizarVagaEmpresa}
             >
             <Text style={styles.TextoHeader}>Busque sua vaga aqui</Text>
-            <Picker 
+            <Picker style={styles.select}
               onValueChange={(itemValue, itemIndex)=>{
               setOpcao(itemValue)
               }}
             >
-              <Picker.Item label={"Busque pela tecnologia"} value={0}/>
+              <Picker.Item label={"Busque a vaga pela tecnologia"} value={""}/>
               {Tecnologias.map((item) => {
                 return (
                   <Picker.Item
                     label={item.nomeTecnologia}
-                    value={item.idTecnologia}
+                    value={item.nomeTecnologia}
                   />
                 );
               })}
@@ -247,6 +249,11 @@ if (Opcao== "") {
 }
 
 const styles = StyleSheet.create({
+  select:{
+   width:250,
+   height:25,
+   marginTop:10
+  },
   teste: {
     backgroundColor: "#DFDFDF",
   },

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground, StyleSheet,Text, View, Image,TouchableOpacity,ScrollView} from "react-native";
+import { ImageBackground, StyleSheet,Text, View, Image,TouchableOpacity,ScrollView,Alert} from "react-native";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function VagaCompleta() {
+export default function VagaCompleta({navigation}) {
   
   const [Experiencia, setExperiencia] = useState("");
   const[IdVaga,setIdVaga]=useState(0);
@@ -53,6 +53,26 @@ export default function VagaCompleta() {
         setDescricaoEmpresa(dados.descricaoEmpresa);
         setDescricaoVaga(dados.descricaoVaga);
         setCaminho(dados.caminhoImagem);
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const SeCandidatar =async () => {
+    const form = {
+      idVaga: IdVaga,
+    };
+    fetch("http://localhost:5000/api/Candidato/AdicionarInscricao", {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        authorization: "Bearer " + await AsyncStorage.getItem("token"),
+        "content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((dados) => {
+        Alert.alert(dados);
+        navigation.navigate("Inscricoes");
       })
       .catch((err) => console.error(err));
   };
@@ -133,7 +153,7 @@ export default function VagaCompleta() {
       </View>
       <View style={styles.Encolher}>
       <View styles={styles.btSeCandidatar}>
-          <TouchableOpacity style={styles.btCandidatar}>
+          <TouchableOpacity style={styles.btCandidatar} onPress={()=>SeCandidatar()}>
               <Text style={styles.textBtn}>Se candidatar</Text>
           </TouchableOpacity>
       </View>
