@@ -83,7 +83,10 @@ export default function Login({ navigation }) {
           </View>
 
           <View style={styles.divisionBtn}>
-            <TouchableOpacity style={styles.btnLogar} onPress={() => login()}>
+            <TouchableOpacity
+              style={styles.btnLogar}
+              onPress={() => login()}
+            >
               <Text style={styles.textLogin}>Login</Text>
             </TouchableOpacity>
           </View>
