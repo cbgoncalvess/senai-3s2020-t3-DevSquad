@@ -137,7 +137,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                   " SELECT U.CaminhoImagem,Estagio.DataCadastro,Curso.NomeCurso,Estagio.IdEstagio,PeriodoEstagio,E.RazaoSocial,C.NomeCompleto,A.NomeArea,C.Telefone,U.Email FROM Estagio" +
+                   " SELECT U.IdUsuario,U.CaminhoImagem,Estagio.DataCadastro,Curso.NomeCurso,Estagio.IdEstagio,PeriodoEstagio,E.RazaoSocial,C.NomeCompleto,A.NomeArea,C.Telefone,U.Email FROM Estagio" +
                    " INNER JOIN Empresa E on E.IdEmpresa = Estagio.IdEmpresa" +
                    " INNER JOIN Candidato C on C.IdCandidato = Estagio.IdCandidato" +
                    " INNER JOIN Usuario U on U.IdUsuario = C.IdUsuario" +
@@ -162,6 +162,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                                 // Atribui às propriedades os valores das colunas da tabela do banco
                                 idEstagio = Convert.ToInt32(rdr["IdEstagio"]),
                                 NomeCompleto = (rdr["NomeCompleto"]).ToString(),
+                                IdUsuario=Convert.ToInt32(rdr["IdUsuario"]),
                                 EmailCandidato = (rdr["Email"]).ToString(),
                                 CaminhoImagem = rdr["CaminhoImagem"].ToString(),
                                 PeriodoEstagio = Convert.ToInt32(rdr["PeriodoEstagio"]),

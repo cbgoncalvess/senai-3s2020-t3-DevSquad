@@ -99,8 +99,7 @@ export default function CadastroEmpresa() {
   };
 
 
-  function salvar(e) {
-    e.preventDefault();
+  function salvar() {
     if (Senha !== ConfirmarSenha) {
       alert("As senhas não estão parecidas");
     } else if (verificacaoEmail !== true) {
@@ -149,7 +148,7 @@ export default function CadastroEmpresa() {
   };
 
 function View(){
-  if(CaminhoImagem=='' && CaminhoImagem.length<3){
+  if(CaminhoImagem=='' && CaminhoImagem.length<3 || CaminhoImagem===undefined){
     return(
     <img className="imagemCadastro" src={Userimg}/>
     );

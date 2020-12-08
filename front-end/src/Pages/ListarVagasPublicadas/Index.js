@@ -80,8 +80,8 @@ export default function VagasPublicadas() {
     }
     }
 
-  const DadosDaVaga = () => {
-    fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + idVaga, {
+  const DadosDaVaga = (id) => {
+    fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + id, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -136,6 +136,7 @@ export default function VagasPublicadas() {
       .then((dados) => {
         alert(dados)
         listarVagas();
+        btn_fechar();
       })
       .catch((err) => console.error(err));
   };
@@ -310,10 +311,10 @@ export default function VagasPublicadas() {
                   id="btn-EditarVaga"
                   onClick={(event) => {
                     event.preventDefault();
+                    DadosDaVaga(item.idVaga);
+                    SetIdVaga(item.idVaga);
                     ApareceEditarVaga();
                     listarAreas();
-                    SetIdVaga(item.idVaga);
-                    DadosDaVaga();
                   }}
                 />
                 <img
@@ -330,6 +331,7 @@ export default function VagasPublicadas() {
                       idVaga = item.idVaga;
                       IrParaInscricoes();
                     }}
+                    className="UnderlineText"
                   >
                     {item.tituloVaga}
                   </h3>
