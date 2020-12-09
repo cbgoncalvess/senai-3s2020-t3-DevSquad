@@ -72,8 +72,8 @@ namespace SenaiTechVagas.WebApi.Controllers
        /// <summary>
        /// Método que adiciona uma nova empresa
        /// </summary>
-       /// <param name="empresa"></param>
-       /// <returns></returns>
+       /// <param name="empresa">Objeto nova empresa</param>
+       /// <returns>Retorna uma empresa cadastrada</returns>
         [HttpPost("Empresa")]
         public IActionResult CadastrarEmpresa(CadastrarEmpresaViewModel empresa)
         {
@@ -136,8 +136,8 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Método que recupera senha
         /// </summary>
-        /// <param name="vm"></param>
-        /// <returns></returns>
+        /// <param name="vm">objeto recuoerar senha</param>
+        /// <returns>Retorna a senha recuperada</returns>
         [HttpPut("RecuperarSenha")]
         public IActionResult RecuperarSenha(RecuperarSenhaViewModel vm)
         {
@@ -248,6 +248,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Método que altera a imagem
+        /// </summary>
+        /// <param name="e">objeto imagem</param>
+        /// <returns>Retorna uma nova imagem selecionada</returns>
         [Authorize]
         [HttpPut("AlterarImagem")]
         public IActionResult AlterarImagemPerfil([FromForm] string e)

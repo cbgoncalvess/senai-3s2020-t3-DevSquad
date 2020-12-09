@@ -66,9 +66,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Lista todas as vagas que a empresa publicou
+        /// Método que lista todas as vagas que a empresa publicou
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna lista de vagas que a empresa publicou</returns>
         [Authorize(Roles = "1")]
         [HttpGet("ListarVagasEmpresaAdm/{id}")]
         public IActionResult ListarVagas(int id)
@@ -88,9 +88,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Método que busca empresa pelo seu identificador
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna uma empresa pelo seu identificador</returns>
         [Authorize(Roles = "1")]
         [HttpGet("BuscarEmpresaPorIdAdm/{id}")]
         public IActionResult BuscarEmpresaPorId(int id)
@@ -108,9 +108,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <summary>
         /// Método que lista as empresas cadastradas com suas informações.
         /// </summary>       
-        /// <returns>Retorna um HTTP Code (201) e a mensagem "true", caso contrário,
-        /// retorna um HTTP Code (400)e a mensagem "Uma exceção ocorreu. Tente novamente."
-        /// </returns>
+        /// <returns>Retorna uma lista de empresas</returns>
         [Authorize(Roles = "1")]
         [HttpGet("ListarEmpresas")]
         public IActionResult ListaEmpresas()
@@ -125,6 +123,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Método que lista 
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpGet("listaEmpresaRazaoSocial")]
         public IActionResult ListaEmpresasRazaoSocial()
@@ -139,6 +142,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Método
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpGet("ImagemPerfilAdm")]
         public IActionResult BuscarImagem()
@@ -154,6 +162,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Método que mostra lista de e-mail candidato
+        /// </summary>
+        /// <returns>Retorna uma lista do e-mail dos candidatos</returns>
         [Authorize(Roles = "1")]
         [HttpGet("listaEmailCandidato")]
         public IActionResult ListaEmailsCandidato()
@@ -168,6 +181,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Método que mostra lista de candidatos inscritos
+        /// </summary>
+        /// <param name="idVaga">Identificador da vaga</param>
+        /// <returns>Retorna uma uma vaga com lista de candidatos inscritos.</returns>
         [Authorize(Roles = "1")]
         [HttpGet("ListarCandidatosInscritosAdm/{idVaga}")]
         public IActionResult ListarCandidatosInscritos(int idVaga)
@@ -349,7 +368,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        /// <summary>Método que remove Empresa pelo seu identificador, do sistema./// </summary>
+        /// <summary>Método que remove Empresa pelo seu identificador, do sistema.</summary>
         /// <param name="idEmpresa">Identificador único de cada objeto da tabela candidato, do 
         /// tipo inteiro.</param>
         /// <returns>Identificador do Empresa.</returns>
@@ -371,7 +390,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método para Administrador remover estagios cadastrados./// </summary>
+        /// Método para Administrador remover estagios cadastrados.</summary>
         /// <param name="idEstagio">Identificador do estágio.</param>
         /// <returns>Retorna uma remoção de Estágio.</returns>
         [Authorize(Roles = "1")]
@@ -502,6 +521,12 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Método que adiciona um novo tipo de presença
+        /// </summary>
+        /// <param name="trp">Novo objeto tipo presença</param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarTipoPresenca")]
         public IActionResult AdicionarTipoPresenca(TipoRegimePresencial trp)
@@ -654,6 +679,13 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Método que atualiza o tipo de presença
+        /// </summary>
+        /// <param name="id">Identificador do tipo presença</param>
+        /// <param name="trp">Objeto do tipo presença</param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPut("AtualizarTipoPresenca/{id}")]
         public IActionResult AtualizarTipoPresenca(int id,TipoRegimePresencial trp)
