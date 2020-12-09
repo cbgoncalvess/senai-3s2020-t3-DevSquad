@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
+import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import styles from ".style";
 
 export default function VizualizarVagaEmpresa() {
   const [Inscricoes, setInscricoes] = useState([]);
@@ -21,7 +18,7 @@ export default function VizualizarVagaEmpresa() {
   const [NomeArea, setNomeArea] = useState("");
   const [TipoPresenca, setTipoPresenca] = useState("");
   const [RazaoSocial, setRazaoSocial] = useState("");
-  const [CaminhoImagem,setCaminho]=useState("");
+  const [CaminhoImagem, setCaminho] = useState("");
 
   useEffect(() => {
     BuscarPorId();
@@ -31,10 +28,13 @@ export default function VizualizarVagaEmpresa() {
   const listarCandidatosAprovados = async () => {
     fetch(
       "http://localhost:5000/api/Empresa/ListarCandidatosAprovados/" +
-       (await AsyncStorage.getItem("VagaSelecionada")),
-      {method: "GET", headers: {
-        authorization: "Bearer " +await AsyncStorage.getItem("token"),
-      }}
+        (await AsyncStorage.getItem("VagaSelecionada")),
+      {
+        method: "GET",
+        headers: {
+          authorization: "Bearer " + (await AsyncStorage.getItem("token")),
+        },
+      }
     )
       .then((response) => response.json())
       .then((dados) => {
@@ -47,11 +47,12 @@ export default function VizualizarVagaEmpresa() {
     fetch(
       "http://localhost:5000/api/Usuario/BuscarPorId/" +
         (await AsyncStorage.getItem("VagaSelecionada")),
-      {method: "GET",
-      headers: {
-        authorization: "Bearer " +await AsyncStorage.getItem("token"),
+      {
+        method: "GET",
+        headers: {
+          authorization: "Bearer " + (await AsyncStorage.getItem("token")),
+        },
       }
-    }
     )
       .then((response) => response.json())
       .then((dados) => {
@@ -69,7 +70,6 @@ export default function VizualizarVagaEmpresa() {
       .catch((err) => console.error(err));
   };
 
-
   return (
     <View>
       <View>
@@ -86,7 +86,7 @@ export default function VizualizarVagaEmpresa() {
         <View style={styles.VagaCompleta}>
           <Image
             style={styles.ImagemEmpresa}
-            source={{uri:'http://localhost:5000/imgPerfil/'+CaminhoImagem}}
+            source={{ uri: "http://localhost:5000/imgPerfil/" + CaminhoImagem }}
           />
           <View style={styles.MainVaga}>
             <Text style={styles.TituloVaga}>{TituloVaga}</Text>
@@ -135,7 +135,10 @@ export default function VizualizarVagaEmpresa() {
               <View style={styles.HeaderInscricao}>
                 <Image
                   style={styles.imagemCandidato}
-                  source={{uri:'http://localhost:5000/imgPerfil/'+item.caminhoImagem}}
+                  source={{
+                    uri:
+                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem,
+                  }}
                 ></Image>
                 <Text>{item.nomeCandidato}</Text>
                 <Text style={styles.nomeCandidato}></Text>
@@ -152,104 +155,3 @@ export default function VizualizarVagaEmpresa() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  teste: {
-    backgroundColor: "#DFDFDF",
-  },
-  ListaInscricoes: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    flexWrap: "wrap",
-  },
-  imagemCandidato: {
-    height: 60,
-    width: 60,
-    marginTop: 9,
-  },
-  HeaderInscricao: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    width: "100%",
-  },
-  TextoTitulo: {
-    color: "black",
-    fontSize: 22,
-    textAlign: "center",
-    fontWeight: "bold",
-    marginTop: "20px",
-  },
-  BannerVizualizarVagaEmpresa: {
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    height: "300px",
-    padding: "5vh",
-  },
-  TextoHeader: {
-    color: "#fff",
-    fontSize: 25,
-  },
-  Vaga: {
-    backgroundColor: "#FAFAFA",
-    marginBottom: "20px",
-    display: "flex",
-    flexDirection: "column",
-  },
-  VagaCompleta: {
-    flexDirection: "row",
-    borderRadius: 4,
-    padding: "3vh",
-    flexWrap: "wrap",
-    justifyContent:'center'
-  },
-  MainVaga: {
-    display: "flex",
-    flexDirection: "column",
-    textAlign: "center",
-    width: "90%",
-  },
-  InfoVagas: {
-    display: "flex",
-    justifyContent: "space-around",
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  TecnologiasVaga: {
-    display: "flex",
-    justifyContent: "space-around",
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  ImagemEmpresa: {
-    height: "100px",
-    width: "100px",
-    borderRadius:100
-  },
-  TituloVaga: {
-    fontSize: 17,
-    textDecorationLine: "underline",
-    textDecorationStyle: "solid",
-    textDecorationColor: "#000"
-  },
-  Inscricao: {
-    width: "275px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 5,
-    marginBottom: "50px",
-  },
-  BodyInscricao: {
-    textAlign: "center",
-    padding: "2vh",
-    width: "100%",
-  },
-  nomeCandidato: {
-    borderBottomColor: "black",
-    borderWidth: 1,
-  },
-});
