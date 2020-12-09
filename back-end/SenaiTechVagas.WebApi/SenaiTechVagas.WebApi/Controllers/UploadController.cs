@@ -15,6 +15,12 @@ namespace SenaiTechVagas.WebApi.Controllers
     {
         UploadRepository rep = new UploadRepository();
 
+
+        /// <summary>
+        /// Método 
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post([FromForm] string e)
         {
