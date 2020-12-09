@@ -29,7 +29,7 @@ export default StyleSheet.create({
   },
   VagaCompleta: {
     flexDirection: "row",
-    borderRadius: 4,
+    borderRadius: "4px",
     padding: "3vh",
     flexWrap: "wrap",
     justifyContent: "center",
@@ -56,7 +56,7 @@ export default StyleSheet.create({
     borderRadius: 100,
   },
   TituloVaga: {
-    fontSize: 17,
+    fontSize: "17px",
   },
   nomeCandidato: {
     borderBottomColor: "black",

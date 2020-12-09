@@ -12,7 +12,6 @@ export default StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    width: "400px",
   },
 
   formLogar: {
@@ -26,7 +25,7 @@ export default StyleSheet.create({
     borderWidth: 0,
     borderRadius: 20,
     backgroundColor: "#FFFFFF",
-    width: "611px",
+    width: "358px",
     height: "596px",
     flexDirection: "column",
     justifyContent: "space-around",
@@ -37,7 +36,7 @@ export default StyleSheet.create({
   },
   divisionLogarTitle: {
     flexDirection: "column",
-    height: "8vh", //Não funciona vh no mobile
+    height: 90,
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -52,19 +51,23 @@ export default StyleSheet.create({
   divisionCampo: {
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "12vh",
+    height: 70,
     alignItems: "flex-start",
     marginBottom: 25,
   },
-  lbErroText: {
-    color: "red",
-  },
-  divisionPassword: { height: "12vh" },
+  lbErroText: { color: "red" },
 
-  divisionCampoText: { fontWeight: "600" },
+  divisionPassword: {
+    height: 100,
+  },
+
+  divisionCampoText: {
+    fontWeight: "600",
+    marginBottom: 10,
+  },
 
   inputUser: {
-    paddingLeft: "1em",
+    paddingLeft: 16,
     borderRadius: 4,
     width: "295px",
     height: "44.51px",
@@ -72,7 +75,7 @@ export default StyleSheet.create({
   },
 
   inputPassword: {
-    paddingLeft: "1em",
+    paddingLeft: 16,
     borderRadius: 4,
     width: "295px",
     height: "44.51px",
