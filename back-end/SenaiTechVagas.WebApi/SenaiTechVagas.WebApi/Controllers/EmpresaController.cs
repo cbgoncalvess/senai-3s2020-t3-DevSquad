@@ -25,7 +25,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Método que expira a vaga
         /// </summary>
         [HttpGet("ExpirarVagas")]
         public void ExpirarVaga()
@@ -39,14 +39,12 @@ namespace SenaiTechVagas.WebApi.Controllers
                 Console.WriteLine(e);
             }
         }
+
         /// <summary>
-        /// Atualiza todas as informações de um objeto da tabela Empresa.
+        /// Métedo que atualiza todas as informações Empresa.
         /// </summary>
-        /// <param name="empresa">Informações do objeto, passado na requisição, da tabela 
-        /// Empresa, recebidas e que passarão a vigorar</param>
-        /// <returns>Retorna um HTTP Code (201) e a mensagem: true, caso ocorra um erro na 
-        /// informação passada, retorna-se, então, false, caso haja uma exceção, retorna-se,
-        /// então, um HTTP Code (400) e a mensagem: "Uma exceção ocorreu. Tente novamente."</returns>
+        /// <param name="empresa">Objeto nova empresa</param>
+        /// <returns>Retorna uma empresa com as informações atualizadas</returns>
         [Authorize(Roles="3")]
         [HttpPut("AtualizarEmpresa")]
         public IActionResult AtualizarEmpresa( AtualizarEmpresaViewModel empresa)
@@ -62,10 +60,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// Cadastra uma nova vaga
+        /// Método que adiciona uma nova vaga
         /// </summary>
-        /// <param name="VagaNovo"></param>
-        /// <returns></returns>
+        /// <param name="VagaNovo">Objeto nova vaga</param>
+        /// <returns>Retorna uma nova vaga cadastrada</returns>
         [Authorize(Roles = "3")]
         [HttpPost("AdicionarVaga")]
         public IActionResult AdicionarVaga(Vaga VagaNovo)
@@ -89,9 +87,9 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// 
+        /// Método que lista candidatos estagiando
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna uma lista de candidatos estagiando</returns>
         [Authorize(Roles = "3")]
         [HttpGet("ListarCandidatosEstagiando")]
         public IActionResult ListarCandidatosEstagiando()
@@ -138,10 +136,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// Deleta a vaga por id
+        /// Método que remove vaga que a empresa publicou
         /// </summary>
-        /// <param name="idVaga"></param>
-        /// <returns></returns>    
+        /// <param name="idVaga">Identificador de vaga</param>
+        /// <returns>Remove a vaga</returns>    
         [Authorize(Roles = "3")]
         [HttpDelete("DeletarVagaEmpresa/{idVaga}")]
         public IActionResult DeletarVaga(int idVaga)
@@ -168,10 +166,10 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
         
         /// <summary>
-        /// Aprova um candidato na vaga da empresa
+        /// Método que aprova um candidato na vaga da empresa
         /// </summary>
-        /// <param name="idInscricao"></param>
-        /// <returns></returns>
+        /// <param name="idInscricao">Identificador da inscrição</param>
+        /// <returns>Retorna um candidato aprovado na vaga</returns>
         [Authorize(Roles = "3")]
         [HttpPut("Aprovar/{idInscricao}")]
         public IActionResult AprovarCandidato(int idInscricao)
@@ -189,10 +187,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// Reprova um candidato que se inscrevu na sua vaga
+        /// Método que reprova candidato na vaga inscrita
         /// </summary>
-        /// <param name="idInscricao"></param>
-        /// <returns></returns>
+        /// <param name="idInscricao">Identificador de inscrição</param>
+        /// <returns>Retorna um candidato reprovado</returns>
         [Authorize(Roles = "3")]
         [HttpPut("Reprovar/{idInscricao}")]
         public IActionResult ReprovarCandidato(int idInscricao)
@@ -216,9 +214,9 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// Lista todas as vagas que a empresa publicou
+        /// Método que lista vagas que a empresa publicou
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna lista de vagas publicadas</returns>
         [Authorize(Roles = "3")]
         [HttpGet("ListarVagasPublicadas")]
         public IActionResult ListarVagas()
@@ -238,6 +236,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Método que lista tipo de presença
+        /// </summary>
+        /// <returns>Retorna uma lista de presença</returns>
         [Authorize(Roles = "3")]
         [HttpGet("ListarTipoPresenca")]
         public IActionResult ListaTipoRegimePresencial()
@@ -279,11 +282,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        ///Atualiza a vaga que a empresa publicou
+        ///Método que atualiza vaga publicada
         /// </summary>
-        /// <param name="idVaga"></param>
-        /// <param name="Vaga"></param>
-        /// <returns></returns>
+        /// <param name="idVaga">Identificador da vaga</param>
+        /// <param name="Vaga">Objeto vaga</param>
+        /// <returns>Retorna uma vaga atualizada</returns>
         [Authorize(Roles = "3")]
         [HttpPut("AtualizarVagaEmpresa/{idVaga}")]
         public IActionResult AtualizarVaga(int idVaga,AtualizarVagaViewModel Vaga)
@@ -309,10 +312,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// Lista todos os candidatos aprovados na vaga
+        /// Método que lista candidatos aprovados na vaga
         /// </summary>
-        /// <param name="idVaga"></param>
-        /// <returns></returns>
+        /// <param name="idVaga">Identificador da vaga</param>
+        /// <returns>Retorna lista de candidatos aprovados</returns>
         [Authorize(Roles = "3")]
         [HttpGet("ListarCandidatosAprovados/{idVaga}")]
         public IActionResult ListarCandidatoAprovados(int idVaga)
@@ -335,10 +338,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
         /// <summary>
-        /// Deleta um tecnologia adicionada na vaga
+        /// Método que remove tecnologia adicionada na vaga
         /// </summary>
-        /// <param name="vaga"></param>
-        /// <returns></returns>
+        /// <param name="vaga">Identificador da vaga</param>
+        /// <returns>Retorna uma vaga sem a tecnologia removida</returns>
         [Authorize(Roles = "3")]
         [HttpDelete("DeletarTecnologiaDaVaga")]
         public IActionResult DeletarVagaTecnologia(VagaTecnologia vaga)
@@ -365,9 +368,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Método que busca empresa pelo seu identificador
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna uma empresa buscada</returns>
         [Authorize(Roles = "3")]
         [HttpGet("BuscarEmpresaPorId")]
         public IActionResult BuscarCandidatoPorId()
