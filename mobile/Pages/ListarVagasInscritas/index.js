@@ -142,11 +142,11 @@ const styles = StyleSheet.create({
     },
     TextoHeader: {
         color: "#fff",
-        fontSize: "25px",
+        fontSize: 25,
     },
     TextoTitulo: {
         textAlign: "center",
-        fontSize: "25px",
+        fontSize: 25,
         padding:30,
         fontWeight:'bold'
     },

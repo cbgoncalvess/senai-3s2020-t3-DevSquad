@@ -106,9 +106,7 @@ const styles = StyleSheet.create({
   sessaoLogar: {
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
-    width: "400px",
-  },
+    justifyContent: "center"},
 
   formLogar: {
     height: "22vh",
@@ -121,7 +119,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 20,
     backgroundColor: "#FFFFFF",
-    width: "611px",
+    width: "358px",
     height: "596px",
     flexDirection: "column",
     justifyContent: "space-around",
@@ -132,7 +130,7 @@ lbErro:{
 },
   divisionLogarTitle: {
     flexDirection: "column",
-    height: "8vh", //Não funciona vh no mobile
+    height: 90,
     justifyContent: "space-between",
     alignItems: "center",
   },
@@ -147,19 +145,18 @@ lbErro:{
   divisionCampo: {
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "12vh",
+    height: 70,
     alignItems: "flex-start",
-    marginBottom: 25,
+    marginBottom: 25
   },
-lbErroText:{
-  color:'red'
-},
-  divisionPassword: { height: "12vh" },
+lbErroText:{color:'red'},
 
-  divisionCampoText: { fontWeight: "600" },
+divisionPassword: {height: 100},
 
-  inputUser: {
-    paddingLeft: "1em",
+divisionCampoText: {fontWeight: "600", marginBottom: 10},
+
+inputUser: {
+    paddingLeft: 16,
     borderRadius: 4,
     width: "295px",
     height: "44.51px",
@@ -167,7 +164,7 @@ lbErroText:{
   },
 
   inputPassword: {
-    paddingLeft: "1em",
+    paddingLeft: 16,
     borderRadius: 4,
     width: "295px",
     height: "44.51px",
