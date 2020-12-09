@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
 
   formLogar: {
-    height: "22vh",
+    height: "22%",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-between",
@@ -25,8 +25,8 @@ export default StyleSheet.create({
     borderWidth: 0,
     borderRadius: 20,
     backgroundColor: "#FFFFFF",
-    width: "358px",
-    height: "596px",
+    width: 358,
+    height: 596,
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
@@ -69,16 +69,16 @@ export default StyleSheet.create({
   inputUser: {
     paddingLeft: 16,
     borderRadius: 4,
-    width: "295px",
-    height: "44.51px",
+    width: 295,
+    height: 44,
     backgroundColor: "#f3f3f3",
   },
 
   inputPassword: {
     paddingLeft: 16,
     borderRadius: 4,
-    width: "295px",
-    height: "44.51px",
+    width: 295,
+    height: 44,
     backgroundColor: "#f3f3f3",
     borderWidth: 0,
   },
@@ -86,7 +86,7 @@ export default StyleSheet.create({
   divisionBtn: {
     justifyContent: "center",
     alignItems: "center",
-    width: "200px",
+    width: 200,
   },
 
   btnLogar: {
@@ -94,8 +94,8 @@ export default StyleSheet.create({
     borderWidth: 0,
     alignItems: "center",
     justifyContent: "center",
-    width: "150px",
-    height: "38px",
+    width: 150,
+    height: 38,
     backgroundColor: "#005767",
     borderRadius: 4,
   },

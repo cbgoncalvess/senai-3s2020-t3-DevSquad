@@ -13,7 +13,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
 
-import styles from "./styles";
+import styles from "./style";
 
 export default function ListarVagasInscritas() {
   const [ListarVagasInscritas, setListarVagasInscritas] = useState([]);
@@ -22,12 +22,10 @@ export default function ListarVagasInscritas() {
     listarVagasInscritas();
   }, []);
 
-  const listarVagasInscritas = async () => {
+  const listarVagasInscritas =  () => {
     fetch("http://localhost:5000/api/Candidato/ListarVagasInscritas", {
       method: "GET",
-      headers: {
-        authorization: "Bearer " + (await AsyncStorage.getItem("token")),
-      },
+      
     })
       .then((response) => response.json())
       .then((dados) => {

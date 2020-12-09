@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Image,
+  ScrollView
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -110,7 +111,8 @@ export default function VizualizarVagaEmpresa({ navigation }) {
   };
 
   return (
-    <View>
+    <ScrollView>
+<View>
       <View>
         <ImageBackground
           source={require("../../assets/Images/bannerVisualizarVaga.webp")}
@@ -214,5 +216,6 @@ export default function VizualizarVagaEmpresa({ navigation }) {
         })}
       </View>
     </View>
+    </ScrollView>
   );
 }

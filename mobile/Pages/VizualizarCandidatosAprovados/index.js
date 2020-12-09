@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
+import { ImageBackground,Text, View, Image,ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
 
-import styles from ".style";
+import styles from "./style";
 
-export default function VizualizarVagaEmpresa() {
+export default function VizualizarCandidatosAprovados() {
   const [Inscricoes, setInscricoes] = useState([]);
   const [Experiencia, setExperiencia] = useState("");
   const [TipoContrato, setTipoContrato] = useState("");
@@ -71,7 +71,8 @@ export default function VizualizarVagaEmpresa() {
   };
 
   return (
-    <View>
+    <ScrollView>
+      <View>
       <View>
         <ImageBackground
           source={require("../../assets/Images/bannerVisualizarVaga.webp")}
@@ -153,5 +154,6 @@ export default function VizualizarVagaEmpresa() {
         })}
       </View>
     </View>
+    </ScrollView>
   );
 }

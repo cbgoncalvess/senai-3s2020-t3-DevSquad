@@ -53,7 +53,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(155,MinimumLength =5)]
         public string Logradouro { get; set; }
 
-        [Required]
+        
         [StringLength(255, MinimumLength = 5)]
         public string Complemento { get; set; }
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
-  StyleSheet,
   Text,
   View,
   Image,

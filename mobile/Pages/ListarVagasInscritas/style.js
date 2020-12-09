@@ -9,8 +9,8 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    height: "300px",
-    padding: "5vh",
+    height: 300,
+    padding: 5,
   },
   TextoHeader: {
     color: "#fff",
@@ -24,13 +24,13 @@ export default StyleSheet.create({
   },
   Vaga: {
     backgroundColor: "#FAFAFA",
-    marginBottom: "20px",
+    marginBottom: 20,
     flexDirection: "column",
   },
   VagaCompleta: {
     flexDirection: "row",
-    borderRadius: "4px",
-    padding: "3vh",
+    borderRadius: 4,
+    padding: 4,
     flexWrap: "wrap",
     justifyContent: "center",
   },
@@ -51,12 +51,12 @@ export default StyleSheet.create({
     flexWrap: "wrap",
   },
   ImagemEmpresa: {
-    height: "100px",
-    width: "100px",
+    height: 100,
+    width: 100,
     borderRadius: 100,
   },
   TituloVaga: {
-    fontSize: "17px",
+    fontSize: 17,
   },
   nomeCandidato: {
     borderBottomColor: "black",

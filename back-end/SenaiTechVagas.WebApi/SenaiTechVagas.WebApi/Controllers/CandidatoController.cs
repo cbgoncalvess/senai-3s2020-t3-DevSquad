@@ -123,7 +123,8 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                //var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                var idUsuario = 7;
                 return Ok(_candidatoRepository.ListarInscricoes(idUsuario));
             }
             catch(Exception)

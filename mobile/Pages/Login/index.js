@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
-  Alert,
+  ScrollView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -40,7 +39,7 @@ export default function Login({ navigation }) {
       .then((response) => response.json())
       .then((dados) => {
         if (dados.token !== undefined) {
-          AsyncStorage.setItem("token", dados.token);
+          AsyncStorage.setItem("token",dados.token);
           Token = dados.token;
           if (parseJwt().Role === "2") {
             navigation.navigate("ListarVagasInscritas");
@@ -58,46 +57,53 @@ export default function Login({ navigation }) {
   }
 
   return (
-    <View style={styles.login}>
-      <View style={styles.sessaoLogar}>
-        <View style={styles.divisionLogar}>
-          <View style={styles.divisionLogarTitle}>
-            <Text style={styles.divisionLogarTitleText}>login</Text>
-            <Text style={styles.subTitulo}>Bem-vindo ao SENAI | TechVagas</Text>
-          </View>
-
-          <View style={styles.formlogar}>
-            <View style={styles.divisionCampo}>
-              <Text style={styles.divisionCampoText}>Usuário ou E-mail:</Text>
-              <TextInput
-                placeholder={"exemplo@exemplo.com "}
-                style={styles.inputUser}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+    <ScrollView>
+      <View style={styles.login}>
+        <View style={styles.sessaoLogar}>
+          <View style={styles.divisionLogar}>
+            <View style={styles.divisionLogarTitle}>
+              <Text style={styles.divisionLogarTitleText}>login</Text>
+              <Text style={styles.subTitulo}>
+                Bem-vindo ao SENAI | TechVagas
+              </Text>
             </View>
 
-            <View style={styles.divisionCampo} style={styles.divisionPassword}>
-              <Text style={styles.divisionCampoText}>Senha:</Text>
-              <TextInput
-                placeholder={"********"}
-                style={styles.inputPassword}
-                secureTextEntry={true}
-                onChange={(e) => setSenha(e.target.value)}
-              />
-            </View>
-            <View style={styles.lbErro} nativeID={"lbErro"}>
-              <Text style={styles.lbErroText}>{MensagemErro}</Text>
-            </View>
-            <Text style={styles.recuperarPassword}>Recuperar senha</Text>
-          </View>
+            <View style={styles.formlogar}>
+              <View style={styles.divisionCampo}>
+                <Text style={styles.divisionCampoText}>Usuário ou E-mail:</Text>
+                <TextInput
+                  placeholder={"exemplo@exemplo.com "}
+                  style={styles.inputUser}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </View>
 
-          <View style={styles.divisionBtn}>
-            <TouchableOpacity style={styles.btnLogar} onPress={() => login()}>
-              <Text style={styles.textLogin}>Login</Text>
-            </TouchableOpacity>
+              <View
+                style={styles.divisionCampo}
+                style={styles.divisionPassword}
+              >
+                <Text style={styles.divisionCampoText}>Senha:</Text>
+                <TextInput
+                  placeholder={"********"}
+                  style={styles.inputPassword}
+                  secureTextEntry={true}
+                  onChange={(e) => setSenha(e.target.value)}
+                />
+              </View>
+              <View style={styles.lbErro} nativeID={"lbErro"}>
+                <Text style={styles.lbErroText}>{MensagemErro}</Text>
+              </View>
+              <Text style={styles.recuperarPassword}>Recuperar senha</Text>
+            </View>
+
+            <View style={styles.divisionBtn}>
+              <TouchableOpacity style={styles.btnLogar} onPress={() => login()}>
+                <Text style={styles.textLogin}>Login</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }

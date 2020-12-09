@@ -28,22 +28,24 @@ export default function Principal({ navigation }) {
   }, []);
 
   const FiltrarTecnologia = (tecnologia) => {
-    for (var i = 0; i < ListarVagas.length; i++) {
-      let Tecnologias = ListarVagas[i].tecnologias;
-      for (var o = 0; o < Tecnologias.length; o++) {
-        if (Tecnologias[o] == tecnologia) {
-          VagaTecnologia.push(ListarVagas[i]);
-          break;
+    try{
+      for (var i = 0; i < ListarVagas.length; i++) {
+        let Tecnologias = ListarVagas[i].tecnologias;
+        for (var o = 0; o < Tecnologias.length; o++) {
+          if (Tecnologias[o] == tecnologia) {
+            VagaTecnologia.push(ListarVagas[i]);
+            break;
+          }
         }
       }
-    }
+    }catch(e){console.log(e)}
   };
 
-  const listarVagas = () => {
+  const listarVagas = async() => {
     fetch("http://localhost:5000/api/Candidato/ListarVagasPrincipal", {
       method: "GET",
       headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
+        authorization: "Bearer " + (await AsyncStorage.getItem("token")),
       },
     })
       .then((response) => response.json())
@@ -53,11 +55,11 @@ export default function Principal({ navigation }) {
       .catch((err) => console.error(err));
   };
 
-  const listarTecnologias = () => {
+  const listarTecnologias = async () => {
     fetch("http://localhost:5000/api/Usuario/ListarTecnologia", {
       method: "GET",
       headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
+        authorization: "Bearer " + (await AsyncStorage.getItem("token")),
       },
     })
       .then((response) => response.json())

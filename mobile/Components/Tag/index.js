@@ -12,8 +12,8 @@ export default function Tag(props) {
 const styles = StyleSheet.create({
   Tag: {
     backgroundColor: "#F3F3F3",
-    margin: "10px",
-    padding: "5px",
+    margin: 10,
+    padding: 5,
     shadowColor: "#000",
     shadowOffset: {
       width: 4,

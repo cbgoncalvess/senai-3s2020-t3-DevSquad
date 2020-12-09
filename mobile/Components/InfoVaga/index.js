@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    margin: "10px",
+    margin: 10,
     flexWrap: "wrap",
   },
   ImageInfoVaga: {
-    width: "25px",
-    height: "25px",
-    marginRight: "9px",
+    width:25,
+    height: 25,
+    marginRight: 9,
   },
 });

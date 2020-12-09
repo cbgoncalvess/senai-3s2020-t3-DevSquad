@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ImageBackground, StyleSheet, Text, View, Image } from "react-native";
+import { ImageBackground, StyleSheet, Text, View, Image,ScrollView } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -38,7 +38,8 @@ export default function ListarVagasEmpresa({ navigation }) {
     }
   }
   return (
-    <View style={styles.teste}>
+    <ScrollView>
+<View style={styles.teste}>
       <View>
         <ImageBackground
           source={require("../../assets/Images/bannerVisualizarVaga.webp")}
@@ -112,5 +113,6 @@ export default function ListarVagasEmpresa({ navigation }) {
         })}
       </View>
     </View>
+    </ScrollView>
   );
 }
