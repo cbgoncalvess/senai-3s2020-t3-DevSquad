@@ -93,6 +93,7 @@
   width: 140px;
   height: 140px;
   border-radius: 100px;
+  object-fit: cover;
 }
 
 .imgUsuario {
@@ -223,4 +224,9 @@
     width: 75px;
     height: 25px;
   }
+}
+
+#root > div > div.meioPerfil > div.EsquerdoPerfil > div.imgPefilTexto > label > img:hover{
+  filter:opacity(0.5);
+  
 }

@@ -96,7 +96,7 @@ export default function BuscarVaga() {
                     alt="Imagem de perfil"
                   ></img>
                   <div className="MainVaga">
-                    <h3>{item.tituloVaga}</h3>
+                    <h3 className="UnderlineText">{item.tituloVaga}</h3>
                     <div className="InfoVagas">
                       <InfoVaga
                         NomeProp={item.razaoSocial}
@@ -165,7 +165,7 @@ export default function BuscarVaga() {
                     alt="Imagem empresa"
                   ></img>
                   <div className="MainVaga">
-                    <h3>{item.tituloVaga}</h3>
+                    <h3 className="UnderlineText">{item.tituloVaga}</h3>
                     <div className="InfoVagas">
                       <InfoVaga
                         NomeProp={item.razaoSocial}
@@ -234,7 +234,7 @@ export default function BuscarVaga() {
                     alt="Imagem empresa"
                   ></img>
                   <div className="MainVaga">
-                    <h3>{item.tituloVaga}</h3>
+                    <h3 className="UnderlineText">{item.tituloVaga}</h3>
                     <div className="InfoVagas">
                       <InfoVaga
                         NomeProp={item.razaoSocial}
@@ -299,7 +299,7 @@ export default function BuscarVaga() {
                     alt="Imagem empresa"
                   ></img>
                   <div className="MainVaga">
-                    <h3>{item.tituloVaga}</h3>
+                    <h3 className="UnderlineText">{item.tituloVaga}</h3>
                     <div className="InfoVagas">
                       <InfoVaga
                         NomeProp={item.razaoSocial}

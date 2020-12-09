@@ -8,7 +8,6 @@ import AccessMenu from '../../Components/AccessMenu';
 import Input from '../../Components/Input/index';
 
 import imgDelete from '../../assets/delete.webp'
-import imgPadrao from '../../assets/android-character-symbol.webp';
 
 import './style.css';
 
@@ -200,7 +199,7 @@ const DeletarVaga = (id) => {
                 <div className="EsquerdoPerfil">
                     <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
                     <div className="imgPefilTexto">
-                        <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" /></label>
+                        <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" title="Editar" id="filterPerfil" /></label>
                         <h3>Roberto Possarle</h3>
                         <p>administrador</p>
                     </div>

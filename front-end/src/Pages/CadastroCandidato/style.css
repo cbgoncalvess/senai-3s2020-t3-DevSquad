@@ -166,3 +166,16 @@ body > div.registerApplicant > div.box-form > div > div > button > label{
         margin: unset;
     }
 }
+
+
+body > div.registerApplicant > div.box-form > div > div > button > label,
+body > div.registerCompany > div.box-form > div > div > button > label{
+  padding: 5% 20%;
+  background: red;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btSelecionar{
+  background: transparent !important;
+}

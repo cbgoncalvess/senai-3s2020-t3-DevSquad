@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+import {useHistory } from 'react-router-dom'
 
 import imgDelete from "../../assets/delete.webp";
 import imgEdit from "../../assets/black-ink-pen.webp";
-
 import imgEnterprise from "../../assets/enterprise.webp";
 import imgCertificate from "../../assets/certificate.webp";
 import imgWorker from "../../assets/worker.webp";
-import imgPadrao from "../../assets/android-character-symbol.webp";
 
 import "./style.css";
 
@@ -29,6 +28,8 @@ export default function Estagio() {
     listarEstagios();
     listarEstatisticas();
   }, []);
+
+const history=useHistory();
 
   function FiltroMeses(opcao) {
     for (var i = 0; i < Estagios.length; i++) {
@@ -76,9 +77,13 @@ export default function Estagio() {
                   ></Tag>
                   <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
                   <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
-                  <a className="Link" href="teste">
+                  <h5 className="UnderlineText" onClick={e=>{
+                    e.preventDefault();
+                    localStorage.setItem("CandidatoSelecionado",item.idUsuario);
+                    history.push("PerfilCandidatoAdm");
+                  }}>
                     Ver perfil
-                  </a>
+                  </h5>
                 </div>
               </div>
             );
@@ -123,9 +128,13 @@ export default function Estagio() {
                   ></Tag>
                   <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
                   <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
-                  <a className="Link" href="teste">
+                  <h5 className="UnderlineText" onClick={e=>{
+                    e.preventDefault();
+                    localStorage.setItem("CandidatoSelecionado",item.idUsuario);
+                    history.push("PerfilCandidatoAdm");
+                  }}>
                     Ver perfil
-                  </a>
+                  </h5>
                 </div>
               </div>
             );
@@ -206,6 +215,7 @@ export default function Estagio() {
       .then((response) => response.json())
       .then((dados) => {
         SetEstagios(dados);
+        console.log(dados);
       })
       .catch((err) => console.error(err));
   };

@@ -235,7 +235,7 @@ export default function PerfilCandidato() {
                     />
 
                     <Input className="InputCadastro" value={Telefone} name="Telefone" label="Telefone" onChange={e => SetTelefone(e.target.value)}
-                    maxLength={14}
+                    maxLength={11}
                     minLength={10}
                     required 
                     />
@@ -268,12 +268,12 @@ export default function PerfilCandidato() {
             <div id="modalAlterarSenhaCandidato" className="modalAlterarSenhaCandidato none">
                 <h2>Alterar senha</h2>
                 <form>
-                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
+                    <Input type="password" className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
                     maxLength={15}
                     minLength={9}
                     required 
                     />
-                    <Input className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)}
+                    <Input type="password" className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)}
                     maxLength={15}
                     minLength={9}
                     required 
