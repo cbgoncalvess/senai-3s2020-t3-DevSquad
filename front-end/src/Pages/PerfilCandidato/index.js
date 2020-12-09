@@ -87,7 +87,7 @@ export default function PerfilCandidato() {
             rg: Rg,
             cpf: CPF,
             telefone: Telefone,
-            linkLinkedinCanidato: Linkedin,
+            linkLinkedinCandidato: Linkedin,
             idCurso: Curso,
             idArea: Area
         };

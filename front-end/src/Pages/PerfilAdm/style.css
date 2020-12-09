@@ -228,5 +228,9 @@
 
 #root > div > div.meioPerfil > div.EsquerdoPerfil > div.imgPefilTexto > label > img:hover{
   filter:opacity(0.5);
-  
+  content: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-512.png);
+}
+
+.Delete, .btVerPerfil, .ExcluirVagaText, .Edit{
+  cursor: pointer;
 }

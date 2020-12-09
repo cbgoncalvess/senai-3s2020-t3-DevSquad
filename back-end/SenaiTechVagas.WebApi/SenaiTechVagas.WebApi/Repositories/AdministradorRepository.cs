@@ -851,6 +851,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
+                    usuario.CaminhoImagem = "user.png";
                     usuario.IdTipoUsuario = 1;
                     ctx.Add(usuario);
                     ctx.SaveChanges();

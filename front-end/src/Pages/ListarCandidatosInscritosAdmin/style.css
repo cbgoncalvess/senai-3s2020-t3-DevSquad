@@ -1,3 +1,9 @@
+
+.ajusta{
+    width: 10px;
+}
+
+
 .Column-Inscricao{
     display: flex;
     flex-direction: column;

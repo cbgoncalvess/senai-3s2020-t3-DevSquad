@@ -132,7 +132,7 @@ export default function AccessMenu() {
         var interim_transcript = "";
         const token = localStorage.getItem("token");
 
-        if (token === null) {
+        if (token === null||token===undefined) {
           if (textarea.value == "Home" || textarea.value == "home") {
             window.location.href = "/";
           }
