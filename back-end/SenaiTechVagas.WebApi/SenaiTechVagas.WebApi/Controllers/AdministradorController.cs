@@ -109,7 +109,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que lista as empresas cadastradas com suas informações.
         /// </summary>       
         /// <returns>Retorna uma lista de empresas</returns>
-        [Authorize(Roles = "1")]
+        //[Authorize(Roles = "1")]
         [HttpGet("ListarEmpresas")]
         public IActionResult ListaEmpresas()
         {

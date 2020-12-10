@@ -50,7 +50,7 @@ export default function App() {
   const Stack = createStackNavigator();
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="CandidatosAprovados">
+        <Stack.Navigator initialRouteName="Splash">
           <Stack.Screen name="ListarVagaEmpresa" component={ListarVagasEmpresa} options={{ headerShown: false }}/>
           <Stack.Screen name="Login" component={Login} options={{ headerShown: false }}/>
           <Stack.Screen name="VagaEmpresa" component={VizualizarVagaEmpresa}/>

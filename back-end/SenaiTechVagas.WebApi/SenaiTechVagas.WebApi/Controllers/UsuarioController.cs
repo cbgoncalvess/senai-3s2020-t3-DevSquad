@@ -180,7 +180,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que lista área.
         /// </summary>
         /// <returns>Retorna lista de área cadastradas</returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet("ListarArea")]
         public IActionResult ListarArea()
         {

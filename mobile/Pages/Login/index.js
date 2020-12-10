@@ -26,10 +26,10 @@ export default function Login({ navigation }) {
 
   function login() {
     const loginForm = {
-      email: email,
+      Email: email,
       senha: senha,
     };
-    fetch("http://localhost:5000/api/Login", {
+    fetch("http://192.168.0.18:5000/api/Login", {
       method: "POST",
       body: JSON.stringify(loginForm),
       headers: {
@@ -39,7 +39,6 @@ export default function Login({ navigation }) {
       .then((response) => response.json())
       .then((dados) => {
         if (dados.token !== undefined) {
-          AsyncStorage.setItem("token",dados.token);
           Token = dados.token;
           if (parseJwt().Role === "2") {
             navigation.navigate("ListarVagasInscritas");
@@ -74,7 +73,8 @@ export default function Login({ navigation }) {
                 <TextInput
                   placeholder={"exemplo@exemplo.com "}
                   style={styles.inputUser}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChangeText={(e) => setEmail(e)}
+                  value={email}
                 />
               </View>
 
@@ -87,7 +87,8 @@ export default function Login({ navigation }) {
                   placeholder={"********"}
                   style={styles.inputPassword}
                   secureTextEntry={true}
-                  onChange={(e) => setSenha(e.target.value)}
+                  onChangeText={(e) => setSenha(e)}
+                  value={senha}
                 />
               </View>
               <View style={styles.lbErro} nativeID={"lbErro"}>

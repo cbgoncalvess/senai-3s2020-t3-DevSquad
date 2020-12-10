@@ -1,8 +1,6 @@
 USE Db_TechVagas
 GO
 
-USE MASTER
-
 --DQL
 
 SELECT * FROM TipoUsuario
