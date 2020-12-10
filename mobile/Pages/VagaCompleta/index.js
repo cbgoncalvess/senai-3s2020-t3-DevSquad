@@ -15,6 +15,8 @@ import Tag from "../../Components/Tag/index";
 
 import styles from "./style";
 
+import { uriConexaoApi } from "../services/conexao";
+
 export default function VagaCompleta({ navigation }) {
   const [Experiencia, setExperiencia] = useState("");
   const [IdVaga, setIdVaga] = useState(0);
@@ -39,7 +41,7 @@ export default function VagaCompleta({ navigation }) {
 
   const listar = async () => {
     fetch(
-      "http://localhost:5000/api/Usuario/BuscarPorId/" +
+      `http://${uriConexaoApi}:5000/api/Usuario/BuscarPorId/` +
         (await AsyncStorage.getItem("VagaSelecionadaCandidato")),
       {
         method: "GET",
@@ -75,7 +77,7 @@ export default function VagaCompleta({ navigation }) {
     const form = {
       idVaga: IdVaga,
     };
-    fetch("http://localhost:5000/api/Candidato/AdicionarInscricao", {
+    fetch(`http://${uriConexaoApi}:5000/api/Candidato/AdicionarInscricao`, {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
@@ -112,7 +114,7 @@ export default function VagaCompleta({ navigation }) {
             <Image
               style={styles.ImagemEmpresa}
               source={{
-                uri: "http://localhost:5000/imgPerfil/" + CaminhoImagem,
+                uri: `http://${uriConexaoApi}:5000/imgPerfil/${CaminhoImagem}`
               }}
             />
             <View style={styles.MainVaga}>

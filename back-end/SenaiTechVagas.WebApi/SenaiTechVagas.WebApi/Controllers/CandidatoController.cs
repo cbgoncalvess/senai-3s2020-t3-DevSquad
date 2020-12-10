@@ -40,7 +40,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                CandidatoCompletoViewModel candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
                 if (candidatoBuscado == null)
                     return BadRequest();
 
@@ -67,7 +67,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                CandidatoCompletoViewModel candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
                 if (candidatoBuscado == null)
                     return BadRequest();
 
@@ -98,7 +98,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                CandidatoCompletoViewModel candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
                 if (candidatoBuscado == null)
                     return BadRequest();
 
@@ -123,8 +123,8 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                //var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                var idUsuario = 7;
+                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
+                
                 return Ok(_candidatoRepository.ListarInscricoes(idUsuario));
             }
             catch(Exception)
@@ -140,9 +140,9 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                CandidatoCompletoViewModel c=_candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                Candidato c=_candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
 
-                return Ok(_candidatoRepository.ListarVagasArea(c.IdArea));
+                return Ok(_candidatoRepository.ListarVagasArea(c.IdCursoNavigation.IdArea));
             }
             catch (Exception)
             {

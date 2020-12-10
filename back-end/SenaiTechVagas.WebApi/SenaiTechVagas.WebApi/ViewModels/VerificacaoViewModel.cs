@@ -27,7 +27,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(254, MinimumLength = 5)]
         public string Email { get; set; }
 
-        [StringLength(11, MinimumLength = 11)]
+        [StringLength(14, MinimumLength = 11)]
         public string Telefone { get; set; }
 
         [StringLength(154, MinimumLength = 5)]

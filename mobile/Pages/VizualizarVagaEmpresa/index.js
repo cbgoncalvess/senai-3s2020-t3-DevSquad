@@ -15,6 +15,8 @@ import Tag from "../../Components/Tag/index";
 
 import styles from "./style";
 
+import { uriConexaoApi } from "../services/conexao";
+
 export default function VizualizarVagaEmpresa({ navigation }) {
   const [Inscricoes, setInscricoes] = useState([]);
   const [Experiencia, setExperiencia] = useState("");
@@ -35,7 +37,7 @@ export default function VizualizarVagaEmpresa({ navigation }) {
 
   const listarCandidatos = async () => {
     fetch(
-      "http://localhost:5000/api/Empresa/ListarCandidatosInscritos/" +
+      `http://${uriConexaoApi}:5000/api/Empresa/ListarCandidatosInscritos/` +
         (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
@@ -53,7 +55,7 @@ export default function VizualizarVagaEmpresa({ navigation }) {
 
   const BuscarPorId = async () => {
     fetch(
-      "http://localhost:5000/api/Usuario/BuscarPorId/" +
+      `http://${uriConexaoApi}:5000/api/Usuario/BuscarPorId/` +
         (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
@@ -79,7 +81,7 @@ export default function VizualizarVagaEmpresa({ navigation }) {
   };
 
   const Aprovar = async (id) => {
-    fetch("http://localhost:5000/api/Empresa/Aprovar/" + id, {
+    fetch(`http://${uriConexaoApi}:5000/api/Empresa/Aprovar/${id}`, {
       method: "PUT",
       headers: {
         authorization: "Bearer " + (await AsyncStorage.getItem("token")),
@@ -95,7 +97,7 @@ export default function VizualizarVagaEmpresa({ navigation }) {
   };
 
   const Reprovar = async (id) => {
-    fetch("http://localhost:5000/api/Empresa/Reprovar/" + id, {
+    fetch(`http://${uriConexaoApi}:5000/api/Empresa/Reprovar/${id}`, {
       method: "PUT",
       headers: {
         authorization: "Bearer " + (await AsyncStorage.getItem("token")),
@@ -127,7 +129,7 @@ export default function VizualizarVagaEmpresa({ navigation }) {
         <View style={styles.VagaCompleta}>
           <Image
             style={styles.ImagemEmpresa}
-            source={{ uri: "http://localhost:5000/imgPerfil/" + CaminhoImagem }}
+            source={{ uri: `http://${uriConexaoApi}:5000/imgPerfil/${CaminhoImagem}` }}
           />
           <View style={styles.MainVaga}>
             <Text style={styles.TituloVaga}>{TituloVaga}</Text>
@@ -186,7 +188,7 @@ export default function VizualizarVagaEmpresa({ navigation }) {
                   style={styles.imagemCandidato}
                   source={{
                     uri:
-                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem,
+                      `http://${uriConexaoApi}:5000/imgPerfil/${item.caminhoImagem}`,
                   }}
                 ></Image>
                 <Text>{item.nomeCandidato}</Text>

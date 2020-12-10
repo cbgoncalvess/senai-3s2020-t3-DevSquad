@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
@@ -28,88 +27,13 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /*----------------------------------------GET START-----------------------------*/
-
-        /// <summary>
-        /// Método que lista vagas em inscritas do candidatos.
-        /// </summary>
-        /// <returns>Retorna vagas em inscritas do candidato.</returns>
-        [Authorize(Roles = "1")]
-        [HttpGet("ListarVagasInscritasAdm/{id}")]
-        public IActionResult ListarVagasInscritas(int id)
-        {
-            try
-            {
-                return Ok(_Admin.ListarInscricoes(id));
-            }
-            catch (Exception)
-            {
-                return BadRequest("Uma exceção ocorreu. Tente novamente.");
-            }
-        }
-
-        /// <summary>
-        /// Método que busca candidato.
-        /// </summary>
-        /// <returns>Retorna candidato buscado.</returns>
-        [Authorize(Roles = "1")]
-        [HttpGet("BuscarCandidatoPorIdAdm/{id}")]
-        public IActionResult BuscarCandidatoPorId(int id)
-        {
-            try
-            {
-                return Ok(_Admin.BuscarCandidatoPorIdUsuario(id));
-            }
-            catch (Exception)
-            {
-                return BadRequest("Uma exceção ocorreu. Tente novamente.");
-            }
-        }
-
-        /// <summary>
-        /// Método que lista todas as vagas que a empresa publicou
-        /// </summary>
-        /// <returns>Retorna lista de vagas que a empresa publicou</returns>
-        [Authorize(Roles = "1")]
-        [HttpGet("ListarVagasEmpresaAdm/{id}")]
-        public IActionResult ListarVagas(int id)
-        {
-            try
-            {
-                EmpresaCompletaViewModel empresa = _Admin.BuscarEmpresaPorIdUsuario(id);
-                if (empresa == null)
-                    return BadRequest();
-
-                return Ok(_Admin.ListarVagasDaEmpresa(empresa.IdEmpresa));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
-        /// Método que busca empresa pelo seu identificador
-        /// </summary>
-        /// <returns>Retorna uma empresa pelo seu identificador</returns>
-        [Authorize(Roles = "1")]
-        [HttpGet("BuscarEmpresaPorIdAdm/{id}")]
-        public IActionResult BuscarEmpresaPorId(int id)
-        {
-            try
-            {
-                return Ok(_Admin.BuscarEmpresaPorIdUsuario(id));
-            }
-            catch (Exception)
-            {
-                return BadRequest("Uma exceção ocorreu. Tente novamente.");
-            }
-        }
-
         /// <summary>
         /// Método que lista as empresas cadastradas com suas informações.
-        /// </summary>       
-        /// <returns>Retorna uma lista de empresas</returns>
-        //[Authorize(Roles = "1")]
+        /// </summary>
+        /// <returns>Retorna um HTTP Code (201) e a mensagem "true", caso contrário,
+        /// retorna um HTTP Code (400)e a mensagem "Uma exceção ocorreu. Tente novamente."
+        /// </returns>
+        [Authorize(Roles = "1")]
         [HttpGet("ListarEmpresas")]
         public IActionResult ListaEmpresas()
         {
@@ -123,11 +47,11 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-
         /// <summary>
-        /// Método que lista 
+        /// Método que busca vaga pelo seu identificador e mostra lista de candidatos inscritos.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="idVaga">Identificador da vaga</param>
+        /// <returns>Retorna uma vaga com lista de candidatos inscritos</returns>
         [Authorize(Roles = "1")]
         [HttpGet("listaEmpresaRazaoSocial")]
         public IActionResult ListaEmpresasRazaoSocial()
@@ -142,31 +66,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-
-        /// <summary>
-        /// Método
-        /// </summary>
-        /// <returns></returns>
-        [Authorize(Roles = "1")]
-        [HttpGet("ImagemPerfilAdm")]
-        public IActionResult BuscarImagem()
-        {
-            try
-            {
-                var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                return Ok(_Admin.BuscarImagemPerfilAdm(idUsuario));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-
-        /// <summary>
-        /// Método que mostra lista de e-mail candidato
-        /// </summary>
-        /// <returns>Retorna uma lista do e-mail dos candidatos</returns>
         [Authorize(Roles = "1")]
         [HttpGet("listaEmailCandidato")]
         public IActionResult ListaEmailsCandidato()
@@ -181,12 +80,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-
-        /// <summary>
-        /// Método que mostra lista de candidatos inscritos
-        /// </summary>
-        /// <param name="idVaga">Identificador da vaga</param>
-        /// <returns>Retorna uma uma vaga com lista de candidatos inscritos.</returns>
         [Authorize(Roles = "1")]
         [HttpGet("ListarCandidatosInscritosAdm/{idVaga}")]
         public IActionResult ListarCandidatosInscritos(int idVaga)
@@ -223,7 +116,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Lista todos os candidatos cadastrados.
         /// </summary>
         /// <returns>Retorna todos candidatos cadastrados.</returns>
-        
+        [Authorize(Roles = "1")]
         [HttpGet("ListarCandidatos")]
         public IActionResult ListarCandidatos()
         {
@@ -368,7 +261,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-        /// <summary>Método que remove Empresa pelo seu identificador, do sistema.</summary>
+        /// <summary>Método que remove Empresa pelo seu identificador, do sistema./// </summary>
         /// <param name="idEmpresa">Identificador único de cada objeto da tabela candidato, do 
         /// tipo inteiro.</param>
         /// <returns>Identificador do Empresa.</returns>
@@ -390,7 +283,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método para Administrador remover estagios cadastrados.</summary>
+        /// Método para Administrador remover estagios cadastrados./// </summary>
         /// <param name="idEstagio">Identificador do estágio.</param>
         /// <returns>Retorna uma remoção de Estágio.</returns>
         [Authorize(Roles = "1")]
@@ -521,12 +414,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-
-        /// <summary>
-        /// Método que adiciona um novo tipo de presença
-        /// </summary>
-        /// <param name="trp">Novo objeto tipo presença</param>
-        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarTipoPresenca")]
         public IActionResult AdicionarTipoPresenca(TipoRegimePresencial trp)
@@ -575,11 +462,14 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                string resposta=_Admin.CadastrarEstagio(estagioNovo);
-                if (resposta == "Estágio casdastrado com sucesso")
-                    return Ok(resposta);
+                if (estagioNovo.PeriodoEstagio > 36)
+                    return BadRequest("O periodo nao pode ser maior que 36 meses");
+
+                if (_Admin.CadastrarEstagio(estagioNovo))
+                    return StatusCode(201);
+
                 else
-                    return BadRequest(resposta);           
+                    return BadRequest("Não foi possivel cadastrar o estagio");
             }
             catch (Exception)
             {
@@ -679,13 +569,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
-
-        /// <summary>
-        /// Método que atualiza o tipo de presença
-        /// </summary>
-        /// <param name="id">Identificador do tipo presença</param>
-        /// <param name="trp">Objeto do tipo presença</param>
-        /// <returns></returns>
         [Authorize(Roles = "1")]
         [HttpPut("AtualizarTipoPresenca/{id}")]
         public IActionResult AtualizarTipoPresenca(int id,TipoRegimePresencial trp)
@@ -757,10 +640,13 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
+                if (_Admin.VerificarSeExiste(estagio.IdCandidato))
+                    return BadRequest("Estagio ja existe");
+
                 if (_Admin.AtualizarEstagio(idEstagio, estagio))
                     return Ok("Estagio atualizado");
                 else
-                    return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes são validas");
+                    return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes sao validas");
             }
             catch (Exception)
             {

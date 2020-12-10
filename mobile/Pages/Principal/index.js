@@ -15,6 +15,8 @@ import { Picker } from "@react-native-community/picker";
 
 import styles from "./style";
 
+import { uriConexaoApi } from "../services/conexao";
+
 export default function Principal({ navigation }) {
   const [ListarVagas, setListarVagas] = useState([]);
   const [Tecnologias, setTecnologias] = useState([]);
@@ -42,7 +44,7 @@ export default function Principal({ navigation }) {
   };
 
   const listarVagas = async() => {
-    fetch("http://localhost:5000/api/Candidato/ListarVagasPrincipal", {
+    fetch(`http://${uriConexaoApi}:5000/api/Candidato/ListarVagasPrincipal`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + (await AsyncStorage.getItem("token")),
@@ -56,7 +58,7 @@ export default function Principal({ navigation }) {
   };
 
   const listarTecnologias = async () => {
-    fetch("http://localhost:5000/api/Usuario/ListarTecnologia", {
+    fetch(`http://${uriConexaoApi}:5000/api/Usuario/ListarTecnologia`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + (await AsyncStorage.getItem("token")),
@@ -81,8 +83,7 @@ export default function Principal({ navigation }) {
                     style={styles.ImagemEmpresa}
                     source={{
                       uri:
-                        "http://localhost:5000/imgPerfil/" +
-                        teste2.caminhoImagem,
+                        `http://${uriConexaoApi}:5000/imgPerfil/${teste2.caminhoImagem}`
                     }}
                   />
                   <View style={styles.MainVaga}>
@@ -156,8 +157,7 @@ export default function Principal({ navigation }) {
                     style={styles.ImagemEmpresa}
                     source={{
                       uri:
-                        "http://localhost:5000/imgPerfil/" +
-                        teste2.caminhoImagem,
+                        `http://${uriConexaoApi}:5000/imgPerfil/${teste2.caminhoImagem}`
                     }}
                   />
                   <View style={styles.MainVaga}>

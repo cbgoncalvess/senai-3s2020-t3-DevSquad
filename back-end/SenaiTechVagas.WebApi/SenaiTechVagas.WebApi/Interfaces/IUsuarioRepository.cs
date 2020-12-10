@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using SenaiTechVagas.WebApi.Domains;
+﻿using SenaiTechVagas.WebApi.Domains;
 using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -21,6 +20,5 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool AlterarSenhaUsuarioLogado(AlterarSenhaUsuarioLogadoViewModel vm,int idUsuario);
         List<Tecnologia> ListarTecnologia();
         List<Area> ListarAreas();
-        string AlterarImagemPerfil(int idUsuario,IFormFile imagem);
     }
 }
