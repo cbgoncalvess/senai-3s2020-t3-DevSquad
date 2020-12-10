@@ -24,7 +24,6 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string Cep { get; set; }
         public string Logradouro { get; set; }
         public string Complemento { get; set; }
-        public string CaminhoImagem { get; set; }
         public List<string> Tecnologias { get; set; }
     }
 }

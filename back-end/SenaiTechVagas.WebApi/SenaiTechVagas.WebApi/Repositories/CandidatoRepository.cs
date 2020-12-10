@@ -15,18 +15,18 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class CandidatoRepository : ICandidatoRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
 
         //Em ordem CRUD - Criar, Ler, Atualizar, Deletar
-        public bool AtualizarCandidato(int idUsuario, AtualizarCandidatoViewModel CandidatoAtualizado)
+        public bool AtualizarCandidato(int idUsuario,AtualizarCandidatoViewModel CandidatoAtualizado)
         {
-            using (DbSenaiContext ctx = new DbSenaiContext())
+            using(DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Candidato CandidatoBuscado = ctx.Candidato.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                    Candidato CandidatoBuscado = ctx.Candidato.FirstOrDefault(c=>c.IdUsuario==idUsuario);
 
-                    if (CandidatoBuscado == null)
+                    if(CandidatoBuscado == null)
                     {
                         return false;
                     }
@@ -51,8 +51,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                     {
                         CandidatoBuscado.LinkLinkedinCandidato = CandidatoAtualizado.LinkLinkedinCandidato.Trim();
                     }
-
-                    if (CandidatoAtualizado.IdCurso >= 1)
+                    
+                    if (CandidatoAtualizado.IdCurso >=1)
                     {
                         CandidatoBuscado.IdCurso = CandidatoAtualizado.IdCurso;
                     }
@@ -61,13 +61,13 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception)
+                catch(Exception)
                 {
                     return false;
                 }
             }
         }
-
+       
         public List<ListarVagasViewModel> ListarInscricoes(int idUsuario)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -78,7 +78,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (candidato == null)
                         return null;
 
-                    List<Inscricao> ListaDeInscricoes = ctx.Inscricao.Where(v => v.IdCandidato == candidato.IdCandidato).ToList();
+                    List<Inscricao> ListaDeInscricoes = ctx.Inscricao.Where(v=>v.IdCandidato==candidato.IdCandidato).ToList();
                     if (ListaDeInscricoes == null)
                         return null;
                     List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
@@ -89,15 +89,14 @@ namespace SenaiTechVagas.WebApi.Repositories
                         {
                             // Declara a instrução a ser executada
                             string querySelectAll =
-                            "SELECT U.CaminhoImagem,inscri.DataInscricao,trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                            "SELECT trp.NomeTipoRegimePresencial,inscri.IdInscricao,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                             " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                             " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
-                            " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
-                            " INNER JOIN Area are on are.IdArea=v.IdArea" +
-                            " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario" +
+                            " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
+                            " INNER JOIN Area are on are.IdArea=v.IdArea"+
                             " INNER JOIN Inscricao inscri on inscri.IdVaga=v.IdVaga" +
                             " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
-                            " WHERE v.IdVaga =@IDVaga AND inscri.IdInscricao=@IDInscricao ";
+                            " WHERE v.IdVaga =@IDVaga ";
                             con.Open();
 
                             // Declara o SqlDataReader para receber os dados do banco de dados
@@ -107,7 +106,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                             using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
                             {
                                 cmd.Parameters.AddWithValue("@IDVaga", ListaDeInscricoes[i].IdVaga);
-                                cmd.Parameters.AddWithValue("@IDInscricao", ListaDeInscricoes[i].IdInscricao);
                                 // Executa a query e armazena os dados no rdr
                                 rdr = cmd.ExecuteReader();
 
@@ -122,16 +120,14 @@ namespace SenaiTechVagas.WebApi.Repositories
                                         // Atribui às propriedades os valores das colunas da tabela do banco
                                         IdVaga = Convert.ToInt32(rdr["IdVaga"]),
                                         Experiencia = rdr["Experiencia"].ToString(),
-                                        CaminhoImagem = rdr["CaminhoImagem"].ToString(),
                                         TipoContrato = rdr["TipoContrato"].ToString(),
                                         IdInscricao = Convert.ToInt32(rdr["IdInscricao"]),
                                         Localidade = rdr["Localidade"].ToString(),
-                                        DataInscricao = Convert.ToDateTime(rdr["DataInscricao"]).ToString("dd/MM/yyyy"),
                                         Salario = Convert.ToDecimal(rdr["Salario"]),
                                         RazaoSocial = rdr["RazaoSocial"].ToString(),
                                         NomeArea = rdr["NomeArea"].ToString(),
-                                        TituloVaga = rdr["TituloVaga"].ToString(),
-                                        TipoPresenca = rdr["NomeTipoRegimePresencial"].ToString()
+                                        TituloVaga=rdr["TituloVaga"].ToString(),
+                                        TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString()
                                     };
                                     var NomeTecnologia = rdr["NomeTecnologia"].ToString();
                                     vm.Tecnologias = new List<string>();
@@ -162,13 +158,13 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool RevogarInscricao(int idInscricao, int idCandidato)
+        public bool RevogarInscricao(int idInscricao,int idCandidato)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Inscricao inscricaoBuscada = ctx.Inscricao.FirstOrDefault(i => i.IdInscricao == idInscricao && i.IdCandidato == idCandidato);
+                    Inscricao inscricaoBuscada =ctx.Inscricao.FirstOrDefault(i=>i.IdInscricao==idInscricao&&i.IdCandidato==idCandidato);
                     if (inscricaoBuscada == null)
                         return false;
 
@@ -201,7 +197,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
-
+        
         public bool VerificarSeInscricaoExiste(int idVaga, int idCandidato)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -231,11 +227,10 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                   "SELECT U.CaminhoImagem,trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                   "SELECT trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                    " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                    " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
-                   " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario"+
                    " INNER JOIN Area are on are.IdArea=v.IdArea" +
                    " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
                    " WHERE are.IdArea=@IdArea";
@@ -262,7 +257,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                             {
                                 // Atribui às propriedades os valores das colunas da tabela do banco
                                 IdVaga = Convert.ToInt32(rdr["IdVaga"]),
-                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
                                 Experiencia = rdr["Experiencia"].ToString(),
                                 TipoContrato = rdr["TipoContrato"].ToString(),
                                 TituloVaga = rdr["TituloVaga"].ToString(),
@@ -299,65 +293,18 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public CandidatoCompletoViewModel BuscarCandidatoPorIdUsuario(int idUsuario)
+        public Candidato BuscarCandidatoPorIdUsuario(int idUsuario)
         {
-            try{
-                // Declara a conexão passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
-                {
-                    // Declara a query que será executada
-                    string querySelectById =
-                        "SELECT A.IdArea,C.IdCandidato,cur.IdCurso,NomeCompleto,Rg,Cpf,Telefone,C.LinkLinkedinCandidato,U.CaminhoImagem FROM Candidato C" +
-                        " INNER JOIN Curso cur ON cur.IdCurso=C.IdCurso" +
-                        " INNER JOIN Area A ON A.IdArea=cur.IdArea"+
-                        " INNER JOIN Usuario U ON U.IdUsuario=C.IdUsuario" +
-                        " WHERE U.IdUsuario = @ID";
-
-                    // Abre a conexão com o banco de dados
-                    con.Open();
-
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectById, con))
-                    {
-                        // Passa o valor do parâmetro
-                        cmd.Parameters.AddWithValue("@ID", idUsuario);
-
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-
-                        // Caso o resultado da query possua registro
-                        if (rdr.Read())
-                        {
-                            // Instancia um objeto usuario 
-                            CandidatoCompletoViewModel usuario = new CandidatoCompletoViewModel
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                IdCandidato = Convert.ToInt32(rdr["IdCandidato"]),
-                                idCurso = Convert.ToInt32(rdr["IdCurso"]),
-                                IdArea = Convert.ToInt32(rdr["IdArea"]),
-                                NomeCompleto = rdr["NomeCompleto"].ToString(),
-                                Rg = rdr["Rg"].ToString(),
-                                Cpf = rdr["Cpf"].ToString(),
-                                Telefone = rdr["Telefone"].ToString(),
-                                LinkLinkedinCandidato = rdr["LinkLinkedinCandidato"].ToString(),
-                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
-
-                            };
-
-                            // Retorna o usuario buscado
-                            return usuario;
-                        }
-
-                        // Caso o resultado da query não possua registros, retorna null
-                        return null;
-                    }
-                }
-            }catch(Exception e)
+            using(DbSenaiContext ctx=new DbSenaiContext())
             {
-                return null;
+                try
+                {
+                    return ctx.Candidato.Include(i=>i.IdCursoNavigation).FirstOrDefault(c => c.IdUsuario == idUsuario);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
     }

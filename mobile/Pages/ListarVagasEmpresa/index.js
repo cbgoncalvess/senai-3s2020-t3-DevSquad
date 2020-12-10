@@ -8,6 +8,8 @@ import Tag from "../../Components/Tag/index";
 
 import styles from "./style";
 
+import { uriConexaoApi } from "../services/conexao";
+
 export default function ListarVagasEmpresa({ navigation }) {
   useEffect(() => {
     listarVagas();
@@ -16,7 +18,7 @@ export default function ListarVagasEmpresa({ navigation }) {
   const [ListarVagas, setListarVagas] = useState([]);
 
   const listarVagas = async () => {
-    fetch("http://localhost:5000/api/Empresa/ListarVagasPublicadas", {
+    fetch(`http://${uriConexaoApi}:5000/api/Empresa/ListarVagasPublicadas`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + (await AsyncStorage.getItem("token")),
@@ -57,7 +59,7 @@ export default function ListarVagasEmpresa({ navigation }) {
                   style={styles.ImagemEmpresa}
                   source={{
                     uri:
-                      "http://localhost:5000/imgPerfil/" + teste2.caminhoImagem,
+                      `http://${uriConexaoApi}:5000/imgPerfil/${teste2.caminhoImagem}`
                   }}
                 />
                 <View style={styles.MainVaga}>

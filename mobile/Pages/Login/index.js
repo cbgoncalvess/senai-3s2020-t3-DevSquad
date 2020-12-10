@@ -5,10 +5,13 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  LogBox
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import styles from "./style";
+
+import { uriConexaoApi } from "../services/conexao";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -29,17 +32,16 @@ export default function Login({ navigation }) {
       email: email,
       senha: senha,
     };
-    fetch("http://localhost:5000/api/Login", {
+    fetch(`http://${uriConexaoApi}:5000/api/Login`, {
       method: "POST",
       body: JSON.stringify(loginForm),
       headers: {
         "content-type": "application/json",
       },
-    })
-      .then((response) => response.json())
+    }).then((response) => response.json())
       .then((dados) => {
         if (dados.token !== undefined) {
-          AsyncStorage.setItem("token",dados.token);
+          AsyncStorage.setItem("token", dados.token);
           Token = dados.token;
           if (parseJwt().Role === "2") {
             navigation.navigate("ListarVagasInscritas");
@@ -72,9 +74,9 @@ export default function Login({ navigation }) {
               <View style={styles.divisionCampo}>
                 <Text style={styles.divisionCampoText}>Usuário ou E-mail:</Text>
                 <TextInput
-                  placeholder={"exemplo@exemplo.com "}
+                  placeholder={"exemplo@exemplo.com"}
                   style={styles.inputUser}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChangeText={(e) => setEmail(e)}
                 />
               </View>
 
@@ -87,7 +89,7 @@ export default function Login({ navigation }) {
                   placeholder={"********"}
                   style={styles.inputPassword}
                   secureTextEntry={true}
-                  onChange={(e) => setSenha(e.target.value)}
+                  onChangeText={(e) => setSenha(e)}
                 />
               </View>
               <View style={styles.lbErro} nativeID={"lbErro"}>

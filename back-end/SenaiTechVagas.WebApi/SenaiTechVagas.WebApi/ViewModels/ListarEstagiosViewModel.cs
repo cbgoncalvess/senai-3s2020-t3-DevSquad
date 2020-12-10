@@ -17,7 +17,5 @@ namespace SenaiTechVagas.WebApi.ViewModels
         public string NomeArea { get; set; }
         public int TempoEstagiado { get; set; }
         public string StatusEstagio { get; set; }
-        public int IdUsuario { get; set; }
-        public string CaminhoImagem { get; set; }
     }
 }

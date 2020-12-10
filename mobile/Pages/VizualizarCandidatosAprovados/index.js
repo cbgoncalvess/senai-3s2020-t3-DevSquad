@@ -7,6 +7,8 @@ import Tag from "../../Components/Tag/index";
 
 import styles from "./style";
 
+import { uriConexaoApi } from "../services/conexao";
+
 export default function VizualizarCandidatosAprovados() {
   const [Inscricoes, setInscricoes] = useState([]);
   const [Experiencia, setExperiencia] = useState("");
@@ -27,7 +29,7 @@ export default function VizualizarCandidatosAprovados() {
 
   const listarCandidatosAprovados = async () => {
     fetch(
-      "http://localhost:5000/api/Empresa/ListarCandidatosAprovados/" +
+      `http://${uriConexaoApi}:5000/api/Empresa/ListarCandidatosAprovados/` +
         (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
@@ -45,7 +47,7 @@ export default function VizualizarCandidatosAprovados() {
 
   const BuscarPorId = async () => {
     fetch(
-      "http://localhost:5000/api/Usuario/BuscarPorId/" +
+      `http://${uriConexaoApi}:5000/api/Usuario/BuscarPorId/` +
         (await AsyncStorage.getItem("VagaSelecionada")),
       {
         method: "GET",
@@ -87,7 +89,7 @@ export default function VizualizarCandidatosAprovados() {
         <View style={styles.VagaCompleta}>
           <Image
             style={styles.ImagemEmpresa}
-            source={{ uri: "http://localhost:5000/imgPerfil/" + CaminhoImagem }}
+            source={{ uri: `http://${uriConexaoApi}:5000/imgPerfil/${CaminhoImagem}`}}
           />
           <View style={styles.MainVaga}>
             <Text style={styles.TituloVaga}>{TituloVaga}</Text>
@@ -138,7 +140,7 @@ export default function VizualizarCandidatosAprovados() {
                   style={styles.imagemCandidato}
                   source={{
                     uri:
-                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem,
+                      `http://${uriConexaoApi}:5000/imgPerfil/${item.caminhoImagem}`,
                   }}
                 ></Image>
                 <Text>{item.nomeCandidato}</Text>

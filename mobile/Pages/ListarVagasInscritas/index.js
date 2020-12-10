@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
@@ -13,6 +12,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
 
+import { uriConexaoApi } from "../services/conexao";
+
 import styles from "./style";
 
 export default function ListarVagasInscritas() {
@@ -22,10 +23,13 @@ export default function ListarVagasInscritas() {
     listarVagasInscritas();
   }, []);
 
-  const listarVagasInscritas =  () => {
-    fetch("http://localhost:5000/api/Candidato/ListarVagasInscritas", {
+  const listarVagasInscritas = async () => {
+    fetch(`http://${uriConexaoApi}:5000/api/Candidato/ListarVagasInscritas`, {
       method: "GET",
-      
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + (await AsyncStorage.getItem("token")),
+      },
     })
       .then((response) => response.json())
       .then((dados) => {
@@ -34,14 +38,14 @@ export default function ListarVagasInscritas() {
       .catch((err) => console.error(err));
   };
 
-  const revogarInscricao = (idInscricao) => {
+  const revogarInscricao = async (idInscricao) => {
     fetch(
-      "http://localhost:5000/api/Candidato/RevogarInscricao/" + idInscricao,
+      `http://${uriConexaoApi}:5000/api/Candidato/RevogarInscricao/` + idInscricao,
       {
         method: "DELETE",
         headers: {
           "content-type": "application/json",
-          authorization: "Bearer " + localStorage.getItem("token"),
+          authorization: "Bearer " + (await AsyncStorage.getItem("token")),
         },
       }
     )
@@ -76,7 +80,7 @@ export default function ListarVagasInscritas() {
                     style={styles.ImagemEmpresa}
                     source={{
                       uri:
-                        "http://localhost:5000/imgPerfil/" + item.caminhoImagem,
+                        `http://${uriConexaoApi}:5000/imgPerfil/${item.caminhoImagem}`
                     }}
                   />
                   <View style={styles.MainVaga}>
