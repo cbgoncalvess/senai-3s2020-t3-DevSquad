@@ -5,14 +5,14 @@ import "react-native-gesture-handler";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
 
-import VizualizarVagaEmpresa from "./Pages/VizualizarVagaEmpresa/index";
-import VizualizarCandidatosAprovados from "./Pages/VizualizarCandidatosAprovados";
-import ListarVagasEmpresa from "./Pages/ListarVagasEmpresa";
-import ListarVagasInscritas from "./Pages/ListarVagasInscritas";
-import Splash from "./Pages/Splash";
-import Login from "./Pages/Login";
-import Principal from "./Pages/Principal";
-import VagaCompleta from "./Pages/VagaCompleta";
+import VizualizarVagaEmpresa from "./src/Pages/VizualizarVagaEmpresa/index";
+import VizualizarCandidatosAprovados from "./src/Pages/VizualizarCandidatosAprovados";
+import ListarVagasEmpresa from "./src/Pages/ListarVagasEmpresa";
+import ListarVagasInscritas from "./src/Pages/ListarVagasInscritas";
+import Splash from "./src/Pages/Splash";
+import Login from "./src/Pages/Login";
+import Principal from "./src/Pages/Principal";
+import VagaCompleta from "./src/Pages/VagaCompleta";
 
 export default function App() {
   const Tab = createBottomTabNavigator();

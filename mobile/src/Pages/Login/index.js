@@ -11,7 +11,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import styles from "./style";
 
-import { uriConexaoApi } from "../services/conexao";
+import { uriConexaoApi } from "../../services/conexao";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");

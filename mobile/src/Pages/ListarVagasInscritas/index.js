@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import InfoVaga from "../../Components/InfoVaga/index";
 import Tag from "../../Components/Tag/index";
 
-import { uriConexaoApi } from "../services/conexao";
+import { uriConexaoApi } from "../../services/conexao";
 
 import styles from "./style";
 

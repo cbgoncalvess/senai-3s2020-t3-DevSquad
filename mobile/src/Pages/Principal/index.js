@@ -15,7 +15,7 @@ import { Picker } from "@react-native-community/picker";
 
 import styles from "./style";
 
-import { uriConexaoApi } from "../services/conexao";
+import { uriConexaoApi } from "../../services/conexao";
 
 export default function Principal({ navigation }) {
   const [ListarVagas, setListarVagas] = useState([]);

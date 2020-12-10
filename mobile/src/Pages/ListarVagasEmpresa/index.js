@@ -8,7 +8,7 @@ import Tag from "../../Components/Tag/index";
 
 import styles from "./style";
 
-import { uriConexaoApi } from "../services/conexao";
+import { uriConexaoApi } from "../../services/conexao";
 
 export default function ListarVagasEmpresa({ navigation }) {
   useEffect(() => {
