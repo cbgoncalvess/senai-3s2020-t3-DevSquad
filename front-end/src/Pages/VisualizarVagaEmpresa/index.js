@@ -157,7 +157,6 @@ export default function VizualizarVagaEmpresa() {
                                 <div className="CorpoInscricao">
                                     <Tag NomeTag={"E-mail:" + item.email}></Tag>
                                     <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
-                                    <a className="Link" href="teste">Ver perfil</a>
                                 </div>
                                 <div className="AprovarRecusar">
                                     <button className="Aprovar" onClick={() => Aprovar(item.idInscricao)}>Aprovar</button>

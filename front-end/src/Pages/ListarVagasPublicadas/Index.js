@@ -471,6 +471,7 @@ export default function VagasPublicadas() {
             name="TituloVaga"
             label="Titulo da Vaga"
             onChange={(e) => setTituloVaga(e.target.value)}
+            required
           />
           <Input
             className="InputCadastro"
@@ -478,12 +479,14 @@ export default function VagasPublicadas() {
             name="Salario"
             label="Salario"
             onChange={(e) => setSalario(e.target.value)}
+            required
           />
           <div className="select-final">
             <label>Área</label>
             <select
-              onChange={(e) => setArea(e.target.value)}
+              onChange={(e) => setArea(e.target.value) }
               value={Area}
+              required
             >
               <option value="0">Selecione uma área de atuação</option>
               {Areas.map((item) => {
@@ -501,6 +504,7 @@ export default function VagasPublicadas() {
             <select
               onChange={(e) => setExperiencia(e.target.value)}
               value={Experiencia}
+              required
             >
               <option value="0">Selecione um nível de experiência</option>
               <option value="Pleno">Pleno</option>
@@ -514,11 +518,12 @@ export default function VagasPublicadas() {
             <select
               onChange={(e) => setTipoContrato(e.target.value)}
               value={TipoContrato}
+              required
             >
               <option value="0">Selecione um tipo de contrato</option>
               <option value="CLT">CLT</option>
               <option value="PJ">PJ</option>
-              <option value="Está gio">Estagio</option>
+              <option value="Estágio">Estagio</option>
             </select>
           </div>
           <Input
@@ -527,6 +532,7 @@ export default function VagasPublicadas() {
             name="Estado"
             label="Estado"
             onChange={(e) => setEstado(e.target.value)}
+            required
           />
           <Input
             className="InputCadastro"
@@ -534,6 +540,7 @@ export default function VagasPublicadas() {
             name="Cidade"
             label="Cidade"
             onChange={(e) => setCidade(e.target.value)}
+            required
           />
           <Input
             className="InputCadastro"
@@ -541,6 +548,7 @@ export default function VagasPublicadas() {
             name="CEP"
             label="CEP"
             onChange={(e) => setCEP(e.target.value)}
+            required
           />
           <Input
             className="InputCadastro"
@@ -548,6 +556,7 @@ export default function VagasPublicadas() {
             name="Logradouro"
             label="Logradouro"
             onChange={(e) => setLogradouro(e.target.value)}
+            required
           />
           <Input
             className="InputCadastro"
@@ -561,14 +570,20 @@ export default function VagasPublicadas() {
             <textarea
               value={DescricaoVaga}
               name="DescricaoVaga"
+              maxLength="750"
+              minLength="750"
               onChange={(e) => setDescricaoVaga(e.target.value)}
+              required
             ></textarea>
             <br />
             <label>Descrição da empresa</label>
             <textarea
               value={DescricaoEmpresa}
               name="DescricaoEmpresa"
+              maxLength="750"
+              minLength="750"
               onChange={(e) => setDescricaoEmpresa(e.target.value)}
+              required
             ></textarea>
             <br />
             <label>Descrição dos benefícios</label>
@@ -576,6 +591,9 @@ export default function VagasPublicadas() {
               value={DescricaoBeneficio}
               name="DescricaoBeneficio"
               onChange={(e) => setDescricaoBeneficio(e.target.value)}
+              required
+              maxLength="750"
+              minLength="750"
             ></textarea>
           </div>
           <br />

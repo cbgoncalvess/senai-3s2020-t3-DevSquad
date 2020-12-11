@@ -93,8 +93,10 @@ export default function Login() {
         }).then(function (respose) {
             if (respose.status !== 200) {
                 alert("Não foi possivel alterar a senha,entre em contato com o admin do site caso necessario");
+                btn_fecharRecuperarSenhaCandidato()
             } else {
                 alert("Editado com sucesso");
+                btn_fecharRecuperarSenhaCandidato()
             }
         }).catch(err => console.error(err));
     }
@@ -171,7 +173,7 @@ export default function Login() {
                 <h2>Alterar senha</h2>
                 <form>
                     <div className="select-final">
-                        <label>Resposta de segurança</label>
+                        <label>Pergunta de segurança</label>
                         <select
                             onChange={(e) => SetPerguntaSeguranca(e.target.value)}
                             value={PerguntaSeguranca}
@@ -220,10 +222,9 @@ export default function Login() {
                         required
                     />
                 </form>
-                
                 <button className="btVaga" onClick={RecuperarSenha}>
                     Alterar senha
-                </button>
+                </button>  
             </div>
             <Footer />
         </div>

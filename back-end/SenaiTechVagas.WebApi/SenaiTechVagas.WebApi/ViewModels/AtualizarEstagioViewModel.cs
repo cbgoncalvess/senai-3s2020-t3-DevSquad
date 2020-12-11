@@ -9,6 +9,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
 {
     public class AtualizarEstagioViewModel
     {
+        [Required]
         public int PeriodoEstagio { get; set; }
     }
 }
