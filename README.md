@@ -1,4 +1,6 @@
-![TechVagas](https://cdn.discordapp.com/attachments/744972164683530392/756149088046809098/Screenshot_2020-09-17_Apresentacao_do_PowerPoint_-_Apresentacao_API_BD_pdf.png "DevSquad | TechVagas")
+<div align="center">
+    <img src="https://cdn.discordapp.com/attachments/744972164683530392/783324405186822174/Logo_TecVagas_Sem_fundo.png" alt="DevSquad | TechVagas"/>
+</div>
 
 <h1 align="center">
 DevSquad | TechVagas
