@@ -33,7 +33,15 @@ const history=useHistory();
 
   function FiltroMeses(opcao) {
     for (var i = 0; i < Estagios.length; i++) {
-      if (Estagios[i].tempoEstagiado == opcao) {
+      if (Estagios[i].tempoEstagiado <= opcao) {
+        EstagioFiltro.push(Estagios[i]);
+      }
+    }
+  }
+
+  function FiltroStatus(opcao) {
+    for (var i = 0; i < Estagios.length; i++) {
+      if (Estagios[i].statusEstagio =="Estagio encerrado") {
         EstagioFiltro.push(Estagios[i]);
       }
     }
@@ -90,9 +98,60 @@ const history=useHistory();
           })}
         </div>
       );
-    } else if (Opcao !== "") {
+    } else if (Opcao !== "" &&Opcao!="Encerrado") {
       EstagioFiltro.splice(0, Number.MAX_VALUE);
       FiltroMeses(Opcao);
+      return (
+        <div className="ListaEstagios">
+          {EstagioFiltro.map((item) => {
+            return (
+              <div key={item.idEstagio} className="Estagio">
+                <div className="Ferramentas">
+                  <img
+                    className="Edit"
+                    src={imgEdit}
+                    onClick={(event) => {
+                      setIdEstagio(item.idEstagio);
+                      AparecerEditarEstagio();
+                    }}
+                  />
+                  <img
+                    className="Delete"
+                    src={imgDelete}
+                    onClick={() => DeletarEstagio(item.idEstagio)}
+                  />
+                </div>
+                <div className="CabecaEstagio">
+                  <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="ImagemPerfil" />
+                  <h3>{item.nomeCompleto}</h3>
+                  <hr className="hr" />
+                  <h5>{item.nomeCurso}</h5>
+                </div>
+                <div className="CorpoEstagio">
+                  <Tag NomeTag={"E-mail:" + item.emailCandidato}></Tag>
+                  <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
+                  <Tag NomeTag={"Status:" + item.statusEstagio}></Tag>
+                  <Tag
+                    NomeTag={"Periodo do estagio:" + item.periodoEstagio+"meses"}
+                  ></Tag>
+                  <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
+                  <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
+                  <h5 className="UnderlineText" onClick={e=>{
+                    e.preventDefault();
+                    localStorage.setItem("CandidatoSelecionado",item.idUsuario);
+                    history.push("PerfilCandidatoAdm");
+                  }}>
+                    Ver perfil
+                  </h5>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }else if(Opcao=="Encerrado"){
+      EstagioFiltro.splice(0, Number.MAX_VALUE);
+      FiltroStatus(Opcao);
       return (
         <div className="ListaEstagios">
           {EstagioFiltro.map((item) => {
@@ -285,6 +344,9 @@ const history=useHistory();
         </option>
         <option value="12" onClick={(e) => setOpcao(e.target.value)}>
           12 Meses
+        </option>
+        <option value="Encerrado" onClick={(e) => setOpcao(e.target.value)}>
+          Estágios ja concluidos
         </option>
       </select>
       <div>{View()}</div>

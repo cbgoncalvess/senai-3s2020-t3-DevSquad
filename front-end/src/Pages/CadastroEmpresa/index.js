@@ -170,7 +170,7 @@ export default function CadastroEmpresa() {
   };
 
   function View() {
-    if (CaminhoImagem == "" && CaminhoImagem.length < 3) {
+    if (CaminhoImagem == "" && CaminhoImagem.length < 3 || CaminhoImagem===undefined) {
       return <img className="imagemCadastro" src={Userimg} />;
     } else if (CaminhoImagem.length > 3) {
       return (

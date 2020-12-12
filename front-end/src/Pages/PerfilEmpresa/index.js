@@ -373,7 +373,6 @@ export default function PerfilEmpresa() {
             name="Complemento"
             label="Complemento"
             onChange={(e) => SetComplemento(e.target.value)}
-            required
           />
 
           <div className="Input">
@@ -421,6 +420,17 @@ export default function PerfilEmpresa() {
       >
         <h2>Alterar senha</h2>
         <form>
+        <Input
+            className="InputCadastro"
+            name="Senha atual"
+            label="Senha atual"
+            onChange={(e) => setSenha(e.target.value)}
+            maxLength={15}
+            minLength={9}
+            type="password"
+            required
+          />
+
           <Input
             className="InputCadastro"
             name="NovaSenha"
@@ -428,16 +438,7 @@ export default function PerfilEmpresa() {
             onChange={(e) => SetNovaSenha(e.target.value)}
             maxLength={15}
             minLength={9}
-            required
-          />
-
-          <Input
-            className="InputCadastro"
-            name="Senha atual"
-            label="Senha atual"
-            onChange={(e) => setSenha(e.target.value)}
-            maxLength={15}
-            minLength={9}
+            type="password"
             required
           />
           <button className="btVaga" onClick={AlterarSenha}>

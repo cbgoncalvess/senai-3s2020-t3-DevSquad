@@ -100,7 +100,7 @@ export default function PerfilCandidato() {
             }
         }).then(function (respose) {
             if (respose.status !== 200) {
-                alert("Não foi possivel editar esse estagio");
+                alert("Não foi possivel editar os dados do ususário");
             } else {
                 alert("Editado com sucesso");
             }
@@ -243,8 +243,8 @@ export default function PerfilCandidato() {
                     <Input className="InputCadastro" value={Linkedin} name="Linkedin" label="Linkedin" onChange={e => SetLinkedin(e.target.value)} 
                     maxLength={150}
                     minLength={5}
-                    required 
                     />
+                    
                     <div className="select-final">
                         <label>Cursos</label>
                         <select onChange={e => SetCurso(e.target.value)} value={Curso} required>
@@ -268,12 +268,13 @@ export default function PerfilCandidato() {
             <div id="modalAlterarSenhaCandidato" className="modalAlterarSenhaCandidato none">
                 <h2>Alterar senha</h2>
                 <form>
-                    <Input type="password" className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
+                   <Input type="password" className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)}
                     maxLength={15}
                     minLength={9}
                     required 
                     />
-                    <Input type="password" className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)}
+
+                    <Input type="password" className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
                     maxLength={15}
                     minLength={9}
                     required 

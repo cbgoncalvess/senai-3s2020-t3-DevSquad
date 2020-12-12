@@ -233,7 +233,6 @@ export default function CadastrarVaga() {
                                     onChange={e => SetComplemento(e.target.value)}
                                     maxLength={255}
                                     minLength={5}
-                                    required
                                 />
 
                                 <div className="Input">

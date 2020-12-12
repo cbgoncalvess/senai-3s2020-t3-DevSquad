@@ -99,6 +99,7 @@ export default function CadastrarEstagiario() {
                   className="div-select"
                   onChange={(e) => SetEmpresa(e.target.value)}
                   value={idEmpresa}
+                  required
                 >
                   <option value="0">Selecione a empresa contratante</option>
                   {Empresas.map((item) => {
@@ -117,6 +118,7 @@ export default function CadastrarEstagiario() {
                   className="div-select"
                   onChange={(e) => SetCandidato(e.target.value)}
                   value={idCandidato}
+                  required
                 >
                   <option value="0">Selecione o email do candidato</option>
                   {Candidatos.map((item) => {
