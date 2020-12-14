@@ -1,1 +1,1 @@
-export const uriConexaoApi = "192.168.0.107";
+export const uriConexaoApi = "localhost";
