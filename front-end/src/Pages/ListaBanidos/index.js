@@ -12,7 +12,6 @@ import AccessMenu from '../../Components/AccessMenu';
 
 export default function ListaBanidos() {
     const [Banidos, setBanidos] = useState([]);
-    const [idUsuario, setUsuario] = useState([]);
 
     useEffect(() => {
         listarBanidos();
@@ -53,24 +52,13 @@ export default function ListaBanidos() {
             <AccessMenu />
             <div className="marginBanidos">
                 <h1 className="tituloBanidos">Lista de Banidos</h1>
-
-                <div className="filtroBanidos">
-                    <h5>Filtrar por: </h5>
-                    <select className="selectBanidos">
-                        <option value="" disabled selected>Selecione</option>
-                        <option value="Empresas">Empresas</option>
-                        <option value="Candidatos">Candidatos</option>
-                        <option value="Colaboradores">Colaboradores</option>
-                    </select>
-                </div>
                 {
                     Banidos.map((item) => {
                         return (
                             <div key={item.idUsuario} className="banidoBox">
                                 <div className="colunaMobile">
                                     <div className="banido">
-                                        <img className="user" src={User} />
-                                        <p>{item.email}</p>
+                                        <img className="user" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="Imagem de perfil do usuario" />
                                         <h4>Marcelo Fontes</h4>
                                     </div>
                                     <div className="info">
@@ -81,7 +69,7 @@ export default function ListaBanidos() {
                                 <div className="data">
                                     <div className="desbanir">
                                         <p>Desbanir</p>
-                                        <img src={Refresh} onClick={() => DesbanirUsuario(item.idUsuario)} />
+                                        <img src={Refresh} onClick={() => DesbanirUsuario(item.idUsuario)} alt="Botão que retorna o aceeso ao usuario banido" />
                                     </div>
                                 </div>
                             </div>

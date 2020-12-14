@@ -6,7 +6,6 @@ import AccessBar from "../../Components/AccessBar";
 import Input from "../../Components/Input/index";
 import AccessMenu from "../../Components/AccessMenu";
 
-import imgPadrao from "../../assets/android-character-symbol.webp";
 
 import "./style.css";
 
@@ -242,7 +241,7 @@ export default function PerfilEmpresa() {
             return (
               <div className="BoxPerfilCandidato">
                 <div className="flexBoxPerfilCandidato">
-                  <img src={imgPadrao} alt="Imagem da Empresa" />
+                  <img src={'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem} alt="Imagem da Empresa" />
                   <h3>{"Nome do estágiario:" + item.nomeCompleto}</h3>
                 </div>
                 <h3>{"CPF:" + item.cpf}</h3>
@@ -263,98 +262,106 @@ export default function PerfilEmpresa() {
           <Input
             className="InputCadastro"
             value={NomeResponsavel}
-            name="NomeResponsavel"
+            name="NomeResponsavelEditEmpresa"
             label="Nome do responsável"
             onChange={(e) => SetNomeResponsavel(e.target.value)}
             maxLength={35}
             minLength={5}
             required
+            id="NomeResponsavelEditEmpresa"
           />
 
           <Input
             className="InputCadastro"
             value={RazaoSocial}
-            name="RazaoSocial"
+            name="RazaoSocialEditEmpresa"
             label="Razão social"
             onChange={(e) => SetRazaoSocial(e.target.value)}
             maxLength={50}
             minLength={5}
-            requi
-            red
+            required
+            id="RazaoSocialEditEmpresa"
           />
           <Input
             className="InputCadastro"
             value={NomeFantasia}
-            name="NomeFantasia"
+            name="NomeFantasiaEditEmpresa"
             label="Nome fantasia"
             onChange={(e) => SetNomeFantasia(e.target.value)}
             maxLength={50}
             minLength={5}
             required
+            id="NomeFantasiaEditEmpresa"
           />
           <Input
             className="InputCadastro"
             value={CNPJ}
-            name="CNPJ"
+            name="CNPJEditEmpresa"
             label="CNPJ"
             onChange={(e) => SetCNPJ(e.target.value)}
             maxLength={14}
             minLength={14}
             required
+            id="CNPJEditEmpresa"
           />
 
           <Input
             className="InputCadastro"
             value={EmailContato}
-            name="EmailConato"
+            name="EmailContatoEditEmpresa"
             label="Email para contato"
             onChange={(e) => SetEmailContato(e.target.value)}
             maxLength={254}
             minLength={5}
             required
+            id="EmailContatoEditEmpresa"
           />
 
           <Input
             className="InputCadastro"
             value={Telefone}
-            name="Telefone"
+            name="TelefoneEditEmpresa"
             label="Telefone"
             onChange={(e) => SetTelefone(e.target.value)}
             maxLength={14}
             minLength={11}
             required
+            id="TelefoneEditEmpresa"
           />
 
           <Input
             className="InputCadastro"
             value={NumFuncionario}
-            name="NumFuncionarios"
+            name="NumFuncionariosEditEmpresa"
             label="Número de fúncionarios"
             onChange={(e) => SetNumFuncionario(e.target.value)}
             required
+            id="NumFuncionariosEditEmpresa"
           />
 
           <Input
             className="InputCadastro"
             value={NumCNAE}
-            name="NumCNAE"
+            name="NumCNAEEditEmpresa"
             label="Número do CNAE"
             onChange={(e) => SetNumCNAE(e.target.value)}
             maxLength={7}
             minLength={7}
             required
+            id="NumCNAEEditEmpresa"
           />
 
           <Input
             className="InputCadastro"
             value={CEP}
-            name="CEP"
+            name="CepEditEmpresa"
             label="CEP"
             onChange={(e) => SetCEP(e.target.value)}
             maxLength={8}
             minLength={8}
             required
             onBlur={(e) => buscarCep(e.target.value)}
+            id="CepEditEmpresa"
           />
 
           <Input
@@ -370,9 +377,10 @@ export default function PerfilEmpresa() {
           <Input
             className="InputCadastro"
             value={Complemento}
-            name="Complemento"
+            name="ComplementoEditEmpresa"
             label="Complemento"
             onChange={(e) => SetComplemento(e.target.value)}
+            id="ComplementoEditEmpresa"
           />
 
           <div className="Input">
@@ -421,8 +429,9 @@ export default function PerfilEmpresa() {
         <h2>Alterar senha</h2>
         <form>
         <Input
+            id="SenhaatualEditEmpresa"
             className="InputCadastro"
-            name="Senha atual"
+            name="SenhaatualEditEmpresa"
             label="Senha atual"
             onChange={(e) => setSenha(e.target.value)}
             maxLength={15}
@@ -432,8 +441,9 @@ export default function PerfilEmpresa() {
           />
 
           <Input
+          id="NovaSenhaEmpresa"
             className="InputCadastro"
-            name="NovaSenha"
+            name="NovaSenhaEmpresa"
             label="Nova senha"
             onChange={(e) => SetNovaSenha(e.target.value)}
             maxLength={15}

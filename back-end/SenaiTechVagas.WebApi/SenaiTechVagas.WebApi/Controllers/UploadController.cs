@@ -17,7 +17,7 @@ namespace SenaiTechVagas.WebApi.Controllers
 
 
         /// <summary>
-        /// Método 
+        /// Método que armazena as imagens que o ususario seleciona na hora do cadastro
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>

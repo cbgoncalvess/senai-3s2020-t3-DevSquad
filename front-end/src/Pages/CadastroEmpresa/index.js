@@ -171,12 +171,12 @@ export default function CadastroEmpresa() {
 
   function View() {
     if (CaminhoImagem == "" && CaminhoImagem.length < 3 || CaminhoImagem===undefined) {
-      return <img className="imagemCadastro" src={Userimg} />;
+      return <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil" />;
     } else if (CaminhoImagem.length > 3) {
       return (
         <img
           className="imagemCadastro"
-          src={"http://localhost:5000/ImageBackUp/" + CaminhoImagem}
+          src={"http://localhost:5000/ImageBackUp/" + CaminhoImagem} alt="Imagem de perfil"
         />
       );
     }
@@ -215,6 +215,7 @@ export default function CadastroEmpresa() {
                 }}
               />
               <Input
+                id="responsibleName"
                 name={"responsibleName"}
                 className="cadastre"
                 label="Nome do responsável:"
@@ -226,7 +227,8 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetNomeResponsavel(e.target.value)}
               />
               <Input
-                name="cnpj"
+                id="cnpjCadastro"
+                name="cnpjCadastro"
                 className="cadastre"
                 label="CNPJ:"
                 type="text"
@@ -241,7 +243,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="emailContato"
+              id="emailContatoCadastro"
+                name="emailContatoCadastro"
                 className="cadastre"
                 label="E-mail para contato:"
                 type="text"
@@ -253,7 +256,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="companyFakeName"
+              id="companyFakeNameCadastro"
+                name="companyFakeNameCadastro"
                 className="cadastre"
                 label="Nome fantasia:"
                 type="text"
@@ -264,7 +268,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="companyName"
+              id="companyNameCadastro"
+                name="companyNameCadastro"
                 className="cadastre"
                 label="Razão social:"
                 type="text"
@@ -275,7 +280,8 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetRazaoSocial(e.target.value)}
               />
               <Input
-                name="phoneNumber"
+              id="phoneNumberCadastro"
+                name="phoneNumberCadastro"
                 className="cadastre"
                 label="Telefone da empresa:"
                 type="tel"
@@ -287,7 +293,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="workersCompanyNumber"
+              id="workersCompanyNumberCadastro"
+                name="workersCompanyNumberCadastro"
                 className="cadastre"
                 label="Número de funcionários:"
                 type="number"
@@ -298,7 +305,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="cnaeNumber"
+              id="cnaeNumberCadastro"
+                name="cnaeNumberCadastro"
                 className="cadastre"
                 label="Número CNAE:"
                 type="text"
@@ -310,16 +318,14 @@ export default function CadastroEmpresa() {
               />
 
               <div className="Input">
-                <label>CEP:</label>
+                <label htmlFor="cep">CEP:</label>
                 <br />
                 <input
                   type="text"
                   className="cadastre"
                   id="cep"
-                  data-mask="00000-000"
                   maxLength={8}
                   minLength={8}
-                  data-mask-selectonfocus="true"
                   onBlur={(e) => {
                     e.preventDefault();
                     buscarCep(e.target.value);
@@ -339,9 +345,10 @@ export default function CadastroEmpresa() {
               />
 
               <div className="Input">
-                <label>Complemento:</label>
+                <label htmlFor="ComplementoCadastroEmpresa">Complemento:</label>
                 <br />
                 <input
+                id="ComplementoCadastroEmpresa"
                   type="text"
                   name="address2"
                   maxLength={255}
@@ -379,7 +386,8 @@ export default function CadastroEmpresa() {
               </div>
 
               <Input
-                name="EmailUser"
+              id="EmailUserCadastroEmpresa"
+                name="EmailUserCadastroEmpresa"
                 className="cadastre"
                 label="Email de acesso:"
                 placeholder="email@company.com"
@@ -392,7 +400,7 @@ export default function CadastroEmpresa() {
 
               <Input
                 id="password-cadastro"
-                name="password"
+                name="password-cadastro"
                 className="cadastre"
                 label="Senha de acesso:"
                 type="password"
@@ -406,7 +414,7 @@ export default function CadastroEmpresa() {
 
               <Input
                 id="confirmPassword-cadastro"
-                name="password-confirm"
+                name="confirmPassword-cadastro"
                 className="cadastre"
                 label="Confirme a senha:"
                 type="password"
@@ -421,11 +429,12 @@ export default function CadastroEmpresa() {
               <p className="password-instructions-text"></p>
 
               <div>
-                <label className="select-cadastroCandidato-title">
+                <label htmlFor="PerguntaCadastroEmpresa" className="select-cadastroCandidato-title">
                   Pergunta de seguranca
                 </label>
                 <br />
                 <select
+                  id="PerguntaCadastroEmpresa"
                   className="select-cadastroCandidato"
                   onChange={(e) => SetPergunta(e.target.value)}
                   value={PerguntaSeguranca}
@@ -463,7 +472,8 @@ export default function CadastroEmpresa() {
               </div>
 
               <Input
-                name="Resposta seguranca"
+              id="RespostaCadastroEmpresa"
+                name="RespostaCadastroEmpresa"
                 className="cadastre"
                 label="Resposta de segurança:"
                 type="text"

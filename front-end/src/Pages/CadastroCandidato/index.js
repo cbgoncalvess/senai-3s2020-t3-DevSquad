@@ -9,7 +9,6 @@ import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
 import Userimg from '../../assets/images/user.webp'
 
-import { mascara } from '../../services/mask';
 
 import imagemCadastroCandidato from "../../assets/imgCadastroCandidato.webp";
 
@@ -150,11 +149,11 @@ export default function CadastroEmpresa() {
 function View(){
   if(CaminhoImagem=='' && CaminhoImagem.length<3 || CaminhoImagem===undefined){
     return(
-    <img className="imagemCadastro" src={Userimg}/>
+    <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil"/>
     );
   }else if(CaminhoImagem.length>3){
     return(
-      <img className="imagemCadastro" src={'http://localhost:5000/ImageBackUp/'+CaminhoImagem}/>
+      <img className="imagemCadastro" src={'http://localhost:5000/ImageBackUp/'+CaminhoImagem} alt="Imagem de perfil"/>
       );
   }
 }
@@ -183,6 +182,7 @@ function View(){
               }}>
               <input type="file" className="none" id="ButtonImage" onChange={event => { uploadFile(event)}}/>
               <Input
+                id="fullName"
                 name="fullName"
                 className="cadastre"
                 label="Nome completo:"
@@ -195,6 +195,7 @@ function View(){
               />
 
               <Input
+                id="rg"
                 name="rg"
                 className="cadastre"
                 label="RG:"
@@ -218,12 +219,12 @@ function View(){
                 minLength={11}
                 onChange={(e) => {
                     SetCPF(e.target.value);
-                    mascara(e.target.value);
                   }
                 }
               />
 
               <Input
+                id="telefone"
                 name="telefone"
                 className="cadastre"
                 label="Telefone:"
@@ -236,6 +237,7 @@ function View(){
               />
 
               <Input
+              id="linkedin"
                 name="linkedin"
                 className="cadastre"
                 label="LinkedIn:"
@@ -247,13 +249,14 @@ function View(){
               />
 
               <div>
-                <label className="select-cadastroCandidato-title">Curso</label>
+                <label htmlFor="selectCursoCandidato" className="select-cadastroCandidato-title">Curso</label>
                 <br />
                 <select
                   className="select-cadastroCandidato"
                   onChange={(e) => SetCurso(e.target.value)}
                   value={Curso}
                   required
+                  id="selectCursoCandidato"
                 >
                   <option value="0">Selecione seu curso</option>
                   {Cursos.map((item) => {
@@ -265,6 +268,7 @@ function View(){
               </div>
 
               <Input
+                id="email"
                 name="email"
                 className="cadastre"
                 label="E-mail:"
@@ -279,6 +283,7 @@ function View(){
               />
 
               <Input
+                id="password"
                 name="password"
                 className="cadastre"
                 label="Senha:"
@@ -293,7 +298,7 @@ function View(){
 
               <Input
                 id="confirmarSenha-cadastroCandidato"
-                name="password-confirm"
+                name="confirmarSenha-cadastroCandidato"
                 className="cadastre"
                 label="Confirmar senha:"
                 type="password"
@@ -309,7 +314,7 @@ function View(){
               <p className="password-instructions-text"></p>
 
               <div>
-                <label className="select-cadastroCandidato-title">
+                <label htmlFor="selectCadastroCandidato" className="select-cadastroCandidato-title">
                   Pergunta de seguranca:
                 </label>
                 <br />
@@ -318,6 +323,7 @@ function View(){
                   onChange={(e) => SetPergunta(e.target.value)}
                   value={PerguntaSeguranca}
                   required
+                  id="selectCadastroCandidato"
                 >
                   <option value="0">Selecione sua pergunta de segurança</option>
                   <option value="Como se chama o seu cachorro"> Como se chama o seu cachorro</option>
@@ -333,7 +339,8 @@ function View(){
               </div>
 
               <Input
-                name="Resposta seguranca"
+               id="Respostaseguranca"
+                name="Respostaseguranca"
                 className="cadastre"
                 label="Resposta de segurança:"
                 type="text"

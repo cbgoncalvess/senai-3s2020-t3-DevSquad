@@ -18,10 +18,8 @@ export default function PerfilCandidato() {
     const [Curso, SetCurso] = useState('');
     const [Area, SetArea] = useState('');
     const[CaminhoImagem,setCaminho]=useState('');
-
     const [Cursos, setCursos] = useState([]);
     const [Vagas, setVagas] = useState([]);
-
     const [NovaSenha, SetNovaSenha] = useState('');
     const [SenhaAtual, SetSenha] = useState('');
 
@@ -185,7 +183,7 @@ export default function PerfilCandidato() {
                 <div className="EsquerdoPerfil">
                     <div className="imgPefilTexto">
                     <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
-                        <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil"/></label>
+                        <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="Imagem de perfil"/></label>
                         <h3>{NomeCompleto}</h3>
                         <p>Candidato</p>
                     </div>
@@ -201,7 +199,7 @@ export default function PerfilCandidato() {
                             return (
                                 <div className="BoxPerfilCandidato">
                                     <div className="flexBoxPerfilCandidato">
-                                        <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} />
+                                        <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="Imagem de pefil da empresa dona da vaga" />
                                         <h3>{"Nome da empresa:"+item.razaoSocial}</h3>
                                     </div>
                                     <h3>{"Tipo do contrato:"+item.tipoContrato}</h3>
@@ -216,38 +214,43 @@ export default function PerfilCandidato() {
             <div id="modalPerfilCandidato" className="modalPerfilCandidato none">
                 <h2>Editar seus dados pessoais</h2>
                 <form>
-                    <Input className="InputCadastro" value={NomeCompleto} name="NomeCompleto" label="Nome completo" onChange={e => SetNomeCompleto(e.target.value)}
+                    <Input className="InputCadastro" value={NomeCompleto} name="NomeCompletoEdit" label="Nome completo" onChange={e => SetNomeCompleto(e.target.value)}
                     maxLength={65}
                     minLength={5}
-                    required 
+                    required
+                    id="NomeCompletoEdit"
                     />
 
-                    <Input className="InputCadastro" value={Rg} name="Rg" label="RG" onChange={e => SetRg(e.target.value)}
+                    <Input className="InputCadastro" value={Rg} name="RgEdit" label="RG" onChange={e => SetRg(e.target.value)}
                     maxLength={9}
                     minLength={9}
                     required 
+                    id="RgEdit"
                     />
                     
-                    <Input className="InputCadastro" value={CPF} name="CPF" label="CPF" onChange={e => SetCPF(e.target.value)}
+                    <Input className="InputCadastro" value={CPF} name="CPFEdit" label="CPF" onChange={e => SetCPF(e.target.value)}
                     maxLength={11}
                     minLength={11}
                     required 
+                    id="CPFEdit"
                     />
 
-                    <Input className="InputCadastro" value={Telefone} name="Telefone" label="Telefone" onChange={e => SetTelefone(e.target.value)}
+                    <Input className="InputCadastro" value={Telefone} name="TelefoneEdit" label="Telefone" onChange={e => SetTelefone(e.target.value)}
                     maxLength={11}
                     minLength={10}
-                    required 
+                    required
+                    id="TelefoneEdit" 
                     />
 
-                    <Input className="InputCadastro" value={Linkedin} name="Linkedin" label="Linkedin" onChange={e => SetLinkedin(e.target.value)} 
+                    <Input className="InputCadastro" value={Linkedin} name="LinkedinEdit" label="Linkedin" onChange={e => SetLinkedin(e.target.value)} 
                     maxLength={150}
                     minLength={5}
+                    id="LinkedinEdit"
                     />
                     
                     <div className="select-final">
-                        <label>Cursos</label>
-                        <select onChange={e => SetCurso(e.target.value)} value={Curso} required>
+                        <label htmlFor="CursosEdit">Cursos</label>
+                        <select id="CursosEdit" onChange={e => SetCurso(e.target.value)} value={Curso} required>
                             <option value="0">Selecione seu curso</option>
                             {
                                 Cursos.map((item) => {
@@ -268,13 +271,13 @@ export default function PerfilCandidato() {
             <div id="modalAlterarSenhaCandidato" className="modalAlterarSenhaCandidato none">
                 <h2>Alterar senha</h2>
                 <form>
-                   <Input type="password" className="InputCadastro" name="Senha atual" label="Senha atual" onChange={e => SetSenha(e.target.value)}
+                   <Input type="password" className="InputCadastro" id="SenhaatualCandidato" name="SenhaatualCandidato" label="Senha atual" onChange={e => SetSenha(e.target.value)}
                     maxLength={15}
                     minLength={9}
                     required 
                     />
 
-                    <Input type="password" className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
+                    <Input type="password" className="InputCadastro" id="NovaSenhaCandidato" name="NovaSenhaCandidato" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
                     maxLength={15}
                     minLength={9}
                     required 

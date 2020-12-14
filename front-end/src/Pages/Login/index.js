@@ -138,13 +138,13 @@ export default function Login() {
                             login();
                         }}>
                             <div className="divisionCampo">
-                                <label>E-mail:</label>
-                                <input type="text" name="email" className="inputUser" placeholder="exemplo@exemplo.com / mariasantos" onChange={e => setEmail(e.target.value)} />
+                                <label htmlFor="EmailLogin">E-mail:</label>
+                                <input id="EmailLogin" type="text" name="email" className="inputUser" placeholder="exemplo@exemplo.com / mariasantos" onChange={e => setEmail(e.target.value)} />
                             </div>
 
                             <div className="divisionCampo divisionPassword">
-                                <label>Senha:</label>
-                                <input type="password" name="password" placeholder="******" className="inputPassword" onChange={e => setSenha(e.target.value)} />
+                                <label htmlFor="SenhaLogin">Senha:</label>
+                                <input id="SenhaLogin" type="password" name="password" placeholder="******" className="inputPassword" onChange={e => setSenha(e.target.value)} />
                             </div>
                     <label className="LabelErro none" id="lbErro">{Mensagem}</label>
                                 <h5 className="recuperarPassword" onClick={ApareceRecuperarSenhaCandidato}>Recuperar senha</h5>
@@ -158,7 +158,7 @@ export default function Login() {
                     </div>
                 </section>
 
-                <img src={imglogin} className="imgBannerLogin" />
+                <img src={imglogin} className="imgBannerLogin" alt="Banner do site"/>
             </main>
 
             <div
@@ -173,8 +173,9 @@ export default function Login() {
                 <h2>Alterar senha</h2>
                 <form>
                     <div className="select-final">
-                        <label>Pergunta de segurança</label>
+                        <label htmlFor="RecuperarSelect">Pergunta de segurança</label>
                         <select
+                        id="RecuperarSelect"
                             onChange={(e) => SetPerguntaSeguranca(e.target.value)}
                             value={PerguntaSeguranca}
                             required
@@ -192,8 +193,9 @@ export default function Login() {
                         </select>
                     </div>
                     <Input
+                    id="RespostaSegurancaRecuperar"
                         className="InputCadastro"
-                        name="RespostaSeguranca"
+                        name="RespostaSegurancaRecuperar"
                         label="Resposta de seguranca"
                         onChange={(e) => SetRespostaSeguranca(e.target.value)}
                         maxLength={20}
@@ -202,6 +204,7 @@ export default function Login() {
                     />
 
                     <Input
+                    id="emailRecuperacao"
                         className="InputCadastro"
                         name="emailRecuperacao"
                         label="Seu email"
@@ -212,8 +215,9 @@ export default function Login() {
                     />
 
                     <Input
+                        id="NovaSenhaRecuperar"
                         className="InputCadastro"
-                        name="NovaSenha"
+                        name="NovaSenhaRecuperar"
                         label="Nova senha"
                         onChange={(e) => SetNovaSenha(e.target.value)}
                         maxLength={15}

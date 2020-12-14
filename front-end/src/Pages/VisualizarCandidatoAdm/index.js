@@ -116,6 +116,7 @@ export default function VisualizarCandidatoAdm() {
                       src={imgDelete}
                       alt="Delete"
                       onClick={() => DeletarInscricao(item.idInscricao)}
+                      alt="Botão que deleta inscrição do candidato"
                     />
 
                     <div className="DeletePerfil">
@@ -143,7 +144,7 @@ export default function VisualizarCandidatoAdm() {
         <div className="DireitoAdm">
           <div className="BoxEmpresa">
             <div className="ImagemEmpresaAdm">
-              <img src={"http://localhost:5000/imgPerfil/" + CaminhoImagem} />
+              <img src={"http://localhost:5000/imgPerfil/" + CaminhoImagem} alt="Imagem de perfil da empresa"/>
               <h5>{NomeCompleto}</h5>
             </div>
             <div className="DadosDaEmpresa">

@@ -12,9 +12,6 @@ import imgDelete from '../../assets/delete.webp'
 import './style.css';
 
 export default function PerfilAdm() {
-    let [idVaga, setidVaga] = useState(0);
-    const[idUsuario,setidUsuario]=useState(0);
-
     const [Vagas, setVagas] = useState([]);
     const [Empresas, SetEmpresa] = useState([]);
     const [Candidatos, SetCandidato] = useState([]);
@@ -43,11 +40,6 @@ export default function PerfilAdm() {
             .catch(err => console.error(err));
     }
     
-    function IrParaInscricoes(){
-        localStorage.setItem("idVagaSelecionadaAdm", idVaga);
-        history.push("/VizualizarVagaAdmin");
-    }
-
     const Banir =(id)=>{
         fetch('http://localhost:5000/api/Administrador/Banir/'+id, {
             method: 'PUT',
@@ -199,8 +191,8 @@ const DeletarVaga = (id) => {
                 <div className="EsquerdoPerfil">
                     <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
                     <div className="imgPefilTexto">
-                        <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" title="Editar" id="filterPerfil" /></label>
-                        <h3>Roberto Possarle</h3>
+                        <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="Imagem de perfil" title="Editar" id="filterPerfil" /></label>
+                        <h3>Bem vindo administrador</h3>
                         <p>administrador</p>
                     </div>
                     <div className="BotoesPerfil">
@@ -224,14 +216,14 @@ const DeletarVaga = (id) => {
             </div>
             <div id="peliculaAlterarSenhaUsuario" className="peliculaAlterarSenhaUsuario none" onClick={btn_fecharAlterarSenha}></div>
             <div id="modalAlterarSenhaUsuario" className="modalAlterarSenhaUsuario none">
-                <h2>Alterar senha</h2>
+                <h2>Alterar senha de qualquer usuario</h2>
                 <form>
-                    <Input className="InputCadastro" name="Email" label="Email" onChange={e => SetEmail(e.target.value)}
+                    <Input id="EmailTrocar" className="InputCadastro" name="EmailTrocar" label="Email" onChange={e => SetEmail(e.target.value)}
                     maxLength={254}
                     minLength={5}
                     required
                     />
-                    <Input className="InputCadastro" name="NovaSenha" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
+                    <Input id="NovaSenhaTrocar" className="InputCadastro" name="NovaSenhaTrocar" label="Nova senha" onChange={e => SetNovaSenha(e.target.value)}
                     maxLength={15}
                     minLength={9}
                     required
@@ -253,14 +245,14 @@ const DeletarVaga = (id) => {
                             return (
                                 <div key={item.idCandidato} className="BoxPerfil">
                                     <div className="flexBoxPerfil">
-                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem} alt="usuario" />
+                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem} alt="Imagem de perfil do usuario" />
                                         <div className="ColumnNomeEmail">
                                             <h2>{item.nomeCompleto}</h2>
                                             <p>{item.idUsuarioNavigation.email}</p>
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">
-                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>Banir(item.idUsuario)}/>
+                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>Banir(item.idUsuario)} alt="Botão que bloqueia o acesso do usuario do site" title="Banir"/>
                                         <button className="btVerPerfil" onClick={e=>{
                                             e.preventDefault();
                                             localStorage.setItem("CandidatoSelecionado",item.idUsuario);
@@ -282,14 +274,14 @@ const DeletarVaga = (id) => {
                             return (
                                 <div key={item.idEmpresa} className="BoxPerfil">
                                     <div className="flexBoxPerfil">
-                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem} alt="usuario" />
+                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem} alt="Iamgem de perfil do usuario" />
                                         <div className="ColumnNomeEmail">
                                             <h2>{item.razaoSocial}</h2>
                                             <p>{item.emailContato}</p>
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">
-                                        <img className="Delete" onClick={()=>Banir(item.idUsuario)} src={imgDelete} alt="Delete" />
+                                        <img className="Delete" onClick={()=>Banir(item.idUsuario)} src={imgDelete} alt="Botão que bloqueia o acesso do usuario do site" title="Banir" />
                                         <button className="btVerPerfil" onClick={e=>{
                                             e.preventDefault();
                                             localStorage.setItem("IdEmpresaSelecionada",item.idUsuario);
@@ -310,18 +302,18 @@ const DeletarVaga = (id) => {
                             return (
                                 <div key={item.idEmpresa} className="BoxPerfil">
                                     <div className="flexBoxPerfil">
-                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="usuario" />
+                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="Imagem de perfil do usuario" />
                                         <div className="ColumnNomeEmail">
                                             <h2>{item.tituloVaga}</h2>
                                             <p>{item.nomeArea}</p>
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">
-                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>DeletarVaga(item.idVaga)}/>
+                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>DeletarVaga(item.idVaga)} alt="Botão que bloqueia o acesso do usuario do site" title="Banir"/>
                                         <button className="btVerPerfil" onClick={e=>{
                                             e.preventDefault();
-                                            idVaga=item.idVaga;
-                                            IrParaInscricoes();
+                                            localStorage.setItem("idVagaSelecionadaAdm", item.idVaga);
+                                            history.push("/VizualizarVagaAdmin")
                                         }}><h4>Ver vaga</h4></button>
                                     </div>
                                 </div>

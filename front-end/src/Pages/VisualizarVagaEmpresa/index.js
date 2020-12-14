@@ -6,7 +6,6 @@ import Footer from "../../Components/Footer";
 import AccessBar from "../../Components/AccessBar";
 import AccessMenu from "../../Components/AccessMenu";
 
-import imgEmpresa from "../../assets/Teste.webp";
 import Tag from "../../Components/Tag/Index";
 import imgDesenvolvimento from "../../assets/web-programming.webp";
 import imgGlobal from "../../assets/global.png";
@@ -20,8 +19,6 @@ import InfoVaga from "../../Components/InfoVaga/Index";
 import "./style.css";
 
 export default function VizualizarVagaEmpresa() {
-    let [idVaga, setIdVaga] = useState(0);
-    const [idInscricao, setInscricao] = useState(0);
     const [Experiencia, setExperiencia] = useState('');
     const [TipoContrato, setTipoContrato] = useState('');
     const [Salario, setSalario] = useState('');
@@ -36,19 +33,17 @@ export default function VizualizarVagaEmpresa() {
 
     let history = useHistory();
     useEffect(() => {
-        idVaga = localStorage.getItem('idVagaSelecionadaEmpresa');
-        listarCandidatos();
         BuscarPorId();
+        listarCandidatos();
     }, []);
 
     const BuscarPorId = () => {
-        fetch('http://localhost:5000/api/Usuario/BuscarPorId/' + idVaga, {
+        fetch('http://localhost:5000/api/Usuario/BuscarPorId/' + localStorage.getItem('idVagaSelecionadaEmpresa'), {
             method: 'GET',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         }).then(response => response.json()).then(dados => {
-            setIdVaga(dados.idVaga);
             setTituloVaga(dados.tituloVaga);
             setTipoContrato(dados.tipoContrato);
             setSalario(dados.salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
@@ -63,7 +58,7 @@ export default function VizualizarVagaEmpresa() {
     }
 
     const listarCandidatos = () => {
-        fetch('http://localhost:5000/api/Empresa/ListarCandidatosInscritos/' + idVaga, {
+        fetch('http://localhost:5000/api/Empresa/ListarCandidatosInscritos/' + localStorage.getItem('idVagaSelecionadaEmpresa'), {
             method: 'GET',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
@@ -74,10 +69,6 @@ export default function VizualizarVagaEmpresa() {
                 SetCandidato(dados);
             })
             .catch(err => console.error(err));
-    }
-
-    function CandidatosAprovados() {
-        history.push("/candidatosAprovados")
     }
 
     const Aprovar = (id) => {
@@ -112,13 +103,14 @@ export default function VizualizarVagaEmpresa() {
         <div className="bodyPartVizualizarVagaEmpresa">
             <AccessBar />
             <Header />
+            <AccessMenu/>
             <div className="BannerVizualizarVagaEmpresa">
                 <h1>Veja quem se candidatou a sua vaga</h1>
             </div>
             <br />
             <div className="vaga">
                 <div className="VagaCompleta">
-                    <img src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} className="ImagemEmpresa" ></img>
+                    <img src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} className="ImagemEmpresa" alt="Iamgem de perfil da empresa"/>
                     <div className="MainVaga">
                         <h3>{TituloVaga}</h3>
                         <div className="InfoVagas">
@@ -142,14 +134,14 @@ export default function VizualizarVagaEmpresa() {
                     </div>
                 </div>
             </div>
-            <button className="btAprovados" onClick={CandidatosAprovados}>Candidatos aprovados para esta vaga</button>
+            <button className="btAprovados" onClick={()=> history.push("/candidatosAprovados")}>Candidatos aprovados para esta vaga</button>
             <div className="ListaDeInscicoes">
                 {
                     Candidatos.map((item) => {
                         return (
                             <div key={item.idCandidato} className="Inscricao">
                                 <div className="CabecaInscricao">
-                                    <img className="imgperfilInscricao" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="ImagemPerfil" />
+                                    <img className="imgperfilInscricao" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="Imagem de Perfil do candidato" />
                                     <h3>{item.nomeCandidato}</h3>
                                     <hr className="hr" />
                                     <h5>{item.nomeCurso}</h5>

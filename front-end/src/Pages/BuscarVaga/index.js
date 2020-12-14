@@ -5,9 +5,7 @@ import AccessBar from "../../Components/AccessBar";
 import Header from "../../Components/Header";
 import AccessMenu from "../../Components/AccessMenu";
 import Footer from "../../Components/Footer";
-import Input from "../../Components/Input";
 
-import imgEmpresa from "../../assets/Teste.webp";
 import Tag from "../../Components/Tag/Index";
 import InfoVaga from "../../Components/InfoVaga/Index";
 import imgGlobal from "../../assets/global.png";
@@ -23,7 +21,6 @@ import "./style.css";
 export default function BuscarVaga() {
   let history = useHistory();
   const [ListVagas, SetListVagas] = useState([]);
-  let [idVaga, SetIdVaga] = useState(0);
   const [OpcaoFiltro, setOpcaoFiltro] = useState("");
   const [VagaTipoContrato, setVagaTipoContrato] = useState([]);
   const [VagaExperiencia, setVagaExperiencia] = useState([]);
@@ -83,8 +80,9 @@ export default function BuscarVaga() {
                 key={item.idVaga}
                 className="vaga"
                 onClick={(event) => {
-                  idVaga = item.idVaga;
-                  BuscarVagaPeloId();
+                  event.preventDefault();
+                  localStorage.setItem("idVagaSelecionada", item.idVaga);
+                  history.push("/VisualizarVagaCandidato");
                 }}
               >
                 <div className="VagaCompleta">
@@ -152,8 +150,8 @@ export default function BuscarVaga() {
                 className="vaga"
                 onClick={(event) => {
                   event.preventDefault();
-                  idVaga = item.idVaga;
-                  BuscarVagaPeloId();
+                  localStorage.setItem("idVagaSelecionada", item.idVaga);
+                  history.push("/VisualizarVagaCandidato");
                 }}
               >
                 <div className="VagaCompleta">
@@ -221,8 +219,8 @@ export default function BuscarVaga() {
                 className="vaga"
                 onClick={(event) => {
                   event.preventDefault();
-                  idVaga = item.idVaga;
-                  BuscarVagaPeloId();
+                  localStorage.setItem("idVagaSelecionada", item.idVaga);
+                  history.push("/VisualizarVagaCandidato");
                 }}
               >
                 <div className="VagaCompleta">
@@ -286,8 +284,8 @@ export default function BuscarVaga() {
                 className="vaga"
                 onClick={(event) => {
                   event.preventDefault();
-                  idVaga = item.idVaga;
-                  BuscarVagaPeloId();
+                  localStorage.setItem("idVagaSelecionada", item.idVaga);
+                  history.push("/VisualizarVagaCandidato");
                 }}
               >
                 <div className="VagaCompleta">
@@ -340,11 +338,6 @@ export default function BuscarVaga() {
         </div>
       );
     }
-  }
-
-  function BuscarVagaPeloId() {
-    localStorage.setItem("idVagaSelecionada", idVaga);
-    history.push("/VisualizarVagaCandidato");
   }
 
   const listarVagas = () => {

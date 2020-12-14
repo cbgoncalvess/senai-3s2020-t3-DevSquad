@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import AccessBar from '../../Components/AccessBar';
-import imgEmpresa from '../../assets/Teste.webp'
+import AccessMenu from '../../Components/AccessMenu';
+
 import './style.css';
 import Tag from '../../Components/Tag/Index';
 import imgDesenvolvimento from '../../assets/web-programming.webp';
@@ -75,13 +75,14 @@ export default function VizualizarCandidatosAprovados() {
         <div className="bodyPartVizualizarVagaEmpresa">
             <AccessBar />
             <Header />
+            <AccessMenu/>
             <div className="BannerVizualizarVagaEmpresa">
                 <h1>Veja quem foi aprovado à sua vaga</h1>
             </div>
             <br />
             <div className="vaga">
                 <div className="VagaCompleta">
-                    <img src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} className="ImagemEmpresa" ></img>
+                    <img src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} className="ImagemEmpresa" alt="Imagem de perfil da empresa"/>
                     <div className="MainVaga">
                         <h3>{TituloVaga}</h3>
                         <div className="InfoVagas">

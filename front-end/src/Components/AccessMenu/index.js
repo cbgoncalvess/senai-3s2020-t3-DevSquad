@@ -226,6 +226,15 @@ export default function AccessMenu() {
             window.location.href = "/DashboardInscricaoCandidato";
           }
 
+          if (
+            textarea.value == "fazer o teste" ||
+            textarea.value == "fazer teste" ||
+            textarea.value == "fazer teste personalidade" ||
+            textarea.value == "teste de personalidade"
+          ) {
+            window.location.href = "/TesteDePersonalidade";
+          }
+
           if (textarea.value == "Sobre" || textarea.value == "sobre") {
             window.location.href = "/sobre";
           }

@@ -1438,7 +1438,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     return listvagas;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }
