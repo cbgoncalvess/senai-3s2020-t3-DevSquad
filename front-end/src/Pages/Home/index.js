@@ -95,7 +95,7 @@ export default function Home() {
           <div className="BoxDeVagas">
             <div className="Vaga">
               <div className="Space">
-                <img src={imgPadrao} alt="" />
+                <img src={imgPadrao} alt="Imagem de perfil" />
                 <h3>Google</h3>
                 <br />
                 <hr className="hr" />
@@ -116,7 +116,7 @@ export default function Home() {
             </div>
             <div className="Vaga">
               <div className="Space">
-                <img src={imgPadrao} alt="" />
+                <img src={imgPadrao} alt="Imagem de perfil" />
                 <h3>Youtube</h3>
                 <br />
                 <hr className="hr" />
@@ -138,7 +138,7 @@ export default function Home() {
             </div>
             <div className="Vaga">
               <div className="Space">
-                <img src={imgPadrao} alt="" />
+                <img src={imgPadrao} alt="Imagem de perfil" />
                 <h3>Apple</h3>
                 <br />
                 <hr className="hr" />
@@ -165,7 +165,7 @@ export default function Home() {
 
         <div className="TesteDePersonalidade">
           <div className="imgTeste">
-            <img src={imgPerfil} alt="" />
+            <img src={imgPerfil} alt="Imagem do teste de personalidade" />
           </div>
           <div className="TextoTeste">
             <br />

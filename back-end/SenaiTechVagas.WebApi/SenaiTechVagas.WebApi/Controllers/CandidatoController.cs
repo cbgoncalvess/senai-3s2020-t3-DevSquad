@@ -132,6 +132,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Lista todas as vagas relacionadas a área do candidato
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "2")]
         [HttpGet("ListarVagasPrincipal")]
         public IActionResult ListarVagasPrincipal()

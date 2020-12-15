@@ -59,7 +59,6 @@
 
 #modalAlterarSenhaCandidato{
     width: 50%;
-    height: 30%;
     overflow-y: auto;
     background-color: white;
     text-align: center;

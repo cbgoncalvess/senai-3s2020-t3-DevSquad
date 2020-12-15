@@ -119,6 +119,7 @@ const BuscarEmpresaPorId = (id) => {
                       src={imgDelete}
                       alt="Delete"
                       onClick={() =>DeletarVaga(item.idVaga)}
+                      alt="Botão que deleta a vaga da empresa"
                     />
                     <div className="DeletePerfil">
                         <button
@@ -142,7 +143,7 @@ const BuscarEmpresaPorId = (id) => {
         <div className="DireitoAdm">
             <div className="BoxEmpresa">
                 <div className="ImagemEmpresaAdm">
-                    <img src={"http://localhost:5000/imgPerfil/"+CaminhoImagem}/>
+                    <img src={"http://localhost:5000/imgPerfil/"+CaminhoImagem} alt="Imagem de perfil da empresa"/>
                   <h5>{RazaoSocial}</h5>
                 </div>
                 <div className="DadosDaEmpresa">
@@ -153,10 +154,11 @@ const BuscarEmpresaPorId = (id) => {
                   <Tag NomeTag={"Telefone:"+Telefone}/>
                   <Tag NomeTag={"Numero de fúncionarios atuando:"+NumFuncionario}/>
                   <Tag NomeTag={"Número do CNAE:"+NumCNAE}/>
+                  <Tag NomeTag={"Estado:"+Estado}/>
+                  <Tag NomeTag={"Cidade:"+Cidade}/>
                   <Tag NomeTag={"CEP:"+CEP}/>
                   <Tag NomeTag={"Logradouro:"+Logradouro}/>
                   <Tag NomeTag={"Complemento:"+Complemento}/>
-                  <Tag NomeTag={"Cidade:"+Cidade}/>
                 </div>
             </div>
         </div>

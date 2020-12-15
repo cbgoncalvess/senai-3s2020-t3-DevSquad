@@ -29,7 +29,7 @@
       animation: enter 1s;
       animation-direction: alternate;
   }
-
+  
   .dex {
       position: absolute;
       right: 0vw;
@@ -81,6 +81,18 @@
   
   .burguer {
       width: 10vw;
+  }
+
+  #menu-hide > li:nth-child(5) > a{
+    color: white;
+  }
+
+  #menu-hide > li > a{
+    color: unset;
+  }
+
+  #menu-hide > li:nth-child(4) > a{
+    color: unset;
   }
   
   @media (min-width: 851px){
@@ -143,9 +155,6 @@
     #menu-hide > li:nth-child(4) > a > div{
       font-size: 4vw !important;
       margin-right: 1vw;
-    }
-    #menu-hide > li:nth-child(4) > a{
-      color: white;
     }
     .botao{
       background: #2A2E32;

@@ -135,7 +135,8 @@ export default function CadastrarVaga() {
                                 event.preventDefault();
                             }}>
                                 <Input className="InputCadastro"
-                                    name="TituloVaga"
+                                    id="TituloVagaCadastro"
+                                    name="TituloVagaCadastro"
                                     label="Título da Vaga"
                                     onChange={e => SetTituloVaga(e.target.value)}
                                     type="text"
@@ -145,7 +146,8 @@ export default function CadastrarVaga() {
                                 />
 
                                 <Input className="InputCadastro"
-                                    name="Salario"
+                                id="SalarioCadastro"
+                                    name="SalarioCadastro"
                                     type="number"
                                     label="Salário"
                                     onChange={e => SetSalario(e.target.value)}
@@ -153,8 +155,8 @@ export default function CadastrarVaga() {
                                 />
 
                                 <div className="select-final">
-                                    <label>Área</label>
-                                    <select onChange={e => SetArea(e.target.value)} value={Area} required>
+                                    <label htmlFor="selectAreaCadastro">Área</label>
+                                    <select id="selectAreaCadastro" onChange={e => SetArea(e.target.value)} value={Area} required>
                                         <option value="0">Selecione uma área de atuação</option>
                                         {
                                             ListAreas.map((item) => {
@@ -165,8 +167,8 @@ export default function CadastrarVaga() {
                                 </div>
 
                                 <div className="select-final">
-                                    <label >Tipo de presença</label>
-                                    <select  onChange={e => setIdTipoPresenca(e.target.value)} value={IdTipoPresenca} required>
+                                    <label htmlFor="selectTipoPresencaCadastro">Tipo de presença</label>
+                                    <select id="selectTipoPresencaCadastro" onChange={e => setIdTipoPresenca(e.target.value)} value={IdTipoPresenca} required>
                                         <option value="0">Selecione um tipo de presenca</option>
                                         {
                                             ListTipoPresencas.map((item) => {
@@ -177,8 +179,8 @@ export default function CadastrarVaga() {
                                 </div>
 
                                 <div className="select-final">
-                                    <label>Experiência</label>
-                                    <select onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
+                                    <label htmlFor="selectExperienciaCadastro">Experiência</label>
+                                    <select id="selectExperienciaCadastro" onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
                                         <option value="0">Selecione um nivel de experiencia</option>
                                         <option value="Pleno">Pleno</option>
                                         <option value="Sênior">Sênior</option>
@@ -186,8 +188,8 @@ export default function CadastrarVaga() {
                                     </select>
                                 </div>
                                 <div className="select-final">
-                                    <label>Tipo de contrato</label>
-                                    <select onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato} required>
+                                    <label htmlFor="selectTipoContratoCadastro">Tipo de contrato</label>
+                                    <select id="selectTipoContratoCadastro" onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato} required>
                                         <option value="0">Selecione um tipo de contrato</option>
                                         <option value="CLT">CLT</option>
                                         <option value="PJ">PJ</option>
@@ -195,16 +197,14 @@ export default function CadastrarVaga() {
                                     </select>
                                 </div>
                                 <div className="Input">
-                                    <label>CEP:</label>
+                                    <label htmlFor="cepCadastroVaga">CEP:</label>
                                     <br />
                                     <input
                                     maxLength={8}
                                     minLength={8}
                                         type="text"
                                         className="cadastre"
-                                        id="cep"
-                                        data-mask="00000-000"
-                                        data-mask-selectonfocus="true"
+                                        id="cepCadastroVaga"
                                         onBlur={(e) => {
                                             e.preventDefault();
                                             buscarCep(e.target.value);
@@ -226,14 +226,14 @@ export default function CadastrarVaga() {
                                 />
 
                                 <Input
+                                id="ComplementoCadastroVaga"
                                     className="InputCadastro"
-                                    name="Complemento"
+                                    name="ComplementoCadastroVaga"
                                     label="Complemento"
                                     type="text"
                                     onChange={e => SetComplemento(e.target.value)}
                                     maxLength={255}
                                     minLength={5}
-                                    required
                                 />
 
                                 <div className="Input">
@@ -265,8 +265,9 @@ export default function CadastrarVaga() {
                                 </div>
 
                                 <div className="text-area">
-                                    <label>Descrição da vaga</label>
+                                    <label htmlFor="DescricaoVagaCadastro">Descrição da vaga</label>
                                     <textarea
+                                    id="DescricaoVagaCadastro"
                                         name="DescricaoVaga"
                                         onChange={e => SetDescricaoVaga(e.target.value)}
                                         required
@@ -274,20 +275,22 @@ export default function CadastrarVaga() {
                                         minLength={5}
                                     ></textarea>
                                     <br />
-                                    <label>Descrição da empresa</label>
+                                    <label htmlFor="DescricaoEmpresaCadastro">Descrição da empresa</label>
                                     <textarea onChange={e => SetDescricaoEmpresa(e.target.value)}
                                         name="DescricaoEmpresa"
                                         required
                                         maxLength={750}
                                         minLength={5}
+                                        id="DescricaoEmpresaCadastro"
                                     ></textarea>
                                     <br />
-                                    <label>Descrição dos benefícios</label>
+                                    <label htmlFor="DescricaoBeneficioCadastro">Descrição dos benefícios</label>
                                     <textarea name="DescricaoBeneficio"
                                         onChange={e => SetDescricaoBeneficio(e.target.value)}
                                         required
                                         maxLength={750}
                                         minLength={5}
+                                        id="DescricaoBeneficioCadastro"
                                     ></textarea>
                                 </div>
                                 <br />

@@ -97,7 +97,7 @@ export default function CadastrarColaborador() {
               <div className="perfilBox">
                 <div className="horizontal">
                   <div className="perfil">
-                    <img className="user" src={User} />
+                    <img className="user" src={"http://localhost:5000/imgPerfil/" + item.caminhoImagem} alt="Iamgem de perfil do administrador" />
                     <h4>Colaborador</h4>
                   </div>
                   <div className="infos">
@@ -130,8 +130,9 @@ export default function CadastrarColaborador() {
           </div>
           <div className="camposCadastro">
             <Input
+            id="emailColab"
               className="div-select"
-              name="email"
+              name="emailColab"
               label="*E-mail"
               type="text"
               placeholder="exemplo@exemplo.com"
@@ -142,8 +143,9 @@ export default function CadastrarColaborador() {
             />
 
             <Input
+            id="senhaColab"
               className="div-select"
-              name="senha"
+              name="senhaColab"
               label="*Senha"
               type="password"
               placeholder="*********"
@@ -154,8 +156,9 @@ export default function CadastrarColaborador() {
             />
 
             <Input
+            id="confirmarSenhaColab"
               className="div-select"
-              name="confirmarSenha"
+              name="confirmarSenhaColab"
               label="*Confirmar Senha"
               type="password"
               placeholder="*********"

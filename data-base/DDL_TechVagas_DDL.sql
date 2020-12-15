@@ -66,7 +66,7 @@ CREATE TABLE Empresa (
 	NumCNAE		   VARCHAR (7),
 	CEP			   VARCHAR (8) NOT NULL,
 	Logradouro	   VARCHAR (150) NOT NULL,
-	Complemento	   VARCHAR (255) NOT NULL,
+	Complemento	   VARCHAR (255),
 	Localidade	   VARCHAR (150) NOT NULL,
 	UF			   VARCHAR (2) NOT NULL,
 	IdUsuario	   INT FOREIGN KEY REFERENCES Usuario (IdUsuario)NOT NULL UNIQUE
@@ -79,7 +79,7 @@ CREATE TABLE Candidato (
 	RG					  CHAR (9) NOT NULL,
 	CPF					  CHAR (11) NOT NULL UNIQUE,
 	Telefone			  VARCHAR (11) NOT NULL UNIQUE,
-	LinkLinkedinCandidato VARCHAR (150)UNIQUE,
+	LinkLinkedinCandidato VARCHAR (150),
 	IdCurso				  INT FOREIGN KEY REFERENCES Curso (IdCurso),
 	IdUsuario			  INT FOREIGN KEY REFERENCES Usuario (IdUsuario) NOT NULL UNIQUE,
 );
@@ -102,7 +102,7 @@ CREATE TABLE Vaga (
 	CEP				   CHAR (8) NOT NULL,
 	Logradouro		   VARCHAR (150) NOT NULL,
 	IdTipoRegimePresencial INT FOREIGN  KEY REFERENCES TipoRegimePresencial(IdTipoRegimePresencial)NOT NULL,
-	Complemento		   VARCHAR (255) NOT NULL,
+	Complemento		   VARCHAR (255),
 	IdEmpresa		   INT FOREIGN KEY REFERENCES Empresa (IdEmpresa)NOT NULL,
 	IdArea		       INT FOREIGN KEY REFERENCES Area (IdArea)NOT NULL
 );

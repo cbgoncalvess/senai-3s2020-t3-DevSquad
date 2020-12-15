@@ -132,7 +132,7 @@ export default function AccessMenu() {
         var interim_transcript = "";
         const token = localStorage.getItem("token");
 
-        if (token === null) {
+        if (token === null||token===undefined) {
           if (textarea.value == "Home" || textarea.value == "home") {
             window.location.href = "/";
           }
@@ -224,6 +224,15 @@ export default function AccessMenu() {
             textarea.value == "Inscricoes"
           ) {
             window.location.href = "/DashboardInscricaoCandidato";
+          }
+
+          if (
+            textarea.value == "fazer o teste" ||
+            textarea.value == "fazer teste" ||
+            textarea.value == "fazer teste personalidade" ||
+            textarea.value == "teste de personalidade"
+          ) {
+            window.location.href = "/TesteDePersonalidade";
           }
 
           if (textarea.value == "Sobre" || textarea.value == "sobre") {

@@ -32,6 +32,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(11, MinimumLength = 10)]
         public string Telefone { get; set; }
 
+        [Required]
         public int NumFuncionario { get; set; }
 
         [StringLength(7, MinimumLength = 7)]
@@ -53,11 +54,11 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(155,MinimumLength =5)]
         public string Logradouro { get; set; }
 
-        [Required]
         [StringLength(255, MinimumLength = 5)]
         public string Complemento { get; set; }
 
         [StringLength(254, MinimumLength = 5)]
+        [Required]
         public string Email { get; set; }
 
         [Required]

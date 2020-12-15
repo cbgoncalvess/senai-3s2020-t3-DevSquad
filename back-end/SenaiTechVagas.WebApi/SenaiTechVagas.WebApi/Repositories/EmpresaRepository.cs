@@ -16,7 +16,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 
     public class EmpresaRepository : IEmpresaRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
  
         public bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada)
         {
@@ -674,6 +674,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                     for(int i = 0; i < ListaEstagios.Count; i++)
                     {
                         Candidato candidatoBuscado = ctx.Candidato.Find(ListaEstagios[i].IdCandidato);
+                        Usuario usuario = ctx.Usuario.Find(candidatoBuscado.IdUsuario);
+                        candidatoBuscado.IdUsuarioNavigation.CaminhoImagem = usuario.CaminhoImagem;
+                        candidatoBuscado.IdUsuarioNavigation.PerguntaSeguranca = null;
+                        candidatoBuscado.IdUsuarioNavigation.RespostaSeguranca = null;
+                        candidatoBuscado.IdUsuarioNavigation.Email = null;
+                        candidatoBuscado.IdUsuarioNavigation.Senha = null;
                         candidatos.Add(candidatoBuscado);
                     }
                     return candidatos;

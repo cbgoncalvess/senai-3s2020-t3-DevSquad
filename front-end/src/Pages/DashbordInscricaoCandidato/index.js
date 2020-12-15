@@ -11,7 +11,6 @@ import InfoVaga from '../../Components/InfoVaga/Index';
 import Tag from '../../Components/Tag/Index';
 
 // images
-import imgEmpresa from '../../assets/Teste.webp';
 import imgGlobal from '../../assets/global.png';
 import imgDesenvolvimento from '../../assets/web-programming.webp';
 import imgLocalizacao from '../../assets/big-map-placeholder-outlined-symbol-of-interface.webp';
@@ -19,6 +18,7 @@ import imgSalario from '../../assets/money (1).webp';
 import imgTipoContrato from '../../assets/gears.webp';
 import imgFuncao from '../../assets/rocket-launch.webp';
 import IconEmpresa from '../../assets/building.webp';
+import AccessMenu from '../../Components/AccessMenu';
 
 export default function InscricaoDashboardCandidato() {
     const [vagas, setVagas] = useState([]);
@@ -67,13 +67,13 @@ export default function InscricaoDashboardCandidato() {
         <div className="InscricaoDashboardCandidato">
             <AccessBar />
             <Header />
+            <AccessMenu/>
             <main className="">
                 <div className="bannerDashboardCandidato">
                     <h2>Bem-vindo, Candidato ;)!</h2>
                 </div>
 
                 <section className="sessaoVagaInscritas">
-
                     <div className="title-vagas-inscritas"><h3>Vagas que você se inscreveu:</h3></div>
 
                     <div className="listadeVagas">
@@ -83,8 +83,7 @@ export default function InscricaoDashboardCandidato() {
                                     <div className="vaga" key={item.idVaga}>
                                 <p>{"Voce se inscreveu em:"+item.dataInscricao}</p>
                                         <div className="VagaCompleta">
-                                            <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} className="ImagemEmpresa" ></img>
-
+                                            <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} className="ImagemEmpresa" alt="Imagem de perfil da empresa" />
                                             <div className="MainVaga">
 
                                 <h3>{item.tituloVaga}</h3>
@@ -106,7 +105,6 @@ export default function InscricaoDashboardCandidato() {
                                                         )
                                                     })}
                                                 </div>
-
                                                 <div className="divisionBtnRevogar">
                                                     <button className="btnRevogar" onClick={()=>revogarInscricao(item.idInscricao)}>revogar inscrição</button>
                                                 </div>

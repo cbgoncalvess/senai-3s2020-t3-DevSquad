@@ -94,11 +94,13 @@ export default function CadastrarEstagiario() {
           <div className="alinharEstagiario">
             <div className="camposEstagiario">
               <div className="selectEstagiario">
-                <label>*Empresas</label>
+                <label htmlFor="cadastroEstagio">*Empresas</label>
                 <select
                   className="div-select"
                   onChange={(e) => SetEmpresa(e.target.value)}
                   value={idEmpresa}
+                  required
+                  id="cadastroEstagio"
                 >
                   <option value="0">Selecione a empresa contratante</option>
                   {Empresas.map((item) => {
@@ -112,11 +114,13 @@ export default function CadastrarEstagiario() {
               </div>
 
               <div className="selectEstagiario">
-                <label>*Candidatos</label>
+                <label htmlFor="selectEstagio">*Candidatos</label>
                 <select
                   className="div-select"
                   onChange={(e) => SetCandidato(e.target.value)}
                   value={idCandidato}
+                  required
+                  id="selectEstagio"
                 >
                   <option value="0">Selecione o email do candidato</option>
                   {Candidatos.map((item) => {
@@ -130,8 +134,9 @@ export default function CadastrarEstagiario() {
               </div>
 
               <Input
+              id="PeriodoCadastro"
                 className="div-select"
-                name="Periodo"
+                name="PeriodoCadastro"
                 type="number"
                 label="*Periodo (Meses)"
                 onChange={(e) => setPeriodo(e.target.value)}

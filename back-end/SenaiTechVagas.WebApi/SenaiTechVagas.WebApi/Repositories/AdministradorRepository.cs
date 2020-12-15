@@ -15,7 +15,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class AdministradorRepository : IAdministradorRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarCurso(int id, Curso curso)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -851,6 +851,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
+                    usuario.CaminhoImagem = "user.png";
                     usuario.IdTipoUsuario = 1;
                     ctx.Add(usuario);
                     ctx.SaveChanges();
@@ -1437,7 +1438,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     return listvagas;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }

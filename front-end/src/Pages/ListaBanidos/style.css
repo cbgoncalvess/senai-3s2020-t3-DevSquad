@@ -42,7 +42,9 @@
 }
 
 .banido img {
-    width: 5vw;
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
 }
 
 .banido h4 {

@@ -25,9 +25,6 @@ import { useHistory } from "react-router-dom";
 
 export default function VisualizarVaga() {
   let history = useHistory();
-  const meCandidatar = () => history.push("/perfilCandidato");
-
-  let [idVaga, setIdVaga] = useState(0);
   const [Experiencia, setExperiencia] = useState("");
   const [TipoContrato, setTipoContrato] = useState("");
   const [Salario, setSalario] = useState("");
@@ -40,18 +37,15 @@ export default function VisualizarVaga() {
   const [Area, setArea] = useState("");
   const [RazaoSocial, setRazaoSocial] = useState("");
   const [tipoPresenca, setTipoPresenca] = useState("");
-  const [Logradouro, setLogradouro] = useState("");
-  const [Complemento, setComplemento] = useState("");
   const [CaminhoImagem, setCaminho] = useState("");
 
   useEffect(() => {
-    idVaga = localStorage.getItem("idVagaSelecionada");
     listar();
   }, []);
 
   const SeCandidatar = () => {
     const form = {
-      idVaga: idVaga,
+      idVaga: localStorage.getItem("idVagaSelecionada"),
     };
     fetch("http://localhost:5000/api/Candidato/AdicionarInscricao", {
       method: "POST",
@@ -70,7 +64,7 @@ export default function VisualizarVaga() {
   };
 
   const listar = () => {
-    fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + idVaga, {
+    fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + localStorage.getItem("idVagaSelecionada"), {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -79,12 +73,10 @@ export default function VisualizarVaga() {
     })
       .then((response) => response.json())
       .then((dados) => {
-        setIdVaga(dados.idVaga);
         setArea(dados.nomeArea);
         setTipoPresenca(dados.tipoPresenca);
         setRazaoSocial(dados.razaoSocial);
         setTituloVaga(dados.tituloVaga);
-        setLogradouro(dados.logradouro);
         setTipoContrato(dados.tipoContrato);
         setSalario(
           dados.salario.toLocaleString("pt-br", {
@@ -93,7 +85,6 @@ export default function VisualizarVaga() {
           })
         );
         setTecnologias(dados.tecnologias);
-        setComplemento(dados.complemento);
         setCidade(dados.localidade);
         setExperiencia(dados.experiencia);
         setDescricaoBeneficio(dados.descricaoBeneficio);

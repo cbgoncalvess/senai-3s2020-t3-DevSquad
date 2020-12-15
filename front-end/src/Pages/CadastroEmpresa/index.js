@@ -38,12 +38,11 @@ export default function CadastroEmpresa() {
 
   const emailRegex = /^\S+@\S+\.\S+$/g;
   const validaCep = /^[0-9]{8}$/g;
-  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/g;
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{9,15})/g;
 
-  let verificacaoCep = validaCep.test(CEP);
-  let verificacaoEmail = emailRegex.test(Email);
-  let verificacaoSenha = senhaRegex.test(Senha);
-  let verificacaoConfirmarSenha = senhaRegex.test(ConfirmarSenha);
+  const verificacaoCep = validaCep.test(CEP);
+  const verificacaoEmail = emailRegex.test(Email);
+  const verificacaoSenha = senhaRegex.test(Senha);
 
   let redBox = document.querySelector("#confirmPassword-cadastro");
   let result = document.querySelector(".password-matching-text");
@@ -85,11 +84,12 @@ export default function CadastroEmpresa() {
       result.innerText = "As senhas conferem";
     }
 
-    if (verificacaoSenha !== true || verificacaoConfirmarSenha !== true) {
+    if (verificacaoSenha !== true) {
       redBox.style.border = "solid red 1px";
       redBox.style.boxShadow = "3px 3px 3px gray";
       instructions.style.color = "red";
-      instructions.innerText = `A senha deve conter 8 caracteres, dentre eles:
+      instructions.innerText = 
+      `A senha deve conter, no mínimo, 9 caracteres, e no máximo 15, dentre eles:
       • 1 letra minúscula
       • 1 letra maiúscula
       • 1 número
@@ -109,7 +109,7 @@ export default function CadastroEmpresa() {
     } else if (verificacaoEmail !== true) {
       alert("O e-mail deve ser válido");
     } else if (verificacaoSenha !== true) {
-      alert("A senha não atende aos requisitos");
+      alert("A(s) senha(s) não confere(m) com o padrão solicitado");
     } else {
       const data = {
         NomeReponsavel: NomeResponsavel,
@@ -170,13 +170,13 @@ export default function CadastroEmpresa() {
   };
 
   function View() {
-    if (CaminhoImagem == "" && CaminhoImagem.length < 3) {
-      return <img className="imagemCadastro" src={Userimg} />;
+    if (CaminhoImagem == "" && CaminhoImagem.length < 3 || CaminhoImagem===undefined) {
+      return <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil" />;
     } else if (CaminhoImagem.length > 3) {
       return (
         <img
           className="imagemCadastro"
-          src={"http://localhost:5000/ImageBackUp/" + CaminhoImagem}
+          src={"http://localhost:5000/ImageBackUp/" + CaminhoImagem} alt="Imagem de perfil"
         />
       );
     }
@@ -215,6 +215,7 @@ export default function CadastroEmpresa() {
                 }}
               />
               <Input
+                id="responsibleName"
                 name={"responsibleName"}
                 className="cadastre"
                 label="Nome do responsável:"
@@ -226,7 +227,8 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetNomeResponsavel(e.target.value)}
               />
               <Input
-                name="cnpj"
+                id="cnpjCadastro"
+                name="cnpjCadastro"
                 className="cadastre"
                 label="CNPJ:"
                 type="text"
@@ -241,7 +243,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="emailContato"
+              id="emailContatoCadastro"
+                name="emailContatoCadastro"
                 className="cadastre"
                 label="E-mail para contato:"
                 type="text"
@@ -253,7 +256,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="companyFakeName"
+              id="companyFakeNameCadastro"
+                name="companyFakeNameCadastro"
                 className="cadastre"
                 label="Nome fantasia:"
                 type="text"
@@ -264,7 +268,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="companyName"
+              id="companyNameCadastro"
+                name="companyNameCadastro"
                 className="cadastre"
                 label="Razão social:"
                 type="text"
@@ -275,7 +280,8 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetRazaoSocial(e.target.value)}
               />
               <Input
-                name="phoneNumber"
+              id="phoneNumberCadastro"
+                name="phoneNumberCadastro"
                 className="cadastre"
                 label="Telefone da empresa:"
                 type="tel"
@@ -287,7 +293,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="workersCompanyNumber"
+              id="workersCompanyNumberCadastro"
+                name="workersCompanyNumberCadastro"
                 className="cadastre"
                 label="Número de funcionários:"
                 type="number"
@@ -298,7 +305,8 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-                name="cnaeNumber"
+              id="cnaeNumberCadastro"
+                name="cnaeNumberCadastro"
                 className="cadastre"
                 label="Número CNAE:"
                 type="text"
@@ -310,16 +318,14 @@ export default function CadastroEmpresa() {
               />
 
               <div className="Input">
-                <label>CEP:</label>
+                <label htmlFor="cep">CEP:</label>
                 <br />
                 <input
                   type="text"
                   className="cadastre"
                   id="cep"
-                  data-mask="00000-000"
                   maxLength={8}
                   minLength={8}
-                  data-mask-selectonfocus="true"
                   onBlur={(e) => {
                     e.preventDefault();
                     buscarCep(e.target.value);
@@ -339,9 +345,10 @@ export default function CadastroEmpresa() {
               />
 
               <div className="Input">
-                <label>Complemento:</label>
+                <label htmlFor="ComplementoCadastroEmpresa">Complemento:</label>
                 <br />
                 <input
+                id="ComplementoCadastroEmpresa"
                   type="text"
                   name="address2"
                   maxLength={255}
@@ -379,7 +386,8 @@ export default function CadastroEmpresa() {
               </div>
 
               <Input
-                name="EmailUser"
+              id="EmailUserCadastroEmpresa"
+                name="EmailUserCadastroEmpresa"
                 className="cadastre"
                 label="Email de acesso:"
                 placeholder="email@company.com"
@@ -392,7 +400,7 @@ export default function CadastroEmpresa() {
 
               <Input
                 id="password-cadastro"
-                name="password"
+                name="password-cadastro"
                 className="cadastre"
                 label="Senha de acesso:"
                 type="password"
@@ -406,7 +414,7 @@ export default function CadastroEmpresa() {
 
               <Input
                 id="confirmPassword-cadastro"
-                name="password-confirm"
+                name="confirmPassword-cadastro"
                 className="cadastre"
                 label="Confirme a senha:"
                 type="password"
@@ -421,11 +429,12 @@ export default function CadastroEmpresa() {
               <p className="password-instructions-text"></p>
 
               <div>
-                <label className="select-cadastroCandidato-title">
+                <label htmlFor="PerguntaCadastroEmpresa" className="select-cadastroCandidato-title">
                   Pergunta de seguranca
                 </label>
                 <br />
                 <select
+                  id="PerguntaCadastroEmpresa"
                   className="select-cadastroCandidato"
                   onChange={(e) => SetPergunta(e.target.value)}
                   value={PerguntaSeguranca}
@@ -463,7 +472,8 @@ export default function CadastroEmpresa() {
               </div>
 
               <Input
-                name="Resposta seguranca"
+              id="RespostaCadastroEmpresa"
+                name="RespostaCadastroEmpresa"
                 className="cadastre"
                 label="Resposta de segurança:"
                 type="text"

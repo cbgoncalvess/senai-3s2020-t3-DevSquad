@@ -224,7 +224,3 @@ body > div.registerApplicant > div.box-form > div > form > button > label{
 #root > div > div.meioPerfil > div.EsquerdoPerfil > div.imgPefilTexto > label > img{
     cursor: pointer;
 }
-
-#root > div > div.meioPerfil > div.EsquerdoPerfil > div.imgPefilTexto > label > img:hover{
-    background-image: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-512.png);
-}

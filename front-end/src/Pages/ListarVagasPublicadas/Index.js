@@ -9,7 +9,6 @@ import Input from "../../Components/Input";
 import imgDelete from "../../assets/delete.webp";
 import imgGlobal from "../../assets/global.png";
 import imgEdit from "../../assets/black-ink-pen.webp";
-import imgEmpresa from "../../assets/Teste.webp";
 import Tag from "../../Components/Tag/Index";
 import InfoVaga from "../../Components/InfoVaga/Index";
 import imgDesenvolvimento from "../../assets/web-programming.webp";
@@ -26,7 +25,6 @@ export default function VagasPublicadas() {
   const [ListaDeVagas, SetListVagas] = useState([]);
   const [TecnologiasDaVaga, SetTecnologiasDaVaga] = useState([]);
   const [Tecnologias, SetTecnologias] = useState([]);
-  const [Areas, SetListAreas] = useState([]);
   let [idTecnologia, SetIdTecnologia] = useState(0);
   let [NomeTecnologia, SetNomeTecnologia] = useState("");
   let [idVaga, SetIdVaga] = useState(0);
@@ -54,25 +52,6 @@ export default function VagasPublicadas() {
   }, []);
 
   let history = useHistory();
-
-  function IrParaInscricoes() {
-    localStorage.setItem("idVagaSelecionadaEmpresa", idVaga);
-    history.push("/VagaEmpresa");
-  }
-
-  const listarAreas = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarArea", {
-      method: "GET",
-      headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        SetListAreas(dados);
-      })
-      .catch((err) => console.error(err));
-  };
 
   function FormatarSalario(list){
     for(var i=0;i<list.length;i++){
@@ -307,6 +286,7 @@ export default function VagasPublicadas() {
                 <p>{"Sua vaga expira em:"+item.dataExpiracao}</p>
                 <img
                   className="Edit"
+                  alt="Botão que edita a vaga"
                   src={imgEdit}
                   id="btn-EditarVaga"
                   onClick={(event) => {
@@ -314,22 +294,22 @@ export default function VagasPublicadas() {
                     DadosDaVaga(item.idVaga);
                     SetIdVaga(item.idVaga);
                     ApareceEditarVaga();
-                    listarAreas();
                   }}
                 />
                 <img
                   className="Delete"
                   src={imgDelete}
+                  alt="Botão que deleta a vaga"
                   onClick={()=>DeletarVaga(item.idVaga)}/>
               </div>
               <div className="VagaCompleta">
-                <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} className="ImagemEmpresa"></img>
+                <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} className="ImagemEmpresa" alt="Imagem de perfil da empresa"/>
                 <div className="MainVaga">
                   <h3
                     onClick={(e) => {
                       e.preventDefault();
-                      idVaga = item.idVaga;
-                      IrParaInscricoes();
+                      localStorage.setItem("idVagaSelecionadaEmpresa", item.idVaga);
+                      history.push("/VagaEmpresa");
                     }}
                     className="UnderlineText"
                   >
@@ -466,41 +446,31 @@ export default function VagasPublicadas() {
         <h2>Editar sua Vaga</h2>
         <form>
           <Input
+          id="TituloVagaEdit"
             className="InputCadastro"
             value={TituloVaga}
-            name="TituloVaga"
+            name="TituloVagaEdit"
             label="Titulo da Vaga"
             onChange={(e) => setTituloVaga(e.target.value)}
+            required
           />
           <Input
+          id="SalarioEdit"
             className="InputCadastro"
             value={Salario}
-            name="Salario"
+            name="SalarioEdit"
             label="Salario"
             onChange={(e) => setSalario(e.target.value)}
+            required
           />
-          <div className="select-final">
-            <label>Área</label>
-            <select
-              onChange={(e) => setArea(e.target.value)}
-              value={Area}
-            >
-              <option value="0">Selecione uma área de atuação</option>
-              {Areas.map((item) => {
-                return (
-                  <option key={item.idArea} value={item.idArea}>
-                    {item.nomeArea}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
 
           <div className="select-final">
-            <label>Experiência</label>
+            <label htmlFor="ExperienciaEdit">Experiência</label>
             <select
               onChange={(e) => setExperiencia(e.target.value)}
               value={Experiencia}
+              required
+              id="ExperienciaEdit"
             >
               <option value="0">Selecione um nível de experiência</option>
               <option value="Pleno">Pleno</option>
@@ -510,72 +480,94 @@ export default function VagasPublicadas() {
           </div>
 
           <div className="select-final">
-            <label>Tipo de contrato</label>
+            <label htmlFor="TipoContratoEdit">Tipo de contrato</label>
             <select
               onChange={(e) => setTipoContrato(e.target.value)}
               value={TipoContrato}
+              required
+              id="TipoContratoEdit"
             >
               <option value="0">Selecione um tipo de contrato</option>
               <option value="CLT">CLT</option>
               <option value="PJ">PJ</option>
-              <option value="Está gio">Estagio</option>
+              <option value="Estágio">Estagio</option>
             </select>
           </div>
           <Input
             className="InputCadastro"
             value={Estado}
-            name="Estado"
+            name="EstadoEdit"
             label="Estado"
             onChange={(e) => setEstado(e.target.value)}
+            required
+            id="EstadoEdit"
           />
           <Input
             className="InputCadastro"
             value={Cidade}
-            name="Cidade"
+            name="CidadeEdit"
             label="Cidade"
             onChange={(e) => setCidade(e.target.value)}
+            required
+            id="CidadeEdit"
           />
           <Input
             className="InputCadastro"
             value={CEP}
-            name="CEP"
+            name="CepEdit"
             label="CEP"
             onChange={(e) => setCEP(e.target.value)}
+            required
+            id="CepEdit"
           />
           <Input
             className="InputCadastro"
             value={Logradouro}
-            name="Logradouro"
+            name="LogradouroEdit"
             label="Logradouro"
             onChange={(e) => setLogradouro(e.target.value)}
+            required
           />
           <Input
             className="InputCadastro"
             value={Complemento}
-            name="Complemento"
+            name="ComplementoEdit"
             label="Complemento"
+            id="ComplementoEdit"
             onChange={(e) => setComplemento(e.target.value)}
           />
           <div className="text-area">
-            <label>Descrição da vaga</label>
+            <label htmlFor="DescricaoVagaEdit">Descrição da vaga</label>
             <textarea
               value={DescricaoVaga}
               name="DescricaoVaga"
+              maxLength="750"
+              minLength="750"
               onChange={(e) => setDescricaoVaga(e.target.value)}
+              required
+              id="DescricaoVagaEdit"
             ></textarea>
             <br />
-            <label>Descrição da empresa</label>
+            <label htmlFor="DescricaoEmpresaEdit">Descrição da empresa</label>
             <textarea
               value={DescricaoEmpresa}
               name="DescricaoEmpresa"
+              maxLength="750"
+              minLength="750"
               onChange={(e) => setDescricaoEmpresa(e.target.value)}
+              required
+              id="DescricaoEmpresaEdit"
             ></textarea>
             <br />
-            <label>Descrição dos benefícios</label>
+            <label htmlFor="DescricaoBeneficioEdit">Descrição dos benefícios</label>
             <textarea
               value={DescricaoBeneficio}
-              name="DescricaoBeneficio"
+              name="DescricaoBeneficioEdit"
               onChange={(e) => setDescricaoBeneficio(e.target.value)}
+              required
+              maxLength="750"
+              minLength="750"
+              id="DescricaoBeneficioEdit"
             ></textarea>
           </div>
           <br />

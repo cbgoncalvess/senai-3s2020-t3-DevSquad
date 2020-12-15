@@ -4,7 +4,6 @@ import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 
-import imgEmpresa from '../../assets/Teste.webp';
 import imgDelete from '../../assets/delete.webp';
 import imgGlobal from '../../assets/global.png';
 import InfoVaga from '../../Components/InfoVaga/Index';
@@ -22,8 +21,6 @@ import { useHistory } from 'react-router-dom';
 export default function ListarCandidatosInscritos() {
 
     const [Candidatos, setCandidatos] = useState([]);
-    const [idInscricao, setInscricao] = useState(0);
-    let [idVaga, setIdVaga] = useState(0);
     const [Experiencia, setExperiencia] = useState('');
     const [TipoContrato, setTipoContrato] = useState('');
     const [Salario, setSalario] = useState('');
@@ -40,9 +37,8 @@ export default function ListarCandidatosInscritos() {
 let History=useHistory();
 
     useEffect(() => {
-        idVaga = localStorage.getItem('idVagaSelecionadaAdm');
-        listarCandidatos();
         BuscarPorId();
+        listarCandidatos();
     }, []);
 
     const DeletarInscricao = (id) => {
@@ -60,13 +56,12 @@ let History=useHistory();
     }
 
     const BuscarPorId = () => {
-        fetch('http://localhost:5000/api/Usuario/BuscarPorId/' + idVaga, {
+        fetch('http://localhost:5000/api/Usuario/BuscarPorId/' +localStorage.getItem('idVagaSelecionadaAdm'), {
             method: 'GET',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
         }).then(response => response.json()).then(dados => {
-            setIdVaga(dados.idVaga);
             setTituloVaga(dados.tituloVaga);
             setRazaoSocial(dados.razaoSocial);
             setPresenca(dados.tipoPresenca);
@@ -83,7 +78,7 @@ let History=useHistory();
     }
 
     const listarCandidatos = () => {
-        fetch('http://localhost:5000/api/Administrador/ListarCandidatosInscritosAdm/' + idVaga, {
+        fetch('http://localhost:5000/api/Administrador/ListarCandidatosInscritosAdm/' +localStorage.getItem('idVagaSelecionadaAdm'), {
             method: 'GET',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
@@ -97,7 +92,7 @@ let History=useHistory();
     }
 
     const DeletarVaga = () => {
-        fetch('http://localhost:5000/api/Administrador/DeletarVaga/' + idVaga, {
+        fetch('http://localhost:5000/api/Administrador/DeletarVaga/' +localStorage.getItem('idVagaSelecionadaAdm'), {
             method: 'DELETE',
             headers: {
                 authorization: 'Bearer ' + localStorage.getItem('token')
@@ -122,10 +117,10 @@ let History=useHistory();
                             return (
                                 <div key={item.idInscricao} className="BoxInscricao">
                                     <div className="Edit-Delete">
-                                    <img className="Delete" src={imgDelete} onClick={()=>DeletarInscricao(item.idInscricao)} />
+                                    <img className="Delete" src={imgDelete} onClick={()=>DeletarInscricao(item.idInscricao)} alt="Botão que deleta a inscrição do usuario" />
                                 </div>
                                     <div className="DadosInscrito">
-                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} />
+                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem}  alt="Imagem de perfil do usuario inscrito"/>
                                         <div className="Column-Inscricao">
                                             <h3>{item.nomeCandidato}</h3>
                                             <p className="NomeCurso">{item.nomeCurso}</p>
@@ -141,7 +136,7 @@ let History=useHistory();
                         <div className="vaga">
                         <h5 className="ExcluirVagaText" onClick={DeletarVaga}>Excluir vaga</h5>
                             <div className="VagaCompleta">
-                                <img src={'http://localhost:5000/imgPerfil/'+caminhoImagem} className="ImagemEmpresa" ></img>
+                                <img src={'http://localhost:5000/imgPerfil/'+caminhoImagem} className="ImagemEmpresa" alt="Imagem de perfil da empresa" />
                                 <div className="MainVaga">
                                 <h3>{TituloVaga}</h3>
                                     <div className="InfoVagas">

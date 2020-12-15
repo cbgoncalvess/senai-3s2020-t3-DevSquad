@@ -35,7 +35,9 @@
 }
 
 .perfil img {
-    width: 5vh;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
 }
 
 .perfil h4 {
