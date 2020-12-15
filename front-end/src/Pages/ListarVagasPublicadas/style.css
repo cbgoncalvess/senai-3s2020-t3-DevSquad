@@ -40,10 +40,8 @@
        width: 90%;
    
    }
-   .ImagemEmpresa{
-       height: 100px;
-       width: 100px;
-   }
+   
+   .ImagemEmpresa{height: 143px; border-radius: 55%; width: 143px;}
    
    body > div > div.ListaDeVagas > div > div.Edit-Delete > a{
    font-size: 12px;
