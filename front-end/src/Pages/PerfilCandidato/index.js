@@ -23,6 +23,9 @@ export default function PerfilCandidato() {
     const [NovaSenha, SetNovaSenha] = useState('');
     const [SenhaAtual, SetSenha] = useState('');
 
+    const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{9,15})/g;
+    const verificacaoSenha = senhaRegex.test(NovaSenha);
+
     useEffect(() => {
         listarVagas();
         BuscarCandidatoPorId();
@@ -63,20 +66,24 @@ export default function PerfilCandidato() {
             senhaAtual:SenhaAtual,
             novaSenha:NovaSenha
         };
-        fetch('http://localhost:5000/api/Usuario/AlterarSenha', {
+        if(verificacaoSenha !== true){
+            alert("A senha não confere com o padrão solicitado")
+        }else{
+            fetch('http://localhost:5000/api/Usuario/AlterarSenha', {
             method: 'PUT',
             body: JSON.stringify(form),
             headers: {
                 'content-type': 'application/json',
                 authorization: 'Bearer ' + localStorage.getItem('token')
             }
-        }).then(function (respose) {
+            }).then(function (respose) {
             if (respose.status !== 200) {
                 alert("Não foi possivel alterar a senha");
             } else {
                 alert("Editado com sucesso");
             }
         }).catch(err => console.error(err));
+        }
     }
 
     const EditarDadosDoUsuario = () => {

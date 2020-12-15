@@ -38,12 +38,11 @@ export default function CadastroEmpresa() {
 
   const emailRegex = /^\S+@\S+\.\S+$/g;
   const validaCep = /^[0-9]{8}$/g;
-  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/g;
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{9,15})/g;
 
-  let verificacaoCep = validaCep.test(CEP);
-  let verificacaoEmail = emailRegex.test(Email);
-  let verificacaoSenha = senhaRegex.test(Senha);
-  let verificacaoConfirmarSenha = senhaRegex.test(ConfirmarSenha);
+  const verificacaoCep = validaCep.test(CEP);
+  const verificacaoEmail = emailRegex.test(Email);
+  const verificacaoSenha = senhaRegex.test(Senha);
 
   let redBox = document.querySelector("#confirmPassword-cadastro");
   let result = document.querySelector(".password-matching-text");
@@ -85,11 +84,12 @@ export default function CadastroEmpresa() {
       result.innerText = "As senhas conferem";
     }
 
-    if (verificacaoSenha !== true || verificacaoConfirmarSenha !== true) {
+    if (verificacaoSenha !== true) {
       redBox.style.border = "solid red 1px";
       redBox.style.boxShadow = "3px 3px 3px gray";
       instructions.style.color = "red";
-      instructions.innerText = `A senha deve conter 8 caracteres, dentre eles:
+      instructions.innerText = 
+      `A senha deve conter, no mínimo, 9 caracteres, e no máximo 15, dentre eles:
       • 1 letra minúscula
       • 1 letra maiúscula
       • 1 número
@@ -109,7 +109,7 @@ export default function CadastroEmpresa() {
     } else if (verificacaoEmail !== true) {
       alert("O e-mail deve ser válido");
     } else if (verificacaoSenha !== true) {
-      alert("A senha não atende aos requisitos");
+      alert("A(s) senha(s) não confere(m) com o padrão solicitado");
     } else {
       const data = {
         NomeReponsavel: NomeResponsavel,
