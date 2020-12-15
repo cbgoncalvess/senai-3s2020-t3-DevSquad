@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
 
-import api from "../../services/api";
-
 import "./style.css";
-
-import User from "../../assets/images/user.webp";
 import Delete from "../../assets/images/cancel.webp";
 import Input from "../../Components/Input";
 import AccessBar from "../../Components/AccessBar";
@@ -14,75 +10,6 @@ import BlackButton from "../../Components/BlackButton";
 import AccessMenu from "../../Components/AccessMenu";
 
 export default function CadastrarColaborador() {
-  const [Colaboradores, setColaboradores] = useState([]);
-  const [Email, SetEmail] = useState("");
-  const [Senha, SetSenha] = useState("");
-  const [ConfirmarSenha, SetConfirmarSenha] = useState("");
-
-  useEffect(() => {
-    listarColaboradores();
-  }, []);
-
-  function salvar() {
-    const data = {
-      Email: Email,
-      Senha: Senha,
-      perguntaSeguranca: "Em que ano o senai foi fundado",
-      respostaSeguranca: "1942",
-    };
-
-    if (Senha !== ConfirmarSenha || Senha === "" || ConfirmarSenha === "") {
-      alert("As senhas não coincidem, ou não foram preenchidas.");
-    } else {
-      api
-        .post("/Administrador/AdicionarColaborador", data, {
-          headers: {
-            "content-type": "application/json",
-            authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        })
-        .then((response) => response.json())
-        .then((dados) => {
-          alert(dados);
-          listarColaboradores();
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-  }
-
-  const listarColaboradores = () => {
-    fetch("http://localhost:5000/api/Administrador/ListarColaboradores", {
-      method: "GET",
-      headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        setColaboradores(dados);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const DeletarAdm = (idAdm) => {
-    fetch(
-      "http://localhost:5000/api/Administrador/DeletarAdminstrador/" + idAdm,
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((dados) => {
-        alert(dados);
-        listarColaboradores();
-      })
-      .catch((err) => console.error(err));
-  };
 
   return (
     <div className="corpo">
@@ -92,17 +19,15 @@ export default function CadastrarColaborador() {
       <div className="margin">
         <div className="perfis">
           <h1 className="colaboradores">Colaboradores:</h1>
-          {Colaboradores.map((item) => {
-            return (
               <div className="perfilBox">
                 <div className="horizontal">
                   <div className="perfil">
-                    <img className="user" src={"http://localhost:5000/imgPerfil/" + item.caminhoImagem} alt="Iamgem de perfil do administrador" />
+                    <img className="user" src={""} alt="Iamgem de perfil do administrador" />
                     <h4>Colaborador</h4>
                   </div>
                   <div className="infos">
-                    <p>ID: {item.idUsuario}</p>
-                    <p>E-mail: {item.email}</p>
+                    <p>ID: {"item.idUsuario"}</p>
+                    <p>E-mail: {"item.email"}</p>
                   </div>
                 </div>
 
@@ -111,13 +36,54 @@ export default function CadastrarColaborador() {
                     <p>Deletar</p>
                     <img
                       src={Delete}
-                      onClick={() => DeletarAdm(item.idUsuario)}
                     />
                   </div>
                 </div>
               </div>
-            );
-          })}
+
+              <div className="perfilBox">
+                <div className="horizontal">
+                  <div className="perfil">
+                    <img className="user" src={""} alt="Iamgem de perfil do administrador" />
+                    <h4>Colaborador</h4>
+                  </div>
+                  <div className="infos">
+                    <p>ID: {"item.idUsuario"}</p>
+                    <p>E-mail: {"item.email"}</p>
+                  </div>
+                </div>
+
+                <div className="ban">
+                  <div className="banir">
+                    <p>Deletar</p>
+                    <img
+                      src={Delete}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="perfilBox">
+                <div className="horizontal">
+                  <div className="perfil">
+                    <img className="user" src={""} alt="Iamgem de perfil do administrador" />
+                    <h4>Colaborador</h4>
+                  </div>
+                  <div className="infos">
+                    <p>ID: {"item.idUsuario"}</p>
+                    <p>E-mail: {"item.email"}</p>
+                  </div>
+                </div>
+
+                <div className="ban">
+                  <div className="banir">
+                    <p>Deletar</p>
+                    <img
+                      src={Delete}
+                    />
+                  </div>
+                </div>
+              </div>
         </div>
         <hr className="barraVertical" />
         <div className="cadastrarBox">
@@ -139,7 +105,6 @@ export default function CadastrarColaborador() {
               maxLength={254}
               minLength={5}
               required
-              onChange={(e) => SetEmail(e.target.value)}
             />
 
             <Input
@@ -152,7 +117,6 @@ export default function CadastrarColaborador() {
               maxLength={15}
               minLength={9}
               required
-              onChange={(e) => SetSenha(e.target.value)}
             />
 
             <Input
@@ -165,11 +129,10 @@ export default function CadastrarColaborador() {
               maxLength={15}
               minLength={9}
               required
-              onChange={(e) => SetConfirmarSenha(e.target.value)}
             />
           </div>
           <div className="botaoCadastrar">
-            <BlackButton type="submit" name="Cadastrar" onClick={salvar}>
+            <BlackButton type="submit" name="Cadastrar">
               Cadastrar
             </BlackButton>
           </div>

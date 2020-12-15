@@ -15,21 +15,11 @@ import imagemCadastroCandidato from "../../assets/imgCadastroCandidato.webp";
 import "./style.css";
 
 export default function CadastroEmpresa() {
-  const [NomeCompleto, SetNomeCompleto] = useState("");
-  const [Rg, SetRg] = useState("");
-  const [CPF, SetCPF] = useState("");
-  const [Linkedin, SetLinkedin] = useState("");
-  const [Telefone, SetTelefone] = useState("");
-  const [Cursos, SetCursos] = useState([]);
-  const [Curso, SetCurso] = useState(0);
+  const history = useHistory();
+  
   const [Email, SetEmail] = useState("");
   const [Senha, SetSenha] = useState("");
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
-  const [PerguntaSeguranca, SetPergunta] = useState("");
-  const [RespostaSeguranca, SetResposta] = useState("");
-  const [CaminhoImagem, setCaminho] = useState('');
-
-  const history = useHistory();
 
   const emailRegex = /^\S+@\S+\.\S+$/g;
   const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{9,15})/g;
@@ -40,29 +30,6 @@ export default function CadastroEmpresa() {
 
   const verificacaoEmail = emailRegex.test(Email);
   const verificacaoSenha = senhaRegex.test(Senha);
-  
-  useEffect(() => {
-    listarcurso();
-  }, []);
-  
-
-  const uploadFile = (event) => {
-    event.preventDefault();
-
-    let formdata = new FormData();
-
-    formdata.append('arquivo', event.target.files[0]);
-
-    fetch('http://localhost:5000/api/Upload',{
-        method : 'POST',
-        body : formdata
-    })
-    .then(response => response.json())
-    .then(data => {
-        setCaminho(data.caminhoImagem);
-    })
-    .catch(err => console.log(err))
-  }
 
   const escreverResultado = () => {
     if (Senha !== ConfirmarSenha) {
@@ -96,67 +63,6 @@ export default function CadastroEmpresa() {
     }
   };
 
-
-  function salvar() {
-    if (Senha !== ConfirmarSenha) {
-      alert("As senhas não são semelhantes");
-    } else if (verificacaoEmail !== true) {
-      alert("O e-mail deve ser válido");
-    } else if(verificacaoSenha !== true){
-      alert('A(s) senha(s) não confere(m) com o padrão solicitado');
-    }else {
-    const data = {
-      nomeCompleto: NomeCompleto,
-      rg: Rg,
-      cpf: CPF,
-      telefone: Telefone,
-      linkLinkedinCandidato: Linkedin,
-      idCurso: Curso,
-      email: Email,
-      senha: Senha,
-      respostaSeguranca: RespostaSeguranca,
-      perguntaSeguranca: PerguntaSeguranca,
-      CaminhoImagem:CaminhoImagem
-    };
-    fetch("http://localhost:5000/api/Usuario/Candidato", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-    .then((response) => response.json())
-    .then((dados) => {
-      console.log(dados);
-      history.push("/");
-      })
-      .catch((err) => console.error(err));
-    }
-  }
-
-  const listarcurso = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarCurso", {
-      method: "GET",
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        SetCursos(dados);
-      })
-      .catch((err) => console.error(err));
-  };
-
-function View(){
-  if(CaminhoImagem=='' && CaminhoImagem.length<3 || CaminhoImagem===undefined){
-    return(
-    <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil"/>
-    );
-  }else if(CaminhoImagem.length>3){
-    return(
-      <img className="imagemCadastro" src={'http://localhost:5000/ImageBackUp/'+CaminhoImagem} alt="Imagem de perfil"/>
-      );
-  }
-}
-
   return (
     <body>
       <AccessBar />
@@ -171,15 +77,14 @@ function View(){
               Ficamos felizes de tê-lo na nossa plataforma
             </p>
               <div className="imgCadastroPerfil">
-              {View()}
+              <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil"/>
               <br/>
               <button className="btSelecionar"><label htmlFor="ButtonImage" className="lbBt">Selecione uma imagem</label></button>
               </div>
             <form className="form" onSubmit={e =>{
               e.preventDefault();
-              salvar();
               }}>
-              <input type="file" className="none" id="ButtonImage" onChange={event => { uploadFile(event)}}/>
+              <input type="file" className="none" id="ButtonImage"/>
               <Input
                 id="fullName"
                 name="fullName"
@@ -190,7 +95,6 @@ function View(){
                 required
                 maxLength={65}
                 minLength={5}
-                onChange={(e) => SetNomeCompleto(e.target.value)}
               />
 
               <Input
@@ -203,7 +107,6 @@ function View(){
                 maxLength={9}
                 minLength={9}
                 required
-                onChange={(e) => SetRg(e.target.value)}
               />
 
               <Input
@@ -216,10 +119,6 @@ function View(){
                 required
                 maxLength={11}
                 minLength={11}
-                onChange={(e) => {
-                    SetCPF(e.target.value);
-                  }
-                }
               />
 
               <Input
@@ -232,7 +131,6 @@ function View(){
                 maxLength={11}
                 minLength={11}
                 required
-                onChange={(e) => SetTelefone(e.target.value)}
               />
 
               <Input
@@ -244,7 +142,6 @@ function View(){
                 placeholder="linkedin.com/in/maria-dos-santos"
                 maxLength={150}
                 minLength={5}
-                onChange={(e) => SetLinkedin(e.target.value)}
               />
 
               <div>
@@ -252,17 +149,10 @@ function View(){
                 <br />
                 <select
                   className="select-cadastroCandidato"
-                  onChange={(e) => SetCurso(e.target.value)}
-                  value={Curso}
                   required
                   id="selectCursoCandidato"
                 >
                   <option value="0">Selecione seu curso</option>
-                  {Cursos.map((item) => {
-                    return (
-                      <option value={item.idCurso}>{item.nomeCurso}</option>
-                    );
-                  })}
                 </select>
               </div>
 
@@ -319,8 +209,6 @@ function View(){
                 <br />
                 <select
                   className="select-cadastroCandidato"
-                  onChange={(e) => SetPergunta(e.target.value)}
-                  value={PerguntaSeguranca}
                   required
                   id="selectCadastroCandidato"
                 >
@@ -347,12 +235,11 @@ function View(){
                 required
                 maxLength={30}
                 minLength={5}
-                onChange={(e) => SetResposta(e.target.value)}
               />
               <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>
 
               <div className="form-button">
-                <BlueButton type="submit" name="Criar conta">
+                <BlueButton type="submit" name="Criar conta" Onclick={()=>history.push("/login")}>
                   Criar conta
                 </BlueButton>
               </div>

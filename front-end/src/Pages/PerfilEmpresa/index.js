@@ -10,157 +10,6 @@ import AccessMenu from "../../Components/AccessMenu";
 import "./style.css";
 
 export default function PerfilEmpresa() {
-  const [NomeResponsavel, SetNomeResponsavel] = useState("");
-  const [CNPJ, SetCNPJ] = useState("");
-  const [NomeFantasia, SetNomeFantasia] = useState("");
-  const [RazaoSocial, SetRazaoSocial] = useState("");
-  const [Telefone, SetTelefone] = useState("");
-  const [NumFuncionario, SetNumFuncionario] = useState(0);
-  const [NumCNAE, SetNumCNAE] = useState("");
-  const [CEP, SetCEP] = useState("");
-  const [Logradouro, SetLogradouro] = useState("");
-  const [Complemento, SetComplemento] = useState("");
-  const [EmailContato, SetEmailContato] = useState("");
-  const [Estado, SetEstado] = useState("");
-  const [Cidade, SetCidade] = useState("");
-  const [NovaSenha, SetNovaSenha] = useState("");
-  const [SenhaAtual, setSenha] = useState("");
-  const [Candidatos, SetCandidato] = useState([]);
-  const[CaminhoImagem,setCaminho]=useState('');
-
-  const validaCep = /^[0-9]{8}$/g;
-  let verificacaoCep = validaCep.test(CEP);
-
-  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{9,15})/g;
-  const verificacaoSenha = senhaRegex.test(NovaSenha);
-
-  useEffect(() => {
-    listarCandidatos();
-    BuscarEmpresaPorId();
-  }, []);
-
-  const EditarDadosDaEmpresa = () => {
-    const form = {
-      nomeResponsavel: NomeResponsavel,
-      cnpj: CNPJ,
-      nomeFantasia: NomeFantasia,
-      razaoSocial: RazaoSocial,
-      telefone: Telefone,
-      numFuncionario: NumFuncionario,
-      numCnae: NumCNAE,
-      cep: CEP,
-      logradouro: Logradouro,
-      complemento: Complemento,
-      emailContato: EmailContato,
-      Estado: Estado,
-      Localidade: Cidade,
-    };
-    fetch("http://localhost:5000/api/Empresa/AtualizarEmpresa", {
-      method: "PUT",
-      body: JSON.stringify(form),
-      headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then(function (respose) {
-        if (respose.status !== 200) {
-          alert("Não foi possivel editar os dados da empresa");
-        } else {
-          alert("Editada com sucesso");
-        }
-      })
-      .catch((err) => console.error(err));
-  };
-
-  function buscarCep(valor) {
-    if (verificacaoCep) {
-      const URL = `https://viacep.com.br/ws/${valor}/json/`;
-      fetch(URL)
-        .then((resposta) => resposta.json())
-        .then((data) => {
-          document.getElementById("rua").value = data.logradouro;
-          document.getElementById("cidade").value = data.localidade;
-          document.getElementById("uf").value = data.uf;
-          SetLogradouro(data.logradouro);
-          SetCidade(data.localidade);
-          SetEstado(data.uf);
-        })
-        .catch((erro) => console.error(erro));
-    } else {
-      alert("O CEP é inválido");
-    }
-  }
-
-  const BuscarEmpresaPorId = () => {
-    fetch("http://localhost:5000/api/Empresa/BuscarEmpresaPorId", {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        SetNomeResponsavel(dados.nomeReponsavel);
-        SetCNPJ(dados.cnpj);
-        SetNomeFantasia(dados.nomeFantasia);
-        SetRazaoSocial(dados.razaoSocial);
-        SetTelefone(dados.telefone);
-        SetNumFuncionario(dados.numFuncionario);
-        SetNumCNAE(dados.numCnae);
-        SetCEP(dados.cep);
-        SetLogradouro(dados.logradouro);
-        SetComplemento(dados.complemento);
-        SetEmailContato(dados.emailContato);
-        SetEstado(dados.uf);
-        SetCidade(dados.localidade);
-        setCaminho(dados.caminhoImagem);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const AlterarSenha = () => {
-    const form = {
-      novaSenha: NovaSenha,
-      SenhaAtual: SenhaAtual,
-    };
-    if(verificacaoSenha !== true){
-      alert("A senha não confere com o padrão solicitado")
-    }else{
-      fetch("http://localhost:5000/api/Usuario/AlterarSenha", {
-      method: "PUT",
-      body: JSON.stringify(form),
-      headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then(function (respose) {
-        if (respose.status !== 200) {
-          alert("Não foi possivel alterar a senha");
-        } else {
-          alert("Senha alterada com sucesso com sucesso");
-        }
-      })
-      .catch((err) => console.error(err));
-    }
-    
-  };
-
-  const listarCandidatos = () => {
-    fetch("http://localhost:5000/api/Empresa/ListarCandidatosEstagiando", {
-      method: "GET",
-      headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        SetCandidato(dados);
-      })
-      .catch((err) => console.error(err));
-  };
 
   function ApareceEditarDadosEmpresa() {
     let idEditarPelicula = document.getElementById("peliculaPerfilEmpresa");
@@ -201,27 +50,6 @@ export default function PerfilEmpresa() {
     }
   }
 
-  const AtualizarImagem = (event) => {
-    event.preventDefault();
-
-    let formdata = new FormData();
-
-    formdata.append('arquivo', event.target.files[0]);
-
-    fetch('http://localhost:5000/api/Usuario/AlterarImagem',{
-        method : 'PUT',
-        headers: {
-            authorization: 'Bearer ' + localStorage.getItem('token')
-        },
-        body : formdata
-    })
-    .then(response => response.json())
-    .then(data => {
-        setCaminho(data.caminhoImagem);
-    })
-    .catch(err => console.log(err))
-}
-
   return (
     <div className="bodyPartVizualizarPerfil">
       <AccessBar />
@@ -230,9 +58,9 @@ export default function PerfilEmpresa() {
       <div className="meioPerfil">
         <div className="EsquerdoPerfil">
           <div className="imgPefilTexto">
-          <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
-          <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" /></label>
-            <h3>{RazaoSocial}</h3>
+          <input type="file" id="inputImage" className="none"/>
+          <label htmlFor="inputImage"><img className="imgperfil" src={"'http://localhost:5000/imgPerfil/'+CaminhoImagem"} alt="perfil" /></label>
+            <h3>SENAI Informática</h3>
             <p>Empresa</p>
           </div>
           <div className="BotoesPerfilEmpresa">
@@ -246,18 +74,41 @@ export default function PerfilEmpresa() {
         </div>
         <div className="DireitoPerfil">
           <h2 className="Desrcicao-Perfil">Candidatos contratados</h2>
-          {Candidatos.map((item) => {
-            return (
               <div className="BoxPerfilCandidato">
                 <div className="flexBoxPerfilCandidato">
-                  <img src={'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem} alt="Imagem da Empresa" />
-                  <h3>{"Nome do estágiario:" + item.nomeCompleto}</h3>
+                  <img src={"'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem"} alt="Imagem da Empresa" />
+                  <h3>{"Nome do estágiario:Douglas Silva" }</h3>
                 </div>
-                <h3>{"CPF:" + item.cpf}</h3>
-                <h3>{"Telefone:" + item.telefone}</h3>
+                <h3>{"CPF:2451651651651"}</h3>
+                <h3>{"Telefone:155455515151s"}</h3>
               </div>
-            );
-          })}
+
+              <div className="BoxPerfilCandidato">
+                <div className="flexBoxPerfilCandidato">
+                  <img src={"'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem"} alt="Imagem da Empresa" />
+                  <h3>{"Nome do estágiario:Douglas Silva"}</h3>
+                </div>
+                <h3>{"CPF:2451651651651"}</h3>
+                <h3>{"Telefone:155455515151s"}</h3>
+              </div>
+
+              <div className="BoxPerfilCandidato">
+                <div className="flexBoxPerfilCandidato">
+                  <img src={"'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem"} alt="Imagem da Empresa" />
+                  <h3>{"Nome do estágiario:Douglas Silva"}</h3>
+                </div>
+                <h3>{"CPF:2451651651651"}</h3>
+                <h3>{"Telefone:155455515151s"}</h3>
+              </div>
+
+              <div className="BoxPerfilCandidato">
+                <div className="flexBoxPerfilCandidato">
+                  <img src={"'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem"} alt="Imagem da Empresa" />
+                  <h3>{"Nome do estágiario:Douglas Silva"}</h3>
+                </div>
+                <h3>{"CPF:2451651651651"}</h3>
+                <h3>{"Telefone:155455515151s"}</h3>
+              </div>
         </div>
       </div>
       <div
@@ -270,10 +121,8 @@ export default function PerfilEmpresa() {
         <form>
           <Input
             className="InputCadastro"
-            value={NomeResponsavel}
             name="NomeResponsavelEditEmpresa"
             label="Nome do responsável"
-            onChange={(e) => SetNomeResponsavel(e.target.value)}
             maxLength={35}
             minLength={5}
             required
@@ -282,10 +131,8 @@ export default function PerfilEmpresa() {
 
           <Input
             className="InputCadastro"
-            value={RazaoSocial}
             name="RazaoSocialEditEmpresa"
             label="Razão social"
-            onChange={(e) => SetRazaoSocial(e.target.value)}
             maxLength={50}
             minLength={5}
             required
@@ -293,10 +140,8 @@ export default function PerfilEmpresa() {
           />
           <Input
             className="InputCadastro"
-            value={NomeFantasia}
             name="NomeFantasiaEditEmpresa"
             label="Nome fantasia"
-            onChange={(e) => SetNomeFantasia(e.target.value)}
             maxLength={50}
             minLength={5}
             required
@@ -304,10 +149,8 @@ export default function PerfilEmpresa() {
           />
           <Input
             className="InputCadastro"
-            value={CNPJ}
             name="CNPJEditEmpresa"
             label="CNPJ"
-            onChange={(e) => SetCNPJ(e.target.value)}
             maxLength={14}
             minLength={14}
             required
@@ -316,10 +159,8 @@ export default function PerfilEmpresa() {
 
           <Input
             className="InputCadastro"
-            value={EmailContato}
             name="EmailContatoEditEmpresa"
             label="Email para contato"
-            onChange={(e) => SetEmailContato(e.target.value)}
             maxLength={254}
             minLength={5}
             required
@@ -328,10 +169,8 @@ export default function PerfilEmpresa() {
 
           <Input
             className="InputCadastro"
-            value={Telefone}
             name="TelefoneEditEmpresa"
             label="Telefone"
-            onChange={(e) => SetTelefone(e.target.value)}
             maxLength={14}
             minLength={11}
             required
@@ -340,20 +179,16 @@ export default function PerfilEmpresa() {
 
           <Input
             className="InputCadastro"
-            value={NumFuncionario}
             name="NumFuncionariosEditEmpresa"
             label="Número de fúncionarios"
-            onChange={(e) => SetNumFuncionario(e.target.value)}
             required
             id="NumFuncionariosEditEmpresa"
           />
 
           <Input
             className="InputCadastro"
-            value={NumCNAE}
             name="NumCNAEEditEmpresa"
             label="Número do CNAE"
-            onChange={(e) => SetNumCNAE(e.target.value)}
             maxLength={7}
             minLength={7}
             required
@@ -362,33 +197,26 @@ export default function PerfilEmpresa() {
 
           <Input
             className="InputCadastro"
-            value={CEP}
             name="CepEditEmpresa"
             label="CEP"
-            onChange={(e) => SetCEP(e.target.value)}
             maxLength={8}
             minLength={8}
             required
-            onBlur={(e) => buscarCep(e.target.value)}
             id="CepEditEmpresa"
           />
 
           <Input
             id="rua"
             className="InputCadastro"
-            value={Logradouro}
             name="Logradouro"
             label="Logradouro"
-            onChange={(e) => SetLogradouro(e.target.value)}
             required
           />
 
           <Input
             className="InputCadastro"
-            value={Complemento}
             name="ComplementoEditEmpresa"
             label="Complemento"
-            onChange={(e) => SetComplemento(e.target.value)}
             id="ComplementoEditEmpresa"
           />
 
@@ -399,7 +227,6 @@ export default function PerfilEmpresa() {
               type="text"
               className="InputCadastro"
               id="cidade"
-              value={Cidade}
               required
               disabled
             />
@@ -412,14 +239,13 @@ export default function PerfilEmpresa() {
               type="text"
               className="InputCadastro"
               id="uf"
-              value={Estado}
               required
               disabled
             />
           </div>
 
           <div className="btEditarEstagioDiv">
-            <button className="btVaga" onClick={EditarDadosDaEmpresa}>
+            <button className="btVaga" onClick={()=>alert("Perfil editado com sucesso")}>
               <h3>Editar</h3>
             </button>
           </div>
@@ -442,7 +268,6 @@ export default function PerfilEmpresa() {
             className="InputCadastro"
             name="SenhaatualEditEmpresa"
             label="Senha atual"
-            onChange={(e) => setSenha(e.target.value)}
             maxLength={15}
             minLength={9}
             type="password"
@@ -454,13 +279,12 @@ export default function PerfilEmpresa() {
             className="InputCadastro"
             name="NovaSenhaEmpresa"
             label="Nova senha"
-            onChange={(e) => SetNovaSenha(e.target.value)}
             maxLength={15}
             minLength={9}
             type="password"
             required
           />
-          <button className="btVaga" onClick={AlterarSenha}>
+          <button className="btVaga" onClick={()=>alert("Senha alterada com sucesso")}>
             Alterar senha
           </button>
         </form>

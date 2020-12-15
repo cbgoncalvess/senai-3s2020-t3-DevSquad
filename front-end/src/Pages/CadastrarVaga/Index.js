@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React ,{useState}from 'react';
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -7,35 +7,13 @@ import { useHistory } from 'react-router-dom';
 import './style.css';
 import AccessMenu from '../../Components/AccessMenu';
 
-import api from '../../services/api';
-
 
 export default function CadastrarVaga() {
-
-    const [TituloVaga, SetTituloVaga] = useState('');
-    const [Salario, SetSalario] = useState('');
-    const [Area, SetArea] = useState('');
-    const [Experiencia, SetExperiencia] = useState('');
-    const [TipoDeContrato, SetTipoContrato] = useState('');
-    const [Estado, SetEstado] = useState('');
-    const [Cidade, SetCidade] = useState('');
-    const [CEP, SetCEP] = useState('');
-    const [Logradouro, SetLogradouro] = useState('');
-    const [Complemento, SetComplemento] = useState('');
-    const [DescricaoVaga, SetDescricaoVaga] = useState('');
-    const [DescricaoEmpresa, SetDescricaoEmpresa] = useState('');
-    const [DescricaoBeneficio, SetDescricaoBeneficio] = useState('');
-    const [ListAreas, SetListArea] = useState([]);
-    const [ListTipoPresencas, setTipoPresencas] = useState([]);
-    const [IdTipoPresenca, setIdTipoPresenca] = useState(0);
-
-    useEffect(() => {
-        listarAreas();
-        ListarTipoPresencas();
-    }, []);
-
     let history = useHistory();
-
+    let [CEP, SetCEP] = useState("");
+    let [Logradouro, SetLogradouro] = useState("");
+    let [Estado, SetEstado] = useState("");
+    let [Cidade, SetCidade] = useState("");
     const validaCep = /^[0-9]{8}$/g;
     let verificacaoCep = validaCep.test(CEP);
 
@@ -61,66 +39,6 @@ export default function CadastrarVaga() {
             alert("O CEP deve conter apenas 8 números");
         }
     }
-    const listarAreas = () => {
-        fetch('http://localhost:5000/api/Usuario/ListarArea', {
-            method: 'GET',
-            headers: {
-                authorization: 'Bearer ' + localStorage.getItem('token')
-            }
-        })
-            .then(response => response.json())
-            .then(dados => {
-                SetListArea(dados);
-            })
-            .catch(err => console.error(err));
-    }
-
-    const ListarTipoPresencas = () => {
-        fetch('http://localhost:5000/api/Empresa/ListarTipoPresenca', {
-            method: 'GET',
-            headers: {
-                authorization: 'Bearer ' + localStorage.getItem('token')
-            }
-        })
-            .then(response => response.json())
-            .then(dados => {
-                setTipoPresencas(dados);
-            })
-            .catch(err => console.error(err));
-    }
-
-    const salvar = () => {
-        const form = {
-            tituloVaga: TituloVaga,
-            salario: Salario,
-            idArea: Area,
-            idTipoRegimePresencial: IdTipoPresenca,
-            experiencia: Experiencia,
-            tipoContrato: TipoDeContrato,
-            estado: Estado,
-            localidade: Cidade,
-            cep: CEP,
-            logradouro: Logradouro,
-            complemento: Complemento,
-            descricaoVaga: DescricaoVaga,
-            descricaoEmpresa: DescricaoEmpresa,
-            descricaoBeneficio: DescricaoBeneficio
-        };
-        if (validaCep) {
-            api.post('/Empresa/AdicionarVaga', form, {
-                headers: {
-                    authorization: 'Bearer ' + localStorage.getItem('token')
-                }
-            }).then(function (respose) {
-                if (respose.status !== 200) {
-                    alert("Não foi possivel cadastrar a vaga");
-                } else {
-                    alert("Vaga cadastrada com sucesso");
-                    history.push('/VagasPublicadas');
-                }
-            }).catch(err => console.log(err))
-        }
-    }
     return (
         <body>
             <AccessBar />
@@ -138,7 +56,6 @@ export default function CadastrarVaga() {
                                     id="TituloVagaCadastro"
                                     name="TituloVagaCadastro"
                                     label="Título da Vaga"
-                                    onChange={e => SetTituloVaga(e.target.value)}
                                     type="text"
                                     maxLength={50}
                                     minLength={5}
@@ -150,37 +67,24 @@ export default function CadastrarVaga() {
                                     name="SalarioCadastro"
                                     type="number"
                                     label="Salário"
-                                    onChange={e => SetSalario(e.target.value)}
                                     required
                                 />
 
                                 <div className="select-final">
                                     <label htmlFor="selectAreaCadastro">Área</label>
-                                    <select id="selectAreaCadastro" onChange={e => SetArea(e.target.value)} value={Area} required>
-                                        <option value="0">Selecione uma área de atuação</option>
-                                        {
-                                            ListAreas.map((item) => {
-                                                return <option value={item.idArea}>{item.nomeArea}</option>
-                                            })
-                                        }
+                                    <select id="selectAreaCadastro" required>
                                     </select>
                                 </div>
 
                                 <div className="select-final">
                                     <label htmlFor="selectTipoPresencaCadastro">Tipo de presença</label>
-                                    <select id="selectTipoPresencaCadastro" onChange={e => setIdTipoPresenca(e.target.value)} value={IdTipoPresenca} required>
-                                        <option value="0">Selecione um tipo de presenca</option>
-                                        {
-                                            ListTipoPresencas.map((item) => {
-                                                return <option value={item.idTipoRegimePresencial}>{item.nomeTipoRegimePresencial}</option>
-                                            })
-                                        }
+                                    <select id="selectTipoPresencaCadastro" required>
                                     </select>
                                 </div>
 
                                 <div className="select-final">
                                     <label htmlFor="selectExperienciaCadastro">Experiência</label>
-                                    <select id="selectExperienciaCadastro" onChange={e => SetExperiencia(e.target.value)} value={Experiencia} required>
+                                    <select id="selectExperienciaCadastro" required>
                                         <option value="0">Selecione um nivel de experiencia</option>
                                         <option value="Pleno">Pleno</option>
                                         <option value="Sênior">Sênior</option>
@@ -189,7 +93,7 @@ export default function CadastrarVaga() {
                                 </div>
                                 <div className="select-final">
                                     <label htmlFor="selectTipoContratoCadastro">Tipo de contrato</label>
-                                    <select id="selectTipoContratoCadastro" onChange={e => SetTipoContrato(e.target.value)} value={TipoDeContrato} required>
+                                    <select id="selectTipoContratoCadastro" required>
                                         <option value="0">Selecione um tipo de contrato</option>
                                         <option value="CLT">CLT</option>
                                         <option value="PJ">PJ</option>
@@ -219,7 +123,6 @@ export default function CadastrarVaga() {
                                     name="Logradouro"
                                     label="Logradouro"
                                     type="text"
-                                    onChange={e => SetLogradouro(e.target.value)}
                                     maxLength={150}
                                     minLength={5}
                                     required
@@ -231,7 +134,6 @@ export default function CadastrarVaga() {
                                     name="ComplementoCadastroVaga"
                                     label="Complemento"
                                     type="text"
-                                    onChange={e => SetComplemento(e.target.value)}
                                     maxLength={255}
                                     minLength={5}
                                 />
@@ -269,14 +171,13 @@ export default function CadastrarVaga() {
                                     <textarea
                                     id="DescricaoVagaCadastro"
                                         name="DescricaoVaga"
-                                        onChange={e => SetDescricaoVaga(e.target.value)}
                                         required
                                         maxLength={750}
                                         minLength={5}
                                     ></textarea>
                                     <br />
                                     <label htmlFor="DescricaoEmpresaCadastro">Descrição da empresa</label>
-                                    <textarea onChange={e => SetDescricaoEmpresa(e.target.value)}
+                                    <textarea
                                         name="DescricaoEmpresa"
                                         required
                                         maxLength={750}
@@ -286,7 +187,6 @@ export default function CadastrarVaga() {
                                     <br />
                                     <label htmlFor="DescricaoBeneficioCadastro">Descrição dos benefícios</label>
                                     <textarea name="DescricaoBeneficio"
-                                        onChange={e => SetDescricaoBeneficio(e.target.value)}
                                         required
                                         maxLength={750}
                                         minLength={5}
@@ -295,7 +195,7 @@ export default function CadastrarVaga() {
                                 </div>
                                 <br />
                                 <div className="btVagaDiv">
-                                    <button className="btVaga" onClick={salvar}>Cadastrar</button>
+                                    <button className="btVaga" onClick={()=>history.push('/VagasPublicadas')}>Cadastrar</button>
                                 </div>
                             </form>
                         </div>

@@ -20,85 +20,48 @@ export default function Login() {
 
     let history = useHistory();
 
-    const [NovaSenha, SetNovaSenha] = useState('');
-    const [PerguntaSeguranca, SetPerguntaSeguranca] = useState('');
-    const [RespostaSeguranca, SetRespostaSeguranca] = useState('');
-    const [Mensagem,setMensagem]=useState('');
-
+    const [Mensagem,setMensagem]=useState('Suas informações são inválidas');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
 
     
-    const login = () => {
-
-        const loginForm = {
-            email: email,
-            senha: senha
+const login = () => 
+{
+    if(email.length>5&&senha.length>5){
+        if(email=="Administrador@gmail.com" && senha=="123123123"){
+            localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBvc3NhcmxlQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiUm9sZSI6IjEiLCJleHAiOjE2MDY5OTkxMDUsImlzcyI6IlNlbmFpVGVjaFZhZ2FzLldlYkFwaSIsImF1ZCI6IlNlbmFpVGVjaFZhZ2FzLldlYkFwaSJ9.6Bnx7BgvHNrbON3rSwVpMgF46ChL-T50mu6d5puHBC4");
         }
-        fetch('http://localhost:5000/api/Login', {
 
-            method: 'POST',
-            body: JSON.stringify(loginForm),
-            headers: {
-                'content-type': 'application/json'
-            }
-        }).then(response => response.json()
-        )
-            .then(dados => {
-                if (dados.token !== undefined) {
-                    localStorage.setItem("token", dados.token)
-                    if (parseJwt().Role === "1") {
-                        history.push("/perfil");
-                    } else if (parseJwt().Role === "2") {
-                        history.push("/perfilCandidato");
-                    } else if (parseJwt().Role === "3") {
-                        history.push("/perfilEmpresa");
-                    }
-                }else{
-                    if(dados.error.length==0){
-                        setMensagem(dados)
-                        AparecelbErro();
-                    }else{
-                        setMensagem("Suas credencias não são válidas")
-                        AparecelbErro();
-                    }
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                setMensagem("Suas credencias não são válidas");
-                AparecelbErro();
-            })
+        if(email=="Candidato@gmail.com" && senha=="123123123"){
+            localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkRvdWdsYXNAZ21haWwuY29tIiwianRpIjoiMiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IjIiLCJSb2xlIjoiMiIsImV4cCI6MTYwNjk5ODc1NCwiaXNzIjoiU2VuYWlUZWNoVmFnYXMuV2ViQXBpIiwiYXVkIjoiU2VuYWlUZWNoVmFnYXMuV2ViQXBpIn0.-1Tqy6liFvkz-b2Ga024nyHr5FcYJJl29DER3HOWYqA");
+        }
+
+        if(email=="Empresa@gmail.com" && senha=="123123123"){
+            localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNlbmFpQGdtYWlsLmNvbSIsImp0aSI6IjMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiUm9sZSI6IjMiLCJleHAiOjE2MDY5OTkyMDQsImlzcyI6IlNlbmFpVGVjaFZhZ2FzLldlYkFwaSIsImF1ZCI6IlNlbmFpVGVjaFZhZ2FzLldlYkFwaSJ9.NeMTGacPQ1_hK_3CfSd7nlgzhmtxN7LUAow3-jHY56o");
+        }
+        if(email=="Administrador@gmail.com"||email=="Candidato@gmail.com"||email=="Empresa@gmail.com"){
+            if (parseJwt().Role === "1") {
+                history.push("/perfil");
+            } else if (parseJwt().Role === "2") {
+                history.push("/perfilCandidato");
+            } else if (parseJwt().Role === "3") {
+                history.push("/perfilEmpresa");
+            }    
+        }else{
+            setMensagem("Suas credencias não são válidas")
+            AparecelbErro();
+        }
+    }else{
+            setMensagem("Suas credencias não são válidas")
+            AparecelbErro();
+        }
     }
+
     function AparecelbErro(){
         let idlbErro = document.getElementById("lbErro");
         if (idlbErro.classList == "LabelErro none")
         idlbErro.classList.remove("none");
-    }
-
-    const RecuperarSenha = () => {
-        const form = {
-            email: email,
-            pergunta: PerguntaSeguranca,
-            resposta: RespostaSeguranca,
-            novaSenha: NovaSenha,
-        };
-        fetch('http://localhost:5000/api/Usuario/RecuperarSenha', {
-            method: 'PUT',
-            body: JSON.stringify(form),
-            headers: {
-                'content-type': 'application/json'
-            }
-        }).then(function (respose) {
-            if (respose.status !== 200) {
-                alert("Não foi possivel alterar a senha,entre em contato com o admin do site caso necessario");
-                btn_fecharRecuperarSenhaCandidato()
-            } else {
-                alert("Editado com sucesso");
-                btn_fecharRecuperarSenhaCandidato()
-            }
-        }).catch(err => console.error(err));
     }
 
     function ApareceRecuperarSenhaCandidato() {
@@ -176,8 +139,6 @@ export default function Login() {
                         <label htmlFor="RecuperarSelect">Pergunta de segurança</label>
                         <select
                         id="RecuperarSelect"
-                            onChange={(e) => SetPerguntaSeguranca(e.target.value)}
-                            value={PerguntaSeguranca}
                             required
                         >
                             <option value="0">Selecione sua pergunta de segurança</option>
@@ -197,7 +158,6 @@ export default function Login() {
                         className="InputCadastro"
                         name="RespostaSegurancaRecuperar"
                         label="Resposta de seguranca"
-                        onChange={(e) => SetRespostaSeguranca(e.target.value)}
                         maxLength={20}
                         minLength={5}
                         required
@@ -208,7 +168,6 @@ export default function Login() {
                         className="InputCadastro"
                         name="emailRecuperacao"
                         label="Seu email"
-                        onChange={(e) => setEmail(e.target.value)}
                         maxLength={254}
                         minLength={5}
                         required
@@ -219,14 +178,13 @@ export default function Login() {
                         className="InputCadastro"
                         name="NovaSenhaRecuperar"
                         label="Nova senha"
-                        onChange={(e) => SetNovaSenha(e.target.value)}
                         maxLength={15}
                         minLength={9}
                         type="password"
                         required
                     />
                 </form>
-                <button className="btVaga" onClick={RecuperarSenha}>
+                <button className="btVaga" onClick={()=>alert("Senha alterada com sucesso")}>
                     Alterar senha
                 </button>  
             </div>
