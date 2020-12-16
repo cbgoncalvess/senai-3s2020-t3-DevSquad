@@ -28,6 +28,7 @@
 
 .infoVagaVisualizar {
     display: flex;
+    justify-content: center;
     align-items: center;
     border: none;
     width: 1194px;
