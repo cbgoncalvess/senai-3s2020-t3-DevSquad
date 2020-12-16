@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import imgDelete from "../../assets/delete.webp";
-import imgEdit from "../../assets/black-ink-pen.webp";
-import imgEnterprise from "../../assets/enterprise.webp";
-import imgCertificate from "../../assets/certificate.webp";
-import imgWorker from "../../assets/worker.webp";
+import imgDelete from "../../assets/delete.jpg";
+import imgEdit from "../../assets/black-ink-pen.jpg";
+import imgEnterprise from "../../assets/enterprise.jpg";
+import imgCertificate from "../../assets/certificate.jpg";
+import imgWorker from "../../assets/worker.jpg";
+import user from '../../assets/images/user.jpg'
 
 import "./style.css";
 
@@ -46,7 +47,7 @@ export default function Estagio() {
         <div className="Empresascadastradas">
           <img src={imgEnterprise} alt="Icone de empresa" />
           <div className="EstatiscaColumn">
-            <h5>0</h5>
+            <h5>1</h5>
             <br />
             <h5>Empresas cadastradas</h5>
           </div>
@@ -95,8 +96,8 @@ export default function Estagio() {
             />
           </div>
           <div className="CabecaEstagio">
-            <img src={""} alt="ImagemPerfil" />
-            <h3>Douglas</h3>
+            <img src={user} alt="ImagemPerfil" />
+            <h3>Douglas Mantovani</h3>
             <hr className="hr" />
             <h5>Desenvolvimento de sistema</h5>
           </div>
@@ -136,13 +137,13 @@ export default function Estagio() {
             />
           </div>
           <div className="CabecaEstagio">
-            <img src={""} alt="ImagemPerfil" />
-            <h3>Douglas</h3>
+            <img src={user} alt="ImagemPerfil" />
+            <h3>Marcos Tomás</h3>
             <hr className="hr" />
             <h5>Desenvolvimento de sistema</h5>
           </div>
           <div className="CorpoEstagio">
-            <Tag NomeTag={"E-mail:Douglas@gmail.com"}></Tag>
+            <Tag NomeTag={"E-mail:Marcosgmail.com"}></Tag>
             <Tag NomeTag={"Telefone:12323434245"}></Tag>
             <Tag NomeTag={"Status:Estagiando"}></Tag>
             <Tag NomeTag={"Periodo do estagio:9 meses"}></Tag>
@@ -177,13 +178,95 @@ export default function Estagio() {
             />
           </div>
           <div className="CabecaEstagio">
-            <img src={""} alt="ImagemPerfil" />
-            <h3>Douglas</h3>
+            <img src={user} alt="ImagemPerfil" />
+            <h3>Carlos Eduardo</h3>
             <hr className="hr" />
             <h5>Desenvolvimento de sistema</h5>
           </div>
           <div className="CorpoEstagio">
-            <Tag NomeTag={"E-mail:Douglas@gmail.com"}></Tag>
+            <Tag NomeTag={"E-mail:Carlos@gmail.com"}></Tag>
+            <Tag NomeTag={"Telefone:12323434245"}></Tag>
+            <Tag NomeTag={"Status:Estagiando"}></Tag>
+            <Tag NomeTag={"Periodo do estagio:9 meses"}></Tag>
+            <Tag NomeTag={"TempoEstagiado:0 meses"}></Tag>
+            <Tag NomeTag={"Empresa:SENAI Informática"}></Tag>
+            <h5
+              className="UnderlineText"
+              onClick={(e) => {
+                e.preventDefault();
+                history.push("PerfilCandidatoAdm");
+              }}
+            >
+              Ver perfil
+            </h5>
+          </div>
+        </div>
+
+        <div className="Estagio">
+          <div className="Ferramentas">
+            <img
+              className="Edit"
+              src={imgEdit}
+              onClick={(event) => {
+                AparecerEditarEstagio();
+              }}
+              alt="Botão para deletar estágio"
+            />
+            <img
+              className="Delete"
+              src={imgDelete}
+              alt="Botão para deletar o estágio"
+            />
+          </div>
+          <div className="CabecaEstagio">
+            <img src={user} alt="ImagemPerfil" />
+            <h3>Aléxia Melhado</h3>
+            <hr className="hr" />
+            <h5>Desenvolvimento de sistemas</h5>
+          </div>
+          <div className="CorpoEstagio">
+            <Tag NomeTag={"E-mail:Alexia@gmail.com"}></Tag>
+            <Tag NomeTag={"Telefone:12323434245"}></Tag>
+            <Tag NomeTag={"Status:Estagiando"}></Tag>
+            <Tag NomeTag={"Periodo do estagio:9 meses"}></Tag>
+            <Tag NomeTag={"TempoEstagiado:0 meses"}></Tag>
+            <Tag NomeTag={"Empresa:SENAI Informática"}></Tag>
+            <h5
+              className="UnderlineText"
+              onClick={(e) => {
+                e.preventDefault();
+                history.push("PerfilCandidatoAdm");
+              }}
+            >
+              Ver perfil
+            </h5>
+          </div>
+        </div>
+        <div className="Estagio">
+          <div className="Ferramentas">
+            <img
+              className="Edit"
+              src={imgEdit}
+              onClick={(event) => {
+                AparecerEditarEstagio();
+              }}
+              alt="Botão para deletar estágio"
+            />
+            <img
+              className="Delete"
+              src={imgDelete}
+              alt="Botão para deletar o estágio"
+            />
+          </div>
+
+          <div className="CabecaEstagio">
+            <img src={user} alt="ImagemPerfil" />
+            <h3>André Akira</h3>
+            <hr className="hr" />
+            <h5>Desenvolvimento de sistemas</h5>
+          </div>
+          <div className="CorpoEstagio">
+            <Tag NomeTag={"E-mail:Andre@gmail.com"}></Tag>
             <Tag NomeTag={"Telefone:12323434245"}></Tag>
             <Tag NomeTag={"Status:Estagiando"}></Tag>
             <Tag NomeTag={"Periodo do estagio:9 meses"}></Tag>

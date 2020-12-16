@@ -6,6 +6,7 @@ import AccessBar from "../../Components/AccessBar";
 import Input from "../../Components/Input/index";
 import AccessMenu from "../../Components/AccessMenu";
 
+import user from '../../assets/images/user.jpg'
 
 import "./style.css";
 
@@ -59,7 +60,7 @@ export default function PerfilEmpresa() {
         <div className="EsquerdoPerfil">
           <div className="imgPefilTexto">
           <input type="file" id="inputImage" className="none"/>
-          <label htmlFor="inputImage"><img className="imgperfil" src={"'http://localhost:5000/imgPerfil/'+CaminhoImagem"} alt="perfil" /></label>
+          <label htmlFor="inputImage"><img className="imgperfil" src={user} alt="perfil" /></label>
             <h3>SENAI Informática</h3>
             <p>Empresa</p>
           </div>
@@ -76,8 +77,8 @@ export default function PerfilEmpresa() {
           <h2 className="Desrcicao-Perfil">Candidatos contratados</h2>
               <div className="BoxPerfilCandidato">
                 <div className="flexBoxPerfilCandidato">
-                  <img src={"'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem"} alt="Imagem da Empresa" />
-                  <h3>{"Nome do estágiario:Douglas Silva" }</h3>
+                  <img src={user} alt="Imagem da Empresa" />
+                  <h3>{"Nome do estágiario:Douglas Mantovani" }</h3>
                 </div>
                 <h3>{"CPF:2451651651651"}</h3>
                 <h3>{"Telefone:155455515151s"}</h3>
@@ -85,8 +86,8 @@ export default function PerfilEmpresa() {
 
               <div className="BoxPerfilCandidato">
                 <div className="flexBoxPerfilCandidato">
-                  <img src={"'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem"} alt="Imagem da Empresa" />
-                  <h3>{"Nome do estágiario:Douglas Silva"}</h3>
+                  <img src={user} alt="Imagem da Empresa" />
+                  <h3>{"Nome do estágiario:Alexia Melhado"}</h3>
                 </div>
                 <h3>{"CPF:2451651651651"}</h3>
                 <h3>{"Telefone:155455515151s"}</h3>
@@ -94,8 +95,8 @@ export default function PerfilEmpresa() {
 
               <div className="BoxPerfilCandidato">
                 <div className="flexBoxPerfilCandidato">
-                  <img src={"'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem"} alt="Imagem da Empresa" />
-                  <h3>{"Nome do estágiario:Douglas Silva"}</h3>
+                  <img src={user} alt="Imagem da Empresa" />
+                  <h3>{"Nome do estágiario:Andre Akira"}</h3>
                 </div>
                 <h3>{"CPF:2451651651651"}</h3>
                 <h3>{"Telefone:155455515151s"}</h3>
@@ -103,8 +104,17 @@ export default function PerfilEmpresa() {
 
               <div className="BoxPerfilCandidato">
                 <div className="flexBoxPerfilCandidato">
-                  <img src={"'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem"} alt="Imagem da Empresa" />
-                  <h3>{"Nome do estágiario:Douglas Silva"}</h3>
+                  <img src={user} alt="Imagem da Empresa" />
+                  <h3>{"Nome do estágiario:Carlos Eduardo"}</h3>
+                </div>
+                <h3>{"CPF:2451651651651"}</h3>
+                <h3>{"Telefone:155455515151s"}</h3>
+              </div>
+
+              <div className="BoxPerfilCandidato">
+                <div className="flexBoxPerfilCandidato">
+                  <img src={user} alt="Imagem da Empresa" />
+                  <h3>{"Nome do estágiario:Marcos Tomás"}</h3>
                 </div>
                 <h3>{"CPF:2451651651651"}</h3>
                 <h3>{"Telefone:155455515151s"}</h3>

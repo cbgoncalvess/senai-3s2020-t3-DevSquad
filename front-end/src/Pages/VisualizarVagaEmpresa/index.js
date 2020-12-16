@@ -7,14 +7,16 @@ import AccessBar from "../../Components/AccessBar";
 import AccessMenu from "../../Components/AccessMenu";
 
 import Tag from "../../Components/Tag/Index";
-import imgDesenvolvimento from "../../assets/web-programming.webp";
+import imgDesenvolvimento from "../../assets/web-programming.jpg";
 import imgGlobal from "../../assets/global.png";
-import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
-import imgSalario from "../../assets/money (1).webp";
-import imgTipoContrato from "../../assets/gears.webp";
-import imgFuncao from "../../assets/rocket-launch.webp";
-import IconEmpresa from "../../assets/building.webp";
+import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.jpg";
+import imgSalario from "../../assets/money (1).jpg";
+import imgTipoContrato from "../../assets/gears.jpg";
+import imgFuncao from "../../assets/rocket-launch.jpg";
+import IconEmpresa from "../../assets/building.jpg";
 import InfoVaga from "../../Components/InfoVaga/Index";
+
+import user from '../../assets/images/user.jpg'
 
 import "./style.css";
 
@@ -33,7 +35,7 @@ export default function VizualizarVagaEmpresa() {
       <div className="vaga">
         <div className="VagaCompleta">
           <img
-            src={"http://localhost:5000/imgPerfil/"}
+            src={user}
             className="ImagemEmpresa"
             alt="Iamgem de perfil da empresa"
           />
@@ -41,29 +43,28 @@ export default function VizualizarVagaEmpresa() {
             <h3>Desenvolvimento</h3>
             <div className="InfoVagas">
               <InfoVaga
-                NomeProp={"RazaoSocial"}
+                NomeProp={"SENAI Informática"}
                 source={IconEmpresa}
               ></InfoVaga>
-              <InfoVaga NomeProp={"Cidade"} source={imgLocalizacao}></InfoVaga>
-              <InfoVaga NomeProp={"Experiencia"} source={imgFuncao}></InfoVaga>
+              <InfoVaga NomeProp={"São Paulo"} source={imgLocalizacao}></InfoVaga>
+              <InfoVaga NomeProp={"Júnior"} source={imgFuncao}></InfoVaga>
               <InfoVaga
-                NomeProp={"TipoContrato"}
+                NomeProp={"PJ"}
                 source={imgTipoContrato}
               ></InfoVaga>
-              <InfoVaga NomeProp={"Salario"} source={imgSalario}></InfoVaga>
-              <InfoVaga NomeProp={"TipoPresenca"} source={imgGlobal} />
+              <InfoVaga NomeProp={"R$4.000"} source={imgSalario}></InfoVaga>
+              <InfoVaga NomeProp={"Presencial"} source={imgGlobal} />
               <InfoVaga
-                NomeProp={"NomeArea"}
+                NomeProp={"Desenvolvimento"}
                 source={imgDesenvolvimento}
               ></InfoVaga>
             </div>
             <div className="TecnologiasVaga">
-              <Tag NomeTag={"C3"}></Tag>
-              <Tag NomeTag={"C3"}></Tag>
-              <Tag NomeTag={"C3"}></Tag>
-              <Tag NomeTag={"C3"}></Tag>
-              <Tag NomeTag={"C3"}></Tag>
-              <Tag NomeTag={"C3"}></Tag>
+                <Tag NomeTag={"Entity framework"}></Tag>
+                <Tag NomeTag={"C#"}></Tag>
+                <Tag NomeTag={"C++"}></Tag>
+                <Tag NomeTag={"SQL"}></Tag>
+                <Tag NomeTag={"React"}></Tag>
             </div>
           </div>
         </div>
@@ -79,16 +80,16 @@ export default function VizualizarVagaEmpresa() {
           <div className="CabecaInscricao">
             <img
               className="imgperfilInscricao"
-              src={"http://localhost:5000/imgPerfil/"}
+              src={user}
               alt="Imagem de Perfil do candidato"
             />
-            <h3>Douglas</h3>
+            <h3>Candidato</h3>
             <hr className="hr" />
             <h5>Desenvolvimento de sistemas</h5>
           </div>
           <div className="CorpoInscricao">
-            <Tag NomeTag={"E-mail:"}></Tag>
-            <Tag NomeTag={"Telefone:"}></Tag>
+            <Tag NomeTag={"E-mail:Candidato@gmail.com"}></Tag>
+            <Tag NomeTag={"Telefone:40028922"}></Tag>
           </div>
           <div className="AprovarRecusar">
             <button
@@ -105,7 +106,6 @@ export default function VizualizarVagaEmpresa() {
             </button>
           </div>
         </div>
-        );
       </div>
       <Footer />
     </div>

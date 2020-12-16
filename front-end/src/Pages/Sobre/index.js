@@ -5,8 +5,8 @@ import Footer from "../../Components/Footer";
 import AccessBar from "../../Components/AccessBar";
 import AccessMenu from "../../Components/AccessMenu";
 
-import LogoSenai from "../../assets/images/logo_senai.webp";
-import LogoTime from "../../assets/images/logo_devsquad.webp";
+import LogoSenai from "../../assets/images/logo_senai.jpg";
+import LogoTime from "../../assets/images/logo_devsquad.jpg";
 
 import Alexia from "../../assets/images/linkedin_alexia.svg";
 import Andre from "../../assets/images/linkedin_andre.svg";

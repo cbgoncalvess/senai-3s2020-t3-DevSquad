@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import imgDelete from "../../assets/delete.webp";
+import imgDelete from "../../assets/delete.jpg";
 import { useHistory } from "react-router-dom";
 
 import Header from "../../Components/Header";
@@ -9,6 +9,8 @@ import AccessMenu from "../../Components/AccessMenu";
 import Tag from "../../Components/Tag/Index";
 // style
 import "./style.css";
+
+import user from '../../assets/images/user.jpg'
 
 export default function VisualizarCandidatoAdm() {
   let history = useHistory();
@@ -24,7 +26,7 @@ export default function VisualizarCandidatoAdm() {
                   <div className="flexBoxPerfil">
                     <img
                       className="imgUsuario"
-                      src={"http://localhost:5000/imgPerfil/+ item.caminhoImagem"}
+                      src={user}
                       alt="usuario"
                     />
                     <div className="ColumnTituloArea">
@@ -59,7 +61,7 @@ export default function VisualizarCandidatoAdm() {
                   <div className="flexBoxPerfil">
                     <img
                       className="imgUsuario"
-                      src={"http://localhost:5000/imgPerfil/+ item.caminhoImagem"}
+                      src={user}
                       alt="usuario"
                     />
                     <div className="ColumnTituloArea">
@@ -94,7 +96,7 @@ export default function VisualizarCandidatoAdm() {
                   <div className="flexBoxPerfil">
                     <img
                       className="imgUsuario"
-                      src={"http://localhost:5000/imgPerfil/+ item.caminhoImagem"}
+                      src={user}
                       alt="usuario"
                     />
                     <div className="ColumnTituloArea">
@@ -129,7 +131,7 @@ export default function VisualizarCandidatoAdm() {
                   <div className="flexBoxPerfil">
                     <img
                       className="imgUsuario"
-                      src={"http://localhost:5000/imgPerfil/+ item.caminhoImagem"}
+                      src={user}
                       alt="usuario"
                     />
                     <div className="ColumnTituloArea">
@@ -165,16 +167,16 @@ export default function VisualizarCandidatoAdm() {
         <div className="DireitoAdm">
           <div className="BoxEmpresa">
             <div className="ImagemEmpresaAdm">
-              <img src={"http://localhost:5000/imgPerfil/"} alt="Imagem de perfil da empresa"/>
+              <img src={user} alt="Imagem de perfil da empresa"/>
               <h5>Douglas</h5>
             </div>
             <div className="DadosDaEmpresa">
-              <Tag NomeTag={"Rg:"}/>
-              <Tag NomeTag={"CPF:" } />
-              <Tag NomeTag={"Linkedin:" } />
-              <Tag NomeTag={"Telefone:"} />
-              <Tag NomeTag={"Curso do candidato:" } />
-              <Tag NomeTag={"Area:"} />
+              <Tag NomeTag={"Rg: 51.789.999-X"}/>
+              <Tag NomeTag={"CPF: 555.557.889-2" } />
+              <Tag NomeTag={"Linkedin: https://www.linkedin.com/" } />
+              <Tag NomeTag={"Telefone: (11) 95999-5500"} />
+              <Tag NomeTag={"Curso do candidato: Desenvolvimento de Sistemas" } />
+              <Tag NomeTag={"Área: Desenvolvimento Web"} />
             </div>
           </div>
         </div>

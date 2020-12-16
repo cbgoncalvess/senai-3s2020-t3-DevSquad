@@ -3,11 +3,12 @@ import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
 
 import "./style.css";
-import Delete from "../../assets/images/cancel.webp";
+import Delete from "../../assets/images/cancel.jpg";
 import Input from "../../Components/Input";
 import AccessBar from "../../Components/AccessBar";
 import BlackButton from "../../Components/BlackButton";
 import AccessMenu from "../../Components/AccessMenu";
+import user from '../../assets/images/user.jpg'
 
 export default function CadastrarColaborador() {
 
@@ -22,15 +23,14 @@ export default function CadastrarColaborador() {
               <div className="perfilBox">
                 <div className="horizontal">
                   <div className="perfil">
-                    <img className="user" src={""} alt="Iamgem de perfil do administrador" />
-                    <h4>Colaborador</h4>
+                    <img className="user" src={user} alt="Iamgem de perfil do administrador" />
+                    <h4>Administrador</h4>
                   </div>
                   <div className="infos">
-                    <p>ID: {"item.idUsuario"}</p>
-                    <p>E-mail: {"item.email"}</p>
+                    <p>ID:1</p>
+                    <p>E-mail:administrador@gmail.com</p>
                   </div>
                 </div>
-
                 <div className="ban">
                   <div className="banir">
                     <p>Deletar</p>
@@ -44,37 +44,14 @@ export default function CadastrarColaborador() {
               <div className="perfilBox">
                 <div className="horizontal">
                   <div className="perfil">
-                    <img className="user" src={""} alt="Iamgem de perfil do administrador" />
+                    <img className="user" src={user} alt="Iamgem de perfil do administrador" />
                     <h4>Colaborador</h4>
                   </div>
                   <div className="infos">
-                    <p>ID: {"item.idUsuario"}</p>
-                    <p>E-mail: {"item.email"}</p>
+                    <p>ID:2</p>
+                    <p>E-mail:Colaborador@gmail.com</p>
                   </div>
                 </div>
-
-                <div className="ban">
-                  <div className="banir">
-                    <p>Deletar</p>
-                    <img
-                      src={Delete}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="perfilBox">
-                <div className="horizontal">
-                  <div className="perfil">
-                    <img className="user" src={""} alt="Iamgem de perfil do administrador" />
-                    <h4>Colaborador</h4>
-                  </div>
-                  <div className="infos">
-                    <p>ID: {"item.idUsuario"}</p>
-                    <p>E-mail: {"item.email"}</p>
-                  </div>
-                </div>
-
                 <div className="ban">
                   <div className="banir">
                     <p>Deletar</p>

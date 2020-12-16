@@ -3,9 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import { parseJwt } from '../../services/token'
 import MenuMobile from '../imgsvg/menu';
 
-import xBurguer from '../../assets/x.webp';
-import logops from '../../assets/logops.webp';
-import burguerMenu from '../../assets/menumobile.webp';
+import xBurguer from '../../assets/x.jpg';
+import logops from '../../assets/logops.jpg';
+import burguerMenu from '../../assets/menumobile.jpg';
 
 import './style.css';
 

@@ -9,12 +9,11 @@ import Footer from '../../Components/Footer';
 import './style.css';
 
 // imagens
-import imglogin from '../../assets/ImagemimgLogin.webp';
+import imglogin from '../../assets/ImagemimgLogin.jpg';
 import AccessBar from '../../Components/AccessBar';
 import Header from '../../Components/Header';
 import AccessMenu from '../../Components/AccessMenu';
 import Input from '../../Components/Input';
-import ModalMensagem from '../../Components/ModalMensagem';
 
 export default function Login() {
 
@@ -31,23 +30,23 @@ const login = () =>
     if(email.length>5&&senha.length>5){
         if(email=="Administrador@gmail.com" && senha=="123123123"){
             localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBvc3NhcmxlQGdtYWlsLmNvbSIsImp0aSI6IjEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIxIiwiUm9sZSI6IjEiLCJleHAiOjE2MDY5OTkxMDUsImlzcyI6IlNlbmFpVGVjaFZhZ2FzLldlYkFwaSIsImF1ZCI6IlNlbmFpVGVjaFZhZ2FzLldlYkFwaSJ9.6Bnx7BgvHNrbON3rSwVpMgF46ChL-T50mu6d5puHBC4");
+            if (parseJwt().Role === "1") {
+                history.push("/perfil");
+            }
         }
 
         if(email=="Candidato@gmail.com" && senha=="123123123"){
             localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkRvdWdsYXNAZ21haWwuY29tIiwianRpIjoiMiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IjIiLCJSb2xlIjoiMiIsImV4cCI6MTYwNjk5ODc1NCwiaXNzIjoiU2VuYWlUZWNoVmFnYXMuV2ViQXBpIiwiYXVkIjoiU2VuYWlUZWNoVmFnYXMuV2ViQXBpIn0.-1Tqy6liFvkz-b2Ga024nyHr5FcYJJl29DER3HOWYqA");
+            if (parseJwt().Role === "2") {
+                history.push("/perfilCandidato");
+            }
         }
 
         if(email=="Empresa@gmail.com" && senha=="123123123"){
             localStorage.setItem("token","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IlNlbmFpQGdtYWlsLmNvbSIsImp0aSI6IjMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiIzIiwiUm9sZSI6IjMiLCJleHAiOjE2MDY5OTkyMDQsImlzcyI6IlNlbmFpVGVjaFZhZ2FzLldlYkFwaSIsImF1ZCI6IlNlbmFpVGVjaFZhZ2FzLldlYkFwaSJ9.NeMTGacPQ1_hK_3CfSd7nlgzhmtxN7LUAow3-jHY56o");
-        }
-        if(email=="Administrador@gmail.com"||email=="Candidato@gmail.com"||email=="Empresa@gmail.com"){
-            if (parseJwt().Role === "1") {
-                history.push("/perfil");
-            } else if (parseJwt().Role === "2") {
-                history.push("/perfilCandidato");
-            } else if (parseJwt().Role === "3") {
+            if (parseJwt().Role === "3") {
                 history.push("/perfilEmpresa");
-            }    
+            }   
         }else{
             setMensagem("Suas credencias não são válidas")
             AparecelbErro();

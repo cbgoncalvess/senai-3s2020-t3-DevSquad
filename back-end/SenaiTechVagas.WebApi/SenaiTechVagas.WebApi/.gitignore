@@ -1,9 +1,0 @@
-#.gitignore
-
-# Ignora todos os arquivos e diretórios com o nome bin
-bin/
-
-# Ignora todos os arquivos e diretórios com o nome obj
-obj/
-
-#DevSquad

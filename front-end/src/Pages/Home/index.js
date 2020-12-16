@@ -10,8 +10,8 @@ import Svg from "../../Components/imgsvg/Index";
 import Confidence from "../../Components/imgsvg/confidence";
 import Surprise from "../../Components/imgsvg/surprise";
 
-import imgPadrao from "../../assets/android-character-symbol.webp";
-import imgPerfil from "../../assets/perfil-comportamental-online.webp";
+import imgPadrao from "../../assets/android-character-symbol.jpg";
+import imgPerfil from "../../assets/perfil-comportamental-online.jpg";
 
 import "./style.css";
 

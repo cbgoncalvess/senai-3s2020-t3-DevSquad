@@ -4,16 +4,18 @@ import AccessBar from "../../Components/AccessBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 
-import imgDelete from "../../assets/delete.webp";
+import imgDelete from "../../assets/delete.jpg";
 import imgGlobal from "../../assets/global.png";
 import InfoVaga from "../../Components/InfoVaga/Index";
-import imgDesenvolvimento from "../../assets/web-programming.webp";
-import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
-import imgSalario from "../../assets/money (1).webp";
-import imgTipoContrato from "../../assets/gears.webp";
-import imgFuncao from "../../assets/rocket-launch.webp";
-import IconEmpresa from "../../assets/building.webp";
+import imgDesenvolvimento from "../../assets/web-programming.jpg";
+import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.jpg";
+import imgSalario from "../../assets/money (1).jpg";
+import imgTipoContrato from "../../assets/gears.jpg";
+import imgFuncao from "../../assets/rocket-launch.jpg";
+import IconEmpresa from "../../assets/building.jpg";
 import AccessMenu from "../../Components/AccessMenu";
+
+import user from '../../assets/images/user.jpg'
 
 import "./style.css";
 import { useHistory } from "react-router-dom";
@@ -40,11 +42,11 @@ export default function ListarCandidatosInscritos() {
             <div className="DadosInscrito">
               <img
                 className="imgUsuario"
-                src={""}
+                src={user}
                 alt="Imagem de perfil do usuario inscrito"
               />
               <div className="Column-Inscricao">
-                <h3>Douglas</h3>
+                <h3>Aléxia Melhado</h3>
                 <p className="NomeCurso">Desenvolvimento de sistemas</p>
               </div>
             </div>
@@ -62,11 +64,11 @@ export default function ListarCandidatosInscritos() {
             <div className="DadosInscrito">
               <img
                 className="imgUsuario"
-                src={""}
+                src={user}
                 alt="Imagem de perfil do usuario inscrito"
               />
               <div className="Column-Inscricao">
-                <h3>Douglas</h3>
+                <h3>André Akira</h3>
                 <p className="NomeCurso">Desenvolvimento de sistemas</p>
               </div>
             </div>
@@ -84,11 +86,11 @@ export default function ListarCandidatosInscritos() {
             <div className="DadosInscrito">
               <img
                 className="imgUsuario"
-                src={""}
+                src={user}
                 alt="Imagem de perfil do usuario inscrito"
               />
               <div className="Column-Inscricao">
-                <h3>Douglas</h3>
+                <h3>Carlos Eduardo</h3>
                 <p className="NomeCurso">Desenvolvimento de sistemas</p>
               </div>
             </div>
@@ -106,11 +108,33 @@ export default function ListarCandidatosInscritos() {
             <div className="DadosInscrito">
               <img
                 className="imgUsuario"
-                src={""}
+                src={user}
                 alt="Imagem de perfil do usuario inscrito"
               />
               <div className="Column-Inscricao">
-                <h3>Douglas</h3>
+                <h3>Douglas Mantovani</h3>
+                <p className="NomeCurso">Desenvolvimento de sistemas</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="BoxInscricao">
+            <div className="Edit-Delete">
+              <img
+                className="Delete"
+                src={imgDelete}
+                onClick={() => alert("Inscrição deletada com sucesso")}
+                alt="Botão que deleta a inscrição do usuario"
+              />
+            </div>
+            <div className="DadosInscrito">
+              <img
+                className="imgUsuario"
+                src={user}
+                alt="Imagem de perfil do usuario inscrito"
+              />
+              <div className="Column-Inscricao">
+                <h3>Marcos Tomás</h3>
                 <p className="NomeCurso">Desenvolvimento de sistemas</p>
               </div>
             </div>
@@ -127,23 +151,23 @@ export default function ListarCandidatosInscritos() {
               </h5>
               <div className="VagaCompleta">
                 <img
-                  src={""}
+                  src={user}
                   className="ImagemEmpresa"
                   alt="Imagem de perfil da empresa"
                 />
                 <div className="MainVaga">
                   <h3>Desenvolvedor Full stack</h3>
                   <div className="InfoVagas">
-                    <InfoVaga NomeProp={"razaoSocia"} source={IconEmpresa} />
-                    <InfoVaga NomeProp={"Cidade"} source={imgLocalizacao} />
-                    <InfoVaga NomeProp={"Experiencia"} source={imgFuncao} />
+                    <InfoVaga NomeProp={"SENAI Informática"} source={IconEmpresa} />
+                    <InfoVaga NomeProp={"São Paulo"} source={imgLocalizacao} />
+                    <InfoVaga NomeProp={"Júnior"} source={imgFuncao} />
                     <InfoVaga
-                      NomeProp={"TipoContrato"}
+                      NomeProp={"CLT"}
                       source={imgTipoContrato}
                     />
-                    <InfoVaga NomeProp={"Salario"} source={imgSalario} />
-                    <InfoVaga NomeProp={"Area"} source={imgDesenvolvimento} />
-                    <InfoVaga NomeProp={"TipoPresenca"} source={imgGlobal} />
+                    <InfoVaga NomeProp={"4.000"} source={imgSalario} />
+                    <InfoVaga NomeProp={"Desenvolvimento"} source={imgDesenvolvimento} />
+                    <InfoVaga NomeProp={"Presencial"} source={imgGlobal} />
                   </div>
                 </div>
               </div>

@@ -1,5 +1,5 @@
 .ImagemHeader{
-    background-image: url("../../assets/1500-0-.webp");
+    background-image: url("../../assets/1500-0-.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -41,7 +41,7 @@
    
    }
    
-   .ImagemEmpresa{height: 143px; border-radius: 55%; width: 143px;}
+   .ImagemEmpresa{height: 100px; border-radius: 100px; width: 100px;}
    
    body > div > div.ListaDeVagas > div > div.Edit-Delete > a{
    font-size: 12px;

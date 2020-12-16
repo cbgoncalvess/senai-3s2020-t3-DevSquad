@@ -5,8 +5,9 @@ import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
 
 import "./style.css";
-import Refresh from "../../assets/images/refresh.webp";
+import Refresh from "../../assets/images/refresh.jpg";
 import AccessMenu from "../../Components/AccessMenu";
+import user from '../../assets/images/user.jpg'
 
 export default function ListaBanidos() {
   return (
@@ -22,13 +23,13 @@ export default function ListaBanidos() {
             <div className="banido">
               <img
                 className="user"
-                src={""}
+                src={user}
                 alt="Imagem de perfil do usuario"
               />
               <h4>Marcelo Fontes</h4>
             </div>
             <div className="info">
-              <p>ID:100</p>
+              <p>ID:1</p>
               <p>E-mail:Marcelo@gmail.com</p>
             </div>
           </div>
@@ -51,13 +52,13 @@ export default function ListaBanidos() {
             <div className="banido">
               <img
                 className="user"
-                src={""}
+                src={user}
                 alt="Imagem de perfil do usuario"
               />
               <h4>Marcelo Fontes</h4>
             </div>
             <div className="info">
-              <p>ID:100</p>
+              <p>ID:2</p>
               <p>E-mail:Marcelo@gmail.com</p>
             </div>
           </div>
@@ -80,13 +81,13 @@ export default function ListaBanidos() {
             <div className="banido">
               <img
                 className="user"
-                src={""}
+                src={user}
                 alt="Imagem de perfil do usuario"
               />
               <h4>Marcelo Fontes</h4>
             </div>
             <div className="info">
-              <p>ID:100</p>
+              <p>ID:3</p>
               <p>E-mail:Marcelo@gmail.com</p>
             </div>
           </div>
@@ -109,13 +110,13 @@ export default function ListaBanidos() {
             <div className="banido">
               <img
                 className="user"
-                src={""}
+                src={user}
                 alt="Imagem de perfil do usuario"
               />
               <h4>Marcelo Fontes</h4>
             </div>
             <div className="info">
-              <p>ID:100</p>
+              <p>ID:4</p>
               <p>E-mail:Marcelo@gmail.com</p>
             </div>
           </div>

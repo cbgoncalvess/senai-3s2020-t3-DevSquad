@@ -7,14 +7,16 @@ import AccessMenu from "../../Components/AccessMenu";
 
 import "./style.css";
 import Tag from "../../Components/Tag/Index";
-import imgDesenvolvimento from "../../assets/web-programming.webp";
-import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
+import imgDesenvolvimento from "../../assets/web-programming.jpg";
+import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.jpg";
 import imgGlobal from "../../assets/global.png";
-import imgSalario from "../../assets/money (1).webp";
-import imgTipoContrato from "../../assets/gears.webp";
-import imgFuncao from "../../assets/rocket-launch.webp";
-import IconEmpresa from "../../assets/building.webp";
+import imgSalario from "../../assets/money (1).jpg";
+import imgTipoContrato from "../../assets/gears.jpg";
+import imgFuncao from "../../assets/rocket-launch.jpg";
+import IconEmpresa from "../../assets/building.jpg";
 import InfoVaga from "../../Components/InfoVaga/Index";
+
+import user from '../../assets/images/user.jpg'
 
 export default function VizualizarCandidatosAprovados() {
   return (
@@ -34,20 +36,18 @@ export default function VizualizarCandidatosAprovados() {
       >
         <div className="VagaCompleta">
           <img
-            src={
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6NAVoV-pbGXsmDghOSFajt5UU1VhqgVvB4w&usqp=CAU"
-            }
+            src={user}
             className="ImagemEmpresa"
             alt="Imagem de perfil"
           ></img>
           <div className="MainVaga">
-            <h3 className="UnderlineText">{"Desenvolvedor Full stack"}</h3>
+            <h3 >{"Desenvolvedor Full stack"}</h3>
             <div className="InfoVagas">
               <InfoVaga NomeProp={"SENAI Informática"} source={IconEmpresa} />
               <InfoVaga NomeProp={"São Paulo"} source={imgLocalizacao} />
               <InfoVaga NomeProp={"Júnior"} source={imgFuncao} />
               <InfoVaga NomeProp={"CLT"} source={imgTipoContrato} />
-              <InfoVaga NomeProp={"5.000"} source={imgSalario} />
+              <InfoVaga NomeProp={"4.000"} source={imgSalario} />
               <InfoVaga
                 NomeProp={"Desenvolvimento"}
                 source={imgDesenvolvimento}
@@ -70,12 +70,12 @@ export default function VizualizarCandidatosAprovados() {
           <div className="CabecaInscricao">
             <img
               className="imgperfilInscricao"
-              src={"imf"}
+              src={user}
               alt="ImagemPerfil"
             />
-            <h3>{"Douglas"}</h3>
+            <h3>{"Douglas Mantovani"}</h3>
             <hr className="hr" />
-            <h5>{"Desenvolvimento de sistema"}</h5>
+            <h5>{"Desenvolvimento de sistemas"}</h5>
           </div>
           <div className="CorpoInscricao">
             <Tag NomeTag={"E-mail:Douglas@gmail.com"}></Tag>
@@ -86,15 +86,15 @@ export default function VizualizarCandidatosAprovados() {
           <div className="CabecaInscricao">
             <img
               className="imgperfilInscricao"
-              src={"imf"}
+              src={user}
               alt="ImagemPerfil"
             />
-            <h3>{"Douglas"}</h3>
+            <h3>{"Aléxia Melhado"}</h3>
             <hr className="hr" />
-            <h5>{"Desenvolvimento de sistema"}</h5>
+            <h5>{"Desenvolvimento de sistemas"}</h5>
           </div>
           <div className="CorpoInscricao">
-            <Tag NomeTag={"E-mail:Douglas@gmail.com"}></Tag>
+            <Tag NomeTag={"E-mail:Alexia@gmail.com"}></Tag>
             <Tag NomeTag={"Telefone:40028922"}></Tag>
           </div>
         </div>
@@ -102,31 +102,49 @@ export default function VizualizarCandidatosAprovados() {
           <div className="CabecaInscricao">
             <img
               className="imgperfilInscricao"
-              src={"imf"}
+              src={user}
               alt="ImagemPerfil"
             />
-            <h3>{"Douglas"}</h3>
+            <h3>{"André Akira"}</h3>
             <hr className="hr" />
-            <h5>{"Desenvolvimento de sistema"}</h5>
+            <h5>{"Desenvolvimento de sistemas"}</h5>
           </div>
           <div className="CorpoInscricao">
-            <Tag NomeTag={"E-mail:Douglas@gmail.com"}></Tag>
+            <Tag NomeTag={"E-mail:Andre@gmail.com"}></Tag>
             <Tag NomeTag={"Telefone:40028922"}></Tag>
           </div>
         </div>
+
         <div className="Inscricao">
           <div className="CabecaInscricao">
             <img
               className="imgperfilInscricao"
-              src={"imf"}
+              src={user}
               alt="ImagemPerfil"
             />
-            <h3>{"Douglas"}</h3>
+            <h3>{"Carlos Eduardo"}</h3>
             <hr className="hr" />
-            <h5>{"Desenvolvimento de sistema"}</h5>
+            <h5>{"Desenvolvimento de sistemas"}</h5>
           </div>
           <div className="CorpoInscricao">
-            <Tag NomeTag={"E-mail:Douglas@gmail.com"}></Tag>
+            <Tag NomeTag={"E-mail:Carlos@gmail.com"}></Tag>
+            <Tag NomeTag={"Telefone:40028922"}></Tag>
+          </div>
+        </div>
+
+        <div className="Inscricao">
+          <div className="CabecaInscricao">
+            <img
+              className="imgperfilInscricao"
+              src={user}
+              alt="ImagemPerfil"
+            />
+            <h3>{"Marcos Tomás"}</h3>
+            <hr className="hr" />
+            <h5>{"Desenvolvimento de sistemas"}</h5>
+          </div>
+          <div className="CorpoInscricao">
+            <Tag NomeTag={"E-mail:Marcos@gmail.com"}></Tag>
             <Tag NomeTag={"Telefone:40028922"}></Tag>
           </div>
         </div>
