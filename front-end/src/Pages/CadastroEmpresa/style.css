@@ -148,6 +148,16 @@ grid-area: 2 / 2 / 4 / 4;
 }
 
 .preto .form-content,
-.preto div.box-form > div > h1 {
+.preto div.box-form > div > h1 ,
+.preto body > div.registerCompany > div.box-form > div > div{
   background: #373737 !important;
+}
+
+.preto body > div.registerCompany > div.box-form > div > div > button > label{
+  color: yellow !important;
+  text-decoration: underline;
+}
+
+.preto body > div.registerCompany > div.box-form > div > form > div:nth-child(n) > label{
+  color: white !important;
 }

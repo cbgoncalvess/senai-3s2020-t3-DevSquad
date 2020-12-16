@@ -265,8 +265,7 @@ export default function PerfilAdm() {
             <div className="flexBoxPerfil">
               <img
                 className="imgUsuario"
-                src={
-user                }
+                src={user}
                 alt="Imagem de perfil do usuario"
               />
               <div className="ColumnNomeEmail">

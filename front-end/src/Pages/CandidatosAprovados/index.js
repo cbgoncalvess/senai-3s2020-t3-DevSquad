@@ -15,7 +15,6 @@ import imgTipoContrato from "../../assets/gears.jpg";
 import imgFuncao from "../../assets/rocket-launch.jpg";
 import IconEmpresa from "../../assets/building.jpg";
 import InfoVaga from "../../Components/InfoVaga/Index";
-
 import user from '../../assets/images/user.jpg'
 
 export default function VizualizarCandidatosAprovados() {

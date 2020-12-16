@@ -450,14 +450,22 @@
 .preto #MainContent_Carrossel_rptDescricao_lnk_3 > div > *,
 .preto #MainContent_DestaquesHome_rptDescricao_lnk_0 > div > *,
 .preto .BtnStartEmpresa,
-.preto .BtnStartCandidato{
+.preto .BtnStartCandidato,
+.preto #root > div > div.bodyPart > div.QuadroDeVagas > div > div:nth-child(n) > div.LinkVaga > h4,
+.preto #root > div > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button > h2,
+.preto #root > div > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button > h2{
     color: yellow !important;
     text-decoration-line: underline !important;
     transition: all .3s ease 0s;
 }
 
 
-.preto .botaoflutuante, .preto .botaoflutuante1, .preto .header, .preto div>div>div>div, .preto .none1, .preto .menumodal{
+.preto .botaoflutuante, .preto .botaoflutuante1, .preto .header, .preto .none1, .preto .menumodal, 
+.preto #root > div > div.bodyPart > div.QuadroDeVagas > div > div:nth-child(n),
+.preto #root > div > div.bodyPart > div.QuadroDeVagas > div > div:nth-child(n) > div.Space,
+.preto #root > div > div.bodyPart > div.QuadroDeVagas > div > div:nth-child(n) > div.Space > div,
+.preto #root > div > div.bodyPart > div.QuadroDeVagas > div > div:nth-child(n) > div.LinkVaga,
+.preto #root > div > div.bodyPart > div.Depoimentos > div > div:nth-child(n){
   background: #373737 !important;
 }
 

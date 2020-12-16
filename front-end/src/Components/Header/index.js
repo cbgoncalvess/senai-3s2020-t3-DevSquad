@@ -54,11 +54,11 @@ export default function Header() {
             <header>
                 <div className="header">
                     <Link to="/" title="Logomarca da empresa TechVagas. Home SENAI TechVagas">
-                        <img src={logops} className="logo" alt="" />
+                        <img src={logops} className="logo" alt="Logo marca do projecto SENAI TechVagas" />
                     </Link>
                     <nav className="navbar">
-                        <ul id="menu">
-                            <li><Link to="/">Home</Link></li>
+                        <ul>
+                            <li><Link to="/" id="menu">Home</Link></li>
                             <li><Link to="/sobre">Sobre</Link></li>
                             <li><Link className="botao" to="/login">Login</Link></li>
                             <li><Link className="botao1" to="/cadastro">Cadastro</Link></li>
@@ -79,8 +79,11 @@ export default function Header() {
                         />
                         <ul id="menu-hide" className="none">
                             <li><Link to="/">Home</Link></li>
+                            <hr/>
                             <li><Link to="/sobre">Sobre</Link></li>
+                            <hr/>
                             <li><Link className="botao" to="/login">Login</Link></li>
+                            <hr/>
                             <li><Link className="botao1" to="/cadastro">Cadastro</Link></li>
                         </ul>
                     </nav>

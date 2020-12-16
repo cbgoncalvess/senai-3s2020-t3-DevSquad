@@ -3,6 +3,8 @@ import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
 
 import "./style.css";
+
+import User from "../../assets/images/user.jpg";
 import Delete from "../../assets/images/cancel.jpg";
 import Input from "../../Components/Input";
 import AccessBar from "../../Components/AccessBar";

@@ -12,7 +12,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f3f3f3;}
+    background-color: #f3f3f3;
+}
 
 .sessaoLogar{
     display: flex;
@@ -185,3 +186,26 @@
 .imgBannerLogin {width: 50%;}
 }
 
+/* access */
+
+.preto #root > div > main{
+    background: black !important;
+}
+
+.preto #root > div > main > section > div{
+    background: #373737;
+}
+
+.preto #root > div > main > section > div > div.division-logar-title > h2{
+    color: #005767 !important;
+}
+
+.preto #root > div > main > section > div > form > div:nth-child(n) > label,
+.preto #root > div > main > section > div > div.division-logar-title > p{
+    color: white !important;
+}
+
+.preto #root > div > main > section > div > div.divisionBtn > button.btnLogar{
+    color: yellow !important;
+    text-decoration: underline !important;
+}
