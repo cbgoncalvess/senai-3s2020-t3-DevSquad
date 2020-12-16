@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import imgDelete from "../../assets/delete.webp";
+import imgDelete from "../../assets/delete.jpg";
 import { useHistory } from "react-router-dom";
 
 import Header from "../../Components/Header";

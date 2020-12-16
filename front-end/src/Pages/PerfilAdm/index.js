@@ -7,7 +7,7 @@ import AccessBar from '../../Components/AccessBar';
 import AccessMenu from '../../Components/AccessMenu';
 import Input from '../../Components/Input/index';
 
-import imgDelete from '../../assets/delete.webp'
+import imgDelete from '../../assets/delete.jpg'
 
 import './style.css';
 

@@ -124,8 +124,8 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: 33%;
-      height: 60vh;
+      width: 100%;
+      height: auto;
       background: white;
       -webkit-background-size: 100% 3vw;
       -moz-background-size: 100% 3vw;
@@ -139,10 +139,11 @@
       flex-direction: column;
       position: relative;
       top: 5%;
-      align-items: flex-start;
+      align-items: center;
       height: -webkit-fill-available;
       justify-content: space-evenly;
     }
+    
     #menu-hide > li > a{
       color: #2A2E32;
       font-size: 3vw;
@@ -240,4 +241,25 @@
       top: 0;
       right: 0;
     }
+  }
+
+
+  #menu-hide > li:nth-child(n) > a, 
+  #menu-hide > li:nth-child(3) > a{
+    height: -webkit-fill-available;
+    height: -moz-fill-available;
+  }
+
+  #menu-hide > li:nth-child(n){
+    text-align: center;
+  }
+  
+  #menu-hide > li:nth-child(n){
+    width: -webkit-fill-available;
+    width: -moz-fill-available;
+    height: 50px;
+  }
+
+  #menu-hide > li:nth-child(7) > a{
+    color: white;
   }

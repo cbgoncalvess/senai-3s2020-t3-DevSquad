@@ -9,12 +9,12 @@ import Footer from "../../Components/Footer";
 import Tag from "../../Components/Tag/Index";
 import InfoVaga from "../../Components/InfoVaga/Index";
 import imgGlobal from "../../assets/global.png";
-import imgDesenvolvimento from "../../assets/web-programming.webp";
-import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
-import imgSalario from "../../assets/money (1).webp";
-import imgTipoContrato from "../../assets/gears.webp";
-import imgFuncao from "../../assets/rocket-launch.webp";
-import IconEmpresa from "../../assets/building.webp";
+import imgDesenvolvimento from "../../assets/web-programming.jpg";
+import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.jpg";
+import imgSalario from "../../assets/money (1).jpg";
+import imgTipoContrato from "../../assets/gears.jpg";
+import imgFuncao from "../../assets/rocket-launch.jpg";
+import IconEmpresa from "../../assets/building.jpg";
 
 import "./style.css";
 

@@ -6,7 +6,7 @@ import AccessMenu from "../../Components/AccessMenu";
 import Footer from "../../Components/Footer";
 import Lock from "../../Components/imgsvg/lock";
 
-import Techvagas from "../../assets/logops.webp";
+import Techvagas from "../../assets/logops.jpg";
 import { parseJwt } from "../../services/token";
 
 import "./style.css";

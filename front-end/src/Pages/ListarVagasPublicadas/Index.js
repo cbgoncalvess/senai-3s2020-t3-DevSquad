@@ -6,17 +6,17 @@ import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import Input from "../../Components/Input";
 
-import imgDelete from "../../assets/delete.webp";
+import imgDelete from "../../assets/delete.jpg";
 import imgGlobal from "../../assets/global.png";
-import imgEdit from "../../assets/black-ink-pen.webp";
+import imgEdit from "../../assets/black-ink-pen.jpg";
 import Tag from "../../Components/Tag/Index";
 import InfoVaga from "../../Components/InfoVaga/Index";
-import imgDesenvolvimento from "../../assets/web-programming.webp";
-import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
-import imgSalario from "../../assets/money (1).webp";
-import imgTipoContrato from "../../assets/gears.webp";
-import imgFuncao from "../../assets/rocket-launch.webp";
-import IconEmpresa from "../../assets/building.webp";
+import imgDesenvolvimento from "../../assets/web-programming.jpg";
+import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.jpg";
+import imgSalario from "../../assets/money (1).jpg";
+import imgTipoContrato from "../../assets/gears.jpg";
+import imgFuncao from "../../assets/rocket-launch.jpg";
+import IconEmpresa from "../../assets/building.jpg";
 import AccessMenu from "../../Components/AccessMenu";
 
 import "./style.css";

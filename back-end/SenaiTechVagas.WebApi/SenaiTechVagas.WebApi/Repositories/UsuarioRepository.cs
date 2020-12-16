@@ -31,7 +31,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     senha = Crypter.Criptografador(senha);
                     return ctx.Usuario.FirstOrDefault(u => u.Email == email && u.Senha == senha);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return null;
                 }

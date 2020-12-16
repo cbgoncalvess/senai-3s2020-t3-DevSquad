@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 // style
 import "./visualizarvaga.css";
 
-import imgteste from "../../assets/Teste.webp";
+import imgteste from "../../assets/Teste.jpg";
 
 // components
 import Tag from "../../Components/Tag/Index";
@@ -14,13 +14,13 @@ import Header from "../../Components/Header";
 import AccessMenu from "../../Components/AccessMenu";
 
 // imagens
-import imgDesenvolvimento from "../../assets/web-programming.webp";
+import imgDesenvolvimento from "../../assets/web-programming.jpg";
 import imgGlobal from "../../assets/global.png";
-import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
-import imgSalario from "../../assets/money (1).webp";
-import imgTipoContrato from "../../assets/gears.webp";
-import imgFuncao from "../../assets/rocket-launch.webp";
-import IconEmpresa from "../../assets/building.webp";
+import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.jpg";
+import imgSalario from "../../assets/money (1).jpg";
+import imgTipoContrato from "../../assets/gears.jpg";
+import imgFuncao from "../../assets/rocket-launch.jpg";
+import IconEmpresa from "../../assets/building.jpg";
 import { useHistory } from "react-router-dom";
 
 export default function VisualizarVaga() {

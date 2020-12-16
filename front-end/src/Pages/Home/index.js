@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory,Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -10,8 +10,8 @@ import Svg from "../../Components/imgsvg/Index";
 import Confidence from "../../Components/imgsvg/confidence";
 import Surprise from "../../Components/imgsvg/surprise";
 
-import imgPadrao from "../../assets/android-character-symbol.webp";
-import imgPerfil from "../../assets/perfil-comportamental-online.webp";
+import imgPadrao from "../../assets/android-character-symbol.jpg";
+import imgPerfil from "../../assets/perfil-comportamental-online.jpg";
 
 import "./style.css";
 
@@ -38,8 +38,7 @@ export default function Home() {
 
           <div className="EmpresaCandidato">
             <div className="Empresa">
-              <p>Empresas com interesse de divulgar </p>
-              <p>oportunidades</p>
+              <p>Empresas com interesse de divulgar <br />oportunidades</p>
               <br />
               <div>
                 <Link to="/cadastro/empresa">
@@ -51,8 +50,7 @@ export default function Home() {
             </div>
 
             <div className="Candidato">
-              <p>Alunos que acabaram de ingressar</p>
-              <p>no curso</p>
+              <p>Alunos que escolheram ingressar<br />no curso</p>
               <br />
               <div>
                 <Link to="/cadastro">
@@ -68,29 +66,29 @@ export default function Home() {
           <div className="ColumnImages">
             <Svg />
             <h2>Profissionalismo</h2>
-            <p>Um dos principais pilares da nossa</p>
-            <p>aplicação para demosntrar nosso</p>
-            <p>compromisso o aluno e a empresa</p>
+            <p>Um dos principais pilares da nossa<br />
+            aplicação, demonstramos o  nosso<br />
+            compromisso com o aluno e com a empresa</p>
           </div>
           <div className="ColumnImages">
             <Confidence />
             <h2>Confiança</h2>
-            <p>Taxa de empregabilidade supera 80% entre</p>
-            <p>profissionais que concluíram cursos em </p>
-            <p>áreas de tecnologia da informaçãos</p>
+            <p>Taxa de empregabilidade supera 80% entre<br />
+            profissionais que concluíram cursos em <br />
+            áreas da tecnologia da informação</p>
           </div>
           <div className="ColumnImages">
             <Surprise />
             <h2>Surpresa</h2>
-            <p>Quando você menos espera...</p>
-            <p>VOCÊ FOI ACEITO! A plataforma faz com </p>
-            <p>que você tratalhe seus potenciais</p>
+            <p>Quando você menos espera:<br />
+            Você foi aceito! A plataforma faz com <br />
+            que você trabalhe seus potenciais</p>
           </div>
         </div>
         <div className="QuadroDeVagas">
           <br />
           <h2>Quadro de vagas</h2>
-          <p>Aqui você encontra as melhores vagas disponiveis</p>
+          <p>Aqui você encontra as melhores vagas disponíveis</p>
           <br />
           <div className="BoxDeVagas">
             <div className="Vaga">
@@ -100,7 +98,7 @@ export default function Home() {
                 <br />
                 <hr className="hr" />
                 <br />
-                <h4>Desenvolvedor Back-end Jr</h4>
+                <h4>Desenvolvedor Back-end Jr.</h4>
                 <br />
                 <div className="Tecnologias">
                   <Tag NomeTag={"Fluther"}></Tag>
@@ -111,7 +109,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="LinkVaga">
-                <h4 className="UnderlineText" onClick={()=>history.push("/login")}>Ver mais sobre a vaga</h4>
+                <h4 className="UnderlineText" onClick={() => history.push("/login")}>Ver mais sobre a vaga</h4>
               </div>
             </div>
             <div className="Vaga">
@@ -121,7 +119,7 @@ export default function Home() {
                 <br />
                 <hr className="hr" />
                 <br />
-                <h4>Desenvolvedor Back-end Jr</h4>
+                <h4>Desenvolvedor Back-end Jr.</h4>
                 <br />
                 <div className="Tecnologias">
                   <Tag NomeTag={"Angular"}></Tag>
@@ -133,7 +131,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="LinkVaga">
-              <h4 className="UnderlineText" onClick={()=>history.push("/login")}>Ver mais sobre a vaga</h4>
+                <h4 className="UnderlineText" onClick={() => history.push("/login")}>Ver mais sobre a vaga</h4>
               </div>
             </div>
             <div className="Vaga">
@@ -143,7 +141,7 @@ export default function Home() {
                 <br />
                 <hr className="hr" />
                 <br />
-                <h4>Desenvolvedor Back-end Jr</h4>
+                <h4>Desenvolvedor Back-end Jr.</h4>
                 <br />
                 <div className="Tecnologias">
                   <Tag NomeTag={"NodeJs"}></Tag>
@@ -156,7 +154,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="LinkVaga">
-              <h4 className="UnderlineText" onClick={()=>history.push("/login")}>Ver mais sobre a vaga</h4>
+                <h4 className="UnderlineText" onClick={() => history.push("/login")}>Ver mais sobre a vaga</h4>
               </div>
             </div>
           </div>
@@ -165,24 +163,19 @@ export default function Home() {
 
         <div className="TesteDePersonalidade">
           <div className="imgTeste">
-            <img src={imgPerfil} alt="Imagem do teste de personalidade" />
+            <img src={imgPerfil} alt="Imagem do teste de personalidade ilustrando quatro animais. Uma águia, um lobo, um tubarão e um gato." />
           </div>
           <div className="TextoTeste">
             <br />
             <h2>Teste de perfil comportamental</h2>
             <p>
-              As características do mundo animal também podem ser usadas no
-              mundo corporativo.
+              As características do mundo animal, também, podem ser usadas no mundo corporativo.
+            <br />
+É possível traçar: o perfil de personalidade de cada pessoa e o tipo de personalidade, a partir de um mapa comportamental.
+<br />
+Este teste relaciona às características de um animal ao comportamento humano, apontando pontos positivos e negativos,
+<br />do nosso comportamento.
             </p>
-            <p>
-              É possível traçar o perfil de personalidade de cada pessoa e tipo
-              de personalidade, a partir de mapa comportamental.
-            </p>
-            <p>
-              Este teste indica o animal que nos humanos seríamos no ambiente de
-              trabalho, apontando pontos positivos e negativos
-            </p>
-            <p>do nosso comportamento.</p>
             <br />
             <h4>Você é uma Águia, Lobo, Gato ou Tubarão?</h4>
             <h4>Faça o teste e descubra!</h4>
@@ -206,34 +199,17 @@ export default function Home() {
           <div className="BoxDepoimentos">
             <div className="BoxTexto">
               <div className="Depo">
-                <p>“Fui aluno do SENAI Informática de </p>
-                <p>1999, mas ainda tenho ótimas </p>
-                <p>memórias da época de estudei lá. </p>
-                <p>Hoje sou CEO da Itaú Personalitte e </p>
-                <p>tudo graças ao maravilhoso curso </p>
-                <p>técnico de desenvolviment de </p>
-                <p>sistemas. Só tenho a agradecer essa</p>
-                <p>maravilhoso instituição que pôde me</p>
-                <p>dar essa oportunidade de crescer </p>
-                <p>como profissional e como ser </p>
-                <p>humano.</p>
-                <p>Muito sucesso para a equipe SENAI!”</p>
+                <p>"Um dos grandes diferenciais do Senai é  proporcionar o Ensino Fundamentado efetivo, onde alunos e professores vivenciam o cotidiano do mercado de trabalho com experiências em projetos reais. Fornece uma estrutura e administração  inovadora possibilitando o desenvolvimento técnico e humano de nossos alunos."</p>
               </div>
-              <h5 className="NomeDepo">Alberto Blablabla - CEO Itaú</h5>
+              <h5 className="NomeDepo">Priscila Medeiro - Orientadora do Projeto</h5>
             </div>
 
             <div className="BoxTexto">
               <div className="Depo">
-                <p>“SENAI foi muito importante para a </p>
-                <p>minha formação. Comecei fazendo </p>
-                <p>cursos de redes e hoje trabalho</p>
-                <p>instalando roteadores de fibra ótica</p>
-                <p>da vivo.</p>
-                <p>Muito obrigado SENAI por fazer isso</p>
-                <p>ser possível! :)”</p>
+                <p>"Tive o imenso prazer de contribuir no aprendizado destas pessoas incríveis e queridas, onde apesar do pouco tempo pude notar um potencial enorme. Fico muito feliz em ver os resultados alcançados e sei que este é apenas o começo de um futuro brilhante. Sucesso pra vocês!"</p>
               </div>
               <h5 className="NomeDepo">
-                Reinaldo Blablabla - Analista de Redes
+                Saulo Santos - Instrutor e Desenvolvedor da Escola SENAI de Informática
               </h5>
             </div>
 

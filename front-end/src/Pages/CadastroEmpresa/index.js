@@ -8,8 +8,8 @@ import Input from "../../Components/Input";
 import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
 
-import imagemCadastroEmpresa from "../../assets/imgCadastroEmpresa.webp";
-import Userimg from "../../assets/Teste.webp";
+import imagemCadastroEmpresa from "../../assets/imgCadastroEmpresa.jpg";
+import Userimg from "../../assets/Teste.jpg";
 
 import "./style.css";
 

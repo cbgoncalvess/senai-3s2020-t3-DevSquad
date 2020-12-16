@@ -187,3 +187,18 @@ body > div.registerCompany > div.box-form > div > div > button > label{
 .btSelecionar{
   background: transparent !important;
 }
+
+/* access */
+
+.preto body > div.registerApplicant > div.box-form > div > div{
+  background: #373737 !important;
+}
+
+.preto body > div.registerApplicant > div.box-form > div > form > div:nth-child(n) > label{
+  color: white !important;
+}
+
+.preto body > div.registerApplicant > div.box-form > div > div > button > label{
+  color: yellow !important;
+  text-decoration: underline;
+}

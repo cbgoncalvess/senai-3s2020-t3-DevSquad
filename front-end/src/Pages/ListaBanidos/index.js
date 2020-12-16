@@ -6,8 +6,8 @@ import Header from '../../Components/Header';
 
 import './style.css';
 
-import User from '../../assets/images/user.webp';
-import Refresh from '../../assets/images/refresh.webp';
+import User from '../../assets/images/user.jpg';
+import Refresh from '../../assets/images/refresh.jpg';
 import AccessMenu from '../../Components/AccessMenu';
 
 export default function ListaBanidos() {

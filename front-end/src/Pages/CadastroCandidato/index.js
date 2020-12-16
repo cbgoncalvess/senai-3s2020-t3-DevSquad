@@ -7,10 +7,10 @@ import AccessMenu from "../../Components/AccessMenu";
 import Input from "../../Components/Input";
 import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
-import Userimg from '../../assets/images/user.webp'
+import Userimg from '../../assets/images/user.jpg'
 
 
-import imagemCadastroCandidato from "../../assets/imgCadastroCandidato.webp";
+import imagemCadastroCandidato from "../../assets/imgCadastroCandidato.jpg";
 
 import "./style.css";
 

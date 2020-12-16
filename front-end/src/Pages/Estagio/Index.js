@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {useHistory } from 'react-router-dom'
 
-import imgDelete from "../../assets/delete.webp";
-import imgEdit from "../../assets/black-ink-pen.webp";
-import imgEnterprise from "../../assets/enterprise.webp";
-import imgCertificate from "../../assets/certificate.webp";
-import imgWorker from "../../assets/worker.webp";
+import imgDelete from "../../assets/delete.jpg";
+import imgEdit from "../../assets/black-ink-pen.jpg";
+import imgEnterprise from "../../assets/enterprise.jpg";
+import imgCertificate from "../../assets/certificate.jpg";
+import imgWorker from "../../assets/worker.jpg";
 
 import "./style.css";
 

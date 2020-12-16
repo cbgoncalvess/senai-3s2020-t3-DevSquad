@@ -61,7 +61,7 @@
 
 .divisionCampo > label{color: #5f5f5f; font-weight: 600;}
 
-.inputUser{background-image: url('../../assets//user\ 1.webp');}
+.inputUser{background-image: url('../../assets//user\ 1.jpg');}
 
 .inputUser, .inputPassword{ 
     padding-left: 1em;   
@@ -183,4 +183,28 @@
 .principalLogin {padding: 0px 0em !important;}
 .divisionBtn{width: 300.8px !important;}
 .imgBannerLogin {width: 50%;}
+}
+
+/* access */
+
+.preto #root > div > main{
+    background: black !important;
+}
+
+.preto #root > div > main > section > div{
+    background: #373737;
+}
+
+.preto #root > div > main > section > div > div.division-logar-title > h2{
+    color: #005767 !important;
+}
+
+.preto #root > div > main > section > div > form > div:nth-child(n) > label,
+.preto #root > div > main > section > div > div.division-logar-title > p{
+    color: white !important;
+}
+
+.preto #root > div > main > section > div > div.divisionBtn > button.btnLogar{
+    color: yellow !important;
+    text-decoration: underline !important;
 }
