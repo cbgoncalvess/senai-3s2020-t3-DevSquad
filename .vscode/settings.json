@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/98a58876-0e74-4892-8f65-3ae924e1369c/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/senaitechvagas",
-    "appService.deploySubpath": "front-end\\build"
-}
