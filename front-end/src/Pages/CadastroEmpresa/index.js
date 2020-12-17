@@ -104,13 +104,13 @@ export default function CadastroEmpresa() {
 
   function salvar(e) {
     e.preventDefault();
-    if (Senha !== ConfirmarSenha) {
-      alert("As senhas são difererentes");
-    } else if (verificacaoEmail !== true) {
-      alert("O e-mail deve ser válido");
-    } else if (verificacaoSenha !== true) {
-      alert("A senha não atende aos requisitos");
-    } else {
+    // if (Senha !== ConfirmarSenha) {
+    //   alert("As senhas são difererentes");
+    // } else if (verificacaoEmail !== true) {
+    //   alert("O e-mail deve ser válido");
+    // } else if (verificacaoSenha !== true) {
+    //   alert("A senha não atende aos requisitos");
+    // } else {
       const data = {
         NomeReponsavel: NomeResponsavel,
         Cnpj: CNPJ,
@@ -148,7 +148,6 @@ export default function CadastroEmpresa() {
           }
         })
         .catch((err) => console.error(err));
-    }
   }
 
   const uploadFile = (event) => {

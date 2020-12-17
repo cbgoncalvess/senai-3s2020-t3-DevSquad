@@ -28,11 +28,12 @@
 
 .infoVagaVisualizar {
     display: flex;
+    justify-content: center;
     align-items: center;
     border: none;
     width: 1194px;
     margin: 4em 0px;
-    background: #f0f0f0;
+    background: #ffffff;
     border-radius: 4px;}
 
 .icard-division {
@@ -42,10 +43,10 @@
 
 .divisionTagsVagas {
     margin: 0px 4em;
-    height: 11vh;
+    height: 25vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;}
 
 .card-vaga-info {
@@ -54,14 +55,13 @@
     align-items: center;}
 
 .sessao-svempresa {
-    
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;}
+    align-items: flex-start;}
 
 .descri-empresa, .descri-vaga {
-    width: 1194px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -129,18 +129,26 @@
     font-weight: 600;
     margin: 27px 0px;}
 
-    .preto .infoVagaVisualizar{
-        background: #373737 !important;
-    }
+.preto .infoVagaVisualizar{background: #373737 !important;}
 
-    .preto .sessaoVisualizarVaga{
-        background: transparent !important;
-    }
+.preto .sessaoVisualizarVaga{background: transparent !important;}
 
-    .preto .imgBannerDescriVaga{
-        border-bottom: solid 1px white;
-    }
+.preto .imgBannerDescriVaga{border-bottom: solid 1px white;}
 
-    .preto .divisionBeneVaga{
-        border-top: 1px white solid;
-    }
+.preto .divisionBeneVaga{border-top: 1px white solid;}
+
+@media only screen and (max-width: 450px) {
+.ImagemEmpresa {margin-top: 1em !important;}
+.icard-division {flex-direction: column;}
+.divisionTagsVagas {flex-direction: row;justify-content: center;}
+.card-vaga-info {align-items: flex-start;flex-direction: column;}
+  }
+@media only screen and (max-width: 720px) {
+.ImagemEmpresa {margin-top: 1em !important;}
+.icard-division {flex-direction: column;}
+  }
+
+@media only screen and (max-width: 320px) {.divisionTagsVagas {height: 25vh;}}
+@media only screen and (max-width: 1321px) {.sessao-svempresa {width: 96% !important;}}
+@media only screen and (max-width: 3000px) {.sessao-svempresa {width: 1194px;}}
+@media only screen and (max-width: 1194px) {.infoVagaVisualizar{width: 96vw;}}
