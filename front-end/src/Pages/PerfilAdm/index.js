@@ -20,6 +20,9 @@ export default function PerfilAdm() {
     let [Opcao, SetOpcao] = useState('');
     const[CaminhoImagem,setCaminho]=useState('');
 
+    const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{9,15})/g;
+    const verificacaoSenha = senhaRegex.test(NovaSenha);
+
     useEffect(() => {
         BuscarImagem();
       }, []);
@@ -131,17 +134,21 @@ const DeletarVaga = (id) => {
             email: Email,
             senha: NovaSenha
         };
-        fetch('http://localhost:5000/api/Administrador/AlterarSenhaDeQualquerUsuario', {
-            method: 'PUT',
-            body: JSON.stringify(form),
-            headers: {
-                'content-type': 'application/json',
-                authorization: 'Bearer ' + localStorage.getItem('token')
-            }
-        }).then(response => response.json())
-        .then(dados => {
-            alert(dados);
-        }).catch(err => console.error(err));
+        if(verificacaoSenha !== true){
+            alert('A(s) senha(s) não confere(m) com o padrão solicitado');
+        }else{
+            fetch('http://localhost:5000/api/Administrador/AlterarSenhaDeQualquerUsuario', {
+                method: 'PUT',
+                body: JSON.stringify(form),
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then(response => response.json())
+            .then(dados => {
+                alert(dados);
+            }).catch(err => console.error(err));
+        }
     }
 
     function ApareceAlterarSenha() {

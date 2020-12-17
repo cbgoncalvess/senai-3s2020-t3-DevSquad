@@ -32,15 +32,14 @@ export default function CadastroEmpresa() {
   const history = useHistory();
 
   const emailRegex = /^\S+@\S+\.\S+$/g;
-  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{8,})/g;
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{9,15})/g;
 
   let result = document.querySelector(".password-matching-text");
   let redBox = document.querySelector("#confirmarSenha-cadastroCandidato");
   let instructions = document.querySelector(".password-instructions-text");
 
   const verificacaoEmail = emailRegex.test(Email);
-  let verificacaoSenha = senhaRegex.test(Senha);
-  let verificacaoConfirmarSenha = senhaRegex.test(ConfirmarSenha);
+  const verificacaoSenha = senhaRegex.test(Senha);
   
   useEffect(() => {
     listarcurso();
@@ -63,7 +62,7 @@ export default function CadastroEmpresa() {
         setCaminho(data.caminhoImagem);
     })
     .catch(err => console.log(err))
-}
+  }
 
   const escreverResultado = () => {
     if (Senha !== ConfirmarSenha) {
@@ -79,16 +78,16 @@ export default function CadastroEmpresa() {
       result.innerText = "As senhas conferem";
     }
 
-    if(verificacaoSenha !== true || verificacaoConfirmarSenha !== true){
+    if(verificacaoSenha !== true){
       redBox.style.border = "solid red 1px";
       redBox.style.boxShadow = "3px 3px 3px gray";
       instructions.style.color = "red";
       instructions.innerText =
-        `A senha deve conter 8 caracteres, dentre eles:
-      • 1 letra minúscula
-      • 1 letra maiúscula
-      • 1 número
-      • 1 caractere especial`;
+        `A senha deve conter, no mínimo, 9 caracteres, e no máximo 15, dentre eles:
+        • 1 letra minúscula
+        • 1 letra maiúscula
+        • 1 número
+        • 1 caractere especial`;
     }else{
       redBox.style.border = "unset";
       redBox.style.boxShadow = "unset";
@@ -100,11 +99,11 @@ export default function CadastroEmpresa() {
 
   function salvar() {
     if (Senha !== ConfirmarSenha) {
-      alert("As senhas não estão parecidas");
+      alert("As senhas não são semelhantes");
     } else if (verificacaoEmail !== true) {
       alert("O e-mail deve ser válido");
-    } else if(verificacaoSenha || verificacaoConfirmarSenha){
-      alert('A senha não confere com o padrão solicitado');
+    } else if(verificacaoSenha !== true){
+      alert('A(s) senha(s) não confere(m) com o padrão solicitado');
     }else {
     const data = {
       nomeCompleto: NomeCompleto,
@@ -200,7 +199,7 @@ function View(){
                 className="cadastre"
                 label="RG:"
                 type="text"
-                placeholder="000.000.000-00" 
+                placeholder="00.000.000-0" 
                 maxLength={9}
                 minLength={9}
                 required

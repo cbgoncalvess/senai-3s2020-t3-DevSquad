@@ -28,13 +28,17 @@ export default function PerfilEmpresa() {
   const [Candidatos, SetCandidato] = useState([]);
   const[CaminhoImagem,setCaminho]=useState('');
 
+  const validaCep = /^[0-9]{8}$/g;
+  let verificacaoCep = validaCep.test(CEP);
+
+  const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%&\*_-])(?=.{9,15})/g;
+  const verificacaoSenha = senhaRegex.test(NovaSenha);
+
   useEffect(() => {
     listarCandidatos();
     BuscarEmpresaPorId();
   }, []);
-  const validaCep = /^[0-9]{8}$/g;
 
-  let verificacaoCep = validaCep.test(CEP);
   const EditarDadosDaEmpresa = () => {
     const form = {
       nomeResponsavel: NomeResponsavel,
@@ -121,7 +125,10 @@ export default function PerfilEmpresa() {
       novaSenha: NovaSenha,
       SenhaAtual: SenhaAtual,
     };
-    fetch("http://localhost:5000/api/Usuario/AlterarSenha", {
+    if(verificacaoSenha !== true){
+      alert("A senha não confere com o padrão solicitado")
+    }else{
+      fetch("http://localhost:5000/api/Usuario/AlterarSenha", {
       method: "PUT",
       body: JSON.stringify(form),
       headers: {
@@ -137,6 +144,8 @@ export default function PerfilEmpresa() {
         }
       })
       .catch((err) => console.error(err));
+    }
+    
   };
 
   const listarCandidatos = () => {
