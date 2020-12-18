@@ -8,6 +8,7 @@ import "./style.css";
 import AccessMenu from "../../Components/AccessMenu";
 
 import api from "../../services/api";
+import { uri } from "../../services/conexao";
 
 export default function CadastrarVaga() {
   const [TituloVaga, SetTituloVaga] = useState("");
@@ -60,7 +61,7 @@ export default function CadastrarVaga() {
     }
   }
   const listarAreas = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarArea", {
+    fetch(`${uri}/api/Usuario/ListarArea`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -74,7 +75,7 @@ export default function CadastrarVaga() {
   };
 
   const ListarTipoPresencas = () => {
-    fetch("http://localhost:5000/api/Empresa/ListarTipoPresenca", {
+    fetch(`${uri}/api/Empresa/ListarTipoPresenca`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
