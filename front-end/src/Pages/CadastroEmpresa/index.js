@@ -11,6 +11,9 @@ import Footer from "../../Components/Footer";
 import imagemCadastroEmpresa from "../../assets/imgCadastroEmpresa.webp";
 import Userimg from "../../assets/Teste.webp";
 
+// CADÊ O MÉTODO SALVAR?
+//import { uri } from "../../services/conexao";
+
 import "./style.css";
 
 export default function CadastroEmpresa() {

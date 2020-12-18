@@ -13,6 +13,8 @@ import AccessBar from "../../Components/AccessBar";
 import BlackButton from "../../Components/BlackButton";
 import AccessMenu from "../../Components/AccessMenu";
 
+import { uri } from "../../services/conexao";
+
 export default function CadastrarColaborador() {
   const [Colaboradores, setColaboradores] = useState([]);
   const [Email, SetEmail] = useState("");
@@ -53,7 +55,7 @@ export default function CadastrarColaborador() {
   }
 
   const listarColaboradores = () => {
-    fetch("http://localhost:5000/api/Administrador/ListarColaboradores", {
+    fetch(`${uri}/api/Administrador/ListarColaboradores`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -68,7 +70,7 @@ export default function CadastrarColaborador() {
 
   const DeletarAdm = (idAdm) => {
     fetch(
-      "http://localhost:5000/api/Administrador/DeletarAdminstrador/" + idAdm,
+      `${uri}/api/Administrador/DeletarAdminstrador/${idAdm}`,
       {
         method: "DELETE",
         headers: {
@@ -97,8 +99,8 @@ export default function CadastrarColaborador() {
               <div className="perfilBox">
                 <div className="horizontal">
                   <div className="perfil">
-                    <img className="user" src={"http://localhost:5000/imgPerfil/" + item.caminhoImagem} alt="Iamgem de perfil do administrador" />
-                    <h4>Administrador</h4>
+                    <img className="user" src={`${uri}/imgPerfil/${item.caminhoImagem}`} alt="Iamgem de perfil do administrador" />
+                    <h4>Colaborador</h4>
                   </div>
                   <div className="infos">
                     <p>ID: {item.idUsuario}</p>

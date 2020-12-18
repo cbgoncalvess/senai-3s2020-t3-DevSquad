@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import api from "../../services/api";
 import { useHistory } from "react-router-dom";
-
-import "./style.css";
 
 import BlackButton from "../../Components/BlackButton";
 import Input from "../../Components/Input";
@@ -11,6 +8,10 @@ import AccessBar from "../../Components/AccessBar";
 import AccessMenu from "../../Components/AccessMenu";
 import Footer from "../../Components/Footer";
 
+import api from "../../services/api";
+import { uri } from "../../services/conexao";
+
+import "./style.css";
 export default function CadastrarEstagiario() {
   const [Empresas, SetEmpresas] = useState([]);
   const [idEmpresa, SetEmpresa] = useState(0);
@@ -26,7 +27,7 @@ export default function CadastrarEstagiario() {
   }, []);
 
   const listaEmpresas = () => {
-    fetch("http://localhost:5000/api/Administrador/listaEmpresaRazaoSocial", {
+    fetch(`${uri}/api/Administrador/listaEmpresaRazaoSocial`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -40,7 +41,7 @@ export default function CadastrarEstagiario() {
   };
 
   const listaCandidatos = () => {
-    fetch("http://localhost:5000/api/Administrador/listaEmailCandidato", {
+    fetch(`${uri}/api/Administrador/listaEmailCandidato`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),

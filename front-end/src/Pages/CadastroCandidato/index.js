@@ -9,8 +9,9 @@ import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
 import Userimg from '../../assets/images/user.webp'
 
-
 import imagemCadastroCandidato from "../../assets/imgCadastroCandidato.webp";
+
+import { uri } from "../../services/conexao";
 
 import "./style.css";
 
@@ -53,7 +54,7 @@ export default function CadastroEmpresa() {
 
     formdata.append('arquivo', event.target.files[0]);
 
-    fetch('http://localhost:5000/api/Upload',{
+    fetch(`${uri}/api/Upload`,{
         method : 'POST',
         body : formdata
     })
@@ -118,7 +119,7 @@ export default function CadastroEmpresa() {
       perguntaSeguranca: PerguntaSeguranca,
       CaminhoImagem:CaminhoImagem
     };
-    fetch("http://localhost:5000/api/Usuario/Candidato", {
+    fetch(`${uri}/api/Usuario/Candidato`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -135,7 +136,7 @@ export default function CadastroEmpresa() {
   }
 
   const listarcurso = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarCurso", {
+    fetch(`${uri}/api/Usuario/ListarCurso`, {
       method: "GET",
     })
       .then((response) => response.json())
@@ -152,7 +153,7 @@ function View(){
     );
   }else if(CaminhoImagem.length>3){
     return(
-      <img className="imagemCadastro" src={'http://localhost:5000/ImageBackUp/'+CaminhoImagem} alt="Imagem de perfil"/>
+      <img className="imagemCadastro" src={`${uri}/ImageBackUp/`+CaminhoImagem} alt="Imagem de perfil"/>
       );
   }
 }
