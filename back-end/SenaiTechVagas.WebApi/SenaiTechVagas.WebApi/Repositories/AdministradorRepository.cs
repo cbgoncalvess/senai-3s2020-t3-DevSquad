@@ -384,7 +384,10 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                 try
                 {
-                    return ctx.Candidato.Select(u=>new Candidato { NomeCompleto=u.NomeCompleto,IdUsuario=u.IdUsuario,IdUsuarioNavigation=new Usuario { Email=u.IdUsuarioNavigation.Email,CaminhoImagem=u.IdUsuarioNavigation.CaminhoImagem} }).ToList();
+                    return ctx.Candidato.Select(u=>
+                    new Candidato { NomeCompleto=u.NomeCompleto,IdUsuario=u.IdUsuario,IdUsuarioNavigation=
+                    new Usuario { Email=u.IdUsuarioNavigation.Email,CaminhoImagem=u.IdUsuarioNavigation.CaminhoImagem,IdTipoUsuario=u.IdUsuarioNavigation.IdTipoUsuario} })
+                    .Where(u=>u.IdUsuarioNavigation.IdTipoUsuario!=4).ToList();
                 }
                 catch (Exception)
                 {
@@ -392,38 +395,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
-        public bool DeletarCandidato(int IdCandidato)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    Candidato CandidatoBuscado = ctx.Candidato.Find(IdCandidato);
-                    if (CandidatoBuscado == null)
-                        return false;
-
-                    List<Inscricao> listaDeInscricao = ctx.Inscricao.
-                        Where(l => l.IdCandidato == IdCandidato).ToList();
-                    for (int i = 0; i < listaDeInscricao.Count; i++)
-                    {
-                        DeletarInscricao(listaDeInscricao[i].IdInscricao);
-                    }
-                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == CandidatoBuscado.IdCandidato);
-                    if (estagioBuscado != null)
-                    {
-                        ctx.Remove(estagioBuscado);
-                        ctx.SaveChanges();
-                    }
-                    DeletarUsuarioEmpresaCandidato(CandidatoBuscado.IdUsuario);
-                    ctx.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
+        
         public bool DeletarInscricao(int idInscricao)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -444,13 +416,13 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
-        public bool DeletarEmpresaPorId(int idEmpresa)
+        public bool DeletarEmpresaPorId(int idUsuario)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Empresa empresaBuscado = ctx.Empresa.Find(idEmpresa);
+                    Empresa empresaBuscado = ctx.Empresa.FirstOrDefault(u=>u.IdUsuario==idUsuario);
                     if (empresaBuscado == null)
                         return false;
 
@@ -493,6 +465,39 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
+
+        public bool DeletarCandidato(int IdUsuario)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Candidato CandidatoBuscado = ctx.Candidato.FirstOrDefault(u => u.IdUsuario == IdUsuario);
+                    if (CandidatoBuscado == null)
+                        return false;
+
+                    List<Inscricao> listaDeInscricao = ctx.Inscricao.
+                        Where(l => l.IdCandidato == CandidatoBuscado.IdCandidato).ToList();
+                    for (int i = 0; i < listaDeInscricao.Count; i++)
+                    {
+                        DeletarInscricao(listaDeInscricao[i].IdInscricao);
+                    }
+                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == CandidatoBuscado.IdCandidato);
+                    if (estagioBuscado != null)
+                    {
+                        ctx.Remove(estagioBuscado);
+                        ctx.SaveChanges();
+                    }
+                    DeletarUsuarioEmpresaCandidato(CandidatoBuscado.IdUsuario);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
 
 
         /// <summary>
@@ -550,7 +555,10 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    return ctx.Empresa.Select(u => new Empresa { RazaoSocial=u.RazaoSocial,IdUsuario=u.IdUsuario,EmailContato=u.EmailContato,IdUsuarioNavigation=new Usuario { CaminhoImagem=u.IdUsuarioNavigation.CaminhoImagem} }).ToList();
+                    return ctx.Empresa.Select(u =>
+                    new Empresa { RazaoSocial=u.RazaoSocial,IdUsuario=u.IdUsuario,EmailContato=u.EmailContato,IdUsuarioNavigation=
+                    new Usuario { CaminhoImagem=u.IdUsuarioNavigation.CaminhoImagem,IdTipoUsuario=u.IdUsuarioNavigation.IdTipoUsuario} })
+                    .Where(u=>u.IdUsuarioNavigation.IdTipoUsuario!=4).ToList();
                 }
                 catch (Exception)
                 {
@@ -560,7 +568,14 @@ namespace SenaiTechVagas.WebApi.Repositories
         }
         public bool DeletarVagaEmpresa(int idVaga)
         {
+            try
+            {
             return DeletarVaga(idVaga);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         public List<Usuario> ListaDebanidos()
         {
@@ -995,7 +1010,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public List<Vaga> ListarInscricoes(int idUsuario)
+        public List<ListarVagasViewModel> ListarInscricoes(int idUsuario)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -1009,7 +1024,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (ListaDeInscricoes == null)
                         return null;
 
-                     List<Vaga> ListVaga = new List<Vaga>();
+                     List<ListarVagasViewModel> ListVaga = new List<ListarVagasViewModel>();
                     for(int i = 0; i < ListaDeInscricoes.Count; i++)
                     {
                         Vaga v = ctx.Vaga.Select(u => 
@@ -1018,15 +1033,50 @@ namespace SenaiTechVagas.WebApi.Repositories
                         new Empresa { IdUsuarioNavigation=
                         new Usuario { CaminhoImagem=u.IdEmpresaNavigation.IdUsuarioNavigation.CaminhoImagem} } })
                         .FirstOrDefault(u => u.IdVaga == ListaDeInscricoes[i].IdVaga);
-                        v.IdInscricao = ListaDeInscricoes[i].IdInscricao;
-                        ListVaga.Add(v);
+                        ListVaga.Add(new ListarVagasViewModel()
+                        {
+                            TituloVaga = v.TituloVaga,
+                            IdVaga = v.IdVaga,
+                            IdInscricao = ListaDeInscricoes[i].IdInscricao,
+                            CaminhoImagem = v.IdEmpresaNavigation.IdUsuarioNavigation.CaminhoImagem,
+                            NomeArea = v.IdAreaNavigation.NomeArea
+                        });
                     }
                     return ListVaga;
                     
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     return null;
+                }
+            }
+        }
+
+        public bool DeletarUsuarioBanido(int idUsuario)
+        {
+            using (DbSenaiContext ctx=new DbSenaiContext())
+            {
+                try
+                {
+                    Candidato c = ctx.Candidato.FirstOrDefault(u=>u.IdUsuario==idUsuario);
+                    if (c == null)
+                    {
+                        Empresa e = ctx.Empresa.FirstOrDefault(u => u.IdUsuario == idUsuario);
+                            if (e == null)
+                            return false;
+
+                        DeletarEmpresaPorId(e.IdUsuario);
+                        return true;
+                    }
+                    else
+                    {
+                        DeletarCandidato(c.IdUsuario);
+                        return true;
+                    }
+                }
+                catch (Exception)
+                {
+                    return false;
                 }
             }
         }

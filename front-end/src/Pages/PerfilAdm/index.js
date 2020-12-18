@@ -8,6 +8,7 @@ import AccessMenu from '../../Components/AccessMenu';
 import Input from '../../Components/Input/index';
 
 import imgDelete from '../../assets/delete.webp'
+import imgBan from '../../assets/no-stopping (2).png'
 
 import './style.css';
 
@@ -259,7 +260,7 @@ const DeletarVaga = (id) => {
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">
-                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>Banir(item.idUsuario)} alt="Botão que bloqueia o acesso do usuario do site" title="Banir"/>
+                                        <img className="Delete" src={imgBan} alt="Delete" onClick={()=>Banir(item.idUsuario)} alt="Botão que bloqueia o acesso do usuario do site" title="Banir"/>
                                         <button className="btVerPerfil" onClick={e=>{
                                             e.preventDefault();
                                             localStorage.setItem("CandidatoSelecionado",item.idUsuario);
@@ -287,7 +288,7 @@ const DeletarVaga = (id) => {
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">
-                                        <img className="Delete" onClick={()=>Banir(item.idUsuario)} src={imgDelete} alt="Botão que bloqueia o acesso do usuario do site" title="Banir" />
+                                        <img className="Delete" onClick={()=>Banir(item.idUsuario)} src={imgBan} alt="Botão que bloqueia o acesso do usuario do site" title="Banir" />
                                         <button className="btVerPerfil" onClick={e=>{
                                             e.preventDefault();
                                             localStorage.setItem("IdEmpresaSelecionada",item.idUsuario);
@@ -315,7 +316,7 @@ const DeletarVaga = (id) => {
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">
-                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>DeletarVaga(item.idVaga)} alt="Botão que bloqueia o acesso do usuario do site" title="Banir"/>
+                                        <img className="Delete" src={imgDelete} alt="Delete" onClick={()=>DeletarVaga(item.idVaga)} alt="Botão que bloqueia o acesso do usuario do site" title="Deletar Vaga"/>
                                         <button className="btVerPerfil" onClick={e=>{
                                             e.preventDefault();
                                             localStorage.setItem("idVagaSelecionadaAdm", item.idVaga);

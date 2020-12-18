@@ -98,7 +98,7 @@ export default function CadastrarColaborador() {
                 <div className="horizontal">
                   <div className="perfil">
                     <img className="user" src={"http://localhost:5000/imgPerfil/" + item.caminhoImagem} alt="Iamgem de perfil do administrador" />
-                    <h4>Colaborador</h4>
+                    <h4>Administrador</h4>
                   </div>
                   <div className="infos">
                     <p>ID: {item.idUsuario}</p>

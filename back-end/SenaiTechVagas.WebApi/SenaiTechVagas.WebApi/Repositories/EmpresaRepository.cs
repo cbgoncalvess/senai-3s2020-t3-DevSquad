@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace SenaiTechVagas.WebApi.Repositories
 {
 
-    public class EmpresaRepository : IEmpresaRepository
+    public class EmpresaRepository : UsuarioRepository,IEmpresaRepository
     {
         string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
  
@@ -202,7 +202,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception )
+                catch (Exception e )
                 {
                     return false;
                 }

@@ -3,12 +3,10 @@ import React, { useState, useEffect } from 'react';
 import AccessBar from '../../Components/AccessBar';
 import Footer from '../../Components/Footer';
 import Header from '../../Components/Header';
-
 import './style.css';
-
-import User from '../../assets/images/user.webp';
 import Refresh from '../../assets/images/refresh.webp';
 import AccessMenu from '../../Components/AccessMenu';
+import imgDelete from '../../assets/delete.webp'
 
 export default function ListaBanidos() {
     const [Banidos, setBanidos] = useState([]);
@@ -20,6 +18,20 @@ export default function ListaBanidos() {
     const DesbanirUsuario = (idUsuario) => {
         fetch('http://localhost:5000/api/Administrador/Desbanir/' + idUsuario, {
             method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        }).then(response => response.json())
+            .then(dados => {
+                alert(dados);
+                listarBanidos();
+            }).catch(err => console.error(err));
+    }
+
+    const DeletarUsuarioPermanete = (idUsuario) => {
+        fetch('http://localhost:5000/api/Administrador/DeletarUsuarioBanido/' + idUsuario, {
+            method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
                 authorization: 'Bearer ' + localStorage.getItem('token')
@@ -59,7 +71,6 @@ export default function ListaBanidos() {
                                 <div className="colunaMobile">
                                     <div className="banido">
                                         <img className="user" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="Imagem de perfil do usuario" />
-                                        <h4>Marcelo Fontes</h4>
                                     </div>
                                     <div className="info">
                                         <p>ID:{item.idUsuario}</p>
@@ -70,6 +81,10 @@ export default function ListaBanidos() {
                                     <div className="desbanir">
                                         <p>Desbanir</p>
                                         <img src={Refresh} onClick={() => DesbanirUsuario(item.idUsuario)} alt="Botão que retorna o aceeso ao usuario banido" />
+                                    </div>
+                                    <div className="DeletarPermanente">
+                                    <p>Deletar permanentemente</p>
+                                    <img src={imgDelete} onClick={() => DeletarUsuarioPermanete(item.idUsuario)} className="Delete" alt="Botão que deleta o usuario permanetemente"/>
                                     </div>
                                 </div>
                             </div>

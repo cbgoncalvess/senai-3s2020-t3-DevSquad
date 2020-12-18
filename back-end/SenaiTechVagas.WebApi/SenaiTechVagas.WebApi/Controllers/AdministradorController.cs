@@ -328,44 +328,24 @@ namespace SenaiTechVagas.WebApi.Controllers
         /*----------------------------------------GET END------------------------------*/
 
         /*----------------------------------------DELETE START------------------------------*/
+
         /// <summary>
-        /// Método que remove candidato pelo seu identificador, do sistema.
+        /// Deleta um usuario banido permanentemente
         /// </summary>
-        /// <param name="id">Identificador do candidato.</param>
-        /// <returns>Retorna uma remoção de candidato do sistema.</returns>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
-        [HttpDelete("DeletarCandidato/{id}")]
-        public IActionResult DeletarCandidato(int id)
+        [HttpDelete("DeletarUsuarioBanido/{id}")]
+        public IActionResult DeletarUsuarioBanido(int id)
         {
             try
             {
-                if (_Admin.DeletarCandidato(id))
-                    return Ok("Candidato deletado com sucesso");
+                if (_Admin.DeletarUsuarioBanido(id))
+                    return Ok("Usuario deletado com sucesso");
                 else
                     return BadRequest("Não foi possivel deletar o usuario");
             }
             catch
-            {
-                return BadRequest("Uma exceção ocorreu. Tente novamente.");
-            }
-        }
-
-        /// <summary>Método que remove Empresa pelo seu identificador, do sistema.</summary>
-        /// <param name="idEmpresa">Identificador único de cada objeto da tabela candidato, do 
-        /// tipo inteiro.</param>
-        /// <returns>Identificador do Empresa.</returns>
-        [Authorize(Roles = "1")]
-        [HttpDelete("DeletarEmpresa/{idEmpresa}")]
-        public IActionResult DeletarEmpresa(int idEmpresa)
-        {
-            try
-            {
-                if (_Admin.DeletarEmpresaPorId(idEmpresa))
-                    return Ok("Empresa deletada com sucesso");
-                else
-                    return BadRequest("Não foi possivel deletar a empresa");
-            }
-            catch(Exception)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }

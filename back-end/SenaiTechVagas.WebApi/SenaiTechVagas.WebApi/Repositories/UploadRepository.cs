@@ -16,11 +16,12 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 if (savingFolder == null)
                 {
-                    savingFolder = Path.Combine("imagens");
+                    savingFolder = Path.Combine("ImageBackUp");
                 }
 
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), savingFolder);
 
+                //Se a pasta estiver com mais de um numero de imagens determinado ele faz a limpa para não ter problema de desempenho
                 if (savingFolder == "ImageBackUp")
                 {
                     string[] fileEntries = Directory.GetFiles(pathToSave);
@@ -42,16 +43,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                     {
                         arquivo.CopyTo(stream);
                     }
-
                     var NomeArquivo = arquivo.FileName;
                     string Extensao = NomeArquivo.Split('.')[1].Trim();
-                    // string Nome = DateTime.Now.ToString("ddMMyyyyHHmmss") + "." + Extensao;
                     string Nome = Guid.NewGuid().ToString() + "." + Extensao;
-
                     string sourceFile = Path.Combine(Directory.GetCurrentDirectory(), savingFolder+"/"+ arquivo.FileName);
-
                      string source =Path.Combine(Directory.GetCurrentDirectory(), savingFolder + "/" );  
-                     System.IO.FileInfo fi = new System.IO.FileInfo(sourceFile);   
+                     FileInfo fi = new FileInfo(sourceFile);   
                      fi.MoveTo(source+Nome);  
                     return Nome;
                 }
