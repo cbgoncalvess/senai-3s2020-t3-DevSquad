@@ -1045,7 +1045,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     return ListVaga;
                     
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }

@@ -97,7 +97,6 @@ export default function CadastroEmpresa() {
     }
   };
 
-
   function salvar() {
     if (Senha !== ConfirmarSenha) {
       alert("As senhas não são semelhantes");
@@ -126,12 +125,14 @@ export default function CadastroEmpresa() {
         "content-type": "application/json",
       },
     })
-    .then((response) => response.json())
-    .then((dados) => {
-      console.log(dados);
-      history.push("/");
-      })
-      .catch((err) => console.error(err));
+    .then((response) => {
+      if (response.status !== 200) {
+        alert("Não foi possivel efetuar o cadastro");
+      } else {
+        alert("Cadastrado com sucesso");
+        history.push("/");
+      }
+    }).catch((err) => console.error(err));
     }
   }
 

@@ -32,10 +32,9 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(11, MinimumLength = 10)]
         public string Telefone { get; set; }
 
-        [Required]
         public int NumFuncionario { get; set; }
 
-        [StringLength(7, MinimumLength = 7)]
+        [StringLength(7)]
         public string NumCnae { get; set; }
 
         [Required]
@@ -54,7 +53,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(155,MinimumLength =5)]
         public string Logradouro { get; set; }
 
-        [StringLength(255, MinimumLength = 5)]
+        [StringLength(255)]
         public string Complemento { get; set; }
 
         [StringLength(254, MinimumLength = 5)]
@@ -73,8 +72,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(130, MinimumLength = 5)]
         public string PerguntaSeguranca { get; set; }
 
-        [Required]
-        [StringLength(40, MinimumLength = 5)]
+        [StringLength(40, MinimumLength = 0)]
         public string CaminhoImagem { get; set; }
     }
 }
