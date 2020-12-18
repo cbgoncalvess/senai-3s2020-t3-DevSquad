@@ -14,25 +14,13 @@ import Userimg from "../../assets/Teste.webp";
 import "./style.css";
 
 export default function CadastroEmpresa() {
-  const [NomeResponsavel, SetNomeResponsavel] = useState("");
-  const [CNPJ, SetCNPJ] = useState("");
   const [Email, SetEmail] = useState("");
-  const [NomeFantasia, SetNomeFantasia] = useState("");
-  const [RazaoSocial, SetRazaoSocial] = useState("");
-  const [Telefone, SetTelefone] = useState("");
-  const [NumFuncionario, SetNumFuncionario] = useState("");
-  const [NumCNAE, SetNumCNAE] = useState("");
-  let [CEP, SetCEP] = useState("");
-  let [Logradouro, SetLogradouro] = useState("");
-  const [Complemento, SetComplemento] = useState("");
-  const [EmailContato, SetEmailContato] = useState("");
-  const [PerguntaSeguranca, SetPergunta] = useState("");
-  const [RespostaSeguranca, SetResposta] = useState("");
-  let [Estado, SetEstado] = useState("");
-  let [Cidade, SetCidade] = useState("");
   const [Senha, SetSenha] = useState("");
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
-  const [CaminhoImagem, setCaminho] = useState("");
+  let [CEP, SetCEP] = useState("");
+  let [Logradouro, SetLogradouro] = useState("");
+  let [Estado, SetEstado] = useState("");
+  let [Cidade, SetCidade] = useState("");
 
   const history = useHistory();
 
@@ -102,85 +90,6 @@ export default function CadastroEmpresa() {
     }
   };
 
-  function salvar(e) {
-    e.preventDefault();
-    if (Senha !== ConfirmarSenha) {
-      alert("As senhas são difererentes");
-    } else if (verificacaoEmail !== true) {
-      alert("O e-mail deve ser válido");
-    } else if (verificacaoSenha !== true) {
-      alert("A(s) senha(s) não confere(m) com o padrão solicitado");
-    } else {
-      const data = {
-        NomeReponsavel: NomeResponsavel,
-        Cnpj: CNPJ,
-        EmailContato: EmailContato,
-        NomeFantasia: NomeFantasia,
-        RazaoSocial: RazaoSocial,
-        Telefone: Telefone,
-        NumFuncionario: NumFuncionario,
-        NumCnae: NumCNAE,
-        Cep: CEP,
-        Logradouro: Logradouro,
-        Complemento: Complemento,
-        Estado: Estado,
-        Localidade: Cidade,
-        Email: Email,
-        Senha: Senha,
-        RespostaSeguranca: RespostaSeguranca,
-        PerguntaSeguranca: PerguntaSeguranca,
-        CaminhoImagem: CaminhoImagem,
-      };
-      console.log(data);
-      fetch("http://localhost:5000/api/Usuario/Empresa", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (response.status !== 200) {
-            alert("Não foi possivel efetuar o cadastro");
-          } else {
-            alert("Cadastrado com sucesso");
-            history.push("/");
-          }
-        })
-        .catch((err) => console.error(err));
-  }
-
-  const uploadFile = (event) => {
-    event.preventDefault();
-
-    let formdata = new FormData();
-
-    formdata.append("arquivo", event.target.files[0]);
-
-    fetch("http://localhost:5000/api/Upload", {
-      method: "POST",
-      body: formdata,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setCaminho(data.caminhoImagem);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  function View() {
-    if (CaminhoImagem == "" && CaminhoImagem.length < 3 || CaminhoImagem===undefined) {
-      return <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil" />;
-    } else if (CaminhoImagem.length > 3) {
-      return (
-        <img
-          className="imagemCadastro"
-          src={"http://localhost:5000/ImageBackUp/" + CaminhoImagem} alt="Imagem de perfil"
-        />
-      );
-    }
-  }
-
   return (
     <body>
       <AccessBar />
@@ -196,7 +105,7 @@ export default function CadastroEmpresa() {
               nossa plataforma
             </p>
             <div className="imgCadastroPerfil">
-              {View()}
+            <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil" />
               <br />
               <button className="btSelecionar">
                 <label htmlFor="ButtonImage" className="lbBt">
@@ -204,13 +113,12 @@ export default function CadastroEmpresa() {
                 </label>
               </button>
             </div>
-            <form className="form" onSubmit={salvar}>
+            <form className="form">
               <input
                 type="file"
                 className="none"
                 id="ButtonImage"
                 onChange={(event) => {
-                  uploadFile(event);
                 }}
               />
               <Input
@@ -223,7 +131,6 @@ export default function CadastroEmpresa() {
                 maxLength={65}
                 minLength={5}
                 required
-                onChange={(e) => SetNomeResponsavel(e.target.value)}
               />
               <Input
                 id="cnpjCadastro"
@@ -235,10 +142,6 @@ export default function CadastroEmpresa() {
                 maxLength={14}
                 minLength={14}
                 required
-                onKeyPress={(e) => {
-                  "return e.charCode >= 48 && e.charCode <= 57";
-                }}
-                onChange={(e) => SetCNPJ(e.target.value)}
               />
 
               <Input
@@ -251,7 +154,6 @@ export default function CadastroEmpresa() {
                 maxLength={254}
                 minLength={5}
                 required
-                onChange={(e) => SetEmailContato(e.target.value)}
               />
 
               <Input
@@ -263,7 +165,6 @@ export default function CadastroEmpresa() {
                 placeholder="CPTM"
                 maxLength={50}
                 required
-                onChange={(e) => SetNomeFantasia(e.target.value)}
               />
 
               <Input
@@ -276,7 +177,6 @@ export default function CadastroEmpresa() {
                 maxLength={50}
                 minLength={5}
                 required
-                onChange={(e) => SetRazaoSocial(e.target.value)}
               />
               <Input
               id="phoneNumberCadastro"
@@ -288,7 +188,6 @@ export default function CadastroEmpresa() {
                 maxLength={11}
                 minLength={10}
                 required
-                onChange={(e) => SetTelefone(e.target.value)}
               />
 
               <Input
@@ -300,7 +199,6 @@ export default function CadastroEmpresa() {
                 maxLength={4}
                 minLength={1}
                 required
-                onChange={(e) => SetNumFuncionario(e.target.value)}
               />
 
               <Input
@@ -313,7 +211,6 @@ export default function CadastroEmpresa() {
                 maxLength={7}
                 minLength={7}
                 required
-                onChange={(e) => SetNumCNAE(e.target.value)}
               />
 
               <div className="Input">
@@ -352,7 +249,6 @@ export default function CadastroEmpresa() {
                   name="address2"
                   maxLength={255}
                   className="cadastre"
-                  onChange={(e) => SetComplemento(e.target.value)}
                 />
               </div>
 
@@ -394,7 +290,6 @@ export default function CadastroEmpresa() {
                 maxLength={254}
                 minLength={5}
                 required
-                onChange={(e) => SetEmail(e.target.value)}
               />
 
               <Input
@@ -435,8 +330,6 @@ export default function CadastroEmpresa() {
                 <select
                   id="PerguntaCadastroEmpresa"
                   className="select-cadastroCandidato"
-                  onChange={(e) => SetPergunta(e.target.value)}
-                  value={PerguntaSeguranca}
                   required
                 >
                   <option value="0">Selecione uma pergunta de segurança</option>
@@ -478,14 +371,13 @@ export default function CadastroEmpresa() {
                 type="text"
                 placeholder="Meu cachorro se chama..."
                 required
-                onChange={(e) => SetResposta(e.target.value)}
                 maxLength={30}
                 minLength={5}
               />
               <p>Ao cadastrar-se, você aceita os nossos termos de uso.</p>
 
               <div className="form-button">
-                <BlueButton type="submit" name="Criar conta">
+                <BlueButton type="submit" name="Criar conta" Onclick={()=>history.push("/login")}>
                   Criar conta
                 </BlueButton>
               </div>

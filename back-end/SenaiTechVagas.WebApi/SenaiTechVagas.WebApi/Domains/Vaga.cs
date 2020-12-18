@@ -30,6 +30,8 @@ namespace SenaiTechVagas.WebApi.Domains
         public int IdEmpresa { get; set; }
         public int IdArea { get; set; }
 
+        public int IdInscricao { get; set; }
+
         public virtual Area IdAreaNavigation { get; set; }
         public virtual Empresa IdEmpresaNavigation { get; set; }
         public virtual TipoRegimePresencial IdTipoRegimePresencialNavigation { get; set; }

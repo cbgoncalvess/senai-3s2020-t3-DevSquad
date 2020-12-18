@@ -75,11 +75,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                EmpresaCompletaViewModel empresa = _Admin.BuscarEmpresaPorIdUsuario(id);
+                EmpresaCompletaViewModel empresa = _Admin.BuscarEmpresaPorIdUsuarioAdm(id);
                 if (empresa == null)
                     return BadRequest();
 
-                return Ok(_Admin.ListarVagasDaEmpresa(empresa.IdEmpresa));
+                return Ok(_Admin.ListarVagasDaEmpresaAdm(empresa.IdEmpresa));
             }
             catch (Exception)
             {
@@ -97,7 +97,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                return Ok(_Admin.BuscarEmpresaPorIdUsuario(id));
+                return Ok(_Admin.BuscarEmpresaPorIdUsuarioAdm(id));
             }
             catch (Exception)
             {
@@ -193,7 +193,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                return Ok(_Admin.ListarCandidatosInscritos(idVaga));
+                return Ok(_Admin.ListarCandidatosInscritosEmpresa(idVaga));
             }
             catch (Exception)
             {
@@ -265,24 +265,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 return Ok(_Admin.ListarEstagios());
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
-        /// Método Administrador que lista estágios cadastrados por filtro meses.
-        /// </summary>
-        /// <returns>Retorna lista estágios cadastrados por filtro meses.</returns>
-        [Authorize(Roles = "1")]
-        [HttpGet("ListarEstagio/{NumeroDeMeses}")]
-        public IActionResult ListarFiltroPeriodo(int NumeroDeMeses)
-        {
-            try
-            {
-                return Ok(_Admin.ListarPorperiodo(NumeroDeMeses));
             }
             catch (Exception)
             {
@@ -463,7 +445,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (_Admin.DeletarVaga(idVaga))
+                if (_Admin.DeletarVagaEmpresa(idVaga))
                     return Ok("Vaga deletada com sucesso");
                 else
                     return BadRequest("Não foi possivel deletar a Vaga");

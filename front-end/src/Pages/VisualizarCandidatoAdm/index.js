@@ -101,13 +101,13 @@ export default function VisualizarCandidatoAdm() {
                     <img
                       className="imgUsuario"
                       src={
-                        "http://localhost:5000/imgPerfil/" + item.caminhoImagem
+                        "http://localhost:5000/imgPerfil/" + item.idEmpresaNavigation.idUsuarioNavigation.caminhoImagem
                       }
                       alt="usuario"
                     />
                     <div className="ColumnTituloArea">
                       <h2>{item.tituloVaga}</h2>
-                      <p>{item.nomeArea}</p>
+                      <p>{item.idAreaNavigation.nomeArea}</p>
                     </div>
                   </div>
                   <div className="ColumnPerfilBanir">

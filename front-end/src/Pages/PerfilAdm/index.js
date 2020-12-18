@@ -273,7 +273,6 @@ const DeletarVaga = (id) => {
                 </div>
             );
         } else if (Opcao === 'Empresas') {
-
             return (
                 <div>
                     {
@@ -309,10 +308,10 @@ const DeletarVaga = (id) => {
                             return (
                                 <div key={item.idEmpresa} className="BoxPerfil">
                                     <div className="flexBoxPerfil">
-                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="Imagem de perfil do usuario" />
+                                        <img className="imgUsuario" src={'http://localhost:5000/imgPerfil/'+item.idEmpresaNavigation.idUsuarioNavigation.caminhoImagem} alt="Imagem de perfil do usuario" />
                                         <div className="ColumnNomeEmail">
                                             <h2>{item.tituloVaga}</h2>
-                                            <p>{item.nomeArea}</p>
+                                            <p>{item.idAreaNavigation.nomeArea}</p>
                                         </div>
                                     </div>
                                     <div className="ColumnPerfilBanir">

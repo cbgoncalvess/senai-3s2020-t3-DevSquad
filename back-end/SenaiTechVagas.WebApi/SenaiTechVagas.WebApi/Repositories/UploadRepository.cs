@@ -45,7 +45,8 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     var NomeArquivo = arquivo.FileName;
                     string Extensao = NomeArquivo.Split('.')[1].Trim();
-                    string Nome = DateTime.Now.ToString("ddMMyyyyHHmmss") + "." + Extensao;
+                    // string Nome = DateTime.Now.ToString("ddMMyyyyHHmmss") + "." + Extensao;
+                    string Nome = Guid.NewGuid().ToString() + "." + Extensao;
 
                     string sourceFile = Path.Combine(Directory.GetCurrentDirectory(), savingFolder+"/"+ arquivo.FileName);
 
