@@ -45,9 +45,9 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// </summary>
         /// <param name="empresa">Objeto nova empresa</param>
         /// <returns>Retorna uma empresa com as informações atualizadas</returns>
-        [Authorize(Roles="3")]
+        //[Authorize(Roles="3")]
         [HttpPut("AtualizarEmpresa")]
-        public IActionResult AtualizarEmpresa( AtualizarEmpresaViewModel empresa)
+        public IActionResult AtualizarEmpresa( Empresa empresa)
         {
             try
             {

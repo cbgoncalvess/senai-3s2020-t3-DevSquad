@@ -41,7 +41,7 @@ export default function PerfilEmpresa() {
 
   const EditarDadosDaEmpresa = () => {
     const form = {
-      nomeResponsavel: NomeResponsavel,
+      nomeReponsavel: NomeResponsavel,
       cnpj: CNPJ,
       nomeFantasia: NomeFantasia,
       razaoSocial: RazaoSocial,
@@ -52,7 +52,7 @@ export default function PerfilEmpresa() {
       logradouro: Logradouro,
       complemento: Complemento,
       emailContato: EmailContato,
-      Estado: Estado,
+      Uf: Estado,
       Localidade: Cidade,
     };
     fetch("http://localhost:5000/api/Empresa/AtualizarEmpresa", {
@@ -215,9 +215,10 @@ export default function PerfilEmpresa() {
         },
         body : formdata
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
-        setCaminho(data.caminhoImagem);
+      console.log(data);
+        setCaminho(data);
     })
     .catch(err => console.log(err))
 }
@@ -274,7 +275,7 @@ export default function PerfilEmpresa() {
             name="NomeResponsavelEditEmpresa"
             label="Nome do responsável"
             onChange={(e) => SetNomeResponsavel(e.target.value)}
-            maxLength={35}
+            maxLength={65}
             minLength={5}
             required
             id="NomeResponsavelEditEmpresa"
@@ -332,8 +333,8 @@ export default function PerfilEmpresa() {
             name="TelefoneEditEmpresa"
             label="Telefone"
             onChange={(e) => SetTelefone(e.target.value)}
-            maxLength={14}
-            minLength={11}
+            maxLength={11}
+            minLength={10}
             required
             id="TelefoneEditEmpresa"
           />

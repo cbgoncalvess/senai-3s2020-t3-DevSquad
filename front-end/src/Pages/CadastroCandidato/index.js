@@ -58,9 +58,10 @@ export default function CadastroEmpresa() {
         method : 'POST',
         body : formdata
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
-        setCaminho(data.caminhoImagem);
+      console.log(data);
+        setCaminho(data);
     })
     .catch(err => console.log(err))
   }

@@ -94,7 +94,6 @@ export default function PerfilCandidato() {
             telefone: Telefone,
             linkLinkedinCandidato: Linkedin,
             idCurso: Curso,
-            idArea: Area
         };
         fetch('http://localhost:5000/api/Candidato/AtualizarCandidato', {
             method: 'PUT',
@@ -174,9 +173,9 @@ export default function PerfilCandidato() {
             },
             body : formdata
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
-            setCaminho(data.caminhoImagem);
+            setCaminho(data);
         })
         .catch(err => console.log(err))
     }

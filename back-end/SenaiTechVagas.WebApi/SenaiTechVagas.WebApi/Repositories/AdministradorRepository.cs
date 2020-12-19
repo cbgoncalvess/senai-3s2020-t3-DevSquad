@@ -84,7 +84,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool AtualizarEstagio(int idEstagio, AtualizarEstagioViewModel estagioAtualizado)
+        public bool AtualizarEstagio(int idEstagio,int estagioAtualizado)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -94,7 +94,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (estagioBuscado == null)
                         return false;
 
-                    estagioBuscado.PeriodoEstagio = estagioAtualizado.PeriodoEstagio;
+                    estagioBuscado.PeriodoEstagio = estagioAtualizado;
                     ctx.Update(estagioBuscado);
                     ctx.SaveChanges();
                     return true;
@@ -900,16 +900,14 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public UploadImagem BuscarImagemPerfilAdm(int idAms)
+        public string BuscarImagemPerfilAdm(int idAms)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
                     var usuario = ctx.Usuario.Find(idAms);
-                    UploadImagem up = new UploadImagem();
-                    up.CaminhoImagem = usuario.CaminhoImagem;
-                    return up;
+                    return usuario.CaminhoImagem;
                 }
                 catch (Exception)
                 {

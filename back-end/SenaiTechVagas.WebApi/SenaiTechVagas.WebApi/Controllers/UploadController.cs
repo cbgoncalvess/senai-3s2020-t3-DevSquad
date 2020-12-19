@@ -33,9 +33,7 @@ namespace SenaiTechVagas.WebApi.Controllers
                 if (Extensao == "jpg" || Extensao == "png" || Extensao == "webp" || Extensao == "jpeg" || Extensao == "svg" || Extensao == "jfif")
                 {
                     var Imagem = rep.Upload(arquivo, "ImageBackUp");
-                    UploadImagem test = new UploadImagem();
-                    test.CaminhoImagem = Imagem;
-                    return Ok(test);
+                    return Ok(Imagem.ToString());
                 }
                 return BadRequest("Este formato não é aceito");
             }

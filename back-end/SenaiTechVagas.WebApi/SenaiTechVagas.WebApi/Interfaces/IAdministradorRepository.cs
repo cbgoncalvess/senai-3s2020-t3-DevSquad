@@ -20,7 +20,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         string CadastrarEstagio(CadastrarEstagioViewModel estagio);
         bool DeletarEstagioPorId(int idEstagio);
         bool DeletarUsuarioBanido(int idUsuario);
-        bool AtualizarEstagio(int idEstagio, AtualizarEstagioViewModel estagioAtualizado);
+        bool AtualizarEstagio(int idEstagio,int estagioAtualizado);
         int [] ContadorCadastros();
         List<TipoUsuario> ListarTipoUsuario();
         bool CadastrarTipoUsuario(TipoUsuario tipoUsuario);
@@ -49,7 +49,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<Empresa> ListarNomeEmpresas();
         bool AdicionarTipoPresenca(TipoRegimePresencial trp);
         bool AtualizarTipoPresenca(int id,TipoRegimePresencial trp);
-        UploadImagem BuscarImagemPerfilAdm(int idAms);
+        string BuscarImagemPerfilAdm(int idAms);
         List<ListarVagasViewModel> ListarInscricoes(int idUsuario);
     }
 }

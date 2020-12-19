@@ -18,7 +18,7 @@ namespace SenaiTechVagas.WebApi.Repositories
         string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
 
         //Em ordem CRUD - Criar, Ler, Atualizar, Deletar
-        public bool AtualizarCandidato(int idUsuario, AtualizarCandidatoViewModel CandidatoAtualizado)
+        public bool AtualizarCandidato(int idUsuario, Candidato CandidatoAtualizado)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {

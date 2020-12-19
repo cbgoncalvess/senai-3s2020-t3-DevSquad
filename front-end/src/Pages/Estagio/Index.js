@@ -250,7 +250,7 @@ const history=useHistory();
     const form = {
       periodoEstagio: Periodo
     };
-    fetch("http://localhost:5000/api/Administrador/AtualizarEstagio/" + idEstagio,
+    fetch("http://localhost:5000/api/Administrador/AtualizarEstagio/" + idEstagio+"/"+Periodo,
       {
         method: "PUT",
         body: JSON.stringify(form),

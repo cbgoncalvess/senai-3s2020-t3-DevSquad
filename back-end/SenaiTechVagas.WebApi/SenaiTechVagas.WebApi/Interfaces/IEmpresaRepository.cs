@@ -9,7 +9,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
 {
     interface IEmpresaRepository
     {
-        bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada);
+        bool AtualizarEmpresaPorIdCorpo(int idUsuario, Empresa EmpresaAtualizada);
         bool AtualizarVaga(int idVaga, AtualizarVagaViewModel vaga);
         bool AdicionarVaga(Vaga vaga);
         bool AdicionarTecnologiaNaVaga(VagaTecnologia vagaTecnologia);

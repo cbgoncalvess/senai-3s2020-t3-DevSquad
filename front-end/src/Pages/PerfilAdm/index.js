@@ -39,7 +39,7 @@ export default function PerfilAdm() {
         })
             .then(response => response.json())
             .then(dados => {
-                setCaminho(dados.caminhoImagem);
+                setCaminho(dados);
             })
             .catch(err => console.error(err));
     }
@@ -183,9 +183,9 @@ const DeletarVaga = (id) => {
             },
             body : formdata
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
-            setCaminho(data.caminhoImagem);
+            setCaminho(data);
         })
         .catch(err => console.log(err))
     }
