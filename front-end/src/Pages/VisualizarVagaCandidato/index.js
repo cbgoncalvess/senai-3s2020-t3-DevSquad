@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-// style
-import "./visualizarvaga.css";
-
-import imgteste from "../../assets/Teste.webp";
-
-// components
 import Tag from "../../Components/Tag/Index";
 import InfoVaga from "../../Components/InfoVaga/Index";
 import Footer from "../../Components/Footer/index";
@@ -13,7 +7,6 @@ import AccessBar from "../../Components/AccessBar";
 import Header from "../../Components/Header";
 import AccessMenu from "../../Components/AccessMenu";
 
-// imagens
 import imgDesenvolvimento from "../../assets/web-programming.webp";
 import imgGlobal from "../../assets/global.png";
 import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
@@ -22,6 +15,10 @@ import imgTipoContrato from "../../assets/gears.webp";
 import imgFuncao from "../../assets/rocket-launch.webp";
 import IconEmpresa from "../../assets/building.webp";
 import { useHistory } from "react-router-dom";
+
+import { uri } from "../../services/conexao";
+
+import "./visualizarvaga.css";
 
 export default function VisualizarVaga() {
   let history = useHistory();
@@ -47,7 +44,7 @@ export default function VisualizarVaga() {
     const form = {
       idVaga: localStorage.getItem("idVagaSelecionada"),
     };
-    fetch("http://localhost:5000/api/Candidato/AdicionarInscricao", {
+    fetch(`${uri}/api/Candidato/AdicionarInscricao`, {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
@@ -64,13 +61,17 @@ export default function VisualizarVaga() {
   };
 
   const listar = () => {
-    fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + localStorage.getItem("idVagaSelecionada"), {
-      method: "GET",
-      headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
-        "content-type": "application/json",
-      },
-    })
+    fetch(
+      `${uri}/api/Usuario/BuscarPorId/` +
+        localStorage.getItem("idVagaSelecionada"),
+      {
+        method: "GET",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+          "content-type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((dados) => {
         setArea(dados.nomeArea);
@@ -117,7 +118,7 @@ export default function VisualizarVaga() {
           <div className="icard-division">
             <img
               className="ImagemEmpresa"
-              src={"http://localhost:5000/imgPerfil/" + CaminhoImagem}
+              src={`${uri}/imgPerfil/${CaminhoImagem}`}
               alt="Logo da empresa"
             />
 
