@@ -12,9 +12,13 @@
     display: flex;
     justify-content: space-between;
     padding: 1vh;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #B9B9B9;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.flexBoxPerfilCandidato > h3 {
+    margin-left: 11px;
 }
 
 .BotoesPerfilCandidato{

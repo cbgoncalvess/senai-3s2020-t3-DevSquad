@@ -199,8 +199,8 @@ const DeletarVaga = (id) => {
                     <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
                     <div className="imgPefilTexto">
                         <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="Imagem de perfil" title="Editar" id="filterPerfil" /></label>
-                        <h3>Bem vindo administrador</h3>
-                        <p>administrador</p>
+                        <h3>Bem-vindo Administrador!</h3>
+                        <p>Administrador</p>
                     </div>
                     <div className="BotoesPerfil">
                         <button className="btPerfil" onClick={ApareceAlterarSenha}>Alterar senha</button>
