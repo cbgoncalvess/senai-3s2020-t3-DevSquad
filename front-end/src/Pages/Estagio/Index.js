@@ -282,7 +282,7 @@ export default function Estagio() {
     const form = {
       periodoEstagio: Periodo,
     };
-    fetch(`${uri}/api/Administrador/AtualizarEstagio/${idEstagio}`, {
+    fetch(`${uri}/api/Administrador/AtualizarEstagio/${idEstagio}/${Periodo}`, {
       method: "PUT",
       body: JSON.stringify(form),
       headers: {

@@ -19,9 +19,9 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool AprovarCandidato(int idInscricao);
         bool ReprovarCandidato(int idInscricao);
         List<ListarVagasViewModel> ListarVagasDaEmpresa(int idEmpresa);
-        List<ListarInscricoesViewModel> ListarCandidatosInscritos(int idVaga);
-        List<ListarInscricoesViewModel> ListarCandidatosAprovados(int idVaga);
-        EmpresaCompletaViewModel BuscarEmpresaPorIdUsuario(int idUsuario);
+        List<Inscricao> ListarCandidatosInscritos(int idVaga);
+        List<Inscricao> ListarCandidatosAprovados(int idVaga);
+        Empresa BuscarEmpresaPorIdUsuario(int idUsuario);
         List<Candidato> ListarCandidatosEstagiandoNaEmpresa(int idEmpresa);
         List<TipoRegimePresencial> ListarTipoPresenca();
         /*------------VERIFICAÇÕES INICIO-------------*/

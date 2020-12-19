@@ -32,21 +32,6 @@ export default function PerfilAdm() {
 
   let history = useHistory();
 
-    const Banir =(id)=>{
-        fetch('http://localhost:5000/api/Administrador/Banir/'+id, {
-            method: 'PUT',
-            headers: {
-                authorization: 'Bearer ' + localStorage.getItem('token')
-            }
-        })
-        .then(response => response.json())
-            .then(dados => {
-                alert(dados);
-                listarEmpresa();
-                listarCandidatos();
-                listarVagas();
-            }).catch(err => console.error(err));
-}
   const BuscarImagem = () => {
     fetch(`${uri}/api/Administrador/ImagemPerfilAdm`, {
       method: "GET",
@@ -54,9 +39,9 @@ export default function PerfilAdm() {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((dados) => {
-        setCaminho(dados.caminhoImagem);
+        setCaminho(dados);
       })
       .catch((err) => console.error(err));
   };

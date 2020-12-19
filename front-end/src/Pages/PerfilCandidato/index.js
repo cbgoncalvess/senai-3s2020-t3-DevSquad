@@ -18,7 +18,6 @@ export default function PerfilCandidato() {
   const [Telefone, SetTelefone] = useState("");
   const [Linkedin, SetLinkedin] = useState("");
   const [Curso, SetCurso] = useState("");
-  const [Area, SetArea] = useState("");
   const [CaminhoImagem, setCaminho] = useState("");
   const [Cursos, setCursos] = useState([]);
   const [Vagas, setVagas] = useState([]);
@@ -60,9 +59,8 @@ export default function PerfilCandidato() {
         SetTelefone(dados.telefone);
         SetLinkedin(dados.linkLinkedinCandidato);
         SetNomeCompleto(dados.nomeCompleto);
-        SetArea(dados.idArea);
         SetCurso(dados.idCurso);
-        setCaminho(dados.caminhoImagem);
+        setCaminho(dados.idUsuarioNavigation.caminhoImagem);
       })
       .catch((err) => console.error(err));
   };
@@ -102,7 +100,6 @@ export default function PerfilCandidato() {
       telefone: Telefone,
       linkLinkedinCandidato: Linkedin,
       idCurso: Curso,
-      idArea: Area,
     };
     fetch(`${uri}/api/Candidato/AtualizarCandidato`, {
       method: "PUT",
@@ -122,30 +119,6 @@ export default function PerfilCandidato() {
       .catch((err) => console.error(err));
   };
 
-    const EditarDadosDoUsuario = () => {
-        const form = {
-            nomeCompleto: NomeCompleto,
-            rg: Rg,
-            cpf: CPF,
-            telefone: Telefone,
-            linkLinkedinCandidato: Linkedin,
-            idCurso: Curso,
-        };
-        fetch('http://localhost:5000/api/Candidato/AtualizarCandidato', {
-            method: 'PUT',
-            body: JSON.stringify(form),
-            headers: {
-                'content-type': 'application/json',
-                authorization: 'Bearer ' + localStorage.getItem('token')
-            }
-        }).then(function (respose) {
-            if (respose.status !== 200) {
-                alert("Não foi possivel editar os dados do ususário");
-            } else {
-                alert("Editado com sucesso");
-            }
-        }).catch(err => console.error(err));
-    }
   const listarVagas = () => {
     fetch(`${uri}/api/Candidato/ListarVagasInscritas`, {
       method: "GET",
@@ -213,7 +186,7 @@ export default function PerfilCandidato() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setCaminho(data.caminhoImagem);
+        setCaminho(data);
       })
       .catch((err) => console.log(err));
   };

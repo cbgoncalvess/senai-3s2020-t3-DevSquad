@@ -22,5 +22,6 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<Tecnologia> ListarTecnologia();
         List<Area> ListarAreas();
         string AlterarImagemPerfil(int idUsuario,IFormFile imagem);
+        string Upload(IFormFile arquivo, string savingFolder);
     }
 }

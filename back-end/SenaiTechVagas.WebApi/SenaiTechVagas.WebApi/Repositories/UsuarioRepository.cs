@@ -376,11 +376,9 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    UploadRepository up = new UploadRepository();
-
                     Usuario user = ctx.Usuario.Find(idUsuario);
                     string OldImage = user.CaminhoImagem;
-                    var imagem=up.Upload(img, "imgPerfil");
+                    var imagem=Upload(img, "imgPerfil");
                     if (imagem == null)
                        return null;
                     user.CaminhoImagem = imagem;
@@ -398,6 +396,59 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     return null;
                 }
+            }
+        }
+
+        public string Upload(IFormFile arquivo, string savingFolder)
+        {
+            try
+            {
+                if (savingFolder == null)
+                {
+                    savingFolder = Path.Combine("ImageBackUp");
+                }
+
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), savingFolder);
+
+                //Se a pasta estiver com mais de um numero de imagens determinado ele faz a limpa para não ter problema de desempenho
+                if (savingFolder == "ImageBackUp")
+                {
+                    string[] fileEntries = Directory.GetFiles(pathToSave);
+                    if (fileEntries.Length >= 10)
+                    {
+                        for (int i = 0; i < fileEntries.Length; i++)
+                        {
+                            File.Delete(fileEntries[i]);
+                        }
+                    }
+                }
+
+                if (arquivo.FileName.Length > 3)
+                {
+                    var fileName = ContentDispositionHeaderValue.Parse(arquivo.ContentDisposition).FileName.Trim('"');
+                    var fullPath = Path.Combine(pathToSave, fileName);
+
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        arquivo.CopyTo(stream);
+                    }
+                    var NomeArquivo = arquivo.FileName;
+                    string Extensao = NomeArquivo.Split('.')[1].Trim();
+                    string Nome = Guid.NewGuid().ToString() + "." + Extensao;
+                    string sourceFile = Path.Combine(Directory.GetCurrentDirectory(), savingFolder + "/" + arquivo.FileName);
+                    string source = Path.Combine(Directory.GetCurrentDirectory(), savingFolder + "/");
+                    FileInfo fi = new FileInfo(sourceFile);
+                    fi.MoveTo(source + Nome);
+                    return Nome;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
     }

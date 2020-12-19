@@ -81,7 +81,7 @@ export default function VisualizarEmpresaAdm() {
         SetEmailContato(dados.emailContato);
         SetEstado(dados.uf);
         SetCidade(dados.localidade);
-        setCaminho(dados.caminhoImagem);
+        setCaminho(dados.idUsuarioNavigation.caminhoImagem);
       })
       .catch((err) => console.error(err));
   };

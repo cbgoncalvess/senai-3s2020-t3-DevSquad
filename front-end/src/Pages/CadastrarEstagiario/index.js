@@ -57,7 +57,7 @@ export default function CadastrarEstagiario() {
   const CadastrarEstagio = () => {
     const form = {
       idEmpresa: idEmpresa,
-      idUsuario: idCandidato,
+      idCandidato: idCandidato,
       periodoEstagio: Perido,
     };
     api

@@ -106,7 +106,7 @@ export default function VizualizarVagaEmpresa() {
   };
 
   const Reprovar = (id) => {
-    fetch(`"${uri}/api/Empresa/Reprovar/${id}`, {
+    fetch(`${uri}/api/Empresa/Reprovar/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -175,16 +175,16 @@ export default function VizualizarVagaEmpresa() {
               <div className="CabecaInscricao">
                 <img
                   className="imgperfilInscricao"
-                  src={`${uri}/imgPerfil/${item.caminhoImagem}`}
+                  src={`${uri}/imgPerfil/${item.idCandidatoNavigation.idUsuarioNavigation.caminhoImagem}`}
                   alt="Imagem de Perfil do candidato"
                 />
-                <h3>{item.nomeCandidato}</h3>
+                <h3>{item.idCandidatoNavigation.nomeCompleto}</h3>
                 <hr className="hr" />
-                <h5>{item.nomeCurso}</h5>
+                <h5>{item.idCandidatoNavigation.idCursoNavigation.nomeCurso}</h5>
               </div>
               <div className="CorpoInscricao">
-                <Tag NomeTag={"E-mail:" + item.email}></Tag>
-                <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
+                <Tag NomeTag={"E-mail:" + item.idCandidatoNavigation.idUsuarioNavigation.email}></Tag>
+                <Tag NomeTag={"Telefone:" + item.idCandidatoNavigation.telefone}></Tag>
               </div>
               <div className="AprovarRecusar">
                 <button
