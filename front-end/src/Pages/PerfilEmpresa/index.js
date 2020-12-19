@@ -6,6 +6,7 @@ import AccessBar from "../../Components/AccessBar";
 import Input from "../../Components/Input/index";
 import AccessMenu from "../../Components/AccessMenu";
 
+import { uri } from "../../services/conexao";
 
 import "./style.css";
 
@@ -26,7 +27,7 @@ export default function PerfilEmpresa() {
   const [NovaSenha, SetNovaSenha] = useState("");
   const [SenhaAtual, setSenha] = useState("");
   const [Candidatos, SetCandidato] = useState([]);
-  const[CaminhoImagem,setCaminho]=useState('');
+  const [CaminhoImagem, setCaminho] = useState("");
 
   const validaCep = /^[0-9]{8}$/g;
   let verificacaoCep = validaCep.test(CEP);
@@ -55,7 +56,7 @@ export default function PerfilEmpresa() {
       Uf: Estado,
       Localidade: Cidade,
     };
-    fetch("http://localhost:5000/api/Empresa/AtualizarEmpresa", {
+    fetch(`${uri}/api/Empresa/AtualizarEmpresa`, {
       method: "PUT",
       body: JSON.stringify(form),
       headers: {
@@ -93,7 +94,7 @@ export default function PerfilEmpresa() {
   }
 
   const BuscarEmpresaPorId = () => {
-    fetch("http://localhost:5000/api/Empresa/BuscarEmpresaPorId", {
+    fetch(`${uri}/api/Empresa/BuscarEmpresaPorId`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -125,31 +126,30 @@ export default function PerfilEmpresa() {
       novaSenha: NovaSenha,
       SenhaAtual: SenhaAtual,
     };
-    if(verificacaoSenha !== true){
-      alert("A senha não confere com o padrão solicitado")
-    }else{
-      fetch("http://localhost:5000/api/Usuario/AlterarSenha", {
-      method: "PUT",
-      body: JSON.stringify(form),
-      headers: {
-        "content-type": "application/json",
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then(function (respose) {
-        if (respose.status !== 200) {
-          alert("Não foi possivel alterar a senha");
-        } else {
-          alert("Senha alterada com sucesso com sucesso");
-        }
+    if (verificacaoSenha !== true) {
+      alert("A senha não confere com o padrão solicitado");
+    } else {
+      fetch(`${uri}/api/Usuario/AlterarSenha`, {
+        method: "PUT",
+        body: JSON.stringify(form),
+        headers: {
+          "content-type": "application/json",
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
       })
-      .catch((err) => console.error(err));
+        .then(function (respose) {
+          if (respose.status !== 200) {
+            alert("Não foi possivel alterar a senha");
+          } else {
+            alert("Senha alterada com sucesso com sucesso");
+          }
+        })
+        .catch((err) => console.error(err));
     }
-    
   };
 
   const listarCandidatos = () => {
-    fetch("http://localhost:5000/api/Empresa/ListarCandidatosEstagiando", {
+    fetch(`${uri}/api/Empresa/ListarCandidatosEstagiando`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -206,14 +206,14 @@ export default function PerfilEmpresa() {
 
     let formdata = new FormData();
 
-    formdata.append('arquivo', event.target.files[0]);
+    formdata.append("arquivo", event.target.files[0]);
 
-    fetch('http://localhost:5000/api/Usuario/AlterarImagem',{
-        method : 'PUT',
-        headers: {
-            authorization: 'Bearer ' + localStorage.getItem('token')
-        },
-        body : formdata
+    fetch(`${uri}/api/Usuario/AlterarImagem`, {
+      method: "PUT",
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: formdata,
     })
     .then(response => response.text())
     .then(data => {
@@ -231,8 +231,21 @@ export default function PerfilEmpresa() {
       <div className="meioPerfil">
         <div className="EsquerdoPerfil">
           <div className="imgPefilTexto">
-          <input type="file" id="inputImage" className="none" onChange={event => { AtualizarImagem(event)}}/>
-          <label htmlFor="inputImage"><img className="imgperfil" src={'http://localhost:5000/imgPerfil/'+CaminhoImagem} alt="perfil" /></label>
+            <input
+              type="file"
+              id="inputImage"
+              className="none"
+              onChange={(event) => {
+                AtualizarImagem(event);
+              }}
+            />
+            <label htmlFor="inputImage">
+              <img
+                className="imgperfil"
+                src={"http://localhost:5000/imgPerfil/" + CaminhoImagem}
+                alt="perfil"
+              />
+            </label>
             <h3>{RazaoSocial}</h3>
             <p>Empresa</p>
           </div>
@@ -251,7 +264,10 @@ export default function PerfilEmpresa() {
             return (
               <div className="BoxPerfilCandidato">
                 <div className="flexBoxPerfilCandidato">
-                  <img src={'http://localhost:5000/imgPerfil/'+item.idUsuarioNavigation.caminhoImagem} alt="Imagem da Empresa" />
+                  <img
+                    src={`${uri}/imgPerfil/${item.idUsuarioNavigation.caminhoImagem}`}
+                    alt="Imagem da Empresa"
+                  />
                   <h3>{"Nome do estágiario:" + item.nomeCompleto}</h3>
                 </div>
                 <h3>{"CPF:" + item.cpf}</h3>
@@ -438,7 +454,7 @@ export default function PerfilEmpresa() {
       >
         <h2>Alterar senha</h2>
         <form>
-        <Input
+          <Input
             id="SenhaatualEditEmpresa"
             className="InputCadastro"
             name="SenhaatualEditEmpresa"
@@ -451,7 +467,7 @@ export default function PerfilEmpresa() {
           />
 
           <Input
-          id="NovaSenhaEmpresa"
+            id="NovaSenhaEmpresa"
             className="InputCadastro"
             name="NovaSenhaEmpresa"
             label="Nova senha"

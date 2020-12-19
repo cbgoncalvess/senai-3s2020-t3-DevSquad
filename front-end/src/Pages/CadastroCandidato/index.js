@@ -7,8 +7,8 @@ import AccessMenu from "../../Components/AccessMenu";
 import Input from "../../Components/Input";
 import BlueButton from "../../Components/BlueButton";
 import Footer from "../../Components/Footer";
-import Userimg from '../../assets/images/user.webp'
 
+import Userimg from "../../assets/images/user.webp";
 import imagemCadastroCandidato from "../../assets/imgCadastroCandidato.webp";
 
 import { uri } from "../../services/conexao";
@@ -28,7 +28,7 @@ export default function CadastroEmpresa() {
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
   const [PerguntaSeguranca, SetPergunta] = useState("");
   const [RespostaSeguranca, SetResposta] = useState("");
-  const [CaminhoImagem, setCaminho] = useState('');
+  const [CaminhoImagem, setCaminho] = useState("");
 
   const history = useHistory();
 
@@ -41,22 +41,21 @@ export default function CadastroEmpresa() {
 
   const verificacaoEmail = emailRegex.test(Email);
   const verificacaoSenha = senhaRegex.test(Senha);
-  
+
   useEffect(() => {
     listarcurso();
   }, []);
-  
 
   const uploadFile = (event) => {
     event.preventDefault();
 
     let formdata = new FormData();
 
-    formdata.append('arquivo', event.target.files[0]);
+    formdata.append("arquivo", event.target.files[0]);
 
-    fetch(`${uri}/api/Upload`,{
-        method : 'POST',
-        body : formdata
+    fetch(`${uri}/api/Upload`, {
+      method: "POST",
+      body: formdata,
     })
     .then(response => response.text())
     .then(data => {
@@ -72,7 +71,6 @@ export default function CadastroEmpresa() {
       redBox.style.boxShadow = "3px 3px 3px gray";
       result.style.color = "red";
       result.innerText = "As senhas não conferem";
-
     } else {
       redBox.style.border = "unset";
       redBox.style.boxShadow = "unset";
@@ -80,17 +78,16 @@ export default function CadastroEmpresa() {
       result.innerText = "As senhas conferem";
     }
 
-    if(verificacaoSenha !== true){
+    if (verificacaoSenha !== true) {
       redBox.style.border = "solid red 1px";
       redBox.style.boxShadow = "3px 3px 3px gray";
       instructions.style.color = "red";
-      instructions.innerText =
-        `A senha deve conter, no mínimo, 9 caracteres, e no máximo 15, dentre eles:
+      instructions.innerText = `A senha deve conter, no mínimo, 9 caracteres, e no máximo 15, dentre eles:
         • 1 letra minúscula
         • 1 letra maiúscula
         • 1 número
         • 1 caractere especial`;
-    }else{
+    } else {
       redBox.style.border = "unset";
       redBox.style.boxShadow = "unset";
       instructions.style.color = "unset";
@@ -103,37 +100,38 @@ export default function CadastroEmpresa() {
       alert("As senhas não são semelhantes");
     } else if (verificacaoEmail !== true) {
       alert("O e-mail deve ser válido");
-    } else if(verificacaoSenha !== true){
-      alert('A(s) senha(s) não confere(m) com o padrão solicitado');
-    }else {
-    const data = {
-      nomeCompleto: NomeCompleto,
-      rg: Rg,
-      cpf: CPF,
-      telefone: Telefone,
-      linkLinkedinCandidato: Linkedin,
-      idCurso: Curso,
-      email: Email,
-      senha: Senha,
-      respostaSeguranca: RespostaSeguranca,
-      perguntaSeguranca: PerguntaSeguranca,
-      CaminhoImagem:CaminhoImagem
-    };
-    fetch(`${uri}/api/Usuario/Candidato`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-    .then((response) => {
-      if (response.status !== 200) {
-        alert("Não foi possivel efetuar o cadastro");
-      } else {
-        alert("Cadastrado com sucesso");
-        history.push("/");
-      }
-    }).catch((err) => console.error(err));
+    } else if (verificacaoSenha !== true) {
+      alert("A(s) senha(s) não confere(m) com o padrão solicitado");
+    } else {
+      const data = {
+        nomeCompleto: NomeCompleto,
+        rg: Rg,
+        cpf: CPF,
+        telefone: Telefone,
+        linkLinkedinCandidato: Linkedin,
+        idCurso: Curso,
+        email: Email,
+        senha: Senha,
+        respostaSeguranca: RespostaSeguranca,
+        perguntaSeguranca: PerguntaSeguranca,
+        CaminhoImagem: CaminhoImagem,
+      };
+      fetch(`${uri}/api/Usuario/Candidato`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status !== 200) {
+            alert("Não foi possivel efetuar o cadastro");
+          } else {
+            alert("Cadastrado com sucesso");
+            history.push("/");
+          }
+        })
+        .catch((err) => console.error(err));
     }
   }
 
@@ -148,17 +146,24 @@ export default function CadastroEmpresa() {
       .catch((err) => console.error(err));
   };
 
-function View(){
-  if(CaminhoImagem=='' && CaminhoImagem.length<3 || CaminhoImagem===undefined){
-    return(
-    <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil"/>
-    );
-  }else if(CaminhoImagem.length>3){
-    return(
-      <img className="imagemCadastro" src={`${uri}/ImageBackUp/`+CaminhoImagem} alt="Imagem de perfil"/>
+  function View() {
+    if (
+      (CaminhoImagem == "" && CaminhoImagem.length < 3) ||
+      CaminhoImagem === undefined
+    ) {
+      return (
+        <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil" />
       );
+    } else if (CaminhoImagem.length > 3) {
+      return (
+        <img
+          className="imagemCadastro"
+          src={`${uri}/ImageBackUp/` + CaminhoImagem}
+          alt="Imagem de perfil"
+        />
+      );
+    }
   }
-}
 
   return (
     <body>
@@ -173,16 +178,30 @@ function View(){
               Bem-vindo ao cadastro do candidato. <br />
               Ficamos felizes de tê-lo na nossa plataforma
             </p>
-              <div className="imgCadastroPerfil">
+            <div className="imgCadastroPerfil">
               {View()}
-              <br/>
-              <button className="btSelecionar"><label htmlFor="ButtonImage" className="lbBt">Selecione uma imagem</label></button>
-              </div>
-            <form className="form" onSubmit={e =>{
-              e.preventDefault();
-              salvar();
-              }}>
-              <input type="file" className="none" id="ButtonImage" onChange={event => { uploadFile(event)}}/>
+              <br />
+              <button className="btSelecionar">
+                <label htmlFor="ButtonImage" className="lbBt">
+                  Selecione uma imagem
+                </label>
+              </button>
+            </div>
+            <form
+              className="form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                salvar();
+              }}
+            >
+              <input
+                type="file"
+                className="none"
+                id="ButtonImage"
+                onChange={(event) => {
+                  uploadFile(event);
+                }}
+              />
               <Input
                 id="fullName"
                 name="fullName"
@@ -202,7 +221,7 @@ function View(){
                 className="cadastre"
                 label="RG:"
                 type="text"
-                placeholder="00.000.000-0" 
+                placeholder="00.000.000-0"
                 maxLength={9}
                 minLength={9}
                 required
@@ -220,9 +239,8 @@ function View(){
                 maxLength={11}
                 minLength={11}
                 onChange={(e) => {
-                    SetCPF(e.target.value);
-                  }
-                }
+                  SetCPF(e.target.value);
+                }}
               />
 
               <Input
@@ -239,7 +257,7 @@ function View(){
               />
 
               <Input
-              id="linkedin"
+                id="linkedin"
                 name="linkedin"
                 className="cadastre"
                 label="LinkedIn:"
@@ -251,7 +269,12 @@ function View(){
               />
 
               <div>
-                <label htmlFor="selectCursoCandidato" className="select-cadastroCandidato-title">Curso</label>
+                <label
+                  htmlFor="selectCursoCandidato"
+                  className="select-cadastroCandidato-title"
+                >
+                  Curso
+                </label>
                 <br />
                 <select
                   className="select-cadastroCandidato"
@@ -316,7 +339,10 @@ function View(){
               <p className="password-instructions-text"></p>
 
               <div>
-                <label htmlFor="selectCadastroCandidato" className="select-cadastroCandidato-title">
+                <label
+                  htmlFor="selectCadastroCandidato"
+                  className="select-cadastroCandidato-title"
+                >
                   Pergunta de seguranca:
                 </label>
                 <br />
@@ -328,20 +354,39 @@ function View(){
                   id="selectCadastroCandidato"
                 >
                   <option value="0">Selecione sua pergunta de segurança</option>
-                  <option value="Como se chama o seu cachorro"> Como se chama o seu cachorro</option>
-                  <option value="Qual o seu sobrenome">Qual o seu sobrenome</option>
-                  <option value="Qual o nome da sua mãe/pai">Qual o nome da sua mãe/pai</option>
-                  <option value="Para qual país você gostaria de viajar">Para qual país você gostaria de viajar</option>
-                  <option value="Qual era sua matéria preferida na escola">Qual era sua matéria preferida na escola</option>
-                  <option value="De onde vem sua família">De onde vem sua família</option>
-                  <option value="Do que você mais gosta de fazer nas suas horas vagas">Do que você mais gosta de fazer nas suas horas vagas</option>
-                  <option value="Qual a palavra que te define como pessoa">Qual a palavra que te define como pessoa</option>
-                  <option value="Qual o ano mais importante da sua vida">Qual o ano mais importante da sua vida</option>
+                  <option value="Como se chama o seu cachorro">
+                    {" "}
+                    Como se chama o seu cachorro
+                  </option>
+                  <option value="Qual o seu sobrenome">
+                    Qual o seu sobrenome
+                  </option>
+                  <option value="Qual o nome da sua mãe/pai">
+                    Qual o nome da sua mãe/pai
+                  </option>
+                  <option value="Para qual país você gostaria de viajar">
+                    Para qual país você gostaria de viajar
+                  </option>
+                  <option value="Qual era sua matéria preferida na escola">
+                    Qual era sua matéria preferida na escola
+                  </option>
+                  <option value="De onde vem sua família">
+                    De onde vem sua família
+                  </option>
+                  <option value="Do que você mais gosta de fazer nas suas horas vagas">
+                    Do que você mais gosta de fazer nas suas horas vagas
+                  </option>
+                  <option value="Qual a palavra que te define como pessoa">
+                    Qual a palavra que te define como pessoa
+                  </option>
+                  <option value="Qual o ano mais importante da sua vida">
+                    Qual o ano mais importante da sua vida
+                  </option>
                 </select>
               </div>
 
               <Input
-               id="Respostaseguranca"
+                id="Respostaseguranca"
                 name="Respostaseguranca"
                 className="cadastre"
                 label="Resposta de segurança:"

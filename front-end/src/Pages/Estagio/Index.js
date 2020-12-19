@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useHistory } from 'react-router-dom'
-
-import imgDelete from "../../assets/delete.webp";
-import imgEdit from "../../assets/black-ink-pen.webp";
-import imgEnterprise from "../../assets/enterprise.webp";
-import imgCertificate from "../../assets/certificate.webp";
-import imgWorker from "../../assets/worker.webp";
-
-import "./style.css";
+import { useHistory } from "react-router-dom";
 
 import AccessMenu from "../../Components/AccessMenu";
 import Tag from "../../Components/Tag/Index";
@@ -15,6 +7,16 @@ import AccessBar from "../../Components/AccessBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import Input from "../../Components/Input";
+
+import imgDelete from "../../assets/delete.webp";
+import imgEdit from "../../assets/black-ink-pen.webp";
+import imgEnterprise from "../../assets/enterprise.webp";
+import imgCertificate from "../../assets/certificate.webp";
+import imgWorker from "../../assets/worker.webp";
+
+import { uri } from "../../services/conexao";
+
+import "./style.css";
 
 export default function Estagio() {
   const [Estagios, SetEstagios] = useState([]);
@@ -29,7 +31,7 @@ export default function Estagio() {
     listarEstatisticas();
   }, []);
 
-const history=useHistory();
+  const history = useHistory();
 
   function FiltroMeses(opcao) {
     for (var i = 0; i < Estagios.length; i++) {
@@ -41,7 +43,7 @@ const history=useHistory();
 
   function FiltroStatus() {
     for (var i = 0; i < Estagios.length; i++) {
-      if (Estagios[i].statusEstagio =="Estagio encerrado") {
+      if (Estagios[i].statusEstagio == "Estagio encerrado") {
         EstagioFiltro.push(Estagios[i]);
       }
     }
@@ -73,7 +75,10 @@ const history=useHistory();
                   />
                 </div>
                 <div className="CabecaEstagio">
-                  <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="ImagemPerfil" />
+                  <img
+                    src={`${uri}/imgPerfil/${item.caminhoImagem}`}
+                    alt="ImagemPerfil"
+                  />
                   <h3>{item.nomeCompleto}</h3>
                   <hr className="hr" />
                   <h5>{item.nomeCurso}</h5>
@@ -83,15 +88,23 @@ const history=useHistory();
                   <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
                   <Tag NomeTag={"Status:" + item.statusEstagio}></Tag>
                   <Tag
-                    NomeTag={"Periodo do estagio:" + item.periodoEstagio+"meses"}
+                    NomeTag={
+                      "Periodo do estagio:" + item.periodoEstagio + "meses"
+                    }
                   ></Tag>
                   <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
                   <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
-                  <h5 className="UnderlineText" onClick={e=>{
-                    e.preventDefault();
-                    localStorage.setItem("CandidatoSelecionado",item.idUsuario);
-                    history.push("PerfilCandidatoAdm");
-                  }}>
+                  <h5
+                    className="UnderlineText"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      localStorage.setItem(
+                        "CandidatoSelecionado",
+                        item.idUsuario
+                      );
+                      history.push("PerfilCandidatoAdm");
+                    }}
+                  >
                     Ver perfil
                   </h5>
                 </div>
@@ -100,7 +113,7 @@ const history=useHistory();
           })}
         </div>
       );
-    } else if (Opcao !== "" &&Opcao!="Encerrado") {
+    } else if (Opcao !== "" && Opcao != "Encerrado") {
       EstagioFiltro.splice(0, Number.MAX_VALUE);
       FiltroMeses(Opcao);
       return (
@@ -127,7 +140,10 @@ const history=useHistory();
                   />
                 </div>
                 <div className="CabecaEstagio">
-                  <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="ImagemPerfil" alt="Imagem de perfil" />
+                  <img
+                    src={`${uri}/imgPerfil/${item.caminhoImagem}`}
+                    alt="Imagem de perfil"
+                  />
                   <h3>{item.nomeCompleto}</h3>
                   <hr className="hr" />
                   <h5>{item.nomeCurso}</h5>
@@ -137,15 +153,23 @@ const history=useHistory();
                   <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
                   <Tag NomeTag={"Status:" + item.statusEstagio}></Tag>
                   <Tag
-                    NomeTag={"Periodo do estagio:" + item.periodoEstagio+"meses"}
+                    NomeTag={
+                      "Periodo do estagio:" + item.periodoEstagio + "meses"
+                    }
                   ></Tag>
                   <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
                   <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
-                  <h5 className="UnderlineText" onClick={e=>{
-                    e.preventDefault();
-                    localStorage.setItem("CandidatoSelecionado",item.idUsuario);
-                    history.push("PerfilCandidatoAdm");
-                  }}>
+                  <h5
+                    className="UnderlineText"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      localStorage.setItem(
+                        "CandidatoSelecionado",
+                        item.idUsuario
+                      );
+                      history.push("PerfilCandidatoAdm");
+                    }}
+                  >
                     Ver perfil
                   </h5>
                 </div>
@@ -154,7 +178,7 @@ const history=useHistory();
           })}
         </div>
       );
-    }else if(Opcao=="Encerrado"){
+    } else if (Opcao == "Encerrado") {
       EstagioFiltro.splice(0, Number.MAX_VALUE);
       FiltroStatus();
       return (
@@ -181,7 +205,10 @@ const history=useHistory();
                   />
                 </div>
                 <div className="CabecaEstagio">
-                  <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} alt="ImagemPerfil" />
+                  <img
+                    src={`${uri}/imgPerfil/${item.caminhoImagem}`}
+                    alt="ImagemPerfil"
+                  />
                   <h3>{item.nomeCompleto}</h3>
                   <hr className="hr" />
                   <h5>{item.nomeCurso}</h5>
@@ -191,15 +218,23 @@ const history=useHistory();
                   <Tag NomeTag={"Telefone:" + item.telefone}></Tag>
                   <Tag NomeTag={"Status:" + item.statusEstagio}></Tag>
                   <Tag
-                    NomeTag={"Periodo do estagio:" + item.periodoEstagio+"meses"}
+                    NomeTag={
+                      "Periodo do estagio:" + item.periodoEstagio + "meses"
+                    }
                   ></Tag>
                   <Tag NomeTag={"TempoEstagiado:" + item.tempoEstagiado}></Tag>
                   <Tag NomeTag={"Empresa:" + item.razaoSocial}></Tag>
-                  <h5 className="UnderlineText" onClick={e=>{
-                    e.preventDefault();
-                    localStorage.setItem("CandidatoSelecionado",item.idUsuario);
-                    history.push("PerfilCandidatoAdm");
-                  }}>
+                  <h5
+                    className="UnderlineText"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      localStorage.setItem(
+                        "CandidatoSelecionado",
+                        item.idUsuario
+                      );
+                      history.push("PerfilCandidatoAdm");
+                    }}
+                  >
                     Ver perfil
                   </h5>
                 </div>
@@ -212,7 +247,7 @@ const history=useHistory();
   }
 
   const listarEstatisticas = () => {
-    fetch("http://localhost:5000/api/Administrador/Estatisticas", {
+    fetch(`${uri}/api/Administrador/Estatisticas`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -227,16 +262,13 @@ const history=useHistory();
   };
 
   const DeletarEstagio = (idEstagio) => {
-    fetch(
-      "http://localhost:5000/api/Administrador/DeletarEstagio/" + idEstagio,
-      {
-        method: "DELETE",
-        headers: {
-          "content-type": "application/json",
-          authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    )
+    fetch(`${uri}/api/Administrador/DeletarEstagio/` + idEstagio, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
       .then((response) => response.json())
       .then((dados) => {
         alert(dados);
@@ -248,18 +280,16 @@ const history=useHistory();
 
   const EditarEstagio = () => {
     const form = {
-      periodoEstagio: Periodo
+      periodoEstagio: Periodo,
     };
-    fetch("http://localhost:5000/api/Administrador/AtualizarEstagio/" + idEstagio+"/"+Periodo,
-      {
-        method: "PUT",
-        body: JSON.stringify(form),
-        headers: {
-          "content-type": "application/json",
-          authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    )
+    fetch(`${uri}/api/Administrador/AtualizarEstagio/${idEstagio}`, {
+      method: "PUT",
+      body: JSON.stringify(form),
+      headers: {
+        "content-type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
       .then(function (respose) {
         if (respose.status !== 200) {
           alert("Não foi possivel editar esse estagio");
@@ -272,7 +302,7 @@ const history=useHistory();
   };
 
   const listarEstagios = () => {
-    fetch("http://localhost:5000/api/Administrador/ListarEstagios", {
+    fetch(`${uri}/api/Administrador/ListarEstagios`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -337,7 +367,11 @@ const history=useHistory();
         </div>
       </div>
       <br />
-      <select className="selectEstagio" onChange={(e) => setOpcao(e.target.value)} value={Opcao}>
+      <select
+        className="selectEstagio"
+        onChange={(e) => setOpcao(e.target.value)}
+        value={Opcao}
+      >
         <option value="" onClick={(e) => setOpcao(e.target.value)}>
           Filtre sua busca por tempo estagiado
         </option>
@@ -367,7 +401,7 @@ const history=useHistory();
         <h2>Editar estágio</h2>
         <form>
           <Input
-          id="PeriodoEstagio"
+            id="PeriodoEstagio"
             name="PeriodoEstagio"
             className="cadastre"
             label="Periodo"

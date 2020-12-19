@@ -1,5 +1,5 @@
 import React from "react";
-import { Link ,useHistory} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import AccessBar from "../../Components/AccessBar";
 import AccessMenu from "../../Components/AccessMenu";
@@ -12,32 +12,33 @@ import { parseJwt } from "../../services/token";
 import "./style.css";
 
 const Unauthorized = () => {
-
-  function View(){
-    if(localStorage.getItem("token")==null||localStorage.getItem("token")==undefined){
-      return(
+  function View() {
+    if (
+      localStorage.getItem("token") == null ||
+      localStorage.getItem("token") == undefined
+    ) {
+      return (
         <Link to="/login" className="pagina-principal-link">
-              página de login..
-            </Link>
+          página de login..
+        </Link>
       );
-    }
-    else if(parseJwt().Role=='1'){
-      return(
+    } else if (parseJwt().Role == "1") {
+      return (
         <Link to="/perfil" className="pagina-principal-link">
-              página principal
-            </Link>
+          página principal
+        </Link>
       );
-    }else if(parseJwt().Role=='2'){
-      return(
+    } else if (parseJwt().Role == "2") {
+      return (
         <Link to="/perfilCandidato" className="pagina-principal-link">
-              página principal
-            </Link>
+          página principal
+        </Link>
       );
-    }else if(parseJwt().Role=='3'){
-      return(
+    } else if (parseJwt().Role == "3") {
+      return (
         <Link to="/perfilEmpresa" className="pagina-principal-link">
-              página principal
-            </Link>
+          página principal
+        </Link>
       );
     }
   }
@@ -57,10 +58,7 @@ const Unauthorized = () => {
             <strong>Erro 401</strong>
           </h3>
           <h3>Você não pode mexer aqui. Autentique-se</h3>
-          <p>
-            Volte para a{" "}
-            {View()}
-          </p>
+          <p>Volte para a {View()}</p>
         </div>
         <div className="not-found-img">
           <Lock />

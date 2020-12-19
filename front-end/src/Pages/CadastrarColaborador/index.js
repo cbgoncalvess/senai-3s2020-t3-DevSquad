@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
+
 import Footer from "../../Components/Footer";
 import Header from "../../Components/Header";
 
-import api from "../../services/api";
-
-import "./style.css";
-
-import User from "../../assets/images/user.webp";
 import Delete from "../../assets/images/cancel.webp";
 import Input from "../../Components/Input";
 import AccessBar from "../../Components/AccessBar";
@@ -14,6 +10,9 @@ import BlackButton from "../../Components/BlackButton";
 import AccessMenu from "../../Components/AccessMenu";
 
 import { uri } from "../../services/conexao";
+import api from "../../services/api";
+
+import "./style.css";
 
 export default function CadastrarColaborador() {
   const [Colaboradores, setColaboradores] = useState([]);
@@ -69,15 +68,12 @@ export default function CadastrarColaborador() {
   };
 
   const DeletarAdm = (idAdm) => {
-    fetch(
-      `${uri}/api/Administrador/DeletarAdminstrador/${idAdm}`,
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    )
+    fetch(`${uri}/api/Administrador/DeletarAdminstrador/${idAdm}`, {
+      method: "DELETE",
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
       .then((response) => response.json())
       .then((dados) => {
         alert(dados);
@@ -99,7 +95,11 @@ export default function CadastrarColaborador() {
               <div className="perfilBox">
                 <div className="horizontal">
                   <div className="perfil">
-                    <img className="user" src={`${uri}/imgPerfil/${item.caminhoImagem}`} alt="Iamgem de perfil do administrador" />
+                    <img
+                      className="user"
+                      src={`${uri}/imgPerfil/${item.caminhoImagem}`}
+                      alt="Iamgem de perfil do administrador"
+                    />
                     <h4>Colaborador</h4>
                   </div>
                   <div className="infos">
@@ -114,6 +114,7 @@ export default function CadastrarColaborador() {
                     <img
                       src={Delete}
                       onClick={() => DeletarAdm(item.idUsuario)}
+                      alt="Apagar"
                     />
                   </div>
                 </div>
@@ -132,7 +133,7 @@ export default function CadastrarColaborador() {
           </div>
           <div className="camposCadastro">
             <Input
-            id="emailColab"
+              id="emailColab"
               className="div-select"
               name="emailColab"
               label="*E-mail"
@@ -145,7 +146,7 @@ export default function CadastrarColaborador() {
             />
 
             <Input
-            id="senhaColab"
+              id="senhaColab"
               className="div-select"
               name="senhaColab"
               label="*Senha"
@@ -158,7 +159,7 @@ export default function CadastrarColaborador() {
             />
 
             <Input
-            id="confirmarSenhaColab"
+              id="confirmarSenhaColab"
               className="div-select"
               name="confirmarSenhaColab"
               label="*Confirmar Senha"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import imgDelete from "../../assets/delete.webp";
 import { useHistory } from "react-router-dom";
 
 import Header from "../../Components/Header";
@@ -7,7 +6,11 @@ import Footer from "../../Components/Footer";
 import AccessBar from "../../Components/AccessBar";
 import AccessMenu from "../../Components/AccessMenu";
 import Tag from "../../Components/Tag/Index";
-// style
+
+import imgDelete from "../../assets/delete.webp";
+
+import { uri } from "../../services/conexao";
+
 import "./style.css";
 
 export default function VisualizarCandidatoAdm() {
@@ -30,7 +33,7 @@ export default function VisualizarCandidatoAdm() {
 
   const BuscarCandidatoPorId = () => {
     fetch(
-      "http://localhost:5000/api/Administrador/BuscarCandidatoPorIdAdm/" +
+      `${uri}/api/Administrador/BuscarCandidatoPorIdAdm/` +
         localStorage.getItem("CandidatoSelecionado"),
       {
         method: "GET",
@@ -55,7 +58,7 @@ export default function VisualizarCandidatoAdm() {
 
   const listarVagasInscritas = () => {
     fetch(
-      "http://localhost:5000/api/Administrador/ListarVagasInscritasAdm/" +
+      `${uri}/api/Administrador/ListarVagasInscritasAdm/` +
         localStorage.getItem("CandidatoSelecionado"),
       {
         method: "GET",
@@ -72,7 +75,7 @@ export default function VisualizarCandidatoAdm() {
   };
 
   const DeletarInscricao = (id) => {
-    fetch("http://localhost:5000/api/Administrador/DeletarInscricao/" + id, {
+    fetch(`${uri}/api/Administrador/DeletarInscricao/${id}`, {
       method: "DELETE",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -100,9 +103,7 @@ export default function VisualizarCandidatoAdm() {
                   <div className="flexBoxPerfil">
                     <img
                       className="imgUsuario"
-                      src={
-                        "http://localhost:5000/imgPerfil/" + item.caminhoImagem
-                      }
+                      src={`${uri}/imgPerfil/${item.caminhoImagem}`}
                       alt="usuario"
                     />
                     <div className="ColumnTituloArea">
@@ -114,7 +115,6 @@ export default function VisualizarCandidatoAdm() {
                     <img
                       className="Delete"
                       src={imgDelete}
-                      alt="Delete"
                       onClick={() => DeletarInscricao(item.idInscricao)}
                       alt="Botão que deleta inscrição do candidato"
                     />
@@ -144,7 +144,10 @@ export default function VisualizarCandidatoAdm() {
         <div className="DireitoAdm">
           <div className="BoxEmpresa">
             <div className="ImagemEmpresaAdm">
-              <img src={"http://localhost:5000/imgPerfil/" + CaminhoImagem} alt="Imagem de perfil da empresa"/>
+              <img
+                src={`${uri}/imgPerfil/${CaminhoImagem}`}
+                alt="Imagem de perfil da empresa"
+              />
               <h5>{NomeCompleto}</h5>
             </div>
             <div className="DadosDaEmpresa">
