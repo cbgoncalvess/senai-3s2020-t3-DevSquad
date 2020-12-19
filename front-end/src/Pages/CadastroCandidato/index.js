@@ -57,12 +57,13 @@ export default function CadastroEmpresa() {
       method: "POST",
       body: formdata,
     })
-      .then((response) => response.json())
-      .then((data) => {
-        setCaminho(data.caminhoImagem);
-      })
-      .catch((err) => console.log(err));
-  };
+    .then(response => response.text())
+    .then(data => {
+      console.log(data);
+        setCaminho(data);
+    })
+    .catch(err => console.log(err))
+  }
 
   const escreverResultado = () => {
     if (Senha !== ConfirmarSenha) {

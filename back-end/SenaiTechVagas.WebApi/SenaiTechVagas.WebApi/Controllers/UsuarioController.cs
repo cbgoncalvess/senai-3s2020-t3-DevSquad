@@ -263,13 +263,11 @@ namespace SenaiTechVagas.WebApi.Controllers
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
                 var arquivo = Request.Form.Files[0];
                 var a=usuarioRepository.AlterarImagemPerfil(idUsuario, arquivo);
-                UploadImagem imagem = new UploadImagem();
-                imagem.CaminhoImagem = a;
-                    return Ok(imagem);
+                    return Ok(a);
             }
             catch (Exception)
             {
-                return BadRequest();
+                return BadRequest(e);
             }
         }
     }

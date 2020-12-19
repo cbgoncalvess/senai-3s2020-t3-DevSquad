@@ -18,7 +18,7 @@ namespace SenaiTechVagas.WebApi.Repositories
     {
         string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
  
-        public bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada)
+        public bool AtualizarEmpresaPorIdCorpo(int idUsuario, Empresa EmpresaAtualizada)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -30,7 +30,7 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     if (empresaBuscada.NomeReponsavel != null)
                     {
-                        empresaBuscada.NomeReponsavel = EmpresaAtualizada.NomeResponsavel;
+                        empresaBuscada.NomeReponsavel = EmpresaAtualizada.NomeReponsavel;
                     }
                     if (EmpresaAtualizada.Cnpj != null)
                     {
@@ -76,9 +76,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                     {
                         empresaBuscada.Localidade = EmpresaAtualizada.Localidade;
                     }
-                    if (EmpresaAtualizada.Estado != null)
+                    if (EmpresaAtualizada.Uf != null)
                     {
-                        empresaBuscada.Uf = EmpresaAtualizada.Estado;
+                        empresaBuscada.Uf = EmpresaAtualizada.Uf;
                     }
 
                     ctx.Update(empresaBuscada);

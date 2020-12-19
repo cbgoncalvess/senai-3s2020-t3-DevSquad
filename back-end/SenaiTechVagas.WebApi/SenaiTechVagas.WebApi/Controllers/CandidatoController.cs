@@ -35,7 +35,7 @@ namespace SenaiTechVagas.WebApi.Controllers
        /// <returns>Retorna candidato com suas informações atualizadas.</returns>
         [Authorize(Roles="2")]
         [HttpPut("AtualizarCandidato")]
-        public IActionResult AtualizarCandidato(AtualizarCandidatoViewModel candidato)
+        public IActionResult AtualizarCandidato(Candidato candidato)
         {
             try
             {

@@ -124,7 +124,7 @@ export default function CadastroEmpresa() {
         Cep: CEP,
         Logradouro: Logradouro,
         Complemento: Complemento,
-        Estado: Estado,
+        Uf: Estado,
         Localidade: Cidade,
         Email: Email,
         Senha: Senha,
@@ -163,9 +163,9 @@ export default function CadastroEmpresa() {
       method: "POST",
       body: formdata,
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
-        setCaminho(data.caminhoImagem);
+        setCaminho(data);
       })
       .catch((err) => console.log(err));
   };

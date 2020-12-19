@@ -122,6 +122,30 @@ export default function PerfilCandidato() {
       .catch((err) => console.error(err));
   };
 
+    const EditarDadosDoUsuario = () => {
+        const form = {
+            nomeCompleto: NomeCompleto,
+            rg: Rg,
+            cpf: CPF,
+            telefone: Telefone,
+            linkLinkedinCandidato: Linkedin,
+            idCurso: Curso,
+        };
+        fetch('http://localhost:5000/api/Candidato/AtualizarCandidato', {
+            method: 'PUT',
+            body: JSON.stringify(form),
+            headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        }).then(function (respose) {
+            if (respose.status !== 200) {
+                alert("Não foi possivel editar os dados do ususário");
+            } else {
+                alert("Editado com sucesso");
+            }
+        }).catch(err => console.error(err));
+    }
   const listarVagas = () => {
     fetch(`${uri}/api/Candidato/ListarVagasInscritas`, {
       method: "GET",
@@ -178,7 +202,6 @@ export default function PerfilCandidato() {
     event.preventDefault();
 
     let formdata = new FormData();
-
     formdata.append("arquivo", event.target.files[0]);
 
     fetch(`${uri}/api/Usuario/AlterarImagem`, {

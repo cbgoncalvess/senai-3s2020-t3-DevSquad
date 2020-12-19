@@ -32,19 +32,34 @@ export default function PerfilAdm() {
 
     let history = useHistory();
 
-    const BuscarImagem = () => {
-        fetch(`${uri}/api/Administrador/ImagemPerfilAdm`, {
-            method: "GET",
+    const Banir =(id)=>{
+        fetch('http://localhost:5000/api/Administrador/Banir/'+id, {
+            method: 'PUT',
             headers: {
-                authorization: "Bearer " + localStorage.getItem("token"),
-            },
+                authorization: 'Bearer ' + localStorage.getItem('token')
+            }
         })
-            .then((response) => response.json())
-            .then((dados) => {
-                setCaminho(dados.caminhoImagem);
-            })
-            .catch((err) => console.error(err));
-    };
+        .then(response => response.json())
+            .then(dados => {
+                alert(dados);
+                listarEmpresa();
+                listarCandidatos();
+                listarVagas();
+            }).catch(err => console.error(err));
+}
+  const BuscarImagem = () => {
+    fetch(`${uri}/api/Administrador/ImagemPerfilAdm`, {
+      method: "GET",
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.text())
+      .then((dados) => {
+        setCaminho(dados.caminhoImagem);
+      })
+      .catch((err) => console.error(err));
+  };
 
     const Banir = (id) => {
         fetch(`${uri}/api/Administrador/Banir/${id}`, {
@@ -185,19 +200,19 @@ export default function PerfilAdm() {
 
         formdata.append("arquivo", event.target.files[0]);
 
-        fetch(`${uri}/api/Usuario/AlterarImagem`, {
-            method: "PUT",
-            headers: {
-                authorization: "Bearer " + localStorage.getItem("token"),
-            },
-            body: formdata,
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setCaminho(data.caminhoImagem);
-            })
-            .catch((err) => console.log(err));
-    };
+    fetch(`${uri}/api/Usuario/AlterarImagem`, {
+      method: "PUT",
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: formdata,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setCaminho(data);
+      })
+      .catch((err) => console.log(err));
+  };
 
     return (
         <div className="bodyPartVizualizarPerfil">

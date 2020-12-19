@@ -711,15 +711,15 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// Método que atualizar informações de estágio.
         /// </summary>
         /// <param name="idEstagio">Identificador de estágio.</param>
-        /// <param name="estagio">Objeto de estágio.</param>
+        /// <param name="Periodoestagio">Objeto de estágio.</param>
         /// <returns>Retorna atualização de estágio.</returns>
         [Authorize(Roles = "1")]
-        [HttpPut("AtualizarEstagio/{idEstagio}")]
-        public IActionResult AtualizarEstagio(int idEstagio, AtualizarEstagioViewModel estagio)
+        [HttpPut("AtualizarEstagio/{idEstagio}/{Periodoestagio}")]
+        public IActionResult AtualizarEstagio(int idEstagio,int Periodoestagio)
         {
             try
             {
-                if (_Admin.AtualizarEstagio(idEstagio, estagio))
+                if (_Admin.AtualizarEstagio(idEstagio, Periodoestagio))
                     return Ok("Estagio atualizado");
                 else
                     return BadRequest("Não foi possivel atualizar este estagio,verifique se todas as informaçoes são validas");
