@@ -201,6 +201,7 @@ Este teste relaciona às características de um animal ao comportamento humano, 
               <div className="Depo">
                 <p>"Um dos grandes diferenciais do Senai é  proporcionar o Ensino Fundamentado efetivo, onde alunos e professores vivenciam o cotidiano do mercado de trabalho com experiências em projetos reais. Fornece uma estrutura e administração  inovadora possibilitando o desenvolvimento técnico e humano de nossos alunos."</p>
               </div>
+              <br/>
               <h5 className="NomeDepo">Priscila Medeiro - Orientadora do Projeto</h5>
             </div>
 
@@ -208,6 +209,7 @@ Este teste relaciona às características de um animal ao comportamento humano, 
               <div className="Depo">
                 <p>"Tive o imenso prazer de contribuir no aprendizado destas pessoas incríveis e queridas, onde apesar do pouco tempo pude notar um potencial enorme. Fico muito feliz em ver os resultados alcançados e sei que este é apenas o começo de um futuro brilhante. Sucesso pra vocês!"</p>
               </div>
+              <br/>
               <h5 className="NomeDepo">
                 Saulo Santos - Instrutor e Desenvolvedor da Escola SENAI de Informática
               </h5>
@@ -215,22 +217,24 @@ Este teste relaciona às características de um animal ao comportamento humano, 
 
             <div className="BoxTexto">
               <div className="Depo">
-                <p>“Depois de algumas delisusões da</p>
-                <p>área da docencia decidi fazer o curso</p>
-                <p>de desenvolvimento de sistemas. </p>
-                <p>Nunca achei que poderia me</p>
-                <p>encontrar numa área que parecia ser</p>
-                <p>impossível para mim. Agradeço ao </p>
-                <p>SENAI e seu corpo docente que </p>
-                <p>estão tornando a minha formação </p>
-                <p>cada vez mais concreta. Hoje posso</p>
-                <p>ainda ser u estudante, mas tenho</p>
-                <p>certeza que terei todas a chances </p>
-                <p>que precias.</p>
-                <p>Obrigado SENAI.”</p>
+                <p>“Tive a honra de poder acompanhar o projeto desde o início de sua confecção, é impressionante a evolução que todos vocês tiveram em tão pouco tempo, sem deixar de lado a qualidade técnica e usabilidade da aplicação, meus parabéns!”</p>
               </div>
-              <h5 className="NomeDepo">Oswaldo Blablabla - Estudante</h5>
+              <br/>
+              <h5 className="NomeDepo">
+                Paulo Brandão - Professor do SENAI
+              </h5>
             </div>
+
+            <div className="BoxTexto">
+              <div className="Depo">
+                <p>"Os desafios foram grandes ao longo do ano. Muitos obstáculos foram superados. Momentos em que o cansaço bateu e vontade de desistir não faltou. Mas o resultado apresentado foi fantástico. Vocês estão prontos para enfrentar os desafios do dia a dia, seja em qualquer empresa ou construindo a própria empresa. Meus parabéns."</p>
+              </div>
+              <br/>
+              <h5 className="NomeDepo">
+                Roberto Possarle - Instrutor e gestor de projetos do SENAI São Paulo
+              </h5>
+            </div>
+
           </div>
         </div>
       </div>
