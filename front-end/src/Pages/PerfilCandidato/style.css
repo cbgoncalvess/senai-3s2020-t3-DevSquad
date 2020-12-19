@@ -5,15 +5,20 @@
 
 .flexBoxPerfilCandidato>img{
     width: 70px;
-    height: 100%;
+    height: 70px;
 }
 
 .BoxPerfilCandidato{
     display: flex;
     justify-content: space-between;
     padding: 1vh;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #B9B9B9;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.flexBoxPerfilCandidato > h3 {
+    margin-left: 11px;
 }
 
 .BotoesPerfilCandidato{
@@ -58,7 +63,6 @@
 
 #modalAlterarSenhaCandidato{
     width: 50%;
-    height: 30%;
     overflow-y: auto;
     background-color: white;
     text-align: center;
@@ -81,4 +85,16 @@
         .BoxPerfilCandidato>h3{
             font-size: 12px;
         }
+    
+    .meioPerfil{
+        flex-wrap: wrap;
+    }
+
+    .EsquerdoPerfil{
+        width: 100%;
+    }
+
+    .imgPefilTexto{
+        
+    }
 }

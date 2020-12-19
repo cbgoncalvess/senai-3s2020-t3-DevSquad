@@ -23,6 +23,10 @@
   text-align: center;
 }
 
+.UnderlineText{
+  text-decoration: underline;
+}
+
 .Space > img {
   width: 30px;
   height: 30px;
@@ -252,5 +256,10 @@ body
 .preto .bt:hover {
   color: #353535 !important;
   transition: 0.5s;
+  cursor: pointer;
+}
+
+#root > div > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button,
+#root > div > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button{
   cursor: pointer;
 }

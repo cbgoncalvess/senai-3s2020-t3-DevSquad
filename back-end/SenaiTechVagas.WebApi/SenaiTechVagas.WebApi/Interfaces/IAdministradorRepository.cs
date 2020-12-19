@@ -10,14 +10,17 @@ namespace SenaiTechVagas.WebApi.Interfaces
     interface IAdministradorRepository
     {
         bool CadastrarArea(Area area);
+        CandidatoCompletoViewModel BuscarCandidatoPorIdUsuario(int idUsuario);
+        List<ListarVagasViewModel> ListarVagasDaEmpresaAdm(int idEmpresa);
         bool AtualizarArea(int idArea, Area area);
         bool CadastrarCurso(Curso curso);
+        EmpresaCompletaViewModel BuscarEmpresaPorIdUsuarioAdm(int idUsuario);
         bool AtualizarCurso(int id, Curso curso);
         List<ListarEstagiosViewModel> ListarEstagios();
-        bool CadastrarEstagio(CadastrarEstagioViewModel estagio);
+        string CadastrarEstagio(CadastrarEstagioViewModel estagio);
         bool DeletarEstagioPorId(int idEstagio);
-        bool AtualizarEstagio(int idEstagio, AtualizarEstagioViewModel estagioAtualizado);
-        List<Estagio> ListarPorperiodo(int Periodo);
+        bool DeletarUsuarioBanido(int idUsuario);
+        bool AtualizarEstagio(int idEstagio,int estagioAtualizado);
         int [] ContadorCadastros();
         List<TipoUsuario> ListarTipoUsuario();
         bool CadastrarTipoUsuario(TipoUsuario tipoUsuario);
@@ -28,26 +31,25 @@ namespace SenaiTechVagas.WebApi.Interfaces
         bool CadastrarTecnologia(Tecnologia tecnologia);
         bool AtualizarTecnologia(int id, Tecnologia tecnologia);
         List<Candidato> ListarCandidatos();
-        bool DeletarCandidato(int IdCandidato);
+        bool DeletarCandidato(int IdUsuario);
         bool DeletarInscricao(int idInscricao);
         List<Empresa> ListarEmpresa();
-        bool DeletarEmpresaPorId(int idEmpresa);
-        bool DeletarVaga(int idVaga);
+        bool DeletarEmpresaPorId(int idUsuario);
+        bool DeletarVagaEmpresa(int idVaga);
         bool BanirUsuario(int id);
         bool DesbanirUsuario(int id);
         List<Usuario>ListaDebanidos();
         bool CadastrarAdministardor(Usuario usuario);
-        bool DeletarVagaTecnologia(int idTecnologia, int idVaga);
         bool DeletarAdministrador(int id);
         List<Usuario> ListarAdministradores();
-        bool VerificarSeExiste(int idEstagio);
+        bool VerificarSeExiste(int idCandidato);
         bool AlterarSenhaDoUsuario(string email, string NovaSenha);
-        bool AlterarSenhaDeQualquerUsuario(string Email,string Senha);
-        List<ListarInscricoesViewModel> ListarCandidatosInscritos(int idVaga);
+        List<ListarInscricoesViewModel> ListarCandidatosInscritosEmpresa(int idVaga);
         List<Usuario> ListarEmailsCandidato();
         List<Empresa> ListarNomeEmpresas();
         bool AdicionarTipoPresenca(TipoRegimePresencial trp);
         bool AtualizarTipoPresenca(int id,TipoRegimePresencial trp);
-        
+        string BuscarImagemPerfilAdm(int idAms);
+        List<ListarVagasViewModel> ListarInscricoes(int idUsuario);
     }
 }

@@ -56,6 +56,26 @@
   width: 100%;
 }
 
+body > div.registerApplicant > div.box-form > div > div > button > label{
+  color: white;
+  font-weight: bold;
+}
+
+.imagemCadastro{
+  display: flex;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 100px;
+}
+
+.imgCadastroPerfil{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .cadastre {
   height: 40px;
   width: 80%;
@@ -120,6 +140,14 @@
     font-size: 16px;
 }
 
+body > div.registerApplicant > div.box-form > div > h1{
+  color: red;
+}
+
+body > div.registerApplicant > div.box-form > div > form > div.form-button > button{
+  background-color: red;
+}
+
 @media (max-width: 900px) {
   .box-img {
     display: none;
@@ -145,4 +173,17 @@
     body > div.registerApplicant > div.box-form > div > form > div:nth-child(11) > label{
         margin: unset;
     }
+}
+
+
+body > div.registerApplicant > div.box-form > div > div > button > label,
+body > div.registerCompany > div.box-form > div > div > button > label{
+  padding: 5% 20%;
+  background: red;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btSelecionar{
+  background: transparent !important;
 }

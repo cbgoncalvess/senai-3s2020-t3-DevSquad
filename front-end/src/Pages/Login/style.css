@@ -1,300 +1,172 @@
-.division-logar-title > p {
-  height: initial;
-  color: #5f5f5f;
+.division-logar-title > p {height: initial; color: #5f5f5f;}
+
+.LabelErro{
+    color: unset;
+    font-weight: unset;
+    color: red;
+    font-size: small;
+    text-align: center;
 }
 
-.meioLogin {
-  display: flex;
-}
+.principalLogin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f3f3;}
 
-.sessaoLogar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 55vw;
-  background-color: #f3f3f3;
-}
-
-.sessaoLogar > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: start;
-  height: 73vh;
-}
-
-.sessaoLogar > div > button {
-  width: 198px;
-  height: 49px;
-  border: none;
-  outline: none;
-  background: #005767;
-  border-radius: 4px;
-  color: #ffffff;
-  font-size: 18px;
-  text-transform: uppercase;
-  vertical-align: middle;
-  text-decoration: none;
-  margin-bottom: 2vh;
-}
-
-.division-logar {
-  border: none;
-  border-radius: 20px;
-  background: #ffffff;
-  width: 611px;
-  height: 596px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.division-logar-title {
-  display: flex;
-  flex-direction: column;
-  height: 8vh;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.division-logar-title > h2 {
-  font-size: 36px;
-  color: #005767;
-  text-transform: capitalize;
-  font-weight: 400;
-}
-
-.divisionCampo {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 8vh;
-  align-items: flex-start;
-}
-
-.divisionPassword {
-  height: 11vh;
-}
-
-.divisionCampo > label {
-  color: #5f5f5f;
-  font-weight: 600;
-}
-
-.inputUser {
-  background-image: url("../../assets//user\ 1.webp");
-}
-
-.inputUser,
-.inputPassword {
-  padding-left: 1em;
-  background-repeat: no-repeat;
-  border-radius: 4px;
-  width: 295px;
-  height: 44.51px;
-  background: #f3f3f3;
-  outline: none;
-  border: none;
-  display: flex;
-}
-
-.recuperarPassword {
-  text-decoration: underline;
-  font-size: 12px;
-  color: #707070;
-  font-weight: 400;
-  width: 295px;
-  display: flex;
-  justify-content: center;
-}
-
-.divisionBtn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 20vw;
-}
-
-.btnLogar,
-.btnNew {
-  font-size: 16px;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: bold;
-  outline: none;
-  text-decoration: none;
-  border: none;
-  vertical-align: middle;
-}
-
-div.meioLogin > div > div > button {
-  display: none !important;
-}
-
-.link-cad-conta {
-  color: #707070;
-  font-size: 16px;
-}
-
-.btnLogar {
-  padding: 12px 44px;
-  background: #005767;
-  border-radius: 4px;
-  color: #fff;
-  margin-left: 20px;
-}
-
-.bodyPartLogin > img {
-  height: 100vh;
-}
-
-#peliculaRecuperarSenhaCandidato {
-  background-color: rgb(00, 00, 00, 0.63);
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  justify-content: center;
-  align-items: center;
-}
-
-#peliculaRecuperarSenhaCandidato {
-  background-color: rgb(00, 00, 00, 0.63);
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  justify-content: center;
-  align-items: center;
-}
-
-#modalRecuperarSenhaCandidato {
-  width: 50%;
-  height: 40%;
-  overflow-y: auto;
-  background-color: white;
-  text-align: center;
-  border-radius: 5px;
-  padding: 20px;
-  position: fixed;
-  top: 25%;
-  left: 25%;
-}
-
-.preto .sessaoLogar {
-  background: black !important;
-}
-
-/* acces menu */
-
-.preto .btnLogar {
-  color: yellow;
-}
-
-.maior .btnLogar {
-  font-size: 20px;
-}
-
-.maior .recuperarPassword {
-  font-size: 14px;
-}
-
-@media (max-width: 1116px) {
-  .sessaoLogar {
+.sessaoLogar{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    background-color: #f3f3f3;
-    height: 100vh;
-  }
-  .imagemDireito {
-    display: none;
-  }
+    width: 55vw;}
 
-  @media only screen and (min-width: 300px) {
-    .principalLogin {
-      padding: 100px 0em !important;
-    }
-    .divisionBtn {
-      width: 264px !important;
-    }
-  }
+.form-logar {
+    height: 227px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;}
+    
+.division-logar {
+    border: none;
+    border-radius: 20px;
+    background: #FFFFFF;
+    width: 611px;
+    height: 596px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;}
 
-  @media only screen and (min-width: 776px) {
-  }
+.division-logar-title {
+    display: flex;
+    flex-direction: column;
+    height: 74px;
+    justify-content: space-between;
+    align-items: center;}
 
-  @media only screen and (max-width: 700px) {
-    .imgBannerLogin {
-      display: none;
-    }
+.division-logar-title > h2 {
+    font-size: 36px;
+    color: #005767;
+    text-transform: capitalize;
+    font-weight: 400;}
+ 
+.divisionCampo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;}
 
-    .principalLogin {
-      padding: 72px 0em;
-      flex-direction: column;
-    }
+.divisionCampo > label{color: #5f5f5f; font-weight: 600; padding-bottom:15px;}
 
-    .divisionBtn {
-      width: 243px;
-    }
-    .division-logar {
-      width: 360px;
-    }
-    .form-logar {
-      height: 23vh;
-    }
+.inputUser{background-image: url('../../assets//user\ 1.webp');}
 
-    .divisionCampo {
-      height: 9vh;
-    }
-  }
+.inputUser, .inputPassword{ 
+    padding-left: 1em;   
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    width: 295px;
+    height: 44.51px;
+    background: #f3f3f3;
+    outline: none;
+    border: none;    
+    display: flex;}
 
-  @media only screen and (max-width: 1292px) {
-    .principalLogin {
-      padding: 0px 0em !important;
-      flex-direction: row;
-      justify-content: center;
-      width: 100vw;
-      background-color: #f3f3f3;
-      height: 100vh;
-    }
-    .imagemDireito {
-      display: none;
-    }
-
-    .sessaoLogar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 787px;
-    }
-
-    .divisionCampo {
-      height: 10vh;
-    }
-
-    .imgBannerLogin {
-      display: none;
-    }
-    .divisionBtn {
-      width: 300px;
-    }
-    .divisionPassword {
-      height: 11vh;
-    }
-    .form-logar {
-      height: 25vh;
-    }
-  }
-  @media only screen and (min-width: 1293px) {
-    .principalLogin {
-      padding: 0px 0em !important;
-    }
-    .divisionBtn {
-      width: 300.8px !important;
-    }
-  }
+.recuperarPassword{
+    text-decoration: underline;
+    font-size: 12px;
+    color: #707070;
+    font-weight: 400;
+    width: 295px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    width: 33%;
 }
+    
+.divisionBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20vw;}
+
+.btnLogar, .btnNew {
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold; 
+    outline: none;
+    text-decoration: none;
+    border: none;
+    vertical-align: middle;} 
+
+.btnNew {
+    border: none;
+    background: none;}
+
+.link-cad-conta{color: #707070;font-size: 16px;}
+
+.btnLogar {
+    width: 104px;
+    height: 38px;
+    background: #005767;
+    border-radius: 4px;
+    color: #fff;}
+
+
+.Login > img{height: 100vh;}
+
+#peliculaRecuperarSenhaCandidato{
+    background-color: rgb(00, 00, 00,0.63);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    justify-content: center;
+    align-items: center;}
+
+#modalRecuperarSenhaCandidato{
+    width: 50%;
+    overflow-y: auto;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 20px;
+    position: fixed;
+    top: 5%;
+    left: 25%;}
+
+@media only screen and (max-width: 400px) {
+.principalLogin {padding: 100px 0px;}
+.divisionBtn { width: 264px; }
+}
+
+
+@media only screen and (max-width: 1000px) {
+
+.imgBannerLogin {display: none;}
+
+.principalLogin {padding: 72px 0px; flex-direction: column;}
+    
+.divisionBtn {width: 243px;}
+.division-logar {width: 360px;}}
+
+@media only screen and (max-width: 1292px) {
+
+.principalLogin {
+    padding: 0px 0px !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 787px;}
+
+.imgBannerLogin {display: none;}
+.divisionBtn {width: 300px;}}
+
+@media only screen and (min-width: 1293px) {
+.principalLogin {padding: 0px 0px !important;}
+.divisionBtn{width: 300.8px !important;}
+.imgBannerLogin {width: 50%;}
+}
+

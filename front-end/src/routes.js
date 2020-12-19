@@ -1,7 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch,Redirect} from "react-router-dom";
-
-//import { usuarioAutenticado } from "./services/token";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 import Banidos from "./Pages/ListaBanidos";
 import BuscarVagas from "./Pages/BuscarVaga";
@@ -20,64 +23,57 @@ import Sobre from "./Pages/Sobre";
 import TesteDePesonalidade from "./Pages/TesteDePersonalidade/Index";
 import VagasPublicadas from "./Pages/ListarVagasPublicadas/Index";
 import VisualizarVagaCandidato from "./Pages/VisualizarVagaCandidato";
-import VizualizarVagaEmpresa from "./Pages/VizualizarVagaEmpresa";
+import VizualizarVagaEmpresa from "./Pages/VisualizarVagaEmpresa";
 import ListarCandidatosInscritos from "./Pages/ListarCandidatosInscritosAdmin";
 import DashboardInscricaoCandidato from "./Pages/DashbordInscricaoCandidato";
 import CadastrarEstagiario from "./Pages/CadastrarEstagiario";
 import Unauthorized from "./Pages/Unauthorized";
 import VizualizarCandidatosAprovados from "./Pages/CandidatosAprovados";
-import {parseJwt} from './services/token'
-
+import VisualizarEmpresaAdm from "./Pages/VisualizarEmpresaAdm";
+import VisualizarCandidatoAdm from "./Pages/VisualizarCandidatoAdm";
+import { parseJwt } from "./services/token";
 
 function Routes() {
-
-  const RotaPrivadaComum = ({ component : Component, ...rest}) => (
+  const RotaPrivadaComum = ({ component: Component, ...rest }) => (
     <Route
-    {...rest}
-      render={props =>
-        localStorage.getItem('token') !== null && parseJwt().Role ==='2' ? (
-        // Se sim, renderiza de acordo com a rota solicitada e permitida
-        <Component{...props} />
+      {...rest}
+      render={(props) =>
+        localStorage.getItem("token") !== null && parseJwt().Role === "2" ? (
+          // Se sim, renderiza de acordo com a rota solicitada e permitida
+          <Component {...props} />
         ) : (
-        // Se não, redireciona para a página de login
-          <Redirect
-            to={{ pathname: "/login"}}
-          />
+          // Se não, redireciona para a página de login
+          <Redirect to={{ pathname: "/login" }} />
         )
       }
     />
   );
 
-
-  const RotaPrivadaAdm = ({ component : Component, ...rest}) => (
+  const RotaPrivadaAdm = ({ component: Component, ...rest }) => (
     <Route
-    {...rest}
-      render={props =>
-        localStorage.getItem('token') !== null && parseJwt().Role ==='1' ? (
-        // Se sim, renderiza de acordo com a rota solicitada e permitida
-        <Component{...props} />
+      {...rest}
+      render={(props) =>
+        localStorage.getItem("token") !== null && parseJwt().Role === "1" ? (
+          // Se sim, renderiza de acordo com a rota solicitada e permitida
+          <Component {...props} />
         ) : (
-        // Se não, redireciona para a página de login
-          <Redirect
-            to={{ pathname: "/unauthorized"}}
-          />
+          // Se não, redireciona para a página de login
+          <Redirect to={{ pathname: "/unauthorized" }} />
         )
       }
     />
   );
 
-  const RotaPrivadaEmpresa = ({ component : Component, ...rest}) => (
+  const RotaPrivadaEmpresa = ({ component: Component, ...rest }) => (
     <Route
-    {...rest}
-      render={props =>
-        localStorage.getItem('token') !== null && parseJwt().Role ==='3' ? (
-        // Se sim, renderiza de acordo com a rota solicitada e permitida
-        <Component{...props} />
+      {...rest}
+      render={(props) =>
+        localStorage.getItem("token") !== null && parseJwt().Role === "3" ? (
+          // Se sim, renderiza de acordo com a rota solicitada e permitida
+          <Component {...props} />
         ) : (
-        // Se não, redireciona para a página de login
-          <Redirect
-            to={{ pathname: "/login"}}
-          />
+          // Se não, redireciona para a página de login
+          <Redirect to={{ pathname: "/login" }} />
         )
       }
     />
@@ -93,7 +89,18 @@ function Routes() {
         />
         <RotaPrivadaComum path="/principal" component={BuscarVagas} />
         <RotaPrivadaEmpresa path="/cadastro/vaga" component={CadastrarVaga} />
-        <RotaPrivadaAdm path="/cadastro/Estagio" component={CadastrarEstagiario} />
+        <RotaPrivadaAdm
+          path="/PerfilEmpresaAdm"
+          component={VisualizarEmpresaAdm}
+        />
+        <RotaPrivadaAdm
+          path="/PerfilCandidatoAdm"
+          component={VisualizarCandidatoAdm}
+        />
+        <RotaPrivadaAdm
+          path="/cadastro/Estagio"
+          component={CadastrarEstagiario}
+        />
         <Route path="/cadastro" exact component={CadastroCandidato} />
         <Route path="/cadastro/empresa" component={CadastroEmpresa} />
         <RotaPrivadaAdm path="/colaboradores" component={Colaboradores} />
@@ -105,12 +112,18 @@ function Routes() {
         <RotaPrivadaEmpresa path="/perfilEmpresa" component={PerfilEmpresa} />
         <Route path="/sobre" component={Sobre} />
         <Route path="/TesteDePersonalidade" component={TesteDePesonalidade} />
-        <RotaPrivadaEmpresa path="/VagasPublicadas" component={VagasPublicadas} />
+        <RotaPrivadaEmpresa
+          path="/VagasPublicadas"
+          component={VagasPublicadas}
+        />
         <RotaPrivadaComum
           path="/VisualizarVagaCandidato"
           component={VisualizarVagaCandidato}
         />
-        <RotaPrivadaEmpresa path="/VagaEmpresa" component={VizualizarVagaEmpresa} />
+        <RotaPrivadaEmpresa
+          path="/VagaEmpresa"
+          component={VizualizarVagaEmpresa}
+        />
         <RotaPrivadaAdm
           path="/VizualizarVagaAdmin"
           component={ListarCandidatosInscritos}

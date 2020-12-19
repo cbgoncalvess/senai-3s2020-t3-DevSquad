@@ -9,21 +9,19 @@ namespace SenaiTechVagas.WebApi.Interfaces
 {
     interface IEmpresaRepository
     {
-        bool AtualizarEmpresaPorIdCorpo(int idUsuario, AtualizarEmpresaViewModel EmpresaAtualizada);
+        bool AtualizarEmpresaPorIdCorpo(int idUsuario, Empresa EmpresaAtualizada);
         bool AtualizarVaga(int idVaga, AtualizarVagaViewModel vaga);
         bool AdicionarVaga(Vaga vaga);
         bool AdicionarTecnologiaNaVaga(VagaTecnologia vagaTecnologia);
         bool DeletarVaga(int idVaga);
         void ExpirarVaga();
-        void AdicionarTecnologiaPadrao(int idVaga);
         bool RemoverTecnologiaDaVaga(VagaTecnologia vaga);
-        bool VerificarSeTecnologiaExiste(int idTecnologia);
         bool AprovarCandidato(int idInscricao);
         bool ReprovarCandidato(int idInscricao);
         List<ListarVagasViewModel> ListarVagasDaEmpresa(int idEmpresa);
         List<ListarInscricoesViewModel> ListarCandidatosInscritos(int idVaga);
         List<ListarInscricoesViewModel> ListarCandidatosAprovados(int idVaga);
-        Empresa BuscarEmpresaPorIdUsuario(int idUsuario);
+        EmpresaCompletaViewModel BuscarEmpresaPorIdUsuario(int idUsuario);
         List<Candidato> ListarCandidatosEstagiandoNaEmpresa(int idEmpresa);
         List<TipoRegimePresencial> ListarTipoPresenca();
         /*------------VERIFICAÇÕES INICIO-------------*/

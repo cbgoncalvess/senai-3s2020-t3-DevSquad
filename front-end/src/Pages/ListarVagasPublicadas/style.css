@@ -40,10 +40,12 @@
        width: 90%;
    
    }
-   .ImagemEmpresa{
-       height: 100px;
-       width: 100px;
-   }
+   
+.ImagemEmpresa{
+ height: 100px;
+ border-radius: 100px;
+ width: 100px;
+}
    
    body > div > div.ListaDeVagas > div > div.Edit-Delete > a{
    font-size: 12px;
@@ -55,11 +57,29 @@
    flex-direction: row;
    flex-wrap: wrap;
    }
+
+   .btSelecionar{
+    width: 50%;
+    height: 36px;
+    background-color: #f12525;
+    border: none;
+    border-radius: 6px;
+   }
    
+.lbBt{
+    color: white;
+}
+
+body > div.registerApplicant > div.box-form > div > form > button > label{
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
    .VagaCompleta{
        display: flex;
        border-radius: 4px;
-       padding: 3vh;
+       padding: 2em;
    }
    
    .vaga{
@@ -201,3 +221,10 @@
        background: transparent !important;
    }
    
+
+#root > div > div.ListaDeVagas > div > div.AdicionarRemoverTecnologia > h6:nth-child(1),
+#root > div > div.ListaDeVagas > div > div.AdicionarRemoverTecnologia > h6:nth-child(2),
+#btn-EditarVaga, #root > div > div.ListaDeVagas > div > div.Edit-Delete > img.Delete,
+#root > div > div.meioPerfil > div.EsquerdoPerfil > div.imgPefilTexto > label > img{
+    cursor: pointer;
+}

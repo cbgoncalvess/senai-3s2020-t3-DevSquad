@@ -35,12 +35,12 @@ namespace SenaiTechVagas.WebApi.Controllers
        /// <returns>Retorna candidato com suas informações atualizadas.</returns>
         [Authorize(Roles="2")]
         [HttpPut("AtualizarCandidato")]
-        public IActionResult AtualizarCandidato(AtualizarCandidatoViewModel candidato)
+        public IActionResult AtualizarCandidato(Candidato candidato)
         {
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                CandidatoCompletoViewModel candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
                 if (candidatoBuscado == null)
                     return BadRequest();
 
@@ -67,7 +67,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                CandidatoCompletoViewModel candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
                 if (candidatoBuscado == null)
                     return BadRequest();
 
@@ -98,7 +98,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                Candidato candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                CandidatoCompletoViewModel candidatoBuscado = _candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
                 if (candidatoBuscado == null)
                     return BadRequest();
 
@@ -124,7 +124,6 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                
                 return Ok(_candidatoRepository.ListarInscricoes(idUsuario));
             }
             catch(Exception)
@@ -133,6 +132,10 @@ namespace SenaiTechVagas.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Lista todas as vagas relacionadas a área do candidato
+        /// </summary>
+        /// <returns></returns>
         [Authorize(Roles = "2")]
         [HttpGet("ListarVagasPrincipal")]
         public IActionResult ListarVagasPrincipal()
@@ -140,9 +143,9 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                Candidato c=_candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
+                CandidatoCompletoViewModel c=_candidatoRepository.BuscarCandidatoPorIdUsuario(idUsuario);
 
-                return Ok(_candidatoRepository.ListarVagasArea(c.IdCursoNavigation.IdArea));
+                return Ok(_candidatoRepository.ListarVagasArea(c.IdArea));
             }
             catch (Exception)
             {

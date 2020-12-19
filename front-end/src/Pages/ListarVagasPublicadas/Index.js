@@ -5,20 +5,21 @@ import AccessBar from "../../Components/AccessBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import Input from "../../Components/Input";
+import Tag from "../../Components/Tag/Index";
+import InfoVaga from "../../Components/InfoVaga/Index";
+import AccessMenu from "../../Components/AccessMenu";
 
 import imgDelete from "../../assets/delete.webp";
 import imgGlobal from "../../assets/global.png";
 import imgEdit from "../../assets/black-ink-pen.webp";
-import imgEmpresa from "../../assets/Teste.webp";
-import Tag from "../../Components/Tag/Index";
-import InfoVaga from "../../Components/InfoVaga/Index";
 import imgDesenvolvimento from "../../assets/web-programming.webp";
 import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
 import imgSalario from "../../assets/money (1).webp";
 import imgTipoContrato from "../../assets/gears.webp";
 import imgFuncao from "../../assets/rocket-launch.webp";
 import IconEmpresa from "../../assets/building.webp";
-import AccessMenu from "../../Components/AccessMenu";
+
+import { uri } from "../../services/conexao";
 
 import "./style.css";
 
@@ -26,7 +27,6 @@ export default function VagasPublicadas() {
   const [ListaDeVagas, SetListVagas] = useState([]);
   const [TecnologiasDaVaga, SetTecnologiasDaVaga] = useState([]);
   const [Tecnologias, SetTecnologias] = useState([]);
-  const [Areas, SetListAreas] = useState([]);
   let [idTecnologia, SetIdTecnologia] = useState(0);
   let [NomeTecnologia, SetNomeTecnologia] = useState("");
   let [idVaga, SetIdVaga] = useState(0);
@@ -55,27 +55,17 @@ export default function VagasPublicadas() {
 
   let history = useHistory();
 
-  function IrParaInscricoes() {
-    localStorage.setItem("idVagaSelecionadaEmpresa", idVaga);
-    history.push("/VagaEmpresa");
+  function FormatarSalario(list) {
+    for (var i = 0; i < list.length; i++) {
+      list[i].salario = list[i].salario.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      });
+    }
   }
 
-  const listarAreas = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarArea", {
-      method: "GET",
-      headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((dados) => {
-        SetListAreas(dados);
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const DadosDaVaga = () => {
-    fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + idVaga, {
+  const DadosDaVaga = (id) => {
+    fetch(`${uri}/api/Usuario/BuscarPorId/${id}`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -118,7 +108,7 @@ export default function VagasPublicadas() {
       descricaoVaga: DescricaoVaga,
       cep: CEP,
     };
-    fetch("http://localhost:5000/api/Empresa/AtualizarVagaEmpresa/" + idVaga, {
+    fetch(`${uri}/api/Empresa/AtualizarVagaEmpresa/${idVaga}` + idVaga, {
       method: "PUT",
       body: JSON.stringify(form),
       headers: {
@@ -128,8 +118,9 @@ export default function VagasPublicadas() {
     })
       .then((response) => response.json())
       .then((dados) => {
-        alert(dados)
+        alert(dados);
         listarVagas();
+        btn_fechar();
       })
       .catch((err) => console.error(err));
   };
@@ -148,7 +139,7 @@ export default function VagasPublicadas() {
       idTecnologia: idTec,
       idVaga: idVaga,
     };
-    fetch("http://localhost:5000/api/Empresa/DeletarTecnologiaDaVaga", {
+    fetch(`${uri}/api/Empresa/DeletarTecnologiaDaVaga`, {
       method: "DELETE",
       body: JSON.stringify(form),
       headers: {
@@ -158,6 +149,7 @@ export default function VagasPublicadas() {
     })
       .then((response) => response.json())
       .then((dados) => {
+        alert(dados);
         listarVagas();
       })
       .catch((err) => console.error(err));
@@ -168,7 +160,7 @@ export default function VagasPublicadas() {
       idTecnologia: idTecnologia,
       idVaga: idVaga,
     };
-    fetch("http://localhost:5000/api/Empresa/AdicionarTecnologiaNaVaga", {
+    fetch(`${uri}/api/Empresa/AdicionarTecnologiaNaVaga`, {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
@@ -184,7 +176,7 @@ export default function VagasPublicadas() {
   };
 
   const listarVagas = () => {
-    fetch("http://localhost:5000/api/Empresa/ListarVagasPublicadas", {
+    fetch(`${uri}/api/Empresa/ListarVagasPublicadas`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -192,13 +184,14 @@ export default function VagasPublicadas() {
     })
       .then((response) => response.json())
       .then((dados) => {
+        FormatarSalario(dados);
         SetListVagas(dados);
       })
       .catch((err) => console.error(err));
   };
 
   const listarTecnologias = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarTecnologia", {
+    fetch(`${uri}/api/Usuario/ListarTecnologia`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -264,20 +257,17 @@ export default function VagasPublicadas() {
     }
   }
 
-  const DeletarVaga = () => {
-    fetch("http://localhost:5000/api/Empresa/DeletarVagaEmpresa/" + idVaga, {
+  const DeletarVaga = (id) => {
+    fetch(`${uri}/api/Empresa/DeletarVagaEmpresa/${id}`, {
       method: "DELETE",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
-      .then(function (respose) {
-        if (respose.status !== 200) {
-          alert("Não foi possivel deletar esta vaga");
-        } else {
-          alert("Vaga deletada com sucesso com sucesso");
-          listarVagas();
-        }
+      .then((response) => response.json())
+      .then((dados) => {
+        alert(dados);
+        listarVagas();
       })
       .catch((err) => console.error(err));
   };
@@ -298,38 +288,43 @@ export default function VagasPublicadas() {
           return (
             <div key={item.idVaga} className="vaga">
               <div className="Edit-Delete">
-                <a>Publicou a vaga em 10/02/2020</a>
+                <p>{"Sua vaga expira em:" + item.dataExpiracao}</p>
                 <img
                   className="Edit"
+                  alt="Botão que edita a vaga"
                   src={imgEdit}
                   id="btn-EditarVaga"
                   onClick={(event) => {
                     event.preventDefault();
-                    ApareceEditarVaga();
-                    listarAreas();
+                    DadosDaVaga(item.idVaga);
                     SetIdVaga(item.idVaga);
-                    DadosDaVaga();
+                    ApareceEditarVaga();
                   }}
                 />
                 <img
                   className="Delete"
                   src={imgDelete}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    SetIdVaga(item.idVaga);
-                    DeletarVaga();
-                  }}
+                  alt="Botão que deleta a vaga"
+                  onClick={() => DeletarVaga(item.idVaga)}
                 />
               </div>
               <div className="VagaCompleta">
-                <img src={imgEmpresa} className="ImagemEmpresa"></img>
+                <img
+                  src={`${uri}/imgPerfil/${item.caminhoImagem}`}
+                  className="ImagemEmpresa"
+                  alt="Imagem de perfil da empresa"
+                />
                 <div className="MainVaga">
                   <h3
                     onClick={(e) => {
                       e.preventDefault();
-                      idVaga = item.idVaga;
-                      IrParaInscricoes();
+                      localStorage.setItem(
+                        "idVagaSelecionadaEmpresa",
+                        item.idVaga
+                      );
+                      history.push("/VagaEmpresa");
                     }}
+                    className="UnderlineText"
                   >
                     {item.tituloVaga}
                   </h3>
@@ -398,10 +393,9 @@ export default function VagasPublicadas() {
       <div id="ModalRemoverTecnologia" className="ModalRemoverTecnologia none">
         <h2>Remover tecnologia Vaga</h2>
         <form>
-          <div className="select">
+          <div className="select-final">
             <label>Tecnologias</label>
             <select
-              className="div-select"
               onChange={(e) => SetNomeTecnologia(e.target.value)}
               value={NomeTecnologia}
             >
@@ -418,7 +412,7 @@ export default function VagasPublicadas() {
             </select>
           </div>
           <button onClick={DeletarTecnologia} className="btVaga">
-            Adicionar
+            Remover
           </button>
         </form>
       </div>
@@ -434,10 +428,9 @@ export default function VagasPublicadas() {
       >
         <h2>Adicionar uma tecnologia na Vaga</h2>
         <form>
-          <div className="select">
+          <div className="select-final">
             <label>Tecnologias</label>
             <select
-              className="div-select"
               onChange={(e) => SetIdTecnologia(e.target.value)}
               value={idTecnologia}
             >
@@ -466,43 +459,31 @@ export default function VagasPublicadas() {
         <h2>Editar sua Vaga</h2>
         <form>
           <Input
+            id="TituloVagaEdit"
             className="InputCadastro"
             value={TituloVaga}
-            name="TituloVaga"
+            name="TituloVagaEdit"
             label="Titulo da Vaga"
             onChange={(e) => setTituloVaga(e.target.value)}
+            required
           />
           <Input
+            id="SalarioEdit"
             className="InputCadastro"
             value={Salario}
-            name="Salario"
+            name="SalarioEdit"
             label="Salario"
             onChange={(e) => setSalario(e.target.value)}
+            required
           />
-          <div className="select">
-            <label>Área</label>
-            <select
-              className="div-select"
-              onChange={(e) => setArea(e.target.value)}
-              value={Area}
-            >
-              <option value="0">Selecione uma área de atuação</option>
-              {Areas.map((item) => {
-                return (
-                  <option key={item.idArea} value={item.idArea}>
-                    {item.nomeArea}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
 
-          <div className="select">
-            <label>Experiência</label>
+          <div className="select-final">
+            <label htmlFor="ExperienciaEdit">Experiência</label>
             <select
-              className="div-select"
               onChange={(e) => setExperiencia(e.target.value)}
               value={Experiencia}
+              required
+              id="ExperienciaEdit"
             >
               <option value="0">Selecione um nível de experiência</option>
               <option value="Pleno">Pleno</option>
@@ -511,74 +492,97 @@ export default function VagasPublicadas() {
             </select>
           </div>
 
-          <div className="select">
-            <label>Tipo de contrato</label>
+          <div className="select-final">
+            <label htmlFor="TipoContratoEdit">Tipo de contrato</label>
             <select
-              className="div-select"
               onChange={(e) => setTipoContrato(e.target.value)}
               value={TipoContrato}
+              required
+              id="TipoContratoEdit"
             >
               <option value="0">Selecione um tipo de contrato</option>
               <option value="CLT">CLT</option>
               <option value="PJ">PJ</option>
-              <option value="Está gio">Estagio</option>
+              <option value="Estágio">Estagio</option>
             </select>
           </div>
           <Input
             className="InputCadastro"
             value={Estado}
-            name="Estado"
+            name="EstadoEdit"
             label="Estado"
             onChange={(e) => setEstado(e.target.value)}
+            required
+            id="EstadoEdit"
           />
           <Input
             className="InputCadastro"
             value={Cidade}
-            name="Cidade"
+            name="CidadeEdit"
             label="Cidade"
             onChange={(e) => setCidade(e.target.value)}
+            required
+            id="CidadeEdit"
           />
           <Input
             className="InputCadastro"
             value={CEP}
-            name="CEP"
+            name="CepEdit"
             label="CEP"
             onChange={(e) => setCEP(e.target.value)}
+            required
+            id="CepEdit"
           />
           <Input
             className="InputCadastro"
             value={Logradouro}
-            name="Logradouro"
+            name="LogradouroEdit"
             label="Logradouro"
             onChange={(e) => setLogradouro(e.target.value)}
+            required
           />
           <Input
             className="InputCadastro"
             value={Complemento}
-            name="Complemento"
+            name="ComplementoEdit"
             label="Complemento"
+            id="ComplementoEdit"
             onChange={(e) => setComplemento(e.target.value)}
           />
           <div className="text-area">
-            <label>Descrição da vaga</label>
+            <label htmlFor="DescricaoVagaEdit">Descrição da vaga</label>
             <textarea
               value={DescricaoVaga}
               name="DescricaoVaga"
+              maxLength="750"
+              minLength="750"
               onChange={(e) => setDescricaoVaga(e.target.value)}
+              required
+              id="DescricaoVagaEdit"
             ></textarea>
             <br />
-            <label>Descrição da empresa</label>
+            <label htmlFor="DescricaoEmpresaEdit">Descrição da empresa</label>
             <textarea
               value={DescricaoEmpresa}
               name="DescricaoEmpresa"
+              maxLength="750"
+              minLength="750"
               onChange={(e) => setDescricaoEmpresa(e.target.value)}
+              required
+              id="DescricaoEmpresaEdit"
             ></textarea>
             <br />
-            <label>Descrição dos benefícios</label>
+            <label htmlFor="DescricaoBeneficioEdit">
+              Descrição dos benefícios
+            </label>
             <textarea
               value={DescricaoBeneficio}
-              name="DescricaoBeneficio"
+              name="DescricaoBeneficioEdit"
               onChange={(e) => setDescricaoBeneficio(e.target.value)}
+              required
+              maxLength="750"
+              minLength="750"
+              id="DescricaoBeneficioEdit"
             ></textarea>
           </div>
           <br />

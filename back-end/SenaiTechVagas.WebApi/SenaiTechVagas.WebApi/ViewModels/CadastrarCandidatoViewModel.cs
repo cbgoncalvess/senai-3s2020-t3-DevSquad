@@ -10,29 +10,45 @@ namespace SenaiTechVagas.WebApi.ViewModels
     public class CadastrarCandidatoViewModel
     {
 
-        [StringLength(35, MinimumLength = 5)]
+        [Required]
+        [StringLength(65, MinimumLength = 5)]
         public string NomeCompleto { get; set; }
 
+        [Required]
         [StringLength(9, MinimumLength = 9)]
         public string Rg { get; set; }
 
+        [Required]
         [StringLength(11, MinimumLength = 11)]
         public string Cpf { get; set; }
 
-        [StringLength(14, MinimumLength = 11)]
+        [Required]
+        [StringLength(11, MinimumLength = 10)]
         public string Telefone { get; set; }
+
+        [StringLength(150)]
         public string LinkLinkedinCandidato { get; set; }
+
+        [Required]
         public int IdCurso { get; set; }
 
+        [Required]
         [StringLength(254, MinimumLength = 5)]
         public string Email { get; set; }
 
+        [Required]
         [StringLength(15, MinimumLength = 9)]
         public string Senha { get; set; }
+
+        [Required]
+        [StringLength(130, MinimumLength = 5)]
         public string PerguntaSeguranca { get; set; }
 
-        [StringLength(20, MinimumLength = 5)]
+        [Required]
+        [StringLength(30, MinimumLength = 5)]
         public string RespostaSeguranca { get; set; }
 
+        [StringLength(40, MinimumLength = 0)]
+        public string CaminhoImagem { get; set; }
     }
 }

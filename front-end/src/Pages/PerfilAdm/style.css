@@ -32,6 +32,7 @@
   display: flex;
   flex-direction: column;
   padding: 10vh;
+  align-items: center;
 }
 
 .BotoesPerfil {
@@ -52,7 +53,7 @@
 
 #modalAlterarSenhaUsuario {
   width: 50%;
-  height: 50%;
+  height: 40%;
   overflow-y: auto;
   background-color: white;
   text-align: center;
@@ -91,13 +92,15 @@
 
 .imgperfil {
   width: 140px;
-  height: 100px;
-  padding-bottom: 2vh;
+  height: 140px;
+  border-radius: 100px;
+  object-fit: cover;
 }
 
 .imgUsuario {
-  width: 70px;
-  height: 100%;
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
 }
 
 .ColumnNomeEmail {
@@ -140,7 +143,7 @@
   color: white;
   width: 173px;
   margin-bottom: 5vw;
-}
+  height: 32px;}
 
 .peliculaPerfilAdm {
   background-color: rgb(00, 00, 00, 0.63);
@@ -181,6 +184,7 @@
 .preto .EsquerdoPerfil {
   border-right: solid 1px white;
   background: #333330 !important;
+  justify-content: center;
 }
 
 .preto .modalAlterarSenhaUsuario,
@@ -206,9 +210,6 @@
 }
 
 @media (max-width: 700px) {
-  .EsquerdoPerfil {
-    display: none;
-  }
 
   .DireitoPerfil {
     width: 100%;
@@ -226,4 +227,13 @@
     width: 75px;
     height: 25px;
   }
+}
+
+#root > div > div.meioPerfil > div.EsquerdoPerfil > div.imgPefilTexto > label > img:hover{
+  filter:opacity(0.5);
+  content: url(https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-camera-512.png);
+}
+
+.Delete, .btVerPerfil, .ExcluirVagaText, .Edit{
+  cursor: pointer;
 }

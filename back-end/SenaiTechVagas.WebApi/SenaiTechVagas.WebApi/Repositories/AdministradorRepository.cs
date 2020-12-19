@@ -7,14 +7,15 @@ using SenaiTechVagas.WebApi.Utils;
 using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SenaiTechVagas.WebApi.Repositories
 {
-    public class AdministradorRepository : IAdministradorRepository
+    public class AdministradorRepository :EmpresaRepository,IAdministradorRepository
     {
-        string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@123";
+        string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarCurso(int id, Curso curso)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -52,7 +53,7 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool CadastrarEstagio(CadastrarEstagioViewModel estagio)
+        public string CadastrarEstagio(CadastrarEstagioViewModel estagio)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -60,7 +61,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     var Candidato = ctx.Candidato.FirstOrDefault(u=>u.IdUsuario==estagio.IdUsuario);
                     if (Candidato == null)
-                        return false;
+                        return "Candidato não encontardo";
+
+                    var resposta=VerificarSeExiste(Candidato.IdCandidato);
+                    if (resposta == true)
+                        return "Estágio ja cadastrado";
 
                     Estagio estage = new Estagio() {
                         IdCandidato = Candidato.IdCandidato,
@@ -70,16 +75,16 @@ namespace SenaiTechVagas.WebApi.Repositories
                     };
                     ctx.Add(estage);
                     ctx.SaveChanges();
-                    return true;
+                    return "Estágio casdastrado com sucesso";
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return "Erro no sistema";
                 }
             }
         }
 
-        public bool AtualizarEstagio(int idEstagio, AtualizarEstagioViewModel estagioAtualizado)
+        public bool AtualizarEstagio(int idEstagio,int estagioAtualizado)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
@@ -89,15 +94,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     if (estagioBuscado == null)
                         return false;
 
-                    if (estagioAtualizado.IdEmpresa >= 1)
-                        estagioBuscado.IdEmpresa = estagioAtualizado.IdEmpresa;
-
-                    if (estagioAtualizado.PeriodoEstagio < 36)
-                        estagioBuscado.PeriodoEstagio = estagioAtualizado.PeriodoEstagio;
-
-                    if (estagioAtualizado.IdCandidato >= 1)
-                        estagioBuscado.IdCandidato = estagioAtualizado.IdCandidato;
-
+                    estagioBuscado.PeriodoEstagio = estagioAtualizado;
                     ctx.Update(estagioBuscado);
                     ctx.SaveChanges();
                     return true;
@@ -140,12 +137,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                   " SELECT Estagio.DataCadastro,Curso.NomeCurso,Estagio.IdEstagio,PeriodoEstagio,E.RazaoSocial,C.NomeCompleto,A.NomeArea,C.Telefone,U.Email FROM Estagio" +
+                   " SELECT U.IdUsuario,U.CaminhoImagem,Estagio.DataCadastro,Curso.NomeCurso,Estagio.IdEstagio,PeriodoEstagio,E.RazaoSocial,C.NomeCompleto,A.NomeArea,C.Telefone,U.Email FROM Estagio" +
                    " INNER JOIN Empresa E on E.IdEmpresa = Estagio.IdEmpresa" +
                    " INNER JOIN Candidato C on C.IdCandidato = Estagio.IdCandidato" +
-                   " INNER JOIN Area A on A.IdArea = C.IdArea" +
                    " INNER JOIN Usuario U on U.IdUsuario = C.IdUsuario" +
-                   " INNER JOIN Curso ON Curso.idCurso=C.idCurso";
+                   " INNER JOIN Curso ON Curso.idCurso=C.idCurso"+
+                   " INNER JOIN Area A ON A.IdArea=Curso.IdArea";
                     con.Open();
                     // Declara o SqlDataReader para receber os dados do banco de dados
                     SqlDataReader rdr;
@@ -165,7 +162,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                                 // Atribui às propriedades os valores das colunas da tabela do banco
                                 idEstagio = Convert.ToInt32(rdr["IdEstagio"]),
                                 NomeCompleto = (rdr["NomeCompleto"]).ToString(),
+                                IdUsuario=Convert.ToInt32(rdr["IdUsuario"]),
                                 EmailCandidato = (rdr["Email"]).ToString(),
+                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
                                 PeriodoEstagio = Convert.ToInt32(rdr["PeriodoEstagio"]),
                                 Telefone = (rdr["Telefone"]).ToString(),
                                 RazaoSocial = (rdr["RazaoSocial"]).ToString(),
@@ -199,16 +198,16 @@ namespace SenaiTechVagas.WebApi.Repositories
             TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
             double tempoEmDiasDouble = elapsedSpan.TotalDays;
             int tempoEmDiasInt = Convert.ToInt32(tempoEmDiasDouble);
-            return tempoEmDiasInt;
+            return tempoEmDiasInt / 30;
         }
 
-        public bool VerificarSeExiste(int id)
+        public bool VerificarSeExiste(int idCandidato)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == id);
+                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == idCandidato);
                     if (estagioBuscado != null)
                         return true;
 
@@ -217,21 +216,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception)
                 {
                     return false;
-                }
-            }
-        }
-
-        public List<Estagio> ListarPorperiodo(int Periodo)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    return ctx.Estagio.Where(v => v.PeriodoEstagio == Periodo).ToList();
-                }
-                catch (Exception)
-                {
-                    return null;
                 }
             }
         }
@@ -377,8 +361,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-
-
         public bool CadastrarTecnologia(Tecnologia tecnologia)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -397,99 +379,23 @@ namespace SenaiTechVagas.WebApi.Repositories
         }
         public List<Candidato> ListarCandidatos()
         {
-            try
-            {
-                List<Candidato> listCandidatos = new List<Candidato>();
-
-                // Declara a SqlConnection passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
-                {
-                    // Declara a instrução a ser executada
-                    string querySelectAll =
-                   " SELECT NomeCompleto,Email,IdCandidato,U.IdUsuario,TU.IdTipoUsuario FROM Candidato" +
-                   " INNER JOIN Usuario U on U.IdUsuario = Candidato.IdUsuario" +
-                   " INNER JOIN TipoUsuario TU on TU.IdTipoUsuario=U.IdTipoUsuario";
-                    con.Open();
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
-                    {
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-
-                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
-                        while (rdr.Read())
-                        {
-                            // Instancia um objeto jogo 
-                            Candidato vm = new Candidato
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                IdCandidato = Convert.ToInt32(rdr["IdCandidato"]),
-                                NomeCompleto = (rdr["NomeCompleto"]).ToString(),
-                                IdUsuario = Convert.ToInt32(rdr["IdUsuario"])
-                            };
-
-                            Usuario U = new Usuario
-                            {
-                                Email = (rdr["Email"]).ToString()
-                            };
-
-                            TipoUsuario Tu = new TipoUsuario
-                            {
-                                IdTipoUsuario = Convert.ToInt32(rdr["IdTipoUsuario"])
-                            };
-
-                            U.IdTipoUsuarioNavigation = Tu;
-                            vm.IdUsuarioNavigation = U;
-                            if (Tu.IdTipoUsuario != 4)
-                            {
-                                listCandidatos.Add(vm);
-                            }
-                        }
-                    }
-                }
-                // Retorna a lista de vagas
-                return listCandidatos;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-        public bool DeletarCandidato(int IdCandidato)
-        {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
+
                 try
                 {
-                    Candidato CandidatoBuscado = ctx.Candidato.Find(IdCandidato);
-                    if (CandidatoBuscado == null)
-                        return false;
-
-                    List<Inscricao> listaDeInscricao = ctx.Inscricao.
-                        Where(l => l.IdCandidato == IdCandidato).ToList();
-                    for (int i = 0; i < listaDeInscricao.Count; i++)
-                    {
-                        DeletarInscricao(listaDeInscricao[i].IdInscricao);
-                    }
-                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == CandidatoBuscado.IdCandidato);
-                    if (estagioBuscado != null)
-                    {
-                        ctx.Remove(estagioBuscado);
-                        ctx.SaveChanges();
-                    }
-                    DeletarUsuarioEmpresaCandidato(CandidatoBuscado.IdUsuario);
-                    ctx.SaveChanges();
-                    return true;
+                    return ctx.Candidato.Select(u=>
+                    new Candidato { NomeCompleto=u.NomeCompleto,IdUsuario=u.IdUsuario,IdUsuarioNavigation=
+                    new Usuario { Email=u.IdUsuarioNavigation.Email,CaminhoImagem=u.IdUsuarioNavigation.CaminhoImagem,IdTipoUsuario=u.IdUsuarioNavigation.IdTipoUsuario} })
+                    .Where(u=>u.IdUsuarioNavigation.IdTipoUsuario!=4).ToList();
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return null;
                 }
             }
         }
+        
         public bool DeletarInscricao(int idInscricao)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -510,13 +416,13 @@ namespace SenaiTechVagas.WebApi.Repositories
                 }
             }
         }
-        public bool DeletarEmpresaPorId(int idEmpresa)
+        public bool DeletarEmpresaPorId(int idUsuario)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    Empresa empresaBuscado = ctx.Empresa.Find(idEmpresa);
+                    Empresa empresaBuscado = ctx.Empresa.FirstOrDefault(u=>u.IdUsuario==idUsuario);
                     if (empresaBuscado == null)
                         return false;
 
@@ -532,7 +438,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     List<VagaTecnologia> ListaDeVagaTecnologia = ctx.VagaTecnologia.Where(i => i.IdVagaNavigation.IdEmpresa == empresaBuscado.IdEmpresa).ToList();
                     for (int i = 0; i < ListaDeVagaTecnologia.Count; i++)
                     {
-                        if (DeletarVagaTecnologia(ListaDeVagaTecnologia[i].IdTecnologia, ListaDeVagaTecnologia[i].IdVaga))
+                        VagaTecnologia vaga=new VagaTecnologia(){
+                          IdTecnologia=ListaDeVagaTecnologia[i].IdTecnologia,
+                          IdVaga=ListaDeVagaTecnologia[i].IdVaga
+                        };
+                        if (RemoverTecnologiaDaVaga(vaga))
                             continue;
 
                         break;
@@ -556,6 +466,39 @@ namespace SenaiTechVagas.WebApi.Repositories
         }
 
 
+        public bool DeletarCandidato(int IdUsuario)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Candidato CandidatoBuscado = ctx.Candidato.FirstOrDefault(u => u.IdUsuario == IdUsuario);
+                    if (CandidatoBuscado == null)
+                        return false;
+
+                    List<Inscricao> listaDeInscricao = ctx.Inscricao.
+                        Where(l => l.IdCandidato == CandidatoBuscado.IdCandidato).ToList();
+                    for (int i = 0; i < listaDeInscricao.Count; i++)
+                    {
+                        DeletarInscricao(listaDeInscricao[i].IdInscricao);
+                    }
+                    Estagio estagioBuscado = ctx.Estagio.FirstOrDefault(e => e.IdCandidato == CandidatoBuscado.IdCandidato);
+                    if (estagioBuscado != null)
+                    {
+                        ctx.Remove(estagioBuscado);
+                        ctx.SaveChanges();
+                    }
+                    DeletarUsuarioEmpresaCandidato(CandidatoBuscado.IdUsuario);
+                    ctx.SaveChanges();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
 
         /// <summary>
         /// Foi necessario criar esse metodo para poder deletar empresa/Candidato e usuario,no mesmo metodo estava dando erro
@@ -575,6 +518,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                         ctx.Remove(empresaBuscada);
                         ctx.Remove(usuarioBuscado);
                         ctx.SaveChanges();
+                        if (usuarioBuscado.CaminhoImagem != "Teste.webp")
+                        {
+                        var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/");
+                        string CaminhoDoArquivo = pathToSave + usuarioBuscado.CaminhoImagem;
+                        File.Delete(CaminhoDoArquivo);
+                        }
                         return true;
                     }
 
@@ -584,6 +533,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                         ctx.Remove(candidatoBuscado);
                         ctx.Remove(usuarioBuscado);
                         ctx.SaveChanges();
+                        if (usuarioBuscado.CaminhoImagem != "user.png")
+                        {
+                            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/");
+                            string CaminhoDoArquivo = pathToSave + usuarioBuscado.CaminhoImagem;
+                            File.Delete(CaminhoDoArquivo);
+                        }
                         return true;
                     }
                     return false;
@@ -596,99 +551,30 @@ namespace SenaiTechVagas.WebApi.Repositories
         }
         public List<Empresa> ListarEmpresa()
         {
-            try
-            {
-                List<Empresa> listEmpresas = new List<Empresa>();
-
-                // Declara a SqlConnection passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
-                {
-                    // Declara a instrução a ser executada
-                    string querySelectAll =
-                   " SELECT RazaoSocial,EmailContato,U.Email,IdEmpresa,U.IdUsuario,TU.IdTipoUsuario FROM Empresa" +
-                   " INNER JOIN Usuario U on U.IdUsuario = Empresa.IdUsuario" +
-                   " INNER JOIN TipoUsuario TU on TU.IdTipoUsuario=U.IdTipoUsuario";
-                    con.Open();
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
-                    {
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-
-                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
-                        while (rdr.Read())
-                        {
-                            // Instancia um objeto jogo 
-                            Empresa vm = new Empresa
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                IdEmpresa = Convert.ToInt32(rdr["IdEmpresa"]),
-                                RazaoSocial = (rdr["RazaoSocial"]).ToString(),
-                                EmailContato = (rdr["EmailContato"]).ToString(),
-                                IdUsuario = Convert.ToInt32(rdr["IdUsuario"])
-                            };
-
-                            Usuario U = new Usuario
-                            {
-                                Email = (rdr["Email"]).ToString()
-                            };
-
-                            TipoUsuario Tu = new TipoUsuario
-                            {
-                                IdTipoUsuario = Convert.ToInt32(rdr["IdTipoUsuario"])
-                            };
-
-                            U.IdTipoUsuarioNavigation = Tu;
-                            vm.IdUsuarioNavigation = U;
-                            if (Tu.IdTipoUsuario != 4)
-                            {
-                                listEmpresas.Add(vm);
-                            }
-                        }
-                    }
-                }
-                // Retorna a lista de vagas
-                return listEmpresas;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-        public bool DeletarVaga(int idVaga)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
+            using(DbSenaiContext ctx=new DbSenaiContext())
             {
                 try
                 {
-                    //Falta adicionar a empresa a que é publicadora da vaga
-                    Vaga vagaBuscada = ctx.Vaga.Find(idVaga);
-                    if (vagaBuscada == null)
-                        return false;
-
-                    List<Inscricao> BuscarInscricoes = ctx.Inscricao.Where(u => u.IdVaga == vagaBuscada.IdVaga).ToList();
-                    for (int i = 0; i < BuscarInscricoes.Count; i++)
-                    {
-                        ctx.Remove(BuscarInscricoes[i]);
-                    }
-                    List<VagaTecnologia> VagaTecnologia = ctx.VagaTecnologia.Where(v => v.IdVaga == vagaBuscada.IdVaga).ToList();
-                    for (int i = 0; i < VagaTecnologia.Count; i++)
-                    {
-                        ctx.Remove(VagaTecnologia[i]);
-                    }
-                    Empresa empresaBuscada = ctx.Empresa.Find(vagaBuscada.IdEmpresa);
-                    ctx.Update(empresaBuscada);
-                    ctx.Remove(vagaBuscada);
-                    ctx.SaveChanges();
-                    return true;
+                    return ctx.Empresa.Select(u =>
+                    new Empresa { RazaoSocial=u.RazaoSocial,IdUsuario=u.IdUsuario,EmailContato=u.EmailContato,IdUsuarioNavigation=
+                    new Usuario { CaminhoImagem=u.IdUsuarioNavigation.CaminhoImagem,IdTipoUsuario=u.IdUsuarioNavigation.IdTipoUsuario} })
+                    .Where(u=>u.IdUsuarioNavigation.IdTipoUsuario!=4).ToList();
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return null;
                 }
+            }
+        }
+        public bool DeletarVagaEmpresa(int idVaga)
+        {
+            try
+            {
+            return DeletarVaga(idVaga);
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
         public List<Usuario> ListaDebanidos()
@@ -809,35 +695,13 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool DeletarVagaTecnologia(int idTecnologia, int idVaga)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    var BuscandoVagaTecnologia = ctx.VagaTecnologia.FirstOrDefault(u => u.IdVaga == idVaga && u.IdTecnologia == idTecnologia);
-                    if (BuscandoVagaTecnologia == null)
-                        return false;
-
-                    ctx.Remove(BuscandoVagaTecnologia);
-                    ctx.SaveChanges();
-
-                    return true;
-                }
-                catch (Exception)
-                {
-
-                    return false;
-                }
-            }
-        }
-
         public bool CadastrarAdministardor(Usuario usuario)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
+                    usuario.CaminhoImagem = "user.png";
                     usuario.IdTipoUsuario = 1;
                     ctx.Add(usuario);
                     ctx.SaveChanges();
@@ -950,80 +814,14 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool AlterarSenhaDeQualquerUsuario(string Email, string senha)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    Usuario usuarioBuscado = ctx.Usuario.FirstOrDefault(u => u.Email == Email);
-                    if (usuarioBuscado == null)
-                        return false;
-
-                    usuarioBuscado.Senha = Crypter.Criptografador(senha);
-                    ctx.Update(usuarioBuscado);
-                    ctx.SaveChanges();
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
-
-        public List<ListarInscricoesViewModel> ListarCandidatosInscritos(int idVaga)
+        public List<ListarInscricoesViewModel> ListarCandidatosInscritosEmpresa(int idVaga)
         {
             try
             {
-                List<ListarInscricoesViewModel> listInscricoes = new List<ListarInscricoesViewModel>();
-
-                // Declara a SqlConnection passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
-                {
-                    // Declara a instrução a ser executada
-                    string querySelectAll =
-                    "SELECT Inscricao.IdStatusInscricao,C.IdCandidato,IdInscricao,C.NomeCompleto,C.Telefone,Curso.NomeCurso,U.Email FROM Inscricao" +
-                    " INNER JOIN Candidato C ON C.IdCandidato=Inscricao.IdCandidato" +
-                    " INNER JOIN Usuario U ON U.IdUsuario=C.IdUsuario" +
-                    " INNER JOIN Curso ON Curso.IdCurso=C.IdCurso" +
-                    " WHERE Inscricao.IdVaga = @IDVaga";
-                    con.Open();
-
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
-                    {
-                        cmd.Parameters.AddWithValue("@IDVaga", idVaga);
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-
-                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
-                        while (rdr.Read())
-                        {
-                            // Instancia um objeto jogo 
-                            ListarInscricoesViewModel vm = new ListarInscricoesViewModel
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                idInscricao = Convert.ToInt32(rdr["IdInscricao"]),
-                                idCandidato = Convert.ToInt32(rdr["idCandidato"]),
-                                NomeCandidato = rdr["NomeCompleto"].ToString(),
-                                Telefone = rdr["Telefone"].ToString(),
-                                NomeCurso = rdr["NomeCurso"].ToString(),
-                                Email = rdr["Email"].ToString()
-                            };
-                            listInscricoes.Add(vm);
-                        }
-                    }
-                }
-                // Retorna a lista de vagas
-                return listInscricoes;
+                return ListarCandidatosInscritos(idVaga);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
                 return null;
             }
         }
@@ -1094,6 +892,185 @@ namespace SenaiTechVagas.WebApi.Repositories
                         return true;
                     }
                     return false;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public string BuscarImagemPerfilAdm(int idAms)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    var usuario = ctx.Usuario.Find(idAms);
+                    return usuario.CaminhoImagem;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public EmpresaCompletaViewModel BuscarEmpresaPorIdUsuarioAdm(int idUsuario)
+        {
+            try
+            {
+               return BuscarEmpresaPorIdUsuario(idUsuario);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
+        public List<ListarVagasViewModel> ListarVagasDaEmpresaAdm(int idEmpresa)
+        {
+            try
+            {
+                return ListarVagasDaEmpresa(idEmpresa);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
+        public CandidatoCompletoViewModel BuscarCandidatoPorIdUsuario(int idUsuario)
+        {
+            try
+            {
+                // Declara a conexão passando a string de conexão
+                using (SqlConnection con = new SqlConnection(stringConexao))
+                {
+                    // Declara a query que será executada
+                    string querySelectById =
+                        "SELECT  A.NomeArea,cur.NomeCurso,A.IdArea,C.IdCandidato,cur.IdCurso,NomeCompleto,Rg,Cpf,Telefone,C.LinkLinkedinCandidato,U.CaminhoImagem FROM Candidato C" +
+                        " INNER JOIN Curso cur ON cur.IdCurso=C.IdCurso" +
+                        " INNER JOIN Area A ON A.IdArea=cur.IdArea" +
+                        " INNER JOIN Usuario U ON U.IdUsuario=C.IdUsuario" +
+                        " WHERE U.IdUsuario = @ID";
+
+                    // Abre a conexão com o banco de dados
+                    con.Open();
+
+                    // Declara o SqlDataReader para receber os dados do banco de dados
+                    SqlDataReader rdr;
+
+                    // Declara o SqlCommand passando o comando a ser executado e a conexão
+                    using (SqlCommand cmd = new SqlCommand(querySelectById, con))
+                    {
+                        // Passa o valor do parâmetro
+                        cmd.Parameters.AddWithValue("@ID", idUsuario);
+
+                        // Executa a query e armazena os dados no rdr
+                        rdr = cmd.ExecuteReader();
+
+                        // Caso o resultado da query possua registro
+                        if (rdr.Read())
+                        {
+                            // Instancia um objeto usuario 
+                            CandidatoCompletoViewModel usuario = new CandidatoCompletoViewModel
+                            {
+                                // Atribui às propriedades os valores das colunas da tabela do banco
+                                IdCandidato = Convert.ToInt32(rdr["IdCandidato"]),
+                                idCurso = Convert.ToInt32(rdr["IdCurso"]),
+                                IdArea = Convert.ToInt32(rdr["IdArea"]),
+                                NomeCompleto = rdr["NomeCompleto"].ToString(),
+                                NomeArea = rdr["NomeArea"].ToString(),
+                                NomeCurso = rdr["NomeCurso"].ToString(),
+                                Rg = rdr["Rg"].ToString(),
+                                Cpf = rdr["Cpf"].ToString(),
+                                Telefone = rdr["Telefone"].ToString(),
+                                LinkLinkedinCandidato = rdr["LinkLinkedinCandidato"].ToString(),
+                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
+
+                            };
+
+                            // Retorna o usuario buscado
+                            return usuario;
+                        }
+
+                        // Caso o resultado da query não possua registros, retorna null
+                        return null;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<ListarVagasViewModel> ListarInscricoes(int idUsuario)
+        {
+            using (DbSenaiContext ctx = new DbSenaiContext())
+            {
+                try
+                {
+                    Candidato candidato = ctx.Candidato.FirstOrDefault(c => c.IdUsuario == idUsuario);
+                    if (candidato == null)
+                        return null;
+
+                    List<Inscricao> ListaDeInscricoes = ctx.Inscricao.Where(v => v.IdCandidato == candidato.IdCandidato).ToList();
+                    if (ListaDeInscricoes == null)
+                        return null;
+
+                     List<ListarVagasViewModel> ListVaga = new List<ListarVagasViewModel>();
+                    for(int i = 0; i < ListaDeInscricoes.Count; i++)
+                    {
+                        Vaga v = ctx.Vaga.Select(u => 
+                        new Vaga {TituloVaga=u.TituloVaga,IdVaga=u.IdVaga,IdAreaNavigation=
+                        new Area { NomeArea=u.IdAreaNavigation.NomeArea},IdEmpresaNavigation=
+                        new Empresa { IdUsuarioNavigation=
+                        new Usuario { CaminhoImagem=u.IdEmpresaNavigation.IdUsuarioNavigation.CaminhoImagem} } })
+                        .FirstOrDefault(u => u.IdVaga == ListaDeInscricoes[i].IdVaga);
+                        ListVaga.Add(new ListarVagasViewModel()
+                        {
+                            TituloVaga = v.TituloVaga,
+                            IdVaga = v.IdVaga,
+                            IdInscricao = ListaDeInscricoes[i].IdInscricao,
+                            CaminhoImagem = v.IdEmpresaNavigation.IdUsuarioNavigation.CaminhoImagem,
+                            NomeArea = v.IdAreaNavigation.NomeArea
+                        });
+                    }
+                    return ListVaga;
+                    
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public bool DeletarUsuarioBanido(int idUsuario)
+        {
+            using (DbSenaiContext ctx=new DbSenaiContext())
+            {
+                try
+                {
+                    Candidato c = ctx.Candidato.FirstOrDefault(u=>u.IdUsuario==idUsuario);
+                    if (c == null)
+                    {
+                        Empresa e = ctx.Empresa.FirstOrDefault(u => u.IdUsuario == idUsuario);
+                            if (e == null)
+                            return false;
+
+                        DeletarEmpresaPorId(e.IdUsuario);
+                        return true;
+                    }
+                    else
+                    {
+                        DeletarCandidato(c.IdUsuario);
+                        return true;
+                    }
                 }
                 catch (Exception)
                 {

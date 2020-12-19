@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-// style
-import "./visualizarvaga.css";
-
-import imgteste from "../../assets/Teste.webp";
-
-// components
 import Tag from "../../Components/Tag/Index";
 import InfoVaga from "../../Components/InfoVaga/Index";
 import Footer from "../../Components/Footer/index";
@@ -13,7 +7,6 @@ import AccessBar from "../../Components/AccessBar";
 import Header from "../../Components/Header";
 import AccessMenu from "../../Components/AccessMenu";
 
-// imagens
 import imgDesenvolvimento from "../../assets/web-programming.webp";
 import imgGlobal from "../../assets/global.png";
 import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
@@ -23,11 +16,12 @@ import imgFuncao from "../../assets/rocket-launch.webp";
 import IconEmpresa from "../../assets/building.webp";
 import { useHistory } from "react-router-dom";
 
+import { uri } from "../../services/conexao";
+
+import "./visualizarvaga.css";
+
 export default function VisualizarVaga() {
   let history = useHistory();
-  const meCandidatar = () => history.push("/perfilCandidato");
-
-  let [idVaga, setIdVaga] = useState(0);
   const [Experiencia, setExperiencia] = useState("");
   const [TipoContrato, setTipoContrato] = useState("");
   const [Salario, setSalario] = useState("");
@@ -40,19 +34,17 @@ export default function VisualizarVaga() {
   const [Area, setArea] = useState("");
   const [RazaoSocial, setRazaoSocial] = useState("");
   const [tipoPresenca, setTipoPresenca] = useState("");
-  const [Logradouro, setLogradouro] = useState("");
-  const [Complemento, setComplemento] = useState("");
+  const [CaminhoImagem, setCaminho] = useState("");
 
   useEffect(() => {
-    idVaga = localStorage.getItem("idVagaSelecionada");
     listar();
   }, []);
 
   const SeCandidatar = () => {
     const form = {
-      idVaga: idVaga,
+      idVaga: localStorage.getItem("idVagaSelecionada"),
     };
-    fetch("http://localhost:5000/api/Candidato/AdicionarInscricao", {
+    fetch(`${uri}/api/Candidato/AdicionarInscricao`, {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
@@ -69,30 +61,37 @@ export default function VisualizarVaga() {
   };
 
   const listar = () => {
-    fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + idVaga, {
-      method: "GET",
-      headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
-        "content-type": "application/json",
-      },
-    })
+    fetch(
+      `${uri}/api/Usuario/BuscarPorId/` +
+        localStorage.getItem("idVagaSelecionada"),
+      {
+        method: "GET",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+          "content-type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((dados) => {
-        setIdVaga(dados.idVaga);
         setArea(dados.nomeArea);
         setTipoPresenca(dados.tipoPresenca);
         setRazaoSocial(dados.razaoSocial);
         setTituloVaga(dados.tituloVaga);
-        setLogradouro(dados.logradouro);
         setTipoContrato(dados.tipoContrato);
-        setSalario(dados.salario);
+        setSalario(
+          dados.salario.toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL",
+          })
+        );
         setTecnologias(dados.tecnologias);
-        setComplemento(dados.complemento);
         setCidade(dados.localidade);
         setExperiencia(dados.experiencia);
         setDescricaoBeneficio(dados.descricaoBeneficio);
         setDescricaoEmpresa(dados.descricaoEmpresa);
         setDescricaoVaga(dados.descricaoVaga);
+        setCaminho(dados.caminhoImagem);
       })
       .catch((err) => console.error(err));
   };
@@ -117,7 +116,11 @@ export default function VisualizarVaga() {
 
         <section className="infoVagaVisualizar">
           <div className="icard-division">
-            <img src={imgteste} alt="Logo da empresa" />
+            <img
+              className="ImagemEmpresa"
+              src={`${uri}/imgPerfil/${CaminhoImagem}`}
+              alt="Logo da empresa"
+            />
 
             <div className="divisionTagsVagas">
               <div className="card-vaga-info">

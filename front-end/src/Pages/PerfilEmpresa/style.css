@@ -35,7 +35,9 @@
   text-align: center;
   margin-bottom: 380px;
 }
-
+.imgPefilTexto > h3 {
+  margin: 11px 0px;
+}
 #peliculaAlterarSenhaEmpresa {
   background-color: rgb(00, 00, 00, 0.63);
   width: 100%;
@@ -71,6 +73,13 @@
 */
 .EsquerdoPerfil {
   background-color: white;
-  border-right: solid 1px;
+  border-right: 1px solid #B9B9B9;
   border-right-width: 0 2px 2px 0;
+}
+
+@media(max-width:700px){
+
+  .imgPefilTexto{
+      margin-bottom: 0px;
+  }
 }

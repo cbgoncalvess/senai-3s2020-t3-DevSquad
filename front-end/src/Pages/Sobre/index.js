@@ -8,11 +8,11 @@ import AccessMenu from "../../Components/AccessMenu";
 import LogoSenai from "../../assets/images/logo_senai.webp";
 import LogoTime from "../../assets/images/logo_devsquad.webp";
 
-import Alexia from "../../assets/images/linkedin_alexia.webp";
-import Andre from "../../assets/images/linkedin_andre.webp";
-import Carlos from "../../assets/images/linkedin_carlos.webp";
-import Douglas from "../../assets/images/linkedin_douglas.webp";
-import Marcos from "../../assets/images/linkedin_marcos.webp";
+import Alexia from "../../assets/images/linkedin_alexia.svg";
+import Andre from "../../assets/images/linkedin_andre.svg";
+import Carlos from "../../assets/images/linkedin_carlos.svg";
+import Douglas from "../../assets/images/linkedin_douglas.svg";
+import Marcos from "../../assets/images/linkedin_marcos.svg";
 
 import "./style.css";
 

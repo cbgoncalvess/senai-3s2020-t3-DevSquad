@@ -7,10 +7,42 @@ import Footer from "../../Components/Footer";
 import Lock from "../../Components/imgsvg/lock";
 
 import Techvagas from "../../assets/logops.webp";
+import { parseJwt } from "../../services/token";
 
 import "./style.css";
 
 const Unauthorized = () => {
+  function View() {
+    if (
+      localStorage.getItem("token") == null ||
+      localStorage.getItem("token") == undefined
+    ) {
+      return (
+        <Link to="/login" className="pagina-principal-link">
+          página de login..
+        </Link>
+      );
+    } else if (parseJwt().Role == "1") {
+      return (
+        <Link to="/perfil" className="pagina-principal-link">
+          página principal
+        </Link>
+      );
+    } else if (parseJwt().Role == "2") {
+      return (
+        <Link to="/perfilCandidato" className="pagina-principal-link">
+          página principal
+        </Link>
+      );
+    } else if (parseJwt().Role == "3") {
+      return (
+        <Link to="/perfilEmpresa" className="pagina-principal-link">
+          página principal
+        </Link>
+      );
+    }
+  }
+
   return (
     <div className="not-found-all">
       <AccessBar />
@@ -26,12 +58,7 @@ const Unauthorized = () => {
             <strong>Erro 401</strong>
           </h3>
           <h3>Você não pode mexer aqui. Autentique-se</h3>
-          <p>
-            Volte para a{" "}
-            <Link to="/login" className="pagina-principal-link">
-              página de login..
-            </Link>
-          </p>
+          <p>Volte para a {View()}</p>
         </div>
         <div className="not-found-img">
           <Lock />

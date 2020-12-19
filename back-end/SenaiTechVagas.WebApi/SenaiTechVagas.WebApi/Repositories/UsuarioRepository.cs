@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -12,15 +13,15 @@ using SenaiTechVagas.WebApi.Utils;
 using SenaiTechVagas.WebApi.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-
+using System.Net.Http.Headers;
 
 namespace SenaiTechVagas.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        string stringConexao = "Data Source=DESK-02-10-14\\SQLEXPRESS2019; Initial Catalog=Db_TechVagas; user Id=sa; pwd=sa@132";
-        //string stringConexao = "Data Source=DESKTOP-0VF65US\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
+        string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public Usuario Login(string email, string senha)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -78,7 +79,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                         Email = empresa.Email.Trim(),
                         Senha = empresa.Senha,
                         RespostaSeguranca=empresa.RespostaSeguranca,
-                        PerguntaSeguranca=empresa.PerguntaSeguranca
+                        PerguntaSeguranca=empresa.PerguntaSeguranca,
+                        CaminhoImagem=empresa.CaminhoImagem
                     };
 
                     Empresa NovaEmpresa = new Empresa()
@@ -100,6 +102,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                     };
                     ctx.Add(NovaEmpresa);
                     ctx.SaveChanges();
+                    string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "ImageBackUp/" + usuario.CaminhoImagem);
+                    string pathMove = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/" + usuario.CaminhoImagem);
+                    File.Move(pathToSave, pathMove, true);
                     return true;
                 }
                 catch (Exception)
@@ -120,7 +125,8 @@ namespace SenaiTechVagas.WebApi.Repositories
                         Senha = NovoCandidato.Senha,
                         IdTipoUsuario = 2,
                         RespostaSeguranca = NovoCandidato.RespostaSeguranca,
-                        PerguntaSeguranca = NovoCandidato.PerguntaSeguranca
+                        PerguntaSeguranca = NovoCandidato.PerguntaSeguranca,
+                        CaminhoImagem = NovoCandidato.CaminhoImagem
                     };
                     Candidato applicant = new Candidato()
                     {
@@ -135,88 +141,35 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     ctx.Add(applicant);
                     ctx.SaveChanges();
+                    string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "ImageBackUp/" + user.CaminhoImagem);
+                    string pathMove = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/" + user.CaminhoImagem);
+                    File.Move(pathToSave, pathMove, true);
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
             }
         }
 
-        public List<ListarVagasViewModel> ListarVagasEmGeral()
+        public List<Vaga> ListarVagasEmGeral()
         {
-            try
-            { 
-                List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
-
-                // Declara a SqlConnection passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
-                {
-                    // Declara a instrução a ser executada
-                    string querySelectAll =
-                    "SELECT trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga, e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
-                    " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
-                    " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
-                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
-                    " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
-                    " INNER JOIN Area are on are.IdArea=v.IdArea";
-                    con.Open();
-
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
-                    {
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-
-                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
-                        while (rdr.Read())
-                        {
-                            bool teveAcao = false;
-
-                            // Instancia um objeto jogo 
-                            ListarVagasViewModel vm = new ListarVagasViewModel
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
-                                TituloVaga = (rdr["TituloVaga"]).ToString(),
-                                Experiencia = rdr["Experiencia"].ToString(),
-                                TipoContrato = rdr["TipoContrato"].ToString(),
-                                Localidade = rdr["Localidade"].ToString(),
-                                Salario = Convert.ToDecimal(rdr["Salario"]),
-                                RazaoSocial = rdr["RazaoSocial"].ToString(),
-                                NomeArea = rdr["NomeArea"].ToString(),
-                                TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString()
-                            };
-                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
-                            vm.Tecnologias = new List<string>();
-
-                            for (int i = 0; i < listvagas.Count; i++)
-                            {
-                                if (vm.IdVaga == listvagas[i].IdVaga)
-                                {
-                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
-                                    teveAcao = true;
-                                }
-                            }
-                            if (teveAcao == true)
-                                continue;
-                            else vm.Tecnologias.Add(NomeTecnologia);
-                            // Adiciona a vaga criada à lista de vagas
-                            listvagas.Add(vm);
-                        }
-                    }
-                }
-                // Retorna a lista de vagas
-                return listvagas;
-            }
-            catch (Exception)
+            using (DbSenaiContext ctx=new DbSenaiContext())
             {
-                return null;
+                try
+                {
+                    return ctx.Vaga.Select(u => 
+                    new Vaga {IdVaga=u.IdVaga,TituloVaga=u.TituloVaga,IdAreaNavigation=u.IdAreaNavigation,IdEmpresaNavigation=
+                    new Empresa { IdUsuarioNavigation=
+                    new Usuario { CaminhoImagem=u.IdEmpresaNavigation.IdUsuarioNavigation.CaminhoImagem}}}).ToList();                     
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
+            
         }
       
         public VagaCompletaViewModel BuscarVagaPeloId(int idVaga)
@@ -229,11 +182,12 @@ namespace SenaiTechVagas.WebApi.Repositories
                 {
                     // Declara a instrução a ser executada
                     string querySelectAll =
-                   "SELECT are.IdArea,trp.NomeTipoRegimePresencial,v.TituloVaga,v.DescricaoVaga,v.DescricaoBeneficio,v.DescricaoEmpresa,v.Estado,v.CEP,v.Logradouro,v.Complemento,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                   "SELECT U.CaminhoImagem,are.IdArea,trp.NomeTipoRegimePresencial,v.TituloVaga,v.DescricaoVaga,v.DescricaoBeneficio,v.DescricaoEmpresa,v.Estado,v.CEP,v.Logradouro,v.Complemento,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                    " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                    " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
                    " INNER JOIN Area are on are.IdArea=v.IdArea" +
+                   " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario" +
                    " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
                    " WHERE v.IdVaga=@IdVaga";
                     con.Open();
@@ -260,6 +214,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                                 // Atribui às propriedades os valores das colunas da tabela do banco
                                 IdVaga = Convert.ToInt32(rdr["IdVaga"]),
                                 IdArea = Convert.ToInt32(rdr["IdArea"]),
+                                CaminhoImagem=rdr["CaminhoImagem"].ToString(),
                                 Experiencia = rdr["Experiencia"].ToString(),
                                 TituloVaga = rdr["TituloVaga"].ToString(),
                                 TipoContrato = rdr["TipoContrato"].ToString(),
@@ -411,6 +366,37 @@ namespace SenaiTechVagas.WebApi.Repositories
                 catch (Exception)
                 {
                     return false;
+                }
+            }
+        }
+
+        public string AlterarImagemPerfil(int idUsuario,IFormFile img)
+        {
+           using(DbSenaiContext ctx=new DbSenaiContext())
+            {
+                try
+                {
+                    UploadRepository up = new UploadRepository();
+
+                    Usuario user = ctx.Usuario.Find(idUsuario);
+                    string OldImage = user.CaminhoImagem;
+                    var imagem=up.Upload(img, "imgPerfil");
+                    if (imagem == null)
+                       return null;
+                    user.CaminhoImagem = imagem;
+                    ctx.Update(user);
+                    ctx.SaveChanges();
+                    var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/");
+                    if (OldImage != "user.png"&&OldImage!="Teste.webp")
+                    {
+                    string CaminhoDoArquivo = pathToSave + OldImage;
+                    File.Delete(CaminhoDoArquivo);
+                    }
+                    return imagem;
+                }
+                catch (Exception)
+                {
+                    return null;
                 }
             }
         }
