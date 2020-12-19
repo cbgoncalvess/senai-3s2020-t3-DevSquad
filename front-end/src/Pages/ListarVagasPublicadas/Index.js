@@ -5,19 +5,21 @@ import AccessBar from "../../Components/AccessBar";
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
 import Input from "../../Components/Input";
+import Tag from "../../Components/Tag/Index";
+import InfoVaga from "../../Components/InfoVaga/Index";
+import AccessMenu from "../../Components/AccessMenu";
 
 import imgDelete from "../../assets/delete.webp";
 import imgGlobal from "../../assets/global.png";
 import imgEdit from "../../assets/black-ink-pen.webp";
-import Tag from "../../Components/Tag/Index";
-import InfoVaga from "../../Components/InfoVaga/Index";
 import imgDesenvolvimento from "../../assets/web-programming.webp";
 import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
 import imgSalario from "../../assets/money (1).webp";
 import imgTipoContrato from "../../assets/gears.webp";
 import imgFuncao from "../../assets/rocket-launch.webp";
 import IconEmpresa from "../../assets/building.webp";
-import AccessMenu from "../../Components/AccessMenu";
+
+import { uri } from "../../services/conexao";
 
 import "./style.css";
 
@@ -53,14 +55,17 @@ export default function VagasPublicadas() {
 
   let history = useHistory();
 
-  function FormatarSalario(list){
-    for(var i=0;i<list.length;i++){
-      list[i].salario = list[i].salario.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+  function FormatarSalario(list) {
+    for (var i = 0; i < list.length; i++) {
+      list[i].salario = list[i].salario.toLocaleString("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      });
     }
-    }
+  }
 
   const DadosDaVaga = (id) => {
-    fetch("http://localhost:5000/api/Usuario/BuscarPorId/" + id, {
+    fetch(`${uri}/api/Usuario/BuscarPorId/${id}`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -103,7 +108,7 @@ export default function VagasPublicadas() {
       descricaoVaga: DescricaoVaga,
       cep: CEP,
     };
-    fetch("http://localhost:5000/api/Empresa/AtualizarVagaEmpresa/" + idVaga, {
+    fetch(`${uri}/api/Empresa/AtualizarVagaEmpresa/${idVaga}` + idVaga, {
       method: "PUT",
       body: JSON.stringify(form),
       headers: {
@@ -113,7 +118,7 @@ export default function VagasPublicadas() {
     })
       .then((response) => response.json())
       .then((dados) => {
-        alert(dados)
+        alert(dados);
         listarVagas();
         btn_fechar();
       })
@@ -134,7 +139,7 @@ export default function VagasPublicadas() {
       idTecnologia: idTec,
       idVaga: idVaga,
     };
-    fetch("http://localhost:5000/api/Empresa/DeletarTecnologiaDaVaga", {
+    fetch(`${uri}/api/Empresa/DeletarTecnologiaDaVaga`, {
       method: "DELETE",
       body: JSON.stringify(form),
       headers: {
@@ -155,7 +160,7 @@ export default function VagasPublicadas() {
       idTecnologia: idTecnologia,
       idVaga: idVaga,
     };
-    fetch("http://localhost:5000/api/Empresa/AdicionarTecnologiaNaVaga", {
+    fetch(`${uri}/api/Empresa/AdicionarTecnologiaNaVaga`, {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
@@ -171,7 +176,7 @@ export default function VagasPublicadas() {
   };
 
   const listarVagas = () => {
-    fetch("http://localhost:5000/api/Empresa/ListarVagasPublicadas", {
+    fetch(`${uri}/api/Empresa/ListarVagasPublicadas`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -186,7 +191,7 @@ export default function VagasPublicadas() {
   };
 
   const listarTecnologias = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarTecnologia", {
+    fetch(`${uri}/api/Usuario/ListarTecnologia`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -253,16 +258,16 @@ export default function VagasPublicadas() {
   }
 
   const DeletarVaga = (id) => {
-    fetch("http://localhost:5000/api/Empresa/DeletarVagaEmpresa/" + id, {
+    fetch(`${uri}/api/Empresa/DeletarVagaEmpresa/${id}`, {
       method: "DELETE",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
-      .then(response => response.json())
-      .then(dados => {
-       alert(dados);
-       listarVagas()
+      .then((response) => response.json())
+      .then((dados) => {
+        alert(dados);
+        listarVagas();
       })
       .catch((err) => console.error(err));
   };
@@ -283,7 +288,7 @@ export default function VagasPublicadas() {
           return (
             <div key={item.idVaga} className="vaga">
               <div className="Edit-Delete">
-                <p>{"Sua vaga expira em:"+item.dataExpiracao}</p>
+                <p>{"Sua vaga expira em:" + item.dataExpiracao}</p>
                 <img
                   className="Edit"
                   alt="Botão que edita a vaga"
@@ -300,15 +305,23 @@ export default function VagasPublicadas() {
                   className="Delete"
                   src={imgDelete}
                   alt="Botão que deleta a vaga"
-                  onClick={()=>DeletarVaga(item.idVaga)}/>
+                  onClick={() => DeletarVaga(item.idVaga)}
+                />
               </div>
               <div className="VagaCompleta">
-                <img src={'http://localhost:5000/imgPerfil/'+item.caminhoImagem} className="ImagemEmpresa" alt="Imagem de perfil da empresa"/>
+                <img
+                  src={`${uri}/imgPerfil/${item.caminhoImagem}`}
+                  className="ImagemEmpresa"
+                  alt="Imagem de perfil da empresa"
+                />
                 <div className="MainVaga">
                   <h3
                     onClick={(e) => {
                       e.preventDefault();
-                      localStorage.setItem("idVagaSelecionadaEmpresa", item.idVaga);
+                      localStorage.setItem(
+                        "idVagaSelecionadaEmpresa",
+                        item.idVaga
+                      );
                       history.push("/VagaEmpresa");
                     }}
                     className="UnderlineText"
@@ -446,7 +459,7 @@ export default function VagasPublicadas() {
         <h2>Editar sua Vaga</h2>
         <form>
           <Input
-          id="TituloVagaEdit"
+            id="TituloVagaEdit"
             className="InputCadastro"
             value={TituloVaga}
             name="TituloVagaEdit"
@@ -455,7 +468,7 @@ export default function VagasPublicadas() {
             required
           />
           <Input
-          id="SalarioEdit"
+            id="SalarioEdit"
             className="InputCadastro"
             value={Salario}
             name="SalarioEdit"
@@ -559,7 +572,9 @@ export default function VagasPublicadas() {
               id="DescricaoEmpresaEdit"
             ></textarea>
             <br />
-            <label htmlFor="DescricaoBeneficioEdit">Descrição dos benefícios</label>
+            <label htmlFor="DescricaoBeneficioEdit">
+              Descrição dos benefícios
+            </label>
             <textarea
               value={DescricaoBeneficio}
               name="DescricaoBeneficioEdit"

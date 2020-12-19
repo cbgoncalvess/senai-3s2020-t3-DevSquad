@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory,Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import Header from "../../Components/Header";
 import Footer from "../../Components/Footer";
@@ -111,7 +111,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="LinkVaga">
-                <h4 className="UnderlineText" onClick={()=>history.push("/login")}>Ver mais sobre a vaga</h4>
+                <h4
+                  className="UnderlineText"
+                  onClick={() => history.push("/login")}
+                >
+                  Ver mais sobre a vaga
+                </h4>
               </div>
             </div>
             <div className="Vaga">
@@ -133,7 +138,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="LinkVaga">
-              <h4 className="UnderlineText" onClick={()=>history.push("/login")}>Ver mais sobre a vaga</h4>
+                <h4
+                  className="UnderlineText"
+                  onClick={() => history.push("/login")}
+                >
+                  Ver mais sobre a vaga
+                </h4>
               </div>
             </div>
             <div className="Vaga">
@@ -156,7 +166,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="LinkVaga">
-              <h4 className="UnderlineText" onClick={()=>history.push("/login")}>Ver mais sobre a vaga</h4>
+                <h4
+                  className="UnderlineText"
+                  onClick={() => history.push("/login")}
+                >
+                  Ver mais sobre a vaga
+                </h4>
               </div>
             </div>
           </div>

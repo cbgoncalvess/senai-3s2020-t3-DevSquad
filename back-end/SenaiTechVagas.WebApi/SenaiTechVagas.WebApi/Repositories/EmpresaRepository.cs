@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace SenaiTechVagas.WebApi.Repositories
 {
 
-    public class EmpresaRepository : IEmpresaRepository
+    public class EmpresaRepository : UsuarioRepository,IEmpresaRepository
     {
         string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
  
@@ -103,7 +103,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.Add(vaga);
                     ctx.SaveChanges();
                     var VagaNova=ctx.Vaga.FirstOrDefault(v=>v==vaga);
-                    AdicionarTecnologiaPadrao(VagaNova.IdVaga);
+                    AdicionarTecnologiaNaVaga(new VagaTecnologia { IdVaga=VagaNova.IdVaga,IdTecnologia=1});
                     return true;
                 }
                 catch (Exception)
@@ -202,7 +202,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     ctx.SaveChanges();
                     return true;
                 }
-                catch (Exception )
+                catch (Exception e )
                 {
                     return false;
                 }
@@ -298,24 +298,6 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public bool VerificarSeTecnologiaExiste(int idTecnologia)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    Tecnologia tce = ctx.Tecnologia.FirstOrDefault(e => e.IdTecnologia== idTecnologia);
-                    if (tce == null)
-                        return true;
-                    else
-                    return false;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
 
         public bool AprovarCandidato(int idInscricao)
         {
@@ -669,39 +651,19 @@ namespace SenaiTechVagas.WebApi.Repositories
             {
                 try
                 {
-                    List<Estagio> ListaEstagios = ctx.Estagio.Where(e => e.IdEmpresa == idEmpresa).ToList();
-                    List<Candidato> candidatos = new List<Candidato>();
-                    for(int i = 0; i < ListaEstagios.Count; i++)
+                     List<Candidato> cList = new List<Candidato>();
+                    var Estagios = ctx.Estagio.Where(u=>u.IdEmpresa==idEmpresa).ToList();
+                    for (int i=0;i<Estagios.Count;i++)
                     {
-                        Candidato candidatoBuscado = ctx.Candidato.Find(ListaEstagios[i].IdCandidato);
-                        Usuario usuario = ctx.Usuario.Find(candidatoBuscado.IdUsuario);
-                        candidatoBuscado.IdUsuarioNavigation.CaminhoImagem = usuario.CaminhoImagem;
-                        candidatoBuscado.IdUsuarioNavigation.PerguntaSeguranca = null;
-                        candidatoBuscado.IdUsuarioNavigation.RespostaSeguranca = null;
-                        candidatoBuscado.IdUsuarioNavigation.Email = null;
-                        candidatoBuscado.IdUsuarioNavigation.Senha = null;
-                        candidatos.Add(candidatoBuscado);
+                    var c = ctx.Candidato.Select(u =>new Candidato {IdCandidato=u.IdCandidato,Cpf=u.Cpf,Telefone=u.Telefone,NomeCompleto=u.NomeCompleto,IdUsuarioNavigation=new Usuario { CaminhoImagem=u.IdUsuarioNavigation.CaminhoImagem} }).FirstOrDefault(u=>u.IdCandidato==Estagios[i].IdCandidato);
+                        cList.Add(c);
                     }
-                    return candidatos;
+                    return cList;
                 }
-                catch (Exception)
+                catch (Exception )
                 {
                     return null;
                 }
-            }
-        }
-
-        public void AdicionarTecnologiaPadrao(int idVaga)
-        {
-            using (DbSenaiContext ctx = new DbSenaiContext())
-            {
-                try
-                {
-                    var Vaga = ctx.Vaga.Find(idVaga);
-                    int idTecnologia = 1;
-                    AdicionarTecnologiaNaVaga(new VagaTecnologia { IdVaga=Vaga.IdVaga,IdTecnologia=idTecnologia});
-                }
-                catch (Exception){}
             }
         }
     }

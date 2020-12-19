@@ -32,6 +32,7 @@
   display: flex;
   flex-direction: column;
   padding: 10vh;
+  align-items: center;
 }
 
 .BotoesPerfil {
@@ -97,8 +98,9 @@
 }
 
 .imgUsuario {
-  width: 70px;
-  height: 100%;
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
 }
 
 .ColumnNomeEmail {
@@ -182,6 +184,7 @@
 .preto .EsquerdoPerfil {
   border-right: solid 1px white;
   background: #333330 !important;
+  justify-content: center;
 }
 
 .preto .modalAlterarSenhaUsuario,

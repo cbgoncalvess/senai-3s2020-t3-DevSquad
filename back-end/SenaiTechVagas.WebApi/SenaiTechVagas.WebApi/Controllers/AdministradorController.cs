@@ -75,11 +75,11 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                EmpresaCompletaViewModel empresa = _Admin.BuscarEmpresaPorIdUsuario(id);
+                EmpresaCompletaViewModel empresa = _Admin.BuscarEmpresaPorIdUsuarioAdm(id);
                 if (empresa == null)
                     return BadRequest();
 
-                return Ok(_Admin.ListarVagasDaEmpresa(empresa.IdEmpresa));
+                return Ok(_Admin.ListarVagasDaEmpresaAdm(empresa.IdEmpresa));
             }
             catch (Exception)
             {
@@ -97,7 +97,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                return Ok(_Admin.BuscarEmpresaPorIdUsuario(id));
+                return Ok(_Admin.BuscarEmpresaPorIdUsuarioAdm(id));
             }
             catch (Exception)
             {
@@ -193,7 +193,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                return Ok(_Admin.ListarCandidatosInscritos(idVaga));
+                return Ok(_Admin.ListarCandidatosInscritosEmpresa(idVaga));
             }
             catch (Exception)
             {
@@ -273,24 +273,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         }
 
         /// <summary>
-        /// Método Administrador que lista estágios cadastrados por filtro meses.
-        /// </summary>
-        /// <returns>Retorna lista estágios cadastrados por filtro meses.</returns>
-        [Authorize(Roles = "1")]
-        [HttpGet("ListarEstagio/{NumeroDeMeses}")]
-        public IActionResult ListarFiltroPeriodo(int NumeroDeMeses)
-        {
-            try
-            {
-                return Ok(_Admin.ListarPorperiodo(NumeroDeMeses));
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        /// <summary>
         /// Método que lista todos os statusInscricao.
         /// </summary>
         /// <returns>Retorna lista todos os statusInscricao.</returns>
@@ -346,44 +328,24 @@ namespace SenaiTechVagas.WebApi.Controllers
         /*----------------------------------------GET END------------------------------*/
 
         /*----------------------------------------DELETE START------------------------------*/
+
         /// <summary>
-        /// Método que remove candidato pelo seu identificador, do sistema.
+        /// Deleta um usuario banido permanentemente
         /// </summary>
-        /// <param name="id">Identificador do candidato.</param>
-        /// <returns>Retorna uma remoção de candidato do sistema.</returns>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "1")]
-        [HttpDelete("DeletarCandidato/{id}")]
-        public IActionResult DeletarCandidato(int id)
+        [HttpDelete("DeletarUsuarioBanido/{id}")]
+        public IActionResult DeletarUsuarioBanido(int id)
         {
             try
             {
-                if (_Admin.DeletarCandidato(id))
-                    return Ok("Candidato deletado com sucesso");
+                if (_Admin.DeletarUsuarioBanido(id))
+                    return Ok("Usuario deletado com sucesso");
                 else
                     return BadRequest("Não foi possivel deletar o usuario");
             }
             catch
-            {
-                return BadRequest("Uma exceção ocorreu. Tente novamente.");
-            }
-        }
-
-        /// <summary>Método que remove Empresa pelo seu identificador, do sistema.</summary>
-        /// <param name="idEmpresa">Identificador único de cada objeto da tabela candidato, do 
-        /// tipo inteiro.</param>
-        /// <returns>Identificador do Empresa.</returns>
-        [Authorize(Roles = "1")]
-        [HttpDelete("DeletarEmpresa/{idEmpresa}")]
-        public IActionResult DeletarEmpresa(int idEmpresa)
-        {
-            try
-            {
-                if (_Admin.DeletarEmpresaPorId(idEmpresa))
-                    return Ok("Empresa deletada com sucesso");
-                else
-                    return BadRequest("Não foi possivel deletar a empresa");
-            }
-            catch(Exception)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
@@ -463,7 +425,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (_Admin.DeletarVaga(idVaga))
+                if (_Admin.DeletarVagaEmpresa(idVaga))
                     return Ok("Vaga deletada com sucesso");
                 else
                     return BadRequest("Não foi possivel deletar a Vaga");

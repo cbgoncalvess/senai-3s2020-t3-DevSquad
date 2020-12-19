@@ -153,81 +153,23 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public List<ListarVagasViewModel> ListarVagasEmGeral()
+        public List<Vaga> ListarVagasEmGeral()
         {
-            try
-            { 
-                List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
-
-                // Declara a SqlConnection passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
-                {
-                    // Declara a instrução a ser executada
-                    string querySelectAll =
-                    "SELECT U.CaminhoImagem,trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga, e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
-                    " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
-                    " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
-                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
-                    " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario"+
-                    " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
-                    " INNER JOIN Area are on are.IdArea=v.IdArea";
-                    con.Open();
-
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
-                    {
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-
-                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
-                        while (rdr.Read())
-                        {
-                            bool teveAcao = false;
-
-                            // Instancia um objeto jogo 
-                            ListarVagasViewModel vm = new ListarVagasViewModel
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
-                                TituloVaga = (rdr["TituloVaga"]).ToString(),
-                                Experiencia = rdr["Experiencia"].ToString(),
-                                TipoContrato = rdr["TipoContrato"].ToString(),
-                                Localidade = rdr["Localidade"].ToString(),
-                                Salario = Convert.ToDecimal(rdr["Salario"]),
-                                RazaoSocial = rdr["RazaoSocial"].ToString(),
-                                NomeArea = rdr["NomeArea"].ToString(),
-                                TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString(),
-                                CaminhoImagem=rdr["CaminhoImagem"].ToString()
-                            };
-                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
-                            vm.Tecnologias = new List<string>();
-
-                            for (int i = 0; i < listvagas.Count; i++)
-                            {
-                                if (vm.IdVaga == listvagas[i].IdVaga)
-                                {
-                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
-                                    teveAcao = true;
-                                }
-                            }
-                            if (teveAcao == true)
-                                continue;
-                            else vm.Tecnologias.Add(NomeTecnologia);
-                            // Adiciona a vaga criada à lista de vagas
-                            listvagas.Add(vm);
-                        }
-                    }
-                }
-                // Retorna a lista de vagas
-                return listvagas;
-            }
-            catch (Exception)
+            using (DbSenaiContext ctx=new DbSenaiContext())
             {
-                return null;
+                try
+                {
+                    return ctx.Vaga.Select(u => 
+                    new Vaga {IdVaga=u.IdVaga,TituloVaga=u.TituloVaga,IdAreaNavigation=u.IdAreaNavigation,IdEmpresaNavigation=
+                    new Empresa { IdUsuarioNavigation=
+                    new Usuario { CaminhoImagem=u.IdEmpresaNavigation.IdUsuarioNavigation.CaminhoImagem}}}).ToList();                     
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
+            
         }
       
         public VagaCompletaViewModel BuscarVagaPeloId(int idVaga)
@@ -452,7 +394,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                     }
                     return imagem;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return null;
                 }

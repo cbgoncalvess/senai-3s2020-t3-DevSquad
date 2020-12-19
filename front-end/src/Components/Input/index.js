@@ -19,7 +19,6 @@ function Input(props) {
         onKeyUp={props.onKeyUp}
         onKeyPress={props.onKeyPress}
         autoComplete={props.autoComplete}
-        required
       />
     </div>
   );

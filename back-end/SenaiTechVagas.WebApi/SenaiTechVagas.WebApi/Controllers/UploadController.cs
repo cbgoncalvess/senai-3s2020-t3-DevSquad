@@ -28,11 +28,16 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
              var arquivo = Request.Form.Files[0];
 
-             var Imagem= rep.Upload(arquivo, "ImageBackUp");
-            UploadImagem test = new UploadImagem();
-            test.CaminhoImagem = Imagem;
-            
-            return Ok(test);
+                var NomeArquivo = arquivo.FileName;
+                string Extensao = NomeArquivo.Split('.')[1].Trim();
+                if (Extensao == "jpg" || Extensao == "png" || Extensao == "webp" || Extensao == "jpeg" || Extensao == "svg" || Extensao == "jfif")
+                {
+                    var Imagem = rep.Upload(arquivo, "ImageBackUp");
+                    UploadImagem test = new UploadImagem();
+                    test.CaminhoImagem = Imagem;
+                    return Ok(test);
+                }
+                return BadRequest("Este formato não é aceito");
             }
             catch (Exception)
             {

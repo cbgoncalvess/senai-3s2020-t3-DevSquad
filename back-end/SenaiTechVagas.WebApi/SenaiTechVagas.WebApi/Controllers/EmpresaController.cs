@@ -119,9 +119,6 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                if (_empresaIRepository.VerificarSeTecnologiaExiste(vagaTecnologia.IdTecnologia))
-                    return BadRequest("Tecnologia indisponivel ou não existe");
-
                 if (_empresaIRepository.VerificarSeTecnologiaFoiAdicionada(vagaTecnologia.IdTecnologia, vagaTecnologia.IdVaga))
                     return BadRequest("Essa tecnologia ja foi adicionada");
 

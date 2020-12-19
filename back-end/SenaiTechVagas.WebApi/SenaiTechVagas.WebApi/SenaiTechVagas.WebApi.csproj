@@ -21,6 +21,15 @@
   <ItemGroup>
     <Folder Include="ImageBackUp\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="imgPerfil\Teste.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="imgPerfil\user.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>

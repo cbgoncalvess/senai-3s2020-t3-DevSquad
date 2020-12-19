@@ -32,10 +32,9 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [Required]
         public string Telefone { get; set; }
 
-        [Required]
         public int NumFuncionario { get; set; }
 
-        [StringLength(7, MinimumLength = 7)]
+        [StringLength(7)]
         [Required]
         public string NumCnae { get; set; }
 

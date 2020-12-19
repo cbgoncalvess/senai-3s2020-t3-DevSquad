@@ -5,9 +5,9 @@ import AccessBar from "../../Components/AccessBar";
 import Header from "../../Components/Header";
 import AccessMenu from "../../Components/AccessMenu";
 import Footer from "../../Components/Footer";
-
 import Tag from "../../Components/Tag/Index";
 import InfoVaga from "../../Components/InfoVaga/Index";
+
 import imgGlobal from "../../assets/global.png";
 import imgDesenvolvimento from "../../assets/web-programming.webp";
 import imgLocalizacao from "../../assets/big-map-placeholder-outlined-symbol-of-interface.webp";
@@ -15,6 +15,8 @@ import imgSalario from "../../assets/money (1).webp";
 import imgTipoContrato from "../../assets/gears.webp";
 import imgFuncao from "../../assets/rocket-launch.webp";
 import IconEmpresa from "../../assets/building.webp";
+
+import { uri } from "../../services/conexao";
 
 import "./style.css";
 
@@ -87,9 +89,7 @@ export default function BuscarVaga() {
               >
                 <div className="VagaCompleta">
                   <img
-                    src={
-                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem
-                    }
+                    src={`${uri}/imgPerfil/${item.caminhoImagem}`}
                     className="ImagemEmpresa"
                     alt="Imagem de perfil"
                   ></img>
@@ -156,9 +156,7 @@ export default function BuscarVaga() {
               >
                 <div className="VagaCompleta">
                   <img
-                    src={
-                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem
-                    }
+                    src={`${uri}/imgPerfil/${item.caminhoImagem}`}
                     className="ImagemEmpresa"
                     alt="Imagem empresa"
                   ></img>
@@ -225,9 +223,7 @@ export default function BuscarVaga() {
               >
                 <div className="VagaCompleta">
                   <img
-                    src={
-                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem
-                    }
+                    src={`${uri}/imgPerfil/${item.caminhoImagem}`}
                     className="ImagemEmpresa"
                     alt="Imagem empresa"
                   ></img>
@@ -290,9 +286,7 @@ export default function BuscarVaga() {
               >
                 <div className="VagaCompleta">
                   <img
-                    src={
-                      "http://localhost:5000/imgPerfil/" + item.caminhoImagem
-                    }
+                    src={`${uri}/imgPerfil/${item.caminhoImagem}`}
                     className="ImagemEmpresa"
                     alt="Imagem empresa"
                   ></img>
@@ -341,7 +335,7 @@ export default function BuscarVaga() {
   }
 
   const listarVagas = () => {
-    fetch("http://localhost:5000/api/Candidato/ListarVagasPrincipal", {
+    fetch(`${uri}/api/Candidato/ListarVagasPrincipal`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -356,7 +350,7 @@ export default function BuscarVaga() {
   };
 
   const listarTecnologias = () => {
-    fetch("http://localhost:5000/api/Usuario/ListarTecnologia", {
+    fetch(`${uri}/api/Usuario/ListarTecnologia`, {
       method: "GET",
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),

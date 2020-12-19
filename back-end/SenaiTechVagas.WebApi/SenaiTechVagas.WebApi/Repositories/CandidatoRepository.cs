@@ -355,7 +355,7 @@ namespace SenaiTechVagas.WebApi.Repositories
                         return null;
                     }
                 }
-            }catch(Exception e)
+            }catch(Exception)
             {
                 return null;
             }

@@ -26,7 +26,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(11, MinimumLength = 10)]
         public string Telefone { get; set; }
 
-        [StringLength(150, MinimumLength = 5)]
+        [StringLength(150)]
         public string LinkLinkedinCandidato { get; set; }
 
         [Required]
@@ -48,8 +48,7 @@ namespace SenaiTechVagas.WebApi.ViewModels
         [StringLength(30, MinimumLength = 5)]
         public string RespostaSeguranca { get; set; }
 
-        [Required]
-        [StringLength(40, MinimumLength = 5)]
+        [StringLength(40, MinimumLength = 0)]
         public string CaminhoImagem { get; set; }
     }
 }

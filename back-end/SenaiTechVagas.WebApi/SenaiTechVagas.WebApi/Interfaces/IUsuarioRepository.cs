@@ -14,7 +14,7 @@ namespace SenaiTechVagas.WebApi.Interfaces
         List<Curso> ListarCurso();
         bool CadastrarCandidato(CadastrarCandidatoViewModel NovoCandidato);
         bool CadastrarEmpresa(CadastrarEmpresaViewModel empresa);
-        List<ListarVagasViewModel> ListarVagasEmGeral();
+        List<Vaga> ListarVagasEmGeral();
         string VerificarSeCredencialJaFoiCadastrada(VerificacaoViewModel vm);
         VagaCompletaViewModel BuscarVagaPeloId(int id);
         bool RecuperarSenha(RecuperarSenhaViewModel vm);

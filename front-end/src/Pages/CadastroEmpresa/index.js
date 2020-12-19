@@ -11,6 +11,8 @@ import Footer from "../../Components/Footer";
 import imagemCadastroEmpresa from "../../assets/imgCadastroEmpresa.webp";
 import Userimg from "../../assets/Teste.webp";
 
+import { uri } from "../../services/conexao";
+
 import "./style.css";
 
 export default function CadastroEmpresa() {
@@ -88,8 +90,7 @@ export default function CadastroEmpresa() {
       redBox.style.border = "solid red 1px";
       redBox.style.boxShadow = "3px 3px 3px gray";
       instructions.style.color = "red";
-      instructions.innerText = 
-      `A senha deve conter, no mínimo, 9 caracteres, e no máximo 15, dentre eles:
+      instructions.innerText = `A senha deve conter, no mínimo, 9 caracteres, e no máximo 15, dentre eles:
       • 1 letra minúscula
       • 1 letra maiúscula
       • 1 número
@@ -132,7 +133,7 @@ export default function CadastroEmpresa() {
         CaminhoImagem: CaminhoImagem,
       };
       console.log(data);
-      fetch("http://localhost:5000/api/Usuario/Empresa", {
+      fetch(`${uri}/api/Usuario/Empresa`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -158,7 +159,7 @@ export default function CadastroEmpresa() {
 
     formdata.append("arquivo", event.target.files[0]);
 
-    fetch("http://localhost:5000/api/Upload", {
+    fetch(`${uri}/api/Upload`, {
       method: "POST",
       body: formdata,
     })
@@ -170,13 +171,19 @@ export default function CadastroEmpresa() {
   };
 
   function View() {
-    if (CaminhoImagem == "" && CaminhoImagem.length < 3 || CaminhoImagem===undefined) {
-      return <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil" />;
+    if (
+      (CaminhoImagem == "" && CaminhoImagem.length < 3) ||
+      CaminhoImagem === undefined
+    ) {
+      return (
+        <img className="imagemCadastro" src={Userimg} alt="Imagem de perfil" />
+      );
     } else if (CaminhoImagem.length > 3) {
       return (
         <img
           className="imagemCadastro"
-          src={"http://localhost:5000/ImageBackUp/" + CaminhoImagem} alt="Imagem de perfil"
+          src={`${uri}/ImageBackUp/` + CaminhoImagem}
+          alt="Imagem de perfil"
         />
       );
     }
@@ -243,7 +250,7 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-              id="emailContatoCadastro"
+                id="emailContatoCadastro"
                 name="emailContatoCadastro"
                 className="cadastre"
                 label="E-mail para contato:"
@@ -256,7 +263,7 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-              id="companyFakeNameCadastro"
+                id="companyFakeNameCadastro"
                 name="companyFakeNameCadastro"
                 className="cadastre"
                 label="Nome fantasia:"
@@ -268,7 +275,7 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-              id="companyNameCadastro"
+                id="companyNameCadastro"
                 name="companyNameCadastro"
                 className="cadastre"
                 label="Razão social:"
@@ -280,7 +287,7 @@ export default function CadastroEmpresa() {
                 onChange={(e) => SetRazaoSocial(e.target.value)}
               />
               <Input
-              id="phoneNumberCadastro"
+                id="phoneNumberCadastro"
                 name="phoneNumberCadastro"
                 className="cadastre"
                 label="Telefone da empresa:"
@@ -293,19 +300,18 @@ export default function CadastroEmpresa() {
               />
 
               <Input
-              id="workersCompanyNumberCadastro"
+                id="workersCompanyNumberCadastro"
                 name="workersCompanyNumberCadastro"
                 className="cadastre"
                 label="Número de funcionários:"
                 type="number"
                 maxLength={4}
                 minLength={1}
-                required
                 onChange={(e) => SetNumFuncionario(e.target.value)}
               />
 
               <Input
-              id="cnaeNumberCadastro"
+                id="cnaeNumberCadastro"
                 name="cnaeNumberCadastro"
                 className="cadastre"
                 label="Número CNAE:"
@@ -348,7 +354,7 @@ export default function CadastroEmpresa() {
                 <label htmlFor="ComplementoCadastroEmpresa">Complemento:</label>
                 <br />
                 <input
-                id="ComplementoCadastroEmpresa"
+                  id="ComplementoCadastroEmpresa"
                   type="text"
                   name="address2"
                   maxLength={255}
@@ -386,7 +392,7 @@ export default function CadastroEmpresa() {
               </div>
 
               <Input
-              id="EmailUserCadastroEmpresa"
+                id="EmailUserCadastroEmpresa"
                 name="EmailUserCadastroEmpresa"
                 className="cadastre"
                 label="Email de acesso:"
@@ -429,7 +435,10 @@ export default function CadastroEmpresa() {
               <p className="password-instructions-text"></p>
 
               <div>
-                <label htmlFor="PerguntaCadastroEmpresa" className="select-cadastroCandidato-title">
+                <label
+                  htmlFor="PerguntaCadastroEmpresa"
+                  className="select-cadastroCandidato-title"
+                >
                   Pergunta de seguranca
                 </label>
                 <br />
@@ -472,7 +481,7 @@ export default function CadastroEmpresa() {
               </div>
 
               <Input
-              id="RespostaCadastroEmpresa"
+                id="RespostaCadastroEmpresa"
                 name="RespostaCadastroEmpresa"
                 className="cadastre"
                 label="Resposta de segurança:"
