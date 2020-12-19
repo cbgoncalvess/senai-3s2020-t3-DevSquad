@@ -236,10 +236,10 @@ export default function PerfilCandidato() {
                     src={`${uri}/imgPerfil/${item.caminhoImagem}`}
                     alt="Imagem de pefil da empresa dona da vaga"
                   />
-                  <h3>{"Nome da empresa:" + item.razaoSocial}</h3>
+                  <h3>{"Nome da empresa: " + item.razaoSocial}</h3>
                 </div>
-                <h3>{"Tipo do contrato:" + item.tipoContrato}</h3>
-                <h3>{"Salario:" + "R$" + item.salario}</h3>
+                <h3>{"Tipo do contrato: " + item.tipoContrato}</h3>
+                <h3>{"Salario: " + "R$" + item.salario}</h3>
               </div>
             );
           })}
