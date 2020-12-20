@@ -21,7 +21,6 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public Usuario Login(string email, string senha)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -174,88 +173,61 @@ namespace SenaiTechVagas.WebApi.Repositories
       
         public VagaCompletaViewModel BuscarVagaPeloId(int idVaga)
         {
-            try
+            using(DbSenaiContext ctx=new DbSenaiContext())
             {
-                List<VagaCompletaViewModel> listvagas = new List<VagaCompletaViewModel>();
-                // Declara a SqlConnection passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
+                try
                 {
-                    // Declara a instrução a ser executada
-                    string querySelectAll =
-                   "SELECT U.CaminhoImagem,are.IdArea,trp.NomeTipoRegimePresencial,v.TituloVaga,v.DescricaoVaga,v.DescricaoBeneficio,v.DescricaoEmpresa,v.Estado,v.CEP,v.Logradouro,v.Complemento,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
-                   " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
-                   " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
-                   " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
-                   " INNER JOIN Area are on are.IdArea=v.IdArea" +
-                   " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario" +
-                   " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
-                   " WHERE v.IdVaga=@IdVaga";
-                    con.Open();
+                    var Vaga = ctx.Vaga.Select(u=>
+                    new Vaga {IdVaga=u.IdVaga,IdArea=u.IdArea,TituloVaga= u.TituloVaga,
+                    Experiencia= u.Experiencia,TipoContrato= u.TipoContrato ,Salario= u.Salario,
+                    Localidade= u.Localidade,DescricaoVaga= u.DescricaoVaga,DescricaoBeneficio= u.DescricaoBeneficio,
+                    DescricaoEmpresa= u.DescricaoEmpresa,Cep=u.Cep,Estado=u.Estado,Complemento=u.Complemento,Logradouro=u.Logradouro,IdAreaNavigation=
+                    new Area { NomeArea=u.IdAreaNavigation.NomeArea},IdTipoRegimePresencialNavigation =
+                    new TipoRegimePresencial {NomeTipoRegimePresencial=u.IdTipoRegimePresencialNavigation.NomeTipoRegimePresencial },IdEmpresaNavigation=
+                    new Empresa { RazaoSocial=u.IdEmpresaNavigation.RazaoSocial,IdUsuarioNavigation=
+                    new Usuario { CaminhoImagem=u.IdEmpresaNavigation.IdUsuarioNavigation.CaminhoImagem} }
+                    }).FirstOrDefault(u=>u.IdVaga==idVaga);
 
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                    var tecs = ctx.VagaTecnologia.Select(u =>
+                    new VagaTecnologia
                     {
-                        cmd.Parameters.AddWithValue("@IdVaga", idVaga);
+                        IdVaga = u.IdVaga,
+                        IdTecnologiaNavigation =
+                    new Tecnologia { NomeTecnologia = u.IdTecnologiaNavigation.NomeTecnologia }
+                    }).Where(u=>u.IdVaga==idVaga).ToList();
 
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-
-                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
-                        while (rdr.Read())
-                        {
-                            bool teveAcao = false;
-
-                            // Instancia um objeto jogo 
-                            VagaCompletaViewModel vm = new VagaCompletaViewModel
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
-                                IdArea = Convert.ToInt32(rdr["IdArea"]),
-                                CaminhoImagem=rdr["CaminhoImagem"].ToString(),
-                                Experiencia = rdr["Experiencia"].ToString(),
-                                TituloVaga = rdr["TituloVaga"].ToString(),
-                                TipoContrato = rdr["TipoContrato"].ToString(),
-                                Localidade = rdr["Localidade"].ToString(),
-                                Salario = Convert.ToDecimal(rdr["Salario"]),
-                                RazaoSocial = rdr["RazaoSocial"].ToString(),
-                                NomeArea = rdr["NomeArea"].ToString(),
-                                DescricaoBeneficio = rdr["DescricaoBeneficio"].ToString(),
-                                DescricaoEmpresa = rdr["DescricaoVaga"].ToString(),
-                                DescricaoVaga = rdr["DescricaoVaga"].ToString(),
-                                Estado = rdr["Estado"].ToString(),
-                                Cep = rdr["Cep"].ToString(),
-                                Logradouro = rdr["Logradouro"].ToString(),
-                                Complemento = rdr["Complemento"].ToString(),
-                                TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString()
-                            };
-                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
-
-                            vm.Tecnologias = new List<string>();
-
-                            for (int i = 0; i < listvagas.Count; i++)
-                            {
-                                if (vm.IdVaga == listvagas[i].IdVaga)
-                                {
-                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
-                                    teveAcao = true;
-                                }
-                            }
-                            if (teveAcao == true)
-                                continue;//é do While
-                            else vm.Tecnologias.Add(NomeTecnologia);
-                            // Adiciona a vaga criada à lista de vagas
-                            listvagas.Add(vm);
-                        }
+                    List<string> tecnologias = new List<string>();
+                    for (int i = 0; i < tecs.Count; i++)
+                    {
+                        tecnologias.Add(tecs[i].IdTecnologiaNavigation.NomeTecnologia);
                     }
+                    return new VagaCompletaViewModel()
+                    {
+                        IdVaga=Vaga.IdVaga,
+                        IdArea=Vaga.IdArea,
+                        TipoContrato= Vaga.TipoContrato,
+                        TituloVaga= Vaga.TituloVaga,
+                        TipoPresenca= Vaga.IdTipoRegimePresencialNavigation.NomeTipoRegimePresencial,
+                        Salario= Vaga.Salario,
+                        DescricaoBeneficio= Vaga.DescricaoBeneficio,
+                        DescricaoEmpresa= Vaga.DescricaoEmpresa,
+                        DescricaoVaga= Vaga.DescricaoVaga,
+                        Experiencia= Vaga.Experiencia,
+                        NomeArea= Vaga.IdAreaNavigation.NomeArea,
+                        RazaoSocial= Vaga.IdEmpresaNavigation.RazaoSocial,
+                        Localidade= Vaga.Localidade,
+                        Complemento = Vaga.Complemento,
+                        Cep= Vaga.Cep,
+                        Estado= Vaga.Estado,
+                        Logradouro= Vaga.Logradouro,
+                        Tecnologias=tecnologias,
+                        CaminhoImagem= Vaga.IdEmpresaNavigation.IdUsuarioNavigation.CaminhoImagem
+                    };
                 }
-                return listvagas[0];
-            }
-            catch (Exception)
-            {
-                return null;
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
 

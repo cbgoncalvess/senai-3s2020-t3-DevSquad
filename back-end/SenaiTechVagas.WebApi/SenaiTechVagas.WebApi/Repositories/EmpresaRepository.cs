@@ -364,9 +364,9 @@ namespace SenaiTechVagas.WebApi.Repositories
                     "SELECT U.CaminhoImagem,v.DataExpiracao,trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
                     " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
                     " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
-                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa"+
+                    " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
                     " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario" +
-                    " INNER JOIN Area are on are.IdArea=v.IdArea"+
+                    " INNER JOIN Area are on are.IdArea=v.IdArea" +
                     " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
                     " WHERE e.IdEmpresa =@IDEmpresa";
                     con.Open();
@@ -389,19 +389,19 @@ namespace SenaiTechVagas.WebApi.Repositories
                             // Instancia um objeto jogo 
                             ListarVagasViewModel vm = new ListarVagasViewModel
                             {
-                                
+
                                 // Atribui às propriedades os valores das colunas da tabela do banco
                                 IdVaga = Convert.ToInt32(rdr["IdVaga"]),
                                 Experiencia = rdr["Experiencia"].ToString(),
                                 TipoContrato = rdr["TipoContrato"].ToString(),
-                                CaminhoImagem=rdr["CaminhoImagem"].ToString(),
+                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
                                 Localidade = rdr["Localidade"].ToString(),
                                 Salario = Convert.ToDecimal(rdr["Salario"]),
                                 RazaoSocial = rdr["RazaoSocial"].ToString(),
                                 NomeArea = rdr["NomeArea"].ToString(),
                                 TituloVaga = rdr["TituloVaga"].ToString(),
-                                TipoPresenca=rdr["NomeTipoRegimePresencial"].ToString(),
-                             DataExpiracao = Convert.ToDateTime(rdr["DataExpiracao"]).ToString("dd/MM/yyyy")
+                                TipoPresenca = rdr["NomeTipoRegimePresencial"].ToString(),
+                                DataExpiracao = Convert.ToDateTime(rdr["DataExpiracao"]).ToString("dd/MM/yyyy")
                             };
                             var NomeTecnologia = rdr["NomeTecnologia"].ToString();
                             vm.Tecnologias = new List<string>();
@@ -422,7 +422,6 @@ namespace SenaiTechVagas.WebApi.Repositories
                         }
                     }
                 }
-
                 // Retorna a lista de vagas
                 return listvagas;
             }
