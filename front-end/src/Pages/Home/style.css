@@ -102,6 +102,7 @@
   color: white;
   text-align: initial;
   margin: 10px 0;
+  width: 20%;
 }
 
 hr {
@@ -201,9 +202,12 @@ body
   > div.Candidato
   > div
   > a
-  > button {
+  > button ,
+  #root > div > div.bodyPart > div.QuadroDeVagas > div > div:nth-child(n) > div.LinkVaga > h4{
   cursor: pointer;
 }
+
+/* Access */
 
 .preto body > div.bodyPart > div.TesteDePersonalidade,
 .preto body > div.bodyPart > div.Imagens{
@@ -212,7 +216,8 @@ body
 
 .preto .bt,
 .preto body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button > h2,
-.preto body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button > h2{
+.preto body > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button > h2,
+.preto #root > div > div.bodyPart > div.TesteDePersonalidade > div.TextoTeste > div > a > button > h4{
     color: yellow !important;
     text-decoration: underline !important;
 }
@@ -253,11 +258,31 @@ body
     }
 }
 
+#root > div > div.bodyPart > div.Imagens > div:nth-child(n) > p{
+  text-align: center;
+}
+
+/* access */
+
 .preto .bt:hover {
   color: #353535 !important;
-  transition: 0.5s;
+  background: #373737;
   cursor: pointer;
 }
+
+.preto #botao, 
+.preto #botao > div,
+.preto #botaomaior, 
+.preto #botaomaior > div, 
+.preto #botaolibras, 
+.preto #botaolibras > div, 
+.preto #btn-gravar-audio,
+.preto #btn-gravar-audio > div,
+.preto #root > div > div.bodyPart > div.Depoimentos > div > div:nth-child(n) > div > p{
+  background-color: #373737 !important;
+}
+
+
 
 #root > div > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button,
 #root > div > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button{

@@ -151,34 +151,6 @@
   border: unset;
 }
 
-/* .conteudo {
-        padding: 15px;
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-    }
-    
-    .conteudo h2 {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-
-    .nomePorcentagem{
-        margin-top: 5px;
-    }
-
-    .animal{
-        margin-bottom: 5px;
-    }
-
-    /* #root > div{
-        background-image: url("../../assets/bg-teste.webp");
-        background-size: 10vw;
-        background-repeat: repeat-y;
-        background-position: right 0px top 100px;    
-    } */
-
 .conteudo {
   padding: unset;
   padding-top: 5vw;
@@ -251,4 +223,33 @@
   position: fixed;
   top: 0;
   right: 0;
+}
+
+/* access */
+
+.preto #modalTeste > div.janela,
+.preto #modalTeste > div.janela > div.headModal,
+.preto #modalTeste > div.janela > div.conteudoModal > div.animais,
+.preto #modalTeste > div.janela > div.conteudoModal > div.animais > div:nth-child(n),
+.preto #modalTeste > div.janela > div.conteudoModal > div.animais > div:nth-child(n) > div > div > p:nth-child(n),
+.preto #modalTeste > div.janela > div.conteudoModal > div.conteudo,
+.preto #nomeAnimal,
+.preto #conteudoModalG,
+.preto #conteudoModalL,
+.preto #conteudoModalT,
+.preto #conteudoModalA{
+  background: #373737 !important;
+}
+
+.preto #root > div > div.centro > button{
+  color: yellow;
+}
+
+.preto #root > div > div.centro > button:hover{
+  transition: unset;
+  background: #373737 !important;
+}
+
+#fechar{
+  cursor: pointer;
 }
