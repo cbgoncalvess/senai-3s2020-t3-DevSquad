@@ -90,7 +90,7 @@ export default function ListaBanidos() {
               </div>
               <div className="data">
                 <div className="desbanir">
-                  <p>Desbanir</p>
+                  <p onClick={() => DesbanirUsuario(item.idUsuario)}>Desbanir</p>
                   <img
                     src={Refresh}
                     onClick={() => DesbanirUsuario(item.idUsuario)}
@@ -98,7 +98,7 @@ export default function ListaBanidos() {
                   />
                 </div>
                 <div className="DeletarPermanente">
-                  <p>Deletar permanentemente</p>
+                  <p onClick={() => DeletarUsuarioPermanete(item.idUsuario)}>Deletar permanentemente</p>
                   <img
                     src={imgDelete}
                     onClick={() => DeletarUsuarioPermanete(item.idUsuario)}

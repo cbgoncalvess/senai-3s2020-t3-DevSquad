@@ -392,7 +392,6 @@ export default function VagasPublicadas() {
         <h2>Remover tecnologia Vaga</h2>
         <form>
           <div className="select-final">
-            <label>Tecnologias</label>
             <select
               onChange={(e) => SetNomeTecnologia(e.target.value)}
               value={NomeTecnologia}
@@ -427,7 +426,6 @@ export default function VagasPublicadas() {
         <h2>Adicionar uma tecnologia na Vaga</h2>
         <form>
           <div className="select-final">
-            <label>Tecnologias</label>
             <select
               onChange={(e) => SetIdTecnologia(e.target.value)}
               value={idTecnologia}

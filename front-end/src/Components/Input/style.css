@@ -10,6 +10,10 @@
     border-radius: 6px;
 }
 
+.preto .lbInput{
+    color: white !important;
+}
+
 body > div.content-searchJobs > div:nth-child(1) > div{
     height: 0;
     padding: unset;
@@ -40,3 +44,4 @@ body > div.content-searchJobs > div:nth-child(1) > button{
     right: 26vw;
     padding: .65vw;
 }
+

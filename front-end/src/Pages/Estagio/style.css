@@ -22,7 +22,7 @@
 
 .CorpoEstagio{
     text-align: center;
-    padding: 2vh;
+    padding: 1.5vh;
 }
 
 .CabecaEstagio>.Ferramentas{
@@ -128,12 +128,21 @@ justify-content: center;
 align-items: center;
 }
 
+#root > div > div:nth-child(8) > div > div:nth-child(n) > div.CorpoEstagio > h5{
+    cursor: pointer;
+}
+
+
 /* ADAPTANDO MENU DE ACESSIBILIDADE */
 
 .preto .Estagio,
 .preto body > div.bodyPartEstagio > div.Estatisticas > div.Candidatoscadastrados,
 .preto body > div.bodyPartEstagio > div.Estatisticas > div.Candidatoscontratados,
-.preto body > div.bodyPartEstagio > div.Estatisticas > div.Empresascadastradas{
+.preto body > div.bodyPartEstagio > div.Estatisticas > div.Empresascadastradas,
+.preto #root > div > div:nth-child(8) > div > div:nth-child(n) > div.Ferramentas,
+.preto #root > div > div:nth-child(8) > div > div:nth-child(n) > div.CabecaEstagio,
+.preto #root > div > div:nth-child(8) > div > div:nth-child(n) > div.CorpoEstagio,
+.preto #root > div > div.Estatisticas{
     background: #373737 !important;
 }
 
@@ -142,6 +151,16 @@ align-items: center;
     background: black !important;
 }
 
+.preto #root > div > div:nth-child(8) > div > div:nth-child(n) > div.CorpoEstagio > h5{
+    cursor: pointer;
+    color: yellow !important;
+}
+
 .preto footer{
     border-top: solid white 1px;
+}
+
+.maior #root > div > div:nth-child(8) > div > div:nth-child(n) > div.CorpoEstagio > div:nth-child(n) > h5{
+    font-size: 19px;
+    font-weight: bold;
 }

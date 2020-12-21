@@ -152,3 +152,11 @@
 @media only screen and (max-width: 1321px) {.sessao-svempresa {width: 96% !important;}}
 @media only screen and (max-width: 3000px) {.sessao-svempresa {width: 1194px;}}
 @media only screen and (max-width: 1194px) {.infoVagaVisualizar{width: 96vw;}}
+
+.preto #root > div > main > section.imgBannerDescriVaga > div > div > div:nth-child(n){
+    background-color:black !important;
+}
+
+.preto #root > div > main > section.divisionBeneVaga > div > button{
+    color: yellow;
+}

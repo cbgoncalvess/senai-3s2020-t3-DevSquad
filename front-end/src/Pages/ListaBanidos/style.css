@@ -94,8 +94,9 @@ justify-content: flex-end;
 
 .desbanir img {
     margin-left: 1vh;
-    width: 1vw;
-    height: 1vw;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
 }
 
 .preto body > div.marginBanidos > div > h5{
@@ -148,4 +149,40 @@ justify-content: flex-end;
         margin-left: 0vh;
         margin-top: 2vw;
     }
+}
+
+.preto body > div.marginBanidos > div:nth-child(n){
+    background-color: #373737 !important;
+}
+
+.preto body > div.marginBanidos > div:nth-child(n) > div.colunaMobile > div.info{
+    background-color: #373737 !important;
+}
+
+.preto body > div.marginBanidos > div:nth-child(n) > div.data > div.desbanir{
+    background-color: #373737 !important;
+}
+
+.preto body > div.marginBanidos > div:nth-child(n) > div.data > div.DeletarPermanente{
+    background-color: #373737 !important;
+}
+
+.preto body > div.marginBanidos > div:nth-child(n) > div.data > div.desbanir > p{
+    color: yellow !important;
+    cursor: pointer;
+}
+
+.preto body > div.marginBanidos > div:nth-child(n) > div.data > div.DeletarPermanente > p{
+    color: yellow !important;
+    cursor: pointer;
+}
+
+
+.maior body > div.marginBanidos > div:nth-child(n) > div.colunaMobile > div.info > p:nth-child(n){
+font-size: 14px !important;
+font-weight: bold;
+}
+
+.preto body > div.marginBanidos > div:nth-child(n) > div.colunaMobile > div.banido{
+    background-color: #373737 !important;
 }

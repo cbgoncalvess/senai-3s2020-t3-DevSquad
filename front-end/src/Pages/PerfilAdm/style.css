@@ -237,3 +237,12 @@
 .Delete, .btVerPerfil, .ExcluirVagaText, .Edit{
   cursor: pointer;
 }
+
+.preto #modalAlterarSenhaUsuario{
+  background-color: #373737 !important;
+  color:white;
+}
+
+.preto #modalAlterarSenhaUsuario > h2{
+  color: white !important;
+}

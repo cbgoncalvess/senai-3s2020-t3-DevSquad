@@ -164,3 +164,21 @@
         font-size: 2.5vw;
     }
 }
+
+.preto #root > div > div.margin > div.perfis > div:nth-child(n),
+.preto #root > div > div.margin > div.perfis > div:nth-child(n) > div.ban,
+.preto #root > div > div.margin > div.perfis > div:nth-child(n) > div.horizontal > div.perfil,
+.preto #root > div > div.margin > div.perfis > div:nth-child(n) > div.horizontal,
+.preto #root > div > div.margin > div.perfis > div:nth-child(n) > div.horizontal > div.infos,
+.preto #root > div > div.margin > div.perfis > div:nth-child(n) > div.horizontal > div.infos > p:nth-child(n),
+.preto #root > div > div.margin > div.perfis > div:nth-child(n) > div.ban > div{
+    background: #373737 !important;
+}
+
+.preto #root > div > div.margin > div.perfis > div > div.ban > div{
+    cursor: pointer;
+}
+
+.preto #root > div > div.margin > div.perfis > div > div.ban > div > p{
+    color: yellow !important;
+}

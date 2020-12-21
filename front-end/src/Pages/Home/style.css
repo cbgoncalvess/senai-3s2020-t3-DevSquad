@@ -282,8 +282,6 @@ body
   background-color: #373737 !important;
 }
 
-
-
 #root > div > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Empresa > div > a > button,
 #root > div > div.bodyPart > div.StartImage > div.EmpresaCandidato > div.Candidato > div > a > button{
   cursor: pointer;
