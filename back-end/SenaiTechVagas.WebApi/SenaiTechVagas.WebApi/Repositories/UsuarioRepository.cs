@@ -101,7 +101,11 @@ namespace SenaiTechVagas.WebApi.Repositories
                     };
                     ctx.Add(NovaEmpresa);
                     ctx.SaveChanges();
-                    string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "ImageBackUp/" + usuario.CaminhoImagem);
+                    string variavel= "ImageBackUp/";
+                    if (usuario.CaminhoImagem == "Teste.webp" || usuario.CaminhoImagem == "user.png")
+                        variavel = "imgPerfil/";
+
+                    string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), variavel + usuario.CaminhoImagem);
                     string pathMove = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/" + usuario.CaminhoImagem);
                     File.Move(pathToSave, pathMove, true);
                     return true;
@@ -140,7 +144,10 @@ namespace SenaiTechVagas.WebApi.Repositories
 
                     ctx.Add(applicant);
                     ctx.SaveChanges();
-                    string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "ImageBackUp/" + user.CaminhoImagem);
+                    string variavel = "ImageBackUp/";
+                    if (user.CaminhoImagem == "Teste.webp" || user.CaminhoImagem == "user.png")
+                        variavel = "imgPerfil/";
+                    string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), variavel + user.CaminhoImagem);
                     string pathMove = Path.Combine(Directory.GetCurrentDirectory(), "imgPerfil/" + user.CaminhoImagem);
                     File.Move(pathToSave, pathMove, true);
                     return true;

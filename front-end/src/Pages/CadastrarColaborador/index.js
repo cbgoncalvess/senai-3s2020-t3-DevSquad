@@ -10,7 +10,6 @@ import BlackButton from "../../Components/BlackButton";
 import AccessMenu from "../../Components/AccessMenu";
 
 import { uri } from "../../services/conexao";
-import api from "../../services/api";
 
 import "./style.css";
 
@@ -35,16 +34,17 @@ export default function CadastrarColaborador() {
     if (Senha !== ConfirmarSenha || Senha === "" || ConfirmarSenha === "") {
       alert("As senhas não coincidem, ou não foram preenchidas.");
     } else {
-      api
-        .post("/Administrador/AdicionarColaborador", data, {
+      fetch(`${uri}/api/Administrador/AdicionarColaborador`, {
+        body: JSON.stringify(data),
+        method: "POST",
           headers: {
             "content-type": "application/json",
             authorization: "Bearer " + localStorage.getItem("token"),
-          },
+          }
         })
         .then((response) => response.json())
         .then((dados) => {
-          alert(dados);
+          alert("Colaborador cadastrado com sucesso");
           listarColaboradores();
         })
         .catch(function (error) {
@@ -132,6 +132,10 @@ export default function CadastrarColaborador() {
             </p>
           </div>
           <div className="camposCadastro">
+            <form onSubmit={event => {
+                    event.preventDefault();
+                    salvar();
+                  }}>
             <Input
               id="emailColab"
               className="div-select"
@@ -170,11 +174,12 @@ export default function CadastrarColaborador() {
               required
               onChange={(e) => SetConfirmarSenha(e.target.value)}
             />
-          </div>
           <div className="botaoCadastrar">
             <BlackButton type="submit" name="Cadastrar" onClick={salvar}>
               Cadastrar
             </BlackButton>
+          </div>
+            </form>
           </div>
         </div>
       </div>
