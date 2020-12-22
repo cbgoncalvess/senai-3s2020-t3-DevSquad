@@ -165,3 +165,6 @@ VALUES('30-11-2020',1,1,2),
 ('30-11-2020',3,1,2),
 ('30-11-2020',4,1,2)
 GO
+
+UPDATE Usuario SET CaminhoImagem='user.png' WHERE IdUsuario>0
+GO
