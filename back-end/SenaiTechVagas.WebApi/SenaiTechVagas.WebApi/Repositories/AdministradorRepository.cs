@@ -15,7 +15,6 @@ namespace SenaiTechVagas.WebApi.Repositories
 {
     public class AdministradorRepository :EmpresaRepository,IAdministradorRepository
     {
-        string stringConexao = "Data Source=.\\SQLEXPRESS; Initial Catalog=Db_TechVagas;integrated Security=True";
         public bool AtualizarCurso(int id, Curso curso)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
@@ -53,13 +52,13 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public string CadastrarEstagio(CadastrarEstagioViewModel estagio)
+        public string CadastrarEstagio(Estagio estagio)
         {
             using (DbSenaiContext ctx = new DbSenaiContext())
             {
                 try
                 {
-                    var Candidato = ctx.Candidato.FirstOrDefault(u=>u.IdUsuario==estagio.IdUsuario);
+                    var Candidato = ctx.Candidato.FirstOrDefault(u=>u.IdUsuario==estagio.IdCandidato);//estagio.Idcandidato equivale ao id de Usuario do candidato que esta chegando da requisição
                     if (Candidato == null)
                         return "Candidato não encontardo";
 
@@ -128,67 +127,49 @@ namespace SenaiTechVagas.WebApi.Repositories
 
         public List<ListarEstagiosViewModel> ListarEstagios()
         {
-            try
+            using(DbSenaiContext ctx=new DbSenaiContext())
             {
-                List<ListarEstagiosViewModel> listEstagios = new List<ListarEstagiosViewModel>();
-
-                // Declara a SqlConnection passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
+                try
                 {
-                    // Declara a instrução a ser executada
-                    string querySelectAll =
-                   " SELECT U.IdUsuario,U.CaminhoImagem,Estagio.DataCadastro,Curso.NomeCurso,Estagio.IdEstagio,PeriodoEstagio,E.RazaoSocial,C.NomeCompleto,A.NomeArea,C.Telefone,U.Email FROM Estagio" +
-                   " INNER JOIN Empresa E on E.IdEmpresa = Estagio.IdEmpresa" +
-                   " INNER JOIN Candidato C on C.IdCandidato = Estagio.IdCandidato" +
-                   " INNER JOIN Usuario U on U.IdUsuario = C.IdUsuario" +
-                   " INNER JOIN Curso ON Curso.idCurso=C.idCurso"+
-                   " INNER JOIN Area A ON A.IdArea=Curso.IdArea";
-                    con.Open();
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                    List<ListarEstagiosViewModel> list = new List<ListarEstagiosViewModel>();
+                    var Estagios = ctx.Estagio.Select(u=>new Estagio
                     {
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
+                        IdEstagio = u.IdEstagio,
+                        DataCadastro = u.DataCadastro,
+                        PeriodoEstagio=u.PeriodoEstagio,
+                        IdCandidatoNavigation =
+                        new Candidato { IdUsuario = u.IdCandidatoNavigation.IdUsuario,NomeCompleto=u.IdCandidatoNavigation.NomeCompleto,Telefone=u.IdCandidatoNavigation.Telefone,IdUsuarioNavigation=
+                        new Usuario {IdUsuario=u.IdCandidatoNavigation.IdUsuario,Email=u.IdCandidatoNavigation.IdUsuarioNavigation.Email,CaminhoImagem= u.IdCandidatoNavigation.IdUsuarioNavigation.CaminhoImagem },IdCursoNavigation=
+                        new Curso {NomeCurso=u.IdCandidatoNavigation.IdCursoNavigation.NomeCurso } },IdEmpresaNavigation=
+                        new Empresa { RazaoSocial=u.IdEmpresaNavigation.RazaoSocial}
+                    }).ToList();
+                    for(int i = 0; i < Estagios.Count; i++)
+                    {
+                        ListarEstagiosViewModel lvm = new ListarEstagiosViewModel();
+                        lvm.idEstagio = Estagios[i].IdEstagio;
+                        lvm.IdUsuario = Estagios[i].IdCandidatoNavigation.IdUsuario;
+                        lvm.NomeCompleto = Estagios[i].IdCandidatoNavigation.NomeCompleto;
+                        lvm.Telefone = Estagios[i].IdCandidatoNavigation.Telefone;
+                        lvm.EmailCandidato = Estagios[i].IdCandidatoNavigation.IdUsuarioNavigation.Email;
+                        lvm.CaminhoImagem = Estagios[i].IdCandidatoNavigation.IdUsuarioNavigation.CaminhoImagem;
+                        lvm.NomeCurso = Estagios[i].IdCandidatoNavigation.IdCursoNavigation.NomeCurso;
+                        lvm.RazaoSocial = Estagios[i].IdEmpresaNavigation.RazaoSocial;
+                        lvm.PeriodoEstagio = Estagios[i].PeriodoEstagio;
+                        var resultado = tempoDeEstagio(Estagios[i].DataCadastro, DateTime.Now);
+                        lvm.TempoEstagiado = resultado;
+                        if (lvm.TempoEstagiado >= lvm.PeriodoEstagio)
+                            lvm.StatusEstagio = "Estagio encerrado";
+                        else
+                            lvm.StatusEstagio = "Estagiando";
 
-                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
-                        while (rdr.Read())
-                        {
-                            // Instancia um objeto jogo 
-                            ListarEstagiosViewModel vm = new ListarEstagiosViewModel
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                idEstagio = Convert.ToInt32(rdr["IdEstagio"]),
-                                NomeCompleto = (rdr["NomeCompleto"]).ToString(),
-                                IdUsuario=Convert.ToInt32(rdr["IdUsuario"]),
-                                EmailCandidato = (rdr["Email"]).ToString(),
-                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
-                                PeriodoEstagio = Convert.ToInt32(rdr["PeriodoEstagio"]),
-                                Telefone = (rdr["Telefone"]).ToString(),
-                                RazaoSocial = (rdr["RazaoSocial"]).ToString(),
-                                NomeArea = (rdr["NomeArea"]).ToString(),
-                                NomeCurso = (rdr["NomeCurso"]).ToString()
-                            };
-                            var DataCadastro = Convert.ToDateTime(rdr["DataCadastro"]);
-                            var resultado = tempoDeEstagio(DataCadastro, DateTime.Now);
-                            vm.TempoEstagiado = resultado;
-                            if (vm.TempoEstagiado >= vm.PeriodoEstagio)
-                                vm.StatusEstagio = "Estagio encerrado";
-                            else
-                                vm.StatusEstagio = "Estagiando";
-                            listEstagios.Add(vm);
-                        }
+                        list.Add(lvm);
                     }
+                    return list;
                 }
-                // Retorna a lista de vagas
-                return listEstagios;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
 
@@ -814,15 +795,35 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public List<ListarInscricoesViewModel> ListarCandidatosInscritosEmpresa(int idVaga)
+        public List<Inscricao> ListarCandidatosInscritosEmpresa(int idVaga)
         {
-            try
+            using(DbSenaiContext ctx=new DbSenaiContext())
             {
-                return ListarCandidatosInscritos(idVaga);
-            }
-            catch (Exception)
-            {
-                return null;
+                try
+                {
+                    return ctx.Inscricao.Select(u =>
+                        new Inscricao
+                        {
+                            IdVaga = u.IdVaga,
+                            IdInscricao = u.IdInscricao,
+                            IdCandidato = u.IdCandidato,
+                            IdCandidatoNavigation =
+                        new Candidato
+                        {
+                            NomeCompleto = u.IdCandidatoNavigation.NomeCompleto,
+                            Telefone = u.IdCandidatoNavigation.Telefone,
+                            IdCursoNavigation =
+                        new Curso { NomeCurso = u.IdCandidatoNavigation.IdCursoNavigation.NomeCurso },
+                            IdUsuarioNavigation =
+                        new Usuario { CaminhoImagem = u.IdCandidatoNavigation.IdUsuarioNavigation.CaminhoImagem, Email = u.IdCandidatoNavigation.IdUsuarioNavigation.Email }
+                        }
+                        })
+                        .Where(u => u.IdVaga == idVaga).ToList();
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
 
@@ -916,15 +917,14 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public EmpresaCompletaViewModel BuscarEmpresaPorIdUsuarioAdm(int idUsuario)
+        public Empresa BuscarEmpresaPorIdUsuarioAdm(int idUsuario)
         {
             try
             {
                return BuscarEmpresaPorIdUsuario(idUsuario);
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
                 return null;
             }
         }
@@ -942,69 +942,35 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public CandidatoCompletoViewModel BuscarCandidatoPorIdUsuario(int idUsuario)
+        public Candidato BuscarCandidatoPorIdUsuarioAdm(int idUsuario)
         {
-            try
+            using (DbSenaiContext ctx = new DbSenaiContext())
             {
-                // Declara a conexão passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
+                try
                 {
-                    // Declara a query que será executada
-                    string querySelectById =
-                        "SELECT  A.NomeArea,cur.NomeCurso,A.IdArea,C.IdCandidato,cur.IdCurso,NomeCompleto,Rg,Cpf,Telefone,C.LinkLinkedinCandidato,U.CaminhoImagem FROM Candidato C" +
-                        " INNER JOIN Curso cur ON cur.IdCurso=C.IdCurso" +
-                        " INNER JOIN Area A ON A.IdArea=cur.IdArea" +
-                        " INNER JOIN Usuario U ON U.IdUsuario=C.IdUsuario" +
-                        " WHERE U.IdUsuario = @ID";
-
-                    // Abre a conexão com o banco de dados
-                    con.Open();
-
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectById, con))
+                    return ctx.Candidato.Select(u =>
+                    new Candidato
                     {
-                        // Passa o valor do parâmetro
-                        cmd.Parameters.AddWithValue("@ID", idUsuario);
-
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-
-                        // Caso o resultado da query possua registro
-                        if (rdr.Read())
-                        {
-                            // Instancia um objeto usuario 
-                            CandidatoCompletoViewModel usuario = new CandidatoCompletoViewModel
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                IdCandidato = Convert.ToInt32(rdr["IdCandidato"]),
-                                idCurso = Convert.ToInt32(rdr["IdCurso"]),
-                                IdArea = Convert.ToInt32(rdr["IdArea"]),
-                                NomeCompleto = rdr["NomeCompleto"].ToString(),
-                                NomeArea = rdr["NomeArea"].ToString(),
-                                NomeCurso = rdr["NomeCurso"].ToString(),
-                                Rg = rdr["Rg"].ToString(),
-                                Cpf = rdr["Cpf"].ToString(),
-                                Telefone = rdr["Telefone"].ToString(),
-                                LinkLinkedinCandidato = rdr["LinkLinkedinCandidato"].ToString(),
-                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
-
-                            };
-
-                            // Retorna o usuario buscado
-                            return usuario;
-                        }
-
-                        // Caso o resultado da query não possua registros, retorna null
-                        return null;
-                    }
+                        IdUsuario = u.IdUsuario,
+                        IdCandidato = u.IdCandidato,
+                        IdCurso = u.IdCurso,
+                        NomeCompleto = u.NomeCompleto,
+                        Rg = u.Rg,
+                        Cpf = u.Cpf,
+                        LinkLinkedinCandidato = u.LinkLinkedinCandidato,
+                        Telefone = u.Telefone,
+                        IdCursoNavigation=
+                        new Curso { NomeCurso=u.IdCursoNavigation.NomeCurso,IdAreaNavigation=
+                        new Area { NomeArea=u.IdCursoNavigation.IdAreaNavigation.NomeArea} },
+                        IdUsuarioNavigation =
+                    new Usuario { CaminhoImagem = u.IdUsuarioNavigation.CaminhoImagem }
+                    })
+                    .FirstOrDefault(u => u.IdUsuario == idUsuario);
                 }
-            }
-            catch (Exception)
-            {
-                return null;
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
 

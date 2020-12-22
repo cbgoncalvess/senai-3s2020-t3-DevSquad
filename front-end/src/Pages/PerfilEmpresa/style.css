@@ -83,3 +83,11 @@
       margin-bottom: 0px;
   }
 }
+
+.preto #modalPerfilEmpresa{
+  background-color: #373737 !important;
+}
+
+.preto #modalAlterarSenhaEmpresa{
+  background-color: #373737 !important;
+}

@@ -4,7 +4,7 @@ import "./style.css";
 function Input(props) {
   return (
     <div className="Input">
-      <label htmlFor={props.name}>{props.label}</label>
+      <label className="lbInput" htmlFor={props.name}>{props.label}</label>
       <br />
       <input
         className={props.className}

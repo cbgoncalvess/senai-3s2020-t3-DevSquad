@@ -49,9 +49,9 @@ export default function VisualizarCandidatoAdm() {
         SetTelefone(dados.telefone);
         SetLinkedin(dados.linkLinkedinCandidato);
         SetNomeCompleto(dados.nomeCompleto);
-        SetArea(dados.nomeArea);
-        SetCurso(dados.nomeCurso);
-        setCaminho(dados.caminhoImagem);
+        SetArea(dados.idCursoNavigation.idAreaNavigation.nomeArea);
+        SetCurso(dados.idCursoNavigation.nomeCurso);
+        setCaminho(dados.idUsuarioNavigation.caminhoImagem);
       })
       .catch((err) => console.error(err));
   };

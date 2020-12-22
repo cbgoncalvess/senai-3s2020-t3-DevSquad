@@ -221,143 +221,103 @@ namespace SenaiTechVagas.WebApi.Repositories
             }
         }
 
-        public List<ListarVagasViewModel> ListarVagasArea(int idArea)
+        public List<ListarVagasViewModel> ListarVagasArea(int idCurso)
         {
-            try
+            using (DbSenaiContext ctx=new DbSenaiContext())
             {
-                List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
-                // Declara a SqlConnection passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
+                try
                 {
-                    // Declara a instrução a ser executada
-                    string querySelectAll =
-                   "SELECT U.CaminhoImagem,trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
-                   " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
-                   " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
-                   " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
-                   " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario"+
-                   " INNER JOIN Area are on are.IdArea=v.IdArea" +
-                   " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
-                   " WHERE are.IdArea=@IdArea";
-                    con.Open();
-
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                   Curso c=ctx.Curso.Select(u=>new Curso { IdCurso=u.IdCurso,IdArea=u.IdArea}).FirstOrDefault(u=>u.IdCurso==idCurso);
+                    List<ListarVagasViewModel> listvagas = new List<ListarVagasViewModel>();
+                    // Declara a SqlConnection passando a string de conexão
+                    using (SqlConnection con = new SqlConnection(stringConexao))
                     {
-                        cmd.Parameters.AddWithValue("@IdArea", idArea);
+                        // Declara a instrução a ser executada
+                        string querySelectAll =
+                       "SELECT U.CaminhoImagem,trp.NomeTipoRegimePresencial,are.NomeArea,v.TituloVaga,e.RazaoSocial,v.IdVaga,t.NomeTecnologia,v.Experiencia,v.TipoContrato,v.Salario,v.Localidade FROM VagaTecnologia" +
+                       " INNER JOIN Vaga v on v.IdVaga = VagaTecnologia.IdVaga" +
+                       " INNER JOIN Tecnologia t on t.IdTecnologia = VagaTecnologia.IdTecnologia" +
+                       " INNER JOIN Empresa e on e.IdEmpresa = v.IdEmpresa" +
+                       " INNER JOIN Usuario U ON U.IdUsuario=e.IdUsuario" +
+                       " INNER JOIN Area are on are.IdArea=v.IdArea" +
+                       " INNER JOIN TipoRegimePresencial trp on trp.IdTipoRegimePresencial=v.IdTipoRegimePresencial" +
+                       " WHERE are.IdArea=@IdArea";
+                        con.Open();
 
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
+                        // Declara o SqlDataReader para receber os dados do banco de dados
+                        SqlDataReader rdr;
 
-                        // Enquanto houver registros para serem lidos no rdr, o laço se repete
-                        while (rdr.Read())
+                        // Declara o SqlCommand passando o comando a ser executado e a conexão
+                        using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
                         {
-                            bool teveAcao = false;
+                            cmd.Parameters.AddWithValue("@IdArea", c.IdArea);
 
-                            // Instancia um objeto jogo 
-                            ListarVagasViewModel vm = new ListarVagasViewModel
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                IdVaga = Convert.ToInt32(rdr["IdVaga"]),
-                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
-                                Experiencia = rdr["Experiencia"].ToString(),
-                                TipoContrato = rdr["TipoContrato"].ToString(),
-                                TituloVaga = rdr["TituloVaga"].ToString(),
-                                Localidade = rdr["Localidade"].ToString(),
-                                Salario = Convert.ToDecimal(rdr["Salario"]),
-                                RazaoSocial = rdr["RazaoSocial"].ToString(),
-                                NomeArea = rdr["NomeArea"].ToString(),
-                                TipoPresenca = rdr["NomeTipoRegimePresencial"].ToString()
-                            };
-                            var NomeTecnologia = rdr["NomeTecnologia"].ToString();
-                            vm.Tecnologias = new List<string>();
+                            // Executa a query e armazena os dados no rdr
+                            rdr = cmd.ExecuteReader();
 
-                            for (int i = 0; i < listvagas.Count; i++)
+                            // Enquanto houver registros para serem lidos no rdr, o laço se repete
+                            while (rdr.Read())
                             {
-                                if (vm.IdVaga == listvagas[i].IdVaga)
+                                bool teveAcao = false;
+
+                                // Instancia um objeto jogo 
+                                ListarVagasViewModel vm = new ListarVagasViewModel
                                 {
-                                    listvagas[i].Tecnologias.Add(NomeTecnologia);
-                                    teveAcao = true;
+                                    // Atribui às propriedades os valores das colunas da tabela do banco
+                                    IdVaga = Convert.ToInt32(rdr["IdVaga"]),
+                                    CaminhoImagem = rdr["CaminhoImagem"].ToString(),
+                                    Experiencia = rdr["Experiencia"].ToString(),
+                                    TipoContrato = rdr["TipoContrato"].ToString(),
+                                    TituloVaga = rdr["TituloVaga"].ToString(),
+                                    Localidade = rdr["Localidade"].ToString(),
+                                    Salario = Convert.ToDecimal(rdr["Salario"]),
+                                    RazaoSocial = rdr["RazaoSocial"].ToString(),
+                                    NomeArea = rdr["NomeArea"].ToString(),
+                                    TipoPresenca = rdr["NomeTipoRegimePresencial"].ToString()
+                                };
+                                var NomeTecnologia = rdr["NomeTecnologia"].ToString();
+                                vm.Tecnologias = new List<string>();
+
+                                for (int i = 0; i < listvagas.Count; i++)
+                                {
+                                    if (vm.IdVaga == listvagas[i].IdVaga)
+                                    {
+                                        listvagas[i].Tecnologias.Add(NomeTecnologia);
+                                        teveAcao = true;
+                                    }
                                 }
+                                if (teveAcao == true)
+                                    continue;//é do While
+                                else vm.Tecnologias.Add(NomeTecnologia);
+                                // Adiciona a vaga criada à lista de vagas
+                                listvagas.Add(vm);
                             }
-                            if (teveAcao == true)
-                                continue;//é do While
-                            else vm.Tecnologias.Add(NomeTecnologia);
-                            // Adiciona a vaga criada à lista de vagas
-                            listvagas.Add(vm);
                         }
                     }
+                    return listvagas;
                 }
-                return listvagas;
-            }
-            catch (Exception)
-            {
-                return null;
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
 
-        public CandidatoCompletoViewModel BuscarCandidatoPorIdUsuario(int idUsuario)
+        public Candidato BuscarCandidatoPorIdUsuario(int idUsuario)
         {
-            try{
-                // Declara a conexão passando a string de conexão
-                using (SqlConnection con = new SqlConnection(stringConexao))
-                {
-                    // Declara a query que será executada
-                    string querySelectById =
-                        "SELECT A.IdArea,C.IdCandidato,cur.IdCurso,NomeCompleto,Rg,Cpf,Telefone,C.LinkLinkedinCandidato,U.CaminhoImagem FROM Candidato C" +
-                        " INNER JOIN Curso cur ON cur.IdCurso=C.IdCurso" +
-                        " INNER JOIN Area A ON A.IdArea=cur.IdArea"+
-                        " INNER JOIN Usuario U ON U.IdUsuario=C.IdUsuario" +
-                        " WHERE U.IdUsuario = @ID";
-
-                    // Abre a conexão com o banco de dados
-                    con.Open();
-
-                    // Declara o SqlDataReader para receber os dados do banco de dados
-                    SqlDataReader rdr;
-
-                    // Declara o SqlCommand passando o comando a ser executado e a conexão
-                    using (SqlCommand cmd = new SqlCommand(querySelectById, con))
-                    {
-                        // Passa o valor do parâmetro
-                        cmd.Parameters.AddWithValue("@ID", idUsuario);
-
-                        // Executa a query e armazena os dados no rdr
-                        rdr = cmd.ExecuteReader();
-
-                        // Caso o resultado da query possua registro
-                        if (rdr.Read())
-                        {
-                            // Instancia um objeto usuario 
-                            CandidatoCompletoViewModel usuario = new CandidatoCompletoViewModel
-                            {
-                                // Atribui às propriedades os valores das colunas da tabela do banco
-                                IdCandidato = Convert.ToInt32(rdr["IdCandidato"]),
-                                idCurso = Convert.ToInt32(rdr["IdCurso"]),
-                                IdArea = Convert.ToInt32(rdr["IdArea"]),
-                                NomeCompleto = rdr["NomeCompleto"].ToString(),
-                                Rg = rdr["Rg"].ToString(),
-                                Cpf = rdr["Cpf"].ToString(),
-                                Telefone = rdr["Telefone"].ToString(),
-                                LinkLinkedinCandidato = rdr["LinkLinkedinCandidato"].ToString(),
-                                CaminhoImagem = rdr["CaminhoImagem"].ToString(),
-
-                            };
-
-                            // Retorna o usuario buscado
-                            return usuario;
-                        }
-
-                        // Caso o resultado da query não possua registros, retorna null
-                        return null;
-                    }
-                }
-            }catch(Exception)
+            using (DbSenaiContext ctx = new DbSenaiContext())
             {
-                return null;
+                try
+                {
+                    return ctx.Candidato.Select(u=>
+                    new Candidato {IdUsuario=u.IdUsuario,IdCandidato=u.IdCandidato,IdCurso=u.IdCurso,NomeCompleto=u.NomeCompleto,Rg=u.Rg,Cpf=u.Cpf,LinkLinkedinCandidato=u.LinkLinkedinCandidato,Telefone=u.Telefone,IdUsuarioNavigation=
+                    new Usuario{CaminhoImagem=u.IdUsuarioNavigation.CaminhoImagem}})
+                    .FirstOrDefault(u=>u.IdUsuario==idUsuario);
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
             }
         }
     }

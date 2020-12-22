@@ -108,7 +108,7 @@ export default function VagasPublicadas() {
       descricaoVaga: DescricaoVaga,
       cep: CEP,
     };
-    fetch(`${uri}/api/Empresa/AtualizarVagaEmpresa/${idVaga}` + idVaga, {
+    fetch(`${uri}/api/Empresa/AtualizarVagaEmpresa/${idVaga}`, {
       method: "PUT",
       body: JSON.stringify(form),
       headers: {
@@ -225,7 +225,6 @@ export default function VagasPublicadas() {
     let idAdcPelicula = document.getElementById("peliculaAddTecnologia");
     let idModalTecnologia = document.getElementById("ModalAdicionarTecnologia");
     if (idAdcPelicula.classList == "peliculaAddTecnologia none")
-      console.log(idVaga);
     idAdcPelicula.classList.remove("none");
     idModalTecnologia.classList.remove("none");
   }
@@ -236,7 +235,6 @@ export default function VagasPublicadas() {
     if (idAdcPelicula.classList != "peliculaAddTecnologia none") {
       idAdcPelicula.classList.add("none");
       idModalTecnologia.classList.add("none");
-      console.log(idVaga);
     }
   }
 
@@ -394,7 +392,6 @@ export default function VagasPublicadas() {
         <h2>Remover tecnologia Vaga</h2>
         <form>
           <div className="select-final">
-            <label>Tecnologias</label>
             <select
               onChange={(e) => SetNomeTecnologia(e.target.value)}
               value={NomeTecnologia}
@@ -429,7 +426,6 @@ export default function VagasPublicadas() {
         <h2>Adicionar uma tecnologia na Vaga</h2>
         <form>
           <div className="select-final">
-            <label>Tecnologias</label>
             <select
               onChange={(e) => SetIdTecnologia(e.target.value)}
               value={idTecnologia}

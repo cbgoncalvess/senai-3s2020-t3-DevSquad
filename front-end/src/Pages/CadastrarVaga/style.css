@@ -127,3 +127,11 @@ body > div > div > div.Esquerdo > div > form{
 .maior .btVaga{
     font-size: 16px;
 }
+
+.preto body > div.bodyPartCadastrarVaga > div > div.Esquerdo > div{
+    background: #373737 !important;
+}
+
+.preto #root > div > div.meioPerfil > div.EsquerdoPerfil > div.BotoesPerfilEmpresa > button:nth-child(n) > h3{
+    color: yellow !important;
+}

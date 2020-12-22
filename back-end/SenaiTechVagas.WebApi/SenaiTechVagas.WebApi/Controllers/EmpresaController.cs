@@ -71,7 +71,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 
@@ -97,7 +97,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 
@@ -144,7 +144,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 
@@ -196,7 +196,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 //Verificacao se a inscricao pertence a empresa
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 
@@ -221,7 +221,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 
@@ -264,7 +264,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 
@@ -291,7 +291,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 
@@ -320,7 +320,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 
@@ -346,7 +346,7 @@ namespace SenaiTechVagas.WebApi.Controllers
             try
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
-                EmpresaCompletaViewModel empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
+                Empresa empresa = _empresaIRepository.BuscarEmpresaPorIdUsuario(idUsuario);
                 if (empresa == null)
                     return BadRequest();
 

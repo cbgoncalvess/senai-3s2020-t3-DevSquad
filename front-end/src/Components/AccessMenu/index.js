@@ -1,9 +1,18 @@
 import React from "react";
+import { useHistory } from 'react-router-dom';
+
 import { parseJwt } from "../../../src/services/token";
 
 import "./style.css";
 
 export default function AccessMenu() {
+  let history = useHistory();
+
+  const logout = () => {
+    localStorage.clear();
+    history.push('/');
+}
+
   const AbrirMenu = () => {
     let bar = document.getElementById("bar");
     let botao1 = document.getElementById("botao");
@@ -150,8 +159,9 @@ export default function AccessMenu() {
           ) {
             window.location.href = "/login";
           }
-          if (textarea.value == "Empresa" || textarea.value == "empresa") {
-            window.location.href = "/empresa";
+          if (textarea.value == "empresa" || textarea.value == "cadastro empresa") {
+            history.push("cadastro/empresa");
+            window.location.reload();
           }
           if (textarea.value == "Cadastro" || textarea.value == "cadastro") {
             window.location.href = "/cadastro";
@@ -190,10 +200,11 @@ export default function AccessMenu() {
           }
 
           if (
-            textarea.value == "cadastroestágio" ||
-            textarea.value == "cadastrarestágio"
+            textarea.value == "cadastro estágio" ||
+            textarea.value == "cadastrar estágio"
           ) {
-            window.locatio.href = "/cadastro/Estagio";
+            history.push("/cadastro/Estagio");
+            window.location.reload();
           }
 
           if (
@@ -201,6 +212,11 @@ export default function AccessMenu() {
             textarea.value == "colaboradores"
           ) {
             window.location.href = "/colaboradores";
+          }
+
+          if (textarea.value == "sair" && parseJwt().Role === "1"){
+            logout();
+            window.location.reload();
           }
         } else if (parseJwt().Role === "2") {
           if (
@@ -219,9 +235,9 @@ export default function AccessMenu() {
           }
 
           if (
-            textarea.value == "verInscricoes" ||
-            textarea.value == "inscricões" ||
-            textarea.value == "Inscricoes"
+            textarea.value == "ver inscrições" ||
+            textarea.value == "inscrições" ||
+            textarea.value == "Inscriçoes"
           ) {
             window.location.href = "/DashboardInscricaoCandidato";
           }
@@ -238,22 +254,37 @@ export default function AccessMenu() {
           if (textarea.value == "Sobre" || textarea.value == "sobre") {
             window.location.href = "/sobre";
           }
+
+          if (textarea.value == "sair" && parseJwt().Role === "2"){
+            logout();
+            window.location.reload();
+          }
         } else if (parseJwt().Role === "3") {
-          if (textarea.value == "perfil" && parseJwt().Role === "2") {
+          if (textarea.value == "perfil" && parseJwt().Role === "3") {
             window.location.href = "/perfilEmpresa";
+          }
+          if (textarea.value == "sair" && parseJwt().Role === "3"){
+            logout();
+            window.location.reload();
           }
 
           if (
-            textarea.value == "publicarvaga" ||
-            textarea.value == "divulgarvaga" ||
-            textarea.value == "cadastrarvaga"
+            textarea.value == "publicar vaga" ||
+            textarea.value == "divulgar vaga" ||
+            textarea.value == "cadastrar vaga"
           ) {
             window.location.href = "/cadastro/vaga";
           }
 
           if (
-            textarea.value == "minhasvagas" ||
-            textarea.value == "vagasdivulgadas" ||
+            textarea.value == "sobre"
+          ) {
+            window.location.href = "/sobre";
+          }
+
+          if (
+            textarea.value == "minhas vagas" ||
+            textarea.value == "vagas divulgadas" ||
             textarea.value == "vagas"
           ) {
             window.location.href = "/VagasPublicadas";

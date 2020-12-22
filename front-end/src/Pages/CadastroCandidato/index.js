@@ -53,13 +53,12 @@ export default function CadastroEmpresa() {
 
     formdata.append("arquivo", event.target.files[0]);
 
-    fetch(`${uri}/api/Upload`, {
+    fetch(`${uri}/api/Usuario/Image`, {
       method: "POST",
       body: formdata,
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-      console.log(data);
         setCaminho(data);
     })
     .catch(err => console.log(err))

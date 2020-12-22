@@ -116,7 +116,7 @@ export default function PerfilEmpresa() {
         SetEmailContato(dados.emailContato);
         SetEstado(dados.uf);
         SetCidade(dados.localidade);
-        setCaminho(dados.caminhoImagem);
+        setCaminho(dados.idUsuarioNavigation.caminhoImagem);
       })
       .catch((err) => console.error(err));
   };
@@ -215,9 +215,8 @@ export default function PerfilEmpresa() {
       },
       body: formdata,
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-      console.log(data);
         setCaminho(data);
     })
     .catch(err => console.log(err))
@@ -266,7 +265,7 @@ export default function PerfilEmpresa() {
                 <div className="flexBoxPerfilCandidato">
                   <img
                     src={`${uri}/imgPerfil/${item.idUsuarioNavigation.caminhoImagem}`}
-                    alt="Imagem da Empresa"
+                    alt="Imagem dos estagiarios"
                   />
                   <h3>{"Nome do estágiario:" + item.nomeCompleto}</h3>
                 </div>

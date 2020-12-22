@@ -100,7 +100,7 @@ namespace SenaiTechVagas.WebApi.Controllers
                 else
                     return BadRequest(Response);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return BadRequest("Uma exceção ocorreu. Tente novamente.");
             }
@@ -262,12 +262,45 @@ namespace SenaiTechVagas.WebApi.Controllers
             {
                 var idUsuario = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
                 var arquivo = Request.Form.Files[0];
-                var a=usuarioRepository.AlterarImagemPerfil(idUsuario, arquivo);
+                var NomeArquivo = arquivo.FileName;
+                string Extensao = NomeArquivo.Split('.')[1].Trim();
+                if (Extensao == "jpg" || Extensao == "png" || Extensao == "webp" || Extensao == "jpeg" || Extensao == "svg" || Extensao == "jfif")
+                {
+                    var a = usuarioRepository.AlterarImagemPerfil(idUsuario, arquivo);
                     return Ok(a);
+                }
+                return BadRequest("Não foi possivel atualizar");
             }
             catch (Exception)
             {
                 return BadRequest(e);
+            }
+        }
+
+        /// <summary>
+        /// Método que armazena as imagens que o ususario seleciona na hora do cadastro
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns></returns>
+        [HttpPost("Image")]
+        public IActionResult Post([FromForm] string e)
+        {
+            try
+            {
+                var arquivo = Request.Form.Files[0];
+
+                var NomeArquivo = arquivo.FileName;
+                string Extensao = NomeArquivo.Split('.')[1].Trim();
+                if (Extensao == "jpg" || Extensao == "png" || Extensao == "webp" || Extensao == "jpeg" || Extensao == "svg" || Extensao == "jfif" ||Extensao == "tiff")
+                {
+                    var Imagem = usuarioRepository.Upload(arquivo, "ImageBackUp");
+                    return Ok(Imagem);
+                }
+                return BadRequest("Este formato não é aceito");
+            }
+            catch (Exception)
+            {
+                return BadRequest();
             }
         }
     }

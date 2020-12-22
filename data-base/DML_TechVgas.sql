@@ -52,18 +52,21 @@ VALUES		('Desenvolvimento de Sistemas - 1T - M', 'Técnico',1),
 			('Desenvolvimento de Sistemas - 1T - T', 'Técnico',1),
 			('Desenvolvimento de Sistemas - 2T - T', 'Técnico',1),
 			('Desenvolvimento de Sistemas - 3T - T', 'Técnico',1),
+			('Ex-aluno Desenvolvimento de Sistemas', 'Técnico',1),
 			('Redes de Computadores - 1T - M', 'Técnico',2),
 			('Redes de Computadores - 2T - M', 'Técnico',2),
 			('Redes de Computadores - 3T - M', 'Técnico',2),
 			('Redes de Computadores - 1T - T', 'Técnico',2),
 			('Redes de Computadores - 2T - T', 'Técnico',2),
 			('Redes de Computadores - 3T - T', 'Técnico',2),
+			('Ex-aluno Redes de Computadores', 'Técnico',2),
 			('Multimídia - 1T - M', 'Técnico',3),
 			('Multimídia - 2T - M', 'Técnico',3),
 			('Multimídia - 3T - M', 'Técnico',3),
 			('Multimídia - 1T - T', 'Técnico',3),
 			('Multimídia - 2T - T', 'Técnico',3),
-			('Multimídia - 3T - T', 'Técnico',3);
+			('Multimídia - 3T - T', 'Técnico',3),
+			('Ex-aluno Multimídia', 'Técnico',3);
 GO
 
 

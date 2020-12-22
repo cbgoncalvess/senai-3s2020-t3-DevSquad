@@ -112,3 +112,13 @@
         grid-column-start: 3;
     }
 }
+
+/* access */
+
+.preto #item1 > h3,
+.preto #item2 > h3,
+.preto #item3 > h3,
+.preto #item4 > h3,
+.preto #item5 > h3{
+    background: #373737 !important;
+}

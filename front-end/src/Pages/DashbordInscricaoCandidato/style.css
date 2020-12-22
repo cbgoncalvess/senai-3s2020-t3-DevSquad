@@ -11,7 +11,6 @@
 
 .vaga > p {
   text-align: end;
-  margin: 19px 24px 0px 0px;
 }
 
 .bannerDashboardCandidato > h2 {
@@ -81,4 +80,37 @@
     text-align: center;
     font-weight: bold;
   }
+}
+
+
+.preto #root > div > main > section > div.listadeVagas,
+.preto #root > div > main > section > div.title-vagas-inscritas{
+  background: unset !important;
+}
+
+.preto #root > div > main > section > div.listadeVagas > div:nth-child(n) > div,
+.preto #root > div > main > section > div.listadeVagas > div:nth-child(n) > div > div > h3,
+.preto #root > div > main > section > div.listadeVagas > div:nth-child(n) > div > div > div.InfoVagas,
+.preto #root > div > main > section > div.listadeVagas > div:nth-child(n) > div > div > div.TecnologiasVaga,
+.preto #root > div > main > section > div.listadeVagas > div:nth-child(n) > div > div > div.InfoVagas > div:nth-child(n),
+.preto #root > div > main > section > div.listadeVagas > div:nth-child(n) > div > div{
+  background: #373737 !important;
+}
+
+.preto #root > div > main > section > div.listadeVagas > div:nth-child(n){
+  background: #373737 !important;
+}
+
+.preto #root > div > main > section > div.listadeVagas > div:nth-child(n) > div > div > div.divisionBtnRevogar{
+  background: #373737 !important;
+}
+
+
+.preto #root > div > main > section > div.listadeVagas > div:nth-child(n) > div > div > div.divisionBtnRevogar > button{
+color: yellow;
+cursor: pointer;
+}
+
+#root > div > main > section > div.listadeVagas > div:nth-child(n) > p{
+margin-right: 10px;
 }

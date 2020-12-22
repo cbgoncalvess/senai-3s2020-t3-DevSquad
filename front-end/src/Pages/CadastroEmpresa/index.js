@@ -24,14 +24,14 @@ export default function CadastroEmpresa() {
   const [Telefone, SetTelefone] = useState("");
   const [NumFuncionario, SetNumFuncionario] = useState("");
   const [NumCNAE, SetNumCNAE] = useState("");
-  let [CEP, SetCEP] = useState("");
-  let [Logradouro, SetLogradouro] = useState("");
+  let   [CEP, SetCEP] = useState("");
+  let   [Logradouro, SetLogradouro] = useState("");
   const [Complemento, SetComplemento] = useState("");
   const [EmailContato, SetEmailContato] = useState("");
   const [PerguntaSeguranca, SetPergunta] = useState("");
   const [RespostaSeguranca, SetResposta] = useState("");
-  let [Estado, SetEstado] = useState("");
-  let [Cidade, SetCidade] = useState("");
+  let   [Estado, SetEstado] = useState("");
+  let   [Cidade, SetCidade] = useState("");
   const [Senha, SetSenha] = useState("");
   const [ConfirmarSenha, SetConfirmarSenha] = useState("");
   const [CaminhoImagem, setCaminho] = useState("");
@@ -124,7 +124,7 @@ export default function CadastroEmpresa() {
         Cep: CEP,
         Logradouro: Logradouro,
         Complemento: Complemento,
-        Uf: Estado,
+        Estado: Estado,
         Localidade: Cidade,
         Email: Email,
         Senha: Senha,
@@ -132,7 +132,6 @@ export default function CadastroEmpresa() {
         PerguntaSeguranca: PerguntaSeguranca,
         CaminhoImagem: CaminhoImagem,
       };
-      console.log(data);
       fetch(`${uri}/api/Usuario/Empresa`, {
         method: "POST",
         body: JSON.stringify(data),
@@ -141,11 +140,11 @@ export default function CadastroEmpresa() {
         },
       })
         .then((response) => {
-          if (response.status !== 200) {
-            alert("Não foi possivel efetuar o cadastro");
-          } else {
+          if (response.status == 200) {
             alert("Cadastrado com sucesso");
             history.push("/");
+          } else {
+            alert("Não foi possivel efetuar o cadastro");
           }
         })
         .catch((err) => console.error(err));
@@ -159,11 +158,11 @@ export default function CadastroEmpresa() {
 
     formdata.append("arquivo", event.target.files[0]);
 
-    fetch(`${uri}/api/Upload`, {
+    fetch(`${uri}/api/Usuario/Image`, {
       method: "POST",
       body: formdata,
     })
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((data) => {
         setCaminho(data);
       })
@@ -348,6 +347,7 @@ export default function CadastroEmpresa() {
                 type="text"
                 maxLength={155}
                 minLength={5}
+                onChange={(e) => SetLogradouro(e.target.value)}
               />
 
               <div className="Input">
@@ -374,6 +374,7 @@ export default function CadastroEmpresa() {
                   disabled
                   maxLength={150}
                   minLength={5}
+                  onChange={e=> SetCidade(e.target.value)}
                 />
               </div>
 
@@ -388,6 +389,7 @@ export default function CadastroEmpresa() {
                   disabled
                   maxLength={2}
                   minLength={2}
+                  onChange={e=> SetEstado(e.target.value)}
                 />
               </div>
 

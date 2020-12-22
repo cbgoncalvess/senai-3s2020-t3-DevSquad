@@ -149,12 +149,12 @@ export default function ListarCandidatosInscritos() {
                 <div className="DadosInscrito">
                   <img
                     className="imgUsuario"
-                    src={`${uri}/imgPerfil/${item.caminhoImagem}`}
+                    src={`${uri}/imgPerfil/${item.idCandidatoNavigation.idUsuarioNavigation.caminhoImagem}`}
                     alt="Imagem de perfil do usuario inscrito"
                   />
                   <div className="Column-Inscricao">
-                    <h3>{item.nomeCandidato}</h3>
-                    <p className="NomeCurso">{item.nomeCurso}</p>
+                    <h3>{item.idCandidatoNavigation.nomeCompleto}</h3>
+                    <p className="NomeCurso">{item.idCandidatoNavigation.idCursoNavigation.nomeCurso}</p>
                   </div>
                 </div>
               </div>

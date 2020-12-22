@@ -57,7 +57,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                return Ok(_Admin.BuscarCandidatoPorIdUsuario(id));
+                return Ok(_Admin.BuscarCandidatoPorIdUsuarioAdm(id));
             }
             catch (Exception)
             {
@@ -75,7 +75,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         {
             try
             {
-                EmpresaCompletaViewModel empresa = _Admin.BuscarEmpresaPorIdUsuarioAdm(id);
+                Empresa empresa = _Admin.BuscarEmpresaPorIdUsuarioAdm(id);
                 if (empresa == null)
                     return BadRequest();
 
@@ -533,7 +533,7 @@ namespace SenaiTechVagas.WebApi.Controllers
         /// <returns>Retorna um novo estágio cadastrado.</returns>
         [Authorize(Roles = "1")]
         [HttpPost("AdicionarEstagio")]
-        public IActionResult AdicionarEstagio(CadastrarEstagioViewModel estagioNovo)
+        public IActionResult AdicionarEstagio(Estagio estagioNovo)
         {
             try
             {

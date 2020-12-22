@@ -12,7 +12,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f3f3f3;}
+    background-color: #f3f3f3;
+}
 
 .sessaoLogar{
     display: flex;
@@ -22,7 +23,7 @@
     width: 55vw;}
 
 .form-logar {
-    height: 227px;
+    height: 22vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +43,7 @@
 .division-logar-title {
     display: flex;
     flex-direction: column;
-    height: 74px;
+    height: 8vh;
     justify-content: space-between;
     align-items: center;}
 
@@ -56,9 +57,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 8vh !important;
     align-items: flex-start;}
 
-.divisionCampo > label{color: #5f5f5f; font-weight: 600; padding-bottom:15px;}
+.divisionCampo > label{color: #5f5f5f; font-weight: 600;}
 
 .inputUser{background-image: url('../../assets//user\ 1.webp');}
 
@@ -140,17 +142,26 @@
 @media only screen and (max-width: 400px) {
 .principalLogin {padding: 100px 0px;}
 .divisionBtn { width: 264px; }
+.form-logar {height: 33vh;}
+.division-logar-title{height: 10vh;}
+.divisionCampo {height: 12vh;}
 }
 
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 700px) {
 
 .imgBannerLogin {display: none;}
 
-.principalLogin {padding: 72px 0px; flex-direction: column;}
+.principalLogin {
+    padding: 72px 0em;
+    flex-direction: column;}
     
 .divisionBtn {width: 243px;}
-.division-logar {width: 360px;}}
+.division-logar {width: 360px;}
+.form-logar {height: 23vh;}
+
+.divisionCampo {height: 9vh;}
+    }
 
 @media only screen and (max-width: 1292px) {
 
@@ -161,8 +172,13 @@
     align-items: center;
     height: 787px;}
 
+.divisionCampo {height: 10vh;}
+
 .imgBannerLogin {display: none;}
-.divisionBtn {width: 300px;}}
+.divisionBtn {width: 300px;}
+.divisionPassword {height: 11vh;}
+.form-logar {height: 25vh;}
+}
 
 @media only screen and (min-width: 1293px) {
 .principalLogin {padding: 0px 0px !important;}
@@ -170,3 +186,30 @@
 .imgBannerLogin {width: 50%;}
 }
 
+/* access */
+
+.preto #root > div > main{
+    background: black !important;
+}
+
+.preto #root > div > main > section > div{
+    background: #373737;
+}
+
+.preto #root > div > main > section > div > div.division-logar-title > h2{
+    color: #005767 !important;
+}
+
+.preto #root > div > main > section > div > form > div:nth-child(n) > label,
+.preto #root > div > main > section > div > div.division-logar-title > p{
+    color: white !important;
+}
+
+.preto #root > div > main > section > div > div.divisionBtn > button.btnLogar{
+    color: yellow !important;
+    text-decoration: underline !important;
+}
+
+.preto #modalRecuperarSenhaCandidato{
+    background-color: #373737 !important;
+}

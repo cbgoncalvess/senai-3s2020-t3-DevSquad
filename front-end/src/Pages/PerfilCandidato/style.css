@@ -6,19 +6,16 @@
 .flexBoxPerfilCandidato>img{
     width: 70px;
     height: 70px;
+    border-radius: 70px;
 }
 
 .BoxPerfilCandidato{
     display: flex;
     justify-content: space-between;
     padding: 1vh;
-    border-bottom: 1px solid #B9B9B9;
+    border-bottom: 1px solid grey;
     align-items: center;
     flex-wrap: wrap;
-}
-
-.flexBoxPerfilCandidato > h3 {
-    margin-left: 11px;
 }
 
 .BotoesPerfilCandidato{
@@ -98,3 +95,17 @@
         
     }
 }
+
+.preto #root > div > div.meioPerfil > div.EsquerdoPerfil > div.BotoesPerfilEmpresa,
+.preto #root > div > div.content-searchJobs > div > div.vagas > div:nth-child(n) > div,
+.preto #root > div > div.content-searchJobs > div > div.vagas > div:nth-child(n) > div > div,
+.preto #root > div > div.content-searchJobs > div > div.vagas > div:nth-child(n) > div > div > div.TecnologiasVaga,
+.preto #root > div > div.content-searchJobs > div > div.vagas > div:nth-child(n) > div > div > div.InfoVagas,
+.preto #root > div > div.content-searchJobs > div > div.vagas > div:nth-child(n) > div > div > div.InfoVagas > div:nth-child(n){
+    background: #333330 !important;
+}
+
+.preto #modalPerfilCandidato,.preto #modalAlterarSenhaCandidato{
+    background-color: #373737 !important;
+}
+
