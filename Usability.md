@@ -44,7 +44,7 @@ Acreditamos que você seguiu os passos anteriores, caso contrário, baixe o Node
 
 #### Executar no navegador
 
-Selecione [Run in web browser]("Botão no painel do expo.") e, então, uma outra aba abrirá com o projeto executando.
+Selecione [Run in web browser](./ "Botão no painel do expo.") e, então, uma outra aba abrirá com o projeto executando.
 
 #### Executar no celular
 
@@ -52,7 +52,7 @@ Caso você deseje uma simulação mais realista, recomendamos o uso do seu dispo
 
 ##### Android
 
-Após instalado o aplicativo Expo, abra-o, aperte no botão [Scan QR Code]() e escaneie o código QR que aparece na tela do seu computador. Feito isso, o aplicativo começará a iniciar.
+Após instalado o aplicativo Expo, abra-o, aperte no botão [Scan QR Code](./ "Escaneie o código QR") e escaneie o código QR que aparece na tela do seu computador. Feito isso, o aplicativo começará a iniciar.
 
 ##### IOS
 
