@@ -9,15 +9,12 @@ DevSquad | TechVagas
 
 **TechVagas é uma aplicação que conecta empresas parceiras do Senai São Paulo com seus alunos e ex-alunos**, possuindo um sistema de administração central. Por hora, a aplicação será utilizada apenas na Escola Senai de Informática (1.32).
 
+Para saber como executar o projeto, vá para o [arquivo de usabilidade](./Usability.md "Arquivo de usabilidade")
+
 # A aplicação
 
 Neste projeto foi utilizado Microsoft SQL Server para a construção de banco de dados, ASP.NET Core para fazer uma Web API, ReactJS para
 o front-end Web, e React Native para os apps mobile.
-
-# Usabilidade
-
-Abra os scripts [DDL](./data-base/DDL_TechVagas_DDL.sql "Consulta de criação do banco e de entidades") e [DML](./data-base/DML_TechVgas.sql "Consulta de inserção de dados nas entidades"), e execute-os respectivamente.
-
 # Recursos
 
 * [Protótipos](https://www.figma.com/file/xJuQEfn369JbCukI7in3mV/TechVagas?node-id=0%3A1 "Protótipos das telas de alta e baixa fideldade no Figma")
