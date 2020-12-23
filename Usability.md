@@ -17,7 +17,7 @@ Abra os scripts [DDL](./data-base/DDL_TechVagas_DDL.sql "Consulta de criação d
 
 * [Visual Studio](https://visualstudio.microsoft.com/ "Visual Studio") com a carga de trabalho ASP.NET
 
-### Passo a Ppasso
+### Passo a passo
 
 Abra a pasta back-end, navegue até o [arquivo solução](./back-end/SenaiTechVagas.WebApi/SenaiTechVagas.WebApi.sln "Arquivo solução") e execute-o. Logo feito, mude as strings de conexão nos arquivos [context](back-end/SenaiTechVagas.WebApi/SenaiTechVagas.WebApi/Contexts/DbSenaiContext.cs "Arquivo de conexão com o banco."), [repositório do candidato](back-end/SenaiTechVagas.WebApi/SenaiTechVagas.WebApi/Repositories/CandidatoRepository.cs "Arquivo de repositório do candidato.") e [repositório da empresa](back-end/SenaiTechVagas.WebApi/SenaiTechVagas.WebApi/Repositories/EmpresaRepository.cs "Arquivo de repositório da empresa."). Tendo concluído as instruções anteriores, execute através do botão play.
 
